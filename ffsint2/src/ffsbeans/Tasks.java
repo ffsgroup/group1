@@ -10,7 +10,7 @@ import java.util.Date;
  * @author user149
  */
 public class Tasks {
-           private String tranid;
+           private String  tranid;
 	   private String taskfrom;
 	   private String taskuser;
 	   private String taskto1;
