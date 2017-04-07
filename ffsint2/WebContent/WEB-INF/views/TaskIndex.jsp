@@ -11,7 +11,86 @@
             <link href = "https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel = "stylesheet">
             <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
             <script src = "https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+ <style type="text/css">
+                #mask {
+                    display: none;
+                    background: #000; 
+                    position: fixed; left: 0; top: 0; 
+                    z-index: 10;
+                    width: 100%; height: 100%;
+                    opacity: 0.8;
+                    z-index: 999;
+                }
 
+                .login-popup{
+                    display:none;
+                    background: #fff;
+                    padding: 10px; 	
+                    border: 2px solid #ddd;
+                    float: left;
+                    font-size: 1.2em;
+                    position: fixed;
+                    top: 40%; left: 40%;
+                    z-index: 99999;
+                    box-shadow: 0px 0px 20px #999;
+                    -moz-box-shadow: 0px 0px 20px #999; /* Firefox */
+                    -webkit-box-shadow: 0px 0px 20px #999; /* Safari, Chrome */
+                    border-radius:3px 3px 3px 3px;
+                    -moz-border-radius: 3px; /* Firefox */
+                    -webkit-border-radius: 3px; /* Safari, Chrome */
+                }
+
+                img.btn_close {
+                    float: right; 
+                    margin: -20px -20px 0 0;
+                }
+
+                fieldset { 
+                    border:none; 
+                }
+
+                form.signin .textbox label { 
+                    display:block; 
+                    padding-bottom:7px; 
+                }
+
+                form.signin .textbox span { 
+                    display:block;
+                }
+                form.signin input:-moz-placeholder { color:#bbb; text-shadow:0 0 2px #000; }
+                form.signin input::-webkit-input-placeholder { color:#bbb; text-shadow:0 0 2px #000;  }
+
+            </style> 
+            <link href='http://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+            <style type="text/css">
+                table, td, th
+                {
+                    border:1px solid black;
+                    width:40%;
+
+                    font-family: 'Oxygen', sans-serif;
+                }
+                th
+                {
+                    background-color:white;
+                    color:black;
+                }
+                body
+                {
+                    text-align: left;
+                }
+                .container
+                {
+                    margin-left: auto;
+                    margin-right: 20px;
+
+                }
+                h4
+                {
+                    font-family: 'Oxygen', sans-serif;
+                    color:#1E90FF;
+                }
+            </style>
                        
 
             <script src="resources/dhtmlxcalendar.js"></script>
@@ -29,12 +108,12 @@
                                 $.each(responseJson, function (key, value) {
                                     var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
-                                    rowNew.children().eq(1).text(value['taskto1']);
+                                    rowNew.children().eq(1).text(value['taskfrom']);
                                     rowNew.children().eq(2).text(value['description']);
-                                    rowNew.children().eq(3).text(value['startdate']);
-                                    rowNew.children().eq(4).text(value['revdate']);
-                                    rowNew.children().eq(5).text(value['enddate']);
-                                    rowNew.children().eq(6).text(value['statusday']);
+                                    rowNew.children().eq(3).text(value['revdate']);
+                                    rowNew.children().eq(4).text(value['enddate']);
+                                    rowNew.children().eq(5).text(value['taskstat']);
+                                    rowNew.children().eq(6).text(value['startdate']);
                                     rowNew.appendTo(table1);
                                 });
                                 document.getElementsById("countrytable")[0].style.width = '20px';
@@ -72,16 +151,16 @@
 
         <div id="tablediv">
 
-            <table cellspacing="0" id="countrytable" margin-right:20px style="table-layout:fixed;float: left; border-collapse: collapse;"> 
+            <table cellspacing="0" id="countrytable" margin-right:20px  style="table-layout:fixed;float: left; border-collapse: collapse;"  > 
 
                 <tr> 
                     <th style="width:60px" scope="col">ID</th> 
-                    <th style="width:100px" scope="col">To</th> 
-                    <th style="width:150px" scope="col">Description</th> 
-                    <th style="width:100px" scope="col">Review Date</th> 
-                    <th style="width:100px" scope="col">End Date</th> 
-                    <th style="width:100px" scope="col">Status Date</th> 
-                    <th style="width:100px" scope="col">Start Date</th> 
+                    <th style="width:150px" scope="col">To</th> 
+                    <th style="width:270px" scope="col">Description</th> 
+                    <th style="width:130px" scope="col">Review Date</th> 
+                    <th style="width:130px" scope="col">End Date</th> 
+                    <th style="width:100px" scope="col">Status</th> 
+                    <th style="width:130px" scope="col">Start Date</th> 
                 <tr>
                     <td>11111 </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
                 <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
@@ -112,15 +191,14 @@
   
             
     
-        <button id="Button1"></button>
+    
         
 
 
         
 
 
-        
-        
+    
 
 
     </body>

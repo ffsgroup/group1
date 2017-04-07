@@ -23,7 +23,7 @@
           </tr>
           <tr>
              <td>Password</td>
-             <td><input type="text" name="password" value= "${user.password}" /> </td>
+             <td><input type="password" name="password" value= "${user.password}" /> </td>
           </tr>
           <tr>
              <td>Remember me</td>
@@ -38,7 +38,7 @@
        </table>
     </form>
  
-    <p style="color:blue;">User Name: tom, password: tom001 or jerry/jerry001</p>
+  
  
     <jsp:include page="_footer.jsp"></jsp:include>
  

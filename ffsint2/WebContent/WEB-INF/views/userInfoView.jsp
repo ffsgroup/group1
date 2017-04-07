@@ -12,7 +12,7 @@
     <jsp:include page="_menu.jsp"></jsp:include>
      <br />
      <a href="${pageContext.request.contextPath}/diary.jsp">Diary</a>
-      <!--     <jsp:include page="_calendar.jsp"></jsp:include> --> 
+      <a href="${pageContext.request.contextPath}/TaskIndex.jsp">Task</a>
      <br />
  <jsp:include page="diary-test.jsp"></jsp:include>
     <jsp:include page="_footer.jsp"></jsp:include>
