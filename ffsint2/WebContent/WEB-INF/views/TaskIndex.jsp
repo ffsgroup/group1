@@ -113,8 +113,8 @@
                                     rowNew.children().eq(2).text(value['description']);
                                     rowNew.children().eq(3).text(value['revdate']);
                                     rowNew.children().eq(4).text(value['enddate']);
-                               //     rowNew.children().eq(5).text(value['taskstat']);
-                            //    rowNew.children().eq(6).text(value['startdate']);
+                                    rowNew.children().eq(5).text(value['taskstat']);
+                                rowNew.children().eq(6).text(value['startdate']);
                                     rowNew.appendTo(table1);
                                 });
                                 document.getElementsById("countrytable")[0].style.width = '20px';
