@@ -87,7 +87,14 @@ public class TaskUtils extends HttpServlet {
             Calendar cal1 = new GregorianCalendar();
 
             System.out.println("1 "+rs.getString("tranid"));
-            cal1.setTime(rs.getTimestamp("revdate"));
+            System.out.println("3 "+rs.getTimestamp("revdate"));
+           if (rs.getTimestamp("revdate")== null) {
+             cal1.setTime(rs.getTimestamp("startdate"));
+        }
+           else
+           {
+            cal1.setTime(rs.getTimestamp("revdate"));       
+                   }
              System.out.println("2 "+rs.getString("tranid"));
             String year1 = Integer.toString(cal1.get(Calendar.YEAR));
             String month1 = Integer.toString(cal1.get(Calendar.MONTH) + 1);
