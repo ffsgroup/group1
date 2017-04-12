@@ -16,14 +16,6 @@
         <filter-name>cookieFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-    <servlet>
-        <servlet-name>ttttt</servlet-name>
-        <servlet-class>ffsbeans.ttttt</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ttttt</servlet-name>
-        <url-pattern>/ttttt</url-pattern>
-    </servlet-mapping>
     <welcome-file-list>
         <welcome-file>home</welcome-file>
         <welcome-file>index.html</welcome-file>

@@ -99,6 +99,104 @@
 
             <script>
                 
+                 $(document).ready(function () {
+                    $("#UpdatedTasks").click(function (event) {
+                        $.get('UpdatedTasks', function (responseJson) {
+                            if (responseJson != null) {
+                                $("#countrytable").find("tr:gt(0)").remove();
+                                var table1 = $("#countrytable");
+                                $.each(responseJson, function (key, value) {
+                                    var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    rowNew.children().eq(0).text(value['tranid']);
+                                    rowNew.children().eq(1).text(value['taskfrom']);
+                                    rowNew.children().eq(2).text(value['description']);
+                                    rowNew.children().eq(3).text(value['revdate']);
+                                    rowNew.children().eq(4).text(value['enddate']);
+                                    rowNew.children().eq(5).text(value['taskstat']);
+                                rowNew.children().eq(6).text(value['startdate']);
+                                    rowNew.appendTo(table1);
+                                });
+                                document.getElementsById("countrytable")[0].style.width = '20px';
+                            }
+                        });
+                    });
+                });
+                
+                
+                
+                $(document).ready(function () {
+                    $("#ToMeComp").click(function (event) {
+                        $.get('TaskToMeComp', function (responseJson) {
+                            if (responseJson != null) {
+                                $("#countrytable").find("tr:gt(0)").remove();
+                                var table1 = $("#countrytable");
+                                $.each(responseJson, function (key, value) {
+                                    var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    rowNew.children().eq(0).text(value['tranid']);
+                                    rowNew.children().eq(1).text(value['taskfrom']);
+                                    rowNew.children().eq(2).text(value['description']);
+                                    rowNew.children().eq(3).text(value['revdate']);
+                                    rowNew.children().eq(4).text(value['enddate']);
+                                    rowNew.children().eq(5).text(value['taskstat']);
+                                rowNew.children().eq(6).text(value['startdate']);
+                                    rowNew.appendTo(table1);
+                                });
+                                document.getElementsById("countrytable")[0].style.width = '20px';
+                            }
+                        });
+                    });
+                });
+                
+                
+                
+                  $(document).ready(function () {
+                    $("#NewTask").click(function (event) {
+                        $.get('NewTask', function (responseJson) {
+                            if (responseJson != null) {
+                                $("#countrytable").find("tr:gt(0)").remove();
+                                var table1 = $("#countrytable");
+                                $.each(responseJson, function (key, value) {
+                                    var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    rowNew.children().eq(0).text(value['tranid']);
+                                    rowNew.children().eq(1).text(value['taskfrom']);
+                                    rowNew.children().eq(2).text(value['description']);
+                                    rowNew.children().eq(3).text(value['revdate']);
+                                    rowNew.children().eq(4).text(value['enddate']);
+                                    rowNew.children().eq(5).text(value['taskstat']);
+                                rowNew.children().eq(6).text(value['startdate']);
+                                    rowNew.appendTo(table1);
+                                });
+                                document.getElementsById("countrytable")[0].style.width = '20px';
+                            }
+                        });
+                    });
+                });
+                
+                
+                
+                $(document).ready(function () {
+                    $("#ByMeComp").click(function (event) {
+                        $.get('TaskByMeComp', function (responseJson) {
+                            if (responseJson != null) {
+                                $("#countrytable").find("tr:gt(0)").remove();
+                                var table1 = $("#countrytable");
+                                $.each(responseJson, function (key, value) {
+                                    var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    rowNew.children().eq(0).text(value['tranid']);
+                                    rowNew.children().eq(1).text(value['taskfrom']);
+                                    rowNew.children().eq(2).text(value['description']);
+                                    rowNew.children().eq(3).text(value['revdate']);
+                                    rowNew.children().eq(4).text(value['enddate']);
+                                    rowNew.children().eq(5).text(value['taskstat']);
+                                rowNew.children().eq(6).text(value['startdate']);
+                                    rowNew.appendTo(table1);
+                                });
+                                document.getElementsById("countrytable")[0].style.width = '20px';
+                            }
+                        });
+                    });
+                });
+                
                 
                  $(document).ready(function () {
                     $("#TaskInFuture").click(function (event) {
