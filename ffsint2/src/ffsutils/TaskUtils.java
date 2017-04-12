@@ -45,7 +45,7 @@ public class TaskUtils extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     
-    public static ArrayList<Tasks> getUrgentTasks(Connection conn, String Username) throws SQLException {
+    public static ArrayList<Tasks> getTrainingTask(Connection conn, String Username) throws SQLException {
         
          Date date = new Date();
             Calendar cal = Calendar.getInstance();
@@ -58,23 +58,25 @@ public class TaskUtils extends HttpServlet {
             String minute = Integer.toString(cal.get(Calendar.MINUTE));
         
       
-    String sql = "select * from tasks where (taskfrom = ?) and (taskstat <> 'Completed') and (revdate > '" + year + "/" + month + "/" + day + " 00:01') and (revdate < '" + year + "/" + month + "/" + day + " 23:59')";
+    String sql = "select * from tasks where ((((taskto1 = ?) and ((taskstat1 <> 'Completed') or (taskstat1 is null))) or ((taskto2 = ?) and ((taskstat2 <> 'Completed') or (taskstat2 is null))) or ((taskto3 = ?) and ((taskstat3 <> 'Completed') or (taskstat3 is null))) or ((taskto4 = ?) and ((taskstat4 <> 'Completed') or (taskstat4 is null))) or ((taskto5 = ?) and ((taskstat5 <> 'Completed') or (taskstat5 is null))) or ((taskto6 = ?) and ((taskstat6 <> 'Completed') or (taskstat6 is null))) or ((taskto7 = ?) and ((taskstat7 <> 'Completed') or (taskstat7 is null))) or ((taskto8 = ?) and ((taskstat8 <> 'Completed') or (taskstat8 is null))) or ((taskto9 = ?) and ((taskstat9 <> 'Completed') or (taskstat9 is null))) or ((taskto10 = ?) and ((taskstat10 <> 'Completed') or (taskstat10 is null))) or ((taskto11 = ?) and ((taskstat11 <> 'Completed') or (taskstat11 is null))) or ((taskto12 = ?) and ((taskstat12 <> 'Completed') or (taskstat12 is null))) or ((taskto13 = ?) and ((taskstat13 <> 'Completed') or (taskstat13 is null))) or ((taskto14 = ?) and ((taskstat14 <> 'Completed') or (taskstat14 is null))) or ((taskto15 = ?) and ((taskstat15 <> 'Completed') or (taskstat15 is null)))) or (taskfrom = ?))and (taskstat <> 'Completed') and (train = 'Y')";
         PreparedStatement pstm = conn.prepareStatement(sql);
        pstm.setString(1, Username);
-        pstm.setString(2, Username);
-     pstm.setString(3, Username);
-        pstm.setString(4, Username);
-        pstm.setString(5, Username);
-        pstm.setString(6, Username);
-      pstm.setString(7, Username);
-        pstm.setString(8, Username);
-        pstm.setString(9, Username);
-        pstm.setString(10, Username);
-        pstm.setString(11, Username);
-        pstm.setString(12, Username);
-        pstm.setString(13, Username);
-        pstm.setString(14, Username);
-        pstm.setString(15, Username);
+       pstm.setString(2, Username);
+       pstm.setString(3, Username);
+       pstm.setString(4, Username);
+       pstm.setString(5, Username);
+       pstm.setString(6, Username);
+       pstm.setString(7, Username);
+       pstm.setString(8, Username);
+       pstm.setString(9, Username);
+       pstm.setString(10, Username);
+       pstm.setString(11, Username);
+       pstm.setString(12, Username);
+       pstm.setString(13, Username);
+       pstm.setString(14, Username);
+       pstm.setString(15, Username);
+       pstm.setString(16, Username);
+       
         
         ResultSet rs = pstm.executeQuery();
         ArrayList<Tasks> list = new ArrayList<Tasks>();
@@ -84,13 +86,14 @@ public class TaskUtils extends HttpServlet {
 
             System.out.println("1 "+rs.getString("tranid"));
             System.out.println("3 "+rs.getTimestamp("revdate"));
-           if (rs.getTimestamp("revdate")== null) {
+            if (rs.getTimestamp("revdate")== null) {
              cal1.setTime(rs.getTimestamp("startdate"));
         }
            else
            {
             cal1.setTime(rs.getTimestamp("revdate"));       
                    }
+               System.out.println("2 "+rs.getString("tranid"));
             String year1 = Integer.toString(cal1.get(Calendar.YEAR));
             String month1 = Integer.toString(cal1.get(Calendar.MONTH) + 1);
             String day1 = Integer.toString(cal1.get(Calendar.DAY_OF_MONTH));
@@ -171,7 +174,139 @@ public class TaskUtils extends HttpServlet {
             
         }
            
-        String sql1 = "select * from tasks where (((taskto1 = ?) and ((taskstat1 <> 'Completed') or (taskstat1 is null))) or ((taskto2 = ?) and ((taskstat2 <> 'Completed') or (taskstat2 is null))) or ((taskto3 = ?) and ((taskstat3 <> 'Completed') or (taskstat3 is null))) or  ((taskto4 = ?) and ((taskstat4 <> 'Completed') or (taskstat4 is null))) or ((taskto5 = ?) and ((taskstat5 <> 'Completed') or (taskstat5 is null))) or  ((taskto6 = ?) and ((taskstat6 <> 'Completed') or (taskstat6 is null))) or  ((taskto7 = ?) and ((taskstat7 <> 'Completed') or (taskstat7 is null))) or  ((taskto8 = ?) and ((taskstat8 <> 'Completed') or (taskstat8 is null))) or ((taskto9 = ?) and ((taskstat9 <> 'Completed') or (taskstat9 is null))) or  ((taskto10 = ?) and ((taskstat10 <> 'Completed') or (taskstat10 is null))) or ((taskto11 = ?) and ((taskstat11 <> 'Completed') or (taskstat11 is null))) or ((taskto12 = ?) and ((taskstat12 <> 'Completed') or (taskstat12 is null))) or  ((taskto13 = ?) and ((taskstat13 <> 'Completed') or (taskstat13 is null))) or ((taskto14 = ?) and ((taskstat14 <> 'Completed') or (taskstat14 is null))) or ((taskto15 = ?) and ((taskstat15 <> 'Completed') or (taskstat15 is null)))) and (taskstat <> 'Completed') and (revdate >  '" + year + "/" + month + "/" + day + " 00:01') and (revdate < '" + year + "/" + month + "/" + day + " 23:59')";
+        
+        
+        return list;
+    }
+    
+    
+    
+    
+    
+    public static ArrayList<Tasks> getUrgentTasks(Connection conn, String Username) throws SQLException {
+        
+         Date date = new Date();
+            Calendar cal = Calendar.getInstance();
+
+              cal.add(Calendar.DATE, 3);
+            String year = Integer.toString(cal.get(Calendar.YEAR));
+            String month = Integer.toString(cal.get(Calendar.MONTH) + 1);
+            String day = Integer.toString(cal.get(Calendar.DAY_OF_MONTH));
+            String hour = Integer.toString(cal.get(Calendar.HOUR_OF_DAY));
+            String minute = Integer.toString(cal.get(Calendar.MINUTE));
+            
+             Date date1 = new Date();
+            Calendar cal1 = Calendar.getInstance();
+
+              cal1.add(Calendar.DATE, 4);
+            String year1 = Integer.toString(cal1.get(Calendar.YEAR));
+            String month1 = Integer.toString(cal1.get(Calendar.MONTH) + 1);
+            String day1 = Integer.toString(cal1.get(Calendar.DAY_OF_MONTH));
+            String hour1 = Integer.toString(cal1.get(Calendar.HOUR_OF_DAY));
+            String minute1 = Integer.toString(cal1.get(Calendar.MINUTE));
+        
+      
+    String sql = "select * from tasks where (taskfrom = ?) and (taskstat <> 'Completed') and (revdate > '" + year + "/" + month + "/" + day + " 00:01') and (revdate < '" + year1 + "/" + month1 + "/" + day1 + " 23:59')";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+       pstm.setString(1, Username);
+   
+        
+        ResultSet rs = pstm.executeQuery();
+        ArrayList<Tasks> list = new ArrayList<Tasks>();
+        while (rs.next()) {
+             Date date10 = new Date();
+            Calendar cal10 = new GregorianCalendar();
+
+            System.out.println("1 "+rs.getString("tranid"));
+            System.out.println("3 "+rs.getTimestamp("revdate"));
+           if (rs.getTimestamp("revdate")== null) {
+             cal1.setTime(rs.getTimestamp("startdate"));
+        }
+           else
+           {
+            cal1.setTime(rs.getTimestamp("revdate"));       
+                   }
+            String year10 = Integer.toString(cal10.get(Calendar.YEAR));
+            String month10 = Integer.toString(cal10.get(Calendar.MONTH) + 1);
+            String day10 = Integer.toString(cal10.get(Calendar.DAY_OF_MONTH));
+            String hour10 = Integer.toString(cal10.get(Calendar.HOUR_OF_DAY));
+            String minute10 = Integer.toString(cal10.get(Calendar.MINUTE));
+            if (hour10.length() == 1 ){
+                hour10 = "0" + hour10;
+            } 
+            if (minute10.length() == 1 ){
+                minute10 = "0" + minute10;
+            }
+             if (month10.length() == 1 ){
+                month10 = "0" + month10;
+            }
+              if (day10.length() == 1 ){
+                day10 = "0" + day10;
+            }
+              Date date2 = new Date();
+            Calendar cal2 = new GregorianCalendar();
+              
+              cal2.setTime(rs.getTimestamp("enddate"));
+            String year2 = Integer.toString(cal2.get(Calendar.YEAR));
+            String month2 = Integer.toString(cal2.get(Calendar.MONTH) + 1);
+            String day2 = Integer.toString(cal2.get(Calendar.DAY_OF_MONTH));
+            String hour2 = Integer.toString(cal2.get(Calendar.HOUR_OF_DAY));
+            String minute2 = Integer.toString(cal2.get(Calendar.MINUTE));
+            if (hour2.length() == 1 ){
+                hour2 = "0" + hour2;
+            } 
+            if (minute2.length() == 1 ){
+                minute2 = "0" + minute2;
+            }
+             if (month2.length() == 1 ){
+                month2 = "0" + month2;
+            }
+              if (day2.length() == 1 ){
+                day2 = "0" + day2;
+            }
+               Date date3 = new Date();
+            Calendar cal3 = new GregorianCalendar();
+            
+              cal3.setTime(rs.getTimestamp("startdate"));
+            String year3 = Integer.toString(cal3.get(Calendar.YEAR));
+            String month3 = Integer.toString(cal3.get(Calendar.MONTH) + 1);
+            String day3 = Integer.toString(cal3.get(Calendar.DAY_OF_MONTH));
+            String hour3 = Integer.toString(cal3.get(Calendar.HOUR_OF_DAY));
+            String minute3 = Integer.toString(cal3.get(Calendar.MINUTE));
+            if (hour3.length() == 1 ){
+                hour3 = "0" + hour3;
+            } 
+            if (minute3.length() == 1 ){
+                minute3 = "0" + minute3;
+            }
+             if (month3.length() == 1 ){
+                month3 = "0" + month3;
+            }
+              if (day3.length() == 1 ){
+                day3 = "0" + day3;
+            }
+            String tranid = rs.getString("tranid");
+            String taskfrom = rs.getString("taskfrom");
+             String description = rs.getString("description");
+              String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1; 
+               String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2; 
+                String taskstat = rs.getString("taskstat");
+                String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3; 
+            Tasks task = new Tasks();
+            task.setTranid(tranid);
+            task.setTaskfrom(taskfrom);
+            task.setDescription(description);
+            task.setRevdate(revdate);
+            task.setEnddate(enddate);
+            task.setTaskstat(taskstat);
+            task.setStartdate(startdate);
+            
+          
+            list.add(task);
+            
+        }
+           
+        String sql1 = "select * from tasks where (((taskto1 = ?) and ((taskstat1 <> 'Completed') or (taskstat1 is null))) or ((taskto2 = ?) and ((taskstat2 <> 'Completed') or (taskstat2 is null))) or ((taskto3 = ?) and ((taskstat3 <> 'Completed') or (taskstat3 is null))) or ((taskto4 = ?) and ((taskstat4 <> 'Completed') or (taskstat4 is null))) or ((taskto5 = ?) and ((taskstat5 <> 'Completed') or (taskstat5 is null))) or ((taskto6 = ?) and ((taskstat6 <> 'Completed') or (taskstat6 is null))) or ((taskto7 = ?) and ((taskstat7 <> 'Completed') or (taskstat7 is null))) or ((taskto8 = ?) and ((taskstat8 <> 'Completed') or (taskstat8 is null))) or ((taskto9 = ?) and ((taskstat9 <> 'Completed') or (taskstat9 is null))) or ((taskto10 = ?) and ((taskstat10 <> 'Completed') or (taskstat10 is null))) or((taskto11 = ?) and ((taskstat11 <> 'Completed') or (taskstat11 is null))) or ((taskto12 = ?) and ((taskstat12 <> 'Completed') or (taskstat12 is null))) or ((taskto13 = ?) and ((taskstat13 <> 'Completed') or (taskstat13 is null))) or ((taskto14 = ?) and ((taskstat14 <> 'Completed') or (taskstat14 is null))) or ((taskto15 = ?) and ((taskstat15 <> 'Completed') or (taskstat15 is null)))) and (taskstat <> 'Completed') and (revdate > '" + year + "/" + month + "/" + day + " 00:01') and (revdate < '" + year1 + "/" + month1 + "/" + day1 + " 23:59')";
         PreparedStatement pstm1 = conn.prepareStatement(sql1);
     
          pstm1.setString(1, Username);
@@ -193,27 +328,27 @@ public class TaskUtils extends HttpServlet {
         ResultSet rs1 = pstm1.executeQuery();
       
         while (rs1.next()) {
-             Date date1 = new Date();
-            Calendar cal1 = new GregorianCalendar();
+             Date date11 = new Date();
+            Calendar cal11 = new GregorianCalendar();
 
 
             cal1.setTime(rs1.getTimestamp("revdate"));
-            String year1 = Integer.toString(cal1.get(Calendar.YEAR));
-            String month1 = Integer.toString(cal1.get(Calendar.MONTH) + 1);
-            String day1 = Integer.toString(cal1.get(Calendar.DAY_OF_MONTH));
-            String hour1 = Integer.toString(cal1.get(Calendar.HOUR_OF_DAY));
-            String minute1 = Integer.toString(cal1.get(Calendar.MINUTE));
-            if (hour1.length() == 1 ){
-                hour1 = "0" + hour1;
+            String year11 = Integer.toString(cal11.get(Calendar.YEAR));
+            String month11 = Integer.toString(cal11.get(Calendar.MONTH) + 1);
+            String day11 = Integer.toString(cal11.get(Calendar.DAY_OF_MONTH));
+            String hour11 = Integer.toString(cal11.get(Calendar.HOUR_OF_DAY));
+            String minute11 = Integer.toString(cal11.get(Calendar.MINUTE));
+            if (hour11.length() == 1 ){
+                hour11 = "0" + hour11;
             } 
-            if (minute1.length() == 1 ){
-                minute1 = "0" + minute1;
+            if (minute11.length() == 1 ){
+                minute11 = "0" + minute11;
             }
-             if (month1.length() == 1 ){
-                month1 = "0" + month1;
+             if (month11.length() == 1 ){
+                month11 = "0" + month11;
             }
-              if (day1.length() == 1 ){
-                day1 = "0" + day1;
+              if (day11.length() == 1 ){
+                day11 = "0" + day11;
             }
               Date date2 = new Date();
             Calendar cal2 = new GregorianCalendar();

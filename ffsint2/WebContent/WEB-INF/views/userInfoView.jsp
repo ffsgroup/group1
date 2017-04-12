@@ -9,9 +9,10 @@
  <body>
    
     <jsp:include page="_header.jsp"></jsp:include>
-    <jsp:include page="_menu.jsp"></jsp:include>
+   
      <br />
      <a href="${pageContext.request.contextPath}/diary.jsp">Diary</a>
+    <br>
       <a href="${pageContext.request.contextPath}/TaskIndex.jsp">Task</a>
      <br />
  <jsp:include page="diary-test.jsp"></jsp:include>

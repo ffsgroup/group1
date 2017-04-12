@@ -9,7 +9,7 @@
  <body>
  
     <jsp:include page="_header.jsp"></jsp:include>
-    <jsp:include page="_menu.jsp"></jsp:include>
+  
  
     <h3>Login Page</h3>
  

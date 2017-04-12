@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-        <jsp:include page="_header.jsp"></jsp:include>
+        <jsp:include page="_TaskHeader.jsp"></jsp:include>
         
    
 
@@ -131,10 +131,11 @@ tbody {
             <script>
                 
                  $(document).ready(function () {
-                    $("#UrgentTasks").click(function (event) {
-                        $.get('UrgentTasks', function (responseJson) {
+                    $("#TrainingTasks").click(function (event) {
+                        $.get('TrainingTask', function (responseJson) {
+                            $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
-                                $("#countrytable").find("tr:gt(0)").remove();
+                                
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
                                     var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
@@ -148,6 +149,44 @@ tbody {
                                     rowNew.appendTo(table1);
                                 });
                                 document.getElementsById("countrytable")[0].style.width = '20px';
+                            }
+                            else
+                            {
+                                  var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    rowNew.children().eq(0).text("No Entries Found!")
+                                    rowNew.appendTo(table1);
+                            }
+                        });
+                    });
+                });
+                
+                
+                
+                 $(document).ready(function () {
+                    $("#UrgentTasks").click(function (event) {
+                        $.get('UrgentTasks', function (responseJson) {
+                            $("#countrytable").find("tr:gt(0)").remove();
+                            if (responseJson != null) {
+                                
+                                var table1 = $("#countrytable");
+                                $.each(responseJson, function (key, value) {
+                                    var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    rowNew.children().eq(0).text(value['tranid']);
+                                    rowNew.children().eq(1).text(value['taskfrom']);
+                                    rowNew.children().eq(2).text(value['description']);
+                                    rowNew.children().eq(3).text(value['revdate']);
+                                    rowNew.children().eq(4).text(value['enddate']);
+                                    rowNew.children().eq(5).text(value['taskstat']);
+                                rowNew.children().eq(6).text(value['startdate']);
+                                    rowNew.appendTo(table1);
+                                });
+                                document.getElementsById("countrytable")[0].style.width = '20px';
+                            }
+                            else
+                            {
+                                  var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    rowNew.children().eq(0).text("No Entries Found!")
+                                    rowNew.appendTo(table1);
                             }
                         });
                     });
@@ -158,8 +197,9 @@ tbody {
                  $(document).ready(function () {
                     $("#UpdatedTasks").click(function (event) {
                         $.get('UpdatedTasks', function (responseJson) {
-                            if (responseJson != null) {
                                 $("#countrytable").find("tr:gt(0)").remove();
+                            if (responseJson != null) {
+                            
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
                                     var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
@@ -174,6 +214,12 @@ tbody {
                                 });
                                 document.getElementsById("countrytable")[0].style.width = '20px';
                             }
+                            else
+                                 {
+                                  var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    rowNew.children().eq(0).text("No Entries Found!")
+                                    rowNew.appendTo(table1);
+                            }
                         });
                     });
                 });
@@ -183,8 +229,9 @@ tbody {
                 $(document).ready(function () {
                     $("#ToMeComp").click(function (event) {
                         $.get('TaskToMeComp', function (responseJson) {
+                               $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
-                                $("#countrytable").find("tr:gt(0)").remove();
+                             
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
                                     var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
@@ -208,8 +255,9 @@ tbody {
                   $(document).ready(function () {
                     $("#NewTask").click(function (event) {
                         $.get('NewTask', function (responseJson) {
-                            if (responseJson != null) {
                                 $("#countrytable").find("tr:gt(0)").remove();
+                            if (responseJson != null) {
+                            
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
                                     var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
@@ -233,8 +281,9 @@ tbody {
                 $(document).ready(function () {
                     $("#ByMeComp").click(function (event) {
                         $.get('TaskByMeComp', function (responseJson) {
+                               $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
-                                $("#countrytable").find("tr:gt(0)").remove();
+                             
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
                                     var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
@@ -257,8 +306,9 @@ tbody {
                  $(document).ready(function () {
                     $("#TaskInFuture").click(function (event) {
                         $.get('TaskInFuture', function (responseJson) {
+                              $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
-                                $("#countrytable").find("tr:gt(0)").remove();
+                              
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
                                     var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
@@ -282,8 +332,9 @@ tbody {
                  $(document).ready(function () {
                     $("#ByMeInProg").click(function (event) {
                         $.get('TaskByMe', function (responseJson) {
+                               $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
-                                $("#countrytable").find("tr:gt(0)").remove();
+                             
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
                                     var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
@@ -306,8 +357,9 @@ tbody {
                 $(document).ready(function () {
                     $("#ToMeInProg").click(function (event) {
                         $.get('TaskServlet', function (responseJson) {
+                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
-                                $("#countrytable").find("tr:gt(0)").remove();
+                               
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
                                     var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
@@ -338,7 +390,7 @@ tbody {
         </head>
 
         <body onload="doOnLoad();" class="container">
-             <h2>Tasks</h2>
+            <h2></h2>
              <b>Tasks In Progress :</b><input type="checkbox" id="ToMeInProg" value="ToMe">Assigned To Me
                                <input type="checkbox" id="ByMeInProg" value="ByMe" >Assigned By Me
                                <input type="checkbox" id="TaskInFuture" value="InFuture" >Tasks In The Future<br>

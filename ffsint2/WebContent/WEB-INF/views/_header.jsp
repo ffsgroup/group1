@@ -4,12 +4,16 @@
   <div style="float: left">
      <h1>FFS Group</h1>
   </div>
- 
+  
   <div style="float: right; padding: 10px; text-align: right;">
  
      <!-- User store in session with attribute: loginedUser -->
     <b>${loginedUser.userName}</b>
- 
+    <br>
+   <a href="${pageContext.request.contextPath}/">Home</a>
+   |
+   <a href="${pageContext.request.contextPath}/login">Login</a>
   </div>
  
+  
 </div>
