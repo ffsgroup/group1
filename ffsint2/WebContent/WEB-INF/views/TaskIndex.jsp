@@ -70,7 +70,7 @@ html {
 }
 table {
     border-collapse: collapse;
-    width: 45%;
+    width: 50%;
     overflow-x: scroll;
     display: block;
 }
@@ -88,7 +88,7 @@ td, th {
 tbody {
     overflow-y: scroll;
     overflow-x: hidden;
-    height: 40%;
+    height: 45%;
 }
 </style> 
             
@@ -97,7 +97,7 @@ tbody {
                 table, td, th
                 {
                     border:1px solid black;
-                    width:40%;
+                    width:60%;
 
                     font-family: 'Oxygen', sans-serif;
                 }
@@ -122,23 +122,51 @@ tbody {
                     color:#1E90FF;
                 }
             </style>
-                       
+                      
 
             <script src="resources/dhtmlxcalendar.js"></script>
             <link rel="stylesheet" type="text/css" href="resources/dhtmlxcalendar_1.css"/>
            
+ <script>
+                var myCalendar;
+                function doOnLoad() {
+                    myCalendar = new dhtmlXCalendarObject("calendarHere");
+                    //		myCalendar.setSkin("material");
+                    myCalendar.setDate(new Date(2016, 7, 7, 16, 0));
+                    myCalendar.show();
+                    myCalendar.hideTime();
+                    myCalendar.showToday();
+                    myCalendar.setHolidays(["2012-04-28", "2012-05-09", "2012-05-01", "2012-05-27", "2012-05-21", "2012-05-28", "2012-06-03", "2012-06-04"]);
+                    //  myCalendar.setInsensitiveRange(null, "2012-05-04");
+                    myCalendar._drawMonth(new Date(2016, 7, 1));
+                    myCalendar.attachEvent("onClick", function (side, d) {
+                        //	writeLog("onClick event called, "+side+" calendar, date "+myCalendar.getFormatedDate(null,d));
 
+
+                    });
+                }
+            </script>
             <script>
                 
+                
+           
                  $(document).ready(function () {
                     $("#TrainingTasks").click(function (event) {
+                        document.getElementById("ToMeInProg").checked = false;
+                         document.getElementById("ByMeInProg").checked = false;
+                         document.getElementById("NewTask").checked = false;
+                         document.getElementById("TaskInFuture").checked = false;
+                         document.getElementById("ByMeComp").checked = false;
+                         document.getElementById("ToMeComp").checked = false;
+                         document.getElementById("UpdatedTasks").checked = false;
+                         document.getElementById("UrgentTasks").checked = false;
                         $.get('TrainingTask', function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
                                 
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-                                    var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
                                     rowNew.children().eq(2).text(value['description']);
@@ -164,13 +192,21 @@ tbody {
                 
                  $(document).ready(function () {
                     $("#UrgentTasks").click(function (event) {
+                        document.getElementById("ToMeInProg").checked = false;
+                         document.getElementById("ByMeInProg").checked = false;
+                         document.getElementById("NewTask").checked = false;
+                         document.getElementById("TaskInFuture").checked = false;
+                         document.getElementById("ByMeComp").checked = false;
+                         document.getElementById("ToMeComp").checked = false;
+                         document.getElementById("UpdatedTasks").checked = false;
+                         document.getElementById("TrainingTasks").checked = false;
                         $.get('UrgentTasks', function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
                                 
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-                                    var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
                                     rowNew.children().eq(2).text(value['description']);
@@ -196,13 +232,21 @@ tbody {
                 
                  $(document).ready(function () {
                     $("#UpdatedTasks").click(function (event) {
+                        document.getElementById("ToMeInProg").checked = false;
+                         document.getElementById("ByMeInProg").checked = false;
+                         document.getElementById("NewTask").checked = false;
+                         document.getElementById("TaskInFuture").checked = false;
+                         document.getElementById("ByMeComp").checked = false;
+                         document.getElementById("ToMeComp").checked = false;
+                         document.getElementById("UrgentTasks").checked = false;
+                         document.getElementById("TrainingTasks").checked = false;
                         $.get('UpdatedTasks', function (responseJson) {
                                 $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
                             
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-                                    var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
                                     rowNew.children().eq(2).text(value['description']);
@@ -228,13 +272,21 @@ tbody {
                 
                 $(document).ready(function () {
                     $("#ToMeComp").click(function (event) {
+                         document.getElementById("ToMeInProg").checked = false;
+                         document.getElementById("ByMeInProg").checked = false;
+                         document.getElementById("NewTask").checked = false;
+                         document.getElementById("TaskInFuture").checked = false;
+                         document.getElementById("ByMeComp").checked = false;
+                         document.getElementById("UpdatedTasks").checked = false;
+                         document.getElementById("UrgentTasks").checked = false;
+                         document.getElementById("TrainingTasks").checked = false;
                         $.get('TaskToMeComp', function (responseJson) {
                                $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
                              
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-                                    var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
                                     rowNew.children().eq(2).text(value['description']);
@@ -254,13 +306,21 @@ tbody {
                 
                   $(document).ready(function () {
                     $("#NewTask").click(function (event) {
+                        document.getElementById("ToMeInProg").checked = false;
+                         document.getElementById("ByMeInProg").checked = false;
+                         document.getElementById("ToMeComp").checked = false;
+                         document.getElementById("TaskInFuture").checked = false;
+                         document.getElementById("ByMeComp").checked = false;
+                         document.getElementById("UpdatedTasks").checked = false;
+                         document.getElementById("UrgentTasks").checked = false;
+                         document.getElementById("TrainingTasks").checked = false;
                         $.get('NewTask', function (responseJson) {
                                 $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
                             
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-                                    var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
                                     rowNew.children().eq(2).text(value['description']);
@@ -280,13 +340,21 @@ tbody {
                 
                 $(document).ready(function () {
                     $("#ByMeComp").click(function (event) {
+                        document.getElementById("ToMeInProg").checked = false;
+                         document.getElementById("ByMeInProg").checked = false;
+                         document.getElementById("ToMeComp").checked = false;
+                         document.getElementById("TaskInFuture").checked = false;
+                         document.getElementById("NewTask").checked = false;
+                         document.getElementById("UpdatedTasks").checked = false;
+                         document.getElementById("UrgentTasks").checked = false;
+                         document.getElementById("TrainingTasks").checked = false;
                         $.get('TaskByMeComp', function (responseJson) {
                                $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
                              
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-                                    var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
                                     rowNew.children().eq(2).text(value['description']);
@@ -305,13 +373,21 @@ tbody {
                 
                  $(document).ready(function () {
                     $("#TaskInFuture").click(function (event) {
+                        document.getElementById("ToMeInProg").checked = false;
+                         document.getElementById("ByMeInProg").checked = false;
+                         document.getElementById("ToMeComp").checked = false;
+                         document.getElementById("ByMeComp").checked = false;
+                         document.getElementById("NewTask").checked = false;
+                         document.getElementById("UpdatedTasks").checked = false;
+                         document.getElementById("UrgentTasks").checked = false;
+                         document.getElementById("TrainingTasks").checked = false;
                         $.get('TaskInFuture', function (responseJson) {
                               $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
                               
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-                                    var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
                                     rowNew.children().eq(2).text(value['description']);
@@ -331,13 +407,21 @@ tbody {
                 
                  $(document).ready(function () {
                     $("#ByMeInProg").click(function (event) {
+                        document.getElementById("ToMeInProg").checked = false;
+                         document.getElementById("TaskInFuture").checked = false;
+                         document.getElementById("ToMeComp").checked = false;
+                         document.getElementById("ByMeComp").checked = false;
+                         document.getElementById("NewTask").checked = false;
+                         document.getElementById("UpdatedTasks").checked = false;
+                         document.getElementById("UrgentTasks").checked = false;
+                         document.getElementById("TrainingTasks").checked = false;
                         $.get('TaskByMe', function (responseJson) {
                                $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
                              
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-                                    var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
                                     rowNew.children().eq(2).text(value['description']);
@@ -356,6 +440,14 @@ tbody {
                 
                 $(document).ready(function () {
                     $("#ToMeInProg").click(function (event) {
+                         document.getElementById("ByMeInProg").checked = false;
+                         document.getElementById("TaskInFuture").checked = false;
+                         document.getElementById("ToMeComp").checked = false;
+                         document.getElementById("ByMeComp").checked = false;
+                         document.getElementById("NewTask").checked = false;
+                         document.getElementById("UpdatedTasks").checked = false;
+                         document.getElementById("UrgentTasks").checked = false;
+                         document.getElementById("TrainingTasks").checked = false;
                         $.get('TaskServlet', function (responseJson) {
                              $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
@@ -391,15 +483,15 @@ tbody {
 
         <body onload="doOnLoad();" class="container">
             <h2></h2>
-             <b>Tasks In Progress :</b><input type="checkbox" id="ToMeInProg" value="ToMe">Assigned To Me
-                               <input type="checkbox" id="ByMeInProg" value="ByMe" >Assigned By Me
-                               <input type="checkbox" id="TaskInFuture" value="InFuture" >Tasks In The Future<br>
-             <b>Tasks Completed :</b><input type="checkbox" id="ToMeComp" value="CompToMe">Assigned To Me
-                               <input type="checkbox" id="ByMeComp" value="CompByMe" >Assigned By Me<br>
-                               <input type="checkbox" id="NewTask" value="ByMe" >New Tasks
-                               <input type="checkbox" id="UpdatedTasks" value="ToMe">Updated Tasks
-                               <input type="checkbox" id="UrgentTasks" value="ByMe" >Urgent Tasks
-                               <input type="checkbox" id="TrainingTasks" value="ToMe">Training Tasks
+             <b>Tasks In Progress :</b><input type="checkbox" id="ToMeInProg" value="ToMe" onclick="selectOnlyThis(this.id)">Assigned To Me
+                               <input type="checkbox" id="ByMeInProg" value="ByMe" onclick="selectOnlyThis(this.id)">Assigned By Me
+                               <input type="checkbox" id="TaskInFuture" value="InFuture" onclick="selectOnlyThis(this.id)">Tasks In The Future<br>
+             <b>Tasks Completed :</b><input type="checkbox" id="ToMeComp" value="CompToMe"onclick="selectOnlyThis(this.id)">Assigned To Me
+                               <input type="checkbox" id="ByMeComp" value="CompByMe"onclick="selectOnlyThis(this.id)" >Assigned By Me<br>
+                               <input type="checkbox" id="NewTask" value="ByMe" onclick="selectOnlyThis(this.id)">New Tasks
+                               <input type="checkbox" id="UpdatedTasks" value="ToMe" onclick="selectOnlyThis(this.id)">Updated Tasks
+                               <input type="checkbox" id="UrgentTasks" value="ByMe" onclick="selectOnlyThis(this.id)">Urgent Tasks
+                               <input type="checkbox" id="TrainingTasks" value="ToMe"onclick="selectOnlyThis(this.id)">Training Tasks
                             
                                
         
@@ -422,7 +514,8 @@ tbody {
                 </tr>
            </thead>      
            <tbody>
-                <tr>  <td>11111 </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                <p style="color: red;">${errorString}</p>
+<!--                <tr>  <td>11111 </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
                 <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
                 <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
                <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
@@ -441,7 +534,7 @@ tbody {
                  <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
                   <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td>
                   
-                  </tr>
+                  </tr>-->
            </tbody>
 
             </table>
