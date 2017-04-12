@@ -61,6 +61,37 @@
                 form.signin input::-webkit-input-placeholder { color:#bbb; text-shadow:0 0 2px #000;  }
 
             </style> 
+            
+<style type="text/css">
+html {
+    font-family: verdana;
+    font-size: 10pt;
+    line-height: 25px;
+}
+table {
+    border-collapse: collapse;
+    width: 45%;
+    overflow-x: scroll;
+    display: block;
+}
+thead {
+    background-color: #EFEFEF;
+}
+thead, tbody {
+    display: block;
+}
+td, th {
+    min-width: 100px;
+    height: 25px;
+    border: dashed 1px lightblue;
+}
+tbody {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 40%;
+}
+</style> 
+            
             <link href='http://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
             <style type="text/css">
                 table, td, th
@@ -156,7 +187,7 @@
                                 $("#countrytable").find("tr:gt(0)").remove();
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-                                    var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
                                     rowNew.children().eq(2).text(value['description']);
@@ -203,18 +234,20 @@
 
         <div id="tablediv">
 
-            <table cellspacing="0" id="countrytable" margin-right:20px  style="table-layout:fixed;float: left; border-collapse: collapse;"  > 
-
+            <table cellspacing="0" id="countrytable" margin-right:20px > 
+<thead>
                 <tr> 
-                    <th style="width:60px" scope="col">ID</th> 
-                    <th style="width:150px" scope="col">To</th> 
-                    <th style="width:270px" scope="col">Description</th> 
-                    <th style="width:130px" scope="col">Review Date</th> 
-                    <th style="width:130px" scope="col">End Date</th> 
-                    <th style="width:100px" scope="col">Status</th> 
-                    <th style="width:130px" scope="col">Start Date</th> 
-                <tr>
-                    <td>11111 </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                    <th style="min-width:50px; width:50px;" scope="col">ID</th> 
+                    <th style="min-width:120px; width:120px;" scope="col">To</th> 
+                    <th style="min-width:150px; width:150px;"scope="col">Description</th> 
+                    <th scope="col">Review Date</th> 
+                    <th scope="col">End Date</th> 
+                    <th scope="col">Status</th> 
+                    <th scope="col">Start Date</th> 
+                </tr>
+           </thead>      
+           <tbody>
+                <tr>  <td>11111 </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
                 <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
                 <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
                <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
@@ -234,12 +267,19 @@
                   <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td>
                   
                   </tr>
-
+           </tbody>
 
             </table>
         </div>
-
-
+        <br>
+        <br>
+        <br>
+        <br>
+<script>
+ $('table').on('scroll', function () {
+    $("table > *").width($("table").width() + $("table").scrollLeft());
+});
+    </script>
   
             
     

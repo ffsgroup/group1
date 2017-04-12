@@ -96,7 +96,7 @@
 
                             $.get('DiaryAvail', function (responseJson) {
                                 if (responseJson != null) {
-                                    //  var table1 = $("#countrytable");
+                                    
                                     $.each(responseJson, function (key, value) {
 
 
@@ -593,7 +593,7 @@
                             $.get('DiaryLocat', function (responseJson) {
                                 if (responseJson != null) {
 
-                                    //  var table1 = $("#countrytable");
+                                   
                                     $.each(responseJson, function (key, value) {
 
                                         var option = document.createElement('option');
@@ -612,7 +612,7 @@
                         if (count.valueOf() < 3) {
                             $.get('DiaryResponse', function (responseJson) {
                                 if (responseJson != null) {
-                                    var table1 = $("#countrytable");
+                                    
                                     $.each(responseJson, function (key, value) {
                                         var option = document.createElement('option');
                                         option.value = value['GenericDescriptionEng'];
@@ -653,7 +653,7 @@
                         if (count.valueOf() < 3) {
                             $.get('DiaryUser', function (responseJson) {
                                 if (responseJson != null) {
-                                    var table1 = $("#countrytable");
+                                  
                                     $.each(responseJson, function (key, value) {
                                         var option = document.createElement('option');
                                         option.value = value['userName'];
