@@ -4,8 +4,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-        <jsp:include page="_header.jsp"></jsp:include>
-        <jsp:include page="_menu.jsp"></jsp:include>
+        <jsp:include page="_DiaryHeader.jsp"></jsp:include>
+    
 
 
             <link href = "https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel = "stylesheet">
@@ -700,18 +700,19 @@
         </head>
 
         <body onload="doOnLoad();" class="container">
+            <br>
             Available diaries 
             <select name="DiaryAvail" id = "DiaryAv">
                 <option value="${loginedUser.userName}">${loginedUser.userName} </option>
         </select>
-        <div id = "diarySett" style="float:right"> Settings </div>
+
 
         <div class="container">
             <div id="content">
 
                 <div class="post">
                     <div class="btn-sign">
-                        <a href="#login-box" class="login-window">Settings</a>
+                        <a href="#login-box" class="login-window" style="float:right">Settings</a>
                     </div>
                 </div>
 

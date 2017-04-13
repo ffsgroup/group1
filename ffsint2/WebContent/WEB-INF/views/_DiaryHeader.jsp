@@ -19,7 +19,7 @@
    <a href="${pageContext.request.contextPath}/login">Login</a>
   </div>
      <div style="text-align: center;">
-      <h2>Tasks</h2>        
+      <h2>Diary</h2>        
      </div>
   
  
