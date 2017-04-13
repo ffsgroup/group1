@@ -11,11 +11,14 @@
     <jsp:include page="_header.jsp"></jsp:include>
    
      <br />
+     <a href ="${pageContext.request.contextPath}/diary.jsp">
+      <img border="0" alt="Diary" src="resources/cal2.jpg" width="100" height ="100">    
+    </a>
+      <br>
      <a href="${pageContext.request.contextPath}/diary.jsp">Diary</a>
     <br>
-      <a href="${pageContext.request.contextPath}/TaskIndex.jsp">Task</a>
+      <a href="${pageContext.request.contextPath}/TaskIndex.jsp">Tasks</a>
      <br />
- <jsp:include page="diary-test.jsp"></jsp:include>
     <jsp:include page="_footer.jsp"></jsp:include>
  
  </body>
