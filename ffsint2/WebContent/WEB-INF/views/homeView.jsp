@@ -21,7 +21,7 @@
          <li>Drink beer on the beach.</li>
          <li>Talk to interesting people.</li>
          <li>Visit Interesting places.</li>
-         <li>JZ 783</li>
+         <li></li>
       </ul>
  
      <jsp:include page="_footer.jsp"></jsp:include>
