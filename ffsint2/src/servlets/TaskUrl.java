@@ -44,7 +44,7 @@ public class TaskUrl extends HttpServlet {
         for (Tasks task1 : task) {       
                 
                 
-         a = a+ "  <tr> <td style='min-width:50px; width:50px;'>"+ task1.getTranid()+ "</td> <td style='min-width:120px; width:120px;'> me </td> <td style='min-width:150px; width:150px;'> Description </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>";
+         a = a+ "   <tr> <td style='min-width:50px; width:50px;'>"+ task1.getTranid()+ "</td> <td style='min-width:200px; width:200px;'>"+ task1.getTaskfrom()+ " </td> <td style='min-width:220px; width:220px;'> "+ task1.getDescription()+ " </td > <td style='min-width:130px; width:130px;'>"+ task1.getRevdate()+ "  </td> <td style='min-width:130px; width:130px;'>"+ task1.getEnddate()+ " </td> <td style='min-width:90px; width:90px;'>"+ task1.getTaskstat()+ "  </td> <td style='min-width:130px; width:130px;'>"+ task1.getStartdate()+ "  </td></tr>";
         }
                        request.setAttribute("errorString", a);
                  RequestDispatcher dispatcher = request.getServletContext()

@@ -165,7 +165,7 @@
                             if (responseJson != null) {
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
                                     rowNew.children().eq(2).text(value['description']);
@@ -201,7 +201,7 @@
                             if (responseJson != null) {
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
                                     rowNew.children().eq(2).text(value['description']);
@@ -237,7 +237,7 @@
                             if (responseJson != null) {
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
                                     rowNew.children().eq(2).text(value['description']);
@@ -273,9 +273,178 @@
                         $.get('TaskToMeComp', function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
+                             
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    rowNew.children().eq(0).text(value['tranid']);
+                                    rowNew.children().eq(1).text(value['taskfrom']);
+                                    rowNew.children().eq(2).text(value['description']);
+                                    rowNew.children().eq(3).text(value['revdate']);
+                                    rowNew.children().eq(4).text(value['enddate']);
+                                    rowNew.children().eq(5).text(value['taskstat']);
+                                rowNew.children().eq(6).text(value['startdate']);
+                                    rowNew.appendTo(table1);
+                                });
+                                document.getElementsById("countrytable")[0].style.width = '20px';
+                            }
+                        });
+                    });
+                });
+                
+                
+                
+                  $(document).ready(function () {
+                    $("#NewTask").click(function (event) {
+                        document.getElementById("ToMeInProg").checked = false;
+                         document.getElementById("ByMeInProg").checked = false;
+                         document.getElementById("ToMeComp").checked = false;
+                         document.getElementById("TaskInFuture").checked = false;
+                         document.getElementById("ByMeComp").checked = false;
+                         document.getElementById("UpdatedTasks").checked = false;
+                         document.getElementById("UrgentTasks").checked = false;
+                         document.getElementById("TrainingTasks").checked = false;
+                        $.get('NewTask', function (responseJson) {
+                                $("#countrytable").find("tr:gt(0)").remove();
+                            if (responseJson != null) {
+                            
+                                var table1 = $("#countrytable");
+                                $.each(responseJson, function (key, value) {
+                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    rowNew.children().eq(0).text(value['tranid']);
+                                    rowNew.children().eq(1).text(value['taskfrom']);
+                                    rowNew.children().eq(2).text(value['description']);
+                                    rowNew.children().eq(3).text(value['revdate']);
+                                    rowNew.children().eq(4).text(value['enddate']);
+                                    rowNew.children().eq(5).text(value['taskstat']);
+                                rowNew.children().eq(6).text(value['startdate']);
+                                    rowNew.appendTo(table1);
+                                });
+                                document.getElementsById("countrytable")[0].style.width = '20px';
+                            }
+                        });
+                    });
+                });
+                
+                
+                
+                $(document).ready(function () {
+                    $("#ByMeComp").click(function (event) {
+                        document.getElementById("ToMeInProg").checked = false;
+                         document.getElementById("ByMeInProg").checked = false;
+                         document.getElementById("ToMeComp").checked = false;
+                         document.getElementById("TaskInFuture").checked = false;
+                         document.getElementById("NewTask").checked = false;
+                         document.getElementById("UpdatedTasks").checked = false;
+                         document.getElementById("UrgentTasks").checked = false;
+                         document.getElementById("TrainingTasks").checked = false;
+                        $.get('TaskByMeComp', function (responseJson) {
+                               $("#countrytable").find("tr:gt(0)").remove();
+                            if (responseJson != null) {
+                             
+                                var table1 = $("#countrytable");
+                                $.each(responseJson, function (key, value) {
+                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    rowNew.children().eq(0).text(value['tranid']);
+                                    rowNew.children().eq(1).text(value['taskfrom']);
+                                    rowNew.children().eq(2).text(value['description']);
+                                    rowNew.children().eq(3).text(value['revdate']);
+                                    rowNew.children().eq(4).text(value['enddate']);
+                                    rowNew.children().eq(5).text(value['taskstat']);
+                                rowNew.children().eq(6).text(value['startdate']);
+                                    rowNew.appendTo(table1);
+                                });
+                                document.getElementsById("countrytable")[0].style.width = '20px';
+                            }
+                        });
+                    });
+                });
+                
+                
+                 $(document).ready(function () {
+                    $("#TaskInFuture").click(function (event) {
+                        document.getElementById("ToMeInProg").checked = false;
+                         document.getElementById("ByMeInProg").checked = false;
+                         document.getElementById("ToMeComp").checked = false;
+                         document.getElementById("ByMeComp").checked = false;
+                         document.getElementById("NewTask").checked = false;
+                         document.getElementById("UpdatedTasks").checked = false;
+                         document.getElementById("UrgentTasks").checked = false;
+                         document.getElementById("TrainingTasks").checked = false;
+                        $.get('TaskInFuture', function (responseJson) {
+                              $("#countrytable").find("tr:gt(0)").remove();
+                            if (responseJson != null) {
+                              
+                                var table1 = $("#countrytable");
+                                $.each(responseJson, function (key, value) {
+                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    rowNew.children().eq(0).text(value['tranid']);
+                                    rowNew.children().eq(1).text(value['taskfrom']);
+                                    rowNew.children().eq(2).text(value['description']);
+                                    rowNew.children().eq(3).text(value['revdate']);
+                                    rowNew.children().eq(4).text(value['enddate']);
+                                    rowNew.children().eq(5).text(value['taskstat']);
+                                rowNew.children().eq(6).text(value['startdate']);
+                                    rowNew.appendTo(table1);
+                                });
+                                document.getElementsById("countrytable")[0].style.width = '20px';
+                            }
+                        });
+                    });
+                });
+                
+                
+                
+                 $(document).ready(function () {
+                    $("#ByMeInProg").click(function (event) {
+                        document.getElementById("ToMeInProg").checked = false;
+                         document.getElementById("TaskInFuture").checked = false;
+                         document.getElementById("ToMeComp").checked = false;
+                         document.getElementById("ByMeComp").checked = false;
+                         document.getElementById("NewTask").checked = false;
+                         document.getElementById("UpdatedTasks").checked = false;
+                         document.getElementById("UrgentTasks").checked = false;
+                         document.getElementById("TrainingTasks").checked = false;
+                        $.get('TaskByMe', function (responseJson) {
+                               $("#countrytable").find("tr:gt(0)").remove();
+                            if (responseJson != null) {
+                             
+                                var table1 = $("#countrytable");
+                                $.each(responseJson, function (key, value) {
+                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    rowNew.children().eq(0).text(value['tranid']);
+                                    rowNew.children().eq(1).text(value['taskfrom']);
+                                    rowNew.children().eq(2).text(value['description']);
+                                    rowNew.children().eq(3).text(value['revdate']);
+                                    rowNew.children().eq(4).text(value['enddate']);
+                                    rowNew.children().eq(5).text(value['taskstat']);
+                                rowNew.children().eq(6).text(value['startdate']);
+                                    rowNew.appendTo(table1);
+                                });
+                                document.getElementsById("countrytable")[0].style.width = '20px';
+                            }
+                        });
+                    });
+                });
+                
+                
+                $(document).ready(function () {
+                    $("#ToMeInProg").click(function (event) {
+                         document.getElementById("ByMeInProg").checked = false;
+                         document.getElementById("TaskInFuture").checked = false;
+                         document.getElementById("ToMeComp").checked = false;
+                         document.getElementById("ByMeComp").checked = false;
+                         document.getElementById("NewTask").checked = false;
+                         document.getElementById("UpdatedTasks").checked = false;
+                         document.getElementById("UrgentTasks").checked = false;
+                         document.getElementById("TrainingTasks").checked = false;
+                        $.get('TaskServlet', function (responseJson) {
+                             $("#countrytable").find("tr:gt(0)").remove();
+                            if (responseJson != null) {
+                               
+                                var table1 = $("#countrytable");
+                                $.each(responseJson, function (key, value) {
+                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
                                     rowNew.children().eq(2).text(value['description']);
@@ -471,6 +640,41 @@
             
             <div id="calendarHere" style="position:relative;height:320px; float:right;margin-right: 250px"></div>
 
+            <table cellspacing="0" id="countrytable" margin-right:20px > 
+<thead>
+                <tr> 
+                    <th style="min-width:50px; width:50px;" scope="col">ID</th> 
+                    <th style="min-width:200px; width:200px;" scope="col">To</th> 
+                    <th style="min-width:220px; width:220px;"scope="col">Description</th> 
+                    <th style="min-width:130px; width:130px;" scope="col">Review Date</th> 
+                    <th style="min-width:130px; width:130px;" scope="col">End Date</th> 
+                    <th style="min-width:90px; width:90px;"scope="col">Status</th> 
+                    <th style="min-width:130px; width:130px;" scope="col">Start Date</th> 
+                </tr>
+           </thead>      
+           <tbody>
+                <p style="color: red;">${errorString}</p>
+<!--                <tr>  <td>11111 </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+               <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                 <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                 <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                  <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                  <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                  <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                 <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                 <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                 <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                 <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                  <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                  <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                 <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                  <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td>
+                  
+                  </tr>-->
+           </tbody>
   
                 <a id="tablediv" href="#login-box" class="login-window" >
                 <table cellspacing="0" id="countrytable" margin-right:20px > 
