@@ -40,9 +40,12 @@ public class TaskUrl extends HttpServlet {
             e.printStackTrace();
           //  errorString = e.getMessage();
         }
+         String a = "";
+        for (Tasks task1 : task) {       
                 
-         String a = "  <tr> <td style='min-width:50px; width:50px;'>1111</td> <td style='min-width:120px; width:120px;'> me </td> <td style='min-width:150px; width:150px;'> Description </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>";
- 
+                
+         a = a+ "  <tr> <td style='min-width:50px; width:50px;'>"+ task1.getTranid()+ "</td> <td style='min-width:120px; width:120px;'> me </td> <td style='min-width:150px; width:150px;'> Description </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>";
+        }
                        request.setAttribute("errorString", a);
                  RequestDispatcher dispatcher = request.getServletContext()
               .getRequestDispatcher("/WEB-INF/views/TaskIndex.jsp");
