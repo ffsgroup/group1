@@ -166,7 +166,7 @@ tbody {
                                 
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
                                     rowNew.children().eq(2).text(value['description']);
@@ -206,7 +206,7 @@ tbody {
                                 
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
                                     rowNew.children().eq(2).text(value['description']);
@@ -246,7 +246,7 @@ tbody {
                             
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
                                     rowNew.children().eq(2).text(value['description']);
@@ -286,7 +286,7 @@ tbody {
                              
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
                                     rowNew.children().eq(2).text(value['description']);
@@ -320,7 +320,7 @@ tbody {
                             
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
                                     rowNew.children().eq(2).text(value['description']);
@@ -354,7 +354,7 @@ tbody {
                              
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
                                     rowNew.children().eq(2).text(value['description']);
@@ -387,7 +387,7 @@ tbody {
                               
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
                                     rowNew.children().eq(2).text(value['description']);
@@ -421,7 +421,7 @@ tbody {
                              
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
                                     rowNew.children().eq(2).text(value['description']);
@@ -454,7 +454,7 @@ tbody {
                                
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
                                     rowNew.children().eq(2).text(value['description']);
@@ -505,12 +505,12 @@ tbody {
 <thead>
                 <tr> 
                     <th style="min-width:50px; width:50px;" scope="col">ID</th> 
-                    <th style="min-width:120px; width:120px;" scope="col">To</th> 
-                    <th style="min-width:150px; width:150px;"scope="col">Description</th> 
-                    <th scope="col">Review Date</th> 
-                    <th scope="col">End Date</th> 
-                    <th scope="col">Status</th> 
-                    <th scope="col">Start Date</th> 
+                    <th style="min-width:200px; width:200px;" scope="col">To</th> 
+                    <th style="min-width:220px; width:220px;"scope="col">Description</th> 
+                    <th style="min-width:130px; width:130px;" scope="col">Review Date</th> 
+                    <th style="min-width:130px; width:130px;" scope="col">End Date</th> 
+                    <th style="min-width:90px; width:90px;"scope="col">Status</th> 
+                    <th style="min-width:130px; width:130px;" scope="col">Start Date</th> 
                 </tr>
            </thead>      
            <tbody>
