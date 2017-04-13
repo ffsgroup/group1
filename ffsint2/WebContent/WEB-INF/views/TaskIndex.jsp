@@ -5,13 +5,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <jsp:include page="_TaskHeader.jsp"></jsp:include>
-        
-   
+
+
 
             <link href = "https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel = "stylesheet">
             <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
             <script src = "https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
- <style type="text/css">
+            <style type="text/css">
                 #mask {
                     display: none;
                     background: #000; 
@@ -61,37 +61,37 @@
                 form.signin input::-webkit-input-placeholder { color:#bbb; text-shadow:0 0 2px #000;  }
 
             </style> 
-            
-<style type="text/css">
-html {
-    font-family: verdana;
-    font-size: 10pt;
-    line-height: 25px;
-}
-table {
-    border-collapse: collapse;
-    width: 50%;
-    overflow-x: scroll;
-    display: block;
-}
-thead {
-    background-color: #EFEFEF;
-}
-thead, tbody {
-    display: block;
-}
-td, th {
-    min-width: 100px;
-    height: 25px;
-    border: dashed 1px lightblue;
-}
-tbody {
-    overflow-y: scroll;
-    overflow-x: hidden;
-    height: 45%;
-}
-</style> 
-            
+
+            <style type="text/css">
+                html {
+                    font-family: verdana;
+                    font-size: 10pt;
+                    line-height: 25px;
+                }
+                table {
+                    border-collapse: collapse;
+                    width: 50%;
+                    overflow-x: scroll;
+                    display: block;
+                }
+                thead {
+                    background-color: #EFEFEF;
+                }
+                thead, tbody {
+                    display: block;
+                }
+                td, th {
+                    min-width: 100px;
+                    height: 25px;
+                    border: dashed 1px lightblue;
+                }
+                tbody {
+                    overflow-y: scroll;
+                    overflow-x: hidden;
+                    height: 45%;
+                }
+            </style> 
+
             <link href='http://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
             <style type="text/css">
                 table, td, th
@@ -122,12 +122,12 @@ tbody {
                     color:#1E90FF;
                 }
             </style>
-                      
+
 
             <script src="resources/dhtmlxcalendar.js"></script>
             <link rel="stylesheet" type="text/css" href="resources/dhtmlxcalendar_1.css"/>
-           
- <script>
+
+            <script>
                 var myCalendar;
                 function doOnLoad() {
                     myCalendar = new dhtmlXCalendarObject("calendarHere");
@@ -147,23 +147,22 @@ tbody {
                 }
             </script>
             <script>
-                
-                
-           
-                 $(document).ready(function () {
+
+
+
+                $(document).ready(function () {
                     $("#TrainingTasks").click(function (event) {
                         document.getElementById("ToMeInProg").checked = false;
-                         document.getElementById("ByMeInProg").checked = false;
-                         document.getElementById("NewTask").checked = false;
-                         document.getElementById("TaskInFuture").checked = false;
-                         document.getElementById("ByMeComp").checked = false;
-                         document.getElementById("ToMeComp").checked = false;
-                         document.getElementById("UpdatedTasks").checked = false;
-                         document.getElementById("UrgentTasks").checked = false;
+                        document.getElementById("ByMeInProg").checked = false;
+                        document.getElementById("NewTask").checked = false;
+                        document.getElementById("TaskInFuture").checked = false;
+                        document.getElementById("ByMeComp").checked = false;
+                        document.getElementById("ToMeComp").checked = false;
+                        document.getElementById("UpdatedTasks").checked = false;
+                        document.getElementById("UrgentTasks").checked = false;
                         $.get('TrainingTask', function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
-                                
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
                                     var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
@@ -173,37 +172,33 @@ tbody {
                                     rowNew.children().eq(3).text(value['revdate']);
                                     rowNew.children().eq(4).text(value['enddate']);
                                     rowNew.children().eq(5).text(value['taskstat']);
-                                rowNew.children().eq(6).text(value['startdate']);
+                                    rowNew.children().eq(6).text(value['startdate']);
                                     rowNew.appendTo(table1);
                                 });
                                 document.getElementsById("countrytable")[0].style.width = '20px';
-                            }
-                            else
+                            } else
                             {
-                                  var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
-                                    rowNew.children().eq(0).text("No Entries Found!")
-                                    rowNew.appendTo(table1);
+                                var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                rowNew.children().eq(0).text("No Entries Found!")
+                                rowNew.appendTo(table1);
                             }
                         });
                     });
                 });
-                
-                
-                
-                 $(document).ready(function () {
+
+                $(document).ready(function () {
                     $("#UrgentTasks").click(function (event) {
                         document.getElementById("ToMeInProg").checked = false;
-                         document.getElementById("ByMeInProg").checked = false;
-                         document.getElementById("NewTask").checked = false;
-                         document.getElementById("TaskInFuture").checked = false;
-                         document.getElementById("ByMeComp").checked = false;
-                         document.getElementById("ToMeComp").checked = false;
-                         document.getElementById("UpdatedTasks").checked = false;
-                         document.getElementById("TrainingTasks").checked = false;
+                        document.getElementById("ByMeInProg").checked = false;
+                        document.getElementById("NewTask").checked = false;
+                        document.getElementById("TaskInFuture").checked = false;
+                        document.getElementById("ByMeComp").checked = false;
+                        document.getElementById("ToMeComp").checked = false;
+                        document.getElementById("UpdatedTasks").checked = false;
+                        document.getElementById("TrainingTasks").checked = false;
                         $.get('UrgentTasks', function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
-                                
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
                                     var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
@@ -213,37 +208,33 @@ tbody {
                                     rowNew.children().eq(3).text(value['revdate']);
                                     rowNew.children().eq(4).text(value['enddate']);
                                     rowNew.children().eq(5).text(value['taskstat']);
-                                rowNew.children().eq(6).text(value['startdate']);
+                                    rowNew.children().eq(6).text(value['startdate']);
                                     rowNew.appendTo(table1);
                                 });
                                 document.getElementsById("countrytable")[0].style.width = '20px';
-                            }
-                            else
+                            } else
                             {
-                                  var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
-                                    rowNew.children().eq(0).text("No Entries Found!")
-                                    rowNew.appendTo(table1);
+                                var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                rowNew.children().eq(0).text("No Entries Found!")
+                                rowNew.appendTo(table1);
                             }
                         });
                     });
                 });
-                
-                
-                
-                 $(document).ready(function () {
+
+                $(document).ready(function () {
                     $("#UpdatedTasks").click(function (event) {
                         document.getElementById("ToMeInProg").checked = false;
-                         document.getElementById("ByMeInProg").checked = false;
-                         document.getElementById("NewTask").checked = false;
-                         document.getElementById("TaskInFuture").checked = false;
-                         document.getElementById("ByMeComp").checked = false;
-                         document.getElementById("ToMeComp").checked = false;
-                         document.getElementById("UrgentTasks").checked = false;
-                         document.getElementById("TrainingTasks").checked = false;
+                        document.getElementById("ByMeInProg").checked = false;
+                        document.getElementById("NewTask").checked = false;
+                        document.getElementById("TaskInFuture").checked = false;
+                        document.getElementById("ByMeComp").checked = false;
+                        document.getElementById("ToMeComp").checked = false;
+                        document.getElementById("UrgentTasks").checked = false;
+                        document.getElementById("TrainingTasks").checked = false;
                         $.get('UpdatedTasks', function (responseJson) {
-                                $("#countrytable").find("tr:gt(0)").remove();
+                            $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
-                            
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
                                     var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
@@ -253,205 +244,35 @@ tbody {
                                     rowNew.children().eq(3).text(value['revdate']);
                                     rowNew.children().eq(4).text(value['enddate']);
                                     rowNew.children().eq(5).text(value['taskstat']);
-                                rowNew.children().eq(6).text(value['startdate']);
+                                    rowNew.children().eq(6).text(value['startdate']);
                                     rowNew.appendTo(table1);
                                 });
                                 document.getElementsById("countrytable")[0].style.width = '20px';
-                            }
-                            else
-                                 {
-                                  var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
-                                    rowNew.children().eq(0).text("No Entries Found!")
-                                    rowNew.appendTo(table1);
+                            } else
+                            {
+                                var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                rowNew.children().eq(0).text("No Entries Found!")
+                                rowNew.appendTo(table1);
                             }
                         });
                     });
                 });
-                
-                
-                
+
+
+
                 $(document).ready(function () {
                     $("#ToMeComp").click(function (event) {
-                         document.getElementById("ToMeInProg").checked = false;
-                         document.getElementById("ByMeInProg").checked = false;
-                         document.getElementById("NewTask").checked = false;
-                         document.getElementById("TaskInFuture").checked = false;
-                         document.getElementById("ByMeComp").checked = false;
-                         document.getElementById("UpdatedTasks").checked = false;
-                         document.getElementById("UrgentTasks").checked = false;
-                         document.getElementById("TrainingTasks").checked = false;
+                        document.getElementById("ToMeInProg").checked = false;
+                        document.getElementById("ByMeInProg").checked = false;
+                        document.getElementById("NewTask").checked = false;
+                        document.getElementById("TaskInFuture").checked = false;
+                        document.getElementById("ByMeComp").checked = false;
+                        document.getElementById("UpdatedTasks").checked = false;
+                        document.getElementById("UrgentTasks").checked = false;
+                        document.getElementById("TrainingTasks").checked = false;
                         $.get('TaskToMeComp', function (responseJson) {
-                               $("#countrytable").find("tr:gt(0)").remove();
+                            $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
-                             
-                                var table1 = $("#countrytable");
-                                $.each(responseJson, function (key, value) {
-                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
-                                    rowNew.children().eq(0).text(value['tranid']);
-                                    rowNew.children().eq(1).text(value['taskfrom']);
-                                    rowNew.children().eq(2).text(value['description']);
-                                    rowNew.children().eq(3).text(value['revdate']);
-                                    rowNew.children().eq(4).text(value['enddate']);
-                                    rowNew.children().eq(5).text(value['taskstat']);
-                                rowNew.children().eq(6).text(value['startdate']);
-                                    rowNew.appendTo(table1);
-                                });
-                                document.getElementsById("countrytable")[0].style.width = '20px';
-                            }
-                        });
-                    });
-                });
-                
-                
-                
-                  $(document).ready(function () {
-                    $("#NewTask").click(function (event) {
-                        document.getElementById("ToMeInProg").checked = false;
-                         document.getElementById("ByMeInProg").checked = false;
-                         document.getElementById("ToMeComp").checked = false;
-                         document.getElementById("TaskInFuture").checked = false;
-                         document.getElementById("ByMeComp").checked = false;
-                         document.getElementById("UpdatedTasks").checked = false;
-                         document.getElementById("UrgentTasks").checked = false;
-                         document.getElementById("TrainingTasks").checked = false;
-                        $.get('NewTask', function (responseJson) {
-                                $("#countrytable").find("tr:gt(0)").remove();
-                            if (responseJson != null) {
-                            
-                                var table1 = $("#countrytable");
-                                $.each(responseJson, function (key, value) {
-                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
-                                    rowNew.children().eq(0).text(value['tranid']);
-                                    rowNew.children().eq(1).text(value['taskfrom']);
-                                    rowNew.children().eq(2).text(value['description']);
-                                    rowNew.children().eq(3).text(value['revdate']);
-                                    rowNew.children().eq(4).text(value['enddate']);
-                                    rowNew.children().eq(5).text(value['taskstat']);
-                                rowNew.children().eq(6).text(value['startdate']);
-                                    rowNew.appendTo(table1);
-                                });
-                                document.getElementsById("countrytable")[0].style.width = '20px';
-                            }
-                        });
-                    });
-                });
-                
-                
-                
-                $(document).ready(function () {
-                    $("#ByMeComp").click(function (event) {
-                        document.getElementById("ToMeInProg").checked = false;
-                         document.getElementById("ByMeInProg").checked = false;
-                         document.getElementById("ToMeComp").checked = false;
-                         document.getElementById("TaskInFuture").checked = false;
-                         document.getElementById("NewTask").checked = false;
-                         document.getElementById("UpdatedTasks").checked = false;
-                         document.getElementById("UrgentTasks").checked = false;
-                         document.getElementById("TrainingTasks").checked = false;
-                        $.get('TaskByMeComp', function (responseJson) {
-                               $("#countrytable").find("tr:gt(0)").remove();
-                            if (responseJson != null) {
-                             
-                                var table1 = $("#countrytable");
-                                $.each(responseJson, function (key, value) {
-                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
-                                    rowNew.children().eq(0).text(value['tranid']);
-                                    rowNew.children().eq(1).text(value['taskfrom']);
-                                    rowNew.children().eq(2).text(value['description']);
-                                    rowNew.children().eq(3).text(value['revdate']);
-                                    rowNew.children().eq(4).text(value['enddate']);
-                                    rowNew.children().eq(5).text(value['taskstat']);
-                                rowNew.children().eq(6).text(value['startdate']);
-                                    rowNew.appendTo(table1);
-                                });
-                                document.getElementsById("countrytable")[0].style.width = '20px';
-                            }
-                        });
-                    });
-                });
-                
-                
-                 $(document).ready(function () {
-                    $("#TaskInFuture").click(function (event) {
-                        document.getElementById("ToMeInProg").checked = false;
-                         document.getElementById("ByMeInProg").checked = false;
-                         document.getElementById("ToMeComp").checked = false;
-                         document.getElementById("ByMeComp").checked = false;
-                         document.getElementById("NewTask").checked = false;
-                         document.getElementById("UpdatedTasks").checked = false;
-                         document.getElementById("UrgentTasks").checked = false;
-                         document.getElementById("TrainingTasks").checked = false;
-                        $.get('TaskInFuture', function (responseJson) {
-                              $("#countrytable").find("tr:gt(0)").remove();
-                            if (responseJson != null) {
-                              
-                                var table1 = $("#countrytable");
-                                $.each(responseJson, function (key, value) {
-                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
-                                    rowNew.children().eq(0).text(value['tranid']);
-                                    rowNew.children().eq(1).text(value['taskfrom']);
-                                    rowNew.children().eq(2).text(value['description']);
-                                    rowNew.children().eq(3).text(value['revdate']);
-                                    rowNew.children().eq(4).text(value['enddate']);
-                                    rowNew.children().eq(5).text(value['taskstat']);
-                                rowNew.children().eq(6).text(value['startdate']);
-                                    rowNew.appendTo(table1);
-                                });
-                                document.getElementsById("countrytable")[0].style.width = '20px';
-                            }
-                        });
-                    });
-                });
-                
-                
-                
-                 $(document).ready(function () {
-                    $("#ByMeInProg").click(function (event) {
-                        document.getElementById("ToMeInProg").checked = false;
-                         document.getElementById("TaskInFuture").checked = false;
-                         document.getElementById("ToMeComp").checked = false;
-                         document.getElementById("ByMeComp").checked = false;
-                         document.getElementById("NewTask").checked = false;
-                         document.getElementById("UpdatedTasks").checked = false;
-                         document.getElementById("UrgentTasks").checked = false;
-                         document.getElementById("TrainingTasks").checked = false;
-                        $.get('TaskByMe', function (responseJson) {
-                               $("#countrytable").find("tr:gt(0)").remove();
-                            if (responseJson != null) {
-                             
-                                var table1 = $("#countrytable");
-                                $.each(responseJson, function (key, value) {
-                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
-                                    rowNew.children().eq(0).text(value['tranid']);
-                                    rowNew.children().eq(1).text(value['taskfrom']);
-                                    rowNew.children().eq(2).text(value['description']);
-                                    rowNew.children().eq(3).text(value['revdate']);
-                                    rowNew.children().eq(4).text(value['enddate']);
-                                    rowNew.children().eq(5).text(value['taskstat']);
-                                rowNew.children().eq(6).text(value['startdate']);
-                                    rowNew.appendTo(table1);
-                                });
-                                document.getElementsById("countrytable")[0].style.width = '20px';
-                            }
-                        });
-                    });
-                });
-                
-                
-                $(document).ready(function () {
-                    $("#ToMeInProg").click(function (event) {
-                         document.getElementById("ByMeInProg").checked = false;
-                         document.getElementById("TaskInFuture").checked = false;
-                         document.getElementById("ToMeComp").checked = false;
-                         document.getElementById("ByMeComp").checked = false;
-                         document.getElementById("NewTask").checked = false;
-                         document.getElementById("UpdatedTasks").checked = false;
-                         document.getElementById("UrgentTasks").checked = false;
-                         document.getElementById("TrainingTasks").checked = false;
-                        $.get('TaskServlet', function (responseJson) {
-                             $("#countrytable").find("tr:gt(0)").remove();
-                            if (responseJson != null) {
-                               
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
                                     var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
@@ -469,96 +290,384 @@ tbody {
                         });
                     });
                 });
-                
-                
-                
-                
+
+                $(document).ready(function () {
+                    $("#NewTask").click(function (event) {
+                        document.getElementById("ToMeInProg").checked = false;
+                        document.getElementById("ByMeInProg").checked = false;
+                        document.getElementById("ToMeComp").checked = false;
+                        document.getElementById("TaskInFuture").checked = false;
+                        document.getElementById("ByMeComp").checked = false;
+                        document.getElementById("UpdatedTasks").checked = false;
+                        document.getElementById("UrgentTasks").checked = false;
+                        document.getElementById("TrainingTasks").checked = false;
+                        $.get('NewTask', function (responseJson) {
+                            $("#countrytable").find("tr:gt(0)").remove();
+                            if (responseJson != null) {
+                                var table1 = $("#countrytable");
+                                $.each(responseJson, function (key, value) {
+                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    rowNew.children().eq(0).text(value['tranid']);
+                                    rowNew.children().eq(1).text(value['taskfrom']);
+                                    rowNew.children().eq(2).text(value['description']);
+                                    rowNew.children().eq(3).text(value['revdate']);
+                                    rowNew.children().eq(4).text(value['enddate']);
+                                    rowNew.children().eq(5).text(value['taskstat']);
+                                    rowNew.children().eq(6).text(value['startdate']);
+                                    rowNew.appendTo(table1);
+                                });
+                                document.getElementsById("countrytable")[0].style.width = '20px';
+                            }
+                        });
+                    });
+                });
+
+                $(document).ready(function () {
+                    $("#ByMeComp").click(function (event) {
+                        document.getElementById("ToMeInProg").checked = false;
+                        document.getElementById("ByMeInProg").checked = false;
+                        document.getElementById("ToMeComp").checked = false;
+                        document.getElementById("TaskInFuture").checked = false;
+                        document.getElementById("NewTask").checked = false;
+                        document.getElementById("UpdatedTasks").checked = false;
+                        document.getElementById("UrgentTasks").checked = false;
+                        document.getElementById("TrainingTasks").checked = false;
+                        $.get('TaskByMeComp', function (responseJson) {
+                            $("#countrytable").find("tr:gt(0)").remove();
+                            if (responseJson != null) {
+                                var table1 = $("#countrytable");
+                                $.each(responseJson, function (key, value) {
+                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    rowNew.children().eq(0).text(value['tranid']);
+                                    rowNew.children().eq(1).text(value['taskfrom']);
+                                    rowNew.children().eq(2).text(value['description']);
+                                    rowNew.children().eq(3).text(value['revdate']);
+                                    rowNew.children().eq(4).text(value['enddate']);
+                                    rowNew.children().eq(5).text(value['taskstat']);
+                                    rowNew.children().eq(6).text(value['startdate']);
+                                    rowNew.appendTo(table1);
+                                });
+                                document.getElementsById("countrytable")[0].style.width = '20px';
+                            }
+                        });
+                    });
+                });
+
+
+                $(document).ready(function () {
+                    $("#TaskInFuture").click(function (event) {
+                        document.getElementById("ToMeInProg").checked = false;
+                        document.getElementById("ByMeInProg").checked = false;
+                        document.getElementById("ToMeComp").checked = false;
+                        document.getElementById("ByMeComp").checked = false;
+                        document.getElementById("NewTask").checked = false;
+                        document.getElementById("UpdatedTasks").checked = false;
+                        document.getElementById("UrgentTasks").checked = false;
+                        document.getElementById("TrainingTasks").checked = false;
+                        $.get('TaskInFuture', function (responseJson) {
+                            $("#countrytable").find("tr:gt(0)").remove();
+                            if (responseJson != null) {
+                                var table1 = $("#countrytable");
+                                $.each(responseJson, function (key, value) {
+                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    rowNew.children().eq(0).text(value['tranid']);
+                                    rowNew.children().eq(1).text(value['taskfrom']);
+                                    rowNew.children().eq(2).text(value['description']);
+                                    rowNew.children().eq(3).text(value['revdate']);
+                                    rowNew.children().eq(4).text(value['enddate']);
+                                    rowNew.children().eq(5).text(value['taskstat']);
+                                    rowNew.children().eq(6).text(value['startdate']);
+                                    rowNew.appendTo(table1);
+                                });
+                                document.getElementsById("countrytable")[0].style.width = '20px';
+                            }
+                        });
+                    });
+                });
+
+                $(document).ready(function () {
+                    $("#ByMeInProg").click(function (event) {
+                        document.getElementById("ToMeInProg").checked = false;
+                        document.getElementById("TaskInFuture").checked = false;
+                        document.getElementById("ToMeComp").checked = false;
+                        document.getElementById("ByMeComp").checked = false;
+                        document.getElementById("NewTask").checked = false;
+                        document.getElementById("UpdatedTasks").checked = false;
+                        document.getElementById("UrgentTasks").checked = false;
+                        document.getElementById("TrainingTasks").checked = false;
+                        $.get('TaskByMe', function (responseJson) {
+                            $("#countrytable").find("tr:gt(0)").remove();
+                            if (responseJson != null) {
+
+                                var table1 = $("#countrytable");
+                                $.each(responseJson, function (key, value) {
+                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    rowNew.children().eq(0).text(value['tranid']);
+                                    rowNew.children().eq(1).text(value['taskfrom']);
+                                    rowNew.children().eq(2).text(value['description']);
+                                    rowNew.children().eq(3).text(value['revdate']);
+                                    rowNew.children().eq(4).text(value['enddate']);
+                                    rowNew.children().eq(5).text(value['taskstat']);
+                                    rowNew.children().eq(6).text(value['startdate']);
+                                    rowNew.appendTo(table1);
+                                });
+                                document.getElementsById("countrytable")[0].style.width = '20px';
+                            }
+                        });
+                    });
+                });
+
+
+                $(document).ready(function () {
+                    $("#ToMeInProg").click(function (event) {
+                        document.getElementById("ByMeInProg").checked = false;
+                        document.getElementById("TaskInFuture").checked = false;
+                        document.getElementById("ToMeComp").checked = false;
+                        document.getElementById("ByMeComp").checked = false;
+                        document.getElementById("NewTask").checked = false;
+                        document.getElementById("UpdatedTasks").checked = false;
+                        document.getElementById("UrgentTasks").checked = false;
+                        document.getElementById("TrainingTasks").checked = false;
+                        $.get('TaskServlet', function (responseJson) {
+                            $("#countrytable").find("tr:gt(0)").remove();
+                            if (responseJson != null) {
+
+                                var table1 = $("#countrytable");
+                                $.each(responseJson, function (key, value) {
+                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:120px; width:120px;'> </td> <td style='min-width:150px; width:150px;'> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
+                                    rowNew.children().eq(0).text(value['tranid']);
+                                    rowNew.children().eq(1).text(value['taskfrom']);
+                                    rowNew.children().eq(2).text(value['description']);
+                                    rowNew.children().eq(3).text(value['revdate']);
+                                    rowNew.children().eq(4).text(value['enddate']);
+                                    rowNew.children().eq(5).text(value['taskstat']);
+                                    rowNew.children().eq(6).text(value['startdate']);
+                                    rowNew.appendTo(table1);
+                                });
+                                document.getElementsById("countrytable")[0].style.width = '20px';
+                            }
+                        });
+                    });
+                });
+
             </script>
-           
-
-
-            
 
         </head>
 
         <body onload="doOnLoad();" class="container">
             <h2></h2>
-             <b>Tasks In Progress :</b><input type="checkbox" id="ToMeInProg" value="ToMe" onclick="selectOnlyThis(this.id)">Assigned To Me
-                               <input type="checkbox" id="ByMeInProg" value="ByMe" onclick="selectOnlyThis(this.id)">Assigned By Me
-                               <input type="checkbox" id="TaskInFuture" value="InFuture" onclick="selectOnlyThis(this.id)">Tasks In The Future<br>
-             <b>Tasks Completed :</b><input type="checkbox" id="ToMeComp" value="CompToMe"onclick="selectOnlyThis(this.id)">Assigned To Me
-                               <input type="checkbox" id="ByMeComp" value="CompByMe"onclick="selectOnlyThis(this.id)" >Assigned By Me<br>
-                               <input type="checkbox" id="NewTask" value="ByMe" onclick="selectOnlyThis(this.id)">New Tasks
-                               <input type="checkbox" id="UpdatedTasks" value="ToMe" onclick="selectOnlyThis(this.id)">Updated Tasks
-                               <input type="checkbox" id="UrgentTasks" value="ByMe" onclick="selectOnlyThis(this.id)">Urgent Tasks
-                               <input type="checkbox" id="TrainingTasks" value="ToMe"onclick="selectOnlyThis(this.id)">Training Tasks
-                            
-                               
-        
-        <div style="margin-bottom: 20px;">
-        </div>
-        <div id="calendarHere" style="position:relative;height:320px; float:right;margin-right: 250px"></div>
+            <b>Tasks In Progress :</b><input type="checkbox" id="ToMeInProg" value="ToMe" onclick="selectOnlyThis(this.id)">Assigned To Me
+            <input type="checkbox" id="ByMeInProg" value="ByMe" onclick="selectOnlyThis(this.id)">Assigned By Me
+            <input type="checkbox" id="TaskInFuture" value="InFuture" onclick="selectOnlyThis(this.id)">Tasks In The Future<br>
+            <b>Tasks Completed :</b><input type="checkbox" id="ToMeComp" value="CompToMe"onclick="selectOnlyThis(this.id)">Assigned To Me
+            <input type="checkbox" id="ByMeComp" value="CompByMe"onclick="selectOnlyThis(this.id)" >Assigned By Me<br>
+            <input type="checkbox" id="NewTask" value="ByMe" onclick="selectOnlyThis(this.id)">New Tasks
+            <input type="checkbox" id="UpdatedTasks" value="ToMe" onclick="selectOnlyThis(this.id)">Updated Tasks
+            <input type="checkbox" id="UrgentTasks" value="ByMe" onclick="selectOnlyThis(this.id)">Urgent Tasks
+            <input type="checkbox" id="TrainingTasks" value="ToMe"onclick="selectOnlyThis(this.id)">Training Tasks
 
-        <div id="tablediv">
+            <div style="margin-bottom: 20px;">
+            </div>
+            
+            <div id="calendarHere" style="position:relative;height:320px; float:right;margin-right: 250px"></div>
 
-            <table cellspacing="0" id="countrytable" margin-right:20px > 
-<thead>
-                <tr> 
-                    <th style="min-width:50px; width:50px;" scope="col">ID</th> 
-                    <th style="min-width:120px; width:120px;" scope="col">To</th> 
-                    <th style="min-width:150px; width:150px;"scope="col">Description</th> 
-                    <th scope="col">Review Date</th> 
-                    <th scope="col">End Date</th> 
-                    <th scope="col">Status</th> 
-                    <th scope="col">Start Date</th> 
-                </tr>
-           </thead>      
-           <tbody>
-                <p style="color: red;">${errorString}</p>
-<!--                <tr>  <td>11111 </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
-                <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
-                <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
-               <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
-                <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
-                 <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
-                 <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
-                  <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
-                  <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
-                  <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
-                 <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
-                 <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
-                 <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
-                 <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
-                  <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
-                  <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
-                 <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
-                  <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td>
-                  
-                  </tr>-->
-           </tbody>
+  
+                <a id="tablediv" href="#login-box" class="login-window" >
+                <table cellspacing="0" id="countrytable" margin-right:20px > 
+                    <thead>
+                        <tr> 
+                            <th style="min-width:50px; width:50px;" scope="col">ID</th> 
+                            <th style="min-width:120px; width:120px;" scope="col">To</th> 
+                            <th style="min-width:150px; width:150px;"scope="col">Description</th> 
+                            <th scope="col">Review Date</th> 
+                            <th scope="col">End Date</th> 
+                            <th scope="col">Status</th> 
+                            <th scope="col">Start Date</th> 
+                        </tr>
+                    </thead>      
+                    <tbody>
+                    <p style="color: red;">${errorString}</p>
+                <!--                <tr>  <td>11111 </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                                <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                                <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                               <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                                <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                                 <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                                 <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                                  <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                                  <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                                  <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                                 <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                                 <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                                 <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                                 <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                                  <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                                  <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                                 <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+                                  <tr><td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td>
+                                  
+                                  </tr>-->
+                </tbody>
 
             </table>
-        </div>
+        </a>     
+                
         <br>
         <br>
         <br>
         <br>
-<script>
- $('table').on('scroll', function () {
-    $("table > *").width($("table").width() + $("table").scrollLeft());
-});
-    </script>
-  
-            
-    
-    
-        
+<div id="login-box" class="login-popup">
+                    <a href="#" class="close"><img src="close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+                    <form method="post" class="signin" action="#">
+                        <fieldset class="textbox">
+                            Task Details
+                            <br>
+
+                            <br>
+
+                            <button class="submit button" id="diarySettClose" type="button">Update</button>
+
+                        </fieldset>
+                    </form>
+                </div>        
+        <script>
+            $('table').on('scroll', function () {
+                $("table > *").width($("table").width() + $("table").scrollLeft());
+            });
+        </script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('a.login-window').click(function () {
+
+                    // Getting the variable's value from a link 
+                    var loginBox = $(this).attr('href');
+
+                    //Fade in the Popup and add close button
+                    $(loginBox).fadeIn(300);
+
+                    //Set the center alignment padding + border
+                    var popMargTop = ($(loginBox).height() + 24) / 2;
+                    var popMargLeft = ($(loginBox).width() + 24) / 2;
+
+                    $(loginBox).css({
+                        'margin-top': -popMargTop,
+                        'margin-left': -popMargLeft
+                    });
+
+                    // Add the mask to body
+                    $('body').append('<div id="mask"></div>');
+                    $('#mask').fadeIn(300);
+                    // update diary settings
+                    var count = $("#dsee1 option").length;
+                    if (count.valueOf() < 3) {
+                        $.get('DiaryUser', function (responseJson) {
+                            if (responseJson != null) {
+
+                                //  var table1 = $("#countrytable");
+                                $.each(responseJson, function (key, value) {
+
+                                    $('#dsee1').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                    $('#dsee2').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                    $('#dsee3').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                    $('#dsee4').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                    $('#dsee5').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                    $('#dsee6').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                    $('#dsee7').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                    $('#dsee8').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                    $('#dsee9').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                    $('#dsee10').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                });
+                            }
+                        });
+                    }
+
+                    $.get('DiarySettAvail', function (responseJson) {
+                        if (responseJson != null) {
+                            //$("#dsee1").val("");
+                            document.getElementById("dsee1").selectedIndex = "0";
+                            document.getElementById("dsee2").selectedIndex = "0";
+                            document.getElementById("dsee3").selectedIndex = "0";
+                            document.getElementById("dsee4").selectedIndex = "0";
+                            document.getElementById("dsee5").selectedIndex = "0";
+                            document.getElementById("dsee6").selectedIndex = "0";
+                            document.getElementById("dsee7").selectedIndex = "0";
+                            document.getElementById("dsee8").selectedIndex = "0";
+                            document.getElementById("dsee9").selectedIndex = "0";
+                            document.getElementById("dsee10").selectedIndex = "0";
+
+                            //$("#dsee2").val("Matthys Buitendag");
+                            //document.getElementById("dsee1").value = "Matthys Buitendag";
+                            $.each(responseJson, function (key, value) {
+                                //   $("#dsee1").val(value['userName']);
+                                //document.getElementById("dsee1").value = value['userName'];  
+
+                                if (document.getElementById("dsee1").value.length < 2)
+                                {
+                                    document.getElementById("dsee1").value = value['userName'];
+                                } else if (document.getElementById("dsee2").value.length < 2)
+                                {
+                                    document.getElementById("dsee2").value = value['userName'];
+                                } else if (document.getElementById("dsee3").value.length < 2)
+                                {
+                                    document.getElementById("dsee3").value = value['userName'];
+                                } else if (document.getElementById("dsee4").value.length < 2)
+                                {
+                                    document.getElementById("dsee4").value = value['userName'];
+                                } else if (document.getElementById("dsee5").value.length < 2)
+                                {
+                                    document.getElementById("dsee5").value = value['userName'];
+                                } else if (document.getElementById("dsee6").value.length < 2)
+                                {
+                                    document.getElementById("dsee6").value = value['userName'];
+                                } else if (document.getElementById("dsee7").value.length < 2)
+                                {
+                                    document.getElementById("dsee7").value = value['userName'];
+                                } else if (document.getElementById("dsee8").value.length < 2)
+                                {
+                                    document.getElementById("dsee8").value = value['userName'];
+                                } else if (document.getElementById("dsee9").value.length < 2)
+                                {
+                                    document.getElementById("dsee9").value = value['userName'];
+                                } else if (document.getElementById("dsee10").value.length < 2)
+                                {
+                                    document.getElementById("dsee10").value = value['userName'];
+                                }
+
+                            });
+                        }
+                    });
+                    // end update
+
+                    return false;
+
+                });
+
+                // When clicking on the button close or the mask layer the popup closed
+                $('a.close, #mask').click(function () {
+                    $('#mask , .login-popup').fadeOut(300, function () {
+                        $('#mask').remove();
+                    });
+                    return false;
+                });
+
+                $('#diarySettClose').click(function () {
+                    $('#mask , .login-popup').fadeOut(300, function () {
+                        $('#mask').remove();
+                    });
+                    return false;
+                });
+            });
+        </script>            
 
 
-        
 
 
-    
+
+
+
+
+
 
 
     </body>
