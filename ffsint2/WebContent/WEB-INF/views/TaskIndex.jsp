@@ -122,29 +122,34 @@
                     color:#1E90FF;
                 }
             </style>
-
+           
+            <script>
+                $(function () {
+                    $("#tabs").tabs();
+                });
+            </script>
 
             <script src="resources/dhtmlxcalendar.js"></script>
             <link rel="stylesheet" type="text/css" href="resources/dhtmlxcalendar_1.css"/>
 
             <script>
-                var myCalendar;
-                function doOnLoad() {
-                    myCalendar = new dhtmlXCalendarObject("calendarHere");
-                    //		myCalendar.setSkin("material");
-                    myCalendar.setDate(new Date(2016, 7, 7, 16, 0));
-                    myCalendar.show();
-                    myCalendar.hideTime();
-                    myCalendar.showToday();
-                    myCalendar.setHolidays(["2012-04-28", "2012-05-09", "2012-05-01", "2012-05-27", "2012-05-21", "2012-05-28", "2012-06-03", "2012-06-04"]);
-                    //  myCalendar.setInsensitiveRange(null, "2012-05-04");
-                    myCalendar._drawMonth(new Date(2016, 7, 1));
-                    myCalendar.attachEvent("onClick", function (side, d) {
-                        //	writeLog("onClick event called, "+side+" calendar, date "+myCalendar.getFormatedDate(null,d));
+     var myCalendar;
+     function doOnLoad() {
+         myCalendar = new dhtmlXCalendarObject("calendarHere");
+         //		myCalendar.setSkin("material");
+         myCalendar.setDate(new Date(2016, 7, 7, 16, 0));
+         myCalendar.show();
+         myCalendar.hideTime();
+         myCalendar.showToday();
+         myCalendar.setHolidays(["2012-04-28", "2012-05-09", "2012-05-01", "2012-05-27", "2012-05-21", "2012-05-28", "2012-06-03", "2012-06-04"]);
+         //  myCalendar.setInsensitiveRange(null, "2012-05-04");
+         myCalendar._drawMonth(new Date(2016, 7, 1));
+         myCalendar.attachEvent("onClick", function (side, d) {
+             //	writeLog("onClick event called, "+side+" calendar, date "+myCalendar.getFormatedDate(null,d));
 
 
-                    });
-                }
+         });
+     }
             </script>
             <script>
 
@@ -523,7 +528,32 @@
                 <fieldset class="textbox">
                     Task Details
                     <br>
+                    <div id="tabs" style="width:500px; float:right;">
+                        <ul>
+                            <li><a href="#tabs-1">Details</a></li>
+                            <li><a href="#tabs-2">Notes</a></li>
+                            <li><a href="#tabs-3">People</a></li>
+                            <li><a href="#tabs-4">Images</a></li>
+                        </ul>
 
+                        <div id="tabs-1">
+                            <p>
+                            <div style="float: right; text-align: right;">
+                                ID :  <label id="diaryid"/>0</label>
+                            </div>     
+
+                           Task From<label> <input type="text" id="diarysumm" style="margin-left:10px" /> </label> 
+                            <br/>
+                           Task Summary<label> <input type="text" id="diarysumm" style="margin-left:10px" /> </label> 
+                            <br>
+                            Start Date <label> <input type="text" id = "startdate" style="margin-left:5px"/> </label> 
+                            <br>     
+                            End Date<label> <input type="text" id = "enddate"style="margin-left:10px"/> </label>
+                            <br>
+
+                        </div>
+                        
+                    </div>
                     <br>
 
                     <button class="submit button" id="diarySettClose" type="button">Update</button>
