@@ -22,7 +22,7 @@ public class DBUtils {
 
     public static UserAccount findUser(Connection conn, String userName, String password) throws SQLException {
 
-        String sql = "Select a.name, a.Passw from Users a "
+        String sql = "Select a.name, a.Passw, a.lidno from Users a "
                 + " where a.code = ? and a.passw= ?";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
@@ -34,6 +34,7 @@ public class DBUtils {
             UserAccount user = new UserAccount();
             user.setUserName(rs.getString("name"));
             user.setPassword(password);
+            user.setsecurestr(rs.getString("lidno"));
             return user;
         }
         return null;
@@ -41,7 +42,7 @@ public class DBUtils {
 
     public static UserAccount findUser(Connection conn, String userName) throws SQLException {
 
-        String sql = "Select a.Name, a.Passw from Users a " + " where a.code = ? ";
+        String sql = "Select a.Name, a.Passw, a.lidno from Users a " + " where a.code = ? ";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, userName);
@@ -54,6 +55,7 @@ public class DBUtils {
             UserAccount user = new UserAccount();
             user.setUserName(rs.getString("name"));
             user.setPassword(password);
+            user.setsecurestr(rs.getString("lidno"));
             return user;
         }
         return null;
@@ -1402,7 +1404,7 @@ System.out.println(sql);
         return list;
     }
 
-    public static ArrayList<Diary> NewDiary(Connection connconn, String tranid, String userName, String diarysumm, String startdate, String enddate, String locat, String diarytask, String diarynotes, String duser1, String duser2, String duser3, String duser4, String duser5, String duser6, String duser7, String duser8, String duser9, String duser10, String resp1, String resp2, String resp3, String resp4, String resp5, String resp6, String resp7, String resp8, String resp9, String resp10, String fromuser) throws SQLException {
+    public static ArrayList<Generics> NewDiary(Connection connconn, String tranid, String userName, String diarysumm, String startdate, String enddate, String locat, String diarytask, String diarynotes, String duser1, String duser2, String duser3, String duser4, String duser5, String duser6, String duser7, String duser8, String duser9, String duser10, String resp1, String resp2, String resp3, String resp4, String resp5, String resp6, String resp7, String resp8, String resp9, String resp10, String fromuser) throws SQLException {
 
         System.out.println("username " + userName + " tranid " + tranid);
 
@@ -1446,6 +1448,89 @@ System.out.println(sql);
             Integer temp1 = pstm2.executeUpdate();
         }
         if (!tranid.equals("0")) {
+        String sql = "Select * from Diary a where a.tranid =?";
+
+        PreparedStatement pstm = connconn.prepareStatement(sql);
+        pstm.setString(1, tranid);
+        
+        ResultSet rs = pstm.executeQuery();
+        String thistime = "";
+        String thistime1 = "";
+        String comm = "";
+        if (rs.next()) {
+            comm = rs.getString("comm");
+            Date date = new Date();
+            Calendar calendar = new GregorianCalendar();
+            calendar.setTime(rs.getTimestamp("sdate"));
+            String year = Integer.toString(calendar.get(Calendar.YEAR));
+            String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
+            String day = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH));
+            String hour = Integer.toString(calendar.get(Calendar.HOUR_OF_DAY));
+            String minute = Integer.toString(calendar.get(Calendar.MINUTE));
+            int length = month.length();
+            if (length == 1) {
+                month = "0" + month;
+            }
+            int length2 = day.length();
+            if (length2 == 1) {
+                day = "0" + day;
+            }
+            int length3 = hour.length();
+            if (length3 == 1) {
+                hour = "0" + hour;
+            }
+            int length4 = minute.length();
+            if (length4 == 1) {
+                minute = "0" + minute;
+            }
+            thistime = year + "/" + month + "/" + day + " " + hour + ":" + minute;
+
+            calendar.setTime(rs.getTimestamp("edate"));
+            String year1 = Integer.toString(calendar.get(Calendar.YEAR));
+            String month1 = Integer.toString(calendar.get(Calendar.MONTH) + 1);
+            String day1 = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH));
+            String hour1 = Integer.toString(calendar.get(Calendar.HOUR_OF_DAY));
+            String minute1 = Integer.toString(calendar.get(Calendar.MINUTE));
+            int length5 = month1.length();
+            if (length5 == 1) {
+                month1 = "0" + month1;
+            }
+            int length6 = day1.length();
+            if (length6 == 1) {
+                day1 = "0" + day1;
+            }
+            int length7 = hour1.length();
+            if (length7 == 1) {
+                hour1 = "0" + hour1;
+            }
+            int length8 = minute1.length();
+            if (length8 == 1) {
+                minute1 = "0" + minute1;
+            }
+           thistime1 = year1 + "/" + month1 + "/" + day1 + " " + hour1 + ":" + minute1;
+        }
+        
+        if (!startdate.equals(thistime) || !enddate.equals(thistime1)) {
+         // times changed insert comment
+long millis = System.currentTimeMillis();
+            java.sql.Date date = new java.sql.Date(millis);
+            SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm:ss");
+            Date now = new Date();
+            String strTime = sdfTime.format(now);
+
+            
+            String newcomm = comm + "~Diary times changed~ Old Start "+ thistime + " New Start " + startdate + "~Old End "+ thistime1 + " New End " + enddate + "~"  + userName + " " + date + " " + strTime + "~______________________";
+
+        String sql1 = "update diary set comm = ? where tranid = ?";
+
+        PreparedStatement pstm2 = connconn.prepareStatement(sql1);
+        
+        pstm2.setString(1, newcomm);
+        pstm2.setString(2, tranid);
+        pstm2.executeUpdate();
+        }
+            
+            
             PreparedStatement pstm2 = null;
             pstm2 = connconn.prepareStatement("update diary set sdate = ? , edate = ? , locat = ? , desc1 = ? , notes = ? , taskid = ? where tranid = ?");
             pstm2.setString(1, startdate);
@@ -1459,7 +1544,7 @@ System.out.println(sql);
             Integer temp1 = pstm2.executeUpdate();
         }
 
-        ArrayList<Diary> list = new ArrayList<Diary>();
+        ArrayList<Generics> list = new ArrayList<Generics>();
         return list;
     }
 
@@ -1759,5 +1844,146 @@ String tranid2;
 
         }
         return list;
-    }    
+    } 
+
+ public static ArrayList<Generics> getDiarySet(Connection conn, String loginedUser) throws SQLException {
+        String sql = "Select name, lidno from users where name = ?";
+
+        PreparedStatement pstm = conn.prepareStatement(sql);
+         pstm.setString(1, loginedUser);
+         
+        ResultSet rs = pstm.executeQuery();
+        ArrayList<Generics> list = new ArrayList<Generics>();
+        while (rs.next()) {
+            // this below 0,1 is wrong, must repace with correct setting
+            String name = rs.getString("lidno").substring(0,1);
+            Generics generics = new Generics();
+            generics.setGenGroupId(name);
+            list.add(generics);
+        }
+        return list;
+    }
+
+ public static ArrayList<Generics> getDiaryGen(Connection conn, String loginedUser) throws SQLException {
+        String sql = "Select * from generics where gengroupid = '44' or gengroupid = '45'";
+
+        PreparedStatement pstm = conn.prepareStatement(sql);        
+         
+        ResultSet rs = pstm.executeQuery();
+        ArrayList<Generics> list = new ArrayList<Generics>();
+        while (rs.next()) {
+            String genericdescriptioneng = rs.getString("GenericDescriptionENG");
+            String gengroupid = rs.getString("gengroupid");
+            String genericid = rs.getString("genericid"); 
+            Generics generics = new Generics();
+            generics.setGenGroupId(gengroupid);
+            generics.setGenericId(genericid);
+            generics.setGenericDescriptionEng(genericdescriptioneng);
+            
+            list.add(generics);
+        }
+        return list;
+    } 
+ 
+ public static ArrayList<Generics> getDiaryLocat(Connection conn, String loginedUser, String thisLocat) throws SQLException {
+     
+ String sql1 = "delete from generics where gengroupid = '44' and genericdescriptioneng = ?";
+ PreparedStatement pstm1 = conn.prepareStatement(sql1);     
+ pstm1.setString(1, thisLocat);
+ pstm1.executeUpdate();
+ 
+        String sql = "Select * from generics where gengroupid = '44'";
+        PreparedStatement pstm = conn.prepareStatement(sql);        
+        ResultSet rs = pstm.executeQuery();
+        ArrayList<Generics> list = new ArrayList<Generics>();
+        while (rs.next()) {
+            String genericdescriptioneng = rs.getString("GenericDescriptionENG");
+            String gengroupid = rs.getString("gengroupid");
+            String genericid = rs.getString("genericid"); 
+            Generics generics = new Generics();
+            generics.setGenGroupId(gengroupid);
+            generics.setGenericId(genericid);
+            generics.setGenericDescriptionEng(genericdescriptioneng);
+            
+            list.add(generics);
+        }
+        return list;
+    } 
+ 
+public static ArrayList<Generics> getDiaryResp(Connection conn, String loginedUser, String thisLocat) throws SQLException {
+     
+ String sql1 = "delete from generics where gengroupid = '45' and genericdescriptioneng = ?";
+ PreparedStatement pstm1 = conn.prepareStatement(sql1);     
+ pstm1.setString(1, thisLocat);
+ pstm1.executeUpdate();
+ 
+        String sql = "Select * from generics where gengroupid = '45'";
+        PreparedStatement pstm = conn.prepareStatement(sql);        
+        ResultSet rs = pstm.executeQuery();
+        ArrayList<Generics> list = new ArrayList<Generics>();
+        while (rs.next()) {
+            String genericdescriptioneng = rs.getString("GenericDescriptionENG");
+            String gengroupid = rs.getString("gengroupid");
+            String genericid = rs.getString("genericid"); 
+            Generics generics = new Generics();
+            generics.setGenGroupId(gengroupid);
+            generics.setGenericId(genericid);
+            generics.setGenericDescriptionEng(genericdescriptioneng);
+            
+            list.add(generics);
+        }
+        return list;
+    } 
+
+ public static ArrayList<Generics> AddDiaryLocat(Connection conn, String loginedUser, String thisLocat) throws SQLException {
+     
+ String sql1 = "insert into generics (gengroupid, genericdescriptioneng) values ('44', ?)";
+ PreparedStatement pstm1 = conn.prepareStatement(sql1);     
+ pstm1.setString(1, thisLocat);
+ pstm1.executeUpdate();
+ 
+        String sql = "Select * from generics where gengroupid = '44'";
+        PreparedStatement pstm = conn.prepareStatement(sql);        
+        ResultSet rs = pstm.executeQuery();
+        ArrayList<Generics> list = new ArrayList<Generics>();
+        while (rs.next()) {
+            String genericdescriptioneng = rs.getString("GenericDescriptionENG");
+            String gengroupid = rs.getString("gengroupid");
+            String genericid = rs.getString("genericid"); 
+            Generics generics = new Generics();
+            generics.setGenGroupId(gengroupid);
+            generics.setGenericId(genericid);
+            generics.setGenericDescriptionEng(genericdescriptioneng);
+            
+            list.add(generics);
+        }
+        return list;
+    }
+ 
+public static ArrayList<Generics> AddDiaryResp(Connection conn, String loginedUser, String thisLocat) throws SQLException {
+     
+ String sql1 = "insert into generics (gengroupid, genericdescriptioneng) values ('45', ?)";
+ PreparedStatement pstm1 = conn.prepareStatement(sql1);     
+ pstm1.setString(1, thisLocat);
+ pstm1.executeUpdate();
+ 
+        String sql = "Select * from generics where gengroupid = '45'";
+        PreparedStatement pstm = conn.prepareStatement(sql);        
+        ResultSet rs = pstm.executeQuery();
+        ArrayList<Generics> list = new ArrayList<Generics>();
+        while (rs.next()) {
+            String genericdescriptioneng = rs.getString("GenericDescriptionENG");
+            String gengroupid = rs.getString("gengroupid");
+            String genericid = rs.getString("genericid"); 
+            Generics generics = new Generics();
+            generics.setGenGroupId(gengroupid);
+            generics.setGenericId(genericid);
+            generics.setGenericDescriptionEng(genericdescriptioneng);
+            
+            list.add(generics);
+        }
+        return list;
+    }
+
+
 }
