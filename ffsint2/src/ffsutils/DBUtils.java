@@ -51,7 +51,7 @@ public class DBUtils {
 
         if (rs.next()) {
             String password = rs.getString("Password");
-         
+
             UserAccount user = new UserAccount();
             user.setUserName(rs.getString("name"));
             user.setPassword(password);
@@ -143,11 +143,11 @@ public class DBUtils {
         System.out.println("thisUser1:" + thisUser);
         String leftRemoved = thisUser.replaceAll("^\\s+", "");
         String rightRemoved = leftRemoved.replaceAll("\\s+$", "");
-        
+
         System.out.println("thisUser2:" + rightRemoved);
-        
+
         String sql = "Select Tranid, User, Desc1, sdate from Diary where (sdate > ?) and (sdate < ?) and (user = ?) order by sdate asc";
-System.out.println(sql);
+        System.out.println(sql);
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, thisDate + " 00:00");
         pstm.setString(2, thisDate + " 23:59");
@@ -156,7 +156,7 @@ System.out.println(sql);
         ArrayList<Diary> list = new ArrayList<Diary>();
 
         if (rs.next()) {
-            System.out.println("Diary etries found ");           
+            System.out.println("Diary etries found ");
             date1 = rs.getTime("sdate");
             calendar = new GregorianCalendar();
             calendar.setTime(date1);
@@ -176,18 +176,18 @@ System.out.println(sql);
                 diary.setShortDate(ShortDate);
                 list.add(diary);
                 rs.next();
-                    if (rs.isLast() || rs.isAfterLast()) {
-                       System.out.println("after last " );
-                        hour = 0;
-                        minute = 0;
-                    } else {
-                      //  rs.next();
-                        date1 = rs.getTime("sdate");
-                        calendar.setTime(date1);
-                        hour = calendar.get(Calendar.HOUR_OF_DAY);
-                        minute = calendar.get(Calendar.MINUTE);
-                        System.out.println("not after last " + rs.getString("tranid") + " " + hour +" " + minute + " " +rs.getDate("sdate") );
-                    }
+                if (rs.isLast() || rs.isAfterLast()) {
+                    System.out.println("after last ");
+                    hour = 0;
+                    minute = 0;
+                } else {
+                    //  rs.next();
+                    date1 = rs.getTime("sdate");
+                    calendar.setTime(date1);
+                    hour = calendar.get(Calendar.HOUR_OF_DAY);
+                    minute = calendar.get(Calendar.MINUTE);
+                    System.out.println("not after last " + rs.getString("tranid") + " " + hour + " " + minute + " " + rs.getDate("sdate"));
+                }
             }
 
             if (String.valueOf(hour).equals("8") && minute < 30) {
@@ -206,16 +206,16 @@ System.out.println(sql);
                     list.add(diary1);
                     rs.next();
                     if (rs.isLast() || rs.isAfterLast()) {
-                       System.out.println("after last " );
+                        System.out.println("after last ");
                         hour = 0;
                         minute = 0;
                     } else {
-                      //  rs.next();
+                        //  rs.next();
                         date1 = rs.getTime("sdate");
                         calendar.setTime(date1);
                         hour = calendar.get(Calendar.HOUR_OF_DAY);
                         minute = calendar.get(Calendar.MINUTE);
-                        System.out.println("not after last " + rs.getString("tranid") + " " + hour +" " + minute + " " +rs.getDate("sdate") );
+                        System.out.println("not after last " + rs.getString("tranid") + " " + hour + " " + minute + " " + rs.getDate("sdate"));
                     }
                 }
             } else {
@@ -246,16 +246,16 @@ System.out.println(sql);
                     list.add(diary3);
                     rs.next();
                     if (rs.isLast() || rs.isAfterLast()) {
-                       System.out.println("after last " );
+                        System.out.println("after last ");
                         hour = 0;
                         minute = 0;
                     } else {
-                      //  rs.next();
+                        //  rs.next();
                         date1 = rs.getTime("sdate");
                         calendar.setTime(date1);
                         hour = calendar.get(Calendar.HOUR_OF_DAY);
                         minute = calendar.get(Calendar.MINUTE);
-                        System.out.println("not after last " + rs.getString("tranid") + " " + hour +" " + minute + " " +rs.getDate("sdate") );
+                        System.out.println("not after last " + rs.getString("tranid") + " " + hour + " " + minute + " " + rs.getDate("sdate"));
                     }
                 }
             } else {
@@ -285,16 +285,16 @@ System.out.println(sql);
                     list.add(diary3);
                     rs.next();
                     if (rs.isLast() || rs.isAfterLast()) {
-                       System.out.println("after last " );
+                        System.out.println("after last ");
                         hour = 0;
                         minute = 0;
                     } else {
-                      //  rs.next();
+                        //  rs.next();
                         date1 = rs.getTime("sdate");
                         calendar.setTime(date1);
                         hour = calendar.get(Calendar.HOUR_OF_DAY);
                         minute = calendar.get(Calendar.MINUTE);
-                        System.out.println("not after last " + rs.getString("tranid") + " " + hour +" " + minute + " " +rs.getDate("sdate") );
+                        System.out.println("not after last " + rs.getString("tranid") + " " + hour + " " + minute + " " + rs.getDate("sdate"));
                     }
                 }
             } else {
@@ -324,16 +324,16 @@ System.out.println(sql);
                     list.add(diary3);
                     rs.next();
                     if (rs.isLast() || rs.isAfterLast()) {
-                       System.out.println("after last " );
+                        System.out.println("after last ");
                         hour = 0;
                         minute = 0;
                     } else {
-                      //  rs.next();
+                        //  rs.next();
                         date1 = rs.getTime("sdate");
                         calendar.setTime(date1);
                         hour = calendar.get(Calendar.HOUR_OF_DAY);
                         minute = calendar.get(Calendar.MINUTE);
-                        System.out.println("not after last " + rs.getString("tranid") + " " + hour +" " + minute + " " +rs.getDate("sdate") );
+                        System.out.println("not after last " + rs.getString("tranid") + " " + hour + " " + minute + " " + rs.getDate("sdate"));
                     }
                 }
             } else {
@@ -363,16 +363,16 @@ System.out.println(sql);
                     list.add(diary3);
                     rs.next();
                     if (rs.isLast() || rs.isAfterLast()) {
-                       System.out.println("after last " );
+                        System.out.println("after last ");
                         hour = 0;
                         minute = 0;
                     } else {
-                      //  rs.next();
+                        //  rs.next();
                         date1 = rs.getTime("sdate");
                         calendar.setTime(date1);
                         hour = calendar.get(Calendar.HOUR_OF_DAY);
                         minute = calendar.get(Calendar.MINUTE);
-                        System.out.println("not after last " + rs.getString("tranid") + " " + hour +" " + minute + " " +rs.getDate("sdate") );
+                        System.out.println("not after last " + rs.getString("tranid") + " " + hour + " " + minute + " " + rs.getDate("sdate"));
                     }
                 }
             } else {
@@ -402,16 +402,16 @@ System.out.println(sql);
                     list.add(diary3);
                     rs.next();
                     if (rs.isLast() || rs.isAfterLast()) {
-                       System.out.println("after last ");
+                        System.out.println("after last ");
                         hour = 0;
                         minute = 0;
                     } else {
-                      //  rs.next();
+                        //  rs.next();
                         date1 = rs.getTime("sdate");
                         calendar.setTime(date1);
                         hour = calendar.get(Calendar.HOUR_OF_DAY);
                         minute = calendar.get(Calendar.MINUTE);
-                        System.out.println("not after last " + rs.getString("tranid") + " " + hour +" " + minute + " " +rs.getDate("sdate") );
+                        System.out.println("not after last " + rs.getString("tranid") + " " + hour + " " + minute + " " + rs.getDate("sdate"));
                     }
                 }
             } else {
@@ -441,16 +441,16 @@ System.out.println(sql);
                     list.add(diary3);
                     rs.next();
                     if (rs.isLast() || rs.isAfterLast()) {
-                       System.out.println("after last " );
+                        System.out.println("after last ");
                         hour = 0;
                         minute = 0;
                     } else {
-                      //  rs.next();
+                        //  rs.next();
                         date1 = rs.getTime("sdate");
                         calendar.setTime(date1);
                         hour = calendar.get(Calendar.HOUR_OF_DAY);
                         minute = calendar.get(Calendar.MINUTE);
-                        System.out.println("not after last " + rs.getString("tranid") + " " + hour +" " + minute + " " +rs.getDate("sdate") );
+                        System.out.println("not after last " + rs.getString("tranid") + " " + hour + " " + minute + " " + rs.getDate("sdate"));
                     }
                 }
             } else {
@@ -479,16 +479,16 @@ System.out.println(sql);
                     diary3.setShortDate(ShortDate);
                     list.add(diary3);
                     if (rs.isLast() || rs.isAfterLast()) {
-                       System.out.println("after last " );
+                        System.out.println("after last ");
                         hour = 0;
                         minute = 0;
                     } else {
-                      //  rs.next();
+                        //  rs.next();
                         date1 = rs.getTime("sdate");
                         calendar.setTime(date1);
                         hour = calendar.get(Calendar.HOUR_OF_DAY);
                         minute = calendar.get(Calendar.MINUTE);
-                        System.out.println("not after last " + rs.getString("tranid") + " " + hour +" " + minute + " " +rs.getDate("sdate") );
+                        System.out.println("not after last " + rs.getString("tranid") + " " + hour + " " + minute + " " + rs.getDate("sdate"));
                     }
                 }
             } else {
@@ -518,16 +518,16 @@ System.out.println(sql);
                     list.add(diary3);
                     rs.next();
                     if (rs.isLast() || rs.isAfterLast()) {
-                       System.out.println("after last ");
+                        System.out.println("after last ");
                         hour = 0;
                         minute = 0;
                     } else {
-                      //  rs.next();
+                        //  rs.next();
                         date1 = rs.getTime("sdate");
                         calendar.setTime(date1);
                         hour = calendar.get(Calendar.HOUR_OF_DAY);
                         minute = calendar.get(Calendar.MINUTE);
-                        System.out.println("not after last " + rs.getString("tranid") + " " + hour +" " + minute + " " +rs.getDate("sdate") );
+                        System.out.println("not after last " + rs.getString("tranid") + " " + hour + " " + minute + " " + rs.getDate("sdate"));
                     }
                 }
             } else {
@@ -557,16 +557,16 @@ System.out.println(sql);
                     list.add(diary3);
                     rs.next();
                     if (rs.isLast() || rs.isAfterLast()) {
-                       System.out.println("after last " );
+                        System.out.println("after last ");
                         hour = 0;
                         minute = 0;
                     } else {
-                      //  rs.next();
+                        //  rs.next();
                         date1 = rs.getTime("sdate");
                         calendar.setTime(date1);
                         hour = calendar.get(Calendar.HOUR_OF_DAY);
                         minute = calendar.get(Calendar.MINUTE);
-                        System.out.println("not after last " + rs.getString("tranid") + " " + hour +" " + minute + " " +rs.getDate("sdate") );
+                        System.out.println("not after last " + rs.getString("tranid") + " " + hour + " " + minute + " " + rs.getDate("sdate"));
                     }
                 }
             } else {
@@ -596,16 +596,16 @@ System.out.println(sql);
                     list.add(diary3);
                     rs.next();
                     if (rs.isLast() || rs.isAfterLast()) {
-                       System.out.println("after last " );
+                        System.out.println("after last ");
                         hour = 0;
                         minute = 0;
                     } else {
-                      //  rs.next();
+                        //  rs.next();
                         date1 = rs.getTime("sdate");
                         calendar.setTime(date1);
                         hour = calendar.get(Calendar.HOUR_OF_DAY);
                         minute = calendar.get(Calendar.MINUTE);
-                        System.out.println("not after last " + rs.getString("tranid") + " " + hour +" " + minute + " " +rs.getDate("sdate") );
+                        System.out.println("not after last " + rs.getString("tranid") + " " + hour + " " + minute + " " + rs.getDate("sdate"));
                     }
                 }
             } else {
@@ -635,16 +635,16 @@ System.out.println(sql);
                     list.add(diary3);
                     rs.next();
                     if (rs.isLast() || rs.isAfterLast()) {
-                       System.out.println("after last " );
+                        System.out.println("after last ");
                         hour = 0;
                         minute = 0;
                     } else {
-                      //  rs.next();
+                        //  rs.next();
                         date1 = rs.getTime("sdate");
                         calendar.setTime(date1);
                         hour = calendar.get(Calendar.HOUR_OF_DAY);
                         minute = calendar.get(Calendar.MINUTE);
-                        System.out.println("not after last " + rs.getString("tranid") + " " + hour +" " + minute + " " +rs.getDate("sdate") );
+                        System.out.println("not after last " + rs.getString("tranid") + " " + hour + " " + minute + " " + rs.getDate("sdate"));
                     }
                 }
             } else {
@@ -674,16 +674,16 @@ System.out.println(sql);
                     list.add(diary3);
                     rs.next();
                     if (rs.isLast() || rs.isAfterLast()) {
-                       System.out.println("after last ");
+                        System.out.println("after last ");
                         hour = 0;
                         minute = 0;
                     } else {
-                      //  rs.next();
+                        //  rs.next();
                         date1 = rs.getTime("sdate");
                         calendar.setTime(date1);
                         hour = calendar.get(Calendar.HOUR_OF_DAY);
                         minute = calendar.get(Calendar.MINUTE);
-                        System.out.println("not after last " + rs.getString("tranid") + " " + hour +" " + minute + " " +rs.getDate("sdate") );
+                        System.out.println("not after last " + rs.getString("tranid") + " " + hour + " " + minute + " " + rs.getDate("sdate"));
                     }
                 }
             } else {
@@ -713,16 +713,16 @@ System.out.println(sql);
                     list.add(diary3);
                     rs.next();
                     if (rs.isLast() || rs.isAfterLast()) {
-                       System.out.println("after last " );
+                        System.out.println("after last ");
                         hour = 0;
                         minute = 0;
                     } else {
-                      //  rs.next();
+                        //  rs.next();
                         date1 = rs.getTime("sdate");
                         calendar.setTime(date1);
                         hour = calendar.get(Calendar.HOUR_OF_DAY);
                         minute = calendar.get(Calendar.MINUTE);
-                        System.out.println("not after last " + rs.getString("tranid") + " " + hour +" " + minute + " " +rs.getDate("sdate") );
+                        System.out.println("not after last " + rs.getString("tranid") + " " + hour + " " + minute + " " + rs.getDate("sdate"));
                     }
                 }
             } else {
@@ -752,16 +752,16 @@ System.out.println(sql);
                     list.add(diary3);
                     rs.next();
                     if (rs.isLast() || rs.isAfterLast()) {
-                       System.out.println("after last " );
+                        System.out.println("after last ");
                         hour = 0;
                         minute = 0;
                     } else {
-                      //  rs.next();
+                        //  rs.next();
                         date1 = rs.getTime("sdate");
                         calendar.setTime(date1);
                         hour = calendar.get(Calendar.HOUR_OF_DAY);
                         minute = calendar.get(Calendar.MINUTE);
-                        System.out.println("not after last " + rs.getString("tranid") + " " + hour +" " + minute + " " +rs.getDate("sdate") );
+                        System.out.println("not after last " + rs.getString("tranid") + " " + hour + " " + minute + " " + rs.getDate("sdate"));
                     }
                 }
             } else {
@@ -791,16 +791,16 @@ System.out.println(sql);
                     list.add(diary3);
                     rs.next();
                     if (rs.isLast() || rs.isAfterLast()) {
-                       System.out.println("after last ");
+                        System.out.println("after last ");
                         hour = 0;
                         minute = 0;
                     } else {
-                      //  rs.next();
+                        //  rs.next();
                         date1 = rs.getTime("sdate");
                         calendar.setTime(date1);
                         hour = calendar.get(Calendar.HOUR_OF_DAY);
                         minute = calendar.get(Calendar.MINUTE);
-                        System.out.println("not after last " + rs.getString("tranid") + " " + hour +" " + minute + " " +rs.getDate("sdate") );
+                        System.out.println("not after last " + rs.getString("tranid") + " " + hour + " " + minute + " " + rs.getDate("sdate"));
                     }
                 }
             } else {
@@ -830,16 +830,16 @@ System.out.println(sql);
                     list.add(diary3);
                     rs.next();
                     if (rs.isLast() || rs.isAfterLast()) {
-                       System.out.println("after last " );
+                        System.out.println("after last ");
                         hour = 0;
                         minute = 0;
                     } else {
-                      //  rs.next();
+                        //  rs.next();
                         date1 = rs.getTime("sdate");
                         calendar.setTime(date1);
                         hour = calendar.get(Calendar.HOUR_OF_DAY);
                         minute = calendar.get(Calendar.MINUTE);
-                        System.out.println("not after last " + rs.getString("tranid") + " " + hour +" " + minute + " " +rs.getDate("sdate") );
+                        System.out.println("not after last " + rs.getString("tranid") + " " + hour + " " + minute + " " + rs.getDate("sdate"));
                     }
                 }
             } else {
@@ -869,16 +869,16 @@ System.out.println(sql);
                     list.add(diary3);
                     rs.next();
                     if (rs.isLast() || rs.isAfterLast()) {
-                       System.out.println("after last ");
+                        System.out.println("after last ");
                         hour = 0;
                         minute = 0;
                     } else {
-                      //  rs.next();
+                        //  rs.next();
                         date1 = rs.getTime("sdate");
                         calendar.setTime(date1);
                         hour = calendar.get(Calendar.HOUR_OF_DAY);
                         minute = calendar.get(Calendar.MINUTE);
-                        System.out.println("not after last " + rs.getString("tranid") + " " + hour +" " + minute + " " +rs.getDate("sdate") );
+                        System.out.println("not after last " + rs.getString("tranid") + " " + hour + " " + minute + " " + rs.getDate("sdate"));
                     }
                 }
             } else {
@@ -1247,18 +1247,27 @@ System.out.println(sql);
     }
 
     public static ArrayList<DiaryImag> getDiaryImag(Connection connconn, String tranid1) throws SQLException {
-        String tranid2;
+        String tranid2 = "";
         Integer comp = 2;
         Integer tranlen = tranid1.length();
-        int retval = comp.compareTo(tranlen);
-        if (retval > 0) {
+
+        //int retval = comp.compareTo(tranlen);
+        //if (retval > 0) {
+//            tranid2 = "0" + tranid1;
+//        } else if (retval < 0) {
+//            tranid2 = tranid1.substring(tranid1.length() - 1);
+//        } else {
+//            tranid2 = tranid1;
+//        }
+        if (tranlen.equals(1)) {
             tranid2 = "0" + tranid1;
-        } else if (retval < 0) {
-            tranid2 = tranid1.substring(tranid1.length() - 1);
-        } else {
+        }
+        if (tranlen.equals(2)) {
             tranid2 = tranid1;
         }
-
+        if (tranlen > 2) {
+            tranid2 = tranid1.substring(tranid1.length() - 2);
+        }
         String sql = "Select * from Diaryimag" + tranid2 + " a where a.diaryid =?";
 
         PreparedStatement pstm = connconn.prepareStatement(sql);
@@ -1448,89 +1457,90 @@ System.out.println(sql);
             Integer temp1 = pstm2.executeUpdate();
         }
         if (!tranid.equals("0")) {
-        String sql = "Select * from Diary a where a.tranid =?";
+            String sql = "Select * from Diary a where a.tranid =?";
 
-        PreparedStatement pstm = connconn.prepareStatement(sql);
-        pstm.setString(1, tranid);
-        
-        ResultSet rs = pstm.executeQuery();
-        String thistime = "";
-        String thistime1 = "";
-        String comm = "";
-        if (rs.next()) {
-            comm = rs.getString("comm");
-            Date date = new Date();
-            Calendar calendar = new GregorianCalendar();
-            calendar.setTime(rs.getTimestamp("sdate"));
-            String year = Integer.toString(calendar.get(Calendar.YEAR));
-            String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
-            String day = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH));
-            String hour = Integer.toString(calendar.get(Calendar.HOUR_OF_DAY));
-            String minute = Integer.toString(calendar.get(Calendar.MINUTE));
-            int length = month.length();
-            if (length == 1) {
-                month = "0" + month;
-            }
-            int length2 = day.length();
-            if (length2 == 1) {
-                day = "0" + day;
-            }
-            int length3 = hour.length();
-            if (length3 == 1) {
-                hour = "0" + hour;
-            }
-            int length4 = minute.length();
-            if (length4 == 1) {
-                minute = "0" + minute;
-            }
-            thistime = year + "/" + month + "/" + day + " " + hour + ":" + minute;
+            PreparedStatement pstm = connconn.prepareStatement(sql);
+            pstm.setString(1, tranid);
 
-            calendar.setTime(rs.getTimestamp("edate"));
-            String year1 = Integer.toString(calendar.get(Calendar.YEAR));
-            String month1 = Integer.toString(calendar.get(Calendar.MONTH) + 1);
-            String day1 = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH));
-            String hour1 = Integer.toString(calendar.get(Calendar.HOUR_OF_DAY));
-            String minute1 = Integer.toString(calendar.get(Calendar.MINUTE));
-            int length5 = month1.length();
-            if (length5 == 1) {
-                month1 = "0" + month1;
-            }
-            int length6 = day1.length();
-            if (length6 == 1) {
-                day1 = "0" + day1;
-            }
-            int length7 = hour1.length();
-            if (length7 == 1) {
-                hour1 = "0" + hour1;
-            }
-            int length8 = minute1.length();
-            if (length8 == 1) {
-                minute1 = "0" + minute1;
-            }
-           thistime1 = year1 + "/" + month1 + "/" + day1 + " " + hour1 + ":" + minute1;
-        }
-        
-        if (!startdate.equals(thistime) || !enddate.equals(thistime1)) {
-         // times changed insert comment
-long millis = System.currentTimeMillis();
-            java.sql.Date date = new java.sql.Date(millis);
-            SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm:ss");
-            Date now = new Date();
-            String strTime = sdfTime.format(now);
+            ResultSet rs = pstm.executeQuery();
+            String thistime = "";
+            String thistime1 = "";
+            String comm = "";
+            if (rs.next()) {
+                comm = rs.getString("comm");
+                Date date = new Date();
+                Calendar calendar = new GregorianCalendar();
+                calendar.setTime(rs.getTimestamp("sdate"));
+                String year = Integer.toString(calendar.get(Calendar.YEAR));
+                String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
+                String day = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH));
+                String hour = Integer.toString(calendar.get(Calendar.HOUR_OF_DAY));
+                String minute = Integer.toString(calendar.get(Calendar.MINUTE));
+                int length = month.length();
+                if (length == 1) {
+                    month = "0" + month;
+                }
+                int length2 = day.length();
+                if (length2 == 1) {
+                    day = "0" + day;
+                }
+                int length3 = hour.length();
+                if (length3 == 1) {
+                    hour = "0" + hour;
+                }
+                int length4 = minute.length();
+                if (length4 == 1) {
+                    minute = "0" + minute;
+                }
+                thistime = year + "/" + month + "/" + day + " " + hour + ":" + minute;
 
-            
-            String newcomm = comm + "~Diary times changed~ Old Start "+ thistime + " New Start " + startdate + "~Old End "+ thistime1 + " New End " + enddate + "~"  + userName + " " + date + " " + strTime + "~______________________";
+                calendar.setTime(rs.getTimestamp("edate"));
+                String year1 = Integer.toString(calendar.get(Calendar.YEAR));
+                String month1 = Integer.toString(calendar.get(Calendar.MONTH) + 1);
+                String day1 = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH));
+                String hour1 = Integer.toString(calendar.get(Calendar.HOUR_OF_DAY));
+                String minute1 = Integer.toString(calendar.get(Calendar.MINUTE));
+                int length5 = month1.length();
+                if (length5 == 1) {
+                    month1 = "0" + month1;
+                }
+                int length6 = day1.length();
+                if (length6 == 1) {
+                    day1 = "0" + day1;
+                }
+                int length7 = hour1.length();
+                if (length7 == 1) {
+                    hour1 = "0" + hour1;
+                }
+                int length8 = minute1.length();
+                if (length8 == 1) {
+                    minute1 = "0" + minute1;
+                }
+                thistime1 = year1 + "/" + month1 + "/" + day1 + " " + hour1 + ":" + minute1;
+            }
 
-        String sql1 = "update diary set comm = ? where tranid = ?";
+            if (!startdate.equals(thistime) || !enddate.equals(thistime1)) {
+                // times changed insert comment
+                long millis = System.currentTimeMillis();
+                java.sql.Date date = new java.sql.Date(millis);
+                SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm:ss");
+                Date now = new Date();
+                String strTime = sdfTime.format(now);
 
-        PreparedStatement pstm2 = connconn.prepareStatement(sql1);
-        
-        pstm2.setString(1, newcomm);
-        pstm2.setString(2, tranid);
-        pstm2.executeUpdate();
-        }
-            
-            
+                if (comm.equals("null")) {
+                    comm = "";
+                }
+                String newcomm = comm + "~Diary times changed~ Old Start " + thistime + " New Start " + startdate + "~Old End " + thistime1 + " New End " + enddate + "~" + userName + " " + date + " " + strTime + "~______________________";
+
+                String sql1 = "update diary set comm = ? where tranid = ?";
+
+                PreparedStatement pstm2 = connconn.prepareStatement(sql1);
+
+                pstm2.setString(1, newcomm);
+                pstm2.setString(2, tranid);
+                pstm2.executeUpdate();
+            }
+
             PreparedStatement pstm2 = null;
             pstm2 = connconn.prepareStatement("update diary set sdate = ? , edate = ? , locat = ? , desc1 = ? , notes = ? , taskid = ? where tranid = ?");
             pstm2.setString(1, startdate);
@@ -1548,7 +1558,7 @@ long millis = System.currentTimeMillis();
         return list;
     }
 
-    public static ArrayList<Diary> SavePeople(Connection connconn, String tranid, String userName, String duser1, String duser2, String duser3, String duser4, String duser5, String duser6, String duser7, String duser8, String duser9, String duser10, String resp1, String resp2, String resp3, String resp4, String resp5, String resp6, String resp7, String resp8, String resp9, String resp10, String fromuser) throws SQLException {
+    public static ArrayList<Generics> SavePeople(Connection connconn, String tranid, String userName, String duser1, String duser2, String duser3, String duser4, String duser5, String duser6, String duser7, String duser8, String duser9, String duser10, String resp1, String resp2, String resp3, String resp4, String resp5, String resp6, String resp7, String resp8, String resp9, String resp10, String fromuser) throws SQLException {
 
         System.out.println("username " + userName + " people " + tranid);
 
@@ -1579,14 +1589,14 @@ long millis = System.currentTimeMillis();
             Integer temp1 = pstm2.executeUpdate();
         }
 
-        ArrayList<Diary> list = new ArrayList<Diary>();
+        ArrayList<Generics> list = new ArrayList<Generics>();
         return list;
     }
 
     public static ArrayList<Diary> DiarySaveComm(Connection conn, UserAccount user, String comments, String tranid) throws SQLException, InterruptedException {
 
         String sql = "Select a.comm from diary a where tranid = ?";
-System.out.println("Diarycomm2 " + comments);
+        System.out.println("Diarycomm2 " + comments);
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, tranid);
 
@@ -1601,25 +1611,25 @@ System.out.println("Diarycomm2 " + comments);
             String oldcomm = rs.getString("comm");
             String newcomm = rs.getString("comm") + "~" + comments + "~" + user.getUserName() + " " + date + " " + strTime + "~______________________";
 
-        String sql1 = "update diary set comm = ? where tranid = ?";
+            String sql1 = "update diary set comm = ? where tranid = ?";
 
-        PreparedStatement pstm2 = conn.prepareStatement(sql1);
-        
-        pstm2.setString(1, newcomm);
-        pstm2.setString(2, tranid);
-        pstm2.executeUpdate();
-        
+            PreparedStatement pstm2 = conn.prepareStatement(sql1);
+
+            pstm2.setString(1, newcomm);
+            pstm2.setString(2, tranid);
+            pstm2.executeUpdate();
+
         }
 
-Thread.sleep(1000);     
+        Thread.sleep(1000);
 
-String sql3 = "Select a.comm from diary a where tranid = ?";
+        String sql3 = "Select a.comm from diary a where tranid = ?";
 
         PreparedStatement pstm3 = conn.prepareStatement(sql3);
         pstm3.setString(1, tranid);
 
         ResultSet rs3 = pstm3.executeQuery();
-        
+
         ArrayList<Diary> list = new ArrayList<Diary>();
         if (rs3.next()) {
             String diarycomm = rs.getString("comm");
@@ -1632,8 +1642,7 @@ String sql3 = "Select a.comm from diary a where tranid = ?";
         return list;
     }
 
-    
-        public static ArrayList<UserAccount> DiaryAvails(Connection conn, UserAccount loginedUser) throws SQLException {
+    public static ArrayList<UserAccount> DiaryAvails(Connection conn, UserAccount loginedUser) throws SQLException {
         String sql = "Select a.diary1, a.diary2, a.diary3, a.diary4, a.diary5, a.diary6, a.diary7, a.diary8, a.diary9, a.diary10 from users a where name = ?";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
@@ -1641,85 +1650,85 @@ String sql3 = "Select a.comm from diary a where tranid = ?";
         ResultSet rs = pstm.executeQuery();
         ArrayList<UserAccount> list = new ArrayList<UserAccount>();
         while (rs.next()) {
-            String UserName = rs.getString("diary1");            
+            String UserName = rs.getString("diary1");
             if ((UserName != null) && (UserName.length() > 1)) {
-            UserAccount useraccount = new UserAccount();
-            useraccount.setUserName(UserName);
-            list.add(useraccount);
+                UserAccount useraccount = new UserAccount();
+                useraccount.setUserName(UserName);
+                list.add(useraccount);
             }
-            
-            String UserName2 = rs.getString("diary2");   
+
+            String UserName2 = rs.getString("diary2");
             if ((UserName2 != null) && (UserName2.length() > 1)) {
-            UserAccount useraccount2 = new UserAccount();
-            useraccount2.setUserName(UserName2);            
-            list.add(useraccount2);
+                UserAccount useraccount2 = new UserAccount();
+                useraccount2.setUserName(UserName2);
+                list.add(useraccount2);
             }
-            
-            String UserName3 = rs.getString("diary3");   
+
+            String UserName3 = rs.getString("diary3");
             if ((UserName3 != null) && (UserName3.length() > 1)) {
-            UserAccount useraccount3 = new UserAccount();
-            useraccount3.setUserName(UserName3);            
-            list.add(useraccount3);
+                UserAccount useraccount3 = new UserAccount();
+                useraccount3.setUserName(UserName3);
+                list.add(useraccount3);
             }
-            
-            String UserName4 = rs.getString("diary4");   
+
+            String UserName4 = rs.getString("diary4");
             if ((UserName4 != null) && (UserName4.length() > 1)) {
-            UserAccount useraccount4 = new UserAccount();
-            useraccount4.setUserName(UserName4);            
-            list.add(useraccount4);
+                UserAccount useraccount4 = new UserAccount();
+                useraccount4.setUserName(UserName4);
+                list.add(useraccount4);
             }
-            
-            String UserName5 = rs.getString("diary5");   
+
+            String UserName5 = rs.getString("diary5");
             if ((UserName5 != null) && (UserName5.length() > 1)) {
-            UserAccount useraccount5 = new UserAccount();
-            useraccount5.setUserName(UserName5);            
-            list.add(useraccount5);
+                UserAccount useraccount5 = new UserAccount();
+                useraccount5.setUserName(UserName5);
+                list.add(useraccount5);
             }
-            
-            String UserName6 = rs.getString("diary6");   
+
+            String UserName6 = rs.getString("diary6");
             if ((UserName6 != null) && (UserName6.length() > 1)) {
-            UserAccount useraccount6 = new UserAccount();
-            useraccount6.setUserName(UserName6);            
-            list.add(useraccount6);
+                UserAccount useraccount6 = new UserAccount();
+                useraccount6.setUserName(UserName6);
+                list.add(useraccount6);
             }
-            
-            String UserName7 = rs.getString("diary7");   
+
+            String UserName7 = rs.getString("diary7");
             if ((UserName7 != null) && (UserName7.length() > 1)) {
-            UserAccount useraccount7 = new UserAccount();
-            useraccount7.setUserName(UserName7);            
-            list.add(useraccount7);
+                UserAccount useraccount7 = new UserAccount();
+                useraccount7.setUserName(UserName7);
+                list.add(useraccount7);
             }
-            
-            String UserName8 = rs.getString("diary8");   
+
+            String UserName8 = rs.getString("diary8");
             if ((UserName8 != null) && (UserName8.length() > 1)) {
-            UserAccount useraccount8 = new UserAccount();
-            useraccount8.setUserName(UserName8);            
-            list.add(useraccount8);
+                UserAccount useraccount8 = new UserAccount();
+                useraccount8.setUserName(UserName8);
+                list.add(useraccount8);
             }
-            
-            String UserName9 = rs.getString("diary9");   
+
+            String UserName9 = rs.getString("diary9");
             if ((UserName9 != null) && (UserName9.length() > 1)) {
-            UserAccount useraccount9 = new UserAccount();
-            useraccount9.setUserName(UserName9);            
-            list.add(useraccount9);
+                UserAccount useraccount9 = new UserAccount();
+                useraccount9.setUserName(UserName9);
+                list.add(useraccount9);
             }
-            
-            String UserName10 = rs.getString("diary10");   
+
+            String UserName10 = rs.getString("diary10");
             if ((UserName10 != null) && (UserName10.length() > 1)) {
-            UserAccount useraccount10 = new UserAccount();
-            useraccount10.setUserName(UserName10);            
-            list.add(useraccount10);
-            } 
+                UserAccount useraccount10 = new UserAccount();
+                useraccount10.setUserName(UserName10);
+                list.add(useraccount10);
+            }
         }
         return list;
     }
-        
+
     public static ArrayList<UserAccount> DiaryUsersSett(Connection conn, String loginedUser) throws SQLException {
         String sql = "Select diary1, diary2, diary3, diary4, diary5, diary6, diary7, diary8, diary9, diary10 from users where name = ?";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
-         pstm.setString(1, loginedUser);
-         
+        pstm.setString(1, loginedUser);
+
         ResultSet rs = pstm.executeQuery();
         ArrayList<UserAccount> list = new ArrayList<UserAccount>();
         if (rs.next()) {
@@ -1728,72 +1737,70 @@ String sql3 = "Select a.comm from diary a where tranid = ?";
             useraccount.setUserName(name);
             list.add(useraccount);
 
-                        String name2 = rs.getString("diary2");
+            String name2 = rs.getString("diary2");
             UserAccount useraccount2 = new UserAccount();
             useraccount2.setUserName(name2);
             list.add(useraccount2);
-            
-                        String name3 = rs.getString("diary3");
+
+            String name3 = rs.getString("diary3");
             UserAccount useraccount3 = new UserAccount();
             useraccount3.setUserName(name3);
             list.add(useraccount3);
-            
-                        String name4 = rs.getString("diary4");
+
+            String name4 = rs.getString("diary4");
             UserAccount useraccount4 = new UserAccount();
             useraccount4.setUserName(name4);
             list.add(useraccount4);
-            
-                        String name5 = rs.getString("diary5");
+
+            String name5 = rs.getString("diary5");
             UserAccount useraccount5 = new UserAccount();
             useraccount5.setUserName(name5);
             list.add(useraccount5);
-            
-                        String name6 = rs.getString("diary6");
+
+            String name6 = rs.getString("diary6");
             UserAccount useraccount6 = new UserAccount();
             useraccount6.setUserName(name6);
             list.add(useraccount6);
-            
-                        String name7 = rs.getString("diary7");
+
+            String name7 = rs.getString("diary7");
             UserAccount useraccount7 = new UserAccount();
             useraccount7.setUserName(name7);
             list.add(useraccount7);
-            
-                        String name8 = rs.getString("diary8");
+
+            String name8 = rs.getString("diary8");
             UserAccount useraccount8 = new UserAccount();
             useraccount8.setUserName(name8);
             list.add(useraccount8);
-            
-                        String name9 = rs.getString("diary9");
+
+            String name9 = rs.getString("diary9");
             UserAccount useraccount9 = new UserAccount();
             useraccount9.setUserName(name9);
             list.add(useraccount9);
-            
-                        String name10 = rs.getString("diary10");
+
+            String name10 = rs.getString("diary10");
             UserAccount useraccount10 = new UserAccount();
             useraccount10.setUserName(name10);
             list.add(useraccount10);
-            
-            
-            
+
         }
         return list;
     }
-    
+
     public static ArrayList<UserAccount> DiaryUsersAvail(Connection conn, String loginedUser) throws SQLException {
         String sql = "Select name from users where diary1=? or diary2=? or diary3=? or diary4=? or diary5=? or diary6=? or diary7=? or diary8=? or diary9=? or diary10=? order by name";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
-         pstm.setString(1, loginedUser);
-         pstm.setString(2, loginedUser);
-         pstm.setString(3, loginedUser);
-         pstm.setString(4, loginedUser);
-         pstm.setString(5, loginedUser);
-         pstm.setString(6, loginedUser);
-         pstm.setString(7, loginedUser);
-         pstm.setString(8, loginedUser);
-         pstm.setString(9, loginedUser);
-         pstm.setString(10, loginedUser);
-         
+        pstm.setString(1, loginedUser);
+        pstm.setString(2, loginedUser);
+        pstm.setString(3, loginedUser);
+        pstm.setString(4, loginedUser);
+        pstm.setString(5, loginedUser);
+        pstm.setString(6, loginedUser);
+        pstm.setString(7, loginedUser);
+        pstm.setString(8, loginedUser);
+        pstm.setString(9, loginedUser);
+        pstm.setString(10, loginedUser);
+
         ResultSet rs = pstm.executeQuery();
         ArrayList<UserAccount> list = new ArrayList<UserAccount>();
         while (rs.next()) {
@@ -1805,8 +1812,8 @@ String sql3 = "Select a.comm from diary a where tranid = ?";
         return list;
     }
 
-public static ArrayList<String> DiaryFile(Connection conn, String tranid, String diaryid) throws SQLException, FileNotFoundException, IOException {
-String tranid2;
+    public static ArrayList<String> DiaryFile(Connection conn, String tranid, String diaryid) throws SQLException, FileNotFoundException, IOException {
+        String tranid2;
         Integer comp = 2;
         Integer tranlen = tranid.length();
         int retval = comp.compareTo(tranlen);
@@ -1816,47 +1823,46 @@ String tranid2;
             tranid2 = tranid.substring(tranid.length() - 1);
         } else {
             tranid2 = tranid;
-        }   
-         System.out.println("tranid2 " + tranid2 + " diaryid " + diaryid + " tranid " + tranid);
-             
+        }
+        System.out.println("tranid2 " + tranid2 + " diaryid " + diaryid + " tranid " + tranid);
+
         String sql = "Select * from diaryimag" + tranid2 + " where tranid = ? and diaryid = ?";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
-         pstm.setString(1, diaryid);
-         pstm.setString(2, tranid);
-        
-         
+        pstm.setString(1, diaryid);
+        pstm.setString(2, tranid);
+
         ResultSet rs = pstm.executeQuery();
         ArrayList<String> list = new ArrayList<String>();
         if (rs.next()) {
-        String filename = rs.getString("imagedesc")+ rs.getString("imagetype");
-        File file = new File(filename);
-         FileOutputStream output = new FileOutputStream(file);
-        InputStream input = rs.getBinaryStream("imag1"); 
-          byte[] buffer = new byte[1024];
+            String filename = rs.getString("imagedesc") + rs.getString("imagetype");
+            File file = new File(filename);
+            FileOutputStream output = new FileOutputStream(file);
+            InputStream input = rs.getBinaryStream("imag1");
+            byte[] buffer = new byte[1024];
             while (input.read(buffer) > 0) {
-            output.write(buffer);
-                } 
+                output.write(buffer);
+            }
 
             String name = filename;
-           
+
             list.add(name);
 
         }
         return list;
-    } 
+    }
 
- public static ArrayList<Generics> getDiarySet(Connection conn, String loginedUser) throws SQLException {
+    public static ArrayList<Generics> getDiarySet(Connection conn, String loginedUser) throws SQLException {
         String sql = "Select name, lidno from users where name = ?";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
-         pstm.setString(1, loginedUser);
-         
+        pstm.setString(1, loginedUser);
+
         ResultSet rs = pstm.executeQuery();
         ArrayList<Generics> list = new ArrayList<Generics>();
         while (rs.next()) {
             // this below 0,1 is wrong, must repace with correct setting
-            String name = rs.getString("lidno").substring(0,1);
+            String name = rs.getString("lidno").substring(0, 1);
             Generics generics = new Generics();
             generics.setGenGroupId(name);
             list.add(generics);
@@ -1864,126 +1870,125 @@ String tranid2;
         return list;
     }
 
- public static ArrayList<Generics> getDiaryGen(Connection conn, String loginedUser) throws SQLException {
+    public static ArrayList<Generics> getDiaryGen(Connection conn, String loginedUser) throws SQLException {
         String sql = "Select * from generics where gengroupid = '44' or gengroupid = '45'";
 
-        PreparedStatement pstm = conn.prepareStatement(sql);        
-         
-        ResultSet rs = pstm.executeQuery();
-        ArrayList<Generics> list = new ArrayList<Generics>();
-        while (rs.next()) {
-            String genericdescriptioneng = rs.getString("GenericDescriptionENG");
-            String gengroupid = rs.getString("gengroupid");
-            String genericid = rs.getString("genericid"); 
-            Generics generics = new Generics();
-            generics.setGenGroupId(gengroupid);
-            generics.setGenericId(genericid);
-            generics.setGenericDescriptionEng(genericdescriptioneng);
-            
-            list.add(generics);
-        }
-        return list;
-    } 
- 
- public static ArrayList<Generics> getDiaryLocat(Connection conn, String loginedUser, String thisLocat) throws SQLException {
-     
- String sql1 = "delete from generics where gengroupid = '44' and genericdescriptioneng = ?";
- PreparedStatement pstm1 = conn.prepareStatement(sql1);     
- pstm1.setString(1, thisLocat);
- pstm1.executeUpdate();
- 
-        String sql = "Select * from generics where gengroupid = '44'";
-        PreparedStatement pstm = conn.prepareStatement(sql);        
-        ResultSet rs = pstm.executeQuery();
-        ArrayList<Generics> list = new ArrayList<Generics>();
-        while (rs.next()) {
-            String genericdescriptioneng = rs.getString("GenericDescriptionENG");
-            String gengroupid = rs.getString("gengroupid");
-            String genericid = rs.getString("genericid"); 
-            Generics generics = new Generics();
-            generics.setGenGroupId(gengroupid);
-            generics.setGenericId(genericid);
-            generics.setGenericDescriptionEng(genericdescriptioneng);
-            
-            list.add(generics);
-        }
-        return list;
-    } 
- 
-public static ArrayList<Generics> getDiaryResp(Connection conn, String loginedUser, String thisLocat) throws SQLException {
-     
- String sql1 = "delete from generics where gengroupid = '45' and genericdescriptioneng = ?";
- PreparedStatement pstm1 = conn.prepareStatement(sql1);     
- pstm1.setString(1, thisLocat);
- pstm1.executeUpdate();
- 
-        String sql = "Select * from generics where gengroupid = '45'";
-        PreparedStatement pstm = conn.prepareStatement(sql);        
-        ResultSet rs = pstm.executeQuery();
-        ArrayList<Generics> list = new ArrayList<Generics>();
-        while (rs.next()) {
-            String genericdescriptioneng = rs.getString("GenericDescriptionENG");
-            String gengroupid = rs.getString("gengroupid");
-            String genericid = rs.getString("genericid"); 
-            Generics generics = new Generics();
-            generics.setGenGroupId(gengroupid);
-            generics.setGenericId(genericid);
-            generics.setGenericDescriptionEng(genericdescriptioneng);
-            
-            list.add(generics);
-        }
-        return list;
-    } 
+        PreparedStatement pstm = conn.prepareStatement(sql);
 
- public static ArrayList<Generics> AddDiaryLocat(Connection conn, String loginedUser, String thisLocat) throws SQLException {
-     
- String sql1 = "insert into generics (gengroupid, genericdescriptioneng) values ('44', ?)";
- PreparedStatement pstm1 = conn.prepareStatement(sql1);     
- pstm1.setString(1, thisLocat);
- pstm1.executeUpdate();
- 
-        String sql = "Select * from generics where gengroupid = '44'";
-        PreparedStatement pstm = conn.prepareStatement(sql);        
         ResultSet rs = pstm.executeQuery();
         ArrayList<Generics> list = new ArrayList<Generics>();
         while (rs.next()) {
             String genericdescriptioneng = rs.getString("GenericDescriptionENG");
             String gengroupid = rs.getString("gengroupid");
-            String genericid = rs.getString("genericid"); 
+            String genericid = rs.getString("genericid");
             Generics generics = new Generics();
             generics.setGenGroupId(gengroupid);
             generics.setGenericId(genericid);
             generics.setGenericDescriptionEng(genericdescriptioneng);
-            
-            list.add(generics);
-        }
-        return list;
-    }
- 
-public static ArrayList<Generics> AddDiaryResp(Connection conn, String loginedUser, String thisLocat) throws SQLException {
-     
- String sql1 = "insert into generics (gengroupid, genericdescriptioneng) values ('45', ?)";
- PreparedStatement pstm1 = conn.prepareStatement(sql1);     
- pstm1.setString(1, thisLocat);
- pstm1.executeUpdate();
- 
-        String sql = "Select * from generics where gengroupid = '45'";
-        PreparedStatement pstm = conn.prepareStatement(sql);        
-        ResultSet rs = pstm.executeQuery();
-        ArrayList<Generics> list = new ArrayList<Generics>();
-        while (rs.next()) {
-            String genericdescriptioneng = rs.getString("GenericDescriptionENG");
-            String gengroupid = rs.getString("gengroupid");
-            String genericid = rs.getString("genericid"); 
-            Generics generics = new Generics();
-            generics.setGenGroupId(gengroupid);
-            generics.setGenericId(genericid);
-            generics.setGenericDescriptionEng(genericdescriptioneng);
-            
+
             list.add(generics);
         }
         return list;
     }
 
+    public static ArrayList<Generics> getDiaryLocat(Connection conn, String loginedUser, String thisLocat) throws SQLException {
+
+        String sql1 = "delete from generics where gengroupid = '44' and genericdescriptioneng = ?";
+        PreparedStatement pstm1 = conn.prepareStatement(sql1);
+        pstm1.setString(1, thisLocat);
+        pstm1.executeUpdate();
+
+        String sql = "Select * from generics where gengroupid = '44'";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        ResultSet rs = pstm.executeQuery();
+        ArrayList<Generics> list = new ArrayList<Generics>();
+        while (rs.next()) {
+            String genericdescriptioneng = rs.getString("GenericDescriptionENG");
+            String gengroupid = rs.getString("gengroupid");
+            String genericid = rs.getString("genericid");
+            Generics generics = new Generics();
+            generics.setGenGroupId(gengroupid);
+            generics.setGenericId(genericid);
+            generics.setGenericDescriptionEng(genericdescriptioneng);
+
+            list.add(generics);
+        }
+        return list;
+    }
+
+    public static ArrayList<Generics> getDiaryResp(Connection conn, String loginedUser, String thisLocat) throws SQLException {
+
+        String sql1 = "delete from generics where gengroupid = '45' and genericdescriptioneng = ?";
+        PreparedStatement pstm1 = conn.prepareStatement(sql1);
+        pstm1.setString(1, thisLocat);
+        pstm1.executeUpdate();
+
+        String sql = "Select * from generics where gengroupid = '45'";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        ResultSet rs = pstm.executeQuery();
+        ArrayList<Generics> list = new ArrayList<Generics>();
+        while (rs.next()) {
+            String genericdescriptioneng = rs.getString("GenericDescriptionENG");
+            String gengroupid = rs.getString("gengroupid");
+            String genericid = rs.getString("genericid");
+            Generics generics = new Generics();
+            generics.setGenGroupId(gengroupid);
+            generics.setGenericId(genericid);
+            generics.setGenericDescriptionEng(genericdescriptioneng);
+
+            list.add(generics);
+        }
+        return list;
+    }
+
+    public static ArrayList<Generics> AddDiaryLocat(Connection conn, String loginedUser, String thisLocat) throws SQLException {
+
+        String sql1 = "insert into generics (gengroupid, genericdescriptioneng) values ('44', ?)";
+        PreparedStatement pstm1 = conn.prepareStatement(sql1);
+        pstm1.setString(1, thisLocat);
+        pstm1.executeUpdate();
+
+        String sql = "Select * from generics where gengroupid = '44'";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        ResultSet rs = pstm.executeQuery();
+        ArrayList<Generics> list = new ArrayList<Generics>();
+        while (rs.next()) {
+            String genericdescriptioneng = rs.getString("GenericDescriptionENG");
+            String gengroupid = rs.getString("gengroupid");
+            String genericid = rs.getString("genericid");
+            Generics generics = new Generics();
+            generics.setGenGroupId(gengroupid);
+            generics.setGenericId(genericid);
+            generics.setGenericDescriptionEng(genericdescriptioneng);
+
+            list.add(generics);
+        }
+        return list;
+    }
+
+    public static ArrayList<Generics> AddDiaryResp(Connection conn, String loginedUser, String thisLocat) throws SQLException {
+
+        String sql1 = "insert into generics (gengroupid, genericdescriptioneng) values ('45', ?)";
+        PreparedStatement pstm1 = conn.prepareStatement(sql1);
+        pstm1.setString(1, thisLocat);
+        pstm1.executeUpdate();
+
+        String sql = "Select * from generics where gengroupid = '45'";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        ResultSet rs = pstm.executeQuery();
+        ArrayList<Generics> list = new ArrayList<Generics>();
+        while (rs.next()) {
+            String genericdescriptioneng = rs.getString("GenericDescriptionENG");
+            String gengroupid = rs.getString("gengroupid");
+            String genericid = rs.getString("genericid");
+            Generics generics = new Generics();
+            generics.setGenGroupId(gengroupid);
+            generics.setGenericId(genericid);
+            generics.setGenericDescriptionEng(genericdescriptioneng);
+
+            list.add(generics);
+        }
+        return list;
+    }
 
 }
