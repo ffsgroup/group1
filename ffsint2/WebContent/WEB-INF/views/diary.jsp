@@ -788,7 +788,7 @@
         <body onload="doOnLoad();" class="container">
             <br>
             Available diaries 
-            <select name="DiaryAvail" id = "DiaryAv">
+            <select name="DiaryAvail" id = "DiaryAv" >
                 <option value="${loginedUser.userName}">${loginedUser.userName} </option>
         </select>
 
