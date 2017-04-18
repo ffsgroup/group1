@@ -1,11 +1,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
+<%@ page session="true" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <jsp:include page="_DiaryHeader.jsp"></jsp:include>
-    
+
 
 
             <link href = "https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel = "stylesheet">
@@ -65,26 +65,102 @@
 
             <script src="resources/dhtmlxcalendar.js"></script>
             <link rel="stylesheet" type="text/css" href="resources/dhtmlxcalendar_1.css"/>
-
+            
             <script type="text/javascript">
                 $(document).ready(function () {
-                $("#diaryimag").click(function (event) {
-                var target = $(event.target);
+                    $("#diarysave").click(function (event) {
+                        // document.getElementById("diaryimag").rows[row].cells[3].innerHTML;
+                        $.get('DiaryCreateNew', {diarysumm : document.getElementById('diarysumm').value , startdate : document.getElementById('startdate').value , enddate : document.getElementById('enddate').value , locat : document.getElementById('locat').value , diarytask : document.getElementById('diarytask').value , diarynotes : document.getElementById('diarynotes').value, duser1 : document.getElementById('diaryuser1').value, duser2 : document.getElementById('diaryuser2').value, duser3 : document.getElementById('diaryuser3').value, duser4 : document.getElementById('diaryuser4').value, duser5 : document.getElementById('diaryuser5').value, duser6 : document.getElementById('diaryuser6').value, duser7 : document.getElementById('diaryuser7').value, duser8 : document.getElementById('diaryuser8').value, duser9 : document.getElementById('diaryuser9').value, duser10 : document.getElementById('diaryuser10').value, resp1 : document.getElementById('response1').value, resp2 : document.getElementById('response2').value, resp3 : document.getElementById('response3').value, resp4 : document.getElementById('response4').value, resp5 : document.getElementById('response5').value, resp6 : document.getElementById('response6').value, resp7 : document.getElementById('response7').value, resp8 : document.getElementById('response8').value, resp9 : document.getElementById('response9').value, resp10 : document.getElementById('response10').value, fromuser : document.getElementById('fromuser').innerHTML, tranid : document.getElementById('diaryid').innerHTML }, function (responseJson) {
+                            if (responseJson != null) {
+                                $("#delresp").empty();
+                                document.getElementById("addresp").value = "";
+                                 $.each(responseJson, function (key, value) {
+                                $('#delresp').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
+                                });
+                            }
+                        });
+                    });
+                });                 
+                
+                $(document).ready(function () {
+                    $("#addrespbut").click(function (event) {
+                        // document.getElementById("diaryimag").rows[row].cells[3].innerHTML;
+                        $.get('DiaryAddResp', {locat : document.getElementById("addresp").value}, function (responseJson) {
+                            if (responseJson != null) {
+                                $("#delresp").empty();
+                                document.getElementById("addresp").value = "";
+                                 $.each(responseJson, function (key, value) {
+                                $('#delresp').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
+                                });
+                            }
+                        });
+                    });
+                });                   
+                
+                $(document).ready(function () {
+                    $("#addlocatbut").click(function (event) {
+                        // document.getElementById("diaryimag").rows[row].cells[3].innerHTML;
+                        $.get('DiaryAddLocat', {locat : document.getElementById("addlocat").value}, function (responseJson) {
+                            if (responseJson != null) {
+                                $("#dellocat").empty();
+                                document.getElementById("addlocat").value = "";
+                                 $.each(responseJson, function (key, value) {
+                                $('#dellocat').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
+                                });
+                            }
+                        });
+                    });
+                });                
+                
+                $(document).ready(function () {
+                    $("#dellocatbut").click(function (event) {
+                        // document.getElementById("diaryimag").rows[row].cells[3].innerHTML;
+                        $.get('DiaryDelLocat', {locat : document.getElementById("dellocat").value}, function (responseJson) {
+                            if (responseJson != null) {
+                                $("#dellocat").empty();
+                                 $.each(responseJson, function (key, value) {
+                                $('#dellocat').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
+                                });
+                            }
+                        });
+                    });
+                });
+
+                $(document).ready(function () {
+                    $("#delrespbut").click(function (event) {
+                        // document.getElementById("diaryimag").rows[row].cells[3].innerHTML;
+                        $.get('DiaryDelResp', {locat : document.getElementById("delresp").value}, function (responseJson) {
+                            if (responseJson != null) {
+                                $("#delresp").empty();
+                                 $.each(responseJson, function (key, value) {
+                                $('#delresp').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
+                                });
+                            }
+                        });
+                    });
+                });
+
+            </script>
+            
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("#diaryimag").click(function (event) {
+                        var target = $(event.target);
                         $td = target.closest('td');
                         var col = $td.index();
                         var row = $td.closest('tr').index();
                         // document.getElementById("diaryimag").rows[row].cells[3].innerHTML;
                         $.get('DiaryViewImage', {diaryid: document.getElementById("diaryimag").rows[row].cells[3].innerHTML, tranid: document.getElementById("diaryid").innerHTML}, function (responseJson) {
-                        if (responseJson != null) {
-                        $.each(responseJson, function (key, value) {
+                            if (responseJson != null) {
+                                $.each(responseJson, function (key, value) {
 
+                                });
+                            }
                         });
-                        }
-                        });
+                    });
                 });
-                });
-                
-               
+
+
             </script>
 
             <script type="text/javascript">
@@ -96,7 +172,7 @@
 
                             $.get('DiaryAvail', function (responseJson) {
                                 if (responseJson != null) {
-                                    
+
                                     $.each(responseJson, function (key, value) {
 
 
@@ -220,7 +296,7 @@
 
             <script type="text/javascript">
 
-                function NewDiary() {
+                function NewDiary1() {
 
                     var diarysumm = document.getElementById('diarysumm').value;
                     var startdate = document.getElementById('startdate').value;
@@ -329,13 +405,23 @@
                 function doOnLoad() {
                     myCalendar = new dhtmlXCalendarObject("calendarHere");
                     //		myCalendar.setSkin("material");
-                    myCalendar.setDate(new Date(2016, 7, 7, 16, 0));
+                  //  myCalendar.setDate(new Date(2016, 7, 7, 16, 0));
+                  myCalendar.setDate(new Date);
                     myCalendar.show();
                     myCalendar.hideTime();
                     myCalendar.showToday();
-                    myCalendar.setHolidays(["2012-04-28", "2012-05-09", "2012-05-01", "2012-05-27", "2012-05-21", "2012-05-28", "2012-06-03", "2012-06-04"]);
+                    myCalendar.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16"]);
+                    myCalendar.setTooltip("2017-01-01", "New Year's Day", true, true);
+                    myCalendar.setTooltip("2017-01-02", "Public HoliDay", true, true);
+                    myCalendar.setTooltip("2017-03-21", "Human Rights Day", true, true);
+                    myCalendar.setTooltip("2017-04-14", "Good Friday", true, true);
+                    myCalendar.setTooltip("2017-04-17", "Family Day", true, true);
+                    myCalendar.setTooltip("2017-04-27", "Freedom Day", true, true);
+                    myCalendar.setTooltip("2017-05-01", "Workers Day", true, true);
+                    myCalendar.setTooltip("2017-06-16", "Youth Day", true, true);
                     //  myCalendar.setInsensitiveRange(null, "2012-05-04");
-                    myCalendar._drawMonth(new Date(2016, 7, 1));
+                   // myCalendar._drawMonth(new Date(2016, 7, 1));
+                    myCalendar._drawMonth(new Date);
                     myCalendar.attachEvent("onClick", function (side, d) {
                         //	writeLog("onClick event called, "+side+" calendar, date "+myCalendar.getFormatedDate(null,d));
 
@@ -593,7 +679,7 @@
                             $.get('DiaryLocat', function (responseJson) {
                                 if (responseJson != null) {
 
-                                   
+
                                     $.each(responseJson, function (key, value) {
 
                                         var option = document.createElement('option');
@@ -612,7 +698,7 @@
                         if (count.valueOf() < 3) {
                             $.get('DiaryResponse', function (responseJson) {
                                 if (responseJson != null) {
-                                    
+
                                     $.each(responseJson, function (key, value) {
                                         var option = document.createElement('option');
                                         option.value = value['GenericDescriptionEng'];
@@ -653,7 +739,7 @@
                         if (count.valueOf() < 3) {
                             $.get('DiaryUser', function (responseJson) {
                                 if (responseJson != null) {
-                                  
+
                                     $.each(responseJson, function (key, value) {
                                         var option = document.createElement('option');
                                         option.value = value['userName'];
@@ -716,61 +802,83 @@
                     </div>
                 </div>
 
-                <div id="login-box" class="login-popup">
+                <div id="login-box" class="login-popup" style="width:40%">
                     <a href="#" class="close"><img src="close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
                     <form method="post" class="signin" action="#">
-                        <fieldset class="textbox">
-                            People that can see my diary
-                            <br>
-                            <select name="dseel" id = "dsee1" style="width:170px">
-                                <option value=""></option>
-                            </select>
-                            <br>
-                            <select name="dsee2" id = "dsee2" style="width:170px">
-                                <option value=""></option>
-                            </select>
-                            <br>
-                            <select name="dsee3" id = "dsee3" style="width:170px">
-                                <option value=""></option>
-                            </select>           
-                            <br>
-                            <select name="dsee4" id = "dsee4" style="width:170px">
-                                <option value=""></option>
-                            </select>           
-                            <br>
-                            <select name="dsee5" id = "dsee5" style="width:170px">
-                                <option value=""></option>
-                            </select>           
-                            <br>
-                            <select name="dsee6" id = "dsee6" style="width:170px">
-                                <option value=""></option>
-                            </select>           
-                            <br>
-                            <select name="dsee7" id = "dsee7" style="width:170px">
-                                <option value=""></option>
-                            </select>           
-                            <br>
-                            <select name="dsee8" id = "dsee8" style="width:170px">
-                                <option value=""></option>
-                            </select>           
-                            <br>
-                            <select name="dsee8" id = "dsee9" style="width:170px">
-                                <option value=""></option>
-                            </select>           
-                            <br>
-                            <select name="dsee10" id = "dsee10" style="width:170px">
-                                <option value=""></option>
-                            </select>           
-                            <br>
-                            <br>
 
-                            <button class="submit button" id="diarySettClose" type="button">Update</button>
+                        People that can see my diary
+                        <br>
+                        <select name="dseel" id = "dsee1" style="width:170px">
+                            <option value=""></option>
+                        </select>
+                        <br>
+                        <select name="dsee2" id = "dsee2" style="width:170px">
+                            <option value=""></option>
+                        </select>
+                        <br>
+                        <select name="dsee3" id = "dsee3" style="width:170px">
+                            <option value=""></option>
+                        </select>           
+                        <br>
+                        <select name="dsee4" id = "dsee4" style="width:170px">
+                            <option value=""></option>
+                        </select>           
+                        <br>
+                        <select name="dsee5" id = "dsee5" style="width:170px">
+                            <option value=""></option>
+                        </select>           
+                        <br>
+                        <select name="dsee6" id = "dsee6" style="width:170px">
+                            <option value=""></option>
+                        </select>           
+                        <br>
+                        <select name="dsee7" id = "dsee7" style="width:170px">
+                            <option value=""></option>
+                        </select>           
+                        <br>
+                        <select name="dsee8" id = "dsee8" style="width:170px">
+                            <option value=""></option>
+                        </select>           
+                        <br>
+                        <select name="dsee9" id = "dsee9" style="width:170px">
+                            <option value=""></option>
+                        </select>           
+                        <br>
+                        <select name="dsee10" id = "dsee10" style="width:170px">
+                            <option value=""></option>
+                        </select>           
+                        <br>
 
-                            <p>
+                        <button class="submit button" id="diarySettClose" type="button">Update</button>
+                        <br>
+                        <br>
 
-                            </p>
+                        Locations <br>
+                        <select name ="dlocat" id="dellocat" style ="width:150px">
+                            <option value=""></option>
+                        </select>
+                        <button class="submit button" id="dellocatbut" type ="button">Remove</button>
+                        <br>                            
+                        <input type="text" id = "addlocat" />
+                        <button class="submit button" id="addlocatbut" type ="button">Add</button> 
+                        <br>
+                        Responses
+                        <br>
+                        <select name ="dresp" id="delresp" style ="width:150px">
+                            <option value=""></option>
+                        </select>
+                        <button class="submit button" id="delrespbut" type ="button">Remove</button>
+                        <br>                            
+                        <input type="text" id = "addresp" />
+                        <button class="submit button" id="addrespbut" type ="button">Add</button> 
+                        <br>
 
-                        </fieldset>
+
+                        <p>
+
+                        </p>
+
+
                     </form>
                 </div>
 
@@ -862,7 +970,7 @@
                 <label> <textarea name="notes" id="diarynotes" cols="40" rows="5" ></textarea> </label>    
                 <br>
                 <br>
-                <input type ="button" value ="Save" id="diarysave" onClick="NewDiary();" style="width:75px; float:right;"/>
+                <input type ="button" value ="Save" id="diarysave" style="width:75px; float:right;"/>
                 </p>
             </div>
 
@@ -1217,11 +1325,39 @@
                                 {
                                     document.getElementById("dsee10").value = value['userName'];
                                 }
-
                             });
                         }
                     });
                     // end update
+                    //  get can update
+                    $.get('DiaryCanSet', function (responseJson) {
+                        if (responseJson != null) {
+                            $.each(responseJson, function (key, value) {
+                                if (value['GenGroupId'] = '1') {
+                                    // 1= visible   
+                                    $("#dellocatbut").css("visibility", "visible");
+                                    // get combobox items  
+                                    $.get('DiaryGetSet', function (responseJson) {
+                                        if (responseJson != null) {
+                                            $.each(responseJson, function (key, value) {
+                                                if (value['GenGroupId'] == "44") {
+                                                    $('#dellocat').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
+                                                     }
+                                                if (value['GenGroupId'] == "45") {
+                                                    $('#delresp').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
+                                                     }                                                     
+
+                                            });
+                                        }
+                                    });
+
+
+                                }
+
+                            });
+                        }
+                    });
+
 
                     return false;
 
