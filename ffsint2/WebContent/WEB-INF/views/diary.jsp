@@ -68,6 +68,21 @@
             
             <script type="text/javascript">
                 $(document).ready(function () {
+                    $("#diarysavepeople").click(function (event) {
+                        // document.getElementById("diaryimag").rows[row].cells[3].innerHTML;
+                        $.get('DiaryUpdatePeople', {duser1 : document.getElementById('diaryuser1').value , duser2 : document.getElementById('diaryuser2').value, duser3 : document.getElementById('diaryuser3').value, duser4 : document.getElementById('diaryuser4').value, duser5 : document.getElementById('diaryuser5').value, duser6 : document.getElementById('diaryuser6').value, duser7 : document.getElementById('diaryuser7').value, duser8 : document.getElementById('diaryuser8').value, duser9 : document.getElementById('diaryuser9').value, duser10 : document.getElementById('diaryuser10').value, resp1 : document.getElementById('response1').value, resp2 : document.getElementById('response2').value, resp3 : document.getElementById('response3').value, resp4 : document.getElementById('response4').value, resp5 : document.getElementById('response5').value, resp6 : document.getElementById('response6').value, resp7 : document.getElementById('response7').value, resp8 : document.getElementById('response8').value, resp9 : document.getElementById('response9').value, resp10 : document.getElementById('response10').value, fromuser : document.getElementById('fromuser').innerHTML, tranid : document.getElementById('diaryid').innerHTML }, function (responseJson) {
+                            if (responseJson != null) {
+                                $("#delresp").empty();
+                                document.getElementById("addresp").value = "";
+                                 $.each(responseJson, function (key, value) {
+                                $('#delresp').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
+                                });
+                            }
+                        });
+                    });
+                });                  
+                
+                $(document).ready(function () {
                     $("#diarysave").click(function (event) {
                         // document.getElementById("diaryimag").rows[row].cells[3].innerHTML;
                         $.get('DiaryCreateNew', {diarysumm : document.getElementById('diarysumm').value , startdate : document.getElementById('startdate').value , enddate : document.getElementById('enddate').value , locat : document.getElementById('locat').value , diarytask : document.getElementById('diarytask').value , diarynotes : document.getElementById('diarynotes').value, duser1 : document.getElementById('diaryuser1').value, duser2 : document.getElementById('diaryuser2').value, duser3 : document.getElementById('diaryuser3').value, duser4 : document.getElementById('diaryuser4').value, duser5 : document.getElementById('diaryuser5').value, duser6 : document.getElementById('diaryuser6').value, duser7 : document.getElementById('diaryuser7').value, duser8 : document.getElementById('diaryuser8').value, duser9 : document.getElementById('diaryuser9').value, duser10 : document.getElementById('diaryuser10').value, resp1 : document.getElementById('response1').value, resp2 : document.getElementById('response2').value, resp3 : document.getElementById('response3').value, resp4 : document.getElementById('response4').value, resp5 : document.getElementById('response5').value, resp6 : document.getElementById('response6').value, resp7 : document.getElementById('response7').value, resp8 : document.getElementById('response8').value, resp9 : document.getElementById('response9').value, resp10 : document.getElementById('response10').value, fromuser : document.getElementById('fromuser').innerHTML, tranid : document.getElementById('diaryid').innerHTML }, function (responseJson) {
@@ -222,77 +237,7 @@
 
                 }
 
-            </script>                        
-
-            <script type="text/javascript">
-
-                function savepeople() {
-
-                    var duser1 = document.getElementById('diaryuser1').value;
-                    var duser2 = document.getElementById('diaryuser2').value;
-                    var duser3 = document.getElementById('diaryuser3').value;
-                    var duser4 = document.getElementById('diaryuser4').value;
-                    var duser5 = document.getElementById('diaryuser5').value;
-                    var duser6 = document.getElementById('diaryuser6').value;
-                    var duser7 = document.getElementById('diaryuser7').value;
-                    var duser8 = document.getElementById('diaryuser8').value;
-                    var duser9 = document.getElementById('diaryuser9').value;
-                    var duser10 = document.getElementById('diaryuser10').value;
-                    var resp1 = document.getElementById('response1').value;
-                    var resp2 = document.getElementById('response2').value;
-                    var resp3 = document.getElementById('response3').value;
-                    var resp4 = document.getElementById('response4').value;
-                    var resp5 = document.getElementById('response5').value;
-                    var resp6 = document.getElementById('response6').value;
-                    var resp7 = document.getElementById('response7').value;
-                    var resp8 = document.getElementById('response8').value;
-                    var resp9 = document.getElementById('response9').value;
-                    var resp10 = document.getElementById('response10').value;
-                    var fromuser = document.getElementById('fromuser').value;
-                    var formdata = new FormData();
-
-                    formdata.append("tranId", document.getElementById("diaryid").innerHTML);
-                    formdata.append("duser1", duser1);
-                    formdata.append("duser2", duser2);
-                    formdata.append("duser3", duser3);
-                    formdata.append("duser4", duser4);
-                    formdata.append("duser5", duser5);
-                    formdata.append("duser6", duser6);
-                    formdata.append("duser7", duser7);
-                    formdata.append("duser8", duser8);
-                    formdata.append("duser9", duser9);
-                    formdata.append("duser10", duser10);
-                    formdata.append("resp1", resp1);
-                    formdata.append("resp2", resp2);
-                    formdata.append("resp3", resp3);
-                    formdata.append("resp4", resp4);
-                    formdata.append("resp5", resp5);
-                    formdata.append("resp6", resp6);
-                    formdata.append("resp7", resp7);
-                    formdata.append("resp8", resp8);
-                    formdata.append("resp9", resp9);
-                    formdata.append("resp10", resp10);
-                    formdata.append("fromuser", document.getElementById("fromuser").innerHTML);
-
-                    var xhr = new XMLHttpRequest();
-
-                    xhr.open("POST", "DiaryUpdatePeople", true);
-
-                    xhr.send(formdata);
-
-                    xhr.onload = function (e) {
-
-                        if (this.status == 200) {
-
-                            alert(this.responseText);
-
-                        }
-
-                    };
-
-                }
-
-            </script>            
+            </script>                                  
 
             <script type="text/javascript">
 
@@ -629,6 +574,37 @@
                                     if (document.getElementById("response10").value == 'undefined') {
                                         document.getElementById("response10").value = "";
                                     }
+                                    if (document.getElementById("diaryuser1").value == 'undefined') {
+                                        document.getElementById("diaryuser1").value = "";
+                                    }
+                                     if (document.getElementById("diaryuser2").value == 'undefined') {
+                                        document.getElementById("diaryuser2").value = "";
+                                    }
+                                    if (document.getElementById("diaryuser3").value == 'undefined') {
+                                        document.getElementById("diaryuser3").value = "";
+                                    }
+                                     if (document.getElementById("diaryuser4").value == 'undefined') {
+                                        document.getElementById("diaryuser4").value = "";
+                                    }
+                                    if (document.getElementById("diaryuser5").value == 'undefined') {
+                                        document.getElementById("diaryuser5").value = "";
+                                    }
+                                     if (document.getElementById("diaryuser6").value == 'undefined') {
+                                        document.getElementById("diaryuser6").value = "";
+                                    }
+                                    if (document.getElementById("diaryuser7").value == 'undefined') {
+                                        document.getElementById("diaryuser7").value = "";
+                                    }
+                                    if (document.getElementById("diaryuser8").value == 'undefined') {
+                                        document.getElementById("diaryuser8").value = "";
+                                    }
+                                    if (document.getElementById("diaryuser9").value == 'undefined') {
+                                        document.getElementById("diaryuser9").value = "";
+                                    }
+                                    if (document.getElementById("diaryuser10").value == 'undefined') {
+                                        document.getElementById("diaryuser10").value = "";
+                                    }
+                                    
                                 });
 
                             }
@@ -1127,7 +1103,7 @@
                         </label> 
                         <br>                           
                         <br>
-                        <input type ="button" value ="Save" id="diarysavepeople" onClick="savepeople();" style="width:75px; float:right; visibility: hidden"/>
+                        <input type ="button" value ="Save" id="diarysavepeople" style="width:75px; float:right; visibility: hidden"/>
                 </p>
 
             </div>
