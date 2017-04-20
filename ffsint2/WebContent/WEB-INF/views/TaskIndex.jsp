@@ -122,34 +122,35 @@
                     color:#1E90FF;
                 }
             </style>
-           
-            <script>
-                $(function () {
-                    $("#tabs").tabs();
-                });
-            </script>
+
+
 
             <script src="resources/dhtmlxcalendar.js"></script>
             <link rel="stylesheet" type="text/css" href="resources/dhtmlxcalendar_1.css"/>
 
             <script>
-     var myCalendar;
-     function doOnLoad() {
-         myCalendar = new dhtmlXCalendarObject("calendarHere");
-         //		myCalendar.setSkin("material");
-         myCalendar.setDate(new Date(2016, 7, 7, 16, 0));
-         myCalendar.show();
-         myCalendar.hideTime();
-         myCalendar.showToday();
-         myCalendar.setHolidays(["2012-04-28", "2012-05-09", "2012-05-01", "2012-05-27", "2012-05-21", "2012-05-28", "2012-06-03", "2012-06-04"]);
-         //  myCalendar.setInsensitiveRange(null, "2012-05-04");
-         myCalendar._drawMonth(new Date(2016, 7, 1));
-         myCalendar.attachEvent("onClick", function (side, d) {
-             //	writeLog("onClick event called, "+side+" calendar, date "+myCalendar.getFormatedDate(null,d));
+                var myCalendar;
+                function doOnLoad() {
+                    myCalendar = new dhtmlXCalendarObject("calendarHere");
+                    //		myCalendar.setSkin("material");
+                    myCalendar.setDate(new Date(2016, 7, 7, 16, 0));
+                    myCalendar.show();
+                    myCalendar.hideTime();
+                    myCalendar.showToday();
+                    myCalendar.setHolidays(["2012-04-28", "2012-05-09", "2012-05-01", "2012-05-27", "2012-05-21", "2012-05-28", "2012-06-03", "2012-06-04"]);
+                    //  myCalendar.setInsensitiveRange(null, "2012-05-04");
+                    myCalendar._drawMonth(new Date(2016, 7, 1));
+                    myCalendar.attachEvent("onClick", function (side, d) {
+                        //	writeLog("onClick event called, "+side+" calendar, date "+myCalendar.getFormatedDate(null,d));
 
 
-         });
-     }
+                    });
+                }
+            </script>
+            <script>
+                $(function () {
+                    $("#tabs").tabs();
+                });
             </script>
             <script>
 
@@ -495,7 +496,108 @@
             <input type="checkbox" id="UrgentTasks" value="ByMe" onclick="selectOnlyThis(this.id)">Urgent Tasks
             <input type="checkbox" id="TrainingTasks" value="ToMe"onclick="selectOnlyThis(this.id)">Training Tasks
 
+            <div class="container">
+                <div id="content">
 
+                    <div class="post">
+                        <div class="btn-sign">
+                            <a href="#login-box" class="login-window" style="float:right">Settings</a>
+                        </div>
+                    </div>
+
+                    <div id="login-box" class="login-popup" style="width:40%;  " >
+                        <a href="#" class="close"><img src="close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+                        <form method="post" class="signin" action="#">
+
+                            <div id="tabs" style="width:98%; float:right;">
+                                <ul>
+                                    <li><a href="#tabs-1">Details</a></li>
+                                    <li><a href="#tabs-2">Notes</a></li>
+                                    <li><a href="#tabs-3">People</a></li>
+                                    <li><a href="#tabs-4">Images</a></li>
+                                </ul>
+
+                                <div id="tabs-1">
+                                    <p>
+                                    <div style="float: Left; text-align: left;">
+                                        Task :  <label id="TaskId"/>0</label>
+                                    </div>     
+                                    <br>
+                                    <label id="TaskFromLabel" style="float:left">Task From :</label>
+                                    <select name="FromUser" id = "FromUser1" style=" margin-left: 50px; width: 180px" >
+                                        <option value="" </option>
+                                    </select>
+                                    <select name="FromUser2" id = "FromUser3" style=" margin-left: 40px; width: 180px" >
+                                        <option value="" </option>
+                                    </select>
+                                    <br>
+                                    <div style="float: right; text-align: right; margin-right:50px;">
+                                        Task Created :  <label id="TaskCreated"/>06/04/2017 3:15:32PM</label>
+                                    </div> 
+                                    <br/>
+                                    Task Summary :<label> <input type="text" id="Tasksumm" style="margin-left:15px" /> </label> 
+                                    <br>
+                                    IR Nr : <label> <input type="text" id="IRNr" style="width: 60px; margin-left:83px" /> </label> 
+                                    <input type="checkbox" id="RequestIR" value="ReqIR">Request IR Nr
+                                    <br>
+                                    <label><input type="checkbox" id="RecurTask" value="Recur" onclick="selectOnlyThis(this.id)">Recurrence</label>
+                                    <br>
+                                    <label><input type="checkbox" id="RecurTask" value="Recur" onclick="selectOnlyThis(this.id)">Every Day</label>
+                                    <label><input type="checkbox" id="RecurTask" value="Recur" onclick="selectOnlyThis(this.id)">Day</label>
+                                    <label> <input type="text" id="RecurMonth" style="width:35px;" /> of every month.</label> 
+                                    <label><input type="checkbox" id="RecurTask" value="Recur" onclick="selectOnlyThis(this.id)">Weekly</label>
+                                    <br>
+                                    <label><input type="checkbox" id="RecurTask" value="Recur" onclick="selectOnlyThis(this.id)">Every Weekday</label>
+                                    <label><input type="checkbox" id="RecurTask" value="Recur" onclick="selectOnlyThis(this.id)">last day of every month</label>
+                                    <label><input type="checkbox" id="RecurTask" value="Recur" onclick="selectOnlyThis(this.id)">Monthly</label>
+                                    <br>
+                                    <label><input type="checkbox" id="RecurTask" value="Recur" onclick="selectOnlyThis(this.id)">Every Day Except Sunday</label>
+                                    <label><input type="checkbox" id="RecurTask" value="Recur" onclick="selectOnlyThis(this.id)">Every</label>
+                                    <select name="RecurDay" id = "RecurDay1" style=" margin-left: 10px; width: 80px;" >
+                                        <option value="" </option>
+                                    </select>
+                                    <br>
+                                    <label><input type="checkbox" id="RecurTask" value="Recur" onclick="selectOnlyThis(this.id)">Every</label>
+                                    <label> <input type="text" id="RecurMonth" style="width:55px;" /> Months</label> 
+                                    <br>
+                                    <label> <textarea name="notes" id="tasknotes" cols="60" rows="5" ></textarea> </label>    
+                                    <br>
+                                    <label id="linkedTasks" style="color:blue; float: right; text-align: right; margin-right:100px;"/>Linked Tasks</label>
+                                <br>
+                                    Start Date :<label> <input type="text" id = "startdate" style="margin-left:27px"/> </label> 
+                                    <br> 
+                                    Review Date :<label> <input type="text" id = "Reviewdate" style="margin-left:10px"/> </label>
+                                    <br>
+                                    End Date :<label> <input type="text" id = "enddate" style="margin-left:32px"/> </label>
+                                    <br>
+                                    <label id="Priority" style="float:left; ">Priority :</label>
+                                    <select name="Priority" id = "Priority1" style=" width: 100px; margin-left:50px;" >
+                                        <option value="" </option>
+                                    </select>
+                                    <label id="TaskDate" style=" margin-left:30px;"/>06/04/2017 3:15:32PM</label>
+                                    <br>
+                                      <label id="Status" style="float:left; ">Status :</label>
+                                    <select name="Status" id = "Status1" style=" width: 100px; margin-left:55px;" >
+                                        <option value="" </option>
+                                    </select>
+                                    <script>
+                                        var myCalendar1 = new dhtmlXCalendarObject(["startdate"]);
+                                        myCalendar1.setDateFormat("%Y/%m/%d %H:%i");
+                                    </script>
+                                    <script>
+                                        var myCalendar2 = new dhtmlXCalendarObject(["enddate"]);
+                                        myCalendar2.setDateFormat("%Y/%m/%d %H:%i");
+                                    </script>
+                                    <br>
+                                    <input type ="button" value ="Save" id="Tasksave" style="width:75px; float:right;"/>
+
+                                    </p>
+                                </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
 
             <div style="margin-bottom: 20px;">
             </div>
@@ -522,45 +624,7 @@
 
             </table>
         </a>
-        <div id="login-box" class="login-popup">
-            <a href="#" class="close"><img src="close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
-            <form method="post" class="signin" action="#">
-                <fieldset class="textbox">
-                    Task Details
-                    <br>
-                    <div id="tabs" style="width:500px; float:right;">
-                        <ul>
-                            <li><a href="#tabs-1">Details</a></li>
-                            <li><a href="#tabs-2">Notes</a></li>
-                            <li><a href="#tabs-3">People</a></li>
-                            <li><a href="#tabs-4">Images</a></li>
-                        </ul>
 
-                        <div id="tabs-1">
-                            <p>
-                            <div style="float: right; text-align: right;">
-                                ID :  <label id="diaryid"/>0</label>
-                            </div>     
-
-                           Task From<label> <input type="text" id="diarysumm" style="margin-left:10px" /> </label> 
-                            <br/>
-                           Task Summary<label> <input type="text" id="diarysumm" style="margin-left:10px" /> </label> 
-                            <br>
-                            Start Date <label> <input type="text" id = "startdate" style="margin-left:5px"/> </label> 
-                            <br>     
-                            End Date<label> <input type="text" id = "enddate"style="margin-left:10px"/> </label>
-                            <br>
-
-                        </div>
-                        
-                    </div>
-                    <br>
-
-                    <button class="submit button" id="diarySettClose" type="button">Update</button>
-
-                </fieldset>
-            </form>
-        </div>   
         <br>
         <br>
         <br>
@@ -569,7 +633,6 @@
                 $("table > *").width($("table").width() + $("table").scrollLeft());
             });
         </script>
-
 
         <script type="text/javascript">
             $(document).ready(function () {
@@ -596,83 +659,12 @@
                     // update diary settings
                     var count = $("#dsee1 option").length;
                     if (count.valueOf() < 3) {
-                        $.get('DiaryUser', function (responseJson) {
-                            if (responseJson != null) {
 
-                                //  var table1 = $("#countrytable");
-                                $.each(responseJson, function (key, value) {
-
-                                    $('#dsee1').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
-                                    $('#dsee2').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
-                                    $('#dsee3').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
-                                    $('#dsee4').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
-                                    $('#dsee5').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
-                                    $('#dsee6').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
-                                    $('#dsee7').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
-                                    $('#dsee8').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
-                                    $('#dsee9').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
-                                    $('#dsee10').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
-                                });
-                            }
-                        });
                     }
 
-                    $.get('DiarySettAvail', function (responseJson) {
-                        if (responseJson != null) {
-                            //$("#dsee1").val("");
-                            document.getElementById("dsee1").selectedIndex = "0";
-                            document.getElementById("dsee2").selectedIndex = "0";
-                            document.getElementById("dsee3").selectedIndex = "0";
-                            document.getElementById("dsee4").selectedIndex = "0";
-                            document.getElementById("dsee5").selectedIndex = "0";
-                            document.getElementById("dsee6").selectedIndex = "0";
-                            document.getElementById("dsee7").selectedIndex = "0";
-                            document.getElementById("dsee8").selectedIndex = "0";
-                            document.getElementById("dsee9").selectedIndex = "0";
-                            document.getElementById("dsee10").selectedIndex = "0";
 
-                            //$("#dsee2").val("Matthys Buitendag");
-                            //document.getElementById("dsee1").value = "Matthys Buitendag";
-                            $.each(responseJson, function (key, value) {
-                                //   $("#dsee1").val(value['userName']);
-                                //document.getElementById("dsee1").value = value['userName'];  
 
-                                if (document.getElementById("dsee1").value.length < 2)
-                                {
-                                    document.getElementById("dsee1").value = value['userName'];
-                                } else if (document.getElementById("dsee2").value.length < 2)
-                                {
-                                    document.getElementById("dsee2").value = value['userName'];
-                                } else if (document.getElementById("dsee3").value.length < 2)
-                                {
-                                    document.getElementById("dsee3").value = value['userName'];
-                                } else if (document.getElementById("dsee4").value.length < 2)
-                                {
-                                    document.getElementById("dsee4").value = value['userName'];
-                                } else if (document.getElementById("dsee5").value.length < 2)
-                                {
-                                    document.getElementById("dsee5").value = value['userName'];
-                                } else if (document.getElementById("dsee6").value.length < 2)
-                                {
-                                    document.getElementById("dsee6").value = value['userName'];
-                                } else if (document.getElementById("dsee7").value.length < 2)
-                                {
-                                    document.getElementById("dsee7").value = value['userName'];
-                                } else if (document.getElementById("dsee8").value.length < 2)
-                                {
-                                    document.getElementById("dsee8").value = value['userName'];
-                                } else if (document.getElementById("dsee9").value.length < 2)
-                                {
-                                    document.getElementById("dsee9").value = value['userName'];
-                                } else if (document.getElementById("dsee10").value.length < 2)
-                                {
-                                    document.getElementById("dsee10").value = value['userName'];
-                                }
 
-                            });
-                        }
-                    });
-                    // end update
 
                     return false;
 
@@ -693,7 +685,8 @@
                     return false;
                 });
             });
-        </script> 
+        </script>
+
 
 
 
