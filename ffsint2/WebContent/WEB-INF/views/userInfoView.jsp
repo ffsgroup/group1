@@ -21,7 +21,10 @@
       <br>
        <a  href="${pageContext.request.contextPath}/diary.jsp">Diary</a>
        <a href="${pageContext.request.contextPath}/TaskIndex.jsp">Tasks</a>
+        <a href="${pageContext.request.contextPath}/Members.jsp">Members</a>
      <br />
+     
+     
     <jsp:include page="_footer.jsp"></jsp:include>
  
  </body>
