@@ -209,7 +209,7 @@
                         <br>
                         <label style="margin-left:315px"> Date </label>
                         <label> <input type="text" style="margin-left:43px;width:120px" id="postdate"> </label>
-                        <input type ="button" value ="Update" id="contactupdate" style="width:75px; float:right;"/>
+                        <input type ="button" value ="Update" id="contactupdate" style="width:75px; float:right;">
                     <script>
                         var myCalendar5 = new dhtmlXCalendarObject(["postdate"]);
                         myCalendar5.setDateFormat("%Y/%m/%d");
@@ -222,14 +222,15 @@
                     <input type="text" style="margin-left:10px;width:30px;" id="nrdepen"> 
                     <label style="margin-left:30px">/  Active </label>
                         <input id="" style="margin-left:10px; width:30px;">
+                    <input type="button" value="New" id="newdepen" style="width:75px; float:right;">
                     <br>  
 
                     <div id="tablediv">
 
-                        <table cellspacing="0" id="depend" margin-right:20px style="table-layout:fixed;float: left; border-collapse: collapse;margin-left:10px; border: 1px solid black;"> 
+                        <table cellspacing="0" id="depend" margin-right:20px style="table-layout:fixed;float: left; border-collapse: collapse;margin-left:10px; border: 1px solid black;width:95%"> 
 
-                            <tr style="border-collapse: collapse;border: 1px solid black;"> 
-                                <th style="width:50px" scope="col">FirstName</th> 
+                                <tr style="border-collapse: collapse;border: 1px solid black;"> 
+                                <th style="width:80px" scope="col">FirstName</th> 
                                     <th style="width:100px" scope="col">Surname</th> 
                                     <th style="width:100px" scope="col">Birthday</th> 
                                     <th style="width:100px" scope="col">Gender</th> 
@@ -255,32 +256,35 @@
                         </div>
 
                     </div>
-                    <div id="tabs-4" style="visibility: hidden">
-                        <div id="imagdiv">
-                            <table cellspacing="0" id="diaryimag" style="float: left; border-collapse: collapse;margin-left:5px; heigth:300px; width:100%; "> 
-                            <tr> 
-                                <th style="width:10%" scope="col">Date</th> 
-                                    <th style="width:31%" scope="col">User</th> 
-                                    <th style="width:51%" scope="col">Description</th> 
-                                    <th style="width:8%" scope="col">ID</th> 
-                                </tr> 
-                            </table>
-                        </div>
+                    <div id="tabs-4">
+                        <label> Join Date </label>
+                        <input type="text" id="joindat" style="margin-left:19px;width:100px;" >
+                    <label style="margin-left:40px"> Cover Amount </label>
+                    <input type="text" style="margin-left:25px;width:60px" >
+                        <label style="margin-left:50px"> Beneficiary </label>
                         <br>
+                        <label> Claim date </label>
+                        <input type="text" id="joindat" style="margin-left:10px;width:100px;" >
+                    <label style="margin-left:40px"> Paid Up To </label>
+                    <input type="text" style="width:100px; margin-left:49px" >
+                        <label> Name </label>
+                        <input type="text" style="width:150px; margin-left:10px" >
 
-                        <form id="form1">    
-                            <br>
-                            <label for="imageText">Enter description</label>
+                        <br>
+                        <label> Branch </label>
+                        <select name="membranch" id="mbranch" style="width:100px; margin-left:38px" >
+                            <option value=""> </option>
+                        </select>                      
+                        <label style="margin-left:44px"> Payment Method </label>
+                        <select name="paymeth" id="paymet" style="margin-left:10px; width:100px;">
+                        <option value=""></option> 
 
-                            <input id="imageText" name="ImageText" type="text" /> <br/>
+                    </select>
+                    <label> ID Nr </Label>
+                    <input type="text" style="width:120px;margin-left:10px">
 
-                            <label for="imageFile"/>Select file </label>
 
-                            <input id="imageFile" name="imageFile" type="file" /> <br/>
 
-                            <input id="uploadBtn" type="button" value="Upload" onClick="performAjaxSubmit();"/>
-
-                        </form>
                     </div>
                 </div>
 
