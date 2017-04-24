@@ -1,3 +1,4 @@
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
@@ -260,15 +261,15 @@
                         <label> Join Date </label>
                         <input type="text" id="joindat" style="margin-left:19px;width:100px;" >
                     <label style="margin-left:40px"> Cover Amount </label>
-                    <input type="text" style="margin-left:25px;width:60px" >
-                        <label style="margin-left:50px"> Beneficiary </label>
+                        <input type="text" style="margin-left:26px;width:60px" >
+                        <label style="margin-left:140px"> Beneficiary </label>
                         <br>
                         <label> Claim date </label>
                         <input type="text" id="joindat" style="margin-left:10px;width:100px;" >
                     <label style="margin-left:40px"> Paid Up To </label>
-                    <input type="text" style="width:100px; margin-left:49px" >
-                        <label> Name </label>
-                        <input type="text" style="width:150px; margin-left:10px" >
+                        <input type="text" style="width:100px; margin-left:49px" >
+                        <label style="margin-left:30px"> Name </label>
+                        <input type="text" style="width:190px; margin-left:50px" >
 
                         <br>
                         <label> Branch </label>
@@ -276,14 +277,76 @@
                             <option value=""> </option>
                         </select>                      
                         <label style="margin-left:44px"> Payment Method </label>
-                        <select name="paymeth" id="paymet" style="margin-left:10px; width:100px;">
+                        <select name="paymeth" id="paymet" style="margin-left:10px; width:110px;">
                         <option value=""></option> 
 
                     </select>
-                    <label> ID Nr </Label>
-                    <input type="text" style="width:120px;margin-left:10px">
+                    <label style="margin-left:30px;"> ID Nr </Label>
+                    <input type="text" id="benefid" style="width:160px;margin-left:55px">
+                        <br>
+                        <label style="margin-left:240px;"> Pay Point </label>
+                    <input type="text" style="margin-left:60px; width:100px;" >
+                    <label style="margin-left:30px"> Relationship </label>
+                        <input type="text" style="margin-left:10px;width:100px;" >
+                    <br>
+                    <label style="margin-left:515px"> Date </label>
+                        <input type="text" style="width:100px; margin-left:60px">
 
+                        <br>
+                        <fieldset>
+                            Bank Details
+                            <br>
+                            <label> Acc Holder </label>
+                            <input type="text" style="width:100px; margin-left:15px" >
+                            <label style="margin-left:20px"> Acc Number </label>
+                            <input type="text" style="margin-left:25px; width:100px" >
+                            <label style="margin-left:20px"> Day to Deduct </label>
+                            <input type="text" style="width:50px;margin-left:20px">
+                            <br>
+                            <label> Bank Name </label>
+                            <input type ="text" style="margin-left:10px;width:100px" >
+                            <label style="margin-left:20px"> Account Type </label>
+                            <select name="acctyp" id="acctype" style="width:100px; margin-left:20px" >
+                                <option value=""> </option>
+                            </select>     
+                            <label style="margin-left:20px;width:100px;"> Start Date </label>
+                        <input type="text" style="width:140px; margin-left:20px;" >
+                        <br>
+                        <label> Branch Nr </label>                       
+                        <input type="text" style="width:100px;margin-left:22px;" >
 
+                        <label style="margin-left:20px;"> Groupscheme </label>
+                        <input type="text" style="margin-left:18px;width:100px" >
+                        </fieldset>
+
+                        <fieldset>
+                            Stop Order
+                            <br>
+                            <label> Employer 1 </label>
+                            <label style="margin-left:10px">
+                                <datalist id="emp1" style="width:100px;">
+                                <option> </option>
+                            </datalist>
+                        </label>
+                        <label style="margin-left:10px;"> Payer Name </label>
+                        <input type="text" style="margin-left:10px;width:150px">
+                            <br>
+                            <label> Employer 2 </label>
+                            <label style="margin-left:10px">
+                                <datalist id="emp2" >
+                                    <option> 
+                                </datalist>
+                            </label>
+                            <label Style="margin-left:20px"> Payer Id </label>
+                            <input type="text" style="width:100px;margin-left:10px;">
+                        <br>
+                        <label> Start Date</label>
+                        <input type="text" style="margin-left:10px;width:100px;">
+                        <label style="margin-left:10px;width:100px" > Salary Nr </label>
+                            <input type="text" style="margin-left:10px; width:80px" >
+                            <br>
+
+                        </fieldset>
 
                     </div>
                 </div>
