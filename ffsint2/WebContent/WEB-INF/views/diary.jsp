@@ -874,6 +874,7 @@
                     <th style="width:100px" scope="col">User</th> 
                     <th style="width:100px" scope="col">Description</th> 
                     <th style="width:20px" scope="col">ID</th> 
+                </tr>
                 <tr>
                     <td> 08:00 </td> <td> </td> <td> </td> <td> </td></tr>
                 <tr>   <td> 08:30 </td> <td> </td> <td> </td> <td> </td></tr>
