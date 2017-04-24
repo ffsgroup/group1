@@ -564,7 +564,7 @@
                                     <br>
                                     <label id="linkedTasks" style="color:blue; float: right; text-align: right; margin-right:100px;"/>Linked Tasks</label>
                               
-                                    Start Date :<label> <input type="text" id = "startdate" style="margin-left:27px; position: relative; z-index:99 !important;"/> </label> 
+                                    Start Date :<label> <input type="text" id = "startdate" style="margin-left:27px;"/> </label> 
                                     <br> 
                                     Review Date :<label> <input type="text" id = "Reviewdate" style="margin-left:10px"/> </label>
                                     <br>
@@ -578,8 +578,8 @@
                                         myCalendar2.setDateFormat("%Y/%m/%d %H:%i");
                                     </script>
                                     <script>
-                                        var myCalendar2 = new dhtmlXCalendarObject(["enddate"]);
-                                        myCalendar2.setDateFormat("%Y/%m/%d %H:%i");
+                                        var myCalendar3 = new dhtmlXCalendarObject(["enddate"]);
+                                        myCalendar3.setDateFormat("%Y/%m/%d %H:%i");
                                     </script>
                                     <br>
                                     <label id="Priority" style="float:left; ">Priority :</label>
