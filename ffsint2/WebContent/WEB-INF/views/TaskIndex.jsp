@@ -59,6 +59,8 @@
                 }
                 form.signin input:-moz-placeholder { color:#bbb; text-shadow:0 0 2px #000; }
                 form.signin input::-webkit-input-placeholder { color:#bbb; text-shadow:0 0 2px #000;  }
+                
+              
 
             </style> 
 
@@ -500,16 +502,14 @@
                 <div id="content">
 
                     <div class="post">
-                        <div class="btn-sign">
-                            <a href="#login-box" class="login-window" style="float:right">Settings</a>
-                        </div>
+                        
                     </div>
 
-                    <div id="login-box" class="login-popup" style="width:40%;  " >
+                    <div id="login-box" class="login-popup" style="width:40%; height:620px " >
                         <a href="#" class="close"><img src="close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
                         <form method="post" class="signin" action="#">
 
-                            <div id="tabs" style="width:98%; float:right;">
+                            <div id="tabs" style="width:98%;  height:599px; float:right;">
                                 <ul>
                                     <li><a href="#tabs-1">Details</a></li>
                                     <li><a href="#tabs-2">Notes</a></li>
@@ -563,12 +563,24 @@
                                     <label> <textarea name="notes" id="tasknotes" cols="60" rows="5" ></textarea> </label>    
                                     <br>
                                     <label id="linkedTasks" style="color:blue; float: right; text-align: right; margin-right:100px;"/>Linked Tasks</label>
-                                <br>
-                                    Start Date :<label> <input type="text" id = "startdate" style="margin-left:27px"/> </label> 
+                              
+                                    Start Date :<label> <input type="text" id = "startdate" style="margin-left:27px; position: relative; z-index:99 !important;"/> </label> 
                                     <br> 
                                     Review Date :<label> <input type="text" id = "Reviewdate" style="margin-left:10px"/> </label>
                                     <br>
                                     End Date :<label> <input type="text" id = "enddate" style="margin-left:32px"/> </label>
+                                        <script>
+                                        var myCalendar1 = new dhtmlXCalendarObject(["startdate"]);
+                                        myCalendar1.setDateFormat("%Y/%m/%d %H:%i");
+                                    </script>
+                                    <script>
+                                        var myCalendar2 = new dhtmlXCalendarObject(["Reviewdate"]);
+                                        myCalendar2.setDateFormat("%Y/%m/%d %H:%i");
+                                    </script>
+                                    <script>
+                                        var myCalendar2 = new dhtmlXCalendarObject(["enddate"]);
+                                        myCalendar2.setDateFormat("%Y/%m/%d %H:%i");
+                                    </script>
                                     <br>
                                     <label id="Priority" style="float:left; ">Priority :</label>
                                     <select name="Priority" id = "Priority1" style=" width: 100px; margin-left:50px;" >
@@ -580,15 +592,8 @@
                                     <select name="Status" id = "Status1" style=" width: 100px; margin-left:55px;" >
                                         <option value="" </option>
                                     </select>
-                                    <script>
-                                        var myCalendar1 = new dhtmlXCalendarObject(["startdate"]);
-                                        myCalendar1.setDateFormat("%Y/%m/%d %H:%i");
-                                    </script>
-                                    <script>
-                                        var myCalendar2 = new dhtmlXCalendarObject(["enddate"]);
-                                        myCalendar2.setDateFormat("%Y/%m/%d %H:%i");
-                                    </script>
-                                    <br>
+                                   
+                                  
                                     <input type ="button" value ="Save" id="Tasksave" style="width:75px; float:right;"/>
 
                                     </p>
