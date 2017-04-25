@@ -14,37 +14,37 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
-import ffsbeans.Diary;
+import ffsbeans.Member;
 import ffsbeans.UserAccount;
 import ffsutils.DBUtils;
 import ffsutils.MyUtils;
+import ffsutils.MemUtils;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.servlet.http.HttpSession;
-import ffsbeans.Generics;
 
-@WebServlet("/DiaryLocat")
-public class DiaryLocat extends HttpServlet {
+@WebServlet("/MemberDetail")
+public class MemberDetail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public DiaryLocat() {
+    public MemberDetail() {
         
     }
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Connection conn = MyUtils.getStoredConnection(request);
                 HttpSession session = request.getSession();
-                UserAccount loginedUser = MyUtils.getLoginedUser(session);
-                 System.out.println("diary locate");
-		ArrayList<Generics> generics =new ArrayList<Generics>();
+                 String thisMember = request.getParameter("thisMember");                 
+                 UserAccount loginedUser = MyUtils.getLoginedUser(session);
+		ArrayList<Member> member =new ArrayList<Member>();
                 try {
-		generics=DBUtils.DiaryLocate(conn);
+		member=MemUtils.getMember(conn, thisMember, loginedUser.getUserName());
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();
         }
 		Gson gson = new Gson();
-		JsonElement element = gson.toJsonTree(generics, new TypeToken<List<Diary>>() {}.getType());
+		JsonElement element = gson.toJsonTree(member, new TypeToken<List<Members>>() {}.getType());
 
 		JsonArray jsonArray = element.getAsJsonArray();
 		response.setContentType("application/json");

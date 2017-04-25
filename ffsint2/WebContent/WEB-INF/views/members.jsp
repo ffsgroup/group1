@@ -14,6 +14,28 @@
             table, th, td {
                 border: 1px solid black;
             </style>
+
+            <script>
+                function loadMember()
+                {
+                    // if (document.getElementsById("memnum").length().equals(8))
+                    document.getElementById("memname").value = "3";
+                    $.get('MemberDetail',{thisMember : document.getElementById("memnum").value}, function (responseJson) {
+                        document.getElementById("memname").value = "0";
+                        if (responseJson != null) {
+                            $.each(responseJson, function (key, value) {
+                                document.getElementById("memname").value = "1";
+                                //var option = document.createElement('option');
+                                //option.value = value['GenericDescriptionEng'];
+                                //locations.appendChild(option);
+                                document.getElementById("memtitle").value = value['shortname'];
+                            });
+                        }
+                    });
+
+                }
+            </script>            
+
             <script>
                 var myCalendar;
                 function doOnLoad() {
@@ -70,7 +92,7 @@
         <body>
             <br>
             <fieldset>
-                <label> Member Number <input type ="text" id="memnum" width ="15" style="margin-left:10px" /> </label>
+                <label> Member Number <input type ="text" id="memnum" width ="15" style="margin-left:10px" onkeyup="loadMember()" /> </label>
                     <br>
                     <label> Title <input type ="text" id="memtitle" width="25" style="margin-left:47px"> </label>
                     <label style="margin-left:100px"> Company Name <select id="memcomp" style="width:100px" > <option value=""></option> </select> </label>
@@ -265,7 +287,7 @@
                         <label style="margin-left:140px"> Beneficiary </label>
                         <br>
                         <label> Claim date </label>
-                        <input type="text" id="joindat" style="margin-left:10px;width:100px;" >
+                        <input type="text" id="claimdat" style="margin-left:10px;width:100px;" >
                     <label style="margin-left:40px"> Paid Up To </label>
                         <input type="text" style="width:100px; margin-left:49px" >
                         <label style="margin-left:30px"> Name </label>
@@ -290,8 +312,8 @@
                         <input type="text" style="margin-left:10px;width:100px;" >
                     <br>
                     <label style="margin-left:515px"> Date </label>
-                        <input type="text" style="width:100px; margin-left:60px">
-
+                        <input type="text" id="benefdate" style="width:100px; margin-left:60px">
+                        <input type="button" value="Update" style="float:right;width:85px">
                         <br>
                         <fieldset>
                             Bank Details
@@ -306,17 +328,17 @@
                             <label> Bank Name </label>
                             <input type ="text" style="margin-left:10px;width:100px" >
                             <label style="margin-left:20px"> Account Type </label>
-                            <select name="acctyp" id="acctype" style="width:100px; margin-left:20px" >
+                            <select name="acctyp" id="acctype" style="width:100px; margin-left:19px" >
                                 <option value=""> </option>
                             </select>     
-                            <label style="margin-left:20px;width:100px;"> Start Date </label>
-                        <input type="text" style="width:140px; margin-left:20px;" >
+                            <label style="margin-left:25px;width:100px;"> Start Date </label>
+                        <input type="text" id="debitdate" style="width:100px; margin-left:50px;" >
                         <br>
                         <label> Branch Nr </label>                       
                         <input type="text" style="width:100px;margin-left:22px;" >
 
                         <label style="margin-left:20px;"> Groupscheme </label>
-                        <input type="text" style="margin-left:18px;width:100px" >
+                        <input type="text" style="margin-left:16px;width:100px" >
                         </fieldset>
 
                         <fieldset>
@@ -324,31 +346,194 @@
                             <br>
                             <label> Employer 1 </label>
                             <label style="margin-left:10px">
-                                <datalist id="emp1" style="width:100px;">
-                                <option> </option>
-                            </datalist>
-                        </label>
-                        <label style="margin-left:10px;"> Payer Name </label>
+                                <input type="text" list ="emp1" id= "empl1" style="width:120px">
+                                <datalist id="emp1">
+                                    <option> </option>
+                                </datalist>
+                            </label>
+                            <label style="margin-left:25px;"> Payer Name </label>
                         <input type="text" style="margin-left:10px;width:150px">
                             <br>
                             <label> Employer 2 </label>
                             <label style="margin-left:10px">
+                                <input type="text" list="emp2" id="empl2" style="width:120px">
                                 <datalist id="emp2" >
-                                    <option> 
+                                    <option> </option>
                                 </datalist>
                             </label>
-                            <label Style="margin-left:20px"> Payer Id </label>
-                            <input type="text" style="width:100px;margin-left:10px;">
+                            <label Style="margin-left:25px"> Payer Id </label>
+                            <input type="text" style="width:100px;margin-left:40px;">
                         <br>
                         <label> Start Date</label>
-                        <input type="text" style="margin-left:10px;width:100px;">
-                        <label style="margin-left:10px;width:100px" > Salary Nr </label>
-                            <input type="text" style="margin-left:10px; width:80px" >
+                        <input type="text" id="stoporderdate"  style="margin-left:20px;width:100px;">
+                        <label style="margin-left:40px;width:100px" > Salary Nr </label>
+                            <input type="text" style="margin-left:35px; width:80px" >
                             <br>
-
+                            <script>
+                                var myCalendar5 = new dhtmlXCalendarObject(["joindat"]);
+                                myCalendar5.setDateFormat("%Y/%m/%d");
+                                var myCalendar5 = new dhtmlXCalendarObject(["claimdat"]);
+                                myCalendar5.setDateFormat("%Y/%m/%d");
+                                var myCalendar5 = new dhtmlXCalendarObject(["benefdate"]);
+                                myCalendar5.setDateFormat("%Y/%m/%d");
+                                var myCalendar5 = new dhtmlXCalendarObject(["debitdate"]);
+                                myCalendar5.setDateFormat("%Y/%m/%d");
+                                var myCalendar5 = new dhtmlXCalendarObject(["stoporderdate"]);
+                                myCalendar5.setDateFormat("%Y/%m/%d");
+                            </script>  
                         </fieldset>
 
                     </div>
+                    <div id="tabs-5">  
+                        This policy paid until :
+                        <label style="margin-left:5px" id="paidrecdate">2017/03/31 </label>
+                        <label style="margin-left:60px"> Payment Method : </label>
+                        <label id="paidrecmeth" style="margin-left:5px"> Cash </label>
+
+                        <input type="button" id="bankfeerec" value="Bank Fees" style="margin-left:30px;width:90px">
+                        <input type="button" id="cancellrec" value="Cancell" style="margin-left:20px;width:90px">
+                        <input type="button" id="newrec" value="New Rec" style="margin-left:20px;width:90px">
+                        <br>
+                        <label style="margin-left:0px"> Credit </label>
+                        <label style="margin-left:10px"> 00 </label>      
+                        <input type="button" id="printoldrec" value="Print" style="margin-left:425px;width:90px;">
+                    <input type="button" id="viewoldrec" value="View Old" style="margin-left:20px; width:90px;">
+                    <br>
+                    <div id="recdiv">
+
+                        <table cellspacing="0" id="recgrid" margin-right:20px style="table-layout:fixed;float: left; border-collapse: collapse;margin-left:10px; border: 1px solid black;width:95%"> 
+
+                                <tr style="border-collapse: collapse;border: 1px solid black;"> 
+                                <th style="width:80px" scope="col">Receipt nr</th> 
+                                    <th style="width:100px" scope="col">Date</th> 
+                                    <th style="width:100px" scope="col">Amount</th> 
+                                    <th style="width:100px" scope="col">Method</th> 
+                                    <th style="width:100px" scope="col">Description</th> 
+                                    <th style="width:100px" scope="col">Operator</th> 
+                                    <th style="width:100px" scope="col">Paid Until</th> 
+                                    <th style="width:100px" scope="col">Card</th> 
+                                    <th style="width:100px" scope="col">Declaration</th> 
+
+                                </tr>
+                                <tr>
+                                    <td> 08:00 </td> <td> </td> <td> </td> <td> </td></tr>
+                                <tr>   <td> 08:30 </td> <td> </td> <td> </td> <td> </td></tr>
+                                <tr><td> 09:00 </td> <td> </td> <td> </td> <td> </td></tr>
+                                <tr><td> 09:30 </td> <td> </td> <td> </td> <td> </td></tr>
+                                <tr><td> 10:00 </td> <td> </td> <td> </td> <td> </td></tr>
+                                <tr><td> 10:30 </td> <td> </td> <td> </td> <td> </td></tr>
+                                <tr><td> 11:00 </td> <td> </td> <td> </td> <td> </td></tr>
+                                <tr><td> 11:30 </td> <td> </td> <td> </td> <td> </td></tr>
+
+                            </table>
+                        </div>
+
+
+                    </div>
+                    <div id="tabs-6"> 
+                        <input type="button" id="newnote" value ="new" style="float:right;margin-right:20px;width:75px">
+                        <input type="button" id="updatenote" value="update" style="float:right;margin-right:20px;width:75">
+
+                        <div id="notediv">
+
+                            <table cellspacing="0" id="notesgrid" margin-right:0px style="table-layout:fixed;float: left; border-collapse: collapse;margin-left:0px; border: 1px solid black;width:70%"> 
+
+                                <tr style="border-collapse: collapse;border: 1px solid black;">                               
+                                <th style="width:100px" scope="col">Date</th> 
+                                    <th style="width:100px" scope="col">User</th> 
+                                    <th style="width:100px" scope="col">Description</th> 
+
+                                </tr>
+                                <tr>
+                                    <td> 08:00 </td> <td> </td> <td> </td> <td> </td></tr>
+                                <tr>   <td> 08:30 </td> <td> </td> <td> </td> <td> </td></tr>
+                                <tr><td> 09:00 </td> <td> </td> <td> </td> <td> </td></tr>
+                                <tr><td> 09:30 </td> <td> </td> <td> </td> <td> </td></tr>
+                                <tr><td> 10:00 </td> <td> </td> <td> </td> <td> </td></tr>                             
+
+                            </table>
+                        </div> 
+                        <br>
+                        <br>
+                        <textarea style="border: 1px solid #111;"  id="notesdet" cols="100" rows="5">
+                    </textarea>
+                </div>   
+
+                <div id="tabs-7"> 
+                    <input type="button" id="updatenote" value="New Claim" style="float:right;margin-right:20px;width:75px">
+                        <div id="claimdiv">
+                            <table cellspacing="0" id="claimgrid" margin-right:0px style="table-layout:fixed;float: left; border-collapse: collapse;margin-left:0px; border: 1px solid black;width:80%"> 
+
+                                <tr style="border-collapse: collapse;border: 1px solid black;">                               
+                                <th style="width:100px" scope="col">Claim Nr</th> 
+                                    <th style="width:100px" scope="col">Claim Date</th> 
+                                    <th style="width:100px" scope="col">Initial</th> 
+                                    <th style="width:100px" scope="col">Surname</th> 
+                                    <th style="width:100px" scope="col">Death Date</th> 
+                                    <th style="width:100px" scope="col">Status</th> 
+                                </tr>
+                                <tr>
+                                    <td> 08:00 </td> <td> </td> <td> </td> <td> </td></tr>
+                                <tr>   <td> 08:30 </td> <td> </td> <td> </td> <td> </td></tr>
+                                <tr><td> 09:00 </td> <td> </td> <td> </td> <td> </td></tr>
+                                <tr><td> 09:30 </td> <td> </td> <td> </td> <td> </td></tr>
+                                <tr><td> 10:00 </td> <td> </td> <td> </td> <td> </td></tr>                             
+                            </table>
+                        </div> 
+                    </div>  
+                    <div id="tabs-8"> 
+                        <input type="button" id="uploadimag" value="Upload" style="float:right;margin-right:20px;width:75px">
+                        <div id="imagediv">
+                            <table cellspacing="0" id="imagegrid" margin-right:0px style="table-layout:fixed;float: left; border-collapse: collapse;margin-left:0px; border: 1px solid black;width:80%"> 
+
+                                <tr style="border-collapse: collapse;border: 1px solid black;">                               
+                                <th style="width:100px" scope="col">User</th> 
+                                    <th style="width:100px" scope="col">Date</th> 
+                                    <th style="width:100px" scope="col">Description</th>  
+                                </tr>
+                                <tr>
+                                    <td> 08:00 </td> <td> </td> <td> </td> <td> </td></tr>
+                                <tr>   <td> 08:30 </td> <td> </td> <td> </td> <td> </td></tr>
+                                <tr><td> 09:00 </td> <td> </td> <td> </td> <td> </td></tr>
+                                <tr><td> 09:30 </td> <td> </td> <td> </td> <td> </td></tr>
+                                <tr><td> 10:00 </td> <td> </td> <td> </td> <td> </td></tr>                             
+                            </table>
+                        </div> 
+                    </div> 
+                    <div id="tabs-9"> 
+                        <input type="checkbox" value="Amendment" id="letamend" > Amendment 
+                        <br>
+                        <input type="checkbox" value="safinamend" id="safinamend"> Safin Amend
+                        <br>
+                        <input type="checkbox" value="membcard" id="membcard"> Membership card
+                        <input type="checkbox" value="incwelcome" id="incwelcome" style="margin-left:25"> Include welcome letter
+                        <br>
+                        <input type="checkbox" value="tomember" id="tomember"> This post was send to the member
+                        <br>
+                        <input type="button" value="Print" style="float:right;margin-right:20px" id="memprintletter">
+
+
+                    </div>
+                    <div id="tabs-10"> 
+                        <input type="button" id="uploadvoice" value="Upload" style="float:right;margin-right:20px;width:75px">
+                        <div id="voicediv">
+                            <table cellspacing="0" id="voicegrid" margin-right:0px style="table-layout:fixed;float: left; border-collapse: collapse;margin-left:0px; border: 1px solid black;width:80%"> 
+
+                                <tr style="border-collapse: collapse;border: 1px solid black;">                               
+                                <th style="width:100px" scope="col">User</th> 
+                                    <th style="width:100px" scope="col">Date</th> 
+                                    <th style="width:100px" scope="col">Description</th>  
+                                </tr>
+                                <tr>
+                                    <td> 08:00 </td> <td> </td> <td> </td> <td> </td></tr>
+                                <tr>   <td> 08:30 </td> <td> </td> <td> </td> <td> </td></tr>
+                                <tr><td> 09:00 </td> <td> </td> <td> </td> <td> </td></tr>
+                                <tr><td> 09:30 </td> <td> </td> <td> </td> <td> </td></tr>
+                                <tr><td> 10:00 </td> <td> </td> <td> </td> <td> </td></tr>                             
+                            </table>
+                        </div> 
+                    </div> 
+
                 </div>
 
             </body>
