@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import ffsbeans.Product;
 import ffsbeans.Diary;
-import ffsbeans.Generics;
+import ffsbeans.MemberRec;
 import java.util.Date;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -21,17 +21,16 @@ import java.text.SimpleDateFormat;
 
 public class MemUtils {
 
-   public static ArrayList<Member> getMember(Connection conn, String thisMember, String userName) throws SQLException {
+    public static ArrayList<Member> getMember(Connection conn, String thisMember, String userName) throws SQLException {
 
-System.out.println("member get " +thisMember);
+        System.out.println("getMember " + thisMember);
         String sql = "Select * from lededata where lidno = ?";
         PreparedStatement pstm = conn.prepareStatement(sql);
-        pstm.setString(1,thisMember);
-        
-        
+        pstm.setString(1, thisMember);
+
         ResultSet rs = pstm.executeQuery();
         ArrayList<Member> list = new ArrayList<Member>();
-        if (rs.next()) {          
+        if (rs.next()) {
             Member members = new Member();
             members.setlidno(rs.getString("lidno"));
             members.setsur(rs.getString("sur"));
@@ -42,6 +41,30 @@ System.out.println("member get " +thisMember);
         }
         return list;
     }
-    
+
+    public static ArrayList<MemberRec> getMemberRec(Connection conn, String thisMember, String userName) throws SQLException {
+
+        System.out.println("getMemberRec " + thisMember);
+        String sql = "Select * from lidkwit where lidno = ?";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, thisMember);
+
+        ResultSet rs = pstm.executeQuery();
+        ArrayList<MemberRec> list = new ArrayList<MemberRec>();
+        while (rs.next()) {
+            MemberRec memberrec = new MemberRec();
+            memberrec.setkwitno(rs.getString("kwitno"));
+         //   memberrec.setdatum(rs.getString("datum"));
+            memberrec.setbedrag(rs.getString("bedrag"));
+            memberrec.setbetmet(rs.getString("betmet"));
+            memberrec.setdescr(rs.getString("descr"));
+            memberrec.setoperator(rs.getString("operator"));
+        //    memberrec.setbettot(rs.getString("bettot"));
+            memberrec.setcardused(rs.getString("cardused"));
+            memberrec.setdecsign(rs.getString("decsign"));
+            list.add(memberrec);
+        }
+        return list;
+    }
 
 }
