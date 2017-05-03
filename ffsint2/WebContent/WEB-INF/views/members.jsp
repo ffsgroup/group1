@@ -18,41 +18,137 @@
             <script>
                 function loadMember()
                 {
-                     if (document.getElementById("memnum").value.length === 8 ){
-                    document.getElementById("memname").value = "3";
-                    // page one details
-                    $.get('MemberDetail',{thisMember : document.getElementById("memnum").value}, function (responseJson) {
-                        document.getElementById("memname").value = "0";
-                        if (responseJson != null) {
-                            $.each(responseJson, function (key, value) {
-                                document.getElementById("memname").value = "1";
+                    if (document.getElementById("memnum").value.length === 8) {
+                        var count = $("#memrecruit option").length;
+                        if (count.valueOf() < 3) {
+                            $.get('MemberGetRecruiter', function (responseJson) {
+                                if (responseJson != null) {
 
-                                document.getElementById("memtitle").value = value['shortname'];
+                                    //  var table1 = $("#countrytable");
+                                    $.each(responseJson, function (key, value) {
+
+                                        $('#memrecruit').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
+
+                                    });
+                                }
                             });
-                        } else {
-                         document.getElementById("memtitle").value = "No such member";      
                         }
-                    });
-                    
-                    // get receipt details
-                    $.get('MemeberReceiptGet',{thisMember : document.getElementById("memnum").value}, function (responseJson) {
-                        $("#recgrid").find("tr:gt(0)").remove();
-                        if (responseJson != null) {
-                            var table2 = $("#recgrid");
-                            $.each(responseJson, function (key, value) {
-                            var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+
+                        var count = $("#marriage option").length;
+                        if (count.valueOf() < 2) {
+                            $.get('MemberGetMarriage', function (responseJson) {
+                                if (responseJson != null) {
+
+                                    //  var table1 = $("#countrytable");
+                                    $.each(responseJson, function (key, value) {
+
+                                        $('#marriage').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
+
+                                    });
+                                }
+                            });
+                        }
+
+                        var count = $("#memcomp option").length;
+                        if (count.valueOf() < 2) {
+                            $.get('MemberGetCompanyName', function (responseJson) {
+                                if (responseJson != null) {
+
+                                    //  var table1 = $("#countrytable");
+                                    $.each(responseJson, function (key, value) {
+
+                                        $('#memcomp').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
+
+                                    });
+                                }
+                            });
+                        }
+
+                        var count = $("#mempoltype option").length;
+                        if (count.valueOf() < 2) {
+                            $.get('MemberGetPolType', function (responseJson) {
+                                if (responseJson != null) {
+
+                                    //  var table1 = $("#countrytable");
+                                    $.each(responseJson, function (key, value) {
+
+                                        $('#mempoltype').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
+
+                                    });
+                                }
+                            });
+                        }
+                        
+                        var count = $("#memstatus option").length;
+                        if (count.valueOf() < 2) {
+                            $.get('MemberGetPolStatus', function (responseJson) {
+                                if (responseJson != null) {
+
+                                    //  var table1 = $("#countrytable");
+                                    $.each(responseJson, function (key, value) {
+
+                                        $('#memstatus').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
+
+                                    });
+                                }
+                            });
+                        }
+
+//                        document.getElementById("memname").value = "3";
+                        // page one details
+                        $.get('MemberDetail', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
+                            document.getElementById("memname").value = "0";
+                            if (responseJson != null) {
+                                $.each(responseJson, function (key, value) {
+                                    document.getElementById("memname").value = value['ini'];
+
+                                    document.getElementById("memtitle").value = value['shortname'];
+                                    document.getElementById("memsur").value = value['sur'];
+                                    document.getElementById("memidno").value = value['idno'];
+                                    document.getElementById("memgend").value = value['sex'];
+                                    document.getElementById("mememail").value = value['email'];
+                                    document.getElementById("memrecruit").value = value['recruiter'];
+                                    document.getElementById("memrecruitdate").value = value['recruitdate'];
+                                    document.getElementById("marriage").selectedIndex = value['troustat'] - 1;
+                                    document.getElementById("memage").value = value['status'];
+                                    document.getElementById("memdob").value = value['gebdat'];
+                                    document.getElementById("poldate").value = value['aanstdat'];
+                                    document.getElementById("memcomp").selectedIndex = value['orgid'];
+                                    document.getElementById("memstatusday").value = value['joindat'];
+                                    document.getElementById("mempoltype").selectedIndex = value['lidtipe'];
+                                    document.getElementById("memlang").value = value['taal'];
+                                    document.getElementById("cancode").value = value['cancode'];
+                                    document.getElementById("memstatus").selectedIndex = value['status'];
+                                     document.getElementById("memprem").value = value['initialPayment'];
+                                      document.getElementById("memtotprem").value = value['initialPayment'];
+                                    
+                                    
+
+                                });
+                            } else {
+                                document.getElementById("memtitle").value = "No such member";
+                            }
+                        });
+
+                        // get receipt details
+                        $.get('MemeberReceiptGet', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
+                            $("#recgrid").find("tr:gt(0)").remove();
+                            if (responseJson != null) {
+                                var table2 = $("#recgrid");
+                                $.each(responseJson, function (key, value) {
+                                    var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
                                     rowNew.children().eq(0).text(value['kwitno']);
 
-                                    rowNew.appendTo(table2);    
-                            });
-                        } else {
-                         document.getElementById("memtitle").value = "No such member";      
-                        }
-                    });
-                    
-                    
+                                    rowNew.appendTo(table2);
+                                });
+                            } else {
+                                document.getElementById("memtitle").value = "No such member";
+                            }
+                        });
+
+
                     } else {
-                     document.getElementById("memtitle").value = "No such member";   
+                        document.getElementById("memtitle").value = "No such member";
                     }
                 }
             </script>            
@@ -107,10 +203,35 @@
                     <label style="margin-left:100px"> Policy Date <input type="text" id="poldate" width="20" style="margin-left:30px;" > </label>
                 <br>
                 <label> ID Number <input type="text" id="memidno" width="25" style="margin-left:3px"> </label>
-                    <label style="margin-left:100px"> Cancel Code <select id="cancode" style="width:100px; margin-left:20px;"><option value=""></option> </select> </label>
+                    <label style="margin-left:100px"> Cancel Code <select id="cancode" style="width:100px; margin-left:20px;">
+                        <option value="0"></option>
+                        <option value="01 Insufficient Funds One">01 Insufficient Funds One</option>
+                        <option value="02 Payment Stopped By You">02 Payment Stopped By You</option> 
+                        <option value="03 Account Closed">03 Account Closed</option> 
+                        <option value="04 Rejected By Bank - Incorrect Details">04 Rejected By Bank - Incorrect Details</option> 
+                        <option value="05 Debits Not Allowed To Account">05 Debits Not Allowed To Account</option> 
+                        <option value="06 Account Frozen">06 Account Frozen</option> 
+                        <option value="07 No Authority To Debit">07 No Authority To Debit</option> 
+                        <option value="08 Account Effects Not Cleared">08 Account Effects Not Cleared</option> 
+                        <option value="09 Cancellation From Branch">09 Cancellation From Branch</option> 
+                        <option value="10 Cancellation From Client">10 Cancellation From Client</option> 
+                        <option value="11 Insufficient Funds Two">11 Insufficient Funds Two</option> 
+                        <option value="12 Main Member Deceased">12 Main Member Deceased</option> 
+                        <option value="13 Amendmend Cancellation">13 Amendmend Cancellation</option> 
+                        <option value="14 No Such Account">14 No Such Account</option> 
+                        <option value="17 Cancelled By Goverment">17 Cancelled By Goverment</option> 
+                        <option value="29 Prev. Stopped Via Advice">29 Prev. Stopped Via Advice</option> 
+                        <option value="34 Account Holder Deceased">34 Account Holder Deceased</option> 
+                        <option value="35 Cancelled By Head Office">35 Cancelled By Head Office</option> 
+                        <option value="46 Acc Transfer ( Within Bank )">46 Acc Transfer ( Within Bank )</option> 
+                    </select> </label>
                 <br>
-                <label> Gender <select id="memgend" style="width:85px; margin-left:28px;"> <option value=""> </option></select> </label>
-                <label style="margin-left:166px"> Language <select id="memlang" style="width:100px; margin-left:40px;"> <option value=""></option> </select> </label>
+                <label> Gender <select id="memgend" style="width:85px; margin-left:28px;"><option value="0">Select</option> <option value="1">Male</option><option value="2">Female</option></select> </label>
+                <label style="margin-left:166px"> Language <select id="memlang" style="width:100px; margin-left:40px;"> 
+                        <option value="0"></option> 
+                        <option value="1">Afrikaans</option> 
+                        <option value="2">English</option> 
+                    </select> </label>
                 <br>    
                 <label> E-Mail <input type="text" id="mememail" width="25" style="margin-left:31px" > </label>
                     <label style="margin-left:100px"> Status <select id="memstatus" style ="width:100px; margin-left:62px"><option value=""></option></select> </label>
