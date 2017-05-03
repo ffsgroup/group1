@@ -49,11 +49,7 @@
                     Task Created :  <label id="TaskCreated"/>06/04/2017 3:15:32PM</label>
                 </div> 
                 <br/>
-                Task Summary :<label> <input type="text" id="Tasksumm" style="margin-left:15px;" ${description} > </label> 
-                ${description}
-                <script>
-                    document.getElementById("Tasksumm").innerHTML = ${description};
-                </script>                
+                Task Summary :<label> <input type="text" id="Tasksumm" style="margin-left:15px;" value=${description}  > </label>     
                 <br>
                 IR Nr : <label> <input type="text" id="IRNr" style="width: 60px; margin-left:83px" /> </label> 
                 <input type="checkbox" id="RequestIR" value="ReqIR">Request IR Nr

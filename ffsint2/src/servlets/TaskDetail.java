@@ -47,7 +47,7 @@ public class TaskDetail extends HttpServlet {
                 
                 
          a = task1.getTranid();
-         b = task1.getDescription();
+         b = "'" + task1.getDescription() + "'";
         }
       request.setAttribute("taskid", a);  
       request.setAttribute("description",b);
