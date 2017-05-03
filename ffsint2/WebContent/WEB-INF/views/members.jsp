@@ -18,21 +18,49 @@
             <script>
                 function loadMember()
                 {
-                    // if (document.getElementsById("memnum").length().equals(8))
+                     if (document.getElementById("memnum").value.length === 8 ){
                     document.getElementById("memname").value = "3";
+                    // page one details
                     $.get('MemberDetail',{thisMember : document.getElementById("memnum").value}, function (responseJson) {
                         document.getElementById("memname").value = "0";
                         if (responseJson != null) {
                             $.each(responseJson, function (key, value) {
                                 document.getElementById("memname").value = "1";
-                                //var option = document.createElement('option');
-                                //option.value = value['GenericDescriptionEng'];
-                                //locations.appendChild(option);
+
                                 document.getElementById("memtitle").value = value['shortname'];
                             });
+                        } else {
+                         document.getElementById("memtitle").value = "No such member";      
                         }
                     });
-
+                    
+                    // get receipt details
+                    $.get('MemberGetRec',{thisRec : document.getElementById("memnum").value}, function (responseJson) {
+                        $("#recgrid").find("tr:gt(0)").remove();
+                        if (responseJson != null) {
+                            var table2 = $("#recgrid");
+                            $.each(responseJson, function (key, value) {
+                            var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+                                    rowNew.children().eq(0).text(value['kwitno']);
+                                    rowNew.children().eq(1).text(value['datum']);
+                                    rowNew.children().eq(2).text(value['bedrag']);
+                                    rowNew.children().eq(3).text(value['betmet']);
+                                    rowNew.children().eq(4).text(value['descr']);
+                                    rowNew.children().eq(5).text(value['operator']);
+                                    rowNew.children().eq(6).text(value['bettot']);
+                                    rowNew.children().eq(7).text(value['cardused']);
+                                    rowNew.children().eq(8).text(value['decsign']);
+                                    rowNew.appendTo(table2);    
+                            });
+                        } else {
+                         document.getElementById("memtitle").value = "No such member";      
+                        }
+                    });
+                    
+                    
+                    } else {
+                     document.getElementById("memtitle").value = "No such member";   
+                    }
                 }
             </script>            
 
@@ -60,24 +88,6 @@
                     myCalendar._drawMonth(new Date);
                     myCalendar.attachEvent("onClick", function (side, d) {
                         //	writeLog("onClick event called, "+side+" calendar, date "+myCalendar.getFormatedDate(null,d));
-
-                        $.get('DiaryDay', {thisDate: myCalendar.getFormatedDate(null, d), thisUser: document.getElementById("DiaryAv").value}, function (responseJson) {
-                            // document.getElementById("DiaryAv").value
-                            if (responseJson != null) {
-                                $("#countrytable").find("tr:gt(0)").remove();
-                                var table1 = $("#countrytable");
-                                $.each(responseJson, function (key, value) {
-                                    var rowNew = $("<tr><td></td><td></td><td></td><td></td></tr>");
-                                    rowNew.children().eq(0).text(value['ShortDate']);
-                                    rowNew.children().eq(1).text(value['user']);
-                                    rowNew.children().eq(2).text(value['desc1']);
-                                    rowNew.children().eq(3).text(value['tranid']);
-                                    rowNew.appendTo(table1);
-                                });
-                                document.getElementsById("countrytable")[0].style.width = '20px';
-                            }
-                        });
-
                     });
                 }
             </script>
