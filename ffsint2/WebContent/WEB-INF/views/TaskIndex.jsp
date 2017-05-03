@@ -59,8 +59,8 @@
                 }
                 form.signin input:-moz-placeholder { color:#bbb; text-shadow:0 0 2px #000; }
                 form.signin input::-webkit-input-placeholder { color:#bbb; text-shadow:0 0 2px #000;  }
-                
-              
+
+
 
             </style> 
 
@@ -155,6 +155,26 @@
                 });
             </script>
             <script>
+
+                $(document).ready(function () {
+                    $("#countrytable").click(function (event) {
+                        var target = $(event.target);
+                        $td = target.closest('td');
+                        var col = $td.index();
+                        var row = $td.closest('tr').index();
+                       
+                        if (document.getElementById("countrytable").rows[row].cells[0].innerHTML > 0) {
+                          $.get('TaskView', {tranid : document.getElementById("countrytable").rows[row].cells[0].innerHTML; })
+
+                        }
+
+                    });
+                });
+
+
+
+
+
 
 
 
@@ -502,195 +522,195 @@
                 <div id="content">
 
                     <div class="post">
-                        
+
                     </div>
 
-                    <div id="login-box" class="login-popup" style="width:40%; height:620px " >
-                        <a href="#" class="close"><img src="close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
-                        <form method="post" class="signin" action="#">
-
-                            <div id="tabs" style="width:98%;  height:599px; float:right;">
-                                <ul>
-                                    <li><a href="#tabs-1">Details</a></li>
-                                    <li><a href="#tabs-2">Notes</a></li>
-                                    <li><a href="#tabs-3">People</a></li>
-                                    <li><a href="#tabs-4">Images</a></li>
-                                </ul>
-
-                                <div id="tabs-1">
-                                    <p>
-                                    <div style="float: Left; text-align: left;">
-                                        Task :  <label id="TaskId"/>0</label>
-                                    </div>     
-                                    <br>
-                                    <label id="TaskFromLabel" style="float:left">Task From :</label>
-                                    <select name="FromUser" id = "FromUser1" style=" margin-left: 50px; width: 180px" >
-                                        <option value="" </option>
-                                    </select>
-                                    <select name="FromUser2" id = "FromUser3" style=" margin-left: 40px; width: 180px" >
-                                        <option value="" </option>
-                                    </select>
-                                    <br>
-                                    <div style="float: right; text-align: right; margin-right:50px;">
-                                        Task Created :  <label id="TaskCreated"/>06/04/2017 3:15:32PM</label>
-                                    </div> 
-                                    <br/>
-                                    Task Summary :<label> <input type="text" id="Tasksumm" style="margin-left:15px" /> </label> 
-                                    <br>
-                                    IR Nr : <label> <input type="text" id="IRNr" style="width: 60px; margin-left:83px" /> </label> 
-                                    <input type="checkbox" id="RequestIR" value="ReqIR">Request IR Nr
-                                    <br>
-                                    <label><input type="checkbox" id="RecurTask" value="Recur" onclick="selectOnlyThis(this.id)">Recurrence</label>
-                                    <br>
-                                    <label><input type="checkbox" id="RecurTask" value="Recur" onclick="selectOnlyThis(this.id)">Every Day</label>
-                                    <label><input type="checkbox" id="RecurTask" value="Recur" onclick="selectOnlyThis(this.id)">Day</label>
-                                    <label> <input type="text" id="RecurMonth" style="width:35px;" /> of every month.</label> 
-                                    <label><input type="checkbox" id="RecurTask" value="Recur" onclick="selectOnlyThis(this.id)">Weekly</label>
-                                    <br>
-                                    <label><input type="checkbox" id="RecurTask" value="Recur" onclick="selectOnlyThis(this.id)">Every Weekday</label>
-                                    <label><input type="checkbox" id="RecurTask" value="Recur" onclick="selectOnlyThis(this.id)">last day of every month</label>
-                                    <label><input type="checkbox" id="RecurTask" value="Recur" onclick="selectOnlyThis(this.id)">Monthly</label>
-                                    <br>
-                                    <label><input type="checkbox" id="RecurTask" value="Recur" onclick="selectOnlyThis(this.id)">Every Day Except Sunday</label>
-                                    <label><input type="checkbox" id="RecurTask" value="Recur" onclick="selectOnlyThis(this.id)">Every</label>
-                                    <select name="RecurDay" id = "RecurDay1" style=" margin-left: 10px; width: 80px;" >
-                                        <option value="" </option>
-                                    </select>
-                                    <br>
-                                    <label><input type="checkbox" id="RecurTask" value="Recur" onclick="selectOnlyThis(this.id)">Every</label>
-                                    <label> <input type="text" id="RecurMonth" style="width:55px;" /> Months</label> 
-                                    <br>
-                                    <label> <textarea name="notes" id="tasknotes" cols="60" rows="5" ></textarea> </label>    
-                                    <br>
-                                    <label id="linkedTasks" style="color:blue; float: right; text-align: right; margin-right:100px;"/>Linked Tasks</label>
-                              
-                                    Start Date :<label> <input type="text" id = "startdate" style="margin-left:27px;"/> </label> 
-                                    <br> 
-                                    Review Date :<label> <input type="text" id = "Reviewdate" style="margin-left:10px"/> </label>
-                                    <br>
-                                    End Date :<label> <input type="text" id = "enddate" style="margin-left:32px"/> </label>
-                                        <script>
-                                        var myCalendar1 = new dhtmlXCalendarObject(["startdate"]);
-                                        myCalendar1.setDateFormat("%Y/%m/%d %H:%i");
-                                    </script>
-                                    <script>
-                                        var myCalendar2 = new dhtmlXCalendarObject(["Reviewdate"]);
-                                        myCalendar2.setDateFormat("%Y/%m/%d %H:%i");
-                                    </script>
-                                    <script>
-                                        var myCalendar3 = new dhtmlXCalendarObject(["enddate"]);
-                                        myCalendar3.setDateFormat("%Y/%m/%d %H:%i");
-                                    </script>
-                                    <br>
-                                    <label id="Priority" style="float:left; ">Priority :</label>
-                                    <select name="Priority" id = "Priority1" style=" width: 100px; margin-left:50px;" >
-                                        <option value="" </option>
-                                    </select>
-                                    <label id="TaskDate" style=" margin-left:30px;"/>06/04/2017 3:15:32PM</label>
-                                    <br>
-                                      <label id="Status" style="float:left; ">Status :</label>
-                                    <select name="Status" id = "Status1" style=" width: 100px; margin-left:55px;" >
-                                        <option value="" </option>
-                                    </select>
-                                   
-                                  
-                                    <input type ="button" value ="Save" id="Tasksave" style="width:75px; float:right;"/>
-
-                                    </p>
-                                </div>
-                        </form>
-                    </div>
-
+<!--                                        <div id="login-box" class="login-popup" style="width:40%; height:620px " >
+                                            <a href="#" class="close"><img src="close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+                                            <form method="post" class="signin" action="#">
+                    
+                                                <div id="tabs" style="width:98%;  height:599px; float:right;">
+                                                    <ul>
+                                                        <li><a href="#tabs-1">Details</a></li>
+                                                        <li><a href="#tabs-2">Notes</a></li>
+                                                        <li><a href="#tabs-3">People</a></li>
+                                                        <li><a href="#tabs-4">Images</a></li>
+                                                    </ul>
+                    
+                                                    <div id="tabs-1">
+                                                        <p>
+                                                        <div style="float: Left; text-align: left;">
+                                                            Task :  <label id="TaskId"/>0</label>
+                                                        </div>     
+                                                        <br>
+                                                        <label id="TaskFromLabel" style="float:left">Task From :</label>
+                                                        <select name="FromUser" id = "FromUser1" style=" margin-left: 50px; width: 180px" >
+                                                            <option value="" </option>
+                                                        </select>
+                                                        <select name="FromUser2" id = "FromUser3" style=" margin-left: 40px; width: 180px" >
+                                                            <option value="" </option>
+                                                        </select>
+                                                        <br>
+                                                        <div style="float: right; text-align: right; margin-right:50px;">
+                                                            Task Created :  <label id="TaskCreated"/>06/04/2017 3:15:32PM</label>
+                                                        </div> 
+                                                        <br/>
+                                                        Task Summary :<label> <input type="text" id="Tasksumm" style="margin-left:15px" /> </label> 
+                                                        <br>
+                                                        IR Nr : <label> <input type="text" id="IRNr" style="width: 60px; margin-left:83px" /> </label> 
+                                                        <input type="checkbox" id="RequestIR" value="ReqIR">Request IR Nr
+                                                        <br>
+                                                        <label><input type="checkbox" id="RecurTask" value="Recur" onclick="selectOnlyThis(this.id)">Recurrence</label>
+                                                        <br>
+                                                        <label><input type="checkbox" id="RecurTask" value="Recur" onclick="selectOnlyThis(this.id)">Every Day</label>
+                                                        <label><input type="checkbox" id="RecurTask" value="Recur" onclick="selectOnlyThis(this.id)">Day</label>
+                                                        <label> <input type="text" id="RecurMonth" style="width:35px;" /> of every month.</label> 
+                                                        <label><input type="checkbox" id="RecurTask" value="Recur" onclick="selectOnlyThis(this.id)">Weekly</label>
+                                                        <br>
+                                                        <label><input type="checkbox" id="RecurTask" value="Recur" onclick="selectOnlyThis(this.id)">Every Weekday</label>
+                                                        <label><input type="checkbox" id="RecurTask" value="Recur" onclick="selectOnlyThis(this.id)">last day of every month</label>
+                                                        <label><input type="checkbox" id="RecurTask" value="Recur" onclick="selectOnlyThis(this.id)">Monthly</label>
+                                                        <br>
+                                                        <label><input type="checkbox" id="RecurTask" value="Recur" onclick="selectOnlyThis(this.id)">Every Day Except Sunday</label>
+                                                        <label><input type="checkbox" id="RecurTask" value="Recur" onclick="selectOnlyThis(this.id)">Every</label>
+                                                        <select name="RecurDay" id = "RecurDay1" style=" margin-left: 10px; width: 80px;" >
+                                                            <option value="" </option>
+                                                        </select>
+                                                        <br>
+                                                        <label><input type="checkbox" id="RecurTask" value="Recur" onclick="selectOnlyThis(this.id)">Every</label>
+                                                        <label> <input type="text" id="RecurMonth" style="width:55px;" /> Months</label> 
+                                                        <br>
+                                                        <label> <textarea name="notes" id="tasknotes" cols="60" rows="5" ></textarea> </label>    
+                                                        <br>
+                                                        <label id="linkedTasks" style="color:blue; float: right; text-align: right; margin-right:100px;"/>Linked Tasks</label>
+                                                  
+                                                        Start Date :<label> <input type="text" id = "startdate" style="margin-left:27px;"/> </label> 
+                                                        <br> 
+                                                        Review Date :<label> <input type="text" id = "Reviewdate" style="margin-left:10px"/> </label>
+                                                        <br>
+                                                        End Date :<label> <input type="text" id = "enddate" style="margin-left:32px"/> </label>
+                                                            <script>
+                                                            var myCalendar1 = new dhtmlXCalendarObject(["startdate"]);
+                                                            myCalendar1.setDateFormat("%Y/%m/%d %H:%i");
+                                                        </script>
+                                                        <script>
+                                                            var myCalendar2 = new dhtmlXCalendarObject(["Reviewdate"]);
+                                                            myCalendar2.setDateFormat("%Y/%m/%d %H:%i");
+                                                        </script>
+                                                        <script>
+                                                            var myCalendar3 = new dhtmlXCalendarObject(["enddate"]);
+                                                            myCalendar3.setDateFormat("%Y/%m/%d %H:%i");
+                                                        </script>
+                                                        <br>
+                                                        <label id="Priority" style="float:left; ">Priority :</label>
+                                                        <select name="Priority" id = "Priority1" style=" width: 100px; margin-left:50px;" >
+                                                            <option value="" </option>
+                                                        </select>
+                                                        <label id="TaskDate" style=" margin-left:30px;"/>06/04/2017 3:15:32PM</label>
+                                                        <br>
+                                                          <label id="Status" style="float:left; ">Status :</label>
+                                                        <select name="Status" id = "Status1" style=" width: 100px; margin-left:55px;" >
+                                                            <option value="" </option>
+                                                        </select>
+                                                       
+                                                      
+                                                        <input type ="button" value ="Save" id="Tasksave" style="width:75px; float:right;"/>
+                    
+                                                        </p>
+                                                    </div>
+                                            </form>
+                                        </div>
+                    
+                                    </div>-->
                 </div>
-            </div>
 
-            <div style="margin-bottom: 20px;">
-            </div>
-            <div id="calendarHere" style="position:relative;height:320px; float:right;margin-right: 250px"></div>
+                <div style="margin-bottom: 20px;">
+                </div>
+                <div id="calendarHere" style="position:relative;height:320px; float:right;margin-right: 250px"></div>
 
-            <a id="tablediv" href="#login-box" class="login-window" >
+                <a id="tablediv"  class="login-window" >
 
-                <table cellspacing="0" id="countrytable" margin-right:20px > 
-                    <thead>
-                        <tr> 
-                            <th style="min-width:50px; width:50px;" scope="col">ID</th> 
-                            <th style="min-width:200px; width:200px;" scope="col">To</th> 
-                            <th style="min-width:220px; width:220px;"scope="col">Description</th> 
-                            <th style="min-width:130px; width:130px;" scope="col">Review Date</th> 
-                            <th style="min-width:130px; width:130px;" scope="col">End Date</th> 
-                            <th style="min-width:90px; width:90px;"scope="col">Status</th> 
-                            <th style="min-width:130px; width:130px;" scope="col">Start Date</th> 
-                        </tr>
-                    </thead>      
-                    <tbody>
-                    <p style="color: red;">${errorString}</p>
+                    <table cellspacing="0" id="countrytable" margin-right:20px > 
+                        <thead>
+                            <tr> 
+                                <th style="min-width:50px; width:50px;" scope="col">ID</th> 
+                                <th style="min-width:200px; width:200px;" scope="col">To</th> 
+                                <th style="min-width:220px; width:220px;"scope="col">Description</th> 
+                                <th style="min-width:130px; width:130px;" scope="col">Review Date</th> 
+                                <th style="min-width:130px; width:130px;" scope="col">End Date</th> 
+                                <th style="min-width:90px; width:90px;"scope="col">Status</th> 
+                                <th style="min-width:130px; width:130px;" scope="col">Start Date</th> 
+                            </tr>
+                        </thead>      
+                        <tbody>
+                        <p style="color: red;">${errorString}</p>
 
-                </tbody>
+                    </tbody>
 
-            </table>
-        </a>
+                </table>
+            </a>
 
-        <br>
-        <br>
-        <br>
-        <script>
-            $('table').on('scroll', function () {
-                $("table > *").width($("table").width() + $("table").scrollLeft());
-            });
-        </script>
-
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('a.login-window').click(function () {
-
-                    // Getting the variable's value from a link 
-                    var loginBox = $(this).attr('href');
-
-                    //Fade in the Popup and add close button
-                    $(loginBox).fadeIn(300);
-
-                    //Set the center alignment padding + border
-                    var popMargTop = ($(loginBox).height() + 24) / 2;
-                    var popMargLeft = ($(loginBox).width() + 24) / 2;
-
-                    $(loginBox).css({
-                        'margin-top': -popMargTop,
-                        'margin-left': -popMargLeft
-                    });
-
-                    // Add the mask to body
-                    $('body').append('<div id="mask"></div>');
-                    $('#mask').fadeIn(300);
-                    // update diary settings
-                    var count = $("#dsee1 option").length;
-                    if (count.valueOf() < 3) {
-
-                    }
-
-
-
-
-
-                    return false;
-
+            <br>
+            <br>
+            <br>
+            <script>
+                $('table').on('scroll', function () {
+                    $("table > *").width($("table").width() + $("table").scrollLeft());
                 });
+            </script>
 
-                // When clicking on the button close or the mask layer the popup closed
-                $('a.close, #mask').click(function () {
-                    $('#mask , .login-popup').fadeOut(300, function () {
-                        $('#mask').remove();
-                    });
-                    return false;
-                });
-
-                $('#diarySettClose').click(function () {
-                    $('#mask , .login-popup').fadeOut(300, function () {
-                        $('#mask').remove();
-                    });
-                    return false;
-                });
-            });
-        </script>
+            <!--        <script type="text/javascript">
+                        $(document).ready(function () {
+                            $('a.login-window').click(function () {
+            
+                                // Getting the variable's value from a link 
+                                var loginBox = $(this).attr('href');
+            
+                                //Fade in the Popup and add close button
+                                $(loginBox).fadeIn(300);
+            
+                                //Set the center alignment padding + border
+                                var popMargTop = ($(loginBox).height() + 24) / 2;
+                                var popMargLeft = ($(loginBox).width() + 24) / 2;
+            
+                                $(loginBox).css({
+                                    'margin-top': -popMargTop,
+                                    'margin-left': -popMargLeft
+                                });
+            
+                                // Add the mask to body
+                                $('body').append('<div id="mask"></div>');
+                                $('#mask').fadeIn(300);
+                                // update diary settings
+                                var count = $("#dsee1 option").length;
+                                if (count.valueOf() < 3) {
+            
+                                }
+            
+            
+            
+            
+            
+                                return false;
+            
+                            });
+            
+                            // When clicking on the button close or the mask layer the popup closed
+                            $('a.close, #mask').click(function () {
+                                $('#mask , .login-popup').fadeOut(300, function () {
+                                    $('#mask').remove();
+                                });
+                                return false;
+                            });
+            
+                            $('#diarySettClose').click(function () {
+                                $('#mask , .login-popup').fadeOut(300, function () {
+                                    $('#mask').remove();
+                                });
+                                return false;
+                            });
+                        });
+                    </script>-->
 
 
 
