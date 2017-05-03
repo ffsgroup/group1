@@ -31,10 +31,12 @@ public class DiaryDetail extends HttpServlet {
     }
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+              
 		Connection conn = MyUtils.getStoredConnection(request);
                 HttpSession session = request.getSession();
                 UserAccount loginedUser = MyUtils.getLoginedUser(session);
                 String tranid = request.getParameter("tranid");   
+                 System.out.println("DiaryDetail " + tranid);
 		ArrayList<Diary> diary =new ArrayList<Diary>();
                 try {
 		diary=DBUtils.getOneDiary(conn,loginedUser, tranid);

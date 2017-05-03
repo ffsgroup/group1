@@ -46,7 +46,7 @@ public class TaskUtils extends HttpServlet {
      */
     
     public static ArrayList<Tasks> getTaskOne(Connection conn, String Username, String Tranid) throws SQLException {
-        
+        System.out.println("getTaskOne " + Tranid);
          Date date = new Date();
             Calendar cal = Calendar.getInstance();
 
@@ -70,16 +70,13 @@ public class TaskUtils extends HttpServlet {
              Date date1 = new Date();
             Calendar cal1 = new GregorianCalendar();
 
-            System.out.println("1 "+rs.getString("tranid"));
-            System.out.println("3 "+rs.getTimestamp("revdate"));
             if (rs.getTimestamp("revdate")== null) {
              cal1.setTime(rs.getTimestamp("startdate"));
         }
            else
            {
             cal1.setTime(rs.getTimestamp("revdate"));       
-                   }
-               System.out.println("2 "+rs.getString("tranid"));
+                   }            
             String year1 = Integer.toString(cal1.get(Calendar.YEAR));
             String month1 = Integer.toString(cal1.get(Calendar.MONTH) + 1);
             String day1 = Integer.toString(cal1.get(Calendar.DAY_OF_MONTH));
