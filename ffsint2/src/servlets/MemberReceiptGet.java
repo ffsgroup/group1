@@ -14,7 +14,9 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
+import ffsbeans.Member;
 import ffsbeans.UserAccount;
+import ffsutils.DBUtils;
 import ffsbeans.MemberRec;
 import ffsutils.MyUtils;
 import ffsutils.MemUtils;
@@ -22,29 +24,30 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/MemberGetRec")
-public class MemberGetRec extends HttpServlet {
+@WebServlet("/MemeberReceiptGet")
+public class MemberReceiptGet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public MemberGetRec() {
+    public MemberReceiptGet() {
         
     }
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Connection conn = MyUtils.getStoredConnection(request);
                 HttpSession session = request.getSession();
-                 String thisMember = request.getParameter("thisRec");                 
+                
+                 String thisMember = request.getParameter("thisMember");                 
+                 System.out.println("MemberReceiptGet " + thisMember);
                  UserAccount loginedUser = MyUtils.getLoginedUser(session);
-                 System.out.println("MemberGetRec " + thisMember);
-		ArrayList<MemberRec> memberrecs =new ArrayList<MemberRec>();
+		ArrayList<MemberRec> memberrec =new ArrayList<MemberRec>();
                 try {
-		memberrecs=MemUtils.getMemberRec(conn, thisMember, loginedUser.getUserName());
+		memberrec=MemUtils.getMemberRec(conn, thisMember, loginedUser.getUserName());
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();
         }
 		Gson gson = new Gson();
-		JsonElement element = gson.toJsonTree(memberrecs, new TypeToken<List<MemberRec>>() {}.getType());
+		JsonElement element = gson.toJsonTree(memberrec, new TypeToken<List<Member>>() {}.getType());
 
 		JsonArray jsonArray = element.getAsJsonArray();
 		response.setContentType("application/json");
