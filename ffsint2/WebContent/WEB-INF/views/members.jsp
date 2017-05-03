@@ -206,24 +206,24 @@
                     <label style="margin-left:100px"> Cancel Code <select id="cancode" style="width:100px; margin-left:20px;">
                         <option value="0"></option>
                         <option value="01 Insufficient Funds One">01 Insufficient Funds One</option>
-                        <option value="2">02 Payment Stopped By You</option> 
-                        <option value="3">03 Account Closed</option> 
-                        <option value="4">04 Rejected By Bank - Incorrect Details</option> 
-                        <option value="5">05 Debits Not Allowed To Account</option> 
-                        <option value="6">06 Account Frozen</option> 
-                        <option value="7">07 No Authority To Debit</option> 
-                        <option value="8">08 Account Effects Not Cleared</option> 
-                        <option value="9">09 Cancellation From Branch</option> 
-                        <option value="10">10 Cancellation From Client</option> 
-                        <option value="11">11 Insufficient Funds Two</option> 
-                        <option value="12">12 Main Member Deceased</option> 
-                        <option value="13">13 Amendmend Cancellation</option> 
-                        <option value="14">14 No Such Account</option> 
-                        <option value="15">17 Cancelled By Goverment</option> 
-                        <option value="16">29 Prev. Stopped Via Advice</option> 
-                        <option value="17">34 Account Holder Deceased</option> 
+                        <option value="02 Payment Stopped By You">02 Payment Stopped By You</option> 
+                        <option value="03 Account Closed">03 Account Closed</option> 
+                        <option value="04 Rejected By Bank - Incorrect Details">04 Rejected By Bank - Incorrect Details</option> 
+                        <option value="05 Debits Not Allowed To Account">05 Debits Not Allowed To Account</option> 
+                        <option value="06 Account Frozen">06 Account Frozen</option> 
+                        <option value="07 No Authority To Debit">07 No Authority To Debit</option> 
+                        <option value="08 Account Effects Not Cleared">08 Account Effects Not Cleared</option> 
+                        <option value="09 Cancellation From Branch">09 Cancellation From Branch</option> 
+                        <option value="10 Cancellation From Client">10 Cancellation From Client</option> 
+                        <option value="11 Insufficient Funds Two">11 Insufficient Funds Two</option> 
+                        <option value="12 Main Member Deceased">12 Main Member Deceased</option> 
+                        <option value="13 Amendmend Cancellation">13 Amendmend Cancellation</option> 
+                        <option value="14 No Such Account">14 No Such Account</option> 
+                        <option value="17 Cancelled By Goverment">17 Cancelled By Goverment</option> 
+                        <option value="29 Prev. Stopped Via Advice">29 Prev. Stopped Via Advice</option> 
+                        <option value="34 Account Holder Deceased">34 Account Holder Deceased</option> 
                         <option value="35 Cancelled By Head Office">35 Cancelled By Head Office</option> 
-                        <option value="19">46 Acc Transfer ( Within Bank )</option> 
+                        <option value="46 Acc Transfer ( Within Bank )">46 Acc Transfer ( Within Bank )</option> 
                     </select> </label>
                 <br>
                 <label> Gender <select id="memgend" style="width:85px; margin-left:28px;"><option value="0">Select</option> <option value="1">Male</option><option value="2">Female</option></select> </label>
