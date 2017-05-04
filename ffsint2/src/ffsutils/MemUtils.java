@@ -1,14 +1,19 @@
 package ffsutils;
 
-import ffsbeans.Generics;
+
+import ffsbeans.MemberRec;
+import ffsbeans.Member;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import ffsbeans.MemberRec;
-import ffsbeans.MemReceipt;
+import ffsbeans.Generics;
+import java.util.Date;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import java.sql.Connection;
-import ffsbeans.Member;
+
 
 public class MemUtils {
     
@@ -126,8 +131,25 @@ public class MemUtils {
             members.setsex(rs.getString("sex"));
             members.setemail(rs.getString("email"));
             members.setrecruiter(rs.getString("recruiter"));
-            members.setrecruitdate(rs.getString("recruitdate"));
-            members.setrecruitdate(rs.getString("recruitdate"));
+//            members.setrecruitdate(rs.getString("recruitdate"));
+            Date date = new Date();
+            Calendar calendar = new GregorianCalendar();
+
+            calendar.setTime(rs.getTimestamp("recruitdate"));
+            String year = Integer.toString(calendar.get(Calendar.YEAR));
+            String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
+            String day = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH));
+            int length = month.length();
+            if (length == 1) {
+                month = "0" + month;
+            }
+            int length2 = day.length();
+            if (length2 == 1) {
+                day = "0" + day;
+            }
+            String thistime = year + "/" + month + "/" + day ;
+           members.setrecruitdate(thistime);
+            
             members.settroustat(rs.getString("troustat"));
             members.setgebdat(rs.getString("gebdat"));
             members.setaanstdat(rs.getString("aanstdat"));
