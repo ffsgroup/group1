@@ -131,20 +131,29 @@
             <link rel="stylesheet" type="text/css" href="resources/dhtmlxcalendar_1.css"/>
 
             <script>
-                var myCalendar;
+                 var myCalendar;
                 function doOnLoad() {
                     myCalendar = new dhtmlXCalendarObject("calendarHere");
                     //		myCalendar.setSkin("material");
-                    myCalendar.setDate(new Date(2016, 7, 7, 16, 0));
+                  //  myCalendar.setDate(new Date(2016, 7, 7, 16, 0));
+                  myCalendar.setDate(new Date);
                     myCalendar.show();
                     myCalendar.hideTime();
                     myCalendar.showToday();
-                    myCalendar.setHolidays(["2012-04-28", "2012-05-09", "2012-05-01", "2012-05-27", "2012-05-21", "2012-05-28", "2012-06-03", "2012-06-04"]);
+                    myCalendar.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16"]);
+                    myCalendar.setTooltip("2017-01-01", "New Year's Day", true, true);
+                    myCalendar.setTooltip("2017-01-02", "Public HoliDay", true, true);
+                    myCalendar.setTooltip("2017-03-21", "Human Rights Day", true, true);
+                    myCalendar.setTooltip("2017-04-14", "Good Friday", true, true);
+                    myCalendar.setTooltip("2017-04-17", "Family Day", true, true);
+                    myCalendar.setTooltip("2017-04-27", "Freedom Day", true, true);
+                    myCalendar.setTooltip("2017-05-01", "Workers Day", true, true);
+                    myCalendar.setTooltip("2017-06-16", "Youth Day", true, true);
                     //  myCalendar.setInsensitiveRange(null, "2012-05-04");
-                    myCalendar._drawMonth(new Date(2016, 7, 1));
-                    myCalendar.attachEvent("onClick", function (side, d) {
-                        //	writeLog("onClick event called, "+side+" calendar, date "+myCalendar.getFormatedDate(null,d));
-                    });
+                   // myCalendar._drawMonth(new Date(2016, 7, 1));
+                    myCalendar._drawMonth(new Date);
+//                    myCalendar.attachEvent("onClick", function (side, d) {
+//                    });
                 }
             </script>
             
