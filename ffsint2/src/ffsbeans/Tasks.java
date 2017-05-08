@@ -527,7 +527,7 @@ public class Tasks {
 	   public void setTaskuser(String taskuser) {
 	       this.taskuser = taskuser;
 	   }
-	   public String getsTaskto1() {
+	   public String getTaskto1() {
 	       return   taskto1;
 	   }
 	 
@@ -626,7 +626,7 @@ public class Tasks {
 	       return taskto13;
 	   }
 	 
-	   public void setTtaskto13(String  taskto13) {
+	   public void settaskto13(String  taskto13) {
 	       this.taskto13 =  taskto13;
 	   }               
            
@@ -816,7 +816,7 @@ public class Tasks {
 	       return taskstat9;
 	   }
 	 
-	   public void setcomm(String taskstat9) {
+	   public void settaskstat9(String taskstat9) {
 	       this.taskstat9 = taskstat9;
 	   }               
            

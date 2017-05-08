@@ -63,7 +63,7 @@
                 <br>
                 <label id="Recurlabel1"><input type="checkbox" id="Recureveryday" value="Recur" >Every Day</label>
                 <label id="Recurlabel2"><input type="checkbox" id="Recurday" value="Recur" style="margin-left:68px" >Day</label>
-                <label id="Recurlabel3"> <input type="text" id="Recurofeverymonth" style="width:35px;"  /> of every month.</label> 
+                <label id="Recurlabel3"> <input type="text" id="Recurofeverymonth" style="width:35px;" value=${recurday}  /> of every month.</label> 
                 <label id="Recurlabel4"><input type="checkbox" id="RecurWeekly" value="Recur" style="margin-left:30px" >Weekly</label>
                 <br>
                 <label id="Recurlabel5"><input type="checkbox" id="Recureveryweekday" value="Recur" >Every Weekday</label>
@@ -74,15 +74,17 @@
                 <label id="Recurlabel9"><input type="checkbox" id="Recurevery" value="Recur" style="margin-left:30px" >Every</label>
                 <select name="RecurDay" id = "RecurDay1" style=" margin-left: 10px; width: 110px;" >
                     <option value="0"></option>
-                    <option value="1">Monday</option>
-                    <option value="2">Tuesday</option>
-                    <option value="3">Wednesday</option>
-                    <option value="4">Thursday</option>
-                    <option value="5">Friday</option>
-                    <option value="6">Saturday</option>
-                    <option value="7">Sunday</option>
-                </select>
-
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                    <option value="Sunday">Sunday</option>
+                </select> 
+                <script>
+                    document.getElementById("RecurDay1").value = ${recdayofweek};
+                </script>
 
                 <br>
                 <label id="Recurlabel10"><input type="checkbox" id="Recureverymonth" value="Recur" >Every</label>
@@ -149,6 +151,88 @@
 
                     }
                 </script>
+                <script>
+                    var a = ${recuri}
+                    if (a == "1") {
+                        document.getElementById("Recurmonthly").checked = true;
+                    } else
+                    {
+                        document.getElementById("Recurmonthly").checked = false;
+                    }
+                </script>
+                <script>
+                    var a = ${recurh}
+                    if (a == "1") {
+                        document.getElementById("RecurWeekly").checked = true;
+                    } else
+                    {
+                        document.getElementById("RecurWeekly").checked = false;
+                    }
+                </script>
+                <script>
+                    var a = ${recure}
+                    if (a == "1") {
+                        document.getElementById("Recurlastday").checked = true;
+                    } else
+                    {
+                        document.getElementById("Recurlastday").checked = false;
+                    }
+                </script>
+                <script>
+                    var a = ${recurg}
+                    if (a == "1") {
+                        document.getElementById("Recureverymonth").checked = true;
+                    } else
+                    {
+                        document.getElementById("Recureverymonth").checked = false;
+                    }
+                </script>
+                <script>
+                    var a = ${recurc}
+                    if (a == "1") {
+                        document.getElementById("Recurexceptsun").checked = true;
+                    } else
+                    {
+                        document.getElementById("Recurexceptsun").checked = false;
+                    }
+                </script>
+                <script>
+                    var a = ${recurb}
+                    if (a == "1") {
+                        document.getElementById("Recureveryweekday").checked = true;
+                    } else
+                    {
+                        document.getElementById("Recureveryweekday").checked = false;
+                    }
+                </script>
+                <script>
+                    var a = ${recura}
+                    if (a == "1") {
+                        document.getElementById("Recureveryday").checked = true;
+                    } else
+                    {
+                        document.getElementById("Recureveryday").checked = false;
+                    }
+                </script>
+                <script>
+                    var a = ${recurf}
+                    if (a == "1") {
+                        document.getElementById("Recurevery").checked = true;
+                    } else
+                    {
+                        document.getElementById("Recurevery").checked = false;
+                    }
+                </script>
+                <script>
+                    var a = ${recurd}
+                    if (a == "1") {
+                        document.getElementById("Recurday").checked = true;
+                    } else
+                    {
+                        document.getElementById("Recurday").checked = false;
+                    }
+                </script>
+
                 <script>
 
                     if (document.getElementById("taskfull").value.length > 0) {
@@ -223,8 +307,126 @@
                     <input type ="button" value ="Update" id="Taskupdatecomm" style="width:75px;  float: right; margin-right: 20px"/>
 
             </div>
+            <div id="tabs-3">
+                <form method="post" class="signin" action="#">
+                    <br>
+                    People assigned to this task
 
+                    <br>
+                    <br>
+                    <select name="dseel" id = "dsee1" style="width:170px">
+                        <option value=${taskto1}>${taskto1}</option>
+                    </select>
+                    
+                    <label id="taskstat1" style=" margin-left:50px;"/>${taskstat1}</label>
+                
+                <script>
+                    a
+                    document.getElementById("taskstat1").value.length
+                    if( document.getElementById("taskstat1").value.length < 3){
+                     document.getElementById("taskstat1").value = "Not Started"
+                    }
+                    </script>
+                    <label id="taskstatdate1" style=" margin-left:50px;"/>${statusday}</label>
+                    <br>
+                    <select name="dsee2" id = "dsee2" style="width:170px">
+                        <option value=${taskto2}>${taskto2}</option>
+                    </select>
+                    <label id="taskstat2" style=" margin-left:50px;"/>${taskstat2}</label>
+                    <label id="taskstatdate2" style=" margin-left:50px;"/>${statusday}</label>
+                    <br>
+                    <select name="dsee3" id = "dsee3" style="width:170px">
+                        <option value=${taskto3}>${taskto3}</option>
+                    </select>           
+                    <label id="taskstat3" style=" margin-left:50px;"/>${taskstat3}</label>
+                    <label id="taskstatdate3" style=" margin-left:50px;"/>${statusday}</label>
+                    <br>
+                    <select name="dsee4" id = "dsee4" style="width:170px">
+                        <option value=${taskto4}>${taskto4}</option>
+                    </select>           
+                    <label id="taskstat4" style=" margin-left:50px;"/>${taskstat4}</label>
+                    <label id="taskstatdate4" style=" margin-left:50px;"/>${statusday}</label>
+                    <br>
+                    <select name="dsee5" id = "dsee5" style="width:170px">
+                        <option value=${taskto5}>${taskto5}</option>
+                    </select>           
+                    <label id="taskstat5" style=" margin-left:50px;"/>${taskstat5}</label>
+                    <label id="taskstatdate5" style=" margin-left:50px;"/>${statusday}</label>
+                    <br>
+                    <select name="dsee6" id = "dsee6" style="width:170px">
+                        <option value=${taskto6}>${taskto6}</option>
+                    </select>           
+                    <label id="taskstat6" style=" margin-left:50px;"/>${taskstat6}</label>
+                    <label id="taskstatdate6" style=" margin-left:50px;"/>${statusday}</label>
+                    <br>
+                    <select name="dsee7" id = "dsee7" style="width:170px">
+                        <option value=${taskto7}>${taskto7}</option>
+                    </select> 
+                    <label id="taskstat7" style=" margin-left:50px;"/>${taskstat7}</label>
+                    <label id="taskstatdate7" style=" margin-left:50px;"/>${statusday}</label>
+                    <br>
+                    <select name="dsee8" id = "dsee8" style="width:170px">
+                        <option value=${taskto8}>${taskto8}</option>
+                    </select>           
+                    <label id="taskstat8" style=" margin-left:50px;"/>${taskstat8}</label>
+                    <label id="taskstatdate8" style=" margin-left:50px;"/>${statusday}</label>
+                    <br>
+                    <select name="dsee9" id = "dsee9" style="width:170px">
+                        <option value=${taskto9}>${taskto9}</option>
+                    </select>           
+                    <label id="taskstat9" style=" margin-left:50px;"/>${taskstat9}</label>
+                    <label id="taskstatdate9" style=" margin-left:50px;"/>${statusday}</label>
+                    <br>
+                    <select name="dsee10" id = "dsee10" style="width:170px">
+                        <option value=${taskto10}>${taskto10}</option>
+                    </select> 
+                    <label id="taskstat10" style=" margin-left:50px;"/>${taskstat10}</label>
+                    <label id="taskstatdate10" style=" margin-left:50px;"/>${statusday}</label>
+                    <br>
+                    <select name="dsee11" id = "dsee11" style="width:170px">
+                        <option value=${taskto11}>${taskto11}</option>
+                    </select>           
+                    <label id="taskstat11" style=" margin-left:50px;"/>${taskstat11}</label>
+                    <label id="taskstatdate11" style=" margin-left:50px;"/>${statusday}</label>
+                    <br>
+                    <select name="dsee12" id = "dsee12" style="width:170px">
+                        <option value=${taskto12}>${taskto12}</option>
+                    </select>           
+                    <label id="taskstat12" style=" margin-left:50px;"/>${taskstat12}</label>
+                    <label id="taskstatdate12" style=" margin-left:50px;"/>${statusday}</label>
+                    <br>
+                    <select name="dsee13" id = "dsee13" style="width:170px">
+                        <option value=${taskto13}>${taskto13}</option>
+                    </select>           
+                    <label id="taskstat13" style=" margin-left:50px;"/>${taskstat13}</label>
+                    <label id="taskstatdate13" style=" margin-left:50px;"/>${statusday}</label>
+                    <br>
+                    <select name="dsee14" id = "dsee14" style="width:170px">
+                        <option value=${taskto14}>${taskto14}</option>
+                    </select>           
+                    <label id="taskstat14" style=" margin-left:50px;"/>${taskstat14}</label>
+                    <label id="taskstatdate14" style=" margin-left:50px;"/>${statusday}</label>
+                    <br>
+                    <select name="dsee15" id = "dsee15" style="width:170px">
+                        <option value=${taskto15}>${taskto15}</option>
+                    </select> 
+                    <label id="taskstat15" style=" margin-left:50px;"/>${taskstat15}</label>
+                    <label id="taskstatdate15" style=" margin-left:50px;"/>${statusday}</label>
+                    <br/>            
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                   
 
+                    <input type ="button" value ="Close" id="Taskpeoplecls" style="width:75px; float: right"/>
+                    <input type ="button" value ="Update" id="Taskupdatepeople" style="width:75px;  float: right; margin-right: 5px"/>
+
+            </div>
         </div>
 
     </body>

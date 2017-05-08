@@ -203,8 +203,47 @@ public class TaskUtils extends HttpServlet {
             task.setrecurgam(rs.getString("recurgam"));
             task.setRecur(rs.getString("recur"));
             task.setRecura(rs.getString("recura"));
-             task.setRecura(rs.getString("recurday"));
-            
+            task.setRecurday(rs.getString("recurday"));
+            task.setRecurd(rs.getString("recurd"));
+            task.setRecurf(rs.getString("recurf"));
+            task.setrecdayofweek(rs.getString("recdayofweek"));
+            task.setRecurb(rs.getString("recurb"));
+            task.setRecurc(rs.getString("recurc"));
+            task.setrecurg(rs.getString("recurg"));
+            task.setRecure(rs.getString("recure"));
+            task.setrecurh(rs.getString("recurh"));
+            task.setrecuri(rs.getString("recuri"));
+            task.setTaskto1(rs.getString("taskto1"));
+            task.setTaskto2(rs.getString("taskto2"));
+            task.setTaskto3(rs.getString("taskto3"));
+            task.setTaskto4(rs.getString("taskto4"));
+            task.setTaskto5(rs.getString("taskto5"));
+            task.setTaskto6(rs.getString("taskto6"));
+            task.setTaskto7(rs.getString("taskto7"));
+            task.setTaskto8(rs.getString("taskto8"));
+            task.setTaskto9(rs.getString("taskto9"));
+            task.setTaskto10(rs.getString("taskto10"));
+            task.setTaskto11(rs.getString("taskto11"));
+            task.setTaskto12(rs.getString("taskto12"));
+            task.settaskto13(rs.getString("taskto13"));
+            task.setTaskto14(rs.getString("taskto14"));
+            task.setTaskto15(rs.getString("taskto15"));
+            task.setTaskstat1(rs.getString("taskstat1"));
+            task.setTaskstat2(rs.getString("taskstat2"));
+            task.setTaskstat3(rs.getString("taskstat3"));
+            task.setTaskstat4(rs.getString("taskstat4"));
+            task.setTaskstat5(rs.getString("taskstat5"));
+            task.setTaskstat6(rs.getString("taskstat6"));
+            task.setTaskstat7(rs.getString("taskstat7"));
+            task.setTaskstat8(rs.getString("taskstat8"));
+            task.setTaskto9(rs.getString("taskstat9"));
+            task.setTaskstat10(rs.getString("taskstat10"));
+            task.setTaskstat11(rs.getString("taskstat11"));
+            task.setTaskstat12(rs.getString("taskstat12"));
+            task.setTaskstat13(rs.getString("taskstat13"));
+            task.setTaskstat14(rs.getString("taskstat14"));
+            task.setTaskstat15(rs.getString("taskstat15"));
+
             list.add(task);
 
         }
