@@ -203,6 +203,7 @@ public class TaskUtils extends HttpServlet {
             task.setrecurgam(rs.getString("recurgam"));
             task.setRecur(rs.getString("recur"));
             task.setRecura(rs.getString("recura"));
+             task.setRecura(rs.getString("recurday"));
             
             list.add(task);
 

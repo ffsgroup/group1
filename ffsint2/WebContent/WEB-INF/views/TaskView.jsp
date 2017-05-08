@@ -14,7 +14,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Task</title>
 
-        
+
         <script>
             $(function () {
                 $("#tabs").tabs();
@@ -22,9 +22,9 @@
         </script> 
     </head>
     <body>
-        
-     
-        
+
+
+
         <div id="tabs" style="width:40%;  height:670px; margin-left: 40px;">
             <ul>
                 <li><a href="#tabs-1">Details</a></li>
@@ -82,29 +82,73 @@
                     <option value="6">Saturday</option>
                     <option value="7">Sunday</option>
                 </select>
-              ${recur}
+
+
+                <br>
+                <label id="Recurlabel10"><input type="checkbox" id="Recureverymonth" value="Recur" >Every</label>
+                <label id="Recurlabel11"> <input type="text" id="RecurMonths" style="width:55px;" value=${recureverymonths} /> Months</label> 
+                <br>
+                <label> <textarea name="notes" id="taskfull" style="width: 575px; height: 205px" cols="60" rows="5" >${taskfull}</textarea></label>    
+                <br>
                 <script>
 //                    document.getElementById("Recur").checked = true;
                     var a = ${recur}
-                    if(a == "1"){
+                    if (a == "1") {
                         document.getElementById("Recur").checked = true;
-                         $("#Recureveryday").css("visibility", "visible");
-                           $("#Recurlabel1").css("visibility", "visible");
-                    }
-                    else
+                        $("#Recureveryday").css("visibility", "visible");
+                        $("#Recurlabel1").css("visibility", "visible");
+                        $("#Recurday").css("visibility", "visible");
+                        $("#Recurlabel2").css("visibility", "visible");
+                        $("#Recurofeverymonth").css("visibility", "visible");
+                        $("#Recurlabel3").css("visibility", "visible");
+                        $("#RecurWeekly").css("visibility", "visible");
+                        $("#Recurlabel4").css("visibility", "visible");
+                        $("#Recureveryweekday").css("visibility", "visible");
+                        $("#Recurlabel5").css("visibility", "visible");
+                        $("#Recurlastday").css("visibility", "visible");
+                        $("#Recurlabel6").css("visibility", "visible");
+                        $("#Recurmonthly").css("visibility", "visible");
+                        $("#Recurlabel7").css("visibility", "visible");
+                        $("#Recurexceptsun").css("visibility", "visible");
+                        $("#Recurlabel8").css("visibility", "visible");
+                        $("#Recurevery").css("visibility", "visible");
+                        $("#Recurlabel9").css("visibility", "visible");
+                        $("#RecurDay1").css("visibility", "visible");
+                        $("#Recureverymonth").css("visibility", "visible");
+                        $("#Recurlabel10").css("visibility", "visible");
+                        $("#RecurMonths").css("visibility", "visible");
+                        $("#Recurlabel11").css("visibility", "visible");
+                    } else
                     {
-                         document.getElementById("Recur").checked = false;
-                          $("#Recureveryday").css("visibility", "hidden");
-                           $("#Recurlabel1").css("visibility", "hidden");
-                          
+                        document.getElementById("Recur").checked = false;
+                        $("#Recureveryday").css("visibility", "hidden");
+                        $("#Recurlabel1").css("visibility", "hidden");
+                        $("#Recurday").css("visibility", "hidden");
+                        $("#Recurlabel2").css("visibility", "hidden");
+                        $("#Recurofeverymonth").css("visibility", "hidden");
+                        $("#Recurlabel3").css("visibility", "hidden");
+                        $("#RecurWeekly").css("visibility", "hidden");
+                        $("#Recurlabel4").css("visibility", "hidden");
+                        $("#Recureveryweekday").css("visibility", "hidden");
+                        $("#Recurlabel5").css("visibility", "hidden");
+                        $("#Recurlastday").css("visibility", "hidden");
+                        $("#Recurlabel6").css("visibility", "hidden");
+                        $("#Recurmonthly").css("visibility", "hidden");
+                        $("#Recurlabel7").css("visibility", "hidden");
+                        $("#Recurexceptsun").css("visibility", "hidden");
+                        $("#Recurlabel8").css("visibility", "hidden");
+                        $("#Recurevery").css("visibility", "hidden");
+                        $("#Recurlabel9").css("visibility", "hidden");
+                        $("#RecurDay1").css("visibility", "hidden");
+                        $("#Recureverymonth").css("visibility", "hidden");
+                        $("#Recurlabel10").css("visibility", "hidden");
+                        $("#RecurMonths").css("visibility", "hidden");
+                        $("#Recurlabel11").css("visibility", "hidden");
+
+
+
                     }
-                    </script>
-                <br>
-                <label id="Recurlabel10"><input type="checkbox" id="Recurevery" value="Recur" >Every</label>
-                <label id="Recurlabel11"> <input type="text" id="RecurMonths" style="width:55px;" value=${recureverymonths} /> Months</label> 
-                <br>
-                <label id="Recurlabel12"> <textarea name="notes" id="taskfull" style="width: 575px; height: 205px" cols="60" rows="5" >${taskfull}</textarea></label>    
-                <br>
+                </script>
                 <script>
 
                     if (document.getElementById("taskfull").value.length > 0) {
@@ -120,16 +164,16 @@
                 <br>
                 End Date :<label> <input type="text" id = "enddate" style="margin-left:32px; width: 135px;" value= ${enddate}/></label>
                 <script>
-                        var myCalendar1 = new dhtmlXCalendarObject(["startdate"]);
-                        myCalendar1.setDateFormat("%Y/%m/%d %H:%i");
+                    var myCalendar1 = new dhtmlXCalendarObject(["startdate"]);
+                    myCalendar1.setDateFormat("%Y/%m/%d %H:%i");
                 </script>
                 <script>
-                        var myCalendar2 = new dhtmlXCalendarObject(["Reviewdate"]);
-                        myCalendar2.setDateFormat("%Y/%m/%d %H:%i");
+                    var myCalendar2 = new dhtmlXCalendarObject(["Reviewdate"]);
+                    myCalendar2.setDateFormat("%Y/%m/%d %H:%i");
                 </script>
                 <script>
-                        var myCalendar2 = new dhtmlXCalendarObject(["enddate"]);
-                        myCalendar2.setDateFormat("%Y/%m/%d %H:%i");
+                    var myCalendar2 = new dhtmlXCalendarObject(["enddate"]);
+                    myCalendar2.setDateFormat("%Y/%m/%d %H:%i");
                 </script>
                 <br>
                 <label id="Priority" style="float:left; ">Priority :</label>
@@ -142,7 +186,7 @@
 
                 </select>
                 <script>
-                            document.getElementById("Priority1").value = ${taskprior};
+                    document.getElementById("Priority1").value = ${taskprior};
                 </script>
                 <label id="Statusday" style=" margin-left:30px;"/>${statusday}</label>
                 <br>
@@ -156,7 +200,7 @@
                     <option value="Deferred">Deferred</option>
                 </select>
                 <script>
-                            document.getElementById("Status1").value = ${taskstat};
+                    document.getElementById("Status1").value = ${taskstat};
                 </script>
 
                 <input type ="button" value ="Save" id="Tasksave" style="width:75px; float:right;"/>
@@ -170,11 +214,11 @@
                     <br>
                     <script>
 
-                    if (document.getElementById("tasknotes").value.length > 0) {
+                        if (document.getElementById("tasknotes").value.length > 0) {
 
-                        document.getElementById("tasknotes").value = document.getElementById("tasknotes").value.replace(/~/g, "\n");
-                    }
-                </script>
+                            document.getElementById("tasknotes").value = document.getElementById("tasknotes").value.replace(/~/g, "\n");
+                        }
+                    </script>
                     <input type ="button" value ="Save" id="Tasksavecomm" style="width:75px; float: right"/>
                     <input type ="button" value ="Update" id="Taskupdatecomm" style="width:75px;  float: right; margin-right: 20px"/>
 
@@ -182,6 +226,6 @@
 
 
         </div>
-               
+
     </body>
 </html>
