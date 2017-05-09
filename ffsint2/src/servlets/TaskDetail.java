@@ -97,6 +97,22 @@ public class TaskDetail extends HttpServlet {
         String bb = "";
         String bc = "";
         String bd = "";
+        String be = "";
+        String bf = "";
+        String bh = "";
+        String bi = "";
+        String bj = "";
+        String bk = "";
+        String bl = "";
+        String bm = "";
+        String bn = "";
+        String bo = "";
+        String bp = "";
+        String bq = "";
+        String br = "";
+        String bs = "";
+        String bt = "";
+         String bg = "";
 
         for (Tasks task1 : task) {
 
@@ -156,7 +172,22 @@ public class TaskDetail extends HttpServlet {
             bb = task1.getTaskstat13();
             bc = task1.getTaskstat14();
             bd = task1.getTaskstat15();
-
+            be = task1.getStatusday1();
+            bf = task1.getStatusday2();
+            bh = task1.getStatusday3();
+            bi = task1.getStatusday4();
+            bj = task1.getStatusday5();
+            bk = task1.getStatusday6();
+            bl = task1.getStatusday7();
+            bm = task1.getStatusday8();
+            bn = task1.getStatusday9();
+            bo = task1.getStatusday10();
+            bp = task1.getStatusday11();
+            bq = task1.getstatusday12();
+            br = task1.getStatusday13();
+            bs = task1.getStatusday14();
+            bt = task1.getStatusday15();
+            bg = task1.getTaskstat();
         }
         request.setAttribute("taskid", a);
         request.setAttribute("description", b);
@@ -214,7 +245,23 @@ public class TaskDetail extends HttpServlet {
         request.setAttribute("taskstat13", bb);
         request.setAttribute("taskstat14", bc);
         request.setAttribute("taskstat15", bd);
-
+        request.setAttribute("statusday1", be);
+        request.setAttribute("statusday2", bf);
+        request.setAttribute("statusday3", bh);
+        request.setAttribute("statusday4", bi);
+        request.setAttribute("statusday5", bj);
+        request.setAttribute("statusday6", bk);
+        request.setAttribute("statusday7", bl);
+        request.setAttribute("statusday8", bm);
+        request.setAttribute("statusday9", bn);
+        request.setAttribute("statusday10", bo);
+        request.setAttribute("statusday11", bp);
+        request.setAttribute("statusday12", bq);
+        request.setAttribute("statusday13", br);
+        request.setAttribute("statusday14", bs);
+        request.setAttribute("statusday15", bt);
+        request.setAttribute("taskstatus", bg);
+        
         RequestDispatcher dispatcher = request.getServletContext()
                 .getRequestDispatcher("/WEB-INF/views/TaskView.jsp");
         dispatcher.forward(request, response);

@@ -276,7 +276,6 @@
                 <br>
                 <label id="Status" style="float:left; ">Status :</label>
                 <select name="Status" id = "Status1" style=" width: 120px; margin-left:55px;">
-<!--                     <option value="">${taskstat}</option>-->
                     <option value="Not Started">Not Started</option>
                     <option value="In Progress">In Progress</option>
                     <option value="Completed">Completed</option>
@@ -303,8 +302,22 @@
                             document.getElementById("tasknotes").value = document.getElementById("tasknotes").value.replace(/~/g, "\n");
                         }
                     </script>
-                    <input type ="button" value ="Save" id="Tasksavecomm" style="width:75px; float: right"/>
-                    <input type ="button" value ="Update" id="Taskupdatecomm" style="width:75px;  float: right; margin-right: 20px"/>
+                    <script type="text/javascript">
+
+                        function updateComm() {
+                            document.getElementById("tasknotes").value = "";
+                            $("#Taskupdatecomm").css("visibility", "hidden");
+                            $("#Tasksavecomm").css("visibility", "visible");
+                            $("#tasknotes").focus();
+
+                        }
+
+                    </script>   
+                    
+                    <input type ="button" value ="Update" id="Taskupdatecomm" onClick="updateComm();" style="width:75px; float:right"/>
+                    <input type ="button" value ="Save" id="Tasksavecomm" style="width:75px;visibility: hidden;"/>
+                    
+                  
 
             </div>
             <div id="tabs-3">
@@ -317,101 +330,264 @@
                     <select name="dseel" id = "dsee1" style="width:170px">
                         <option value=${taskto1}>${taskto1}</option>
                     </select>
-                    
+
                     <label id="taskstat1" style=" margin-left:50px;"/>${taskstat1}</label>
-                
-                <script>
-                    a
-                    document.getElementById("taskstat1").value.length
-                    if( document.getElementById("taskstat1").value.length < 3){
-                     document.getElementById("taskstat1").value = "Not Started"
-                    }
+                    <script>
+                        if (document.getElementById("taskstat1").innerHTML.length < 3 && document.getElementById("dsee1").value.length > 1) {
+                            document.getElementById("taskstat1").innerHTML = "Not Started";
+
+                        }
+
                     </script>
-                    <label id="taskstatdate1" style=" margin-left:50px;"/>${statusday}</label>
+                    <label id="taskstatdate1" style=" margin-left:50px;"/>${statusday1}</label>
                     <br>
                     <select name="dsee2" id = "dsee2" style="width:170px">
                         <option value=${taskto2}>${taskto2}</option>
                     </select>
                     <label id="taskstat2" style=" margin-left:50px;"/>${taskstat2}</label>
-                    <label id="taskstatdate2" style=" margin-left:50px;"/>${statusday}</label>
+                    <script>
+                        if (document.getElementById("taskstat2").innerHTML.length < 3 && document.getElementById("dsee2").value.length > 1) {
+                            document.getElementById("taskstat2").innerHTML = "Not Started";
+                        }
+
+                    </script>
+                    <label id="taskstatdate2" style=" margin-left:50px;"/>${statusday2}</label>
                     <br>
                     <select name="dsee3" id = "dsee3" style="width:170px">
                         <option value=${taskto3}>${taskto3}</option>
                     </select>           
                     <label id="taskstat3" style=" margin-left:50px;"/>${taskstat3}</label>
-                    <label id="taskstatdate3" style=" margin-left:50px;"/>${statusday}</label>
+                    <script>
+                        if (document.getElementById("taskstat3").innerHTML.length < 3 && document.getElementById("dsee3").value.length > 1) {
+                            document.getElementById("taskstat3").innerHTML = "Not Started";
+                        }
+                    </script>
+                    <label id="taskstatdate3" style=" margin-left:50px;"/>${statusday3}</label>
                     <br>
                     <select name="dsee4" id = "dsee4" style="width:170px">
                         <option value=${taskto4}>${taskto4}</option>
                     </select>           
                     <label id="taskstat4" style=" margin-left:50px;"/>${taskstat4}</label>
-                    <label id="taskstatdate4" style=" margin-left:50px;"/>${statusday}</label>
+                    <script>
+                        if (document.getElementById("taskstat4").innerHTML.length < 3 && document.getElementById("dsee4").value.length > 1) {
+                            document.getElementById("taskstat4").innerHTML = "Not Started";
+                        }
+                    </script>
+                    <label id="taskstatdate4" style=" margin-left:50px;"/>${statusday4}</label>
                     <br>
                     <select name="dsee5" id = "dsee5" style="width:170px">
                         <option value=${taskto5}>${taskto5}</option>
                     </select>           
                     <label id="taskstat5" style=" margin-left:50px;"/>${taskstat5}</label>
-                    <label id="taskstatdate5" style=" margin-left:50px;"/>${statusday}</label>
+                    <script>
+                        if (document.getElementById("taskstat5").innerHTML.length < 3 && document.getElementById("dsee5").value.length > 1) {
+                            document.getElementById("taskstat5").innerHTML = "Not Started";
+                        }
+                    </script>
+                    <label id="taskstatdate5" style=" margin-left:50px;"/>${statusday5}</label>
                     <br>
                     <select name="dsee6" id = "dsee6" style="width:170px">
                         <option value=${taskto6}>${taskto6}</option>
                     </select>           
                     <label id="taskstat6" style=" margin-left:50px;"/>${taskstat6}</label>
-                    <label id="taskstatdate6" style=" margin-left:50px;"/>${statusday}</label>
+                    <script>
+                        if (document.getElementById("taskstat6").innerHTML.length < 3 && document.getElementById("dsee6").value.length > 1) {
+                            document.getElementById("taskstat6").innerHTML = "Not Started";
+                        }
+                    </script>
+                    <label id="taskstatdate6" style=" margin-left:50px;"/>${statusday6}</label>
                     <br>
                     <select name="dsee7" id = "dsee7" style="width:170px">
                         <option value=${taskto7}>${taskto7}</option>
                     </select> 
                     <label id="taskstat7" style=" margin-left:50px;"/>${taskstat7}</label>
-                    <label id="taskstatdate7" style=" margin-left:50px;"/>${statusday}</label>
+                    <script>
+                        if (document.getElementById("taskstat7").innerHTML.length < 3 && document.getElementById("dsee7").value.length > 1) {
+                            document.getElementById("taskstat7").innerHTML = "Not Started";
+                        }
+                    </script>
+                    <label id="taskstatdate7" style=" margin-left:50px;"/>${statusday7}</label>
                     <br>
                     <select name="dsee8" id = "dsee8" style="width:170px">
                         <option value=${taskto8}>${taskto8}</option>
                     </select>           
                     <label id="taskstat8" style=" margin-left:50px;"/>${taskstat8}</label>
-                    <label id="taskstatdate8" style=" margin-left:50px;"/>${statusday}</label>
+                    <script>
+                        if (document.getElementById("taskstat8").innerHTML.length < 3 && document.getElementById("dsee8").value.length > 1) {
+                            document.getElementById("taskstat8").innerHTML = "Not Started";
+                        }
+                    </script>
+                    <label id="taskstatdate8" style=" margin-left:50px;"/>${statusday8}</label>
                     <br>
                     <select name="dsee9" id = "dsee9" style="width:170px">
                         <option value=${taskto9}>${taskto9}</option>
                     </select>           
                     <label id="taskstat9" style=" margin-left:50px;"/>${taskstat9}</label>
-                    <label id="taskstatdate9" style=" margin-left:50px;"/>${statusday}</label>
+                    <script>
+                        if (document.getElementById("taskstat9").innerHTML.length < 3 && document.getElementById("dsee9").value.length > 1) {
+                            document.getElementById("taskstat9").innerHTML = "Not Started";
+                        }
+                    </script>
+                    <label id="taskstatdate9" style=" margin-left:50px;"/>${statusday9}</label>
                     <br>
                     <select name="dsee10" id = "dsee10" style="width:170px">
                         <option value=${taskto10}>${taskto10}</option>
                     </select> 
                     <label id="taskstat10" style=" margin-left:50px;"/>${taskstat10}</label>
-                    <label id="taskstatdate10" style=" margin-left:50px;"/>${statusday}</label>
+                    <script>
+                        if (document.getElementById("taskstat10").innerHTML.length < 3 && document.getElementById("dsee10").value.length > 1) {
+                            document.getElementById("taskstat10").innerHTML = "Not Started";
+                        }
+                    </script>
+                    <label id="taskstatdate10" style=" margin-left:50px;"/>${statusday10}</label>
                     <br>
                     <select name="dsee11" id = "dsee11" style="width:170px">
                         <option value=${taskto11}>${taskto11}</option>
                     </select>           
                     <label id="taskstat11" style=" margin-left:50px;"/>${taskstat11}</label>
-                    <label id="taskstatdate11" style=" margin-left:50px;"/>${statusday}</label>
+                    <script>
+                        if (document.getElementById("taskstat11").innerHTML.length < 3 && document.getElementById("dsee11").value.length > 1) {
+                            document.getElementById("taskstat11").innerHTML = "Not Started";
+                        }
+                    </script>
+                    <label id="taskstatdate11" style=" margin-left:50px;"/>${statusday11}</label>
                     <br>
                     <select name="dsee12" id = "dsee12" style="width:170px">
                         <option value=${taskto12}>${taskto12}</option>
                     </select>           
                     <label id="taskstat12" style=" margin-left:50px;"/>${taskstat12}</label>
-                    <label id="taskstatdate12" style=" margin-left:50px;"/>${statusday}</label>
+                    <script>
+                        if (document.getElementById("taskstat12").innerHTML.length < 3 && document.getElementById("dsee12").value.length > 1) {
+                            document.getElementById("taskstat12").innerHTML = "Not Started";
+                        }
+                    </script>
+                    <label id="taskstatdate12" style=" margin-left:50px;"/>${statusday12}</label>
                     <br>
                     <select name="dsee13" id = "dsee13" style="width:170px">
                         <option value=${taskto13}>${taskto13}</option>
                     </select>           
                     <label id="taskstat13" style=" margin-left:50px;"/>${taskstat13}</label>
-                    <label id="taskstatdate13" style=" margin-left:50px;"/>${statusday}</label>
+                    <script>
+                        if (document.getElementById("taskstat13").innerHTML.length < 3 && document.getElementById("dsee13").value.length > 1) {
+                            document.getElementById("taskstat13").innerHTML = "Not Started";
+                        }
+                    </script>
+                    <label id="taskstatdate13" style=" margin-left:50px;"/>${statusday13}</label>
                     <br>
                     <select name="dsee14" id = "dsee14" style="width:170px">
                         <option value=${taskto14}>${taskto14}</option>
                     </select>           
                     <label id="taskstat14" style=" margin-left:50px;"/>${taskstat14}</label>
-                    <label id="taskstatdate14" style=" margin-left:50px;"/>${statusday}</label>
+                    <script>
+                        if (document.getElementById("taskstat14").innerHTML.length < 3 && document.getElementById("dsee14").value.length > 1) {
+                            document.getElementById("taskstat14").innerHTML = "Not Started";
+                        }
+                    </script>
+                    <label id="taskstatdate14" style=" margin-left:50px;"/>${statusday14}</label>
                     <br>
                     <select name="dsee15" id = "dsee15" style="width:170px">
                         <option value=${taskto15}>${taskto15}</option>
                     </select> 
                     <label id="taskstat15" style=" margin-left:50px;"/>${taskstat15}</label>
-                    <label id="taskstatdate15" style=" margin-left:50px;"/>${statusday}</label>
+                    <label id="taskstatdate15" style=" margin-left:50px;"/>${statusday15}</label>
+                    <script>
+                        if (document.getElementById("taskstat15").innerHTML.length < 3 && document.getElementById("dsee15").value.length > 1) {
+                            document.getElementById("taskstat15").innerHTML = "Not Started";
+                        }
+                        if (document.getElementById("dsee1").value.length < 3) {
+                            document.getElementById("taskstatdate1").innerHTML = "";
+                        }
+                        if (document.getElementById("dsee2").value.length < 3) {
+                            document.getElementById("taskstatdate2").innerHTML = "";
+                        }
+                        if (document.getElementById("dsee3").value.length < 3) {
+                            document.getElementById("taskstatdate3").innerHTML = "";
+                        }
+                        if (document.getElementById("dsee4").value.length < 3) {
+                            document.getElementById("taskstatdate4").innerHTML = "";
+                        }
+                        if (document.getElementById("dsee5").value.length < 3) {
+                            document.getElementById("taskstatdate5").innerHTML = "";
+                        }
+                        if (document.getElementById("dsee6").value.length < 3) {
+                            document.getElementById("taskstatdate6").innerHTML = "";
+                        }
+                        if (document.getElementById("dsee7").value.length < 3) {
+                            document.getElementById("taskstatdate7").innerHTML = "";
+                        }
+                        if (document.getElementById("dsee8").value.length < 3) {
+                            document.getElementById("taskstatdate8").innerHTML = "";
+                        }
+                        if (document.getElementById("dsee9").value.length < 3) {
+                            document.getElementById("taskstatdate9").innerHTML = "";
+                        }
+                        if (document.getElementById("dsee10").value.length < 3) {
+                            document.getElementById("taskstatdate10").innerHTML = "";
+                        }
+                        if (document.getElementById("dsee11").value.length < 3) {
+                            document.getElementById("taskstatdate11").innerHTML = "";
+                        }
+                        if (document.getElementById("dsee12").value.length < 3) {
+                            document.getElementById("taskstatdate12").innerHTML = "";
+                        }
+                        if (document.getElementById("dsee13").value.length < 3) {
+                            document.getElementById("taskstatdate13").innerHTML = "";
+                        }
+                        if (document.getElementById("dsee14").value.length < 3) {
+                            document.getElementById("taskstatdate14").innerHTML = "";
+                        }
+                        if (document.getElementById("dsee15").value.length < 3) {
+                            document.getElementById("taskstatdate15").innerHTML = "";
+                        }
+                        if (document.getElementById("dsee1").value.length < 3) {
+                            document.getElementById("taskstat1").innerHTML = "";
+                        }
+                        if (document.getElementById("dsee2").value.length < 3) {
+                            document.getElementById("taskstat2").innerHTML = "";
+                        }
+                        if (document.getElementById("dsee3").value.length < 3) {
+                            document.getElementById("taskstat3").innerHTML = "";
+                        }
+                        if (document.getElementById("dsee4").value.length < 3) {
+                            document.getElementById("taskstat4").innerHTML = "";
+                        }
+                        if (document.getElementById("dsee5").value.length < 3) {
+                            document.getElementById("taskstat5").innerHTML = "";
+                        }
+                        if (document.getElementById("dsee6").value.length < 3) {
+                            document.getElementById("taskstat6").innerHTML = "";
+                        }
+                        if (document.getElementById("dsee7").value.length < 3) {
+                            document.getElementById("taskstat7").innerHTML = "";
+                        }
+                        if (document.getElementById("dsee8").value.length < 3) {
+                            document.getElementById("taskstat8").innerHTML = "";
+                        }
+                        if (document.getElementById("dsee9").value.length < 3) {
+                            document.getElementById("taskstat9").innerHTML = "";
+                        }
+                        if (document.getElementById("dsee10").value.length < 3) {
+                            document.getElementById("taskstat10").innerHTML = "";
+                        }
+                        if (document.getElementById("dsee11").value.length < 3) {
+                            document.getElementById("taskstat11").innerHTML = "";
+                        }
+                        if (document.getElementById("dsee12").value.length < 3) {
+                            document.getElementById("taskstat12").innerHTML = "";
+                        }
+                        if (document.getElementById("dsee13").value.length < 3) {
+                            document.getElementById("taskstat13").innerHTML = "";
+                        }
+                        if (document.getElementById("dsee14").value.length < 3) {
+                            document.getElementById("taskstat14").innerHTML = "";
+                        }
+                        if (document.getElementById("dsee15").value.length < 3) {
+                            document.getElementById("taskstat15").innerHTML = "";
+                        }
+                    </script>
+
+                    
+
                     <br/>            
                     <br/>
                     <br/>
@@ -421,8 +597,8 @@
                     <br/>
                     <br/>
                     <br/>
-                   
 
+                    Task Status : <label id="taskstatus" style=" margin-left:50px;"/>${taskstatus}</label>
                     <input type ="button" value ="Close" id="Taskpeoplecls" style="width:75px; float: right"/>
                     <input type ="button" value ="Update" id="Taskupdatepeople" style="width:75px;  float: right; margin-right: 5px"/>
 

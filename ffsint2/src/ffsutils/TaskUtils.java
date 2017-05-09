@@ -155,7 +155,12 @@ public class TaskUtils extends HttpServlet {
             Date date5 = new Date();
             Calendar cal5 = new GregorianCalendar();
 
-            cal5.setTime(rs.getTimestamp("statusday"));
+            if (rs.getTimestamp("statusday") == null) {
+                cal5.setTime(rs.getTimestamp("taskdate"));
+            } else {
+                cal5.setTime(rs.getTimestamp("statusday"));
+            }
+//            cal5.setTime(rs.getTimestamp("statusday"));
             String year5 = Integer.toString(cal5.get(Calendar.YEAR));
             String month5 = Integer.toString(cal5.get(Calendar.MONTH) + 1);
             String day5 = Integer.toString(cal5.get(Calendar.DAY_OF_MONTH));
@@ -174,6 +179,438 @@ public class TaskUtils extends HttpServlet {
                 day5 = "0" + day5;
             }
 
+            Date date6 = new Date();
+            Calendar cal6 = new GregorianCalendar();
+
+            if (rs.getTimestamp("statusday1") == null) {
+                cal6.setTime(rs.getTimestamp("taskdate"));
+            } else {
+                cal6.setTime(rs.getTimestamp("statusday1"));
+            }
+
+            String year6 = Integer.toString(cal6.get(Calendar.YEAR));
+            String month6 = Integer.toString(cal6.get(Calendar.MONTH) + 1);
+            String day6 = Integer.toString(cal6.get(Calendar.DAY_OF_MONTH));
+            String hour6 = Integer.toString(cal6.get(Calendar.HOUR_OF_DAY));
+            String minute6 = Integer.toString(cal6.get(Calendar.MINUTE));
+            if (hour6.length() == 1) {
+                hour6 = "0" + hour6;
+            }
+            if (minute6.length() == 1) {
+                minute6 = "0" + minute6;
+            }
+            if (month6.length() == 1) {
+                month6 = "0" + month6;
+            }
+            if (day6.length() == 1) {
+                day6 = "0" + day6;
+            }
+
+            Date date7 = new Date();
+            Calendar cal7 = new GregorianCalendar();
+
+            if (rs.getTimestamp("statusday2") == null) {
+                cal7.setTime(rs.getTimestamp("taskdate"));
+            } else {
+                cal7.setTime(rs.getTimestamp("statusday2"));
+            }
+
+            String year7 = Integer.toString(cal7.get(Calendar.YEAR));
+            String month7 = Integer.toString(cal7.get(Calendar.MONTH) + 1);
+            String day7 = Integer.toString(cal7.get(Calendar.DAY_OF_MONTH));
+            String hour7 = Integer.toString(cal7.get(Calendar.HOUR_OF_DAY));
+            String minute7 = Integer.toString(cal7.get(Calendar.MINUTE));
+            if (hour7.length() == 1) {
+                hour7 = "0" + hour7;
+            }
+            if (minute7.length() == 1) {
+                minute7 = "0" + minute7;
+            }
+            if (month7.length() == 1) {
+                month7 = "0" + month7;
+            }
+            if (day7.length() == 1) {
+                day7 = "0" + day7;
+            }
+
+            Date date8 = new Date();
+            Calendar cal8 = new GregorianCalendar();
+
+            if (rs.getTimestamp("statusday3") == null) {
+                cal8.setTime(rs.getTimestamp("taskdate"));
+            } else {
+                cal8.setTime(rs.getTimestamp("statusday3"));
+            }
+
+            String year8 = Integer.toString(cal8.get(Calendar.YEAR));
+            String month8 = Integer.toString(cal8.get(Calendar.MONTH) + 1);
+            String day8 = Integer.toString(cal8.get(Calendar.DAY_OF_MONTH));
+            String hour8 = Integer.toString(cal8.get(Calendar.HOUR_OF_DAY));
+            String minute8 = Integer.toString(cal8.get(Calendar.MINUTE));
+            if (hour8.length() == 1) {
+                hour8 = "0" + hour8;
+            }
+            if (minute8.length() == 1) {
+                minute8 = "0" + minute8;
+            }
+            if (month8.length() == 1) {
+                month8 = "0" + month8;
+            }
+            if (day8.length() == 1) {
+                day8 = "0" + day8;
+            }
+            
+            
+            Date date9 = new Date();
+            Calendar cal9 = new GregorianCalendar();
+
+            if (rs.getTimestamp("statusday4") == null) {
+                cal9.setTime(rs.getTimestamp("taskdate"));
+            } else {
+                cal9.setTime(rs.getTimestamp("statusday4"));
+            }
+
+            String year9 = Integer.toString(cal9.get(Calendar.YEAR));
+            String month9 = Integer.toString(cal9.get(Calendar.MONTH) + 1);
+            String day9 = Integer.toString(cal9.get(Calendar.DAY_OF_MONTH));
+            String hour9 = Integer.toString(cal9.get(Calendar.HOUR_OF_DAY));
+            String minute9 = Integer.toString(cal9.get(Calendar.MINUTE));
+            if (hour9.length() == 1) {
+                hour9 = "0" + hour9;
+            }
+            if (minute9.length() == 1) {
+                minute9 = "0" + minute9;
+            }
+            if (month9.length() == 1) {
+                month9 = "0" + month9;
+            }
+            if (day9.length() == 1) {
+                day9 = "0" + day9;
+            }
+
+            
+            Date date10 = new Date();
+            Calendar cal10 = new GregorianCalendar();
+
+            if (rs.getTimestamp("statusday5") == null) {
+                cal10.setTime(rs.getTimestamp("taskdate"));
+            } else {
+                cal10.setTime(rs.getTimestamp("statusday5"));
+            }
+
+            String year10 = Integer.toString(cal10.get(Calendar.YEAR));
+            String month10 = Integer.toString(cal10.get(Calendar.MONTH) + 1);
+            String day10 = Integer.toString(cal10.get(Calendar.DAY_OF_MONTH));
+            String hour10 = Integer.toString(cal10.get(Calendar.HOUR_OF_DAY));
+            String minute10 = Integer.toString(cal10.get(Calendar.MINUTE));
+            if (hour10.length() == 1) {
+                hour10 = "0" + hour10;
+            }
+            if (minute10.length() == 1) {
+                minute10 = "0" + minute10;
+            }
+            if (month10.length() == 1) {
+                month10 = "0" + month10;
+            }
+            if (day10.length() == 1) {
+                day10 = "0" + day10;
+            }
+            
+            
+            Date date11 = new Date();
+            Calendar cal11 = new GregorianCalendar();
+
+            if (rs.getTimestamp("statusday6") == null) {
+                cal11.setTime(rs.getTimestamp("taskdate"));
+            } else {
+                cal11.setTime(rs.getTimestamp("statusday6"));
+            }
+
+            String year11 = Integer.toString(cal11.get(Calendar.YEAR));
+            String month11 = Integer.toString(cal11.get(Calendar.MONTH) + 1);
+            String day11 = Integer.toString(cal11.get(Calendar.DAY_OF_MONTH));
+            String hour11 = Integer.toString(cal11.get(Calendar.HOUR_OF_DAY));
+            String minute11 = Integer.toString(cal11.get(Calendar.MINUTE));
+            if (hour11.length() == 1) {
+                hour11 = "0" + hour11;
+            }
+            if (minute11.length() == 1) {
+                minute11 = "0" + minute11;
+            }
+            if (month11.length() == 1) {
+                month11 = "0" + month11;
+            }
+            if (day11.length() == 1) {
+                day11 = "0" + day11;
+            }
+            
+            
+            Date date12 = new Date();
+            Calendar cal12 = new GregorianCalendar();
+
+            if (rs.getTimestamp("statusday7") == null) {
+                cal12.setTime(rs.getTimestamp("taskdate"));
+            } else {
+                cal12.setTime(rs.getTimestamp("statusday7"));
+            }
+
+            String year12 = Integer.toString(cal12.get(Calendar.YEAR));
+            String month12 = Integer.toString(cal12.get(Calendar.MONTH) + 1);
+            String day12 = Integer.toString(cal12.get(Calendar.DAY_OF_MONTH));
+            String hour12 = Integer.toString(cal12.get(Calendar.HOUR_OF_DAY));
+            String minute12 = Integer.toString(cal12.get(Calendar.MINUTE));
+            if (hour12.length() == 1) {
+                hour12 = "0" + hour12;
+            }
+            if (minute12.length() == 1) {
+                minute12 = "0" + minute12;
+            }
+            if (month12.length() == 1) {
+                month12 = "0" + month12;
+            }
+            if (day12.length() == 1) {
+                day12 = "0" + day12;
+            }
+            
+            
+            Date date13 = new Date();
+            Calendar cal13 = new GregorianCalendar();
+
+            if (rs.getTimestamp("statusday8") == null) {
+                cal13.setTime(rs.getTimestamp("taskdate"));
+            } else {
+                cal13.setTime(rs.getTimestamp("statusday8"));
+            }
+
+            String year13 = Integer.toString(cal13.get(Calendar.YEAR));
+            String month13 = Integer.toString(cal13.get(Calendar.MONTH) + 1);
+            String day13 = Integer.toString(cal13.get(Calendar.DAY_OF_MONTH));
+            String hour13 = Integer.toString(cal13.get(Calendar.HOUR_OF_DAY));
+            String minute13 = Integer.toString(cal13.get(Calendar.MINUTE));
+            if (hour13.length() == 1) {
+                hour13 = "0" + hour13;
+            }
+            if (minute13.length() == 1) {
+                minute13 = "0" + minute13;
+            }
+            if (month13.length() == 1) {
+                month13 = "0" + month13;
+            }
+            if (day13.length() == 1) {
+                day13 = "0" + day13;
+            }
+            
+            
+            Date date14 = new Date();
+            Calendar cal14 = new GregorianCalendar();
+
+            if (rs.getTimestamp("statusday9") == null) {
+                cal14.setTime(rs.getTimestamp("taskdate"));
+            } else {
+                cal14.setTime(rs.getTimestamp("statusday9"));
+            }
+
+            String year14 = Integer.toString(cal14.get(Calendar.YEAR));
+            String month14 = Integer.toString(cal14.get(Calendar.MONTH) + 1);
+            String day14 = Integer.toString(cal14.get(Calendar.DAY_OF_MONTH));
+            String hour14 = Integer.toString(cal14.get(Calendar.HOUR_OF_DAY));
+            String minute14 = Integer.toString(cal14.get(Calendar.MINUTE));
+            if (hour14.length() == 1) {
+                hour14 = "0" + hour14;
+            }
+            if (minute14.length() == 1) {
+                minute14 = "0" + minute14;
+            }
+            if (month14.length() == 1) {
+                month14 = "0" + month14;
+            }
+            if (day14.length() == 1) {
+                day14 = "0" + day14;
+            }
+            
+            
+            Date date15 = new Date();
+            Calendar cal15 = new GregorianCalendar();
+
+            if (rs.getTimestamp("statusday10") == null) {
+                cal15.setTime(rs.getTimestamp("taskdate"));
+            } else {
+                cal15.setTime(rs.getTimestamp("statusday10"));
+            }
+
+            String year15 = Integer.toString(cal15.get(Calendar.YEAR));
+            String month15 = Integer.toString(cal15.get(Calendar.MONTH) + 1);
+            String day15 = Integer.toString(cal15.get(Calendar.DAY_OF_MONTH));
+            String hour15 = Integer.toString(cal15.get(Calendar.HOUR_OF_DAY));
+            String minute15 = Integer.toString(cal15.get(Calendar.MINUTE));
+            if (hour15.length() == 1) {
+                hour15 = "0" + hour15;
+            }
+            if (minute15.length() == 1) {
+                minute15 = "0" + minute15;
+            }
+            if (month15.length() == 1) {
+                month15 = "0" + month15;
+            }
+            if (day15.length() == 1) {
+                day15 = "0" + day15;
+            }
+            
+            
+            Date date16 = new Date();
+            Calendar cal16 = new GregorianCalendar();
+
+            if (rs.getTimestamp("statusday11") == null) {
+                cal16.setTime(rs.getTimestamp("taskdate"));
+            } else {
+                cal16.setTime(rs.getTimestamp("statusday11"));
+            }
+
+            String year16 = Integer.toString(cal16.get(Calendar.YEAR));
+            String month16 = Integer.toString(cal16.get(Calendar.MONTH) + 1);
+            String day16 = Integer.toString(cal16.get(Calendar.DAY_OF_MONTH));
+            String hour16 = Integer.toString(cal16.get(Calendar.HOUR_OF_DAY));
+            String minute16 = Integer.toString(cal16.get(Calendar.MINUTE));
+            if (hour16.length() == 1) {
+                hour16 = "0" + hour16;
+            }
+            if (minute16.length() == 1) {
+                minute16 = "0" + minute16;
+            }
+            if (month16.length() == 1) {
+                month16 = "0" + month16;
+            }
+            if (day16.length() == 1) {
+                day16 = "0" + day16;
+            }
+            
+            Date date17 = new Date();
+            Calendar cal17 = new GregorianCalendar();
+
+            if (rs.getTimestamp("statusday12") == null) {
+                cal17.setTime(rs.getTimestamp("taskdate"));
+            } else {
+                cal17.setTime(rs.getTimestamp("statusday12"));
+            }
+
+            String year17 = Integer.toString(cal17.get(Calendar.YEAR));
+            String month17 = Integer.toString(cal17.get(Calendar.MONTH) + 1);
+            String day17 = Integer.toString(cal17.get(Calendar.DAY_OF_MONTH));
+            String hour17 = Integer.toString(cal17.get(Calendar.HOUR_OF_DAY));
+            String minute17 = Integer.toString(cal17.get(Calendar.MINUTE));
+            if (hour17.length() == 1) {
+                hour17 = "0" + hour17;
+            }
+            if (minute17.length() == 1) {
+                minute17 = "0" + minute17;
+            }
+            if (month17.length() == 1) {
+                month17 = "0" + month17;
+            }
+            if (day17.length() == 1) {
+                day17 = "0" + day17;
+            }
+            
+            
+            Date date18 = new Date();
+            Calendar cal18 = new GregorianCalendar();
+
+            if (rs.getTimestamp("statusday13") == null) {
+                cal18.setTime(rs.getTimestamp("taskdate"));
+            } else {
+                cal18.setTime(rs.getTimestamp("statusday13"));
+            }
+
+            String year18 = Integer.toString(cal18.get(Calendar.YEAR));
+            String month18 = Integer.toString(cal18.get(Calendar.MONTH) + 1);
+            String day18 = Integer.toString(cal18.get(Calendar.DAY_OF_MONTH));
+            String hour18 = Integer.toString(cal18.get(Calendar.HOUR_OF_DAY));
+            String minute18 = Integer.toString(cal18.get(Calendar.MINUTE));
+            if (hour18.length() == 1) {
+                hour18 = "0" + hour18;
+            }
+            if (minute18.length() == 1) {
+                minute18 = "0" + minute18;
+            }
+            if (month18.length() == 1) {
+                month18 = "0" + month18;
+            }
+            if (day18.length() == 1) {
+                day18 = "0" + day18;
+            }
+            
+            
+            Date date19 = new Date();
+            Calendar cal19 = new GregorianCalendar();
+
+            if (rs.getTimestamp("statusday14") == null) {
+                cal19.setTime(rs.getTimestamp("taskdate"));
+            } else {
+                cal19.setTime(rs.getTimestamp("statusday14"));
+            }
+
+            String year19 = Integer.toString(cal19.get(Calendar.YEAR));
+            String month19 = Integer.toString(cal19.get(Calendar.MONTH) + 1);
+            String day19 = Integer.toString(cal19.get(Calendar.DAY_OF_MONTH));
+            String hour19 = Integer.toString(cal19.get(Calendar.HOUR_OF_DAY));
+            String minute19 = Integer.toString(cal19.get(Calendar.MINUTE));
+            if (hour19.length() == 1) {
+                hour19 = "0" + hour19;
+            }
+            if (minute19.length() == 1) {
+                minute19 = "0" + minute19;
+            }
+            if (month19.length() == 1) {
+                month19 = "0" + month19;
+            }
+            if (day19.length() == 1) {
+                day19 = "0" + day19;
+            }
+            
+            
+            Date date20 = new Date();
+            Calendar cal20 = new GregorianCalendar();
+
+            if (rs.getTimestamp("statusday15") == null) {
+                cal20.setTime(rs.getTimestamp("taskdate"));
+            } else {
+                cal20.setTime(rs.getTimestamp("statusday15"));
+            }
+
+            String year20 = Integer.toString(cal20.get(Calendar.YEAR));
+            String month20 = Integer.toString(cal20.get(Calendar.MONTH) + 1);
+            String day20 = Integer.toString(cal20.get(Calendar.DAY_OF_MONTH));
+            String hour20 = Integer.toString(cal20.get(Calendar.HOUR_OF_DAY));
+            String minute20 = Integer.toString(cal20.get(Calendar.MINUTE));
+            if (hour20.length() == 1) {
+                hour20 = "0" + hour20;
+            }
+            if (minute20.length() == 1) {
+                minute20 = "0" + minute20;
+            }
+            if (month20.length() == 1) {
+                month20 = "0" + month20;
+            }
+            if (day20.length() == 1) {
+                day20 = "0" + day20;
+            }
+
+            String statusday1 = day6 + "/" + month6 + "/" + year6 + " " + hour6 + ":" + minute6;
+            String statusday2 = day7 + "/" + month7 + "/" + year7 + " " + hour7 + ":" + minute7;
+            String statusday3 = day8 + "/" + month8 + "/" + year8 + " " + hour8 + ":" + minute8;
+            String statusday4 = day9 + "/" + month9 + "/" + year9 + " " + hour9 + ":" + minute9;
+            String statusday5 = day10 + "/" + month10 + "/" + year10 + " " + hour10 + ":" + minute10;
+            String statusday6 = day11 + "/" + month11 + "/" + year11 + " " + hour11 + ":" + minute11;
+            String statusday7 = day12 + "/" + month12 + "/" + year12 + " " + hour12 + ":" + minute12;
+            String statusday8 = day13 + "/" + month13 + "/" + year13 + " " + hour13 + ":" + minute13;
+            String statusday9 = day14 + "/" + month14 + "/" + year14 + " " + hour14 + ":" + minute14;
+            String statusday10 = day15 + "/" + month15 + "/" + year15 + " " + hour15 + ":" + minute15;
+            String statusday11 = day16 + "/" + month16 + "/" + year16 + " " + hour16 + ":" + minute16;
+            String statusday12 = day17 + "/" + month17 + "/" + year17 + " " + hour17 + ":" + minute17;
+            String statusday13 = day18 + "/" + month18 + "/" + year18 + " " + hour18 + ":" + minute18;
+            String statusday14 = day19 + "/" + month19 + "/" + year19 + " " + hour19 + ":" + minute19;
+            String statusday15 = day20 + "/" + month20 + "/" + year20 + " " + hour20 + ":" + minute20;
+            
             String taskdate = day4 + "/" + month4 + "/" + year4 + " " + hour4 + ":" + minute4;
             String statusday = day5 + "/" + month5 + "/" + year5 + " " + hour5 + ":" + minute5;
 
@@ -236,13 +673,28 @@ public class TaskUtils extends HttpServlet {
             task.setTaskstat6(rs.getString("taskstat6"));
             task.setTaskstat7(rs.getString("taskstat7"));
             task.setTaskstat8(rs.getString("taskstat8"));
-            task.setTaskto9(rs.getString("taskstat9"));
+            task.settaskstat9(rs.getString("taskstat9"));
             task.setTaskstat10(rs.getString("taskstat10"));
             task.setTaskstat11(rs.getString("taskstat11"));
             task.setTaskstat12(rs.getString("taskstat12"));
             task.setTaskstat13(rs.getString("taskstat13"));
             task.setTaskstat14(rs.getString("taskstat14"));
             task.setTaskstat15(rs.getString("taskstat15"));
+            task.setStatusday1(statusday1);
+            task.setStatusday2(statusday2);
+            task.setStatusday3(statusday3);
+            task.setStatusday4(statusday4);
+            task.setStatusday5(statusday5);
+            task.setStatusday6(statusday6);
+            task.setStatusday7(statusday7);
+            task.setStatusday8(statusday8);
+            task.setStatusday9(statusday9);
+            task.setStatusday10(statusday10);
+            task.setStatusday11(statusday11);
+            task.setstatusday12(statusday12);
+            task.setStatusday13(statusday13);
+            task.setStatusday14(statusday14);
+            task.setstatusday15(statusday15);
 
             list.add(task);
 
@@ -1188,6 +1640,7 @@ public class TaskUtils extends HttpServlet {
             task.setEnddate(enddate);
             task.setTaskstat(taskstat);
             task.setStartdate(startdate);
+             task.setTaskto1(rs.getString("taskto1"));
 
             list.add(task);
 
@@ -1749,6 +2202,7 @@ public class TaskUtils extends HttpServlet {
             task.setEnddate(enddate);
             task.setTaskstat(taskstat);
             task.setStartdate(startdate);
+            task.setTaskto1(rs.getString("taskto1"));
 
             list.add(task);
 

@@ -131,12 +131,12 @@
             <link rel="stylesheet" type="text/css" href="resources/dhtmlxcalendar_1.css"/>
 
             <script>
-                 var myCalendar;
+                var myCalendar;
                 function doOnLoad() {
                     myCalendar = new dhtmlXCalendarObject("calendarHere");
                     //		myCalendar.setSkin("material");
-                  //  myCalendar.setDate(new Date(2016, 7, 7, 16, 0));
-                  myCalendar.setDate(new Date);
+                    //  myCalendar.setDate(new Date(2016, 7, 7, 16, 0));
+                    myCalendar.setDate(new Date);
                     myCalendar.show();
                     myCalendar.hideTime();
                     myCalendar.showToday();
@@ -150,19 +150,19 @@
                     myCalendar.setTooltip("2017-05-01", "Workers Day", true, true);
                     myCalendar.setTooltip("2017-06-16", "Youth Day", true, true);
                     //  myCalendar.setInsensitiveRange(null, "2012-05-04");
-                   // myCalendar._drawMonth(new Date(2016, 7, 1));
+                    // myCalendar._drawMonth(new Date(2016, 7, 1));
                     myCalendar._drawMonth(new Date);
 //                    myCalendar.attachEvent("onClick", function (side, d) {
 //                    });
                 }
             </script>
-            
+
             <script>
                 $(function () {
                     $("#tabs").tabs();
                 });
             </script>
-            
+
             <script>
 
                 $(document).ready(function () {
@@ -172,9 +172,9 @@
                         var col = $td.index();
                         var row = $td.closest('tr').index();
                         //window.location = 'TaskView.jsp';
-                        window.location = "TaskView.jsp?key=" + encodeURIComponent(document.getElementById("countrytable").rows[row+1].cells[0].innerHTML);
-                      //  $.get("TaskView.jsp", {"tranid": document.getElementById("countrytable").rows[row+1].cells[0].innerHTML});
-                       // $.get('DiaryDetail', {tranid: document.getElementById("countrytable").rows[row+1].cells[0].innerHTML}, function (responseJson) {
+                        window.location = "TaskView.jsp?key=" + encodeURIComponent(document.getElementById("countrytable").rows[row + 1].cells[0].innerHTML);
+                        //  $.get("TaskView.jsp", {"tranid": document.getElementById("countrytable").rows[row+1].cells[0].innerHTML});
+                        // $.get('DiaryDetail', {tranid: document.getElementById("countrytable").rows[row+1].cells[0].innerHTML}, function (responseJson) {
 //                            if (responseJson != null) {
 //                                $.each(responseJson, function (key, value) {
 //                                    document.getElementById("fromuser").innerHTML = value['user'];
@@ -405,7 +405,7 @@
                                 $.each(responseJson, function (key, value) {
                                     var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
-                                    rowNew.children().eq(1).text(value['taskfrom']);
+                                    rowNew.children().eq(1).text(value['taskto1']);
                                     rowNew.children().eq(2).text(value['description']);
                                     rowNew.children().eq(3).text(value['revdate']);
                                     rowNew.children().eq(4).text(value['enddate']);
@@ -472,7 +472,7 @@
                                 $.each(responseJson, function (key, value) {
                                     var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
-                                    rowNew.children().eq(1).text(value['taskfrom']);
+                                    rowNew.children().eq(1).text(value['taskto1']);
                                     rowNew.children().eq(2).text(value['description']);
                                     rowNew.children().eq(3).text(value['revdate']);
                                     rowNew.children().eq(4).text(value['enddate']);
@@ -525,7 +525,7 @@
         </head>
 
         <body onload="doOnLoad();" class="container">
-            
+            <br>
             <b>Tasks In Progress :</b><input type="checkbox" id="ToMeInProg" value="ToMe">Assigned To Me
             <input type="checkbox" id="ByMeInProg" value="ByMe">Assigned By Me
             <input type="checkbox" id="TaskInFuture" value="InFuture">Tasks In The Future<br>
@@ -536,43 +536,43 @@
             <input type="checkbox" id="UrgentTasks" value="ByMe">Urgent Tasks
             <input type="checkbox" id="TrainingTasks" value="ToMe">Training Tasks
 
-                <div id="calendarHere" style="position:relative;height:320px; float:right;margin-right: 250px"></div>
+            <div id="calendarHere" style="position:relative;height:320px; float:right;margin-right: 250px"></div>
 
-                <div id="tablediv">
+            <div id="tablediv">
 
-                    <table cellspacing="0" id="countrytable" margin-right:20px > 
-                        <thead>
-                            <tr> 
-                                <th style="min-width:50px; width:50px;" scope="col">ID</th> 
-                                <th style="min-width:200px; width:200px;" scope="col">To</th> 
-                                <th style="min-width:220px; width:220px;"scope="col">Description</th> 
-                                <th style="min-width:130px; width:130px;" scope="col">Review Date</th> 
-                                <th style="min-width:130px; width:130px;" scope="col">End Date</th> 
-                                <th style="min-width:90px; width:90px;"scope="col">Status</th> 
-                                <th style="min-width:130px; width:130px;" scope="col">Start Date</th> 
-                            </tr>
-                        </thead>      
-                        <tbody>
-                        <p>${errorString}</p>
+                <table cellspacing="0" id="countrytable" margin-right:20px > 
+                    <thead>
+                        <tr> 
+                            <th style="min-width:50px; width:50px;" scope="col">ID</th> 
+                            <th style="min-width:200px; width:200px;" scope="col">To</th> 
+                            <th style="min-width:220px; width:220px;"scope="col">Description</th> 
+                            <th style="min-width:130px; width:130px;" scope="col">Review Date</th> 
+                            <th style="min-width:130px; width:130px;" scope="col">End Date</th> 
+                            <th style="min-width:90px; width:90px;"scope="col">Status</th> 
+                            <th style="min-width:130px; width:130px;" scope="col">Start Date</th> 
+                        </tr>
+                    </thead>      
+                    <tbody>
+                    <p>${errorString}</p>
 
-                    </tbody>
+                </tbody>
 
-                </table>
+            </table>
         </div>
 
-            <br>
-            <br>
-             <a href="${pageContext.request.contextPath}/TaskView.jsp">Tasks</a>
-            
-            <br>
-            
-            <script>
-                $('table').on('scroll', function () {
-                    $("table > *").width($("table").width() + $("table").scrollLeft());
-                });
-            </script>
+        <br>
+        <br>
+        <a href="${pageContext.request.contextPath}/TaskView.jsp">Tasks</a>
 
- 
+        <br>
+
+        <script>
+            $('table').on('scroll', function () {
+                $("table > *").width($("table").width() + $("table").scrollLeft());
+            });
+        </script>
+
+
     </body>
     <jsp:include page="_footer.jsp"></jsp:include>
 </html>
