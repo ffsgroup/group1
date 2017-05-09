@@ -1,7 +1,7 @@
 package ffsbeans;
 
 public class UserAccount {
-
+private String tranid;
     private String userName;
     private String password;
     private String diary1;
@@ -15,6 +15,8 @@ public class UserAccount {
     private String diary9;
     private String diary10;
     private String securestr;
+    private String code;
+    private String branch;
 
     public UserAccount() {
 
@@ -123,4 +125,28 @@ public class UserAccount {
     public void setsecurestr(String securestr) {
         this.securestr = securestr;
     }
+    
+    public String getcode() {
+        return code;
+    }
+
+    public void setcode(String code) {
+        this.code = code;
+    }    
+    
+    public String getbranch() {
+        return branch;
+    }
+
+    public void setbranch(String branch) {
+        this.branch = branch;
+    }  
+    
+      public String getTranId() {
+        return tranid;
+    }
+
+    public void setTranId(String tranid) {
+        this.tranid = tranid;
+    } 
 }
