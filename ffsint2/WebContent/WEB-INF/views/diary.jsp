@@ -203,10 +203,8 @@
             <script type="text/javascript">
                 $(document).ready(function () {
                     $("#diarysavecomm").click(function (event) {
-                        $.get('DiarySaveComm', {comment: document.getElementById("diarycomment").value, tranid: document.getElementById("diaryid").innerHTML}, function (responseJson) {
-                            //    $("#diaryimag").find("tr:gt(0)").remove();
+                        $.get('DiarySaveComm', {comment: document.getElementById("diarycomment").value, tranid: document.getElementById("diaryid").innerHTML}, function (responseJson) {                            
                             if (responseJson != null) {
-                                //   var table2 = $("#diaryimag");
                                 $.each(responseJson, function (key, value) {
                                     document.getElementById("diarycomment").value = value['comm'];
                                     if (document.getElementById("diarycomment").value == "undefined") {

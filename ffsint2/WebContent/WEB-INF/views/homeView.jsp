@@ -14,13 +14,13 @@
       <h3>Home Page</h3>
       
       Welcome to FFS Group Intranet. <br><br>
-      <b>Here you can :</b>
+      <b></b>
       <ul>
-         <li>Login</li>
-         <li>Fly to the moon.</li>
-         <li>Drink beer on the beach.</li>
-         <li>Talk to interesting people.</li>
-         <li>Visit Interesting places.</li>
+         <li></li>
+         <li></li>
+         <li></li>
+         <li></li>
+         <li></li>
          <li></li>
       </ul>
  

@@ -40,7 +40,7 @@ public class Security extends HttpServlet {
         for (UserAccount users1 : users) {       
                 
                 
-         a = a+ "   <tr> <td style='min-width:200px; width:200px;'>"+ users1.getUserName()+ "</td> <td style='min-width:100px; width:100px;'>"+ users1.getcode()+ " </td> <td style='min-width:100px; width:100px;'> "+ users1.getbranch()+ " </td > <td style='min-width:45px; width:45px;'>"+ users1.getTranId()+ "  </td> </tr>";
+         a = a+ "   <tr> <td style='min-width:200px; width:200px;'>"+ users1.getUserName()+ "</td> <td style='min-width:130px; width:130px;'>"+ users1.getcode()+ " </td> <td style='min-width:100px; width:100px;'> "+ users1.getbranch()+ " </td > <td style='min-width:45px; width:45px;'>"+ users1.getTranId()+ "  </td> </tr>";
         }  
       //System.out.println("userlist " + a);  
       request.setAttribute("errorString", a);  
