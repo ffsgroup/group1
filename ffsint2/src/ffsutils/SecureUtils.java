@@ -85,36 +85,36 @@ public class SecureUtils {
     }
 
     public static ArrayList<Generics> createUser(Connection conn, String name, String user, String branch) throws SQLException {
-        System.out.println("CreateUser " + name );
+        System.out.println("CreateUser " + name);
         String result = "";
         String sql = "select tranid from users where code = ? or name = ?";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, user);
         pstm.setString(2, name);
         ResultSet rs = pstm.executeQuery();
-        
+
         if (rs.next()) {
-          result = "user exist";
+            result = "user exist";
         } else {
-        String sql2 = "insert into users (code, name, passw, lidno, branch, loggedon, logout, remind1) values(?,?,?,'1000',?,'N','200','Remember to check : Tasks assigned by me')";
-        PreparedStatement pstm2 = conn.prepareStatement(sql2);
-        pstm2.setString(1, user);
-        pstm2.setString(2, name);
-        pstm2.setString(3, user);
-        pstm2.setString(4, branch);
-        pstm2.executeUpdate();
-        result = "success";
+            String sql2 = "insert into users (code, name, passw, lidno, branch, loggedon, logout, remind1) values(?,?,?,'1000',?,'N','200','Remember to check : Tasks assigned by me')";
+            PreparedStatement pstm2 = conn.prepareStatement(sql2);
+            pstm2.setString(1, user);
+            pstm2.setString(2, name);
+            pstm2.setString(3, user);
+            pstm2.setString(4, branch);
+            pstm2.executeUpdate();
+            result = "success";
         }
         ArrayList<Generics> list = new ArrayList<Generics>();
-        
-            Generics gen1 = new Generics();
-            gen1.setGenericDescriptionEng(result);
-            list.add(gen1);
-       
+
+        Generics gen1 = new Generics();
+        gen1.setGenericDescriptionEng(result);
+        list.add(gen1);
+
         return list;
     }
-    
-   public static ArrayList<UserAccount> getAllUser(Connection conn, String Username) throws SQLException {
+
+    public static ArrayList<UserAccount> getAllUser(Connection conn, String Username) throws SQLException {
         System.out.println("getUser");
         String sql = "Select name from users order by name";
 
@@ -128,6 +128,96 @@ public class SecureUtils {
             list.add(User1);
         }
         return list;
-    }    
+    }
+
+    public static ArrayList<Generics> delUser(Connection conn, String name) throws SQLException {
+        System.out.println("delUser " + name);
+        String result = "";
+        String sql = "delete from users where name = ?";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, name);
+        pstm.executeUpdate();
+
+        String sql1 = "select tranid from users where name = ?";
+        PreparedStatement pstm1 = conn.prepareStatement(sql1);
+        pstm1.setString(1, name);
+        ResultSet rs = pstm1.executeQuery();
+
+        if (rs.next()) {
+            result = "not deleted";
+        } else {
+            result = "success";
+        }
+        ArrayList<Generics> list = new ArrayList<Generics>();
+
+        Generics gen1 = new Generics();
+        gen1.setGenericDescriptionEng(result);
+        list.add(gen1);
+
+        return list;
+    }
+
+    public static ArrayList<Generics> changePass(Connection conn, String name, String passw) throws SQLException {
+        System.out.println("ChangePass " + name);
+        String result = "";
+        String sql = "update users set passw = ?, expire='2015/01/01' where name = ?";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, passw);
+        pstm.setString(2, name);
+        pstm.executeUpdate();
+
+        String sql2 = "select passw from users where name = ?";
+        PreparedStatement pstm2 = conn.prepareStatement(sql2);
+        pstm2.setString(1, name);
+        ResultSet rs2 = pstm2.executeQuery();
+
+        if (rs2.next()) {
+            if (rs2.getString("passw").equals(passw) ) {
+                result = "success";
+            } else {
+                result = "update failed";
+            }
+        } else {
+            result = "user not found";
+        }
+        ArrayList<Generics> list = new ArrayList<Generics>();
+
+        Generics gen1 = new Generics();
+        gen1.setGenericDescriptionEng(result);
+        list.add(gen1);
+
+        return list;
+    }
+
+    public static ArrayList<Generics> logoff(Connection conn, String name) throws SQLException {
+        System.out.println("logoff " + name);
+        String result = "";
+        String sql = "update users set loggedon = 'N' where name = ?";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, name);
+        pstm.executeUpdate();
+
+        String sql2 = "select loggedon from users where name = ?";
+        PreparedStatement pstm2 = conn.prepareStatement(sql2);
+        pstm2.setString(1, name);
+        ResultSet rs2 = pstm2.executeQuery();
+
+        if (rs2.next()) {
+            if (rs2.getString("loggedon").equals("N") ) {
+                result = "success";
+            } else {
+                result = "Not logged off";
+            }
+        } else {
+            result = "user not found";
+        }
+        ArrayList<Generics> list = new ArrayList<Generics>();
+
+        Generics gen1 = new Generics();
+        gen1.setGenericDescriptionEng(result);
+        list.add(gen1);
+
+        return list;
+    }
     
 }
