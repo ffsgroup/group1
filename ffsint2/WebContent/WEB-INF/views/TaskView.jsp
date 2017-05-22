@@ -20,12 +20,33 @@
                 $("#tabs").tabs();
             });
         </script> 
+      
+        <script>
+            $(document).ready(function () {
+                    $("#Tasksave").click(function (event) {                        
+                        $.get('UrgentTasks', {summ: function (responseJson) {
+                            if (responseJson != null) {
+                                $.each(responseJson, function (key, value) {
+                                 if (value['genericdescriptioneng'].equals("success") ) {
+                                   alert("success")    
+                                 }   else {
+                                    alert("failed") 
+                                 }
+                                 
+                                });
+                               
+                            }
+
+                        });
+                    });
+                });    
+    </script>
     </head>
     <body>
 
 
 
-        <div id="tabs" style="width:40%;  height:670px; margin-left: 40px;">
+        <div id="tabs" style="width:600px;  height:670px; margin-left: 40px;">
             <ul>
                 <li><a href="#tabs-1">Details</a></li>
                 <li><a href="#tabs-2">Notes</a></li>
@@ -54,25 +75,25 @@
                     Task Created :  <label id="TaskCreated"/>${taskdate}</label>
                 </div> 
                 <br/>
-                Task Summary :<label> <input type="text" id="Tasksumm" style=" width:250px; margin-left:15px;" value=${description}  > </label>     
+                Task Summary :<label> <input type="text" id="tasksumm" style=" width:250px; margin-left:15px;" value=${description}  > </label>     
                 <br>
                 IR Nr : <label> <input type="text" id="Irnr" style="width: 60px; margin-left:83px" value=${irnr} /> </label> 
-                <input type="checkbox" id="RequestIR" value="ReqIR">Request IR Nr
+                <input type="checkbox" id="requestir" value="ReqIR">Request IR Nr
                 <br>
-                <label><input type="checkbox" id="Recur" value="Recur" >Recurrence</label>
+                <label><input type="checkbox" id="recur" value="Recur" >Recurrence</label>
                 <br>
-                <label id="Recurlabel1"><input type="checkbox" id="Recureveryday" value="Recur" >Every Day</label>
+                <label id="Recurlabel1"><input type="checkbox" id="recureveryday" value="Recur" >Every Day</label>
                 <label id="Recurlabel2"><input type="checkbox" id="Recurday" value="Recur" style="margin-left:68px" >Day</label>
-                <label id="Recurlabel3"> <input type="text" id="Recurofeverymonth" style="width:35px;" value=${recurday}  /> of every month.</label> 
-                <label id="Recurlabel4"><input type="checkbox" id="RecurWeekly" value="Recur" style="margin-left:30px" >Weekly</label>
+                <label id="Recurlabel3"> <input type="text" id="recurofeverymonth" style="width:35px;" value=${recurday}  /> of every month.</label> 
+                <label id="Recurlabel4"><input type="checkbox" id="recurweekly" value="Recur" style="margin-left:30px" >Weekly</label>
                 <br>
-                <label id="Recurlabel5"><input type="checkbox" id="Recureveryweekday" value="Recur" >Every Weekday</label>
-                <label id="Recurlabel6"><input type="checkbox" id="Recurlastday" value="Recur" style="margin-left:30px" >last day of every month</label>
-                <label id="Recurlabel7"><input type="checkbox" id="Recurmonthly" value="Recur" style="margin-left:53px" >Monthly</label>
+                <label id="Recurlabel5"><input type="checkbox" id="recureveryweekday" value="Recur" >Every Weekday</label>
+                <label id="Recurlabel6"><input type="checkbox" id="recurlastday" value="Recur" style="margin-left:30px" >last day of every month</label>
+                <label id="Recurlabel7"><input type="checkbox" id="recurmonthly" value="Recur" style="margin-left:53px" >Monthly</label>
                 <br>
-                <label id="Recurlabel8"><input type="checkbox" id="Recurexceptsun" value="Recur" >Every Day Except Sunday</label>
-                <label id="Recurlabel9"><input type="checkbox" id="Recurevery" value="Recur" style="margin-left:30px" >Every</label>
-                <select name="RecurDay" id = "RecurDay1" style=" margin-left: 10px; width: 110px;" >
+                <label id="Recurlabel8"><input type="checkbox" id="recurexceptsun" value="Recur" >Every Day Except Sunday</label>
+                <label id="Recurlabel9"><input type="checkbox" id="recurevery" value="Recur" style="margin-left:30px" >Every</label>
+                <select name="RecurDay" id = "recurday1" style=" margin-left: 10px; width: 110px;" >
                     <option value="0"></option>
                     <option value="Monday">Monday</option>
                     <option value="Tuesday">Tuesday</option>
@@ -241,7 +262,7 @@
                     }
                 </script>
                 <label id="linkedTasks" style="color:blue; float: right; text-align: right; margin-right:100px;"/>Linked Tasks</label>
-
+            <br>
                 Start Date :<label> <input type="text" id = "startdate" style="margin-left:27px; width: 135px;" value= ${startdate} /></label> 
                 <br> 
                 Review Date :<label> <input type="text" id = "Reviewdate" style="margin-left:10px; width: 135px;" value= ${revdate}/></label>

@@ -44,8 +44,10 @@ public class TaskUtils extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    public static ArrayList<Tasks> getTaskOne(Connection conn, String Username, String Tranid) throws SQLException {
+    public static ArrayList<Tasks> getTaskOne(Connection conn, UserAccount Username, String Tranid) throws SQLException {
         System.out.println("getTaskOne " + Tranid);
+        
+        
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
 
@@ -61,12 +63,17 @@ public class TaskUtils extends HttpServlet {
 
         ResultSet rs = pstm.executeQuery();
         ArrayList<Tasks> list = new ArrayList<Tasks>();
-        while (rs.next()) {
+        
+        
+        
+        
+        if (rs.next()) {
+          if (rs.getString("taskfrom").equals(Username.getUserName()) || rs.getString("taskto1").equals(Username.getUserName()) || rs.getString("taskto2").equals(Username.getUserName()) || rs.getString("taskto3").equals(Username.getUserName()) || rs.getString("taskto4").equals(Username.getUserName()) || rs.getString("taskto5").equals(Username.getUserName()) || rs.getString("taskto6").equals(Username.getUserName()) || rs.getString("taskto7").equals(Username.getUserName()) || rs.getString("taskto8").equals(Username.getUserName()) || rs.getString("taskto9").equals(Username.getUserName()) || rs.getString("taskto10").equals(Username.getUserName()) || rs.getString("taskto11").equals(Username.getUserName()) || rs.getString("taskto12").equals(Username.getUserName())  || rs.getString("taskto13").equals(Username.getUserName()) || rs.getString("taskto14").equals(Username.getUserName()) || rs.getString("taskto15").equals(Username.getUserName()) || Username.getsecurestr().substring(143,144).equals("1")   ) {  
             Date date1 = new Date();
             Calendar cal1 = new GregorianCalendar();
 
             if (rs.getTimestamp("revdate") == null) {
-                cal1.setTime(rs.getTimestamp("startdate"));
+                cal1.setTime(rs.getTimestamp("enddate"));
             } else {
                 cal1.setTime(rs.getTimestamp("revdate"));
             }
@@ -259,8 +266,7 @@ public class TaskUtils extends HttpServlet {
             if (day8.length() == 1) {
                 day8 = "0" + day8;
             }
-            
-            
+
             Date date9 = new Date();
             Calendar cal9 = new GregorianCalendar();
 
@@ -288,7 +294,6 @@ public class TaskUtils extends HttpServlet {
                 day9 = "0" + day9;
             }
 
-            
             Date date10 = new Date();
             Calendar cal10 = new GregorianCalendar();
 
@@ -315,8 +320,7 @@ public class TaskUtils extends HttpServlet {
             if (day10.length() == 1) {
                 day10 = "0" + day10;
             }
-            
-            
+
             Date date11 = new Date();
             Calendar cal11 = new GregorianCalendar();
 
@@ -343,8 +347,7 @@ public class TaskUtils extends HttpServlet {
             if (day11.length() == 1) {
                 day11 = "0" + day11;
             }
-            
-            
+
             Date date12 = new Date();
             Calendar cal12 = new GregorianCalendar();
 
@@ -371,8 +374,7 @@ public class TaskUtils extends HttpServlet {
             if (day12.length() == 1) {
                 day12 = "0" + day12;
             }
-            
-            
+
             Date date13 = new Date();
             Calendar cal13 = new GregorianCalendar();
 
@@ -399,8 +401,7 @@ public class TaskUtils extends HttpServlet {
             if (day13.length() == 1) {
                 day13 = "0" + day13;
             }
-            
-            
+
             Date date14 = new Date();
             Calendar cal14 = new GregorianCalendar();
 
@@ -427,8 +428,7 @@ public class TaskUtils extends HttpServlet {
             if (day14.length() == 1) {
                 day14 = "0" + day14;
             }
-            
-            
+
             Date date15 = new Date();
             Calendar cal15 = new GregorianCalendar();
 
@@ -455,8 +455,7 @@ public class TaskUtils extends HttpServlet {
             if (day15.length() == 1) {
                 day15 = "0" + day15;
             }
-            
-            
+
             Date date16 = new Date();
             Calendar cal16 = new GregorianCalendar();
 
@@ -483,7 +482,7 @@ public class TaskUtils extends HttpServlet {
             if (day16.length() == 1) {
                 day16 = "0" + day16;
             }
-            
+
             Date date17 = new Date();
             Calendar cal17 = new GregorianCalendar();
 
@@ -510,8 +509,7 @@ public class TaskUtils extends HttpServlet {
             if (day17.length() == 1) {
                 day17 = "0" + day17;
             }
-            
-            
+
             Date date18 = new Date();
             Calendar cal18 = new GregorianCalendar();
 
@@ -538,8 +536,7 @@ public class TaskUtils extends HttpServlet {
             if (day18.length() == 1) {
                 day18 = "0" + day18;
             }
-            
-            
+
             Date date19 = new Date();
             Calendar cal19 = new GregorianCalendar();
 
@@ -566,8 +563,7 @@ public class TaskUtils extends HttpServlet {
             if (day19.length() == 1) {
                 day19 = "0" + day19;
             }
-            
-            
+
             Date date20 = new Date();
             Calendar cal20 = new GregorianCalendar();
 
@@ -610,7 +606,7 @@ public class TaskUtils extends HttpServlet {
             String statusday13 = day18 + "/" + month18 + "/" + year18 + " " + hour18 + ":" + minute18;
             String statusday14 = day19 + "/" + month19 + "/" + year19 + " " + hour19 + ":" + minute19;
             String statusday15 = day20 + "/" + month20 + "/" + year20 + " " + hour20 + ":" + minute20;
-            
+
             String taskdate = day4 + "/" + month4 + "/" + year4 + " " + hour4 + ":" + minute4;
             String statusday = day5 + "/" + month5 + "/" + year5 + " " + hour5 + ":" + minute5;
 
@@ -695,16 +691,25 @@ public class TaskUtils extends HttpServlet {
             task.setStatusday13(statusday13);
             task.setStatusday14(statusday14);
             task.setstatusday15(statusday15);
-
+        
             list.add(task);
-
+        
+        
         }
-
+         else {
+            Tasks task = new Tasks();
+            task.setTranid("0");
+            task.setTaskfrom("Security problem");
+            list.add(task);
+        }
+        }
         return list;
+        
+        
     }
 
     public static ArrayList<Tasks> getTrainingTask(Connection conn, String Username) throws SQLException {
-
+       System.out.println("getTrainingTask " + Username);
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
 
@@ -738,15 +743,11 @@ public class TaskUtils extends HttpServlet {
         while (rs.next()) {
             Date date1 = new Date();
             Calendar cal1 = new GregorianCalendar();
-
-            System.out.println("1 " + rs.getString("tranid"));
-            System.out.println("3 " + rs.getTimestamp("revdate"));
             if (rs.getTimestamp("revdate") == null) {
-                cal1.setTime(rs.getTimestamp("startdate"));
+                cal1.setTime(rs.getTimestamp("enddate"));
             } else {
                 cal1.setTime(rs.getTimestamp("revdate"));
-            }
-            System.out.println("2 " + rs.getString("tranid"));
+            }            
             String year1 = Integer.toString(cal1.get(Calendar.YEAR));
             String month1 = Integer.toString(cal1.get(Calendar.MONTH) + 1);
             String day1 = Integer.toString(cal1.get(Calendar.DAY_OF_MONTH));
@@ -830,7 +831,7 @@ public class TaskUtils extends HttpServlet {
     }
 
     public static ArrayList<Tasks> getUrgentTasks(Connection conn, String Username) throws SQLException {
-
+      System.out.println("getUrgentTasks " + Username);
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
 
@@ -860,11 +861,8 @@ public class TaskUtils extends HttpServlet {
         while (rs.next()) {
             Date date10 = new Date();
             Calendar cal10 = new GregorianCalendar();
-
-            System.out.println("1 " + rs.getString("tranid"));
-            System.out.println("3 " + rs.getTimestamp("revdate"));
             if (rs.getTimestamp("revdate") == null) {
-                cal1.setTime(rs.getTimestamp("startdate"));
+                cal1.setTime(rs.getTimestamp("enddate"));
             } else {
                 cal1.setTime(rs.getTimestamp("revdate"));
             }
@@ -971,8 +969,12 @@ public class TaskUtils extends HttpServlet {
         while (rs1.next()) {
             Date date11 = new Date();
             Calendar cal11 = new GregorianCalendar();
-
-            cal1.setTime(rs1.getTimestamp("revdate"));
+            if (rs1.getTimestamp("revdate") == null) {
+                cal1.setTime(rs.getTimestamp("enddate"));
+            } else {
+                cal1.setTime(rs1.getTimestamp("revdate"));
+            }
+//            cal1.setTime(rs1.getTimestamp("revdate"));
             String year11 = Integer.toString(cal11.get(Calendar.YEAR));
             String month11 = Integer.toString(cal11.get(Calendar.MONTH) + 1);
             String day11 = Integer.toString(cal11.get(Calendar.DAY_OF_MONTH));
@@ -1056,7 +1058,7 @@ public class TaskUtils extends HttpServlet {
     }
 
     public static ArrayList<Tasks> getUpdatedTasks(Connection conn, String Username) throws SQLException {
-
+       System.out.println("getUpdatedTasks " + Username);
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
 
@@ -1090,15 +1092,11 @@ public class TaskUtils extends HttpServlet {
         while (rs.next()) {
             Date date1 = new Date();
             Calendar cal1 = new GregorianCalendar();
-
-            System.out.println("1 " + rs.getString("tranid"));
-            System.out.println("3 " + rs.getTimestamp("revdate"));
             if (rs.getTimestamp("revdate") == null) {
-                cal1.setTime(rs.getTimestamp("startdate"));
+                cal1.setTime(rs.getTimestamp("enddate"));
             } else {
                 cal1.setTime(rs.getTimestamp("revdate"));
             }
-            System.out.println("2 " + rs.getString("tranid"));
             String year1 = Integer.toString(cal1.get(Calendar.YEAR));
             String month1 = Integer.toString(cal1.get(Calendar.MONTH) + 1);
             String day1 = Integer.toString(cal1.get(Calendar.DAY_OF_MONTH));
@@ -1182,7 +1180,7 @@ public class TaskUtils extends HttpServlet {
     }
 
     public static ArrayList<Tasks> getTaskToMeComp(Connection conn, String Username) throws SQLException {
-
+    System.out.println("getTaskToMeComp " + Username);
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
 
@@ -1215,9 +1213,6 @@ public class TaskUtils extends HttpServlet {
         while (rs.next()) {
             Date date1 = new Date();
             Calendar cal1 = new GregorianCalendar();
-
-            System.out.println("1 " + rs.getString("tranid"));
-            System.out.println("3 " + rs.getTimestamp("revdate"));
             if (rs.getTimestamp("revdate") == null) {
                 cal1.setTime(rs.getTimestamp("startdate"));
             } else {
@@ -1326,8 +1321,12 @@ public class TaskUtils extends HttpServlet {
         while (rs1.next()) {
             Date date1 = new Date();
             Calendar cal1 = new GregorianCalendar();
-
-            cal1.setTime(rs1.getTimestamp("revdate"));
+            if (rs1.getTimestamp("revdate") == null) {
+                cal1.setTime(rs1.getTimestamp("enddate"));
+            } else {
+                cal1.setTime(rs1.getTimestamp("revdate"));
+            }
+            // cal1.setTime(rs1.getTimestamp("revdate"));
             String year1 = Integer.toString(cal1.get(Calendar.YEAR));
             String month1 = Integer.toString(cal1.get(Calendar.MONTH) + 1);
             String day1 = Integer.toString(cal1.get(Calendar.DAY_OF_MONTH));
@@ -1411,7 +1410,7 @@ public class TaskUtils extends HttpServlet {
     }
 
     public static ArrayList<Tasks> getNewTask(Connection conn, String Username) throws SQLException {
-
+System.out.println("getNewTask " + Username);
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
 
@@ -1445,15 +1444,11 @@ public class TaskUtils extends HttpServlet {
         while (rs.next()) {
             Date date1 = new Date();
             Calendar cal1 = new GregorianCalendar();
-
-            System.out.println("1 " + rs.getString("tranid"));
-            System.out.println("3 " + rs.getTimestamp("revdate"));
             if (rs.getTimestamp("revdate") == null) {
                 cal1.setTime(rs.getTimestamp("startdate"));
             } else {
                 cal1.setTime(rs.getTimestamp("revdate"));
             }
-            System.out.println("2 " + rs.getString("tranid"));
             String year1 = Integer.toString(cal1.get(Calendar.YEAR));
             String month1 = Integer.toString(cal1.get(Calendar.MONTH) + 1);
             String day1 = Integer.toString(cal1.get(Calendar.DAY_OF_MONTH));
@@ -1537,7 +1532,7 @@ public class TaskUtils extends HttpServlet {
     }
 
     public static ArrayList<Tasks> getTaskByMeComp(Connection conn, String Username) throws SQLException {
-
+System.out.println("getTaskByMeComp " + Username);
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
 
@@ -1557,15 +1552,11 @@ public class TaskUtils extends HttpServlet {
         while (rs.next()) {
             Date date1 = new Date();
             Calendar cal1 = new GregorianCalendar();
-
-            System.out.println("1 " + rs.getString("tranid"));
-            System.out.println("3 " + rs.getTimestamp("revdate"));
             if (rs.getTimestamp("revdate") == null) {
                 cal1.setTime(rs.getTimestamp("startdate"));
             } else {
                 cal1.setTime(rs.getTimestamp("revdate"));
             }
-            System.out.println("2 " + rs.getString("tranid"));
             String year1 = Integer.toString(cal1.get(Calendar.YEAR));
             String month1 = Integer.toString(cal1.get(Calendar.MONTH) + 1);
             String day1 = Integer.toString(cal1.get(Calendar.DAY_OF_MONTH));
@@ -1640,7 +1631,7 @@ public class TaskUtils extends HttpServlet {
             task.setEnddate(enddate);
             task.setTaskstat(taskstat);
             task.setStartdate(startdate);
-             task.setTaskto1(rs.getString("taskto1"));
+            task.setTaskto1(rs.getString("taskto1"));
 
             list.add(task);
 
@@ -1650,7 +1641,7 @@ public class TaskUtils extends HttpServlet {
     }
 
     public static ArrayList<Tasks> getTaskInFuture(Connection conn, String Username) throws SQLException {
-
+        System.out.println("getTaskInFuture " + Username);
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
 
@@ -1684,15 +1675,11 @@ public class TaskUtils extends HttpServlet {
         while (rs.next()) {
             Date date1 = new Date();
             Calendar cal1 = new GregorianCalendar();
-
-            System.out.println("1 " + rs.getString("tranid"));
-            System.out.println("3 " + rs.getTimestamp("revdate"));
             if (rs.getTimestamp("revdate") == null) {
                 cal1.setTime(rs.getTimestamp("startdate"));
             } else {
                 cal1.setTime(rs.getTimestamp("revdate"));
-            }
-            System.out.println("2 " + rs.getString("tranid"));
+            }           
             String year1 = Integer.toString(cal1.get(Calendar.YEAR));
             String month1 = Integer.toString(cal1.get(Calendar.MONTH) + 1);
             String day1 = Integer.toString(cal1.get(Calendar.DAY_OF_MONTH));
@@ -1796,8 +1783,12 @@ public class TaskUtils extends HttpServlet {
         while (rs1.next()) {
             Date date1 = new Date();
             Calendar cal1 = new GregorianCalendar();
-
-            cal1.setTime(rs1.getTimestamp("revdate"));
+            if (rs1.getTimestamp("revdate") == null) {
+                cal1.setTime(rs1.getTimestamp("enddate"));
+            } else {
+                cal1.setTime(rs1.getTimestamp("revdate"));
+            }
+            // cal1.setTime(rs1.getTimestamp("revdate"));
             String year1 = Integer.toString(cal1.get(Calendar.YEAR));
             String month1 = Integer.toString(cal1.get(Calendar.MONTH) + 1);
             String day1 = Integer.toString(cal1.get(Calendar.DAY_OF_MONTH));
@@ -1916,8 +1907,12 @@ public class TaskUtils extends HttpServlet {
         while (rs.next()) {
             Date date1 = new Date();
             Calendar cal1 = new GregorianCalendar();
-
-            cal1.setTime(rs.getTimestamp("revdate"));
+            if (rs.getTimestamp("revdate") == null) {
+                cal1.setTime(rs.getTimestamp("enddate"));
+            } else {
+                cal1.setTime(rs.getTimestamp("revdate"));
+            }
+            // cal1.setTime(rs.getTimestamp("revdate"));
             String year1 = Integer.toString(cal1.get(Calendar.YEAR));
             String month1 = Integer.toString(cal1.get(Calendar.MONTH) + 1);
             String day1 = Integer.toString(cal1.get(Calendar.DAY_OF_MONTH));
@@ -2021,8 +2016,12 @@ public class TaskUtils extends HttpServlet {
         while (rs1.next()) {
             Date date1 = new Date();
             Calendar cal1 = new GregorianCalendar();
-
-            cal1.setTime(rs1.getTimestamp("revdate"));
+            if (rs1.getTimestamp("revdate") == null) {
+                cal1.setTime(rs1.getTimestamp("enddate"));
+            } else {
+                cal1.setTime(rs1.getTimestamp("revdate"));
+            }
+            // cal1.setTime(rs1.getTimestamp("revdate"));
             String year1 = Integer.toString(cal1.get(Calendar.YEAR));
             String month1 = Integer.toString(cal1.get(Calendar.MONTH) + 1);
             String day1 = Integer.toString(cal1.get(Calendar.DAY_OF_MONTH));
@@ -2126,8 +2125,12 @@ public class TaskUtils extends HttpServlet {
         while (rs.next()) {
             Date date1 = new Date();
             Calendar cal1 = new GregorianCalendar();
-
-            cal1.setTime(rs.getTimestamp("revdate"));
+            if (rs.getTimestamp("revdate") == null) {
+                cal1.setTime(rs.getTimestamp("enddate"));
+            } else {
+                cal1.setTime(rs.getTimestamp("revdate"));
+            }
+            // cal1.setTime(rs.getTimestamp("revdate"));
             String year1 = Integer.toString(cal1.get(Calendar.YEAR));
             String month1 = Integer.toString(cal1.get(Calendar.MONTH) + 1);
             String day1 = Integer.toString(cal1.get(Calendar.DAY_OF_MONTH));

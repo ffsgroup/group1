@@ -171,36 +171,10 @@
                         $td = target.closest('td');
                         var col = $td.index();
                         var row = $td.closest('tr').index();
-                        //window.location = 'TaskView.jsp';
                         window.location = "TaskView.jsp?key=" + encodeURIComponent(document.getElementById("countrytable").rows[row + 1].cells[0].innerHTML);
-                        //  $.get("TaskView.jsp", {"tranid": document.getElementById("countrytable").rows[row+1].cells[0].innerHTML});
-                        // $.get('DiaryDetail', {tranid: document.getElementById("countrytable").rows[row+1].cells[0].innerHTML}, function (responseJson) {
-//                            if (responseJson != null) {
-//                                $.each(responseJson, function (key, value) {
-//                                    document.getElementById("fromuser").innerHTML = value['user'];
-//                                    document.getElementById("diarysumm").value = value['desc1'];
-//                                    document.getElementById("startdate").value = value['sdate'];
-//                                    document.getElementById("enddate").value = value['edate'];
-//                                    // document.getElementById("locat1").value = value['locat'];
-///                                    document.getElementById("locat").value = value['locat'];
-//                                    document.getElementById("diarytask").value = value['task'];
-//                                    document.getElementById("diarynotes").value = value['notes'];
-//                                    document.getElementById("diarycomment").value = value['comm'];
-//
-//                                });
-//
-//                            }
-//                        });
 
                     });
                 });
-
-
-
-
-
-
-
 
                 $(document).ready(function () {
                     $("#TrainingTasks").click(function (event) {

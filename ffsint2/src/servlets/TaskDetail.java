@@ -32,11 +32,13 @@ public class TaskDetail extends HttpServlet {
         Connection conn = MyUtils.getStoredConnection(request);
         HttpSession session = request.getSession();
         UserAccount loginedUser = MyUtils.getLoginedUser(session);
+        
+        
         String tranid = request.getParameter("key");
         System.out.println("TaskDetail " + tranid);
         ArrayList<Tasks> task = new ArrayList<Tasks>();
         try {
-            task = TaskUtils.getTaskOne(conn, loginedUser.getUserName(), tranid);
+            task = TaskUtils.getTaskOne(conn, loginedUser, tranid);
         } catch (SQLException e) {
             e.printStackTrace();
             //  errorString = e.getMessage();
