@@ -65,6 +65,9 @@ public class SecureUtils {
             User1.setbranch(rs.getString("branch"));
             User1.setTranId(rs.getString("tranid"));
             User1.setsecurestr(rs.getString("lidno"));
+            User1.settaskenq(rs.getString("taskenq"));
+            User1.settaskclaim(rs.getString("taskclaim"));
+            User1.settaskpay(rs.getString("taskpay"));
             list.add(User1);
         }
         return list;

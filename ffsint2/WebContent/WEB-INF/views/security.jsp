@@ -281,7 +281,627 @@
                                 } else {
                                     document.getElementById("sec148").checked = false;
                                 }
-
+                                if (value['taskenq'] == "Y") {
+                                    document.getElementById("taskenq").checked = true;
+                                } else {
+                                    document.getElementById("taskenq").checked = false;
+                                }
+                                if (value['taskclaim'] == "Y") {
+                                    document.getElementById("taskclaim").checked = true;
+                                } else {
+                                    document.getElementById("taskclaim").checked = false;
+                                }
+                                if (value['taskpay'] == "Y") {
+                                    document.getElementById("taskpay").checked = true;
+                                } else {
+                                    document.getElementById("taskpay").checked = false;
+                                }
+                                if (value['securestr'].substring(34, 35) == "1") {
+                                    document.getElementById("sec35").checked = true;
+                                } else {
+                                    document.getElementById("sec35").checked = false;
+                                }
+                                if (value['securestr'].substring(33, 34) == "1") {
+                                    document.getElementById("sec34").checked = true;
+                                } else {
+                                    document.getElementById("sec34").checked = false;
+                                }
+                                if (value['securestr'].substring(6, 7) == "1") {
+                                    document.getElementById("sec7").checked = true;
+                                } else {
+                                    document.getElementById("sec7").checked = false;
+                                }
+                                if (value['securestr'].substring(5, 6) == "1") {
+                                    document.getElementById("sec6").checked = true;
+                                } else {
+                                    document.getElementById("sec6").checked = false;
+                                }
+                                if (value['securestr'].substring(13, 14) == "1") {
+                                    document.getElementById("sec14").checked = true;
+                                } else {
+                                    document.getElementById("sec14").checked = false;
+                                }
+                                if (value['securestr'].substring(14, 15) == "1") {
+                                    document.getElementById("sec15").checked = true;
+                                } else {
+                                    document.getElementById("sec15").checked = false;
+                                }
+                                if (value['securestr'].substring(26, 27) == "1") {
+                                    document.getElementById("sec27").checked = true;
+                                } else {
+                                    document.getElementById("sec27").checked = false;
+                                }
+                                if (value['securestr'].substring(25, 26) == "1") {
+                                    document.getElementById("sec26").checked = true;
+                                } else {
+                                    document.getElementById("sec26").checked = false;
+                                }
+                                if (value['securestr'].substring(24, 25) == "1") {
+                                    document.getElementById("sec25").checked = true;
+                                } else {
+                                    document.getElementById("sec25").checked = false;
+                                }
+                                if (value['securestr'].substring(23, 24) == "1") {
+                                    document.getElementById("sec24").checked = true;
+                                } else {
+                                    document.getElementById("sec24").checked = false;
+                                }
+                                if (value['securestr'].substring(22, 23) == "1") {
+                                    document.getElementById("sec23").checked = true;
+                                } else {
+                                    document.getElementById("sec23").checked = false;
+                                }
+                                if (value['securestr'].substring(74, 75) == "1") {
+                                    document.getElementById("sec75").checked = true;
+                                } else {
+                                    document.getElementById("sec75").checked = false;
+                                }
+                                if (value['securestr'].substring(81, 82) == "1") {
+                                    document.getElementById("sec82").checked = true;
+                                } else {
+                                    document.getElementById("sec82").checked = false;
+                                }
+                                if (value['securestr'].substring(35, 36) == "1") {
+                                    document.getElementById("sec36").checked = true;
+                                } else {
+                                    document.getElementById("sec36").checked = false;
+                                }
+                                if (value['securestr'].substring(37, 38) == "1") {
+                                    document.getElementById("sec38").checked = true;
+                                } else {
+                                    document.getElementById("sec38").checked = false;
+                                }
+                                if (value['securestr'].substring(36, 37) == "1") {
+                                    document.getElementById("sec37").checked = true;
+                                } else {
+                                    document.getElementById("sec37").checked = false;
+                                }
+                                if (value['securestr'].substring(62, 63) == "1") {
+                                    document.getElementById("sec63").checked = true;
+                                } else {
+                                    document.getElementById("sec63").checked = false;
+                                }
+                                if (value['securestr'].substring(63, 64) == "1") {
+                                    document.getElementById("sec64").checked = true;
+                                } else {
+                                    document.getElementById("sec64").checked = false;
+                                }
+                                if (value['securestr'].substring(64, 65) == "1") {
+                                    document.getElementById("sec65").checked = true;
+                                } else {
+                                    document.getElementById("sec65").checked = false;
+                                }
+                                if (value['securestr'].substring(65, 66) == "1") {
+                                    document.getElementById("sec66").checked = true;
+                                } else {
+                                    document.getElementById("sec66").checked = false;
+                                }
+                                if (value['securestr'].substring(66, 67) == "1") {
+                                    document.getElementById("sec67").checked = true;
+                                } else {
+                                    document.getElementById("sec67").checked = false;
+                                }
+                                if (value['securestr'].substring(133, 134) == "1") {
+                                    document.getElementById("sec134").checked = true;
+                                } else {
+                                    document.getElementById("sec134").checked = false;
+                                }
+                                if (value['securestr'].substring(84, 85) == "1") {
+                                    document.getElementById("sec85").checked = true;
+                                } else {
+                                    document.getElementById("sec85").checked = false;
+                                }
+                                if (value['securestr'].substring(85, 86) == "1") {
+                                    document.getElementById("sec86").checked = true;
+                                } else {
+                                    document.getElementById("sec86").checked = false;
+                                }
+                                if (value['securestr'].substring(86, 87) == "1") {
+                                    document.getElementById("sec87").checked = true;
+                                } else {
+                                    document.getElementById("sec87").checked = false;
+                                }
+                                if (value['securestr'].substring(87, 88) == "1") {
+                                    document.getElementById("sec88").checked = true;
+                                } else {
+                                    document.getElementById("sec88").checked = false;
+                                }
+                                if (value['securestr'].substring(97, 98) == "1") {
+                                    document.getElementById("sec98").checked = true;
+                                } else {
+                                    document.getElementById("sec98").checked = false;
+                                }
+                                if (value['securestr'].substring(88, 89) == "1") {
+                                    document.getElementById("sec89").checked = true;
+                                } else {
+                                    document.getElementById("sec89").checked = false;
+                                }
+                                if (value['securestr'].substring(89, 90) == "1") {
+                                    document.getElementById("sec90").checked = true;
+                                } else {
+                                    document.getElementById("sec90").checked = false;
+                                }
+                                if (value['securestr'].substring(90, 91) == "1") {
+                                    document.getElementById("sec91").checked = true;
+                                } else {
+                                    document.getElementById("sec91").checked = false;
+                                }
+                                if (value['securestr'].substring(91, 92) == "1") {
+                                    document.getElementById("sec92").checked = true;
+                                } else {
+                                    document.getElementById("sec92").checked = false;
+                                }
+                                if (value['securestr'].substring(92, 93) == "1") {
+                                    document.getElementById("sec93").checked = true;
+                                } else {
+                                    document.getElementById("sec93").checked = false;
+                                }
+                                if (value['securestr'].substring(93, 94) == "1") {
+                                    document.getElementById("sec94").checked = true;
+                                } else {
+                                    document.getElementById("sec94").checked = false;
+                                }
+                                if (value['securestr'].substring(94, 95) == "1") {
+                                    document.getElementById("sec95").checked = true;
+                                } else {
+                                    document.getElementById("sec95").checked = false;
+                                }
+                                if (value['securestr'].substring(95, 96) == "1") {
+                                    document.getElementById("sec96").checked = true;
+                                } else {
+                                    document.getElementById("sec96").checked = false;
+                                }
+                                if (value['securestr'].substring(96, 97) == "1") {
+                                    document.getElementById("sec97").checked = true;
+                                } else {
+                                    document.getElementById("sec97").checked = false;
+                                }
+                                if (value['securestr'].substring(98, 99) == "1") {
+                                    document.getElementById("sec99").checked = true;
+                                } else {
+                                    document.getElementById("sec99").checked = false;
+                                }
+                                if (value['securestr'].substring(105, 106) == "1") {
+                                    document.getElementById("sec106").checked = true;
+                                } else {
+                                    document.getElementById("sec106").checked = false;
+                                }
+                                if (value['securestr'].substring(46, 47) == "1") {
+                                    document.getElementById("sec47").checked = true;
+                                } else {
+                                    document.getElementById("sec47").checked = false;
+                                }
+                                if (value['securestr'].substring(40, 41) == "1") {
+                                    document.getElementById("sec41").checked = true;
+                                } else {
+                                    document.getElementById("sec41").checked = false;
+                                }
+                                if (value['securestr'].substring(39, 40) == "1") {
+                                    document.getElementById("sec40").checked = true;
+                                } else {
+                                    document.getElementById("sec40").checked = false;
+                                }
+                                if (value['securestr'].substring(38, 39) == "1") {
+                                    document.getElementById("sec39").checked = true;
+                                } else {
+                                    document.getElementById("sec39").checked = false;
+                                }
+                                if (value['securestr'].substring(8, 9) == "1") {
+                                    document.getElementById("sec9").checked = true;
+                                } else {
+                                    document.getElementById("sec9").checked = false;
+                                }
+                                if (value['securestr'].substring(112, 113) == "1") {
+                                    document.getElementById("sec113").checked = true;
+                                } else {
+                                    document.getElementById("sec113").checked = false;
+                                }
+                                if (value['securestr'].substring(16, 17) == "1") {
+                                    document.getElementById("sec17").checked = true;
+                                } else {
+                                    document.getElementById("sec17").checked = false;
+                                }
+                                if (value['securestr'].substring(17, 18) == "1") {
+                                    document.getElementById("sec18").checked = true;
+                                } else {
+                                    document.getElementById("sec18").checked = false;
+                                }
+                                if (value['securestr'].substring(18, 19) == "1") {
+                                    document.getElementById("sec19").checked = true;
+                                } else {
+                                    document.getElementById("sec19").checked = false;
+                                }
+                                if (value['securestr'].substring(120, 121) == "1") {
+                                    document.getElementById("sec121").checked = true;
+                                } else {
+                                    document.getElementById("sec121").checked = false;
+                                }
+                                if (value['securestr'].substring(121, 122) == "1") {
+                                    document.getElementById("sec122").checked = true;
+                                } else {
+                                    document.getElementById("sec122").checked = false;
+                                }
+                                if (value['securestr'].substring(51, 52) == "1") {
+                                    document.getElementById("sec52").checked = true;
+                                } else {
+                                    document.getElementById("sec52").checked = false;
+                                }
+                                if (value['securestr'].substring(52, 53) == "1") {
+                                    document.getElementById("sec53").checked = true;
+                                } else {
+                                    document.getElementById("sec53").checked = false;
+                                }
+                                if (value['securestr'].substring(57, 58) == "1") {
+                                    document.getElementById("sec58").checked = true;
+                                } else {
+                                    document.getElementById("sec58").checked = false;
+                                }
+                                if (value['securestr'].substring(122, 123) == "1") {
+                                    document.getElementById("sec123").checked = true;
+                                } else {
+                                    document.getElementById("sec123").checked = false;
+                                }
+                                if (value['securestr'].substring(123, 124) == "1") {
+                                    document.getElementById("sec124").checked = true;
+                                } else {
+                                    document.getElementById("sec124").checked = false;
+                                }
+                                if (value['securestr'].substring(21, 22) == "1") {
+                                    document.getElementById("sec22").checked = true;
+                                } else {
+                                    document.getElementById("sec22").checked = false;
+                                }
+                                if (value['securestr'].substring(20, 21) == "1") {
+                                    document.getElementById("sec21").checked = true;
+                                } else {
+                                    document.getElementById("sec21").checked = false;
+                                }
+                                if (value['securestr'].substring(19, 20) == "1") {
+                                    document.getElementById("sec20").checked = true;
+                                } else {
+                                    document.getElementById("sec20").checked = false;
+                                }
+                                if (value['securestr'].substring(48, 49) == "1") {
+                                    document.getElementById("sec49").checked = true;
+                                } else {
+                                    document.getElementById("sec49").checked = false;
+                                }
+                                if (value['securestr'].substring(47, 48) == "1") {
+                                    document.getElementById("sec48").checked = true;
+                                } else {
+                                    document.getElementById("sec48").checked = false;
+                                }
+                                if (value['securestr'].substring(56, 57) == "1") {
+                                    document.getElementById("sec57").checked = true;
+                                } else {
+                                    document.getElementById("sec57").checked = false;
+                                }
+                                if (value['securestr'].substring(104, 105) == "1") {
+                                    document.getElementById("sec105").checked = true;
+                                } else {
+                                    document.getElementById("sec105").checked = false;
+                                }
+                                if (value['securestr'].substring(148, 149) == "1") {
+                                    document.getElementById("sec149").checked = true;
+                                } else {
+                                    document.getElementById("sec149").checked = false;
+                                }
+                                if (value['securestr'].substring(49, 50) == "1") {
+                                    document.getElementById("sec50").checked = true;
+                                } else {
+                                    document.getElementById("sec50").checked = false;
+                                }
+                                if (value['securestr'].substring(12, 13) == "1") {
+                                    document.getElementById("sec13").checked = true;
+                                } else {
+                                    document.getElementById("sec13").checked = false;
+                                }
+                                if (value['securestr'].substring(0, 1) == "1") {
+                                    document.getElementById("sec1").checked = true;
+                                } else {
+                                    document.getElementById("sec1").checked = false;
+                                }
+                                if (value['securestr'].substring(44, 45) == "1") {
+                                    document.getElementById("sec45").checked = true;
+                                } else {
+                                    document.getElementById("sec45").checked = false;
+                                }
+                                if (value['securestr'].substring(108, 109) == "1") {
+                                    document.getElementById("sec109").checked = true;
+                                } else {
+                                    document.getElementById("sec109").checked = false;
+                                }
+                                if (value['securestr'].substring(79, 80) == "1") {
+                                    document.getElementById("sec80").checked = true;
+                                } else {
+                                    document.getElementById("sec80").checked = false;
+                                }
+                                if (value['securestr'].substring(78, 79) == "1") {
+                                    document.getElementById("sec79").checked = true;
+                                } else {
+                                    document.getElementById("sec79").checked = false;
+                                }
+                                if (value['securestr'].substring(50, 51) == "1") {
+                                    document.getElementById("sec51").checked = true;
+                                } else {
+                                    document.getElementById("sec51").checked = false;
+                                }
+                                if (value['securestr'].substring(53, 54) == "1") {
+                                    document.getElementById("sec54").checked = true;
+                                } else {
+                                    document.getElementById("sec54").checked = false;
+                                }
+                                if (value['securestr'].substring(54, 55) == "1") {
+                                    document.getElementById("sec55").checked = true;
+                                } else {
+                                    document.getElementById("sec55").checked = false;
+                                }
+                                if (value['securestr'].substring(55, 56) == "1") {
+                                    document.getElementById("sec56").checked = true;
+                                } else {
+                                    document.getElementById("sec56").checked = false;
+                                }
+                                if (value['securestr'].substring(100, 101) == "1") {
+                                    document.getElementById("sec101").checked = true;
+                                } else {
+                                    document.getElementById("sec101").checked = false;
+                                }
+                                if (value['securestr'].substring(107, 108) == "1") {
+                                    document.getElementById("sec108").checked = true;
+                                } else {
+                                    document.getElementById("sec108").checked = false;
+                                }
+                                if (value['securestr'].substring(68, 69) == "1") {
+                                    document.getElementById("sec69").checked = true;
+                                } else {
+                                    document.getElementById("sec69").checked = false;
+                                }
+                                if (value['securestr'].substring(69, 70) == "1") {
+                                    document.getElementById("sec70").checked = true;
+                                } else {
+                                    document.getElementById("sec70").checked = false;
+                                }
+                                if (value['securestr'].substring(75, 76) == "1") {
+                                    document.getElementById("sec76").checked = true;
+                                } else {
+                                    document.getElementById("sec76").checked = false;
+                                }
+                                if (value['securestr'].substring(80, 81) == "1") {
+                                    document.getElementById("sec81").checked = true;
+                                } else {
+                                    document.getElementById("sec81").checked = false;
+                                }
+                                if (value['securestr'].substring(82, 83) == "1") {
+                                    document.getElementById("sec83").checked = true;
+                                } else {
+                                    document.getElementById("sec83").checked = false;
+                                }
+                                if (value['securestr'].substring(109, 110) == "1") {
+                                    document.getElementById("sec110").checked = true;
+                                } else {
+                                    document.getElementById("sec110").checked = false;
+                                }
+                                if (value['securestr'].substring(111, 112) == "1") {
+                                    document.getElementById("sec112").checked = true;
+                                } else {
+                                    document.getElementById("sec112").checked = false;
+                                }
+                                if (value['securestr'].substring(127, 128) == "1") {
+                                    document.getElementById("sec128").checked = true;
+                                } else {
+                                    document.getElementById("sec128").checked = false;
+                                }
+                                if (value['securestr'].substring(141, 142) == "1") {
+                                    document.getElementById("sec142").checked = true;
+                                } else {
+                                    document.getElementById("sec142").checked = false;
+                                }
+                                if (value['securestr'].substring(143, 144) == "1") {
+                                    document.getElementById("sec144").checked = true;
+                                } else {
+                                    document.getElementById("sec144").checked = false;
+                                }
+                                if (value['securestr'].substring(145, 146) == "1") {
+                                    document.getElementById("sec146").checked = true;
+                                } else {
+                                    document.getElementById("sec146").checked = false;
+                                }
+                                if (value['securestr'].substring(32, 33) == "1") {
+                                    document.getElementById("sec33").checked = true;
+                                } else {
+                                    document.getElementById("sec33").checked = false;
+                                }
+                             if (value['securestr'].substring(31, 32) == "1") {
+                                    document.getElementById("sec32").checked = true;
+                                } else {
+                                    document.getElementById("sec32").checked = false;
+                                }
+                                if (value['securestr'].substring(30, 31) == "1") {
+                                    document.getElementById("sec31").checked = true;
+                                } else {
+                                    document.getElementById("sec31").checked = false;
+                                }
+                                if (value['securestr'].substring(29, 30) == "1") {
+                                    document.getElementById("sec30").checked = true;
+                                } else {
+                                    document.getElementById("sec30").checked = false;
+                                }
+if (value['securestr'].substring(28, 29) == "1") {
+                                    document.getElementById("sec29").checked = true;
+                                } else {
+                                    document.getElementById("sec29").checked = false;
+                                }
+                                if (value['securestr'].substring(27, 28) == "1") {
+                                    document.getElementById("sec28").checked = true;
+                                } else {
+                                    document.getElementById("sec28").checked = false;
+                                }
+                                if (value['securestr'].substring(99, 100) == "1") {
+                                    document.getElementById("sec100").checked = true;
+                                } else {
+                                    document.getElementById("sec100").checked = false;
+                                }
+                                if (value['securestr'].substring(101, 102) == "1") {
+                                    document.getElementById("sec102").checked = true;
+                                } else {
+                                    document.getElementById("sec102").checked = false;
+                                }
+                                if (value['securestr'].substring(106, 107) == "1") {
+                                    document.getElementById("sec107").checked = true;
+                                } else {
+                                    document.getElementById("sec107").checked = false;
+                                }
+                                if (value['securestr'].substring(110, 111) == "1") {
+                                    document.getElementById("sec111").checked = true;
+                                } else {
+                                    document.getElementById("sec111").checked = false;
+                                }
+                                if (value['securestr'].substring(128, 129) == "1") {
+                                    document.getElementById("sec129").checked = true;
+                                } else {
+                                    document.getElementById("sec129").checked = false;
+                                }
+                                if (value['securestr'].substring(113, 114) == "1") {
+                                    document.getElementById("sec114").checked = true;
+                                } else {
+                                    document.getElementById("sec114").checked = false;
+                                }
+                                if (value['securestr'].substring(114, 115) == "1") {
+                                    document.getElementById("sec115").checked = true;
+                                } else {
+                                    document.getElementById("sec115").checked = false;
+                                }
+                                if (value['securestr'].substring(115, 116) == "1") {
+                                    document.getElementById("sec116").checked = true;
+                                } else {
+                                    document.getElementById("sec116").checked = false;
+                                }
+                                if (value['securestr'].substring(116, 117) == "1") {
+                                    document.getElementById("sec117").checked = true;
+                                } else {
+                                    document.getElementById("sec117").checked = false;
+                                }
+                                if (value['securestr'].substring(117, 118) == "1") {
+                                    document.getElementById("sec118").checked = true;
+                                } else {
+                                    document.getElementById("sec118").checked = false;
+                                }
+                                if (value['securestr'].substring(118, 119) == "1") {
+                                    document.getElementById("sec119").checked = true;
+                                } else {
+                                    document.getElementById("sec119").checked = false;
+                                }
+                                if (value['securestr'].substring(135, 136) == "1") {
+                                    document.getElementById("sec136").checked = true;
+                                } else {
+                                    document.getElementById("sec136").checked = false;
+                                }
+                                if (value['securestr'].substring(136, 137) == "1") {
+                                    document.getElementById("sec137").checked = true;
+                                } else {
+                                    document.getElementById("sec137").checked = false;
+                                }
+                                if (value['securestr'].substring(119, 120) == "1") {
+                                    document.getElementById("sec120").checked = true;
+                                } else {
+                                    document.getElementById("sec120").checked = false;
+                                }
+                                if (value['securestr'].substring(124, 125) == "1") {
+                                    document.getElementById("sec125").checked = true;
+                                } else {
+                                    document.getElementById("sec125").checked = false;
+                                }
+                                if (value['securestr'].substring(83, 84) == "1") {
+                                    document.getElementById("sec84").checked = true;
+                                } else {
+                                    document.getElementById("sec84").checked = false;
+                                }
+                                if (value['securestr'].substring(125, 126) == "1") {
+                                    document.getElementById("sec126").checked = true;
+                                } else {
+                                    document.getElementById("sec126").checked = false;
+                                }
+                                if (value['securestr'].substring(129, 130) == "1") {
+                                    document.getElementById("sec130").checked = true;
+                                } else {
+                                    document.getElementById("sec130").checked = false;
+                                }
+                                if (value['securestr'].substring(130, 131) == "1") {
+                                    document.getElementById("sec131").checked = true;
+                                } else {
+                                    document.getElementById("sec131").checked = false;
+                                }
+                                if (value['securestr'].substring(137, 138) == "1") {
+                                    document.getElementById("sec138").checked = true;
+                                } else {
+                                    document.getElementById("sec138").checked = false;
+                                }
+                                if (value['securestr'].substring(138, 139) == "1") {
+                                    document.getElementById("sec139").checked = true;
+                                } else {
+                                    document.getElementById("sec139").checked = false;
+                                }
+                                if (value['securestr'].substring(131, 132) == "1") {
+                                    document.getElementById("sec132").checked = true;
+                                } else {
+                                    document.getElementById("sec132").checked = false;
+                                }
+                                if (value['securestr'].substring(132, 133) == "1") {
+                                    document.getElementById("sec133").checked = true;
+                                } else {
+                                    document.getElementById("sec133").checked = false;
+                                }
+                                if (value['securestr'].substring(133, 134) == "1") {
+                                    document.getElementById("sec134").checked = true;
+                                } else {
+                                    document.getElementById("sec134").checked = false;
+                                }
+                                if (value['securestr'].substring(139, 140) == "1") {
+                                    document.getElementById("sec140").checked = true;
+                                } else {
+                                    document.getElementById("sec140").checked = false;
+                                }
+                                if (value['securestr'].substring(140, 141) == "1") {
+                                    document.getElementById("sec141").checked = true;
+                                } else {
+                                    document.getElementById("sec141").checked = false;
+                                }
+                                if (value['securestr'].substring(142, 143) == "1") {
+                                    document.getElementById("sec143").checked = true;
+                                } else {
+                                    document.getElementById("sec143").checked = false;
+                                }
+                                if (value['securestr'].substring(144, 145) == "1") {
+                                    document.getElementById("sec145").checked = true;
+                                } else {
+                                    document.getElementById("sec145").checked = false;
+                                }
+                                if (value['securestr'].substring(146, 147) == "1") {
+                                    document.getElementById("sec147").checked = true;
+                                } else {
+                                    document.getElementById("sec147").checked = false;
+                                }
+                                
                             });
 
                         }
@@ -446,15 +1066,17 @@
                         <tr>
                             <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec35" > Beneficiary Name </label></td>
                             <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec27"> Funeral Receipt </label></td>
-                             <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec27"> Funeral Receipt </label></td>
+                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="taskenq"> Enq Task </label></td>
                         </tr>
                         <tr>    
                             <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec34"> Claim Comments </label></td>
                             <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec26"> Edit After Auth</label></td>
+                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="taskclaim"> Claim Task </label></td>
                         </tr>
                         <tr>
                             <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec7"> Update Claims </label></td>
                             <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec25"> Auth Funeral</label></td>
+                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="taskpay"> Pay Task </label></td>  
                         </tr>
                         <tr>
                             <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec6"> View Claims </label></td>
@@ -477,16 +1099,252 @@
                 </table>                
             </div>  
             <div id="tabs-4">
+                <table class="table newtable1" style="border:none; width:75%;">
+                    <tbody>
+                        <tr>
+                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec36" > View Vehicle </label></td>
+                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec85"> Check Battery </label></td>
+                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec92"> Update Insurance </label></td>
+                        </tr>
+                        <tr>    
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec38"> Remove Vehicle </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec86"> Check Tyre</label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec93"> Consumables</label></td>
+                        </tr>
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec37"> Add Vehicle </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec87"> Warrantee Claims </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec94"> Order Parts </label></td>    
+                        </tr>
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec63"> Create Trip </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec88"> Add Damages </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec95"> Netstar Battery </label></td>
+                        </tr>
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec64"> Admin Trip </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec98"> Update Registration </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec96"> Netstar Test </label></td>
+                        </tr>
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec65"> Accept Claim Note </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec89"> Manual Trips</label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec97"> Update General</label></td>
+                        </tr>
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec66"> Accept Claim Note </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec90"> Trip Passenger</label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec99"> Update Odometer</label></td>
+                        </tr>                       
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec67"> Vehicle Reports </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec91"> Update Finance </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec106"> Sell Vehicle </label></td>
+                        </tr>                       
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec134"> Complete Event </label></td>
+                        </tr>                        
+                    <br>
+                    </tbody>
+                </table>                
             </div>  
             <div id="tabs-5">
+                <table class="table newtable1" style="border:none; width:75%;">
+                    <tbody>
+                        <tr>
+                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec47" > Monitor Cashier </label></td>
+                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec17"> Edit Stock </label></td>                            
+                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec52"> New Orders </label></td>
+
+                        </tr>
+                        <tr>    
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec41"> Reports Branch </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec18"> Transfer stock</label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec53"> Accept Orders</label></td>
+                        </tr>
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec40"> Reports Other </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec19"> View Stock </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec58"> Auth Orders </label></td>
+                        </tr>
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec39"> Reports Financial </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec121"> Transfer Item </label></td>
+                        </tr>
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec9"> Reports Policies </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec122"> Transfer Driver </label></td>
+                        </tr>
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec113"> StockTake </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec123"> Management Transfer </label></td>
+                        </tr>                       
+                        <tr>
+                            <td> </td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec124"> Cancel Transfer </label></td>
+                        </tr>                        
+                    <br>
+                    </tbody>
+                </table>
             </div>  
             <div id="tabs-6">
+                <table class="table newtable1" style="border:none; width:75%;">
+                    <tbody>
+                        <tr>
+                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec22" > Service Device </label></td>
+                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec50"> LogOff Users </label></td>                            
+                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec51"> Asset Management </label></td> 
+
+                        </tr>
+                        <tr>    
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec21"> Edit Device </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec13"> Create User </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec54"> Bodies </label></td>
+                        </tr>
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec20"> View Device </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec1"> Login Enabled </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec55"> Upload Images </label></td>
+                        </tr>
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec49"> Send Message </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec45"> Policy Info </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec56"> View Images </label></td>
+                        </tr>
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec48"> Cash Sales </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec109"> Vigil Trips </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec101"> Generator </label></td>
+                        </tr>
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec57"> Print Letters </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec80"> Document Request </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec108"> Confirm Gen Run </label></td>
+                        </tr>                       
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec105"> Upload Contracts </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec79"> TeleSales </label></td>
+                        </tr>                        
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec149"> Remove Claim Doc </label></td>
+                        </tr>      
+                        <tr>
+                            <td> UserLock <input type="text" style="width:100px">  </td>
+                        </tr>
+                    <br>
+                    </tbody>
+                </table>
             </div> 
             <div id="tabs-7">
+                <table class="table newtable1" style="border:none; width:75%;">
+                    <tbody>
+                        <tr>
+                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec69" > Assign Task </label></td>
+                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec112"> Train Users </label></td>   
+                        </tr>
+                        <tr>    
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec70"> Accept Task </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec128"> Print Task </label></td>
+                        </tr>
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec76"> Task Report </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec142"> Delete Image </label></td>
+                        </tr>
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec81"> Change Task From </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec144"> See All </label></td>
+                        </tr>
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec83"> Report Only Own </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec146"> Create Urgent </label></td>
+                        </tr>  
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec110"> View Incidents </label></td>
+                        </tr>  
+                    <br>
+                    </tbody>
+                </table>
             </div> 
             <div id="tabs-8">
+                <table class="table newtable1" style="border:none; width:75%;">
+                    <tbody>
+                        <tr>
+                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec33" > Tombstone Receipt </label></td>
+                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec107"> Back To Stock </label></td>   
+                        </tr>
+                        <tr>    
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec32"> Erect Tombstone </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec111"> Print Order </label></td>
+                        </tr>
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec31"> Cut Tombstone </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec129"> Late fees </label></td>
+                        </tr>
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec30"> Authorize Tombstone </label></td>
+                        </tr>
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec29"> New Tombstone </label></td>
+                        </tr>  
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec28"> View Tombstone </label></td>
+                        </tr>  
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec100"> Return Uncollected </label></td>
+                        </tr>  
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec102"> Marketing </label></td>
+                        </tr>  
+                    <br>
+                    </tbody>
+                </table>
             </div> 
             <div id="tabs-9">
+                <table class="table newtable1" style="border:none; width:75%;">
+                    <tbody>
+                        <tr>
+                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec114" > SM Trips </label></td>
+                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec120"> Policy Amend </label></td>   
+                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec132"> Banking </label></td>   
+                        </tr>
+                        <tr>    
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec115"> Keys </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec125"> Coffin Inspect </label></td>
+                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec133"> Accept Banking </label></td>   
+                        </tr>
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec116"> Register CV </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec84"> Alarm Code </label></td>
+                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec134"> Stop / Debit Dates </label></td>   
+                        </tr>
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec117"> Pol Change Vote 1 </label></td>
+                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec126"> Safe Code </label></td>   
+                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec140"> Auth Trips </label></td>   
+                        </tr>
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec118"> Pol Change Vote 2 </label></td>
+                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec130"> Ex Mun Auth </label></td>   
+                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec141"> Auth Receipt </label></td>   
+                        </tr>  
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec119"> Pol Change Vote 3 </label></td>
+                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec131"> Sign Post </label></td>   
+                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec143"> Receipt Utils </label></td>   
+                        </tr>  
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec136"> Delete Notes </label></td>
+                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec138"> Delete Images </label></td>   
+                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec145"> Task Log </label></td>   
+                        </tr>  
+                        <tr>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec137"> Auth Cash Claim </label></td>
+                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec139"> Del Pol History </label></td>   
+                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec147"> Mem Age Auth </label></td>   
+                        </tr>  
+                    <br>
+                    </tbody>
+                </table>
             </div> 
             <div id="tabs-10">
             </div> 

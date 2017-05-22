@@ -17,6 +17,9 @@ private String tranid;
     private String securestr;
     private String code;
     private String branch;
+private String taskenq;
+private String taskclaim;
+private String taskpay;
 
     public UserAccount() {
 
@@ -149,4 +152,26 @@ private String tranid;
     public void setTranId(String tranid) {
         this.tranid = tranid;
     } 
+    
+      public String gettaskenq() {
+        return taskenq;
+    }
+    public void settaskenq(String taskenq) {
+        this.taskenq = taskenq;
+    } 
+
+      public String gettaskclaim() {
+        return taskclaim;
+    }
+    public void settaskclaim(String taskclaim) {
+        this.taskclaim = taskclaim;
+    } 
+
+        public String gettaskpay() {
+        return taskpay;
+    }
+    public void settaskpay(String taskpay) {
+        this.taskpay = taskpay;
+    }  
+    
 }
