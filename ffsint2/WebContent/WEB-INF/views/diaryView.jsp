@@ -45,8 +45,6 @@ $(document).ready( function() {
     $('#countrytable').click( function(event) {
       var target = $(event.target);
       $td = target.closest('td');
-    //  document.getElementById("diaryid").innerHTML = "1";
-    //  $td.html(parseInt($td.html())+1);
       var col   = $td.index();
       var row   = $td.closest('tr').index();
       document.getElementById("diaryid").innerHTML = document.getElementById("countrytable").rows[row].cells[3].innerHTML;
@@ -54,13 +52,6 @@ $(document).ready( function() {
                $.get('DiaryDetail(document.getElementById("countrytable").rows[row].cells[1].innerHTML'),function(responseJson) {
         	   if(responseJson!=null){
                          document.getElementById("diarysumm").innerHTML = value['tranid'];
-	              //         rowNew.children().eq(0).text(value['tranid']); 
-	               //        rowNew.children().eq(1).text(value['user']); 
-	           //            rowNew.children().eq(2).text(value['desc1']); 
-	          //             rowNew.children().eq(3).text(value['desc1']); 
-	       //                rowNew.children().eq(4).text(value['desc1']); 
-	     //                  rowNew.children().eq(5).text(value['desc1']); 
-	    //                   rowNew.appendTo(table1);
                 }
             }  
     });

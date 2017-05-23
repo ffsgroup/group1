@@ -23,8 +23,11 @@
       
         <script>
             $(document).ready(function () {
-                    $("#Tasksave").click(function (event) {                        
-                        $.get('UrgentTasks', {summ: function (responseJson) {
+                    $("#Tasksave").click(function (event) {                      
+                       // var recur = $("0");
+                       //  If (document.getElementById("recur").checked == true) {var recur1 = $("1"); }
+                        
+                        $.get('TaskUpdate', {tranid:document.getElementById("taskid").innerHTML, recur1:document.getElementById("recur").checked, recur2:document.getElementById("recureveryday").checked, recur4:document.getElementById("recurofeverymonth").checked, recur5:document.getElementById("recurweekly").checked,recur6:document.getElementById("recureveryweekday").checked, recur7:document.getElementById("recurlastday").checked,recur8:document.getElementById("recurmonthly").checked, recur9:document.getElementById("recurexceptsun").checked, recur10:document.getElementById("recurevery").checked, recur11:document.getElementById("recurday1").value, recur12:document.getElementById("recureverymonth").checked, recur13:document.getElementById("recurmonths").value, ir:document.getElementById("requestir").checked, tasksumm:document.getElementById("tasksumm").value, taskfull:document.getElementById("taskfull").value },function (responseJson) {
                             if (responseJson != null) {
                                 $.each(responseJson, function (key, value) {
                                  if (value['genericdescriptioneng'].equals("success") ) {
@@ -57,7 +60,7 @@
             <div id="tabs-1">
                 <p>
                 <div style="float: Left; text-align: left;">
-                    Task :  <label id="TaskId"/>${taskid}</label>
+                    Task :  <label id="taskid"/>${taskid}</label>
                 </div>     
                 <br>
                 <label id="TaskFromLabel" style="float:left">Task From :</label>
@@ -83,7 +86,7 @@
                 <label><input type="checkbox" id="recur" value="Recur" >Recurrence</label>
                 <br>
                 <label id="Recurlabel1"><input type="checkbox" id="recureveryday" value="Recur" >Every Day</label>
-                <label id="Recurlabel2"><input type="checkbox" id="Recurday" value="Recur" style="margin-left:68px" >Day</label>
+                <label id="Recurlabel2"><input type="checkbox" id=recurday2" value="Recur" style="margin-left:68px" >Day</label>
                 <label id="Recurlabel3"> <input type="text" id="recurofeverymonth" style="width:35px;" value=${recurday}  /> of every month.</label> 
                 <label id="Recurlabel4"><input type="checkbox" id="recurweekly" value="Recur" style="margin-left:30px" >Weekly</label>
                 <br>
@@ -120,7 +123,7 @@
                         document.getElementById("Recur").checked = true;
                         $("#Recureveryday").css("visibility", "visible");
                         $("#Recurlabel1").css("visibility", "visible");
-                        $("#Recurday").css("visibility", "visible");
+                        $("#Recurday2").css("visibility", "visible");
                         $("#Recurlabel2").css("visibility", "visible");
                         $("#Recurofeverymonth").css("visibility", "visible");
                         $("#Recurlabel3").css("visibility", "visible");
@@ -146,7 +149,7 @@
                         document.getElementById("Recur").checked = false;
                         $("#Recureveryday").css("visibility", "hidden");
                         $("#Recurlabel1").css("visibility", "hidden");
-                        $("#Recurday").css("visibility", "hidden");
+                        $("#Recurday2").css("visibility", "hidden");
                         $("#Recurlabel2").css("visibility", "hidden");
                         $("#Recurofeverymonth").css("visibility", "hidden");
                         $("#Recurlabel3").css("visibility", "hidden");
@@ -247,10 +250,10 @@
                 <script>
                     var a = ${recurd}
                     if (a == "1") {
-                        document.getElementById("Recurday").checked = true;
+                        document.getElementById("Recurday2").checked = true;
                     } else
                     {
-                        document.getElementById("Recurday").checked = false;
+                        document.getElementById("Recurday2").checked = false;
                     }
                 </script>
 
@@ -277,8 +280,8 @@
                     myCalendar2.setDateFormat("%Y/%m/%d %H:%i");
                 </script>
                 <script>
-                    var myCalendar2 = new dhtmlXCalendarObject(["enddate"]);
-                    myCalendar2.setDateFormat("%Y/%m/%d %H:%i");
+                    var myCalendar3 = new dhtmlXCalendarObject(["enddate"]);
+                    myCalendar3.setDateFormat("%Y/%m/%d %H:%i");
                 </script>
                 <br>
                 <label id="Priority" style="float:left; ">Priority :</label>
