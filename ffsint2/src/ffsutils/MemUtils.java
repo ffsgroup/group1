@@ -189,6 +189,87 @@ public class MemUtils {
                 day2 = "0" + day2;
             }
 
+            Date date3 = new Date();
+            Calendar cal3 = new GregorianCalendar();
+
+            if (rs.getTimestamp("eisdat") == null) {
+                cal3.setTime(rs.getTimestamp("joindat"));
+            } else {
+                cal3.setTime(rs.getTimestamp("eisdat"));
+            }
+            String year3 = Integer.toString(cal3.get(Calendar.YEAR));
+            String month3 = Integer.toString(cal3.get(Calendar.MONTH) + 1);
+            String day3 = Integer.toString(cal3.get(Calendar.DAY_OF_MONTH));
+            String hour3 = Integer.toString(cal3.get(Calendar.HOUR_OF_DAY));
+            String minute3 = Integer.toString(cal3.get(Calendar.MINUTE));
+            if (hour3.length() == 1) {
+                hour3 = "0" + hour3;
+            }
+            if (minute3.length() == 1) {
+                minute3 = "0" + minute3;
+            }
+            if (month3.length() == 1) {
+                month3 = "0" + month3;
+            }
+            if (day3.length() == 1) {
+                day3 = "0" + day3;
+            }
+
+            Date date4 = new Date();
+            Calendar cal4 = new GregorianCalendar();
+
+            if (rs.getTimestamp("bettot") == null) {
+                cal4.setTime(rs.getTimestamp("joindat"));
+            } else {
+                cal4.setTime(rs.getTimestamp("bettot"));
+            }
+            String year4 = Integer.toString(cal4.get(Calendar.YEAR));
+            String month4 = Integer.toString(cal4.get(Calendar.MONTH) + 1);
+            String day4 = Integer.toString(cal4.get(Calendar.DAY_OF_MONTH));
+            String hour4 = Integer.toString(cal4.get(Calendar.HOUR_OF_DAY));
+            String minute4 = Integer.toString(cal4.get(Calendar.MINUTE));
+            if (hour4.length() == 1) {
+                hour4 = "0" + hour4;
+            }
+            if (minute4.length() == 1) {
+                minute4 = "0" + minute4;
+            }
+            if (month4.length() == 1) {
+                month4 = "0" + month4;
+            }
+            if (day4.length() == 1) {
+                day4 = "0" + day4;
+            }
+
+            Date date5 = new Date();
+            Calendar cal5 = new GregorianCalendar();
+
+            if (rs.getTimestamp("benefdate") == null) {
+                cal5.setTime(rs.getTimestamp("joindat"));
+            } else {
+                cal5.setTime(rs.getTimestamp("benefdate"));
+            }
+            String year5 = Integer.toString(cal5.get(Calendar.YEAR));
+            String month5 = Integer.toString(cal5.get(Calendar.MONTH) + 1);
+            String day5 = Integer.toString(cal5.get(Calendar.DAY_OF_MONTH));
+            String hour5 = Integer.toString(cal5.get(Calendar.HOUR_OF_DAY));
+            String minute5 = Integer.toString(cal5.get(Calendar.MINUTE));
+            if (hour5.length() == 1) {
+                hour5 = "0" + hour5;
+            }
+            if (minute5.length() == 1) {
+                minute5 = "0" + minute5;
+            }
+            if (month5.length() == 1) {
+                month5 = "0" + month5;
+            }
+            if (day5.length() == 1) {
+                day5 = "0" + day5;
+            }
+
+            String benefdate = year5 + "/" + month5 + "/" + day5;
+            String bettot = year4 + "/" + month4 + "/" + day4;
+            String eisdat = year3 + "/" + month3 + "/" + day3;
             String joindat = year2 + "/" + month2 + "/" + day2;
             String postdate = year1 + "/" + month1 + "/" + day1;
             String thistime = year + "/" + month + "/" + day;
@@ -218,7 +299,18 @@ public class MemUtils {
             members.settelh(rs.getString("telh"));
             members.settelw(rs.getString("telw"));
             //tab 4 Account
-             members.setjoindat(joindat);
+            members.setjoindat(joindat);
+            members.seteisdat(eisdat);
+            members.setbranch(rs.getString("branch"));
+            members.setcoveramount(rs.getString("coveramount"));
+            members.setbetmet(rs.getString("betmet"));
+            members.setbettot(bettot);
+            members.setpaypoint(rs.getString("paypoint"));
+            members.setbenefname(rs.getString("benefname"));
+            members.setbenefID(rs.getString("benefID"));
+            members.setbenefRelation(rs.getString("benefRelation"));
+//                members.setbenefdate(rs.getString("benefdate"));
+            members.setbenefdate(benefdate);
 
             list.add(members);
         }

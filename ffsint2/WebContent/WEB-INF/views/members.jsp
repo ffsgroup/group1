@@ -135,7 +135,18 @@
                                     document.getElementById("phonehome").value = value['telh'];
                                     document.getElementById("phonework").value = value['telw'];
                                     //tab 4 Account
-                                     document.getElementById("joindat").value = value['joindat'];
+                                    document.getElementById("joindat").value = value['joindat'];
+                                    document.getElementById("claimdat").value = value['eisdat'];
+                                    document.getElementById("mbranch").value = value['branch'];
+                                    document.getElementById("coveramount").value = value['coveramount'];
+                                    document.getElementById("bettot").value = value['bettot'];
+                                    document.getElementById("paymet").value = value['betmet'];
+                                    document.getElementById("paypoint").value = value['paypoint'];
+                                    document.getElementById("benefname").value = value['benefname'];
+                                    document.getElementById("benefid").value = value['benefID'];
+                                    document.getElementById("benefrelation").value = value['benefRelation'];
+                                    document.getElementById("benefdate").value = value['benefdate'];
+
 
 
                                 });
@@ -205,7 +216,7 @@
         <body>
             <br>
             <fieldset>
-                <label> Member Number <input type ="text" id="memnum" width ="15" style="margin-left:10px" onkeyup="loadMember()" /> </label>
+                <label> Member Number <input type ="text" id="memnum" width ="15" style="margin-left:10px" onkeyup="loadMember()" value="000" /> </label>
                     <br>
                     <label> Title <input type ="text" id="memtitle" width="25" style="margin-left:47px"> </label>
                     <label style="margin-left:100px"> Company Name <select id="memcomp" style="width:100px" > <option value=""></option> </select> </label>
@@ -421,33 +432,58 @@
                         <label> Join Date </label>
                         <input type="text" id="joindat" style="margin-left:19px;width:100px;" >
                     <label style="margin-left:40px"> Cover Amount </label>
-                        <input type="text" style="margin-left:26px;width:60px" >
+                        <input type="text" id="coveramount" style="margin-left:26px;width:60px" >
                         <label style="margin-left:140px"> Beneficiary </label>
                         <br>
                         <label> Claim date </label>
                         <input type="text" id="claimdat" style="margin-left:10px;width:100px;" >
                     <label style="margin-left:40px"> Paid Up To </label>
-                        <input type="text" style="width:100px; margin-left:49px" >
+                        <input type="text" id="bettot" style="width:100px; margin-left:49px" >
                         <label style="margin-left:30px"> Name </label>
-                        <input type="text" style="width:190px; margin-left:50px" >
+                        <input type="text" id="benefname" style="width:190px; margin-left:50px" >
 
                         <br>
                         <label> Branch </label>
                         <select name="membranch" id="mbranch" style="width:100px; margin-left:38px" >
                             <option value=""> </option>
+                            <option value="Durban">Durban</option>
+                            <option value="Empangeni">Empangeni</option>
+                            <option value="Empangeni Pensioners">Empangeni Pensioners</option>
+                            <option value="Finance">Finance</option>
+                            <option value="Head Office">Head Office</option>
+                            <option value="Melmoth">Melmoth</option>
+                            <option value="Melmoth Pensioners">Melmoth Pensioners</option>
+                            <option value="Mokopane">Mokopane</option>
+                            <option value="Mtubatuba">Mtubatuba</option>
+                            <option value="Mtubatuba Pensioners">Mtubatuba Pensioners</option>
+                            <option value="Nongoma">Nongoma</option>
+                            <option value="Nongoma Pensioners">Nongoma Pensioners</option>
+                            <option value="Ulundi">Ulundi</option>
+                            <option value="Workshop">Workshop</option>
                         </select>                      
                         <label style="margin-left:44px"> Payment Method </label>
                         <select name="paymeth" id="paymet" style="margin-left:10px; width:110px;">
-                        <option value=""></option> 
+                        <option value="0"></option> 
+                        <option value="1">Cash</option>
+                        <option value="2">Direct Deposit</option>
+                        <option value="3">Debit Order</option>
+                        <option value="4">Postal Payment</option>
+                        <option value="5">External Payments</option>
+                        <option value="6">Stop Order</option>
+                        <option value="7">Debit + Stop Order</option>
+                        <option value="8">Debit</option>
+                        <option value="9">Staff Payment</option> 
+                        <option value="10">Pensioners</option> 
+                        <option value="11">Cheque</option> 
 
                     </select>
                     <label style="margin-left:30px;"> ID Nr </Label>
                     <input type="text" id="benefid" style="width:160px;margin-left:55px">
                         <br>
                         <label style="margin-left:240px;"> Pay Point </label>
-                    <input type="text" style="margin-left:60px; width:100px;" >
+                    <input type="text" id="paypoint" style="margin-left:60px; width:100px;" >
                     <label style="margin-left:30px"> Relationship </label>
-                        <input type="text" style="margin-left:10px;width:100px;" >
+                        <input type="text" id="benefrelation" style="margin-left:10px;width:100px;" >
                     <br>
                     <label style="margin-left:515px"> Date </label>
                         <input type="text" id="benefdate" style="width:100px; margin-left:60px">
