@@ -78,7 +78,7 @@
                                 }
                             });
                         }
-                        
+
                         var count = $("#memstatus option").length;
                         if (count.valueOf() < 2) {
                             $.get('MemberGetPolStatus', function (responseJson) {
@@ -119,10 +119,24 @@
                                     document.getElementById("memlang").value = value['taal'];
                                     document.getElementById("cancode").value = value['cancode'];
                                     document.getElementById("memstatus").selectedIndex = value['status'];
-                                     document.getElementById("memprem").value = value['initialPayment'];
-                                      document.getElementById("memtotprem").value = value['initialPayment'];
-                                    
-                                    
+                                    document.getElementById("memprem").value = value['initialPayment'];
+                                    document.getElementById("memtotprem").value = value['initialPayment'];
+                                    //tab 2 Contact
+                                    document.getElementById("padd1").value = value['physline1'];
+                                    document.getElementById("padd2").value = value['physline2'];
+                                    document.getElementById("padd3").value = value['physline3'];
+                                    document.getElementById("pcode").value = value['physcode'];
+                                    document.getElementById("post1").value = value['pobox'];
+                                    document.getElementById("post2").value = value['street'];
+                                    document.getElementById("post3").value = value['city'];
+                                    document.getElementById("postcode").value = value['zip'];
+                                    document.getElementById("postdate").value = value['postdate'];
+                                    document.getElementById("phonecell").value = value['opmaak'];
+                                    document.getElementById("phonehome").value = value['telh'];
+                                    document.getElementById("phonework").value = value['telw'];
+                                    //tab 4 Account
+                                     document.getElementById("joindat").value = value['joindat'];
+
 
                                 });
                             } else {

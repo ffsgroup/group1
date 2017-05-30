@@ -39,12 +39,14 @@ public class Member {
     private String recruitdate;
     private String cancode;
     private String initialPayment;
+    private String postdate;
+    private String opmaak;
 
     public Member() {
 
     }
 
-    public Member(String tranid, String lidno, String sur, String ini, String shortname, String orgid, String lidtipe, String gebdat, String aanstdat, String troustat, String pobox, String street, String city, String zip, String physline1, String physline2, String physline3, String physcode, String idno, String sex, String taal, String verwlidno, String telh, String telw, String newprelidno, String eisdat, String krediet, String bettot, String joindat, String status, String email, String recruiter, String recruitdate, String troutstat, String cancode, String initialPayment) {
+    public Member(String tranid, String lidno, String sur, String ini, String shortname, String orgid, String lidtipe, String gebdat, String aanstdat, String troustat, String pobox, String street, String city, String zip, String physline1, String physline2, String physline3, String physcode, String idno, String sex, String taal, String verwlidno, String telh, String telw, String newprelidno, String eisdat, String krediet, String bettot, String joindat, String status, String email, String recruiter, String recruitdate, String troutstat, String cancode, String initialPayment, String postdate, String opmaak) {
         this.tranid = tranid;
         this.lidno = lidno;
         this.sur = sur;
@@ -78,8 +80,10 @@ public class Member {
         this.email = email;
         this.recruiter = recruiter;
         this.recruiter = recruitdate;
-         this.cancode = cancode;
-         this.initialPayment = initialPayment;
+        this.cancode = cancode;
+        this.initialPayment = initialPayment;
+        this.postdate = postdate;
+        this.opmaak = opmaak;
     }
 
     public String getTranid() {
@@ -346,18 +350,35 @@ public class Member {
         this.recruitdate = recruitdate;
     }
 
-         public String getcancode() {
+    public String getcancode() {
         return cancode;
     }
 
     public void setcancode(String cancode) {
         this.cancode = cancode;
     }
-            public String getinitialPayment() {
+
+    public String getinitialPayment() {
         return initialPayment;
     }
 
     public void setinitialPayment(String initialPayment) {
         this.initialPayment = initialPayment;
+    }
+
+    public String getpostdate() {
+        return postdate;
+    }
+
+    public void setpostdate(String postdate) {
+        this.postdate = postdate;
+    }
+
+    public String getopmaak() {
+        return opmaak;
+    }
+
+    public void setopmaak(String opmaak) {
+        this.opmaak = opmaak;
     }
 }
