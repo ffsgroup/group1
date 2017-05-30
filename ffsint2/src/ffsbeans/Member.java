@@ -41,12 +41,20 @@ public class Member {
     private String initialPayment;
     private String postdate;
     private String opmaak;
+    private String branch;
+    private String coveramount;
+    private String betmet;
+    private String paypoint;
+    private String benefname;
+     private String benefID;
+      private String benefRelation;
+       private String benefdate;
 
     public Member() {
 
     }
 
-    public Member(String tranid, String lidno, String sur, String ini, String shortname, String orgid, String lidtipe, String gebdat, String aanstdat, String troustat, String pobox, String street, String city, String zip, String physline1, String physline2, String physline3, String physcode, String idno, String sex, String taal, String verwlidno, String telh, String telw, String newprelidno, String eisdat, String krediet, String bettot, String joindat, String status, String email, String recruiter, String recruitdate, String troutstat, String cancode, String initialPayment, String postdate, String opmaak) {
+    public Member(String tranid, String lidno, String sur, String ini, String shortname, String orgid, String lidtipe, String gebdat, String aanstdat, String troustat, String pobox, String street, String city, String zip, String physline1, String physline2, String physline3, String physcode, String idno, String sex, String taal, String verwlidno, String telh, String telw, String newprelidno, String eisdat, String krediet, String bettot, String joindat, String status, String email, String recruiter, String recruitdate, String troutstat, String cancode, String initialPayment, String postdate, String opmaak, String branch, String coveramount, String betmet, String paypoint, String benefname, String benefID, String benefRelation, String benefdate) {
         this.tranid = tranid;
         this.lidno = lidno;
         this.sur = sur;
@@ -84,6 +92,15 @@ public class Member {
         this.initialPayment = initialPayment;
         this.postdate = postdate;
         this.opmaak = opmaak;
+        this.branch = branch;
+        this.coveramount = coveramount;
+        this.betmet = betmet;
+        this.paypoint = paypoint;
+        this.benefname = benefname;
+        this.benefID = benefID;
+        this.benefRelation = benefRelation;
+        this.benefdate = benefdate;
+
     }
 
     public String getTranid() {
@@ -380,5 +397,66 @@ public class Member {
 
     public void setopmaak(String opmaak) {
         this.opmaak = opmaak;
+    }
+
+    public String getbranch() {
+        return branch;
+    }
+
+    public void setbranch(String branch) {
+        this.branch = branch;
+    }
+
+    public String getcoveramount() {
+        return coveramount;
+    }
+
+    public void setcoveramount(String coveramount) {
+        this.coveramount = coveramount;
+    }
+
+    public String getbetmet() {
+        return betmet;
+    }
+
+    public void setbetmet(String betmet) {
+        this.betmet = betmet;
+    }
+
+    public String getpaypoint() {
+        return paypoint;
+    }
+
+    public void setpaypoint(String paypoint) {
+        this.paypoint = paypoint;
+    }
+
+          public String getbenefname() {
+        return benefname;
+    }
+
+    public void setbenefname(String benefname) {
+        this.benefname = benefname;
+    }
+     public String getbenefID() {
+        return benefID;
+    }
+
+    public void setbenefID(String benefID) {
+        this.benefID = benefID;
+    }
+     public String getbenefRelation() {
+        return benefRelation;
+    }
+
+    public void setbenefRelation(String benefRelation) {
+        this.benefRelation = benefRelation;
+    }
+     public String getbenefdate() {
+        return benefdate;
+    }
+
+    public void setbenefdate(String benefdate) {
+        this.benefdate = benefdate;
     }
 }
