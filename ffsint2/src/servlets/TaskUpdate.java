@@ -16,7 +16,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import ffsbeans.Diary;
 import ffsbeans.UserAccount;
-import ffsutils.DBUtils;
+import ffsutils.TaskUtils;
 import ffsutils.MyUtils;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -37,14 +37,37 @@ public class TaskUpdate extends HttpServlet {
                 UserAccount loginedUser = MyUtils.getLoginedUser(session);
                 String tranid = request.getParameter("tranid"); 
                 String recur1 = request.getParameter("recur1"); 
+                String recur3 = request.getParameter("recur3"); 
+                String recur4 = request.getParameter("recur4"); 
+                String recur5 = request.getParameter("recur5"); 
+                String recur6 = request.getParameter("recur6"); 
+                String recur7 = request.getParameter("recur7"); 
+                String recur8 = request.getParameter("recur8"); 
+                String recur9 = request.getParameter("recur9"); 
+                String recur10 = request.getParameter("recur10"); 
+                String ir = request.getParameter("ir"); 
+                String tasksumm = request.getParameter("tasksumm"); 
+                String taskfull = request.getParameter("taskfull"); 
+                String recur13 = request.getParameter("recur13"); 
+                String recur11 = request.getParameter("recur11"); 
+                String recur12 = request.getParameter("recur12"); 
+                String sdate = request.getParameter("sdate"); 
+                String rdate = request.getParameter("rdate"); 
+                String edate = request.getParameter("edate"); 
+                String prior = request.getParameter("prior"); 
+                String stats = request.getParameter("stats"); 
+                String recur2 = request.getParameter("recur2"); 
+                
                 System.out.println("TaskUpdate " + tranid + " " + recur1);
 		ArrayList<Generics> generics =new ArrayList<Generics>();
-                //try {
-		//generics=DBUtils.getDiaryResp(conn, loginedUser.getUserName(), thislocat);
-               //         } catch (SQLException e) {
-           // e.printStackTrace();
-          //  errorString = e.getMessage();
-        //}
+                
+                try {
+		generics=TaskUtils.taskUpdate(conn, loginedUser, tranid, recur1, recur3, recur4,recur5,recur6,recur7,recur8,recur9,recur10, ir,tasksumm,taskfull, recur13, recur11,recur12,sdate,rdate,edate,prior,stats,recur2);
+                        } catch (SQLException e) {
+            e.printStackTrace();
+            String errorString;
+            errorString = e.getMessage();
+        }
 		Gson gson = new Gson();
 		JsonElement element = gson.toJsonTree(generics, new TypeToken<List<Generics>>() {}.getType());
 

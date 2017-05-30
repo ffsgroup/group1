@@ -30,6 +30,25 @@ public class SecureUtils {
 
     private static final String ATT_NAME_USER_NAME = "ATTRIBUTE_FOR_STORE_USER_NAME_IN_COOKIE";
 
+public static ArrayList<UserAccount> getAllActiveUser(Connection conn, String Username) throws SQLException {
+        System.out.println("getAllUsers");
+        String sql = "Select code, name, branch, tranid from users where lidno like '1%' order by name";
+
+        PreparedStatement pstm = conn.prepareStatement(sql);
+
+        ResultSet rs = pstm.executeQuery();
+        ArrayList<UserAccount> list = new ArrayList<UserAccount>();
+        while (rs.next()) {
+            UserAccount User1 = new UserAccount();
+            User1.setcode(rs.getString("Code"));
+            User1.setUserName(rs.getString("name"));
+            User1.setbranch(rs.getString("branch"));
+            User1.setTranId(rs.getString("tranid"));
+            list.add(User1);
+        }
+        return list;
+    }    
+    
     public static ArrayList<UserAccount> getAllUsers(Connection conn, String Username) throws SQLException {
         System.out.println("getAllUsers");
         String sql = "Select code, name, branch, tranid from users order by name";

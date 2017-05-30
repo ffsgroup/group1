@@ -20,14 +20,83 @@
                 $("#tabs").tabs();
             });
         </script> 
+        
+        <script>
+                      function loadMember() {
+                var count = $("#dsee1 option").length;
+                if (count.valueOf() < 2) {
+                    $.get('SecurityGetActiveUser', function (responseJson) {
+                        if (responseJson != null) {
+                            $.each(responseJson, function (key, value) {
+                                $('#dsee1').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                $('#dsee2').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                $('#dsee3').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                $('#dsee4').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                $('#dsee5').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                $('#dsee6').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                $('#dsee7').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                $('#dsee8').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                $('#dsee9').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                $('#dsee10').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                $('#dsee11').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                $('#dsee12').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                $('#dsee13').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                $('#dsee14').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                $('#dsee15').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                            });
+                        }
+                    });
+                }
+            }  
+        </script>    
+        
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("#Tasksavecomm").click(function (event) {
+                        $.get('TaskSaveComm', {comment: document.getElementById("tasknotes").value, tranid: document.getElementById("taskid").innerHTML}, function (responseJson) {                            
+                            if (responseJson != null) {
+                                $.each(responseJson, function (key, value) {
+                                    document.getElementById("tasknotes").value = value['tasknote'];
+                                    if (document.getElementById("tasknotes").value == "undefined") {
+                                        document.getElementById("tasknotes").value = "";
+                                    }
+                                    if (document.getElementById("tasknotes").value.length > 0) {
+                                        //   document.getElementById("tasknotes").value = "2"; 
+                                        document.getElementById("tasknotes").value = value['tasknote'].replace(/~/g, "\n");
+                                    }
+
+                                });
+                            }
+                        });
+                        //    $("#tablediv").show();  
+                        $("#Taskupdatecomm").css("visibility", "visible");
+                        $("#Tasksavecomm").css("visibility", "hidden");
+                    });
+                });
+            </script>
       
         <script>
+                  $(document).ready(function () {
+                    $("#Taskupdatepeople").click(function (event) {                      
+                        $.get('TaskUpdatePeople', {tranid:document.getElementById("taskid").innerHTML, user1:document.getElementById("dsee1").value, user2:document.getElementById("dsee2").value, user3:document.getElementById("dsee3").value, user4:document.getElementById("dsee4").value, user5:document.getElementById("dsee5").value, user6:document.getElementById("dsee6").value, user7:document.getElementById("dsee7").value, user8:document.getElementById("dsee8").value, user9:document.getElementById("dsee9").value, user10:document.getElementById("dsee10").value, user11:document.getElementById("dsee11").value , user12:document.getElementById("dsee12").value, user13:document.getElementById("dsee13").value, user14:document.getElementById("dsee14").value, user15:document.getElementById("dsee1").value },function (responseJson) {
+                            if (responseJson !== null) {
+                                $.each(responseJson, function (key, value) {
+                                 if (value['genericdescriptioneng'].equals("success") ) {
+                                   alert("success");    
+                                 }   else {
+                                    alert("failed"); 
+                                 }
+                                });
+                            } else {
+                             alert("no response");   
+                            }
+                        });
+                    });
+                });    
+                
             $(document).ready(function () {
                     $("#Tasksave").click(function (event) {                      
-                       // var recur = $("0");
-                       //  If (document.getElementById("recur").checked == true) {var recur1 = $("1"); }
-                        
-                        $.get('TaskUpdate', {tranid:document.getElementById("taskid").innerHTML, recur1:document.getElementById("recur").checked, recur2:document.getElementById("recureveryday").checked, recur4:document.getElementById("recurofeverymonth").checked, recur5:document.getElementById("recurweekly").checked,recur6:document.getElementById("recureveryweekday").checked, recur7:document.getElementById("recurlastday").checked,recur8:document.getElementById("recurmonthly").checked, recur9:document.getElementById("recurexceptsun").checked, recur10:document.getElementById("recurevery").checked, recur11:document.getElementById("recurday1").value, recur12:document.getElementById("recureverymonth").checked, recur13:document.getElementById("recurmonths").value, ir:document.getElementById("requestir").checked, tasksumm:document.getElementById("tasksumm").value, taskfull:document.getElementById("taskfull").value },function (responseJson) {
+                        $.get('TaskUpdate', {tranid:document.getElementById("taskid").innerHTML, recur1:document.getElementById("recur").checked, recur3:document.getElementById("recureveryday").checked, recur4:document.getElementById("recurofeverymonth").value, recur5:document.getElementById("recurweekly").checked,recur6:document.getElementById("recureveryweekday").checked, recur7:document.getElementById("recurlastday").checked,recur8:document.getElementById("recurmonthly").checked, recur9:document.getElementById("recurexceptsun").checked, recur10:document.getElementById("recurevery").checked, ir:document.getElementById("requestir").checked, tasksumm:document.getElementById("tasksumm").value, taskfull:document.getElementById("taskfull").value, recur13:document.getElementById("rmonth1").value, recur11:document.getElementById("dayr5").value, recur12:document.getElementById("monthr3").checked, sdate:document.getElementById("startdate").value, rdate:document.getElementById("reviewdate").value, edate:document.getElementById("enddate").value, prior:document.getElementById("Priority1").value, stats:document.getElementById("Status1").value, recur2:document.getElementById("dayr7").checked },function (responseJson) {
                             if (responseJson != null) {
                                 $.each(responseJson, function (key, value) {
                                  if (value['genericdescriptioneng'].equals("success") ) {
@@ -85,8 +154,8 @@
                 <br>
                 <label><input type="checkbox" id="recur" value="Recur" >Recurrence</label>
                 <br>
-                <label id="Recurlabel1"><input type="checkbox" id="recureveryday" value="Recur" >Every Day</label>
-                <label id="Recurlabel2"><input type="checkbox" id=recurday2" value="Recur" style="margin-left:68px" >Day</label>
+                <label id="Recurlabel1"><input type="checkbox" id="recureveryday" >Every Day</label>
+                <input type="checkbox" id="dayr7" style="margin-left:68px;" >Day
                 <label id="Recurlabel3"> <input type="text" id="recurofeverymonth" style="width:35px;" value=${recurday}  /> of every month.</label> 
                 <label id="Recurlabel4"><input type="checkbox" id="recurweekly" value="Recur" style="margin-left:30px" >Weekly</label>
                 <br>
@@ -96,7 +165,7 @@
                 <br>
                 <label id="Recurlabel8"><input type="checkbox" id="recurexceptsun" value="Recur" >Every Day Except Sunday</label>
                 <label id="Recurlabel9"><input type="checkbox" id="recurevery" value="Recur" style="margin-left:30px" >Every</label>
-                <select name="RecurDay" id = "recurday1" style=" margin-left: 10px; width: 110px;" >
+                <select name="RecurDay" id = "dayr5" style=" margin-left: 10px; width: 110px;" >
                     <option value="0"></option>
                     <option value="Monday">Monday</option>
                     <option value="Tuesday">Tuesday</option>
@@ -107,12 +176,12 @@
                     <option value="Sunday">Sunday</option>
                 </select> 
                 <script>
-                    document.getElementById("RecurDay1").value = ${recdayofweek};
+                    document.getElementById("dayr5").value = ${recdayofweek};
                 </script>
 
                 <br>
-                <label id="Recurlabel10"><input type="checkbox" id="Recureverymonth" value="Recur" >Every</label>
-                <label id="Recurlabel11"> <input type="text" id="RecurMonths" style="width:55px;" value=${recureverymonths} /> Months</label> 
+                <label id="Recurlabel10"><input type="checkbox" id="monthr3" value="Recur" >Every</label>
+                <label id="Recurlabel11"> <input type="text" id="rmonth1" style="width:55px;" value=${recureverymonths} /> Months</label> 
                 <br>
                 <label> <textarea name="notes" id="taskfull" style="width: 575px; height: 205px" cols="60" rows="5" >${taskfull}</textarea></label>    
                 <br>
@@ -123,7 +192,7 @@
                         document.getElementById("Recur").checked = true;
                         $("#Recureveryday").css("visibility", "visible");
                         $("#Recurlabel1").css("visibility", "visible");
-                        $("#Recurday2").css("visibility", "visible");
+                        $("#dayr7").css("visibility", "visible");
                         $("#Recurlabel2").css("visibility", "visible");
                         $("#Recurofeverymonth").css("visibility", "visible");
                         $("#Recurlabel3").css("visibility", "visible");
@@ -139,17 +208,17 @@
                         $("#Recurlabel8").css("visibility", "visible");
                         $("#Recurevery").css("visibility", "visible");
                         $("#Recurlabel9").css("visibility", "visible");
-                        $("#RecurDay1").css("visibility", "visible");
-                        $("#Recureverymonth").css("visibility", "visible");
+                        $("#dayr5").css("visibility", "visible");
+                        $("#monthr3").css("visibility", "visible");
                         $("#Recurlabel10").css("visibility", "visible");
-                        $("#RecurMonths").css("visibility", "visible");
+                        $("#rmonth1").css("visibility", "visible");
                         $("#Recurlabel11").css("visibility", "visible");
                     } else
                     {
                         document.getElementById("Recur").checked = false;
                         $("#Recureveryday").css("visibility", "hidden");
                         $("#Recurlabel1").css("visibility", "hidden");
-                        $("#Recurday2").css("visibility", "hidden");
+                        $("#dayr7").css("visibility", "hidden");
                         $("#Recurlabel2").css("visibility", "hidden");
                         $("#Recurofeverymonth").css("visibility", "hidden");
                         $("#Recurlabel3").css("visibility", "hidden");
@@ -165,10 +234,10 @@
                         $("#Recurlabel8").css("visibility", "hidden");
                         $("#Recurevery").css("visibility", "hidden");
                         $("#Recurlabel9").css("visibility", "hidden");
-                        $("#RecurDay1").css("visibility", "hidden");
-                        $("#Recureverymonth").css("visibility", "hidden");
+                        $("#dayr5").css("visibility", "hidden");
+                        $("#monthr3").css("visibility", "hidden");
                         $("#Recurlabel10").css("visibility", "hidden");
-                        $("#RecurMonths").css("visibility", "hidden");
+                        $("#rmonth1").css("visibility", "hidden");
                         $("#Recurlabel11").css("visibility", "hidden");
 
 
@@ -205,10 +274,10 @@
                 <script>
                     var a = ${recurg}
                     if (a == "1") {
-                        document.getElementById("Recureverymonth").checked = true;
+                        document.getElementById("monthr3").checked = true;
                     } else
                     {
-                        document.getElementById("Recureverymonth").checked = false;
+                        document.getElementById("monthr3").checked = false;
                     }
                 </script>
                 <script>
@@ -250,10 +319,10 @@
                 <script>
                     var a = ${recurd}
                     if (a == "1") {
-                        document.getElementById("Recurday2").checked = true;
+                        document.getElementById("dayr7").checked = true;
                     } else
                     {
-                        document.getElementById("Recurday2").checked = false;
+                        document.getElementById("dayr7").checked = false;
                     }
                 </script>
 
@@ -268,7 +337,7 @@
             <br>
                 Start Date :<label> <input type="text" id = "startdate" style="margin-left:27px; width: 135px;" value= ${startdate} /></label> 
                 <br> 
-                Review Date :<label> <input type="text" id = "Reviewdate" style="margin-left:10px; width: 135px;" value= ${revdate}/></label>
+                Review Date :<label> <input type="text" id = "reviewdate" style="margin-left:10px; width: 135px;" value= ${revdate}/></label>
                 <br>
                 End Date :<label> <input type="text" id = "enddate" style="margin-left:32px; width: 135px;" value= ${enddate}/></label>
                 <script>
@@ -351,7 +420,7 @@
 
                     <br>
                     <br>
-                    <select name="dseel" id = "dsee1" style="width:170px">
+                    <select name="dseel" id = "dsee1" style="width:170px" onClick="loadMember();">
                         <option value=${taskto1}>${taskto1}</option>
                     </select>
 
@@ -623,7 +692,7 @@
                     <br/>
 
                     Task Status : <label id="taskstatus" style=" margin-left:50px;"/>${taskstatus}</label>
-                    <input type ="button" value ="Close" id="Taskpeoplecls" style="width:75px; float: right"/>
+                  
                     <input type ="button" value ="Update" id="Taskupdatepeople" style="width:75px;  float: right; margin-right: 5px"/>
 
             </div>

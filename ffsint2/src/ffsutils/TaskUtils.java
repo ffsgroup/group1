@@ -5,6 +5,7 @@
  */
 package ffsutils;
 
+import ffsbeans.Diary;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -35,19 +36,9 @@ import java.text.SimpleDateFormat;
  */
 public class TaskUtils extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     public static ArrayList<Tasks> getTaskOne(Connection conn, UserAccount Username, String Tranid) throws SQLException {
         System.out.println("getTaskOne " + Tranid);
-        
-        
+
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
 
@@ -63,653 +54,655 @@ public class TaskUtils extends HttpServlet {
 
         ResultSet rs = pstm.executeQuery();
         ArrayList<Tasks> list = new ArrayList<Tasks>();
-        
-        
-        
-        
+
         if (rs.next()) {
-          if (rs.getString("taskfrom").equals(Username.getUserName()) || rs.getString("taskto1").equals(Username.getUserName()) || rs.getString("taskto2").equals(Username.getUserName()) || rs.getString("taskto3").equals(Username.getUserName()) || rs.getString("taskto4").equals(Username.getUserName()) || rs.getString("taskto5").equals(Username.getUserName()) || rs.getString("taskto6").equals(Username.getUserName()) || rs.getString("taskto7").equals(Username.getUserName()) || rs.getString("taskto8").equals(Username.getUserName()) || rs.getString("taskto9").equals(Username.getUserName()) || rs.getString("taskto10").equals(Username.getUserName()) || rs.getString("taskto11").equals(Username.getUserName()) || rs.getString("taskto12").equals(Username.getUserName())  || rs.getString("taskto13").equals(Username.getUserName()) || rs.getString("taskto14").equals(Username.getUserName()) || rs.getString("taskto15").equals(Username.getUserName()) || Username.getsecurestr().substring(143,144).equals("1")   ) {  
-            Date date1 = new Date();
-            Calendar cal1 = new GregorianCalendar();
+            if (rs.getString("taskfrom").equals(Username.getUserName()) || rs.getString("taskto1").equals(Username.getUserName()) || rs.getString("taskto2").equals(Username.getUserName()) || rs.getString("taskto3").equals(Username.getUserName()) || rs.getString("taskto4").equals(Username.getUserName()) || rs.getString("taskto5").equals(Username.getUserName()) || rs.getString("taskto6").equals(Username.getUserName()) || rs.getString("taskto7").equals(Username.getUserName()) || rs.getString("taskto8").equals(Username.getUserName()) || rs.getString("taskto9").equals(Username.getUserName()) || rs.getString("taskto10").equals(Username.getUserName()) || rs.getString("taskto11").equals(Username.getUserName()) || rs.getString("taskto12").equals(Username.getUserName()) || rs.getString("taskto13").equals(Username.getUserName()) || rs.getString("taskto14").equals(Username.getUserName()) || rs.getString("taskto15").equals(Username.getUserName()) || Username.getsecurestr().substring(143, 144).equals("1")) {
+                Date date1 = new Date();
+                Calendar cal1 = new GregorianCalendar();
 
-            if (rs.getTimestamp("revdate") == null) {
-                cal1.setTime(rs.getTimestamp("enddate"));
-            } else {
-                cal1.setTime(rs.getTimestamp("revdate"));
-            }
-            String year1 = Integer.toString(cal1.get(Calendar.YEAR));
-            String month1 = Integer.toString(cal1.get(Calendar.MONTH) + 1);
-            String day1 = Integer.toString(cal1.get(Calendar.DAY_OF_MONTH));
-            String hour1 = Integer.toString(cal1.get(Calendar.HOUR_OF_DAY));
-            String minute1 = Integer.toString(cal1.get(Calendar.MINUTE));
-            if (hour1.length() == 1) {
-                hour1 = "0" + hour1;
-            }
-            if (minute1.length() == 1) {
-                minute1 = "0" + minute1;
-            }
-            if (month1.length() == 1) {
-                month1 = "0" + month1;
-            }
-            if (day1.length() == 1) {
-                day1 = "0" + day1;
-            }
-            Date date2 = new Date();
-            Calendar cal2 = new GregorianCalendar();
+                if (rs.getTimestamp("revdate") == null) {
+                    cal1.setTime(rs.getTimestamp("enddate"));
+                } else {
+                    cal1.setTime(rs.getTimestamp("revdate"));
+                }
+                String year1 = Integer.toString(cal1.get(Calendar.YEAR));
+                String month1 = Integer.toString(cal1.get(Calendar.MONTH) + 1);
+                String day1 = Integer.toString(cal1.get(Calendar.DAY_OF_MONTH));
+                String hour1 = Integer.toString(cal1.get(Calendar.HOUR_OF_DAY));
+                String minute1 = Integer.toString(cal1.get(Calendar.MINUTE));
+                if (hour1.length() == 1) {
+                    hour1 = "0" + hour1;
+                }
+                if (minute1.length() == 1) {
+                    minute1 = "0" + minute1;
+                }
+                if (month1.length() == 1) {
+                    month1 = "0" + month1;
+                }
+                if (day1.length() == 1) {
+                    day1 = "0" + day1;
+                }
+                Date date2 = new Date();
+                Calendar cal2 = new GregorianCalendar();
 
-            cal2.setTime(rs.getTimestamp("enddate"));
-            String year2 = Integer.toString(cal2.get(Calendar.YEAR));
-            String month2 = Integer.toString(cal2.get(Calendar.MONTH) + 1);
-            String day2 = Integer.toString(cal2.get(Calendar.DAY_OF_MONTH));
-            String hour2 = Integer.toString(cal2.get(Calendar.HOUR_OF_DAY));
-            String minute2 = Integer.toString(cal2.get(Calendar.MINUTE));
-            if (hour2.length() == 1) {
-                hour2 = "0" + hour2;
-            }
-            if (minute2.length() == 1) {
-                minute2 = "0" + minute2;
-            }
-            if (month2.length() == 1) {
-                month2 = "0" + month2;
-            }
-            if (day2.length() == 1) {
-                day2 = "0" + day2;
-            }
-            Date date3 = new Date();
-            Calendar cal3 = new GregorianCalendar();
+                cal2.setTime(rs.getTimestamp("enddate"));
+                String year2 = Integer.toString(cal2.get(Calendar.YEAR));
+                String month2 = Integer.toString(cal2.get(Calendar.MONTH) + 1);
+                String day2 = Integer.toString(cal2.get(Calendar.DAY_OF_MONTH));
+                String hour2 = Integer.toString(cal2.get(Calendar.HOUR_OF_DAY));
+                String minute2 = Integer.toString(cal2.get(Calendar.MINUTE));
+                if (hour2.length() == 1) {
+                    hour2 = "0" + hour2;
+                }
+                if (minute2.length() == 1) {
+                    minute2 = "0" + minute2;
+                }
+                if (month2.length() == 1) {
+                    month2 = "0" + month2;
+                }
+                if (day2.length() == 1) {
+                    day2 = "0" + day2;
+                }
+                Date date3 = new Date();
+                Calendar cal3 = new GregorianCalendar();
 
-            cal3.setTime(rs.getTimestamp("startdate"));
-            String year3 = Integer.toString(cal3.get(Calendar.YEAR));
-            String month3 = Integer.toString(cal3.get(Calendar.MONTH) + 1);
-            String day3 = Integer.toString(cal3.get(Calendar.DAY_OF_MONTH));
-            String hour3 = Integer.toString(cal3.get(Calendar.HOUR_OF_DAY));
-            String minute3 = Integer.toString(cal3.get(Calendar.MINUTE));
-            if (hour3.length() == 1) {
-                hour3 = "0" + hour3;
-            }
-            if (minute3.length() == 1) {
-                minute3 = "0" + minute3;
-            }
-            if (month3.length() == 1) {
-                month3 = "0" + month3;
-            }
-            if (day3.length() == 1) {
-                day3 = "0" + day3;
-            }
+                cal3.setTime(rs.getTimestamp("startdate"));
+                String year3 = Integer.toString(cal3.get(Calendar.YEAR));
+                String month3 = Integer.toString(cal3.get(Calendar.MONTH) + 1);
+                String day3 = Integer.toString(cal3.get(Calendar.DAY_OF_MONTH));
+                String hour3 = Integer.toString(cal3.get(Calendar.HOUR_OF_DAY));
+                String minute3 = Integer.toString(cal3.get(Calendar.MINUTE));
+                if (hour3.length() == 1) {
+                    hour3 = "0" + hour3;
+                }
+                if (minute3.length() == 1) {
+                    minute3 = "0" + minute3;
+                }
+                if (month3.length() == 1) {
+                    month3 = "0" + month3;
+                }
+                if (day3.length() == 1) {
+                    day3 = "0" + day3;
+                }
 
-            Date date4 = new Date();
-            Calendar cal4 = new GregorianCalendar();
+                Date date4 = new Date();
+                Calendar cal4 = new GregorianCalendar();
 
-            cal4.setTime(rs.getTimestamp("taskdate"));
-            String year4 = Integer.toString(cal4.get(Calendar.YEAR));
-            String month4 = Integer.toString(cal4.get(Calendar.MONTH) + 1);
-            String day4 = Integer.toString(cal4.get(Calendar.DAY_OF_MONTH));
-            String hour4 = Integer.toString(cal4.get(Calendar.HOUR_OF_DAY));
-            String minute4 = Integer.toString(cal4.get(Calendar.MINUTE));
-            if (hour4.length() == 1) {
-                hour4 = "0" + hour4;
-            }
-            if (minute4.length() == 1) {
-                minute4 = "0" + minute4;
-            }
-            if (month4.length() == 1) {
-                month4 = "0" + month4;
-            }
-            if (day4.length() == 1) {
-                day4 = "0" + day4;
-            }
+                cal4.setTime(rs.getTimestamp("taskdate"));
+                String year4 = Integer.toString(cal4.get(Calendar.YEAR));
+                String month4 = Integer.toString(cal4.get(Calendar.MONTH) + 1);
+                String day4 = Integer.toString(cal4.get(Calendar.DAY_OF_MONTH));
+                String hour4 = Integer.toString(cal4.get(Calendar.HOUR_OF_DAY));
+                String minute4 = Integer.toString(cal4.get(Calendar.MINUTE));
+                if (hour4.length() == 1) {
+                    hour4 = "0" + hour4;
+                }
+                if (minute4.length() == 1) {
+                    minute4 = "0" + minute4;
+                }
+                if (month4.length() == 1) {
+                    month4 = "0" + month4;
+                }
+                if (day4.length() == 1) {
+                    day4 = "0" + day4;
+                }
 
-            Date date5 = new Date();
-            Calendar cal5 = new GregorianCalendar();
+                Date date5 = new Date();
+                Calendar cal5 = new GregorianCalendar();
 
-            if (rs.getTimestamp("statusday") == null) {
-                cal5.setTime(rs.getTimestamp("taskdate"));
-            } else {
-                cal5.setTime(rs.getTimestamp("statusday"));
-            }
+                if (rs.getTimestamp("statusday") == null) {
+                    cal5.setTime(rs.getTimestamp("taskdate"));
+                } else {
+                    cal5.setTime(rs.getTimestamp("statusday"));
+                }
 //            cal5.setTime(rs.getTimestamp("statusday"));
-            String year5 = Integer.toString(cal5.get(Calendar.YEAR));
-            String month5 = Integer.toString(cal5.get(Calendar.MONTH) + 1);
-            String day5 = Integer.toString(cal5.get(Calendar.DAY_OF_MONTH));
-            String hour5 = Integer.toString(cal5.get(Calendar.HOUR_OF_DAY));
-            String minute5 = Integer.toString(cal5.get(Calendar.MINUTE));
-            if (hour5.length() == 1) {
-                hour5 = "0" + hour5;
-            }
-            if (minute5.length() == 1) {
-                minute5 = "0" + minute5;
-            }
-            if (month5.length() == 1) {
-                month5 = "0" + month5;
-            }
-            if (day5.length() == 1) {
-                day5 = "0" + day5;
-            }
+                String year5 = Integer.toString(cal5.get(Calendar.YEAR));
+                String month5 = Integer.toString(cal5.get(Calendar.MONTH) + 1);
+                String day5 = Integer.toString(cal5.get(Calendar.DAY_OF_MONTH));
+                String hour5 = Integer.toString(cal5.get(Calendar.HOUR_OF_DAY));
+                String minute5 = Integer.toString(cal5.get(Calendar.MINUTE));
+                if (hour5.length() == 1) {
+                    hour5 = "0" + hour5;
+                }
+                if (minute5.length() == 1) {
+                    minute5 = "0" + minute5;
+                }
+                if (month5.length() == 1) {
+                    month5 = "0" + month5;
+                }
+                if (day5.length() == 1) {
+                    day5 = "0" + day5;
+                }
 
-            Date date6 = new Date();
-            Calendar cal6 = new GregorianCalendar();
+                Date date6 = new Date();
+                Calendar cal6 = new GregorianCalendar();
 
-            if (rs.getTimestamp("statusday1") == null) {
-                cal6.setTime(rs.getTimestamp("taskdate"));
+                if (rs.getTimestamp("statusday1") == null) {
+                    cal6.setTime(rs.getTimestamp("taskdate"));
+                } else {
+                    cal6.setTime(rs.getTimestamp("statusday1"));
+                }
+
+                String year6 = Integer.toString(cal6.get(Calendar.YEAR));
+                String month6 = Integer.toString(cal6.get(Calendar.MONTH) + 1);
+                String day6 = Integer.toString(cal6.get(Calendar.DAY_OF_MONTH));
+                String hour6 = Integer.toString(cal6.get(Calendar.HOUR_OF_DAY));
+                String minute6 = Integer.toString(cal6.get(Calendar.MINUTE));
+                if (hour6.length() == 1) {
+                    hour6 = "0" + hour6;
+                }
+                if (minute6.length() == 1) {
+                    minute6 = "0" + minute6;
+                }
+                if (month6.length() == 1) {
+                    month6 = "0" + month6;
+                }
+                if (day6.length() == 1) {
+                    day6 = "0" + day6;
+                }
+
+                Date date7 = new Date();
+                Calendar cal7 = new GregorianCalendar();
+
+                if (rs.getTimestamp("statusday2") == null) {
+                    cal7.setTime(rs.getTimestamp("taskdate"));
+                } else {
+                    cal7.setTime(rs.getTimestamp("statusday2"));
+                }
+
+                String year7 = Integer.toString(cal7.get(Calendar.YEAR));
+                String month7 = Integer.toString(cal7.get(Calendar.MONTH) + 1);
+                String day7 = Integer.toString(cal7.get(Calendar.DAY_OF_MONTH));
+                String hour7 = Integer.toString(cal7.get(Calendar.HOUR_OF_DAY));
+                String minute7 = Integer.toString(cal7.get(Calendar.MINUTE));
+                if (hour7.length() == 1) {
+                    hour7 = "0" + hour7;
+                }
+                if (minute7.length() == 1) {
+                    minute7 = "0" + minute7;
+                }
+                if (month7.length() == 1) {
+                    month7 = "0" + month7;
+                }
+                if (day7.length() == 1) {
+                    day7 = "0" + day7;
+                }
+
+                Date date8 = new Date();
+                Calendar cal8 = new GregorianCalendar();
+
+                if (rs.getTimestamp("statusday3") == null) {
+                    cal8.setTime(rs.getTimestamp("taskdate"));
+                } else {
+                    cal8.setTime(rs.getTimestamp("statusday3"));
+                }
+
+                String year8 = Integer.toString(cal8.get(Calendar.YEAR));
+                String month8 = Integer.toString(cal8.get(Calendar.MONTH) + 1);
+                String day8 = Integer.toString(cal8.get(Calendar.DAY_OF_MONTH));
+                String hour8 = Integer.toString(cal8.get(Calendar.HOUR_OF_DAY));
+                String minute8 = Integer.toString(cal8.get(Calendar.MINUTE));
+                if (hour8.length() == 1) {
+                    hour8 = "0" + hour8;
+                }
+                if (minute8.length() == 1) {
+                    minute8 = "0" + minute8;
+                }
+                if (month8.length() == 1) {
+                    month8 = "0" + month8;
+                }
+                if (day8.length() == 1) {
+                    day8 = "0" + day8;
+                }
+
+                Date date9 = new Date();
+                Calendar cal9 = new GregorianCalendar();
+
+                if (rs.getTimestamp("statusday4") == null) {
+                    cal9.setTime(rs.getTimestamp("taskdate"));
+                } else {
+                    cal9.setTime(rs.getTimestamp("statusday4"));
+                }
+
+                String year9 = Integer.toString(cal9.get(Calendar.YEAR));
+                String month9 = Integer.toString(cal9.get(Calendar.MONTH) + 1);
+                String day9 = Integer.toString(cal9.get(Calendar.DAY_OF_MONTH));
+                String hour9 = Integer.toString(cal9.get(Calendar.HOUR_OF_DAY));
+                String minute9 = Integer.toString(cal9.get(Calendar.MINUTE));
+                if (hour9.length() == 1) {
+                    hour9 = "0" + hour9;
+                }
+                if (minute9.length() == 1) {
+                    minute9 = "0" + minute9;
+                }
+                if (month9.length() == 1) {
+                    month9 = "0" + month9;
+                }
+                if (day9.length() == 1) {
+                    day9 = "0" + day9;
+                }
+
+                Date date10 = new Date();
+                Calendar cal10 = new GregorianCalendar();
+
+                if (rs.getTimestamp("statusday5") == null) {
+                    cal10.setTime(rs.getTimestamp("taskdate"));
+                } else {
+                    cal10.setTime(rs.getTimestamp("statusday5"));
+                }
+
+                String year10 = Integer.toString(cal10.get(Calendar.YEAR));
+                String month10 = Integer.toString(cal10.get(Calendar.MONTH) + 1);
+                String day10 = Integer.toString(cal10.get(Calendar.DAY_OF_MONTH));
+                String hour10 = Integer.toString(cal10.get(Calendar.HOUR_OF_DAY));
+                String minute10 = Integer.toString(cal10.get(Calendar.MINUTE));
+                if (hour10.length() == 1) {
+                    hour10 = "0" + hour10;
+                }
+                if (minute10.length() == 1) {
+                    minute10 = "0" + minute10;
+                }
+                if (month10.length() == 1) {
+                    month10 = "0" + month10;
+                }
+                if (day10.length() == 1) {
+                    day10 = "0" + day10;
+                }
+
+                Date date11 = new Date();
+                Calendar cal11 = new GregorianCalendar();
+
+                if (rs.getTimestamp("statusday6") == null) {
+                    cal11.setTime(rs.getTimestamp("taskdate"));
+                } else {
+                    cal11.setTime(rs.getTimestamp("statusday6"));
+                }
+
+                String year11 = Integer.toString(cal11.get(Calendar.YEAR));
+                String month11 = Integer.toString(cal11.get(Calendar.MONTH) + 1);
+                String day11 = Integer.toString(cal11.get(Calendar.DAY_OF_MONTH));
+                String hour11 = Integer.toString(cal11.get(Calendar.HOUR_OF_DAY));
+                String minute11 = Integer.toString(cal11.get(Calendar.MINUTE));
+                if (hour11.length() == 1) {
+                    hour11 = "0" + hour11;
+                }
+                if (minute11.length() == 1) {
+                    minute11 = "0" + minute11;
+                }
+                if (month11.length() == 1) {
+                    month11 = "0" + month11;
+                }
+                if (day11.length() == 1) {
+                    day11 = "0" + day11;
+                }
+
+                Date date12 = new Date();
+                Calendar cal12 = new GregorianCalendar();
+
+                if (rs.getTimestamp("statusday7") == null) {
+                    cal12.setTime(rs.getTimestamp("taskdate"));
+                } else {
+                    cal12.setTime(rs.getTimestamp("statusday7"));
+                }
+
+                String year12 = Integer.toString(cal12.get(Calendar.YEAR));
+                String month12 = Integer.toString(cal12.get(Calendar.MONTH) + 1);
+                String day12 = Integer.toString(cal12.get(Calendar.DAY_OF_MONTH));
+                String hour12 = Integer.toString(cal12.get(Calendar.HOUR_OF_DAY));
+                String minute12 = Integer.toString(cal12.get(Calendar.MINUTE));
+                if (hour12.length() == 1) {
+                    hour12 = "0" + hour12;
+                }
+                if (minute12.length() == 1) {
+                    minute12 = "0" + minute12;
+                }
+                if (month12.length() == 1) {
+                    month12 = "0" + month12;
+                }
+                if (day12.length() == 1) {
+                    day12 = "0" + day12;
+                }
+
+                Date date13 = new Date();
+                Calendar cal13 = new GregorianCalendar();
+
+                if (rs.getTimestamp("statusday8") == null) {
+                    cal13.setTime(rs.getTimestamp("taskdate"));
+                } else {
+                    cal13.setTime(rs.getTimestamp("statusday8"));
+                }
+
+                String year13 = Integer.toString(cal13.get(Calendar.YEAR));
+                String month13 = Integer.toString(cal13.get(Calendar.MONTH) + 1);
+                String day13 = Integer.toString(cal13.get(Calendar.DAY_OF_MONTH));
+                String hour13 = Integer.toString(cal13.get(Calendar.HOUR_OF_DAY));
+                String minute13 = Integer.toString(cal13.get(Calendar.MINUTE));
+                if (hour13.length() == 1) {
+                    hour13 = "0" + hour13;
+                }
+                if (minute13.length() == 1) {
+                    minute13 = "0" + minute13;
+                }
+                if (month13.length() == 1) {
+                    month13 = "0" + month13;
+                }
+                if (day13.length() == 1) {
+                    day13 = "0" + day13;
+                }
+
+                Date date14 = new Date();
+                Calendar cal14 = new GregorianCalendar();
+
+                if (rs.getTimestamp("statusday9") == null) {
+                    cal14.setTime(rs.getTimestamp("taskdate"));
+                } else {
+                    cal14.setTime(rs.getTimestamp("statusday9"));
+                }
+
+                String year14 = Integer.toString(cal14.get(Calendar.YEAR));
+                String month14 = Integer.toString(cal14.get(Calendar.MONTH) + 1);
+                String day14 = Integer.toString(cal14.get(Calendar.DAY_OF_MONTH));
+                String hour14 = Integer.toString(cal14.get(Calendar.HOUR_OF_DAY));
+                String minute14 = Integer.toString(cal14.get(Calendar.MINUTE));
+                if (hour14.length() == 1) {
+                    hour14 = "0" + hour14;
+                }
+                if (minute14.length() == 1) {
+                    minute14 = "0" + minute14;
+                }
+                if (month14.length() == 1) {
+                    month14 = "0" + month14;
+                }
+                if (day14.length() == 1) {
+                    day14 = "0" + day14;
+                }
+
+                Date date15 = new Date();
+                Calendar cal15 = new GregorianCalendar();
+
+                if (rs.getTimestamp("statusday10") == null) {
+                    cal15.setTime(rs.getTimestamp("taskdate"));
+                } else {
+                    cal15.setTime(rs.getTimestamp("statusday10"));
+                }
+
+                String year15 = Integer.toString(cal15.get(Calendar.YEAR));
+                String month15 = Integer.toString(cal15.get(Calendar.MONTH) + 1);
+                String day15 = Integer.toString(cal15.get(Calendar.DAY_OF_MONTH));
+                String hour15 = Integer.toString(cal15.get(Calendar.HOUR_OF_DAY));
+                String minute15 = Integer.toString(cal15.get(Calendar.MINUTE));
+                if (hour15.length() == 1) {
+                    hour15 = "0" + hour15;
+                }
+                if (minute15.length() == 1) {
+                    minute15 = "0" + minute15;
+                }
+                if (month15.length() == 1) {
+                    month15 = "0" + month15;
+                }
+                if (day15.length() == 1) {
+                    day15 = "0" + day15;
+                }
+
+                Date date16 = new Date();
+                Calendar cal16 = new GregorianCalendar();
+
+                if (rs.getTimestamp("statusday11") == null) {
+                    cal16.setTime(rs.getTimestamp("taskdate"));
+                } else {
+                    cal16.setTime(rs.getTimestamp("statusday11"));
+                }
+
+                String year16 = Integer.toString(cal16.get(Calendar.YEAR));
+                String month16 = Integer.toString(cal16.get(Calendar.MONTH) + 1);
+                String day16 = Integer.toString(cal16.get(Calendar.DAY_OF_MONTH));
+                String hour16 = Integer.toString(cal16.get(Calendar.HOUR_OF_DAY));
+                String minute16 = Integer.toString(cal16.get(Calendar.MINUTE));
+                if (hour16.length() == 1) {
+                    hour16 = "0" + hour16;
+                }
+                if (minute16.length() == 1) {
+                    minute16 = "0" + minute16;
+                }
+                if (month16.length() == 1) {
+                    month16 = "0" + month16;
+                }
+                if (day16.length() == 1) {
+                    day16 = "0" + day16;
+                }
+
+                Date date17 = new Date();
+                Calendar cal17 = new GregorianCalendar();
+
+                if (rs.getTimestamp("statusday12") == null) {
+                    cal17.setTime(rs.getTimestamp("taskdate"));
+                } else {
+                    cal17.setTime(rs.getTimestamp("statusday12"));
+                }
+
+                String year17 = Integer.toString(cal17.get(Calendar.YEAR));
+                String month17 = Integer.toString(cal17.get(Calendar.MONTH) + 1);
+                String day17 = Integer.toString(cal17.get(Calendar.DAY_OF_MONTH));
+                String hour17 = Integer.toString(cal17.get(Calendar.HOUR_OF_DAY));
+                String minute17 = Integer.toString(cal17.get(Calendar.MINUTE));
+                if (hour17.length() == 1) {
+                    hour17 = "0" + hour17;
+                }
+                if (minute17.length() == 1) {
+                    minute17 = "0" + minute17;
+                }
+                if (month17.length() == 1) {
+                    month17 = "0" + month17;
+                }
+                if (day17.length() == 1) {
+                    day17 = "0" + day17;
+                }
+
+                Date date18 = new Date();
+                Calendar cal18 = new GregorianCalendar();
+
+                if (rs.getTimestamp("statusday13") == null) {
+                    cal18.setTime(rs.getTimestamp("taskdate"));
+                } else {
+                    cal18.setTime(rs.getTimestamp("statusday13"));
+                }
+
+                String year18 = Integer.toString(cal18.get(Calendar.YEAR));
+                String month18 = Integer.toString(cal18.get(Calendar.MONTH) + 1);
+                String day18 = Integer.toString(cal18.get(Calendar.DAY_OF_MONTH));
+                String hour18 = Integer.toString(cal18.get(Calendar.HOUR_OF_DAY));
+                String minute18 = Integer.toString(cal18.get(Calendar.MINUTE));
+                if (hour18.length() == 1) {
+                    hour18 = "0" + hour18;
+                }
+                if (minute18.length() == 1) {
+                    minute18 = "0" + minute18;
+                }
+                if (month18.length() == 1) {
+                    month18 = "0" + month18;
+                }
+                if (day18.length() == 1) {
+                    day18 = "0" + day18;
+                }
+
+                Date date19 = new Date();
+                Calendar cal19 = new GregorianCalendar();
+
+                if (rs.getTimestamp("statusday14") == null) {
+                    cal19.setTime(rs.getTimestamp("taskdate"));
+                } else {
+                    cal19.setTime(rs.getTimestamp("statusday14"));
+                }
+
+                String year19 = Integer.toString(cal19.get(Calendar.YEAR));
+                String month19 = Integer.toString(cal19.get(Calendar.MONTH) + 1);
+                String day19 = Integer.toString(cal19.get(Calendar.DAY_OF_MONTH));
+                String hour19 = Integer.toString(cal19.get(Calendar.HOUR_OF_DAY));
+                String minute19 = Integer.toString(cal19.get(Calendar.MINUTE));
+                if (hour19.length() == 1) {
+                    hour19 = "0" + hour19;
+                }
+                if (minute19.length() == 1) {
+                    minute19 = "0" + minute19;
+                }
+                if (month19.length() == 1) {
+                    month19 = "0" + month19;
+                }
+                if (day19.length() == 1) {
+                    day19 = "0" + day19;
+                }
+
+                Date date20 = new Date();
+                Calendar cal20 = new GregorianCalendar();
+
+                if (rs.getTimestamp("statusday15") == null) {
+                    cal20.setTime(rs.getTimestamp("taskdate"));
+                } else {
+                    cal20.setTime(rs.getTimestamp("statusday15"));
+                }
+
+                String year20 = Integer.toString(cal20.get(Calendar.YEAR));
+                String month20 = Integer.toString(cal20.get(Calendar.MONTH) + 1);
+                String day20 = Integer.toString(cal20.get(Calendar.DAY_OF_MONTH));
+                String hour20 = Integer.toString(cal20.get(Calendar.HOUR_OF_DAY));
+                String minute20 = Integer.toString(cal20.get(Calendar.MINUTE));
+                if (hour20.length() == 1) {
+                    hour20 = "0" + hour20;
+                }
+                if (minute20.length() == 1) {
+                    minute20 = "0" + minute20;
+                }
+                if (month20.length() == 1) {
+                    month20 = "0" + month20;
+                }
+                if (day20.length() == 1) {
+                    day20 = "0" + day20;
+                }
+
+                String statusday1 = day6 + "/" + month6 + "/" + year6 + " " + hour6 + ":" + minute6;
+                String statusday2 = day7 + "/" + month7 + "/" + year7 + " " + hour7 + ":" + minute7;
+                String statusday3 = day8 + "/" + month8 + "/" + year8 + " " + hour8 + ":" + minute8;
+                String statusday4 = day9 + "/" + month9 + "/" + year9 + " " + hour9 + ":" + minute9;
+                String statusday5 = day10 + "/" + month10 + "/" + year10 + " " + hour10 + ":" + minute10;
+                String statusday6 = day11 + "/" + month11 + "/" + year11 + " " + hour11 + ":" + minute11;
+                String statusday7 = day12 + "/" + month12 + "/" + year12 + " " + hour12 + ":" + minute12;
+                String statusday8 = day13 + "/" + month13 + "/" + year13 + " " + hour13 + ":" + minute13;
+                String statusday9 = day14 + "/" + month14 + "/" + year14 + " " + hour14 + ":" + minute14;
+                String statusday10 = day15 + "/" + month15 + "/" + year15 + " " + hour15 + ":" + minute15;
+                String statusday11 = day16 + "/" + month16 + "/" + year16 + " " + hour16 + ":" + minute16;
+                String statusday12 = day17 + "/" + month17 + "/" + year17 + " " + hour17 + ":" + minute17;
+                String statusday13 = day18 + "/" + month18 + "/" + year18 + " " + hour18 + ":" + minute18;
+                String statusday14 = day19 + "/" + month19 + "/" + year19 + " " + hour19 + ":" + minute19;
+                String statusday15 = day20 + "/" + month20 + "/" + year20 + " " + hour20 + ":" + minute20;
+
+                String taskdate = day4 + "/" + month4 + "/" + year4 + " " + hour4 + ":" + minute4;
+                String statusday = day5 + "/" + month5 + "/" + year5 + " " + hour5 + ":" + minute5;
+
+                String tranid = rs.getString("tranid");
+                String taskfrom = rs.getString("taskfrom");
+                String description = rs.getString("description");
+                String revdate = year1 + "/" + month1 + "/" + day1 + " " + hour1 + ":" + minute1;
+                String enddate = year2 + "/" + month2 + "/" + day2 + " " + hour2 + ":" + minute2;
+                String taskstat = rs.getString("taskstat");
+                String startdate = year3 + "/" + month3 + "/" + day3 + " " + hour3 + ":" + minute3;
+
+                Tasks task = new Tasks();
+                task.setTranid(tranid);
+                task.setTaskfrom(taskfrom);
+                task.setDescription(description);
+                task.setRevdate(revdate);
+                task.setEnddate(enddate);
+                task.setTaskstat(taskstat);
+                task.setStartdate(startdate);
+                task.setirnr(rs.getString("irnr"));
+                task.setTaskdate(taskdate);
+                task.setTaskfull(rs.getString("taskfull"));
+                task.setTaskprior(rs.getString("taskprior"));
+                task.setTaskstat(rs.getString("taskstat"));
+                task.setStatusday(statusday);
+                task.setTasknote(rs.getString("tasknote"));
+                task.setrecurgam(rs.getString("recurgam"));
+                task.setRecur(rs.getString("recur"));
+                task.setRecura(rs.getString("recura"));
+                task.setRecurday(rs.getString("recurday"));
+                task.setRecurd(rs.getString("recurd"));
+                task.setRecurf(rs.getString("recurf"));
+                task.setrecdayofweek(rs.getString("recdayofweek"));
+                task.setRecurb(rs.getString("recurb"));
+                task.setRecurc(rs.getString("recurc"));
+                task.setrecurg(rs.getString("recurg"));
+                task.setRecure(rs.getString("recure"));
+                task.setrecurh(rs.getString("recurh"));
+                task.setrecuri(rs.getString("recuri"));
+                task.setTaskto1(rs.getString("taskto1"));
+                task.setTaskto2(rs.getString("taskto2"));
+                task.setTaskto3(rs.getString("taskto3"));
+                task.setTaskto4(rs.getString("taskto4"));
+                task.setTaskto5(rs.getString("taskto5"));
+                task.setTaskto6(rs.getString("taskto6"));
+                task.setTaskto7(rs.getString("taskto7"));
+                task.setTaskto8(rs.getString("taskto8"));
+                task.setTaskto9(rs.getString("taskto9"));
+                task.setTaskto10(rs.getString("taskto10"));
+                task.setTaskto11(rs.getString("taskto11"));
+                task.setTaskto12(rs.getString("taskto12"));
+                task.settaskto13(rs.getString("taskto13"));
+                task.setTaskto14(rs.getString("taskto14"));
+                task.setTaskto15(rs.getString("taskto15"));
+                task.setTaskstat1(rs.getString("taskstat1"));
+                task.setTaskstat2(rs.getString("taskstat2"));
+                task.setTaskstat3(rs.getString("taskstat3"));
+                task.setTaskstat4(rs.getString("taskstat4"));
+                task.setTaskstat5(rs.getString("taskstat5"));
+                task.setTaskstat6(rs.getString("taskstat6"));
+                task.setTaskstat7(rs.getString("taskstat7"));
+                task.setTaskstat8(rs.getString("taskstat8"));
+                task.settaskstat9(rs.getString("taskstat9"));
+                task.setTaskstat10(rs.getString("taskstat10"));
+                task.setTaskstat11(rs.getString("taskstat11"));
+                task.setTaskstat12(rs.getString("taskstat12"));
+                task.setTaskstat13(rs.getString("taskstat13"));
+                task.setTaskstat14(rs.getString("taskstat14"));
+                task.setTaskstat15(rs.getString("taskstat15"));
+                task.setStatusday1(statusday1);
+                task.setStatusday2(statusday2);
+                task.setStatusday3(statusday3);
+                task.setStatusday4(statusday4);
+                task.setStatusday5(statusday5);
+                task.setStatusday6(statusday6);
+                task.setStatusday7(statusday7);
+                task.setStatusday8(statusday8);
+                task.setStatusday9(statusday9);
+                task.setStatusday10(statusday10);
+                task.setStatusday11(statusday11);
+                task.setstatusday12(statusday12);
+                task.setStatusday13(statusday13);
+                task.setStatusday14(statusday14);
+                task.setstatusday15(statusday15);
+
+                list.add(task);
+
+                // set task not new and not updated
+                if (Username.getUserName().equals(rs.getString("taskfrom"))) {
+                    String sqlf = "update tasks set comaddf='Y',newtf='Y' where tranid = ?";
+                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                    pstmf.setString(1, Tranid);
+                    pstmf.executeUpdate();
+                }
+
             } else {
-                cal6.setTime(rs.getTimestamp("statusday1"));
+                Tasks task = new Tasks();
+                task.setTranid("0");
+                task.setTaskfrom("Security problem");
+                list.add(task);
             }
-
-            String year6 = Integer.toString(cal6.get(Calendar.YEAR));
-            String month6 = Integer.toString(cal6.get(Calendar.MONTH) + 1);
-            String day6 = Integer.toString(cal6.get(Calendar.DAY_OF_MONTH));
-            String hour6 = Integer.toString(cal6.get(Calendar.HOUR_OF_DAY));
-            String minute6 = Integer.toString(cal6.get(Calendar.MINUTE));
-            if (hour6.length() == 1) {
-                hour6 = "0" + hour6;
-            }
-            if (minute6.length() == 1) {
-                minute6 = "0" + minute6;
-            }
-            if (month6.length() == 1) {
-                month6 = "0" + month6;
-            }
-            if (day6.length() == 1) {
-                day6 = "0" + day6;
-            }
-
-            Date date7 = new Date();
-            Calendar cal7 = new GregorianCalendar();
-
-            if (rs.getTimestamp("statusday2") == null) {
-                cal7.setTime(rs.getTimestamp("taskdate"));
-            } else {
-                cal7.setTime(rs.getTimestamp("statusday2"));
-            }
-
-            String year7 = Integer.toString(cal7.get(Calendar.YEAR));
-            String month7 = Integer.toString(cal7.get(Calendar.MONTH) + 1);
-            String day7 = Integer.toString(cal7.get(Calendar.DAY_OF_MONTH));
-            String hour7 = Integer.toString(cal7.get(Calendar.HOUR_OF_DAY));
-            String minute7 = Integer.toString(cal7.get(Calendar.MINUTE));
-            if (hour7.length() == 1) {
-                hour7 = "0" + hour7;
-            }
-            if (minute7.length() == 1) {
-                minute7 = "0" + minute7;
-            }
-            if (month7.length() == 1) {
-                month7 = "0" + month7;
-            }
-            if (day7.length() == 1) {
-                day7 = "0" + day7;
-            }
-
-            Date date8 = new Date();
-            Calendar cal8 = new GregorianCalendar();
-
-            if (rs.getTimestamp("statusday3") == null) {
-                cal8.setTime(rs.getTimestamp("taskdate"));
-            } else {
-                cal8.setTime(rs.getTimestamp("statusday3"));
-            }
-
-            String year8 = Integer.toString(cal8.get(Calendar.YEAR));
-            String month8 = Integer.toString(cal8.get(Calendar.MONTH) + 1);
-            String day8 = Integer.toString(cal8.get(Calendar.DAY_OF_MONTH));
-            String hour8 = Integer.toString(cal8.get(Calendar.HOUR_OF_DAY));
-            String minute8 = Integer.toString(cal8.get(Calendar.MINUTE));
-            if (hour8.length() == 1) {
-                hour8 = "0" + hour8;
-            }
-            if (minute8.length() == 1) {
-                minute8 = "0" + minute8;
-            }
-            if (month8.length() == 1) {
-                month8 = "0" + month8;
-            }
-            if (day8.length() == 1) {
-                day8 = "0" + day8;
-            }
-
-            Date date9 = new Date();
-            Calendar cal9 = new GregorianCalendar();
-
-            if (rs.getTimestamp("statusday4") == null) {
-                cal9.setTime(rs.getTimestamp("taskdate"));
-            } else {
-                cal9.setTime(rs.getTimestamp("statusday4"));
-            }
-
-            String year9 = Integer.toString(cal9.get(Calendar.YEAR));
-            String month9 = Integer.toString(cal9.get(Calendar.MONTH) + 1);
-            String day9 = Integer.toString(cal9.get(Calendar.DAY_OF_MONTH));
-            String hour9 = Integer.toString(cal9.get(Calendar.HOUR_OF_DAY));
-            String minute9 = Integer.toString(cal9.get(Calendar.MINUTE));
-            if (hour9.length() == 1) {
-                hour9 = "0" + hour9;
-            }
-            if (minute9.length() == 1) {
-                minute9 = "0" + minute9;
-            }
-            if (month9.length() == 1) {
-                month9 = "0" + month9;
-            }
-            if (day9.length() == 1) {
-                day9 = "0" + day9;
-            }
-
-            Date date10 = new Date();
-            Calendar cal10 = new GregorianCalendar();
-
-            if (rs.getTimestamp("statusday5") == null) {
-                cal10.setTime(rs.getTimestamp("taskdate"));
-            } else {
-                cal10.setTime(rs.getTimestamp("statusday5"));
-            }
-
-            String year10 = Integer.toString(cal10.get(Calendar.YEAR));
-            String month10 = Integer.toString(cal10.get(Calendar.MONTH) + 1);
-            String day10 = Integer.toString(cal10.get(Calendar.DAY_OF_MONTH));
-            String hour10 = Integer.toString(cal10.get(Calendar.HOUR_OF_DAY));
-            String minute10 = Integer.toString(cal10.get(Calendar.MINUTE));
-            if (hour10.length() == 1) {
-                hour10 = "0" + hour10;
-            }
-            if (minute10.length() == 1) {
-                minute10 = "0" + minute10;
-            }
-            if (month10.length() == 1) {
-                month10 = "0" + month10;
-            }
-            if (day10.length() == 1) {
-                day10 = "0" + day10;
-            }
-
-            Date date11 = new Date();
-            Calendar cal11 = new GregorianCalendar();
-
-            if (rs.getTimestamp("statusday6") == null) {
-                cal11.setTime(rs.getTimestamp("taskdate"));
-            } else {
-                cal11.setTime(rs.getTimestamp("statusday6"));
-            }
-
-            String year11 = Integer.toString(cal11.get(Calendar.YEAR));
-            String month11 = Integer.toString(cal11.get(Calendar.MONTH) + 1);
-            String day11 = Integer.toString(cal11.get(Calendar.DAY_OF_MONTH));
-            String hour11 = Integer.toString(cal11.get(Calendar.HOUR_OF_DAY));
-            String minute11 = Integer.toString(cal11.get(Calendar.MINUTE));
-            if (hour11.length() == 1) {
-                hour11 = "0" + hour11;
-            }
-            if (minute11.length() == 1) {
-                minute11 = "0" + minute11;
-            }
-            if (month11.length() == 1) {
-                month11 = "0" + month11;
-            }
-            if (day11.length() == 1) {
-                day11 = "0" + day11;
-            }
-
-            Date date12 = new Date();
-            Calendar cal12 = new GregorianCalendar();
-
-            if (rs.getTimestamp("statusday7") == null) {
-                cal12.setTime(rs.getTimestamp("taskdate"));
-            } else {
-                cal12.setTime(rs.getTimestamp("statusday7"));
-            }
-
-            String year12 = Integer.toString(cal12.get(Calendar.YEAR));
-            String month12 = Integer.toString(cal12.get(Calendar.MONTH) + 1);
-            String day12 = Integer.toString(cal12.get(Calendar.DAY_OF_MONTH));
-            String hour12 = Integer.toString(cal12.get(Calendar.HOUR_OF_DAY));
-            String minute12 = Integer.toString(cal12.get(Calendar.MINUTE));
-            if (hour12.length() == 1) {
-                hour12 = "0" + hour12;
-            }
-            if (minute12.length() == 1) {
-                minute12 = "0" + minute12;
-            }
-            if (month12.length() == 1) {
-                month12 = "0" + month12;
-            }
-            if (day12.length() == 1) {
-                day12 = "0" + day12;
-            }
-
-            Date date13 = new Date();
-            Calendar cal13 = new GregorianCalendar();
-
-            if (rs.getTimestamp("statusday8") == null) {
-                cal13.setTime(rs.getTimestamp("taskdate"));
-            } else {
-                cal13.setTime(rs.getTimestamp("statusday8"));
-            }
-
-            String year13 = Integer.toString(cal13.get(Calendar.YEAR));
-            String month13 = Integer.toString(cal13.get(Calendar.MONTH) + 1);
-            String day13 = Integer.toString(cal13.get(Calendar.DAY_OF_MONTH));
-            String hour13 = Integer.toString(cal13.get(Calendar.HOUR_OF_DAY));
-            String minute13 = Integer.toString(cal13.get(Calendar.MINUTE));
-            if (hour13.length() == 1) {
-                hour13 = "0" + hour13;
-            }
-            if (minute13.length() == 1) {
-                minute13 = "0" + minute13;
-            }
-            if (month13.length() == 1) {
-                month13 = "0" + month13;
-            }
-            if (day13.length() == 1) {
-                day13 = "0" + day13;
-            }
-
-            Date date14 = new Date();
-            Calendar cal14 = new GregorianCalendar();
-
-            if (rs.getTimestamp("statusday9") == null) {
-                cal14.setTime(rs.getTimestamp("taskdate"));
-            } else {
-                cal14.setTime(rs.getTimestamp("statusday9"));
-            }
-
-            String year14 = Integer.toString(cal14.get(Calendar.YEAR));
-            String month14 = Integer.toString(cal14.get(Calendar.MONTH) + 1);
-            String day14 = Integer.toString(cal14.get(Calendar.DAY_OF_MONTH));
-            String hour14 = Integer.toString(cal14.get(Calendar.HOUR_OF_DAY));
-            String minute14 = Integer.toString(cal14.get(Calendar.MINUTE));
-            if (hour14.length() == 1) {
-                hour14 = "0" + hour14;
-            }
-            if (minute14.length() == 1) {
-                minute14 = "0" + minute14;
-            }
-            if (month14.length() == 1) {
-                month14 = "0" + month14;
-            }
-            if (day14.length() == 1) {
-                day14 = "0" + day14;
-            }
-
-            Date date15 = new Date();
-            Calendar cal15 = new GregorianCalendar();
-
-            if (rs.getTimestamp("statusday10") == null) {
-                cal15.setTime(rs.getTimestamp("taskdate"));
-            } else {
-                cal15.setTime(rs.getTimestamp("statusday10"));
-            }
-
-            String year15 = Integer.toString(cal15.get(Calendar.YEAR));
-            String month15 = Integer.toString(cal15.get(Calendar.MONTH) + 1);
-            String day15 = Integer.toString(cal15.get(Calendar.DAY_OF_MONTH));
-            String hour15 = Integer.toString(cal15.get(Calendar.HOUR_OF_DAY));
-            String minute15 = Integer.toString(cal15.get(Calendar.MINUTE));
-            if (hour15.length() == 1) {
-                hour15 = "0" + hour15;
-            }
-            if (minute15.length() == 1) {
-                minute15 = "0" + minute15;
-            }
-            if (month15.length() == 1) {
-                month15 = "0" + month15;
-            }
-            if (day15.length() == 1) {
-                day15 = "0" + day15;
-            }
-
-            Date date16 = new Date();
-            Calendar cal16 = new GregorianCalendar();
-
-            if (rs.getTimestamp("statusday11") == null) {
-                cal16.setTime(rs.getTimestamp("taskdate"));
-            } else {
-                cal16.setTime(rs.getTimestamp("statusday11"));
-            }
-
-            String year16 = Integer.toString(cal16.get(Calendar.YEAR));
-            String month16 = Integer.toString(cal16.get(Calendar.MONTH) + 1);
-            String day16 = Integer.toString(cal16.get(Calendar.DAY_OF_MONTH));
-            String hour16 = Integer.toString(cal16.get(Calendar.HOUR_OF_DAY));
-            String minute16 = Integer.toString(cal16.get(Calendar.MINUTE));
-            if (hour16.length() == 1) {
-                hour16 = "0" + hour16;
-            }
-            if (minute16.length() == 1) {
-                minute16 = "0" + minute16;
-            }
-            if (month16.length() == 1) {
-                month16 = "0" + month16;
-            }
-            if (day16.length() == 1) {
-                day16 = "0" + day16;
-            }
-
-            Date date17 = new Date();
-            Calendar cal17 = new GregorianCalendar();
-
-            if (rs.getTimestamp("statusday12") == null) {
-                cal17.setTime(rs.getTimestamp("taskdate"));
-            } else {
-                cal17.setTime(rs.getTimestamp("statusday12"));
-            }
-
-            String year17 = Integer.toString(cal17.get(Calendar.YEAR));
-            String month17 = Integer.toString(cal17.get(Calendar.MONTH) + 1);
-            String day17 = Integer.toString(cal17.get(Calendar.DAY_OF_MONTH));
-            String hour17 = Integer.toString(cal17.get(Calendar.HOUR_OF_DAY));
-            String minute17 = Integer.toString(cal17.get(Calendar.MINUTE));
-            if (hour17.length() == 1) {
-                hour17 = "0" + hour17;
-            }
-            if (minute17.length() == 1) {
-                minute17 = "0" + minute17;
-            }
-            if (month17.length() == 1) {
-                month17 = "0" + month17;
-            }
-            if (day17.length() == 1) {
-                day17 = "0" + day17;
-            }
-
-            Date date18 = new Date();
-            Calendar cal18 = new GregorianCalendar();
-
-            if (rs.getTimestamp("statusday13") == null) {
-                cal18.setTime(rs.getTimestamp("taskdate"));
-            } else {
-                cal18.setTime(rs.getTimestamp("statusday13"));
-            }
-
-            String year18 = Integer.toString(cal18.get(Calendar.YEAR));
-            String month18 = Integer.toString(cal18.get(Calendar.MONTH) + 1);
-            String day18 = Integer.toString(cal18.get(Calendar.DAY_OF_MONTH));
-            String hour18 = Integer.toString(cal18.get(Calendar.HOUR_OF_DAY));
-            String minute18 = Integer.toString(cal18.get(Calendar.MINUTE));
-            if (hour18.length() == 1) {
-                hour18 = "0" + hour18;
-            }
-            if (minute18.length() == 1) {
-                minute18 = "0" + minute18;
-            }
-            if (month18.length() == 1) {
-                month18 = "0" + month18;
-            }
-            if (day18.length() == 1) {
-                day18 = "0" + day18;
-            }
-
-            Date date19 = new Date();
-            Calendar cal19 = new GregorianCalendar();
-
-            if (rs.getTimestamp("statusday14") == null) {
-                cal19.setTime(rs.getTimestamp("taskdate"));
-            } else {
-                cal19.setTime(rs.getTimestamp("statusday14"));
-            }
-
-            String year19 = Integer.toString(cal19.get(Calendar.YEAR));
-            String month19 = Integer.toString(cal19.get(Calendar.MONTH) + 1);
-            String day19 = Integer.toString(cal19.get(Calendar.DAY_OF_MONTH));
-            String hour19 = Integer.toString(cal19.get(Calendar.HOUR_OF_DAY));
-            String minute19 = Integer.toString(cal19.get(Calendar.MINUTE));
-            if (hour19.length() == 1) {
-                hour19 = "0" + hour19;
-            }
-            if (minute19.length() == 1) {
-                minute19 = "0" + minute19;
-            }
-            if (month19.length() == 1) {
-                month19 = "0" + month19;
-            }
-            if (day19.length() == 1) {
-                day19 = "0" + day19;
-            }
-
-            Date date20 = new Date();
-            Calendar cal20 = new GregorianCalendar();
-
-            if (rs.getTimestamp("statusday15") == null) {
-                cal20.setTime(rs.getTimestamp("taskdate"));
-            } else {
-                cal20.setTime(rs.getTimestamp("statusday15"));
-            }
-
-            String year20 = Integer.toString(cal20.get(Calendar.YEAR));
-            String month20 = Integer.toString(cal20.get(Calendar.MONTH) + 1);
-            String day20 = Integer.toString(cal20.get(Calendar.DAY_OF_MONTH));
-            String hour20 = Integer.toString(cal20.get(Calendar.HOUR_OF_DAY));
-            String minute20 = Integer.toString(cal20.get(Calendar.MINUTE));
-            if (hour20.length() == 1) {
-                hour20 = "0" + hour20;
-            }
-            if (minute20.length() == 1) {
-                minute20 = "0" + minute20;
-            }
-            if (month20.length() == 1) {
-                month20 = "0" + month20;
-            }
-            if (day20.length() == 1) {
-                day20 = "0" + day20;
-            }
-
-            String statusday1 = day6 + "/" + month6 + "/" + year6 + " " + hour6 + ":" + minute6;
-            String statusday2 = day7 + "/" + month7 + "/" + year7 + " " + hour7 + ":" + minute7;
-            String statusday3 = day8 + "/" + month8 + "/" + year8 + " " + hour8 + ":" + minute8;
-            String statusday4 = day9 + "/" + month9 + "/" + year9 + " " + hour9 + ":" + minute9;
-            String statusday5 = day10 + "/" + month10 + "/" + year10 + " " + hour10 + ":" + minute10;
-            String statusday6 = day11 + "/" + month11 + "/" + year11 + " " + hour11 + ":" + minute11;
-            String statusday7 = day12 + "/" + month12 + "/" + year12 + " " + hour12 + ":" + minute12;
-            String statusday8 = day13 + "/" + month13 + "/" + year13 + " " + hour13 + ":" + minute13;
-            String statusday9 = day14 + "/" + month14 + "/" + year14 + " " + hour14 + ":" + minute14;
-            String statusday10 = day15 + "/" + month15 + "/" + year15 + " " + hour15 + ":" + minute15;
-            String statusday11 = day16 + "/" + month16 + "/" + year16 + " " + hour16 + ":" + minute16;
-            String statusday12 = day17 + "/" + month17 + "/" + year17 + " " + hour17 + ":" + minute17;
-            String statusday13 = day18 + "/" + month18 + "/" + year18 + " " + hour18 + ":" + minute18;
-            String statusday14 = day19 + "/" + month19 + "/" + year19 + " " + hour19 + ":" + minute19;
-            String statusday15 = day20 + "/" + month20 + "/" + year20 + " " + hour20 + ":" + minute20;
-
-            String taskdate = day4 + "/" + month4 + "/" + year4 + " " + hour4 + ":" + minute4;
-            String statusday = day5 + "/" + month5 + "/" + year5 + " " + hour5 + ":" + minute5;
-
-            String tranid = rs.getString("tranid");
-            String taskfrom = rs.getString("taskfrom");
-            String description = rs.getString("description");
-            String revdate = year1 + "/" + month1 + "/" + day1 + " " + hour1 + ":" + minute1;
-            String enddate = year2 + "/" + month2 + "/" + day2 + " " + hour2 + ":" + minute2;
-            String taskstat = rs.getString("taskstat");
-            String startdate = year3 + "/" + month3 + "/" + day3 + " " + hour3 + ":" + minute3;
-
-            Tasks task = new Tasks();
-            task.setTranid(tranid);
-            task.setTaskfrom(taskfrom);
-            task.setDescription(description);
-            task.setRevdate(revdate);
-            task.setEnddate(enddate);
-            task.setTaskstat(taskstat);
-            task.setStartdate(startdate);
-            task.setirnr(rs.getString("irnr"));
-            task.setTaskdate(taskdate);
-            task.setTaskfull(rs.getString("taskfull"));
-            task.setTaskprior(rs.getString("taskprior"));
-            task.setTaskstat(rs.getString("taskstat"));
-            task.setStatusday(statusday);
-            task.setTasknote(rs.getString("tasknote"));
-            task.setrecurgam(rs.getString("recurgam"));
-            task.setRecur(rs.getString("recur"));
-            task.setRecura(rs.getString("recura"));
-            task.setRecurday(rs.getString("recurday"));
-            task.setRecurd(rs.getString("recurd"));
-            task.setRecurf(rs.getString("recurf"));
-            task.setrecdayofweek(rs.getString("recdayofweek"));
-            task.setRecurb(rs.getString("recurb"));
-            task.setRecurc(rs.getString("recurc"));
-            task.setrecurg(rs.getString("recurg"));
-            task.setRecure(rs.getString("recure"));
-            task.setrecurh(rs.getString("recurh"));
-            task.setrecuri(rs.getString("recuri"));
-            task.setTaskto1(rs.getString("taskto1"));
-            task.setTaskto2(rs.getString("taskto2"));
-            task.setTaskto3(rs.getString("taskto3"));
-            task.setTaskto4(rs.getString("taskto4"));
-            task.setTaskto5(rs.getString("taskto5"));
-            task.setTaskto6(rs.getString("taskto6"));
-            task.setTaskto7(rs.getString("taskto7"));
-            task.setTaskto8(rs.getString("taskto8"));
-            task.setTaskto9(rs.getString("taskto9"));
-            task.setTaskto10(rs.getString("taskto10"));
-            task.setTaskto11(rs.getString("taskto11"));
-            task.setTaskto12(rs.getString("taskto12"));
-            task.settaskto13(rs.getString("taskto13"));
-            task.setTaskto14(rs.getString("taskto14"));
-            task.setTaskto15(rs.getString("taskto15"));
-            task.setTaskstat1(rs.getString("taskstat1"));
-            task.setTaskstat2(rs.getString("taskstat2"));
-            task.setTaskstat3(rs.getString("taskstat3"));
-            task.setTaskstat4(rs.getString("taskstat4"));
-            task.setTaskstat5(rs.getString("taskstat5"));
-            task.setTaskstat6(rs.getString("taskstat6"));
-            task.setTaskstat7(rs.getString("taskstat7"));
-            task.setTaskstat8(rs.getString("taskstat8"));
-            task.settaskstat9(rs.getString("taskstat9"));
-            task.setTaskstat10(rs.getString("taskstat10"));
-            task.setTaskstat11(rs.getString("taskstat11"));
-            task.setTaskstat12(rs.getString("taskstat12"));
-            task.setTaskstat13(rs.getString("taskstat13"));
-            task.setTaskstat14(rs.getString("taskstat14"));
-            task.setTaskstat15(rs.getString("taskstat15"));
-            task.setStatusday1(statusday1);
-            task.setStatusday2(statusday2);
-            task.setStatusday3(statusday3);
-            task.setStatusday4(statusday4);
-            task.setStatusday5(statusday5);
-            task.setStatusday6(statusday6);
-            task.setStatusday7(statusday7);
-            task.setStatusday8(statusday8);
-            task.setStatusday9(statusday9);
-            task.setStatusday10(statusday10);
-            task.setStatusday11(statusday11);
-            task.setstatusday12(statusday12);
-            task.setStatusday13(statusday13);
-            task.setStatusday14(statusday14);
-            task.setstatusday15(statusday15);
-        
-            list.add(task);
-        
-        
-        }
-         else {
-            Tasks task = new Tasks();
-            task.setTranid("0");
-            task.setTaskfrom("Security problem");
-            list.add(task);
-        }
         }
         return list;
-        
-        
+
     }
 
     public static ArrayList<Tasks> getTrainingTask(Connection conn, String Username) throws SQLException {
-       System.out.println("getTrainingTask " + Username);
+        System.out.println("getTrainingTask " + Username);
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
 
@@ -747,7 +740,7 @@ public class TaskUtils extends HttpServlet {
                 cal1.setTime(rs.getTimestamp("enddate"));
             } else {
                 cal1.setTime(rs.getTimestamp("revdate"));
-            }            
+            }
             String year1 = Integer.toString(cal1.get(Calendar.YEAR));
             String month1 = Integer.toString(cal1.get(Calendar.MONTH) + 1);
             String day1 = Integer.toString(cal1.get(Calendar.DAY_OF_MONTH));
@@ -831,7 +824,7 @@ public class TaskUtils extends HttpServlet {
     }
 
     public static ArrayList<Tasks> getUrgentTasks(Connection conn, String Username) throws SQLException {
-      System.out.println("getUrgentTasks " + Username);
+        System.out.println("getUrgentTasks " + Username);
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
 
@@ -1058,7 +1051,7 @@ public class TaskUtils extends HttpServlet {
     }
 
     public static ArrayList<Tasks> getUpdatedTasks(Connection conn, String Username) throws SQLException {
-       System.out.println("getUpdatedTasks " + Username);
+        System.out.println("getUpdatedTasks " + Username);
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
 
@@ -1180,7 +1173,7 @@ public class TaskUtils extends HttpServlet {
     }
 
     public static ArrayList<Tasks> getTaskToMeComp(Connection conn, String Username) throws SQLException {
-    System.out.println("getTaskToMeComp " + Username);
+        System.out.println("getTaskToMeComp " + Username);
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
 
@@ -1410,7 +1403,7 @@ public class TaskUtils extends HttpServlet {
     }
 
     public static ArrayList<Tasks> getNewTask(Connection conn, String Username) throws SQLException {
-System.out.println("getNewTask " + Username);
+        System.out.println("getNewTask " + Username);
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
 
@@ -1532,7 +1525,7 @@ System.out.println("getNewTask " + Username);
     }
 
     public static ArrayList<Tasks> getTaskByMeComp(Connection conn, String Username) throws SQLException {
-System.out.println("getTaskByMeComp " + Username);
+        System.out.println("getTaskByMeComp " + Username);
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
 
@@ -1679,7 +1672,7 @@ System.out.println("getTaskByMeComp " + Username);
                 cal1.setTime(rs.getTimestamp("startdate"));
             } else {
                 cal1.setTime(rs.getTimestamp("revdate"));
-            }           
+            }
             String year1 = Integer.toString(cal1.get(Calendar.YEAR));
             String month1 = Integer.toString(cal1.get(Calendar.MONTH) + 1);
             String day1 = Integer.toString(cal1.get(Calendar.DAY_OF_MONTH));
@@ -2214,61 +2207,229 @@ System.out.println("getTaskByMeComp " + Username);
         return list;
     }
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet TaskUtils</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet TaskUtils at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
+    public static ArrayList<Generics> taskUpdate(Connection conn, UserAccount Username, String tranid, String recur1, String recur3, String recur4, String recur5, String recur6, String recur7, String recur8, String recur9, String recur10, String ir, String tasksumm, String taskfull, String recur13, String recur11, String recur12, String sdate, String rdate, String edate, String prior, String stats, String recur2) throws SQLException {
+        ArrayList<Generics> list = new ArrayList<Generics>();
+        String sql = "select taskfrom,irnr,taskto1, taskto2, taskto3, taskto4, taskto5, taskto6, taskto7, taskto8, taskto9, taskto10,taskto11, taskto12, taskto13, taskto14, taskto15 from tasks where tranid = ?";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, tranid);
+        ResultSet rs = pstm.executeQuery();
+        if (rs.next()) {
+            if (rs.getString("taskfrom").equals(Username.getUserName())) {
+                if (rs.getString("irnr").length() < 4 && ir == "true") { // requested ir, must update
+                    String upir = "select nextir from branch";
+                    PreparedStatement upirst = conn.prepareStatement(upir);
+                    ResultSet rsir = upirst.executeQuery();
+                    if (rs.next()) {
+                        String thisir = rs.getString("nextir");
+                        String upir2 = "Update branch set nextir = '" + (Integer.parseInt(thisir) + 1) + "'";
+                        PreparedStatement upirst2 = conn.prepareStatement(upir2);
+                        upirst2.executeUpdate();
 
-            out.println("</html>");
+                        String upir3 = "update tasks set irnr = '" + thisir + "' where tranid = ?";
+                        PreparedStatement upirst3 = conn.prepareStatement(upir3);
+                        upirst.setString(1, tranid);
+                        upirst3.executeUpdate();
+                    }
+                }
+                String recur = "";
+                String recura = "";
+                String recurb = "";
+                String recurc = "";
+                String recurd = "";
+                String recure = "";
+                String recurf = "";
+                String recurg = "";
+                String recurh = "";
+                String recuri = "";
+                if (recur1.equals("true")) {
+                    recur = "1";
+                } else {
+                    recur = "0";
+                }
+                if (recur3.equals("true")) {
+                    recura = "1";
+                } else {
+                    recura = "0";
+                }
+                if (recur2.equals("true")) {
+                    recurd = "1";
+                } else {
+                    recurd = "0";
+                }
+                if (recur5.equals("true")) {
+                    recurh = "1";
+                } else {
+                    recurh = "0";
+                }
+                if (recur6.equals("true")) {
+                    recurb = "1";
+                } else {
+                    recurb = "0";
+                }
+                if (recur7.equals("true")) {
+                    recure = "1";
+                } else {
+                    recure = "0";
+                }
+                if (recur8.equals("true")) {
+                    recuri = "1";
+                } else {
+                    recuri = "0";
+                }
+                if (recur9.equals("true")) {
+                    recurc = "1";
+                } else {
+                    recurc = "0";
+                }
+                if (recur10.equals("true")) {
+                    recurf = "1";
+                } else {
+                    recurf = "0";
+                }
+                if (recur12.equals("true")) {
+                    recurg = "1";
+                } else {
+                    recurg = "0";
+                }
+
+                String sqlu1 = "update tasks set description=?, taskfull=?, startdate=?, revdate=?, enddate=?, taskprior=?, taskstat=?, recur=?, recura=?, recurb=?, recurc=?, recurd=?, recure=?, recurf=?, recurg=?, recurh=?, recuri=?, recdayofweek=?, recurday=?, recurgam=? where tranid = ?";
+                PreparedStatement upta = conn.prepareStatement(sqlu1);
+                upta.setString(1, tasksumm);
+                upta.setString(2, taskfull);
+                upta.setString(3, sdate);
+                upta.setString(4, rdate);
+                upta.setString(5, edate);
+                upta.setString(6, prior);
+                upta.setString(7, stats);
+
+                upta.setString(8, recur);
+                upta.setString(9, recura);
+                upta.setString(10, recurb);
+                upta.setString(11, recurc);
+                upta.setString(12, recurd);
+                upta.setString(13, recure);
+                upta.setString(14, recurf);
+                upta.setString(15, recurg);
+                upta.setString(16, recurh);
+                upta.setString(17, recuri);
+
+                upta.setString(18, recur11);
+                upta.setString(19, recur4);
+                upta.setString(20, recur13);
+
+                upta.setString(21, tranid);
+
+                upta.executeUpdate();
+                Generics generics = new Generics();
+                generics.setGenericDescriptionEng("success");
+                list.add(generics);
+
+                //PreparedStatement pstmu = conn.prepareStatement(sqlu1);
+                //pstmu.setString(1, ir);
+                //pstmu.executeUpdate();
+            }
+            // not this user, only update status
+            if (rs.getString("taskto1").equals(Username.getUserName())) {
+                String sql1 = "update tasks set taskstat1 = ? , task1date=current_timestamp where tranid = ?";
+                PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                pstm1.setString(1, stats);
+                pstm1.setString(2, tranid);
+                pstm1.executeUpdate();
+                Generics generics = new Generics();
+                generics.setGenericDescriptionEng("success");
+                list.add(generics);
+            }
+
+        } else {  // no task, return error
+            Generics generics = new Generics();
+            generics.setGenericDescriptionEng("Task not found");
+            list.add(generics);
         }
+
+        return list;
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+    public static ArrayList<Tasks> TaskSaveComm(Connection conn, UserAccount user, String comments, String tranid) throws SQLException, InterruptedException {
+
+        String sql = "Select a.tasknote from tasks a where tranid = ?";
+        System.out.println("TaskSaveComm " + tranid);
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, tranid);
+
+        ResultSet rs = pstm.executeQuery();
+        if (rs.next()) {
+            long millis = System.currentTimeMillis();
+            java.sql.Date date = new java.sql.Date(millis);
+            SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm:ss");
+            Date now = new Date();
+            String strTime = sdfTime.format(now);
+
+            String oldcomm = rs.getString("tasknote");
+            String newcomm = rs.getString("tasknote") + "~" + comments + "~" + user.getUserName() + " " + date + " " + strTime + "~______________________";
+
+            String sql1 = "update tasks set tasknote = ? where tranid = ?";
+
+            PreparedStatement pstm2 = conn.prepareStatement(sql1);
+
+            pstm2.setString(1, newcomm);
+            pstm2.setString(2, tranid);
+            pstm2.executeUpdate();
+
+        }
+
+        Thread.sleep(1500);
+
+        String sql3 = "Select a.tasknote from tasks a where tranid = ?";
+
+        PreparedStatement pstm3 = conn.prepareStatement(sql3);
+        pstm3.setString(1, tranid);
+
+        ResultSet rs3 = pstm3.executeQuery();
+
+        ArrayList<Tasks> list = new ArrayList<Tasks>();
+        if (rs3.next()) {
+            String diarycomm = rs.getString("tasknote");
+
+            Tasks tasks = new Tasks();
+            tasks.setTasknote(diarycomm);
+
+            list.add(tasks);
+        }
+        return list;
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
+    public static ArrayList<Generics> taskUpdatePeople(Connection conn, UserAccount user, String tranid, String user1, String user2, String user3, String user4, String user5, String user6, String user7, String user8, String user9, String user10, String user11, String user12, String user13, String user14, String user15) throws SQLException {
+        ArrayList<Generics> list = new ArrayList<Generics>();
+        String sql = "Select taskfrom, taskto1, taskto2, taskto3, taskto4, taskto5, taskto6, taskto7, taskto8, taskto9, taskto10, taskto11, taskto12, taskto13, taskto14, taskto15 from tasks where tranid = ?";
+        System.out.println("TaskUpdatePeople " + tranid);
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, tranid);
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+        ResultSet rs = pstm.executeQuery();
+        if (rs.next()) {
+            if (rs.getString("taskfrom").equals(user.getUserName())) {
+                if (!rs.getString("taskto1").equals(user1)) {
+                    String sql1 = "update tasks set taskto1 = ?,task1date = current_timestamp where tranid = ?";
+                    PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                    pstm1.setString(1, user1);
+                    pstm1.setString(2, tranid);
+                    pstm1.executeUpdate();
+                    Generics generics = new Generics();
+                    generics.setGenericDescriptionEng("success");
+                    list.add(generics);
+                }
+
+            } else {
+                Generics generics = new Generics();
+                generics.setGenericDescriptionEng("not your task");
+                list.add(generics);
+            }
+        } else {
+            Generics generics = new Generics();
+            generics.setGenericDescriptionEng("task not found");
+            list.add(generics);
+        }
+        return list;
+    }
 
 }

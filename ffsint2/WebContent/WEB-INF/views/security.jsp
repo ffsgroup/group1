@@ -731,7 +731,7 @@
                                 } else {
                                     document.getElementById("sec33").checked = false;
                                 }
-                             if (value['securestr'].substring(31, 32) == "1") {
+                                if (value['securestr'].substring(31, 32) == "1") {
                                     document.getElementById("sec32").checked = true;
                                 } else {
                                     document.getElementById("sec32").checked = false;
@@ -746,7 +746,7 @@
                                 } else {
                                     document.getElementById("sec30").checked = false;
                                 }
-if (value['securestr'].substring(28, 29) == "1") {
+                                if (value['securestr'].substring(28, 29) == "1") {
                                     document.getElementById("sec29").checked = true;
                                 } else {
                                     document.getElementById("sec29").checked = false;
@@ -901,7 +901,7 @@ if (value['securestr'].substring(28, 29) == "1") {
                                 } else {
                                     document.getElementById("sec147").checked = false;
                                 }
-                                
+
                             });
 
                         }
