@@ -689,13 +689,112 @@ public class TaskUtils extends HttpServlet {
                     pstmf.setString(1, Tranid);
                     pstmf.executeUpdate();
                 }
-
+                if (Username.getUserName().equals(rs.getString("taskto1"))) {
+                    String sqlf = "update tasks set comadd1='Y',newt1='Y' where tranid = ?";
+                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                    pstmf.setString(1, Tranid);
+                    pstmf.executeUpdate();
+                }
+                if (Username.getUserName().equals(rs.getString("taskto2"))) {
+                    String sqlf = "update tasks set comadd2='Y',newt2='Y' where tranid = ?";
+                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                    pstmf.setString(1, Tranid);
+                    pstmf.executeUpdate();
+                }
+                if (Username.getUserName().equals(rs.getString("taskto3"))) {
+                    String sqlf = "update tasks set comadd3='Y',newt3='Y' where tranid = ?";
+                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                    pstmf.setString(1, Tranid);
+                    pstmf.executeUpdate();
+                }
+                if (Username.getUserName().equals(rs.getString("taskto4"))) {
+                    String sqlf = "update tasks set comadd4='Y',newt4='Y' where tranid = ?";
+                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                    pstmf.setString(1, Tranid);
+                    pstmf.executeUpdate();
+                }
+                if (Username.getUserName().equals(rs.getString("taskto5"))) {
+                    String sqlf = "update tasks set comadd5='Y',newt5='Y' where tranid = ?";
+                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                    pstmf.setString(1, Tranid);
+                    pstmf.executeUpdate();
+                }
+                if (Username.getUserName().equals(rs.getString("taskto6"))) {
+                    String sqlf = "update tasks set comadd6='Y',newt6='Y' where tranid = ?";
+                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                    pstmf.setString(1, Tranid);
+                    pstmf.executeUpdate();
+                }
+                if (Username.getUserName().equals(rs.getString("taskto7"))) {
+                    String sqlf = "update tasks set comadd7='Y',newt7='Y' where tranid = ?";
+                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                    pstmf.setString(1, Tranid);
+                    pstmf.executeUpdate();
+                }
+                if (Username.getUserName().equals(rs.getString("taskto8"))) {
+                    String sqlf = "update tasks set comadd8='Y',newt8='Y' where tranid = ?";
+                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                    pstmf.setString(1, Tranid);
+                    pstmf.executeUpdate();
+                }
+                if (Username.getUserName().equals(rs.getString("taskto9"))) {
+                    String sqlf = "update tasks set comadd9='Y',newt9='Y' where tranid = ?";
+                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                    pstmf.setString(1, Tranid);
+                    pstmf.executeUpdate();
+                }
+                if (Username.getUserName().equals(rs.getString("taskto10"))) {
+                    String sqlf = "update tasks set comadd10='Y',newt10='Y' where tranid = ?";
+                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                    pstmf.setString(1, Tranid);
+                    pstmf.executeUpdate();
+                }
+                if (Username.getUserName().equals(rs.getString("taskto11"))) {
+                    String sqlf = "update tasks set comadd11='Y',newt11='Y' where tranid = ?";
+                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                    pstmf.setString(1, Tranid);
+                    pstmf.executeUpdate();
+                }
+                if (Username.getUserName().equals(rs.getString("taskto12"))) {
+                    String sqlf = "update tasks set comadd12='Y',newt12='Y' where tranid = ?";
+                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                    pstmf.setString(1, Tranid);
+                    pstmf.executeUpdate();
+                }
+                if (Username.getUserName().equals(rs.getString("taskto13"))) {
+                    String sqlf = "update tasks set comadd13='Y',newt13='Y' where tranid = ?";
+                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                    pstmf.setString(1, Tranid);
+                    pstmf.executeUpdate();
+                }
+                if (Username.getUserName().equals(rs.getString("taskto14"))) {
+                    String sqlf = "update tasks set comadd14='Y',newt14='Y' where tranid = ?";
+                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                    pstmf.setString(1, Tranid);
+                    pstmf.executeUpdate();
+                }
+                if (Username.getUserName().equals(rs.getString("taskto15"))) {
+                    String sqlf = "update tasks set comadd15='Y',newt15='Y' where tranid = ?";
+                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                    pstmf.setString(1, Tranid);
+                    pstmf.executeUpdate();
+                }
+              
+                
             } else {
                 Tasks task = new Tasks();
                 task.setTranid("0");
                 task.setTaskfrom("Security problem");
                 list.add(task);
             }
+        }
+      
+        if (Tranid.equals("0")) {
+            System.out.println("getTaskOne New Task");
+        Tasks task = new Tasks();
+        task.setTranid("0");   
+        task.setTaskfrom(Username.getUserName());
+        list.add(task);
         }
         return list;
 
@@ -2209,6 +2308,7 @@ public class TaskUtils extends HttpServlet {
 
     public static ArrayList<Generics> taskUpdate(Connection conn, UserAccount Username, String tranid, String recur1, String recur3, String recur4, String recur5, String recur6, String recur7, String recur8, String recur9, String recur10, String ir, String tasksumm, String taskfull, String recur13, String recur11, String recur12, String sdate, String rdate, String edate, String prior, String stats, String recur2) throws SQLException {
         ArrayList<Generics> list = new ArrayList<Generics>();
+        String result = "not updated";
         String sql = "select taskfrom,irnr,taskto1, taskto2, taskto3, taskto4, taskto5, taskto6, taskto7, taskto8, taskto9, taskto10,taskto11, taskto12, taskto13, taskto14, taskto15 from tasks where tranid = ?";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, tranid);
@@ -2320,9 +2420,7 @@ public class TaskUtils extends HttpServlet {
                 upta.setString(21, tranid);
 
                 upta.executeUpdate();
-                Generics generics = new Generics();
-                generics.setGenericDescriptionEng("success");
-                list.add(generics);
+                result = "success";
 
                 //PreparedStatement pstmu = conn.prepareStatement(sqlu1);
                 //pstmu.setString(1, ir);
@@ -2335,23 +2433,21 @@ public class TaskUtils extends HttpServlet {
                 pstm1.setString(1, stats);
                 pstm1.setString(2, tranid);
                 pstm1.executeUpdate();
-                Generics generics = new Generics();
-                generics.setGenericDescriptionEng("success");
-                list.add(generics);
+                result="success";
             }
 
-        } else {  // no task, return error
-            Generics generics = new Generics();
-            generics.setGenericDescriptionEng("Task not found");
-            list.add(generics);
+        } else {  // no task, return error           
+            result ="Task not found";
         }
-
+Generics generics = new Generics();
+                    generics.setGenericDescriptionEng(result);
+                    list.add(generics);
         return list;
     }
 
     public static ArrayList<Tasks> TaskSaveComm(Connection conn, UserAccount user, String comments, String tranid) throws SQLException, InterruptedException {
 
-        String sql = "Select a.tasknote from tasks a where tranid = ?";
+        String sql = "Select tasknote, taskfrom, taskto1, taskto2, taskto3, taskto4, taskto5, taskto6, taskto7, taskto8, taskto9, taskto10, taskto11, taskto12, taskto13, taskto14, taskto15 from tasks where tranid = ?";
         System.out.println("TaskSaveComm " + tranid);
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, tranid);
@@ -2374,12 +2470,108 @@ public class TaskUtils extends HttpServlet {
             pstm2.setString(1, newcomm);
             pstm2.setString(2, tranid);
             pstm2.executeUpdate();
-
+            
+            if (rs.getString("taskfrom").equals(user.getUserName())) {
+                  String sqlf = "update tasks set newt1=null, newt2=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt8=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
+                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                    pstmf.setString(1, tranid);
+                    pstmf.executeUpdate();  
+            }
+            if (rs.getString("taskto1").equals(user.getUserName())) {
+                  String sqlf = "update tasks set newtf=null, newt2=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt8=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
+                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                    pstmf.setString(1, tranid);
+                    pstmf.executeUpdate();  
+            }
+            if (rs.getString("taskto2").equals(user.getUserName())) {
+                  String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt8=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
+                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                    pstmf.setString(1, tranid);
+                    pstmf.executeUpdate();  
+            }            
+            if (rs.getString("taskto3").equals(user.getUserName())) {
+                  String sqlf = "update tasks set newtf=null, newt1=null, newt2=null, newt4=null, newt5=null, newt6=null, newt7=null, newt8=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
+                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                    pstmf.setString(1, tranid);
+                    pstmf.executeUpdate();  
+            }  
+            if (rs.getString("taskto4").equals(user.getUserName())) {
+                  String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt2=null, newt5=null, newt6=null, newt7=null, newt8=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
+                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                    pstmf.setString(1, tranid);
+                    pstmf.executeUpdate();  
+            }  
+            if (rs.getString("taskto5").equals(user.getUserName())) {
+                  String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt2=null, newt6=null, newt7=null, newt8=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
+                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                    pstmf.setString(1, tranid);
+                    pstmf.executeUpdate();  
+            }
+            if (rs.getString("taskto6").equals(user.getUserName())) {
+                  String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt2=null, newt7=null, newt8=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
+                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                    pstmf.setString(1, tranid);
+                    pstmf.executeUpdate();  
+            }
+            if (rs.getString("taskto7").equals(user.getUserName())) {
+                  String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt6=null, newt2=null, newt8=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
+                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                    pstmf.setString(1, tranid);
+                    pstmf.executeUpdate();  
+            }
+            if (rs.getString("taskto8").equals(user.getUserName())) {
+                  String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt2=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
+                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                    pstmf.setString(1, tranid);
+                    pstmf.executeUpdate();  
+            }
+            if (rs.getString("taskto9").equals(user.getUserName())) {
+                  String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt2=null, newt8=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
+                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                    pstmf.setString(1, tranid);
+                    pstmf.executeUpdate();  
+            }
+            if (rs.getString("taskto10").equals(user.getUserName())) {
+                  String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt2=null, newt9=null, newt8=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
+                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                    pstmf.setString(1, tranid);
+                    pstmf.executeUpdate();  
+            }
+            if (rs.getString("taskto11").equals(user.getUserName())) {
+                  String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt2=null, newt9=null, newt10=null, newt8=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
+                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                    pstmf.setString(1, tranid);
+                    pstmf.executeUpdate();  
+            }
+            if (rs.getString("taskto12").equals(user.getUserName())) {
+                  String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt2=null, newt9=null, newt10=null, newt11=null, newt8=null, newt13=null, newt14=null, newt15=null where tranid = ?";
+                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                    pstmf.setString(1, tranid);
+                    pstmf.executeUpdate();  
+            }
+            if (rs.getString("taskto13").equals(user.getUserName())) {
+                  String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt2=null, newt9=null, newt10=null, newt11=null, newt12=null, newt8=null, newt14=null, newt15=null where tranid = ?";
+                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                    pstmf.setString(1, tranid);
+                    pstmf.executeUpdate();  
+            }
+            if (rs.getString("taskto14").equals(user.getUserName())) {
+                  String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt2=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt8=null, newt15=null where tranid = ?";
+                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                    pstmf.setString(1, tranid);
+                    pstmf.executeUpdate();  
+            }
+            if (rs.getString("taskto15").equals(user.getUserName())) {
+                  String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt2=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt8=null where tranid = ?";
+                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                    pstmf.setString(1, tranid);
+                    pstmf.executeUpdate();  
+            }
         }
 
         Thread.sleep(1500);
 
-        String sql3 = "Select a.tasknote from tasks a where tranid = ?";
+        String sql3 = "Select tasknote from tasks where tranid = ?";
 
         PreparedStatement pstm3 = conn.prepareStatement(sql3);
         pstm3.setString(1, tranid);
@@ -2388,7 +2580,7 @@ public class TaskUtils extends HttpServlet {
 
         ArrayList<Tasks> list = new ArrayList<Tasks>();
         if (rs3.next()) {
-            String diarycomm = rs.getString("tasknote");
+            String diarycomm = rs3.getString("tasknote");
 
             Tasks tasks = new Tasks();
             tasks.setTasknote(diarycomm);
@@ -2404,7 +2596,8 @@ public class TaskUtils extends HttpServlet {
         System.out.println("TaskUpdatePeople " + tranid);
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, tranid);
-
+        String result = "no updates done" ;
+        
         ResultSet rs = pstm.executeQuery();
         if (rs.next()) {
             if (rs.getString("taskfrom").equals(user.getUserName())) {
@@ -2414,21 +2607,20 @@ public class TaskUtils extends HttpServlet {
                     pstm1.setString(1, user1);
                     pstm1.setString(2, tranid);
                     pstm1.executeUpdate();
-                    Generics generics = new Generics();
-                    generics.setGenericDescriptionEng("success");
-                    list.add(generics);
+                    result="success";
+                    System.out.println("TaskUpdatePeople success");
                 }
 
             } else {
-                Generics generics = new Generics();
-                generics.setGenericDescriptionEng("not your task");
-                list.add(generics);
+                result ="not your task";                
+                System.out.println("TaskUpdatePeople not your task");
             }
         } else {
-            Generics generics = new Generics();
-            generics.setGenericDescriptionEng("task not found");
-            list.add(generics);
+            result = "task not found";
         }
+        Generics generics = new Generics();
+        generics.setGenericDescriptionEng(result);
+        list.add(generics);
         return list;
     }
 
