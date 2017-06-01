@@ -16,6 +16,75 @@
             </style>
 
             <script>
+                
+     function membergetrec(){
+    
+     // get receipt details
+                        $.get('MemberReceiptGet', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
+                        
+                            if (responseJson != null) {
+                                var table2 = $("#recgrid");
+                                $.each(responseJson, function (key, value) {
+                                    var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+                                    rowNew.children().eq(0).text(value['kwitno']);
+                                    rowNew.children().eq(1).text(value['datum']);
+                                    rowNew.children().eq(2).text(value['bedrag']);
+                                    rowNew.children().eq(3).text(value['betmet']);
+                                    rowNew.children().eq(4).text(value['descr']);
+                                    rowNew.children().eq(5).text(value['operator']);
+                                    rowNew.children().eq(6).text(value['bettot']);
+                                    rowNew.children().eq(7).text(value['cardused']);
+                                    rowNew.children().eq(8).text(value['decsign']);
+
+
+
+                                    rowNew.appendTo(table2);
+                                });
+                            } else {
+                                document.getElementById("memtitle").value = "No such member";
+                            }
+                        });
+    
+}
+                function membergetdepen(){
+                       // Get Dependents details
+                       
+                          $.get('MemberGetDepen', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
+                          
+                            if (responseJson != null) {
+                                var table3 = $("#depend");
+                                $.each(responseJson, function (key, value) {
+                                    var rowNew = $( "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+                                    rowNew.children().eq(0).text(value['ini']);
+                                    rowNew.children().eq(1).text(value['sur']);
+                                    rowNew.children().eq(2).text(value['gebdat']);
+                                    rowNew.children().eq(3).text(value['sex']);
+                                    rowNew.children().eq(4).text(value['verwskap']);
+//                                    rowNew.children().eq(5).text(value['tranid']);
+                                    rowNew.children().eq(6).text(value['premie']);
+                                    rowNew.children().eq(7).text(value['status']);
+                                    rowNew.children().eq(8).text(value['statusdate']);
+                                    rowNew.children().eq(9).text(value['tranid']);
+
+
+
+
+                                    rowNew.appendTo(table3);
+                                });
+                            } else {
+                                  var table3 = $("#depend");
+                                  var rowNew = $( "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+                                  rowNew.children().eq(0).text("No Dependents");
+                                  rowNew.appendTo(table3);
+                            }
+                        });
+                        
+                }
+                
+                
+                
+                
+                
                 function loadMember()
                 {
                     if (document.getElementById("memnum").value.length === 8) {
@@ -154,23 +223,12 @@
                                 document.getElementById("memtitle").value = "No such member";
                             }
                         });
+                             $("#depend").find("tr:gt(0)").remove();
+                             $("#recgrid").find("tr:gt(0)").remove();
+                       
 
-                        // get receipt details
-                        $.get('MemeberReceiptGet', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
-                            $("#recgrid").find("tr:gt(0)").remove();
-                            if (responseJson != null) {
-                                var table2 = $("#recgrid");
-                                $.each(responseJson, function (key, value) {
-                                    var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
-                                    rowNew.children().eq(0).text(value['kwitno']);
-
-                                    rowNew.appendTo(table2);
-                                });
-                            } else {
-                                document.getElementById("memtitle").value = "No such member";
-                            }
-                        });
-
+                   
+                        
 
                     } else {
                         document.getElementById("memtitle").value = "No such member";
@@ -293,9 +351,9 @@
                 <ul>
                     <li><a href="#tabs-1">Home</a></li>
                     <li><a href="#tabs-2">Contacts</a></li>
-                    <li><a href="#tabs-3">Dependants</a></li>
+                    <li><a href="#tabs-3" onclick="membergetdepen();" >Dependants</a></li>
                     <li><a href="#tabs-4">Account</a></li>
-                    <li><a href="#tabs-5">Receipts</a></li>
+                    <li><a href="#tabs-5" onclick="membergetrec();">Receipts</a></li>
                     <li><a href="#tabs-6">Notes</a></li>
                     <li><a href="#tabs-7">Claims</a></li>
                     <li><a href="#tabs-8">Images</a></li>
@@ -493,7 +551,7 @@
                             Bank Details
                             <br>
                             <label> Acc Holder </label>
-                            <input type="text" style="width:100px; margin-left:15px" >
+                            <input type="text" id="accholder" style="width:100px; margin-left:15px" >
                             <label style="margin-left:20px"> Acc Number </label>
                             <input type="text" style="margin-left:25px; width:100px" >
                             <label style="margin-left:20px"> Day to Deduct </label>

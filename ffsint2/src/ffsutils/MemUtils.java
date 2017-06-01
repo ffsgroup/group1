@@ -1,5 +1,6 @@
 package ffsutils;
 
+import ffsbeans.MemberDepen;
 import ffsbeans.MemberRec;
 import ffsbeans.Member;
 import java.sql.PreparedStatement;
@@ -14,6 +15,78 @@ import java.util.GregorianCalendar;
 import java.sql.Connection;
 
 public class MemUtils {
+
+    public static ArrayList<MemberDepen> getMemberDepen(Connection conn, String thisMember, String userName) throws SQLException {
+
+        System.out.println("getMemberDepen " + thisMember);
+        String sql = "Select *,(select genericdescriptioneng from generics where gengroupid = '9' and genericid = afhank.sex) as depensex,(select genericdescriptioneng from generics where gengroupid = '14' and genericid = afhank.verwskap) as relationship from afhank where lidno = ?";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, thisMember);
+
+        ResultSet rs = pstm.executeQuery();
+        ArrayList<MemberDepen> list = new ArrayList<MemberDepen>();
+        while (rs.next()) {
+            MemberDepen memberdepen = new MemberDepen();
+
+            Date date = new Date();
+            Calendar calendar = new GregorianCalendar();
+
+            calendar.setTime(rs.getTimestamp("gebdat"));
+            String year = Integer.toString(calendar.get(Calendar.YEAR));
+            String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
+            String day = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH));
+            int length = month.length();
+            if (length == 1) {
+                month = "0" + month;
+            }
+            int length2 = day.length();
+            if (length2 == 1) {
+                day = "0" + day;
+            }
+
+            Date date1 = new Date();
+            Calendar cal1 = new GregorianCalendar();
+
+            if (rs.getTimestamp("statusdate") == null) {
+                cal1.setTime(rs.getTimestamp("joindat"));
+            } else {
+                cal1.setTime(rs.getTimestamp("statusdate"));
+            }
+            String year1 = Integer.toString(cal1.get(Calendar.YEAR));
+            String month1 = Integer.toString(cal1.get(Calendar.MONTH) + 1);
+            String day1 = Integer.toString(cal1.get(Calendar.DAY_OF_MONTH));
+            String hour1 = Integer.toString(cal1.get(Calendar.HOUR_OF_DAY));
+            String minute1 = Integer.toString(cal1.get(Calendar.MINUTE));
+            if (hour1.length() == 1) {
+                hour1 = "0" + hour1;
+            }
+            if (minute1.length() == 1) {
+                minute1 = "0" + minute1;
+            }
+            if (month1.length() == 1) {
+                month1 = "0" + month1;
+            }
+            if (day1.length() == 1) {
+                day1 = "0" + day1;
+            }
+
+            String statusdate = year1 + "/" + month1 + "/" + day1;
+            String gebdat = year + "/" + month + "/" + day;
+
+            memberdepen.setini(rs.getString("ini"));
+            memberdepen.setsur(rs.getString("sur"));
+            memberdepen.setgebdat(gebdat);
+            memberdepen.setsex(rs.getString("depensex"));
+            memberdepen.setverwskap(rs.getString("relationship"));
+            memberdepen.setpremie(rs.getString("premie"));
+            memberdepen.setstatus(rs.getString("status"));
+            memberdepen.setstatusdate(statusdate);
+            memberdepen.setTranid(rs.getString("tranid"));
+
+            list.add(memberdepen);
+        }
+        return list;
+    }
 
     public static ArrayList<Generics> getPolStatus(Connection conn) throws SQLException {
         String sql = "Select a.GenericDescriptionEng from Generics a where GenGroupId = '10' order by GenericID asc";
@@ -267,6 +340,62 @@ public class MemUtils {
                 day5 = "0" + day5;
             }
 
+            Date date6 = new Date();
+            Calendar calendar6 = new GregorianCalendar();
+
+            calendar6.setTime(rs.getTimestamp("gebdat"));
+            String year6 = Integer.toString(calendar6.get(Calendar.YEAR));
+            String month6 = Integer.toString(calendar6.get(Calendar.MONTH) + 1);
+            String day6 = Integer.toString(calendar6.get(Calendar.DAY_OF_MONTH));
+            if (month6.length() == 1) {
+                month6 = "0" + month6;
+            }
+            if (day6.length() == 1) {
+                day6 = "0" + day6;
+            }
+            
+            Date date16 = new Date();
+            Calendar calendar16 = new GregorianCalendar();
+            calendar16.setTime(new Date());
+            String year16 = Integer.toString(calendar16.get(Calendar.YEAR));
+            String month16 = Integer.toString(calendar16.get(Calendar.MONTH) + 1);
+            String day16 = Integer.toString(calendar16.get(Calendar.DAY_OF_MONTH));
+            if (month16.length() == 1) {
+                month16 = "0" + month16;
+            }
+            if (day16.length() == 1) {
+                day16 = "0" + day16;
+            }
+
+            Date date7 = new Date();
+            Calendar calendar7 = new GregorianCalendar();
+
+            calendar7.setTime(rs.getTimestamp("aanstdat"));
+            String year7 = Integer.toString(calendar7.get(Calendar.YEAR));
+            String month7 = Integer.toString(calendar7.get(Calendar.MONTH) + 1);
+            String day7 = Integer.toString(calendar7.get(Calendar.DAY_OF_MONTH));
+            if (month6.length() == 1) {
+                month6 = "0" + month6;
+            }
+            if (day6.length() == 1) {
+                day6 = "0" + day6;
+            }
+            
+               int yearsInBetween = calendar6.get(Calendar.YEAR) 
+                                - calendar16.get(Calendar.YEAR);
+                int monthsDiff = calendar6.get(Calendar.MONTH) 
+                                - calendar16.get(Calendar.MONTH);
+
+//                if (month6 > month16)
+//                {
+//                  String byear = year16 - year6 - 1;
+//                  String bmonth = 12 - month6 + month16; 
+//                }
+
+
+
+            String aanstdat = year7 + "/" + month7 + "/" + day7;
+            String gebdat = year6 + "/" + month6 + "/" + day6;
             String benefdate = year5 + "/" + month5 + "/" + day5;
             String bettot = year4 + "/" + month4 + "/" + day4;
             String eisdat = year3 + "/" + month3 + "/" + day3;
@@ -276,8 +405,8 @@ public class MemUtils {
             members.setrecruitdate(thistime);
 
             members.settroustat(rs.getString("troustat"));
-            members.setgebdat(rs.getString("gebdat"));
-            members.setaanstdat(rs.getString("aanstdat"));
+            members.setgebdat(gebdat);
+            members.setaanstdat(aanstdat);
 //            members.setjoindat(rs.getString("joindat"));
             members.setorgid(rs.getString("orgid"));
             members.setlidtipe(rs.getString("lidtipe"));
@@ -320,7 +449,7 @@ public class MemUtils {
     public static ArrayList<MemberRec> getMemberRec(Connection conn, String thisMember, String userName) throws SQLException {
 
         System.out.println("getMemberRec " + thisMember);
-        String sql = "Select * from lidkwit where lidno = ?";
+        String sql = "Select *,(select genericdescriptioneng from generics where gengroupid = '3' and genericid = lidkwit.betmet) as recpaymet from lidkwit where lidno = ? order by tranid desc";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, thisMember);
 
@@ -328,7 +457,56 @@ public class MemUtils {
         ArrayList<MemberRec> list = new ArrayList<MemberRec>();
         while (rs.next()) {
             MemberRec memberrec = new MemberRec();
+
+            Date date = new Date();
+            Calendar calendar = new GregorianCalendar();
+
+            calendar.setTime(rs.getTimestamp("datum"));
+            String year = Integer.toString(calendar.get(Calendar.YEAR));
+            String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
+            String day = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH));
+            int length = month.length();
+            if (length == 1) {
+                month = "0" + month;
+            }
+            int length2 = day.length();
+            if (length2 == 1) {
+                day = "0" + day;
+            }
+
+            Date date1 = new Date();
+            Calendar cal1 = new GregorianCalendar();
+
+            cal1.setTime(rs.getTimestamp("bettot"));
+            String year1 = Integer.toString(cal1.get(Calendar.YEAR));
+            String month1 = Integer.toString(cal1.get(Calendar.MONTH) + 1);
+            String day1 = Integer.toString(cal1.get(Calendar.DAY_OF_MONTH));
+            String hour1 = Integer.toString(cal1.get(Calendar.HOUR_OF_DAY));
+            String minute1 = Integer.toString(cal1.get(Calendar.MINUTE));
+            if (hour1.length() == 1) {
+                hour1 = "0" + hour1;
+            }
+            if (minute1.length() == 1) {
+                minute1 = "0" + minute1;
+            }
+            if (month1.length() == 1) {
+                month1 = "0" + month1;
+            }
+            if (day1.length() == 1) {
+                day1 = "0" + day1;
+            }
+
+            String datum = year + "/" + month + "/" + day;
+            String bettot = year1 + "/" + month1 + "/" + day1;
             memberrec.setkwitno(rs.getString("kwitno"));
+            memberrec.setdatum(datum);
+            memberrec.setbedrag(rs.getString("bedrag"));
+            memberrec.setbetmet(rs.getString("recpaymet"));
+            memberrec.setdescr(rs.getString("descr"));
+            memberrec.setoperator(rs.getString("operator"));
+            memberrec.setbettot(bettot);
+            memberrec.setcardused(rs.getString("cardused"));
+            memberrec.setdecsign(rs.getString("decsign"));
 
             list.add(memberrec);
         }

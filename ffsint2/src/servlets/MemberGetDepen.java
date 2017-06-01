@@ -18,17 +18,18 @@ import ffsbeans.Member;
 import ffsbeans.UserAccount;
 import ffsutils.DBUtils;
 import ffsbeans.MemberRec;
+import ffsbeans.MemberDepen;
 import ffsutils.MyUtils;
 import ffsutils.MemUtils;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/MemberReceiptGet")
-public class MemberReceiptGet extends HttpServlet {
+@WebServlet("/MemberGetDepen")
+public class MemberGetDepen extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public MemberReceiptGet() {
+    public MemberGetDepen() {
         
     }
 	
@@ -37,17 +38,17 @@ public class MemberReceiptGet extends HttpServlet {
                 HttpSession session = request.getSession();
                 
                  String thisMember = request.getParameter("thisMember");                 
-                 System.out.println("MemberReceiptGet " + thisMember);
+                 System.out.println("MemberGetDepen" + thisMember);
                  UserAccount loginedUser = MyUtils.getLoginedUser(session);
-		ArrayList<MemberRec> memberrec =new ArrayList<MemberRec>();
+		ArrayList<MemberDepen> memberdepen =new ArrayList<MemberDepen>();
                 try {
-		memberrec=MemUtils.getMemberRec(conn, thisMember, loginedUser.getUserName());
+		memberdepen=MemUtils.getMemberDepen(conn, thisMember, loginedUser.getUserName());
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();
         }
 		Gson gson = new Gson();
-		JsonElement element = gson.toJsonTree(memberrec, new TypeToken<List<Member>>() {}.getType());
+		JsonElement element = gson.toJsonTree(memberdepen, new TypeToken<List<Member>>() {}.getType());
 
 		JsonArray jsonArray = element.getAsJsonArray();
 		response.setContentType("application/json");
