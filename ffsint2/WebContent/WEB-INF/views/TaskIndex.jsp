@@ -164,6 +164,12 @@
             </script>
 
             <script>
+                $(document).ready(function () {
+                    $("#doNewTask").click(function (event) {
+                        window.location = "TaskView.jsp?key=" + encodeURIComponent("0");
+
+                    });
+                });
 
                 $(document).ready(function () {
                     $("#countrytable").click(function (event) {
@@ -536,7 +542,10 @@
 
         <br>
         <br>
-        <a href="${pageContext.request.contextPath}/TaskView.jsp">Tasks</a>
+      
+        <input type ="button" value ="New Task" id="doNewTask" style="width:75px" >
+        
+        
 
         <br>
 
