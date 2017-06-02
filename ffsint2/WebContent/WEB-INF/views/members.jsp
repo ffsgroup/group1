@@ -16,75 +16,99 @@
             </style>
 
             <script>
-                
-     function membergetrec(){
-    
-     // get receipt details
-                        $.get('MemberReceiptGet', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
-                        
-                            if (responseJson != null) {
-                                var table2 = $("#recgrid");
-                                $.each(responseJson, function (key, value) {
-                                    var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
-                                    rowNew.children().eq(0).text(value['kwitno']);
-                                    rowNew.children().eq(1).text(value['datum']);
-                                    rowNew.children().eq(2).text(value['bedrag']);
-                                    rowNew.children().eq(3).text(value['betmet']);
-                                    rowNew.children().eq(4).text(value['descr']);
-                                    rowNew.children().eq(5).text(value['operator']);
-                                    rowNew.children().eq(6).text(value['bettot']);
-                                    rowNew.children().eq(7).text(value['cardused']);
-                                    rowNew.children().eq(8).text(value['decsign']);
+
+            function memberGetNotes() {
+
+                    // get member notes
+                    $.get('memberGetNotes', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
+
+                        if (responseJson != null) {
+                            var table2 = $("#notesgrid");
+                            $.each(responseJson, function (key, value) {
+                                var rowNew = $("<tr><td></td><td></td><td></td></tr>");
+                                rowNew.children().eq(0).text(value['dateMod']);
+                                rowNew.children().eq(1).text(value['tranUserId']);
+                                rowNew.children().eq(2).text(value['tranComment']);            
+                           
 
 
+                                rowNew.appendTo(table2);
+                            });
+                        } else {
+                            document.getElementById("memtitle").value = "No such member";
+                        }
+                    });
 
-                                    rowNew.appendTo(table2);
-                                });
-                            } else {
-                                document.getElementById("memtitle").value = "No such member";
-                            }
-                        });
-    
-}
-                function membergetdepen(){
-                       // Get Dependents details
-                       
-                          $.get('MemberGetDepen', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
-                          
-                            if (responseJson != null) {
-                                var table3 = $("#depend");
-                                $.each(responseJson, function (key, value) {
-                                    var rowNew = $( "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
-                                    rowNew.children().eq(0).text(value['ini']);
-                                    rowNew.children().eq(1).text(value['sur']);
-                                    rowNew.children().eq(2).text(value['gebdat']);
-                                    rowNew.children().eq(3).text(value['sex']);
-                                    rowNew.children().eq(4).text(value['verwskap']);
-//                                    rowNew.children().eq(5).text(value['tranid']);
-                                    rowNew.children().eq(6).text(value['premie']);
-                                    rowNew.children().eq(7).text(value['status']);
-                                    rowNew.children().eq(8).text(value['statusdate']);
-                                    rowNew.children().eq(9).text(value['tranid']);
-
-
-
-
-                                    rowNew.appendTo(table3);
-                                });
-                            } else {
-                                  var table3 = $("#depend");
-                                  var rowNew = $( "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
-                                  rowNew.children().eq(0).text("No Dependents");
-                                  rowNew.appendTo(table3);
-                            }
-                        });
-                        
                 }
-                
-                
-                
-                
-                
+
+
+                function membergetrec() {
+
+                    // get receipt details
+                    $.get('MemberReceiptGet', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
+
+                        if (responseJson != null) {
+                            var table2 = $("#recgrid");
+                            $.each(responseJson, function (key, value) {
+                                var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+                                rowNew.children().eq(0).text(value['kwitno']);
+                                rowNew.children().eq(1).text(value['datum']);
+                                rowNew.children().eq(2).text(value['bedrag']);
+                                rowNew.children().eq(3).text(value['betmet']);
+                                rowNew.children().eq(4).text(value['descr']);
+                                rowNew.children().eq(5).text(value['operator']);
+                                rowNew.children().eq(6).text(value['bettot']);
+                                rowNew.children().eq(7).text(value['cardused']);
+                                rowNew.children().eq(8).text(value['decsign']);
+
+
+
+                                rowNew.appendTo(table2);
+                            });
+                        } else {
+                            document.getElementById("memtitle").value = "No such member";
+                        }
+                    });
+
+                }
+                function membergetdepen() {
+
+                    $.get('MemberGetDepen', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
+
+                        if (responseJson != null) {
+                            var table3 = $("#depend");
+                            $.each(responseJson, function (key, value) {
+                                var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+                                rowNew.children().eq(0).text(value['ini']);
+                                rowNew.children().eq(1).text(value['sur']);
+                                rowNew.children().eq(2).text(value['gebdat']);
+                                rowNew.children().eq(3).text(value['sex']);
+                                rowNew.children().eq(4).text(value['verwskap']);
+//                                    rowNew.children().eq(5).text(value['tranid']);
+                                rowNew.children().eq(6).text(value['premie']);
+                                rowNew.children().eq(7).text(value['status']);
+                                rowNew.children().eq(8).text(value['statusdate']);
+                                rowNew.children().eq(9).text(value['tranid']);
+
+
+
+
+                                rowNew.appendTo(table3);
+                            });
+                        } else {
+                            var table3 = $("#depend");
+                            var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+                            rowNew.children().eq(0).text("No Dependents");
+                            rowNew.appendTo(table3);
+                        }
+                    });
+
+                }
+
+
+
+
+
                 function loadMember()
                 {
                     if (document.getElementById("memnum").value.length === 8) {
@@ -179,7 +203,7 @@
                                     document.getElementById("memrecruit").value = value['recruiter'];
                                     document.getElementById("memrecruitdate").value = value['recruitdate'];
                                     document.getElementById("marriage").selectedIndex = value['troustat'] - 1;
-                                    document.getElementById("memage").value = value['status'];
+//                                    document.getElementById("memage").value = value['age'];
                                     document.getElementById("memdob").value = value['gebdat'];
                                     document.getElementById("poldate").value = value['aanstdat'];
                                     document.getElementById("memcomp").selectedIndex = value['orgid'];
@@ -223,12 +247,12 @@
                                 document.getElementById("memtitle").value = "No such member";
                             }
                         });
-                             $("#depend").find("tr:gt(0)").remove();
-                             $("#recgrid").find("tr:gt(0)").remove();
-                       
+                        $("#depend").find("tr:gt(0)").remove();
+                        $("#recgrid").find("tr:gt(0)").remove();
+                         $("#notesgrid").find("tr:gt(0)").remove();
 
-                   
-                        
+
+
 
                     } else {
                         document.getElementById("memtitle").value = "No such member";
@@ -354,7 +378,7 @@
                     <li><a href="#tabs-3" onclick="membergetdepen();" >Dependants</a></li>
                     <li><a href="#tabs-4">Account</a></li>
                     <li><a href="#tabs-5" onclick="membergetrec();">Receipts</a></li>
-                    <li><a href="#tabs-6">Notes</a></li>
+                    <li><a href="#tabs-6" onclick="memberGetNotes();">Notes</a></li>
                     <li><a href="#tabs-7">Claims</a></li>
                     <li><a href="#tabs-8">Images</a></li>
                     <li><a href="#tabs-9">Letters</a></li>
