@@ -2306,32 +2306,11 @@ public class TaskUtils extends HttpServlet {
         return list;
     }
 
-    public static ArrayList<Generics> taskUpdate(Connection conn, UserAccount Username, String tranid, String recur1, String recur3, String recur4, String recur5, String recur6, String recur7, String recur8, String recur9, String recur10, String ir, String tasksumm, String taskfull, String recur13, String recur11, String recur12, String sdate, String rdate, String edate, String prior, String stats, String recur2) throws SQLException {
+    public static ArrayList<Generics> taskUpdate(Connection conn, UserAccount Username, String tranid, String recur1, String recur3, String recur4, String recur5, String recur6, String recur7, String recur8, String recur9, String recur10, String ir, String tasksumm, String taskfull, String recur13, String recur11, String recur12, String sdate, String rdate, String edate, String prior, String stats, String recur2, String taskTo1,String taskTo2,String taskTo3,String taskTo4,String taskTo5,String taskTo6,String taskTo7,String taskTo8,String taskTo9,String taskTo10,String taskTo11,String taskTo12,String taskTo13,String taskTo14,String taskTo15, String fromUser) throws SQLException {
+        System.out.println("taskUpdate " + tranid);  
         ArrayList<Generics> list = new ArrayList<Generics>();
-        String result = "not updated";
-        String sql = "select taskfrom,irnr,taskto1, taskto2, taskto3, taskto4, taskto5, taskto6, taskto7, taskto8, taskto9, taskto10,taskto11, taskto12, taskto13, taskto14, taskto15 from tasks where tranid = ?";
-        PreparedStatement pstm = conn.prepareStatement(sql);
-        pstm.setString(1, tranid);
-        ResultSet rs = pstm.executeQuery();
-        if (rs.next()) {
-            if (rs.getString("taskfrom").equals(Username.getUserName())) {
-                if (rs.getString("irnr").length() < 4 && ir == "true") { // requested ir, must update
-                    String upir = "select nextir from branch";
-                    PreparedStatement upirst = conn.prepareStatement(upir);
-                    ResultSet rsir = upirst.executeQuery();
-                    if (rs.next()) {
-                        String thisir = rs.getString("nextir");
-                        String upir2 = "Update branch set nextir = '" + (Integer.parseInt(thisir) + 1) + "'";
-                        PreparedStatement upirst2 = conn.prepareStatement(upir2);
-                        upirst2.executeUpdate();
-
-                        String upir3 = "update tasks set irnr = '" + thisir + "' where tranid = ?";
-                        PreparedStatement upirst3 = conn.prepareStatement(upir3);
-                        upirst.setString(1, tranid);
-                        upirst3.executeUpdate();
-                    }
-                }
-                String recur = "";
+         String result = "not updated";
+         String recur = "";
                 String recura = "";
                 String recurb = "";
                 String recurc = "";
@@ -2391,6 +2370,91 @@ public class TaskUtils extends HttpServlet {
                 } else {
                     recurg = "0";
                 }
+         
+        if (tranid.equals("0")) {
+        System.out.println("taskUpdate " + tranid + " new task");  
+        String irnr1 = "";    
+        if (ir == "true") { // requested ir, must update
+                    String upir = "select nextir from branch";
+                    PreparedStatement upirst = conn.prepareStatement(upir);
+                    ResultSet rsir = upirst.executeQuery();
+                    if (rsir.next()) {
+                        irnr1 = rsir.getString("nextir");
+                        String upir2 = "Update branch set nextir = '" + (Integer.parseInt(irnr1) + 1) + "'";
+                        PreparedStatement upirst2 = conn.prepareStatement(upir2);
+                        upirst2.executeUpdate();
+                    }
+                }
+        String newSql = "insert into tasks (taskfrom,taskuser,taskto1,taskto2,taskto3,taskto4,taskto5,taskto6,taskto7,taskto8,taskto9,taskto10,taskto11,taskto12,taskto13,taskto14,taskto15,description,recur,recura,recurb,recurc,recurd,recure, startdate,revdate,enddate,taskprior, taskfull,taskdate, recurday, recurf,recdayofweek,taskby,recurg,recurgam, recurh, recuri,irnr ) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,current_timestamp,?,?,?,?,?,?,?,?,?)";
+        PreparedStatement newPstm = conn.prepareStatement(newSql);
+        newPstm.setString(1, fromUser);
+        newPstm.setString(2,Username.getUserName() );
+        newPstm.setString(3,taskTo1 );
+        newPstm.setString(4,taskTo2 );
+        newPstm.setString(5, taskTo3);
+        newPstm.setString(6,taskTo4 );
+        newPstm.setString(7, taskTo5);
+        newPstm.setString(8, taskTo6);
+        newPstm.setString(9, taskTo7);
+        newPstm.setString(10, taskTo8);
+        newPstm.setString(11, taskTo9);
+        newPstm.setString(12, taskTo10);
+        newPstm.setString(13, taskTo11);
+        newPstm.setString(14, taskTo12);
+        newPstm.setString(15, taskTo13);
+        newPstm.setString(16, taskTo14);
+        newPstm.setString(17, taskTo15);
+        newPstm.setString(18, tasksumm);
+        newPstm.setString(19, recur);
+        newPstm.setString(20, recura);
+        newPstm.setString(21, recurb);
+        newPstm.setString(22, recurc);
+        newPstm.setString(23, recurd);
+        newPstm.setString(24, recure);
+        newPstm.setString(25, sdate);
+        newPstm.setString(26, rdate);
+        newPstm.setString(27, edate);
+        newPstm.setString(28, prior );
+        newPstm.setString(29, taskfull );
+        newPstm.setString(30, recur4 );
+        newPstm.setString(31, recurf );
+        newPstm.setString(32, recur11 );
+        newPstm.setString(33, Username.getUserName() );
+        newPstm.setString(34, recurg);
+        newPstm.setString(35, recur13);
+        newPstm.setString(36, recurh);
+        newPstm.setString(37, recuri);
+        newPstm.setString(38,irnr1 );
+        
+        newPstm.executeUpdate();
+        
+        result="task created";
+        }
+        else {
+       
+        String sql = "select taskfrom,irnr,taskto1, taskto2, taskto3, taskto4, taskto5, taskto6, taskto7, taskto8, taskto9, taskto10,taskto11, taskto12, taskto13, taskto14, taskto15 from tasks where tranid = ?";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, tranid);
+        ResultSet rs = pstm.executeQuery();
+        if (rs.next()) {
+            if (rs.getString("taskfrom").equals(Username.getUserName())) {
+                if (rs.getString("irnr").length() < 4 && ir == "true") { // requested ir, must update
+                    String upir = "select nextir from branch";
+                    PreparedStatement upirst = conn.prepareStatement(upir);
+                    ResultSet rsir = upirst.executeQuery();
+                    if (rs.next()) {
+                        String thisir = rs.getString("nextir");
+                        String upir2 = "Update branch set nextir = '" + (Integer.parseInt(thisir) + 1) + "'";
+                        PreparedStatement upirst2 = conn.prepareStatement(upir2);
+                        upirst2.executeUpdate();
+
+                        String upir3 = "update tasks set irnr = '" + thisir + "' where tranid = ?";
+                        PreparedStatement upirst3 = conn.prepareStatement(upir3);
+                        upirst.setString(1, tranid);
+                        upirst3.executeUpdate();
+                    }
+                }
+                
 
                 String sqlu1 = "update tasks set description=?, taskfull=?, startdate=?, revdate=?, enddate=?, taskprior=?, taskstat=?, recur=?, recura=?, recurb=?, recurc=?, recurd=?, recure=?, recurf=?, recurg=?, recurh=?, recuri=?, recdayofweek=?, recurday=?, recurgam=? where tranid = ?";
                 PreparedStatement upta = conn.prepareStatement(sqlu1);
@@ -2438,6 +2502,7 @@ public class TaskUtils extends HttpServlet {
 
         } else {  // no task, return error           
             result ="Task not found";
+        }
         }
 Generics generics = new Generics();
                     generics.setGenericDescriptionEng(result);

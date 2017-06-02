@@ -48,7 +48,7 @@ public class TaskUrl extends HttpServlet {
         }
                        request.setAttribute("errorString", a);
                  RequestDispatcher dispatcher = request.getServletContext()
-              .getRequestDispatcher("/WEB-INF/views/TaskIndex.jsp");
+              .getRequestDispatcher("/WEB-INF/views/taskIndex.jsp");
       dispatcher.forward(request, response);
  
   }

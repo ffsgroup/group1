@@ -57,12 +57,28 @@ public class TaskUpdate extends HttpServlet {
                 String prior = request.getParameter("prior"); 
                 String stats = request.getParameter("stats"); 
                 String recur2 = request.getParameter("recur2"); 
+                String taskto1 = request.getParameter("taskto1"); 
+                String taskto2 = request.getParameter("taskto2"); 
+                String taskto3 = request.getParameter("taskto3"); 
+                String taskto4 = request.getParameter("taskto4"); 
+                String taskto5 = request.getParameter("taskto5"); 
+                String taskto6 = request.getParameter("taskto6"); 
+                String taskto7 = request.getParameter("taskto7"); 
+                String taskto8 = request.getParameter("taskto8"); 
+                String taskto9 = request.getParameter("taskto9"); 
+                String taskto10 = request.getParameter("taskto10"); 
+                String taskto11 = request.getParameter("taskto11"); 
+                String taskto12 = request.getParameter("taskto12"); 
+                String taskto13 = request.getParameter("taskto13"); 
+                String taskto14 = request.getParameter("taskto14"); 
+                String taskto15 = request.getParameter("taskto15"); 
+                String fromUser = request.getParameter("fromUser"); 
                 
                 System.out.println("TaskUpdate " + tranid + " " + recur1);
 		ArrayList<Generics> generics =new ArrayList<Generics>();
                 
                 try {
-		generics=TaskUtils.taskUpdate(conn, loginedUser, tranid, recur1, recur3, recur4,recur5,recur6,recur7,recur8,recur9,recur10, ir,tasksumm,taskfull, recur13, recur11,recur12,sdate,rdate,edate,prior,stats,recur2);
+		generics=TaskUtils.taskUpdate(conn, loginedUser, tranid, recur1, recur3, recur4,recur5,recur6,recur7,recur8,recur9,recur10, ir,tasksumm,taskfull, recur13, recur11,recur12,sdate,rdate,edate,prior,stats,recur2,taskto1,taskto2,taskto3,taskto4,taskto5,taskto6,taskto7,taskto8,taskto9,taskto10,taskto11,taskto12,taskto13,taskto14,taskto15, fromUser);
                         } catch (SQLException e) {
             e.printStackTrace();
             String errorString;

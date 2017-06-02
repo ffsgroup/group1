@@ -265,7 +265,7 @@ public class TaskDetail extends HttpServlet {
         request.setAttribute("taskstatus", bg);
         
         RequestDispatcher dispatcher = request.getServletContext()
-                .getRequestDispatcher("/WEB-INF/views/TaskView.jsp");
+                .getRequestDispatcher("/WEB-INF/views/taskView.jsp");
         dispatcher.forward(request, response);
 
     }
