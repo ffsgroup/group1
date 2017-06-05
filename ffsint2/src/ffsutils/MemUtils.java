@@ -12,6 +12,9 @@ import ffsbeans.Generics;
 import java.util.Date;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
+
 
 import java.sql.Connection;
 
@@ -32,6 +35,7 @@ public class MemUtils {
                           Date date = new Date();
             Calendar calendar = new GregorianCalendar();
 
+        //Fails if date is 0000-00-00
              if (rs.getTimestamp("trandate") == null) {
                 System.out.println("12" );
                 calendar.setTime(rs.getTimestamp("dateMod"));
@@ -41,6 +45,7 @@ public class MemUtils {
                 calendar.setTime(rs.getTimestamp("dateMod"));
             }
             }
+
             String year = Integer.toString(calendar.get(Calendar.YEAR));
             String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
             String day = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH));
