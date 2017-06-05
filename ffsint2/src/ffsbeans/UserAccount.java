@@ -22,7 +22,6 @@ public class UserAccount {
     private String taskclaim;
     private String taskpay;
     private String myIdea;
-
     public UserAccount() {
 
     }

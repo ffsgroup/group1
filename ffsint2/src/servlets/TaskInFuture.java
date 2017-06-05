@@ -35,6 +35,7 @@ public class TaskInFuture extends HttpServlet {
 		Connection conn = MyUtils.getStoredConnection(request);
                 HttpSession session = request.getSession();
                  UserAccount loginedUser = MyUtils.getLoginedUser(session);
+                 
 		ArrayList<Tasks> task =new ArrayList<Tasks>();
                 try {
 		task=TaskUtils.getTaskInFuture(conn, loginedUser.getUserName());
