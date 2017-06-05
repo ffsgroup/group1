@@ -1,5 +1,6 @@
 package ffsutils;
 
+import ffsbeans.memberNotes;
 import ffsbeans.MemberDepen;
 import ffsbeans.MemberRec;
 import ffsbeans.Member;
@@ -15,6 +16,52 @@ import java.util.GregorianCalendar;
 import java.sql.Connection;
 
 public class MemUtils {
+    
+    
+    public static ArrayList<memberNotes> getmemberNotes(Connection conn, String thisMember, String userName) throws SQLException {
+
+        System.out.println("getmemberNotes " + thisMember);
+        String sql = "Select * from tblcomments where lidno = ?";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, thisMember);
+
+        ResultSet rs = pstm.executeQuery();
+        ArrayList<memberNotes> list = new ArrayList<memberNotes>();
+        while (rs.next()) {
+            memberNotes membernotes = new memberNotes();
+                          Date date = new Date();
+            Calendar calendar = new GregorianCalendar();
+
+             if (rs.getTimestamp("trandate") == null) {
+                System.out.println("12" );
+                calendar.setTime(rs.getTimestamp("dateMod"));
+            } else {if(rs.getTimestamp("trandate").getYear() > 1900){
+               calendar.setTime(rs.getTimestamp("trandate"));  
+            } else{
+                calendar.setTime(rs.getTimestamp("dateMod"));
+            }
+            }
+            String year = Integer.toString(calendar.get(Calendar.YEAR));
+            String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
+            String day = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH));
+            if (month.length() == 1) {
+                month = "0" + month;
+            }
+            if (day.length() == 1) {
+                day = "0" + day;
+            }
+            String dateMod = year + "/" + month + "/" + day;
+
+              membernotes.settranId(rs.getString("tranId"));
+               membernotes.settranUserId(rs.getString("tranUserId"));
+                membernotes.settranComment(rs.getString("tranComment"));
+                membernotes.setdateMod(dateMod);
+            list.add(membernotes);
+        }
+        return list;
+    }
+    
+    
 
     public static ArrayList<MemberDepen> getMemberDepen(Connection conn, String thisMember, String userName) throws SQLException {
 
@@ -340,6 +387,7 @@ public class MemUtils {
                 day5 = "0" + day5;
             }
 
+            //Calender for birthday
             Date date6 = new Date();
             Calendar calendar6 = new GregorianCalendar();
 
@@ -354,6 +402,7 @@ public class MemUtils {
                 day6 = "0" + day6;
             }
             
+            // Calender for today
             Date date16 = new Date();
             Calendar calendar16 = new GregorianCalendar();
             calendar16.setTime(new Date());
@@ -374,11 +423,11 @@ public class MemUtils {
             String year7 = Integer.toString(calendar7.get(Calendar.YEAR));
             String month7 = Integer.toString(calendar7.get(Calendar.MONTH) + 1);
             String day7 = Integer.toString(calendar7.get(Calendar.DAY_OF_MONTH));
-            if (month6.length() == 1) {
-                month6 = "0" + month6;
+            if (month7.length() == 1) {
+                month7 = "0" + month7;
             }
-            if (day6.length() == 1) {
-                day6 = "0" + day6;
+            if (day7.length() == 1) {
+                day7 = "0" + day7;
             }
             
                int yearsInBetween = calendar6.get(Calendar.YEAR) 
@@ -393,6 +442,9 @@ public class MemUtils {
 //                }
 
 
+      
+
+
 
             String aanstdat = year7 + "/" + month7 + "/" + day7;
             String gebdat = year6 + "/" + month6 + "/" + day6;
@@ -403,7 +455,8 @@ public class MemUtils {
             String postdate = year1 + "/" + month1 + "/" + day1;
             String thistime = year + "/" + month + "/" + day;
             members.setrecruitdate(thistime);
-
+            
+          
             members.settroustat(rs.getString("troustat"));
             members.setgebdat(gebdat);
             members.setaanstdat(aanstdat);
