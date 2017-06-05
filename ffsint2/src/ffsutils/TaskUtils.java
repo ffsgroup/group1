@@ -31,10 +31,26 @@ import java.io.*;
 import java.text.SimpleDateFormat;
 
 /**
- *
+ *    
  * @author user149
  */
 public class TaskUtils extends HttpServlet {
+    
+    
+     public static ArrayList<Generics> getTaskReportRoles(Connection conn) throws SQLException {
+        System.out.println("getTaskReportRoles ");
+        String sql = "Select genericdescriptioneng from generics where gengroupid = 43";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        ResultSet rs = pstm.executeQuery();
+        ArrayList<Generics> list = new ArrayList<Generics>();
+        while (rs.next()) {
+            Generics gen1 = new Generics();
+            gen1.setGenericDescriptionEng(rs.getString("genericdescriptioneng"));
+            list.add(gen1);
+        }
+        return list;
+    }
+    
 
     public static ArrayList<Tasks> getTaskOne(Connection conn, UserAccount Username, String Tranid) throws SQLException {
         System.out.println("getTaskOne " + Tranid);

@@ -1,7 +1,8 @@
 package ffsbeans;
 
 public class UserAccount {
-private String tranid;
+
+    private String tranid;
     private String userName;
     private String password;
     private String diary1;
@@ -17,9 +18,10 @@ private String tranid;
     private String securestr;
     private String code;
     private String branch;
-private String taskenq;
-private String taskclaim;
-private String taskpay;
+    private String taskenq;
+    private String taskclaim;
+    private String taskpay;
+    private String myIdea;
 
     public UserAccount() {
 
@@ -128,50 +130,61 @@ private String taskpay;
     public void setsecurestr(String securestr) {
         this.securestr = securestr;
     }
-    
+
     public String getcode() {
         return code;
     }
 
     public void setcode(String code) {
         this.code = code;
-    }    
-    
+    }
+
     public String getbranch() {
         return branch;
     }
 
     public void setbranch(String branch) {
         this.branch = branch;
-    }  
-    
-      public String getTranId() {
+    }
+
+    public String getTranId() {
         return tranid;
     }
 
     public void setTranId(String tranid) {
         this.tranid = tranid;
-    } 
-    
-      public String gettaskenq() {
+    }
+
+    public String gettaskenq() {
         return taskenq;
     }
+
     public void settaskenq(String taskenq) {
         this.taskenq = taskenq;
-    } 
+    }
 
-      public String gettaskclaim() {
+    public String gettaskclaim() {
         return taskclaim;
     }
+
     public void settaskclaim(String taskclaim) {
         this.taskclaim = taskclaim;
-    } 
+    }
 
-        public String gettaskpay() {
+    public String gettaskpay() {
         return taskpay;
     }
+
     public void settaskpay(String taskpay) {
         this.taskpay = taskpay;
-    }  
-    
+    }
+
+    public String getmyIdea() {
+        return myIdea;
+    }
+
+    public void setmyIdea(String myIdea) {
+        this.myIdea = myIdea;
+    }
+
 }
