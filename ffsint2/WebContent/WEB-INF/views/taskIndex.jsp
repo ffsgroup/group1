@@ -537,6 +537,12 @@
             <input type="checkbox" id="UrgentTasks" value="ByMe">Urgent Tasks
             <input type="checkbox" id="TrainingTasks" value="ToMe">Training Tasks
 
+            <script>
+             if (document.getElementById("ToMeInProg").checked == false && document.getElementById("ByMeInProg").checked == false && document.getElementById("TaskInFuture").checked == false && document.getElementById("ByMeComp").checked == false && document.getElementById("NewTask").checked == false && document.getElementById("UpdatedTasks").checked == false && document.getElementById("UrgentTasks").checked == false && document.getElementById("TrainingTasks").checked == false ) {
+              document.getElementById("UrgentTasks").checked = true;  
+             }
+             
+             </script>   
             <div id="calendarHere" style="position:relative;height:320px; float:right;margin-right: 250px"></div>
 
             <div id="tablediv">

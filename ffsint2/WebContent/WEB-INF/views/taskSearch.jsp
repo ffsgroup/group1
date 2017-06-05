@@ -71,6 +71,17 @@
             </style>
             <script>
                 $(document).ready(function () {
+                    $("#countrytable").click(function (event) {
+                        var target = $(event.target);
+                        $td = target.closest('td');
+                        var col = $td.index();
+                        var row = $td.closest('tr').index();
+                        window.location = "TaskView.jsp?key=" + encodeURIComponent(document.getElementById("countrytable").rows[row + 1].cells[0].innerHTML);
+
+                    });
+                });                
+                
+                $(document).ready(function () {
                     $("#searchNow").click(function (event) {
                         $.get('TaskSearchDo', {idSearch: document.getElementById("searchId").value, summSearch: document.getElementById("searchSumm").value}, function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
@@ -103,7 +114,7 @@
         </head>
         <body>
             <br>
-            Search task ID <input type="text" id="searchId" style="width:120px;margin-left:40px;">
+            Search task ID <input type="text" id="searchId" style="width:120px;margin-left:42px;">
             <br>
             Search task summary <input type ="text" id="searchSumm" style="width:120px;">
             <br>

@@ -6,6 +6,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+                <title>Task Details</title>
+        <jsp:include page="_TaskViewHeader.jsp"></jsp:include>
         <link href = "https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel = "stylesheet">
         <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
         <script src = "https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

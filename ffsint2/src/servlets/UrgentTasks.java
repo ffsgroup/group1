@@ -31,7 +31,7 @@ public class UrgentTasks extends HttpServlet {
     }
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
-            System.out.println("StartedgetTask");
+            System.out.println("TaskUrgent");
 		Connection conn = MyUtils.getStoredConnection(request);
                 HttpSession session = request.getSession();
                  UserAccount loginedUser = MyUtils.getLoginedUser(session);

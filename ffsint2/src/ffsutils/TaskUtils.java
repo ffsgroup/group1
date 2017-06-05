@@ -56,7 +56,40 @@ public class TaskUtils extends HttpServlet {
         ArrayList<Tasks> list = new ArrayList<Tasks>();
 
         if (rs.next()) {
-            if (rs.getString("taskfrom").equals(Username.getUserName()) || rs.getString("taskto1").equals(Username.getUserName()) || rs.getString("taskto2").equals(Username.getUserName()) || rs.getString("taskto3").equals(Username.getUserName()) || rs.getString("taskto4").equals(Username.getUserName()) || rs.getString("taskto5").equals(Username.getUserName()) || rs.getString("taskto6").equals(Username.getUserName()) || rs.getString("taskto7").equals(Username.getUserName()) || rs.getString("taskto8").equals(Username.getUserName()) || rs.getString("taskto9").equals(Username.getUserName()) || rs.getString("taskto10").equals(Username.getUserName()) || rs.getString("taskto11").equals(Username.getUserName()) || rs.getString("taskto12").equals(Username.getUserName()) || rs.getString("taskto13").equals(Username.getUserName()) || rs.getString("taskto14").equals(Username.getUserName()) || rs.getString("taskto15").equals(Username.getUserName()) || Username.getsecurestr().substring(143, 144).equals("1")) {
+            String task0 = rs.getString("taskfrom");
+            String task1 = rs.getString("taskto1");
+            String task2 = rs.getString("taskto2");
+            String task3 = rs.getString("taskto3");
+            String task4 = rs.getString("taskto4");
+            String task5 = rs.getString("taskto5");
+            String task6 = rs.getString("taskto6");
+            String task7 = rs.getString("taskto7");
+            String task8 = rs.getString("taskto8");
+            String task9 = rs.getString("taskto9");
+            String task10 = rs.getString("taskto10");
+            String task11 = rs.getString("taskto11");
+            String task12 = rs.getString("taskto12");
+            String task13 = rs.getString("taskto13");
+            String task14 = rs.getString("taskto14");
+            String task15 = rs.getString("taskto15");
+            if (task0 ==null) {task0 = "";}
+            if (task1 ==null) {task1 = "";}
+            if (task2 ==null) {task2 = "";}
+            if (task3 ==null) {task3 = "";}
+            if (task4 ==null) {task4 = "";}
+            if (task5 ==null) {task5 = "";}
+            if (task6 ==null) {task6 = "";}
+            if (task7 ==null) {task7 = "";}
+            if (task8 ==null) {task8 = "";}
+            if (task9 ==null) {task9 = "";}
+            if (task10 ==null) {task10 = "";}
+            if (task11 ==null) {task11 = "";}
+            if (task12 ==null) {task12 = "";}
+            if (task13 ==null) {task13 = "";}
+            if (task14 ==null) {task14 = "";}
+            if (task15 ==null) {task15 = "";}
+            
+            if (task0.equals(Username.getUserName()) || task1.equals(Username.getUserName()) || task2.equals(Username.getUserName()) || task3.equals(Username.getUserName()) || task4.equals(Username.getUserName()) || task5.equals(Username.getUserName()) || task6.equals(Username.getUserName()) || task7.equals(Username.getUserName()) || task8.equals(Username.getUserName()) || task9.equals(Username.getUserName()) || task10.equals(Username.getUserName()) || task11.equals(Username.getUserName()) || task12.equals(Username.getUserName()) || task13.equals(Username.getUserName()) || task14.equals(Username.getUserName()) || task15.equals(Username.getUserName()) || Username.getsecurestr().substring(143, 144).equals("1")) {
                 Date date1 = new Date();
                 Calendar cal1 = new GregorianCalendar();
 
@@ -2704,13 +2737,11 @@ Generics generics = new Generics();
         PreparedStatement pstm = null;
         System.out.println("getTaskSearch " + temp1.substring(143, 144) + " " + idSearch.length());
         if (temp1.substring(143, 144).equals("1") && idSearch.length() > 0) {
-        System.out.println("getTaskSearch 1");    
         sql = "select * from tasks where (tranid=?) ";
         pstm = conn.prepareStatement(sql);
         pstm.setString(1, idSearch);
         }
         if (temp1.substring(143, 144).equals("0") && idSearch.length() > 0) {
-        System.out.println("getTaskSearch 2");        
         sql = "select * from tasks where (tranid=?) and ((taskfrom is ?) or (taskto1 = ?) or (taskto2 = ?) or (taskto3 = ?) or (taskto4 = ?) or (taskto5 = ?) or (taskto6 = ?) or (taskto7 = ?) or (taskto8 = ?) or (taskto9 = ?) or (taskto10 = ?) or (taskto11 = ?) or (taskto12 = ?) or (taskto13 = ?) or (taskto14 = ?) or (taskto15 = ?)) ";    
         pstm = conn.prepareStatement(sql);
         pstm.setString(1, idSearch);
@@ -2733,16 +2764,13 @@ Generics generics = new Generics();
         }
         
         if (temp1.substring(143, 144).equals("1") && summSearch.length() > 0) {
-            System.out.println("getTaskSearch 3");    
-        sql = "select * from tasks where (description like %?%)";
+        sql = "select * from tasks where (description like '%" + summSearch +"%')";
         pstm = conn.prepareStatement(sql);
-                pstm.setString(1, summSearch);
         }
         if (temp1.substring(143, 144).equals("0") && summSearch.length() > 0) {
-            System.out.println("getTaskSearch 4");    
-        sql = "select * from tasks where (description like %?%) and ((taskfrom is ?) or (taskto1 = ?) or (taskto2 = ?) or (taskto3 = ?) or (taskto4 = ?) or (taskto5 = ?) or (taskto6 = ?) or (taskto7 = ?) or (taskto8 = ?) or (taskto9 = ?) or (taskto10 = ?) or (taskto11 = ?) or (taskto12 = ?) or (taskto13 = ?) or (taskto14 = ?) or (taskto15 = ?)) ";
+        sql = "select * from tasks where (description like '%" + summSearch +"%') and ((taskfrom is ?) or (taskto1 = ?) or (taskto2 = ?) or (taskto3 = ?) or (taskto4 = ?) or (taskto5 = ?) or (taskto6 = ?) or (taskto7 = ?) or (taskto8 = ?) or (taskto9 = ?) or (taskto10 = ?) or (taskto11 = ?) or (taskto12 = ?) or (taskto13 = ?) or (taskto14 = ?) or (taskto15 = ?)) ";
         pstm = conn.prepareStatement(sql);
-        pstm.setString(1, idSearch);
+        pstm.setString(1, Username.getUserName());
         pstm.setString(2, Username.getUserName());
         pstm.setString(3, Username.getUserName());
         pstm.setString(4, Username.getUserName());
@@ -2757,8 +2785,7 @@ Generics generics = new Generics();
         pstm.setString(13, Username.getUserName());
         pstm.setString(14, Username.getUserName());
         pstm.setString(15, Username.getUserName());
-        pstm.setString(16, Username.getUserName());
-        pstm.setString(17, Username.getUserName());        
+        pstm.setString(16, Username.getUserName());        
         }
         ResultSet rs = pstm.executeQuery();
         ArrayList<Tasks> list = new ArrayList<Tasks>();

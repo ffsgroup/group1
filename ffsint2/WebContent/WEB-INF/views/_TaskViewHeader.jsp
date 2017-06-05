@@ -14,7 +14,7 @@
   <!-- User store in session with attribute: loginedUser -->
     <b>${loginedUser.userName}</b>
     <br>
-        <script>
+    <script>
   document.write('<a href="' + document.referrer + '">Back</a>');
 </script>
 |
@@ -23,7 +23,7 @@
    <a href="${pageContext.request.contextPath}/login">Login</a>
   </div>
      <div style="text-align: center;">
-      <h2>Tasks Search</h2>        
+      <h2>Task Details</h2>        
      </div>
   
  
