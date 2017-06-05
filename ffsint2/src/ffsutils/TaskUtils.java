@@ -2688,5 +2688,168 @@ Generics generics = new Generics();
         list.add(generics);
         return list;
     }
+    
+        public static ArrayList<Tasks> getTaskSearch(Connection conn, UserAccount Username, String idSearch, String summSearch) throws SQLException {
+        System.out.println("getTaskSearch " + idSearch);
+        Date date = new Date();
+        Calendar cal = Calendar.getInstance();
+
+        String year = Integer.toString(cal.get(Calendar.YEAR));
+        String month = Integer.toString(cal.get(Calendar.MONTH) + 1);
+        String day = Integer.toString(cal.get(Calendar.DAY_OF_MONTH));
+        String hour = Integer.toString(cal.get(Calendar.HOUR_OF_DAY));
+        String minute = Integer.toString(cal.get(Calendar.MINUTE));
+        String temp1 =Username.getsecurestr();
+        String sql = "";
+        PreparedStatement pstm = null;
+        System.out.println("getTaskSearch " + temp1.substring(143, 144) + " " + idSearch.length());
+        if (temp1.substring(143, 144).equals("1") && idSearch.length() > 0) {
+        System.out.println("getTaskSearch 1");    
+        sql = "select * from tasks where (tranid=?) ";
+        pstm = conn.prepareStatement(sql);
+        pstm.setString(1, idSearch);
+        }
+        if (temp1.substring(143, 144).equals("0") && idSearch.length() > 0) {
+        System.out.println("getTaskSearch 2");        
+        sql = "select * from tasks where (tranid=?) and ((taskfrom is ?) or (taskto1 = ?) or (taskto2 = ?) or (taskto3 = ?) or (taskto4 = ?) or (taskto5 = ?) or (taskto6 = ?) or (taskto7 = ?) or (taskto8 = ?) or (taskto9 = ?) or (taskto10 = ?) or (taskto11 = ?) or (taskto12 = ?) or (taskto13 = ?) or (taskto14 = ?) or (taskto15 = ?)) ";    
+        pstm = conn.prepareStatement(sql);
+        pstm.setString(1, idSearch);
+        pstm.setString(2, Username.getUserName());
+        pstm.setString(3, Username.getUserName());
+        pstm.setString(4, Username.getUserName());
+        pstm.setString(5, Username.getUserName());
+        pstm.setString(6, Username.getUserName());
+        pstm.setString(7, Username.getUserName());
+        pstm.setString(8, Username.getUserName());
+        pstm.setString(9, Username.getUserName());
+        pstm.setString(10, Username.getUserName());
+        pstm.setString(11, Username.getUserName());
+        pstm.setString(12, Username.getUserName());
+        pstm.setString(13, Username.getUserName());
+        pstm.setString(14, Username.getUserName());
+        pstm.setString(15, Username.getUserName());
+        pstm.setString(16, Username.getUserName());
+        pstm.setString(17, Username.getUserName());
+        }
+        
+        if (temp1.substring(143, 144).equals("1") && summSearch.length() > 0) {
+            System.out.println("getTaskSearch 3");    
+        sql = "select * from tasks where (description like %?%)";
+        pstm = conn.prepareStatement(sql);
+                pstm.setString(1, summSearch);
+        }
+        if (temp1.substring(143, 144).equals("0") && summSearch.length() > 0) {
+            System.out.println("getTaskSearch 4");    
+        sql = "select * from tasks where (description like %?%) and ((taskfrom is ?) or (taskto1 = ?) or (taskto2 = ?) or (taskto3 = ?) or (taskto4 = ?) or (taskto5 = ?) or (taskto6 = ?) or (taskto7 = ?) or (taskto8 = ?) or (taskto9 = ?) or (taskto10 = ?) or (taskto11 = ?) or (taskto12 = ?) or (taskto13 = ?) or (taskto14 = ?) or (taskto15 = ?)) ";
+        pstm = conn.prepareStatement(sql);
+        pstm.setString(1, idSearch);
+        pstm.setString(2, Username.getUserName());
+        pstm.setString(3, Username.getUserName());
+        pstm.setString(4, Username.getUserName());
+        pstm.setString(5, Username.getUserName());
+        pstm.setString(6, Username.getUserName());
+        pstm.setString(7, Username.getUserName());
+        pstm.setString(8, Username.getUserName());
+        pstm.setString(9, Username.getUserName());
+        pstm.setString(10, Username.getUserName());
+        pstm.setString(11, Username.getUserName());
+        pstm.setString(12, Username.getUserName());
+        pstm.setString(13, Username.getUserName());
+        pstm.setString(14, Username.getUserName());
+        pstm.setString(15, Username.getUserName());
+        pstm.setString(16, Username.getUserName());
+        pstm.setString(17, Username.getUserName());        
+        }
+        ResultSet rs = pstm.executeQuery();
+        ArrayList<Tasks> list = new ArrayList<Tasks>();
+        while (rs.next()) {
+            Date date1 = new Date();
+            Calendar cal1 = new GregorianCalendar();
+            if (rs.getTimestamp("revdate") == null) {
+                cal1.setTime(rs.getTimestamp("enddate"));
+            } else {
+                cal1.setTime(rs.getTimestamp("revdate"));
+            }
+            String year1 = Integer.toString(cal1.get(Calendar.YEAR));
+            String month1 = Integer.toString(cal1.get(Calendar.MONTH) + 1);
+            String day1 = Integer.toString(cal1.get(Calendar.DAY_OF_MONTH));
+            String hour1 = Integer.toString(cal1.get(Calendar.HOUR_OF_DAY));
+            String minute1 = Integer.toString(cal1.get(Calendar.MINUTE));
+            if (hour1.length() == 1) {
+                hour1 = "0" + hour1;
+            }
+            if (minute1.length() == 1) {
+                minute1 = "0" + minute1;
+            }
+            if (month1.length() == 1) {
+                month1 = "0" + month1;
+            }
+            if (day1.length() == 1) {
+                day1 = "0" + day1;
+            }
+            Date date2 = new Date();
+            Calendar cal2 = new GregorianCalendar();
+
+            cal2.setTime(rs.getTimestamp("enddate"));
+            String year2 = Integer.toString(cal2.get(Calendar.YEAR));
+            String month2 = Integer.toString(cal2.get(Calendar.MONTH) + 1);
+            String day2 = Integer.toString(cal2.get(Calendar.DAY_OF_MONTH));
+            String hour2 = Integer.toString(cal2.get(Calendar.HOUR_OF_DAY));
+            String minute2 = Integer.toString(cal2.get(Calendar.MINUTE));
+            if (hour2.length() == 1) {
+                hour2 = "0" + hour2;
+            }
+            if (minute2.length() == 1) {
+                minute2 = "0" + minute2;
+            }
+            if (month2.length() == 1) {
+                month2 = "0" + month2;
+            }
+            if (day2.length() == 1) {
+                day2 = "0" + day2;
+            }
+            Date date3 = new Date();
+            Calendar cal3 = new GregorianCalendar();
+
+            cal3.setTime(rs.getTimestamp("startdate"));
+            String year3 = Integer.toString(cal3.get(Calendar.YEAR));
+            String month3 = Integer.toString(cal3.get(Calendar.MONTH) + 1);
+            String day3 = Integer.toString(cal3.get(Calendar.DAY_OF_MONTH));
+            String hour3 = Integer.toString(cal3.get(Calendar.HOUR_OF_DAY));
+            String minute3 = Integer.toString(cal3.get(Calendar.MINUTE));
+            if (hour3.length() == 1) {
+                hour3 = "0" + hour3;
+            }
+            if (minute3.length() == 1) {
+                minute3 = "0" + minute3;
+            }
+            if (month3.length() == 1) {
+                month3 = "0" + month3;
+            }
+            if (day3.length() == 1) {
+                day3 = "0" + day3;
+            }
+            String tranid = rs.getString("tranid");
+            String taskfrom = rs.getString("taskfrom");
+            String description = rs.getString("description");
+            String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
+            String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
+            String taskstat = rs.getString("taskstat");
+            String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
+            Tasks task = new Tasks();
+            task.setTranid(tranid);
+            task.setTaskfrom(taskfrom);
+            task.setDescription(description);
+            task.setRevdate(revdate);
+            task.setEnddate(enddate);
+            task.setTaskstat(taskstat);
+            task.setStartdate(startdate);
+
+            list.add(task);
+
+        }
+
+        return list;
+    }
 
 }
