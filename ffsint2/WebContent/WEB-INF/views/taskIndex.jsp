@@ -5,8 +5,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <jsp:include page="_TaskHeader.jsp"></jsp:include>
-
-
+            <title>Tasks</title>
 
             <link href = "https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel = "stylesheet">
             <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
@@ -170,21 +169,21 @@
 
                     });
                 });
-                
-                                $(document).ready(function () {
+
+                $(document).ready(function () {
                     $("#taskReport").click(function (event) {
                         window.location = "doTaskReport.jsp";
 
                     });
                 });
-                
-                                $(document).ready(function () {
+
+                $(document).ready(function () {
                     $("#taskMyIdea").click(function (event) {
                         window.location = "doTaskMyIdea.jsp";
 
                     });
                 });
-                
+
                 $(document).ready(function () {
                     $("#doNewTask").click(function (event) {
                         window.location = "TaskView.jsp?key=" + encodeURIComponent("0");
@@ -213,7 +212,7 @@
                         document.getElementById("ToMeComp").checked = false;
                         document.getElementById("UpdatedTasks").checked = false;
                         document.getElementById("UrgentTasks").checked = false;
-                        $.get('TrainingTask', function (responseJson) {
+                        $.get('TaskTraining', function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
 
@@ -252,7 +251,7 @@
                         document.getElementById("ToMeComp").checked = false;
                         document.getElementById("UpdatedTasks").checked = false;
                         document.getElementById("TrainingTasks").checked = false;
-                        $.get('UrgentTasks', function (responseJson) {
+                        $.get('taskUrgent', function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
 
@@ -291,7 +290,7 @@
                         document.getElementById("ToMeComp").checked = false;
                         document.getElementById("UrgentTasks").checked = false;
                         document.getElementById("TrainingTasks").checked = false;
-                        $.get('UpdatedTasks', function (responseJson) {
+                        $.get('TaskUpdated', function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
 
@@ -364,7 +363,7 @@
                         document.getElementById("UpdatedTasks").checked = false;
                         document.getElementById("UrgentTasks").checked = false;
                         document.getElementById("TrainingTasks").checked = false;
-                        $.get('NewTask', function (responseJson) {
+                        $.get('TaskNew', function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
 
@@ -538,11 +537,11 @@
             <input type="checkbox" id="TrainingTasks" value="ToMe">Training Tasks
 
             <script>
-             if (document.getElementById("ToMeInProg").checked == false && document.getElementById("ByMeInProg").checked == false && document.getElementById("TaskInFuture").checked == false && document.getElementById("ByMeComp").checked == false && document.getElementById("NewTask").checked == false && document.getElementById("UpdatedTasks").checked == false && document.getElementById("UrgentTasks").checked == false && document.getElementById("TrainingTasks").checked == false ) {
-              document.getElementById("UrgentTasks").checked = true;  
-             }
-             
-             </script>   
+                if (document.getElementById("ToMeInProg").checked == false && document.getElementById("ByMeInProg").checked == false && document.getElementById("TaskInFuture").checked == false && document.getElementById("ByMeComp").checked == false && document.getElementById("NewTask").checked == false && document.getElementById("UpdatedTasks").checked == false && document.getElementById("UrgentTasks").checked == false && document.getElementById("TrainingTasks").checked == false) {
+                    document.getElementById("UrgentTasks").checked = true;
+                }
+
+            </script>   
             <div id="calendarHere" style="position:relative;height:320px; float:right;margin-right: 250px"></div>
 
             <div id="tablediv">
@@ -569,13 +568,13 @@
 
         <br>
         <br>
-      
+
         <input type ="button" value ="New Task" id="doNewTask" style="width:75px;margin-left:10px;" >
         <input type ="button" value ="Search" id="taskSearch" style="width:75px;margin-left:10px;" >
         <input type ="button" value ="Reports" id="taskReport" style="width:75px;margin-left:10px;" >
         <input type ="button" value ="My Ideas" id="taskMyIdea" style="width:75px;margin-left:10px;" >
-        
-        
+
+
 
         <br>
 

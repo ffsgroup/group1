@@ -22,24 +22,24 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/TaskServlet")
-public class TaskServlet extends HttpServlet {
+@WebServlet("/TaskTraining")
+public class TaskTraining extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    public TaskServlet() {
+    public TaskTraining() {
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("TaskServlet");
+        System.out.println("StartedgetTask");
         Connection conn = MyUtils.getStoredConnection(request);
         HttpSession session = request.getSession();
         UserAccount loginedUser = MyUtils.getLoginedUser(session);
+        session.setAttribute("taskView", "taskTraining");
         ArrayList<Tasks> task = new ArrayList<Tasks>();
-        session.setAttribute("taskView", "taskServlet");
         try {
-            task = TaskUtils.getTask(conn, loginedUser.getUserName());
+            task = TaskUtils.getTrainingTask(conn, loginedUser.getUserName());
         } catch (SQLException e) {
             e.printStackTrace();
             //  errorString = e.getMessage();

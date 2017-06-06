@@ -24,37 +24,38 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/TaskInFuture")
 public class TaskInFuture extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+
+    private static final long serialVersionUID = 1L;
 
     public TaskInFuture() {
-        
+
     }
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
-            System.out.println("StartedgetTask");
-		Connection conn = MyUtils.getStoredConnection(request);
-                HttpSession session = request.getSession();
-                 UserAccount loginedUser = MyUtils.getLoginedUser(session);
-                 
-		ArrayList<Tasks> task =new ArrayList<Tasks>();
-                try {
-		task=TaskUtils.getTaskInFuture(conn, loginedUser.getUserName());
-                        } catch (SQLException e) {
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("StartedgetTask");
+        Connection conn = MyUtils.getStoredConnection(request);
+        HttpSession session = request.getSession();
+        UserAccount loginedUser = MyUtils.getLoginedUser(session);
+        session.setAttribute("taskView", "taskInFuture");
+        ArrayList<Tasks> task = new ArrayList<Tasks>();
+        try {
+            task = TaskUtils.getTaskInFuture(conn, loginedUser.getUserName());
+        } catch (SQLException e) {
             e.printStackTrace();
-          //  errorString = e.getMessage();
+            //  errorString = e.getMessage();
         }
-		Gson gson = new Gson();
-		JsonElement element = gson.toJsonTree(task, new TypeToken<List<Tasks>>() {}.getType());
+        Gson gson = new Gson();
+        JsonElement element = gson.toJsonTree(task, new TypeToken<List<Tasks>>() {
+        }.getType());
 
-		JsonArray jsonArray = element.getAsJsonArray();
-		response.setContentType("application/json");
-		response.getWriter().print(jsonArray);
-		
-	}
+        JsonArray jsonArray = element.getAsJsonArray();
+        response.setContentType("application/json");
+        response.getWriter().print(jsonArray);
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
 
 }
