@@ -6,6 +6,7 @@
         <url-pattern>/resources/*</url-pattern>
         <url-pattern>/resources/gif/*</url-pattern>
         <url-pattern>*.gif</url-pattern>
+        <url-pattern>*.txt</url-pattern>
         <url-pattern>*.png</url-pattern>
     </filter-mapping>
     <filter-mapping>

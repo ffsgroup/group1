@@ -15,19 +15,20 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import ffsbeans.Diary;
+import ffsbeans.Tasks;
 import ffsbeans.UserAccount;
-import ffsutils.DBUtils;
+import ffsutils.TaskUtils;
 import ffsutils.MyUtils;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.servlet.http.HttpSession;
 import ffsbeans.Generics;
 
-@WebServlet("/DiaryViewImage")
-public class DiaryViewImage extends HttpServlet {
+@WebServlet("/TaskViewImage")
+public class TaskViewImage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public DiaryViewImage() {
+    public TaskViewImage() {
         
     }
 	
@@ -39,16 +40,16 @@ public class DiaryViewImage extends HttpServlet {
                  String diaryid = request.getParameter("diaryid"); 
                 System.out.println("Image " + tranid + " " + diaryid);
                 
-		ArrayList<Diary> diary =new ArrayList<Diary>();
+		ArrayList<Tasks> tasks =new ArrayList<Tasks>();
                 try {
                     
-		diary=DBUtils.DiaryFile(conn, tranid, diaryid);
+		tasks=TaskUtils.TaskFile(conn, tranid, diaryid);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();
         }
 		Gson gson = new Gson();
-		JsonElement element = gson.toJsonTree(diary, new TypeToken<List<Diary>>() {}.getType());
+		JsonElement element = gson.toJsonTree(tasks, new TypeToken<List<Diary>>() {}.getType());
 
 		JsonArray jsonArray = element.getAsJsonArray();
 		response.setContentType("application/json");
