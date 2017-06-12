@@ -77,7 +77,7 @@
         <br>
         <fieldset style="width:780px; height: 660px;">
             <label> <textarea name="taskMyIdeas" id="taskMyIdeas" style="width:775px; height: 625px;"  ></textarea> </label> 
-             <input type ="button" value ="Save and Close" id="taskMyIdeaSave" style="float:right"/>
+             <input type ="button" value ="Save and Close" id="taskMyIdeaSave" style="float:right">
         </fieldset>
     </body>
 </html>
