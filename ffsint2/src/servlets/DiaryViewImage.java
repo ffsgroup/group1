@@ -39,15 +39,16 @@ public class DiaryViewImage extends HttpServlet {
                  String diaryid = request.getParameter("diaryid"); 
                 System.out.println("Image " + tranid + " " + diaryid);
                 
-		ArrayList<String> file1 =new ArrayList<String>();
+		ArrayList<Diary> diary =new ArrayList<Diary>();
                 try {
-		file1=DBUtils.DiaryFile(conn, tranid, diaryid);
+                    
+		diary=DBUtils.DiaryFile(conn, tranid, diaryid);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();
         }
 		Gson gson = new Gson();
-		JsonElement element = gson.toJsonTree(file1, new TypeToken<List<String>>() {}.getType());
+		JsonElement element = gson.toJsonTree(diary, new TypeToken<List<Diary>>() {}.getType());
 
 		JsonArray jsonArray = element.getAsJsonArray();
 		response.setContentType("application/json");

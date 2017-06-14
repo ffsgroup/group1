@@ -6,197 +6,223 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link href = "https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel = "stylesheet">
-        <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
-        <script src = "https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script src="resources/dhtmlxcalendar.js"></script>
-        <link rel="stylesheet" type="text/css" href="resources/dhtmlxcalendar_1.css"/>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Task</title>
+        <title>Task Details</title>
+        <jsp:include page="_TaskViewHeader.jsp"></jsp:include>
+            <link href = "https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel = "stylesheet">
+            <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
+            <script src = "https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+            <script src="resources/dhtmlxcalendar.js"></script>
+            <link rel="stylesheet" type="text/css" href="resources/dhtmlxcalendar_1.css"/>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            <title>Task</title>
 
 
-        <script>
-            $(function () {
-                $("#tabs").tabs();
-            });
-        </script> 
+            <script>
+                $(function () {
+                    $("#tabs").tabs();
+                });
+            </script> 
 
-        <script>
-            function loadMember() {
-                var count = $("#dsee1 option").length;
-                if (count.valueOf() < 2) {
-                    $.get('SecurityGetActiveUser', function (responseJson) {
-                        if (responseJson != null) {
-                            $.each(responseJson, function (key, value) {
-                                $('#dsee1').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
-                                $('#dsee2').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
-                                $('#dsee3').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
-                                $('#dsee4').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
-                                $('#dsee5').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
-                                $('#dsee6').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
-                                $('#dsee7').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
-                                $('#dsee8').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
-                                $('#dsee9').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
-                                $('#dsee10').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
-                                $('#dsee11').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
-                                $('#dsee12').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
-                                $('#dsee13').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
-                                $('#dsee14').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
-                                $('#dsee15').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
-                            });
-                        }
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("#diaryimag").click(function (event) {
+                        var target = $(event.target);
+                        $td = target.closest('td');
+                        var col = $td.index();
+                        var row = $td.closest('tr').index();
+                        $.get('TaskViewImage', {diaryid: document.getElementById("diaryimag").rows[row].cells[3].innerHTML, tranid: document.getElementById("taskid").innerHTML}, function (responseJson) {
+                            if (responseJson != null) {
+                                $.each(responseJson, function (key, value) {
+                                    if (value['taskfrom'].length > 1) {
+                                        // window.location = "resources/" + value['locat']; 
+                                        var url = "resources/" + value['taskfrom'];
+                                        window.open(url, 'Download');
+                                    } else {
+                                        alert("failed");
+                                    }
+                                });
+                            }
+                        });
                     });
-                }
-            }
-        </script>    
+                });
+ </script>            
 
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $("#recur").click(function (event) {
-        if ( document.getElementById("recur").checked == true) {
-                        $("#recureveryday").css("visibility", "visible");
-                        $("#Recurlabel1").css("visibility", "visible");
-                        $("#dayr7").css("visibility", "visible");
-                        $("#Recurlabel2").css("visibility", "visible");
-                        $("#recurofeverymonth").css("visibility", "visible");
-                        $("#Recurlabel3").css("visibility", "visible");
-                        $("#RecurWeekly").css("visibility", "visible");
-                        $("#Recurlabel4").css("visibility", "visible");
-                        $("#recureveryweekday").css("visibility", "visible");
-                        $("#Recurlabel5").css("visibility", "visible");
-                        $("#recurlastday").css("visibility", "visible");
-                        $("#Recurlabel6").css("visibility", "visible");
-                        $("#recurmonthly").css("visibility", "visible");
-                        $("#Recurlabel7").css("visibility", "visible");
-                        $("#recurexceptsun").css("visibility", "visible");
-                        $("#Recurlabel8").css("visibility", "visible");
-                        $("#recurevery").css("visibility", "visible");
-                        $("#Recurlabel9").css("visibility", "visible");
-                        $("#dayr5").css("visibility", "visible");
-                        $("#monthr3").css("visibility", "visible");
-                        $("#Recurlabel10").css("visibility", "visible");
-                        $("#rmonth1").css("visibility", "visible");
-                        $("#Recurlabel11").css("visibility", "visible");
-                    } else
-                    {
-                        $("#recureveryday").css("visibility", "hidden");
-                        $("#Recurlabel1").css("visibility", "hidden");
-                        $("#dayr7").css("visibility", "hidden");
-                        $("#Recurlabel2").css("visibility", "hidden");
-                        $("#recurofeverymonth").css("visibility", "hidden");
-                        $("#Recurlabel3").css("visibility", "hidden");
-                        $("#recurWeekly").css("visibility", "hidden");
-                        $("#Recurlabel4").css("visibility", "hidden");
-                        $("#recureveryweekday").css("visibility", "hidden");
-                        $("#Recurlabel5").css("visibility", "hidden");
-                        $("#recurlastday").css("visibility", "hidden");
-                        $("#Recurlabel6").css("visibility", "hidden");
-                        $("#recurmonthly").css("visibility", "hidden");
-                        $("#Recurlabel7").css("visibility", "hidden");
-                        $("#recurexceptsun").css("visibility", "hidden");
-                        $("#Recurlabel8").css("visibility", "hidden");
-                        $("#recurevery").css("visibility", "hidden");
-                        $("#Recurlabel9").css("visibility", "hidden");
-                        $("#dayr5").css("visibility", "hidden");
-                        $("#monthr3").css("visibility", "hidden");
-                        $("#Recurlabel10").css("visibility", "hidden");
-                        $("#rmonth1").css("visibility", "hidden");
-                        $("#Recurlabel11").css("visibility", "hidden");
+            <script>
+                function loadMember() {
+                    var count = $("#dsee1 option").length;
+                    if (count.valueOf() < 2) {
+                        $.get('SecurityGetActiveUser', function (responseJson) {
+                            if (responseJson != null) {
+                                $.each(responseJson, function (key, value) {
+                                    $('#dsee1').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                    $('#dsee2').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                    $('#dsee3').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                    $('#dsee4').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                    $('#dsee5').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                    $('#dsee6').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                    $('#dsee7').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                    $('#dsee8').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                    $('#dsee9').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                    $('#dsee10').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                    $('#dsee11').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                    $('#dsee12').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                    $('#dsee13').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                    $('#dsee14').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                    $('#dsee15').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
+                                });
+                            }
+                        });
                     }
+                }
+            </script>    
 
-                });
-            });
-        </script>        
-        
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $("#Tasksavecomm").click(function (event) {
-                    $.get('TaskSaveComm', {comment: document.getElementById("tasknotes").value, tranid: document.getElementById("taskid").innerHTML}, function (responseJson) {
-                        if (responseJson != null) {
-                            $.each(responseJson, function (key, value) {
-                                document.getElementById("tasknotes").value = value['tasknote'];
-                                if (document.getElementById("tasknotes").value == "undefined") {
-                                    document.getElementById("tasknotes").value = "";
-                                }
-                                if (document.getElementById("tasknotes").value.length > 0) {
-                                    //   document.getElementById("tasknotes").value = "2"; 
-                                    document.getElementById("tasknotes").value = value['tasknote'].replace(/~/g, "\n");
-                                }
-
-                            });
-                        }
-                    });
-                    //    $("#tablediv").show();  
-                    $("#Taskupdatecomm").css("visibility", "visible");
-                    $("#Tasksavecomm").css("visibility", "hidden");
-                });
-            });
-        </script>
-
-        <script>
-            $(document).ready(function () {
-                $("#Taskupdatepeople").click(function (event) {
-                    $.get('TaskUpdatePeople', {tranid: document.getElementById("taskid").innerHTML, user1: document.getElementById("dsee1").value, user2: document.getElementById("dsee2").value, user3: document.getElementById("dsee3").value, user4: document.getElementById("dsee4").value, user5: document.getElementById("dsee5").value, user6: document.getElementById("dsee6").value, user7: document.getElementById("dsee7").value, user8: document.getElementById("dsee8").value, user9: document.getElementById("dsee9").value, user10: document.getElementById("dsee10").value, user11: document.getElementById("dsee11").value, user12: document.getElementById("dsee12").value, user13: document.getElementById("dsee13").value, user14: document.getElementById("dsee14").value, user15: document.getElementById("dsee1").value}, function (responseJson) {
-
-                        if (responseJson !== null) {
-
-                            $.each(responseJson, function (key, value) {
-
-                                var t1 = value['GenericDescriptionEng'];
-                                // alert(t1); 
-                                if (t1 == "success") {
-                                    alert("success");
-                                } else {
-                                    alert("failed");
-                                }
-                            });
-                        } else {
-                            alert("no response");
-                        }
-                    });
-                });
-            });
-
-            $(document).ready(function () {
-                $("#Tasksave").click(function (event) {
-                    $.get('TaskUpdate', {tranid: document.getElementById("taskid").innerHTML, recur1: document.getElementById("recur").checked, recur3: document.getElementById("recureveryday").checked, recur4: document.getElementById("recurofeverymonth").value, recur5: document.getElementById("recurweekly").checked, recur6: document.getElementById("recureveryweekday").checked, recur7: document.getElementById("recurlastday").checked, recur8: document.getElementById("recurmonthly").checked, recur9: document.getElementById("recurexceptsun").checked, recur10: document.getElementById("recurevery").checked, ir: document.getElementById("requestir").checked, tasksumm: document.getElementById("tasksumm").value, taskfull: document.getElementById("taskfull").value, recur13: document.getElementById("rmonth1").value, recur11: document.getElementById("dayr5").value, recur12: document.getElementById("monthr3").checked, sdate: document.getElementById("startdate").value, rdate: document.getElementById("reviewdate").value, edate: document.getElementById("enddate").value, prior: document.getElementById("Priority1").value, stats: document.getElementById("Status1").value, recur2: document.getElementById("dayr7").checked, taskto1:document.getElementById("dsee1").value, taskto2:document.getElementById("dsee2").value, taskto3:document.getElementById("dsee3").value, taskto4:document.getElementById("dsee4").value, taskto5:document.getElementById("dsee5").value, taskto6:document.getElementById("dsee6").value, taskto7:document.getElementById("dsee7").value, taskto8:document.getElementById("dsee8").value, taskto9:document.getElementById("dsee9").value, taskto10:document.getElementById("dsee10").value, taskto11:document.getElementById("dsee11").value, taskto12:document.getElementById("dsee12").value, taskto13:document.getElementById("dsee13").value, taskto14:document.getElementById("dsee14").value, taskto15:document.getElementById("dsee15").value, fromUser:document.getElementById("FromUser1").value}, function (responseJson) {
-                        if (responseJson != null) {
-                            $.each(responseJson, function (key, value) {
-                                if (value['GenericDescriptionEng'] == "success") {
-                                    alert("Task updated")
-                                }
-                                if (value['GenericDescriptionEng'] == "task created") {
-                                    alert("New task created")
-                                }
-                                if (!value['GenericDescriptionEng'] == "success" && !value['GenericDescriptionEng'] == "task created") {
-                                    alert("Failed")
-                                }
-                                
-                            });
-
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("#recur").click(function (event) {
+                        if (document.getElementById("recur").checked == true) {
+                            $("#recureveryday").css("visibility", "visible");
+                            $("#Recurlabel1").css("visibility", "visible");
+                            $("#dayr7").css("visibility", "visible");
+                            $("#Recurlabel2").css("visibility", "visible");
+                            $("#recurofeverymonth").css("visibility", "visible");
+                            $("#Recurlabel3").css("visibility", "visible");
+                            $("#RecurWeekly").css("visibility", "visible");
+                            $("#Recurlabel4").css("visibility", "visible");
+                            $("#recureveryweekday").css("visibility", "visible");
+                            $("#Recurlabel5").css("visibility", "visible");
+                            $("#recurlastday").css("visibility", "visible");
+                            $("#Recurlabel6").css("visibility", "visible");
+                            $("#recurmonthly").css("visibility", "visible");
+                            $("#Recurlabel7").css("visibility", "visible");
+                            $("#recurexceptsun").css("visibility", "visible");
+                            $("#Recurlabel8").css("visibility", "visible");
+                            $("#recurevery").css("visibility", "visible");
+                            $("#Recurlabel9").css("visibility", "visible");
+                            $("#dayr5").css("visibility", "visible");
+                            $("#monthr3").css("visibility", "visible");
+                            $("#Recurlabel10").css("visibility", "visible");
+                            $("#rmonth1").css("visibility", "visible");
+                            $("#Recurlabel11").css("visibility", "visible");
+                        } else
+                        {
+                            $("#recureveryday").css("visibility", "hidden");
+                            $("#Recurlabel1").css("visibility", "hidden");
+                            $("#dayr7").css("visibility", "hidden");
+                            $("#Recurlabel2").css("visibility", "hidden");
+                            $("#recurofeverymonth").css("visibility", "hidden");
+                            $("#Recurlabel3").css("visibility", "hidden");
+                            $("#recurWeekly").css("visibility", "hidden");
+                            $("#Recurlabel4").css("visibility", "hidden");
+                            $("#recureveryweekday").css("visibility", "hidden");
+                            $("#Recurlabel5").css("visibility", "hidden");
+                            $("#recurlastday").css("visibility", "hidden");
+                            $("#Recurlabel6").css("visibility", "hidden");
+                            $("#recurmonthly").css("visibility", "hidden");
+                            $("#Recurlabel7").css("visibility", "hidden");
+                            $("#recurexceptsun").css("visibility", "hidden");
+                            $("#Recurlabel8").css("visibility", "hidden");
+                            $("#recurevery").css("visibility", "hidden");
+                            $("#Recurlabel9").css("visibility", "hidden");
+                            $("#dayr5").css("visibility", "hidden");
+                            $("#monthr3").css("visibility", "hidden");
+                            $("#Recurlabel10").css("visibility", "hidden");
+                            $("#rmonth1").css("visibility", "hidden");
+                            $("#Recurlabel11").css("visibility", "hidden");
                         }
 
                     });
                 });
-            });
-        </script>
-    </head>
-    <body>
+            </script>        
+
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("#Tasksavecomm").click(function (event) {
+                        $.get('TaskSaveComm', {comment: document.getElementById("tasknotes").value, tranid: document.getElementById("taskid").innerHTML}, function (responseJson) {
+                            if (responseJson != null) {
+                                $.each(responseJson, function (key, value) {
+                                    document.getElementById("tasknotes").value = value['tasknote'];
+                                    if (document.getElementById("tasknotes").value == "undefined") {
+                                        document.getElementById("tasknotes").value = "";
+                                    }
+                                    if (document.getElementById("tasknotes").value.length > 0) {
+                                        //   document.getElementById("tasknotes").value = "2"; 
+                                        document.getElementById("tasknotes").value = value['tasknote'].replace(/~/g, "\n");
+                                    }
+
+                                });
+                            }
+                        });
+                        //    $("#tablediv").show();  
+                        $("#Taskupdatecomm").css("visibility", "visible");
+                        $("#Tasksavecomm").css("visibility", "hidden");
+                    });
+                });
+            </script>
+
+            <script>
+                $(document).ready(function () {
+                    $("#Taskupdatepeople").click(function (event) {
+                        $.get('TaskUpdatePeople', {tranid: document.getElementById("taskid").innerHTML, user1: document.getElementById("dsee1").value, user2: document.getElementById("dsee2").value, user3: document.getElementById("dsee3").value, user4: document.getElementById("dsee4").value, user5: document.getElementById("dsee5").value, user6: document.getElementById("dsee6").value, user7: document.getElementById("dsee7").value, user8: document.getElementById("dsee8").value, user9: document.getElementById("dsee9").value, user10: document.getElementById("dsee10").value, user11: document.getElementById("dsee11").value, user12: document.getElementById("dsee12").value, user13: document.getElementById("dsee13").value, user14: document.getElementById("dsee14").value, user15: document.getElementById("dsee1").value}, function (responseJson) {
+
+                            if (responseJson !== null) {
+
+                                $.each(responseJson, function (key, value) {
+
+                                    var t1 = value['GenericDescriptionEng'];
+                                    // alert(t1); 
+                                    if (t1 == "success") {
+                                        alert("success");
+                                    } else {
+                                        alert("failed");
+                                    }
+                                });
+                            } else {
+                                alert("no response");
+                            }
+                        });
+                    });
+                });
+
+                $(document).ready(function () {
+                    $("#Tasksave").click(function (event) {
+                        $.get('TaskUpdate', {tranid: document.getElementById("taskid").innerHTML, recur1: document.getElementById("recur").checked, recur3: document.getElementById("recureveryday").checked, recur4: document.getElementById("recurofeverymonth").value, recur5: document.getElementById("recurweekly").checked, recur6: document.getElementById("recureveryweekday").checked, recur7: document.getElementById("recurlastday").checked, recur8: document.getElementById("recurmonthly").checked, recur9: document.getElementById("recurexceptsun").checked, recur10: document.getElementById("recurevery").checked, ir: document.getElementById("requestir").checked, tasksumm: document.getElementById("tasksumm").value, taskfull: document.getElementById("taskfull").value, recur13: document.getElementById("rmonth1").value, recur11: document.getElementById("dayr5").value, recur12: document.getElementById("monthr3").checked, sdate: document.getElementById("startdate").value, rdate: document.getElementById("reviewdate").value, edate: document.getElementById("enddate").value, prior: document.getElementById("Priority1").value, stats: document.getElementById("Status1").value, recur2: document.getElementById("dayr7").checked, taskto1: document.getElementById("dsee1").value, taskto2: document.getElementById("dsee2").value, taskto3: document.getElementById("dsee3").value, taskto4: document.getElementById("dsee4").value, taskto5: document.getElementById("dsee5").value, taskto6: document.getElementById("dsee6").value, taskto7: document.getElementById("dsee7").value, taskto8: document.getElementById("dsee8").value, taskto9: document.getElementById("dsee9").value, taskto10: document.getElementById("dsee10").value, taskto11: document.getElementById("dsee11").value, taskto12: document.getElementById("dsee12").value, taskto13: document.getElementById("dsee13").value, taskto14: document.getElementById("dsee14").value, taskto15: document.getElementById("dsee15").value, fromUser: document.getElementById("FromUser1").value}, function (responseJson) {
+                            if (responseJson != null) {
+                                $.each(responseJson, function (key, value) {
+                                    if (value['GenericDescriptionEng'] == "success") {
+                                        alert("Task updated")
+                                    }
+                                    if (value['GenericDescriptionEng'] == "task created") {
+                                        alert("New task created")
+                                    }
+                                    if (!value['GenericDescriptionEng'] == "success" && !value['GenericDescriptionEng'] == "task created") {
+                                        alert("Failed")
+                                    }
+
+                                });
+
+                            }
+
+                        });
+                    });
+                });
+            </script>
+        </head>
+        <body>
 
 
 
-        <div id="tabs" style="width:600px;  height:670px; margin-left: 40px;">
-            <ul>
-                <li><a href="#tabs-1">Details</a></li>
-                <li><a href="#tabs-2">Notes</a></li>
-                <li><a href="#tabs-3">People</a></li>
-                <li><a href="#tabs-4">Images</a></li>
-            </ul>
+            <div id="tabs" style="width:600px;  height:670px; margin-left: 40px;">
+                <ul>
+                    <li><a href="#tabs-1">Details</a></li>
+                    <li><a href="#tabs-2">Notes</a></li>
+                    <li><a href="#tabs-3">People</a></li>
+                    <li><a href="#tabs-4">Images</a></li>
+                </ul>
 
-            <div id="tabs-1">
-                <p>
-                <div style="float: Left; text-align: left;">
-                    Task :  <label id="taskid">${taskid}</label>
+                <div id="tabs-1">
+                    <p>
+                    <div style="float: Left; text-align: left;">
+                        Task :  <label id="taskid">${taskid}</label>
                 </div>
 
                 <br>
@@ -208,7 +234,7 @@
                     document.getElementById("FromUser1").value =${taskFromString};
                 </script>
                 <br>
-                    Task Created :  <label id="TaskCreated">${taskdate}</label>
+                Task Created :  <label id="TaskCreated">${taskdate}</label>
 
                 <br>
                 Task Summary :<label> <input type="text" id="tasksumm" style=" width:250px; margin-left:15px;" value=${description}  > </label>     
@@ -442,7 +468,7 @@
                 </script>
 
                 <input type ="button" value ="Save" id="Tasksave" style="width:75px; float:right;">
-                
+
                 </p>
 
             </div>
@@ -759,46 +785,75 @@
                     <input type ="button" value ="Update" id="Taskupdatepeople" style="width:75px;  float: right; margin-right: 5px"/>
 
             </div>
-                    <script>
-                    var a = ${taskid};
-                    if (a == "0") {
-                        $("#tabs-2").css("visibility", "hidden");
-                        $("#tabs-4").css("visibility", "hidden");
-                        document.getElementById("recur").checked = false;
-                        document.getElementById("startdate").value = "";
-                        document.getElementById("reviewdate").value = "";
-                        document.getElementById("enddate").value = "";
-                        document.getElementById("tasksumm").value = "";
-                        document.getElementById("Irnr").value = "";
-                        document.getElementById("recurofeverymonth").value = "";
-                        document.getElementById("rmonth1").value = "";
-                        
-                        $("#recureveryday").css("visibility", "hidden");
-                        $("#Recurlabel1").css("visibility", "hidden");
-                        $("#dayr7").css("visibility", "hidden");
-                        $("#Recurlabel2").css("visibility", "hidden");
-                        $("#recurofeverymonth").css("visibility", "hidden");
-                        $("#Recurlabel3").css("visibility", "hidden");
-                        $("#recurWeekly").css("visibility", "hidden");
-                        $("#Recurlabel4").css("visibility", "hidden");
-                        $("#recureveryweekday").css("visibility", "hidden");
-                        $("#Recurlabel5").css("visibility", "hidden");
-                        $("#recurlastday").css("visibility", "hidden");
-                        $("#Recurlabel6").css("visibility", "hidden");
-                        $("#recurmonthly").css("visibility", "hidden");
-                        $("#Recurlabel7").css("visibility", "hidden");
-                        $("#recurexceptsun").css("visibility", "hidden");
-                        $("#Recurlabel8").css("visibility", "hidden");
-                        $("#recurevery").css("visibility", "hidden");
-                        $("#Recurlabel9").css("visibility", "hidden");
-                        $("#dayr5").css("visibility", "hidden");
-                        $("#monthr3").css("visibility", "hidden");
-                        $("#Recurlabel10").css("visibility", "hidden");
-                        $("#rmonth1").css("visibility", "hidden");
-                        $("#Recurlabel11").css("visibility", "hidden");
+            <script>
+                        var a = ${taskid};
+                        if (a == "0") {
+                            $("#tabs-2").css("visibility", "hidden");
+                            $("#tabs-4").css("visibility", "hidden");
+                            document.getElementById("recur").checked = false;
+                            document.getElementById("startdate").value = "";
+                            document.getElementById("reviewdate").value = "";
+                            document.getElementById("enddate").value = "";
+                            document.getElementById("tasksumm").value = "";
+                            document.getElementById("Irnr").value = "";
+                            document.getElementById("recurofeverymonth").value = "";
+                            document.getElementById("rmonth1").value = "";
 
-                    }
-                </script>
+                            $("#recureveryday").css("visibility", "hidden");
+                            $("#Recurlabel1").css("visibility", "hidden");
+                            $("#dayr7").css("visibility", "hidden");
+                            $("#Recurlabel2").css("visibility", "hidden");
+                            $("#recurofeverymonth").css("visibility", "hidden");
+                            $("#Recurlabel3").css("visibility", "hidden");
+                            $("#recurWeekly").css("visibility", "hidden");
+                            $("#Recurlabel4").css("visibility", "hidden");
+                            $("#recureveryweekday").css("visibility", "hidden");
+                            $("#Recurlabel5").css("visibility", "hidden");
+                            $("#recurlastday").css("visibility", "hidden");
+                            $("#Recurlabel6").css("visibility", "hidden");
+                            $("#recurmonthly").css("visibility", "hidden");
+                            $("#Recurlabel7").css("visibility", "hidden");
+                            $("#recurexceptsun").css("visibility", "hidden");
+                            $("#Recurlabel8").css("visibility", "hidden");
+                            $("#recurevery").css("visibility", "hidden");
+                            $("#Recurlabel9").css("visibility", "hidden");
+                            $("#dayr5").css("visibility", "hidden");
+                            $("#monthr3").css("visibility", "hidden");
+                            $("#Recurlabel10").css("visibility", "hidden");
+                            $("#rmonth1").css("visibility", "hidden");
+                            $("#Recurlabel11").css("visibility", "hidden");
+
+                        }
+            </script>
+            <div id="tabs-4"> 
+                <div id="imagdiv">
+                    <table cellspacing="0" id="diaryimag" style="float: left; border-collapse: collapse;margin-left:5px; heigth:300px; width:97%; border:1px solid black;"> 
+                        <tr> 
+                            <th style="width:120px;border-collapse: collapse;border:1px solid black;" scope="col">Date</th> 
+                            <th style="width:180px;border-collapse: collapse;border:1px solid black;" scope="col">User</th> 
+                            <th style="width:200px;border-collapse: collapse;border:1px solid black;" scope="col">Description</th> 
+                            <th style="width:40px;border-collapse: collapse;border:1px solid black;" scope="col">ID</th> 
+                        </tr> 
+${taskimage}                        
+                    </table>
+                </div>
+                <br>
+
+                <br>
+                <label for="imageText">Enter description</label>
+
+                <input id="imageText" name="ImageText" type="text" > <br/>
+
+                <label for="imageFile"/>Select file </label>
+
+                <input id="imageFile" name="imageFile" type="file" > <br/>
+
+                <input id="uploadBtn" type="button" value="Upload" onClick="performAjaxSubmit();">
+
+
+
+            </div>
+
         </div>
 
     </body>

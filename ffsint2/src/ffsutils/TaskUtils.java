@@ -8,36 +8,28 @@ package ffsutils;
 import ffsbeans.Diary;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import ffsbeans.Product;
 import ffsbeans.Tasks;
+import ffsbeans.TaskImage;
 import ffsbeans.Generics;
 import java.util.Date;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import ffsbeans.DiaryImag;
 import ffsbeans.UserAccount;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.sql.Connection;
-import java.util.List;
-import org.apache.commons.fileupload.FileItem;
-import java.io.*;
 import java.text.SimpleDateFormat;
 
-/**
- *    
- * @author user149
- */
 public class TaskUtils extends HttpServlet {
-    
-    
-     public static ArrayList<Generics> getTaskReportRoles(Connection conn) throws SQLException {
+
+    public static ArrayList<Generics> getTaskReportRoles(Connection conn) throws SQLException {
         System.out.println("getTaskReportRoles ");
         String sql = "Select genericdescriptioneng from generics where gengroupid = 43";
         PreparedStatement pstm = conn.prepareStatement(sql);
@@ -50,7 +42,6 @@ public class TaskUtils extends HttpServlet {
         }
         return list;
     }
-    
 
     public static ArrayList<Tasks> getTaskOne(Connection conn, UserAccount Username, String Tranid) throws SQLException {
         System.out.println("getTaskOne " + Tranid);
@@ -72,7 +63,72 @@ public class TaskUtils extends HttpServlet {
         ArrayList<Tasks> list = new ArrayList<Tasks>();
 
         if (rs.next()) {
-            if (rs.getString("taskfrom").equals(Username.getUserName()) || rs.getString("taskto1").equals(Username.getUserName()) || rs.getString("taskto2").equals(Username.getUserName()) || rs.getString("taskto3").equals(Username.getUserName()) || rs.getString("taskto4").equals(Username.getUserName()) || rs.getString("taskto5").equals(Username.getUserName()) || rs.getString("taskto6").equals(Username.getUserName()) || rs.getString("taskto7").equals(Username.getUserName()) || rs.getString("taskto8").equals(Username.getUserName()) || rs.getString("taskto9").equals(Username.getUserName()) || rs.getString("taskto10").equals(Username.getUserName()) || rs.getString("taskto11").equals(Username.getUserName()) || rs.getString("taskto12").equals(Username.getUserName()) || rs.getString("taskto13").equals(Username.getUserName()) || rs.getString("taskto14").equals(Username.getUserName()) || rs.getString("taskto15").equals(Username.getUserName()) || Username.getsecurestr().substring(143, 144).equals("1")) {
+            String task0 = rs.getString("taskfrom");
+            String task1 = rs.getString("taskto1");
+            String task2 = rs.getString("taskto2");
+            String task3 = rs.getString("taskto3");
+            String task4 = rs.getString("taskto4");
+            String task5 = rs.getString("taskto5");
+            String task6 = rs.getString("taskto6");
+            String task7 = rs.getString("taskto7");
+            String task8 = rs.getString("taskto8");
+            String task9 = rs.getString("taskto9");
+            String task10 = rs.getString("taskto10");
+            String task11 = rs.getString("taskto11");
+            String task12 = rs.getString("taskto12");
+            String task13 = rs.getString("taskto13");
+            String task14 = rs.getString("taskto14");
+            String task15 = rs.getString("taskto15");
+            if (task0 == null) {
+                task0 = "";
+            }
+            if (task1 == null) {
+                task1 = "";
+            }
+            if (task2 == null) {
+                task2 = "";
+            }
+            if (task3 == null) {
+                task3 = "";
+            }
+            if (task4 == null) {
+                task4 = "";
+            }
+            if (task5 == null) {
+                task5 = "";
+            }
+            if (task6 == null) {
+                task6 = "";
+            }
+            if (task7 == null) {
+                task7 = "";
+            }
+            if (task8 == null) {
+                task8 = "";
+            }
+            if (task9 == null) {
+                task9 = "";
+            }
+            if (task10 == null) {
+                task10 = "";
+            }
+            if (task11 == null) {
+                task11 = "";
+            }
+            if (task12 == null) {
+                task12 = "";
+            }
+            if (task13 == null) {
+                task13 = "";
+            }
+            if (task14 == null) {
+                task14 = "";
+            }
+            if (task15 == null) {
+                task15 = "";
+            }
+
+            if (task0.equals(Username.getUserName()) || task1.equals(Username.getUserName()) || task2.equals(Username.getUserName()) || task3.equals(Username.getUserName()) || task4.equals(Username.getUserName()) || task5.equals(Username.getUserName()) || task6.equals(Username.getUserName()) || task7.equals(Username.getUserName()) || task8.equals(Username.getUserName()) || task9.equals(Username.getUserName()) || task10.equals(Username.getUserName()) || task11.equals(Username.getUserName()) || task12.equals(Username.getUserName()) || task13.equals(Username.getUserName()) || task14.equals(Username.getUserName()) || task15.equals(Username.getUserName()) || Username.getsecurestr().substring(143, 144).equals("1")) {
                 Date date1 = new Date();
                 Calendar cal1 = new GregorianCalendar();
 
@@ -795,8 +851,7 @@ public class TaskUtils extends HttpServlet {
                     pstmf.setString(1, Tranid);
                     pstmf.executeUpdate();
                 }
-              
-                
+
             } else {
                 Tasks task = new Tasks();
                 task.setTranid("0");
@@ -804,13 +859,13 @@ public class TaskUtils extends HttpServlet {
                 list.add(task);
             }
         }
-      
+
         if (Tranid.equals("0")) {
             System.out.println("getTaskOne New Task");
-        Tasks task = new Tasks();
-        task.setTranid("0");   
-        task.setTaskfrom(Username.getUserName());
-        list.add(task);
+            Tasks task = new Tasks();
+            task.setTranid("0");
+            task.setTaskfrom(Username.getUserName());
+            list.add(task);
         }
         return list;
 
@@ -2322,207 +2377,205 @@ public class TaskUtils extends HttpServlet {
         return list;
     }
 
-    public static ArrayList<Generics> taskUpdate(Connection conn, UserAccount Username, String tranid, String recur1, String recur3, String recur4, String recur5, String recur6, String recur7, String recur8, String recur9, String recur10, String ir, String tasksumm, String taskfull, String recur13, String recur11, String recur12, String sdate, String rdate, String edate, String prior, String stats, String recur2, String taskTo1,String taskTo2,String taskTo3,String taskTo4,String taskTo5,String taskTo6,String taskTo7,String taskTo8,String taskTo9,String taskTo10,String taskTo11,String taskTo12,String taskTo13,String taskTo14,String taskTo15, String fromUser) throws SQLException {
-        System.out.println("taskUpdate " + tranid);  
+    public static ArrayList<Generics> taskUpdate(Connection conn, UserAccount Username, String tranid, String recur1, String recur3, String recur4, String recur5, String recur6, String recur7, String recur8, String recur9, String recur10, String ir, String tasksumm, String taskfull, String recur13, String recur11, String recur12, String sdate, String rdate, String edate, String prior, String stats, String recur2, String taskTo1, String taskTo2, String taskTo3, String taskTo4, String taskTo5, String taskTo6, String taskTo7, String taskTo8, String taskTo9, String taskTo10, String taskTo11, String taskTo12, String taskTo13, String taskTo14, String taskTo15, String fromUser) throws SQLException {
+        System.out.println("taskUpdate " + tranid);
         ArrayList<Generics> list = new ArrayList<Generics>();
-         String result = "not updated";
-         String recur = "";
-                String recura = "";
-                String recurb = "";
-                String recurc = "";
-                String recurd = "";
-                String recure = "";
-                String recurf = "";
-                String recurg = "";
-                String recurh = "";
-                String recuri = "";
-                if (recur1.equals("true")) {
-                    recur = "1";
-                } else {
-                    recur = "0";
-                }
-                if (recur3.equals("true")) {
-                    recura = "1";
-                } else {
-                    recura = "0";
-                }
-                if (recur2.equals("true")) {
-                    recurd = "1";
-                } else {
-                    recurd = "0";
-                }
-                if (recur5.equals("true")) {
-                    recurh = "1";
-                } else {
-                    recurh = "0";
-                }
-                if (recur6.equals("true")) {
-                    recurb = "1";
-                } else {
-                    recurb = "0";
-                }
-                if (recur7.equals("true")) {
-                    recure = "1";
-                } else {
-                    recure = "0";
-                }
-                if (recur8.equals("true")) {
-                    recuri = "1";
-                } else {
-                    recuri = "0";
-                }
-                if (recur9.equals("true")) {
-                    recurc = "1";
-                } else {
-                    recurc = "0";
-                }
-                if (recur10.equals("true")) {
-                    recurf = "1";
-                } else {
-                    recurf = "0";
-                }
-                if (recur12.equals("true")) {
-                    recurg = "1";
-                } else {
-                    recurg = "0";
-                }
-         
+        String result = "not updated";
+        String recur = "";
+        String recura = "";
+        String recurb = "";
+        String recurc = "";
+        String recurd = "";
+        String recure = "";
+        String recurf = "";
+        String recurg = "";
+        String recurh = "";
+        String recuri = "";
+        if (recur1.equals("true")) {
+            recur = "1";
+        } else {
+            recur = "0";
+        }
+        if (recur3.equals("true")) {
+            recura = "1";
+        } else {
+            recura = "0";
+        }
+        if (recur2.equals("true")) {
+            recurd = "1";
+        } else {
+            recurd = "0";
+        }
+        if (recur5.equals("true")) {
+            recurh = "1";
+        } else {
+            recurh = "0";
+        }
+        if (recur6.equals("true")) {
+            recurb = "1";
+        } else {
+            recurb = "0";
+        }
+        if (recur7.equals("true")) {
+            recure = "1";
+        } else {
+            recure = "0";
+        }
+        if (recur8.equals("true")) {
+            recuri = "1";
+        } else {
+            recuri = "0";
+        }
+        if (recur9.equals("true")) {
+            recurc = "1";
+        } else {
+            recurc = "0";
+        }
+        if (recur10.equals("true")) {
+            recurf = "1";
+        } else {
+            recurf = "0";
+        }
+        if (recur12.equals("true")) {
+            recurg = "1";
+        } else {
+            recurg = "0";
+        }
+
         if (tranid.equals("0")) {
-        System.out.println("taskUpdate " + tranid + " new task");  
-        String irnr1 = "";    
-        if (ir == "true") { // requested ir, must update
-                    String upir = "select nextir from branch";
-                    PreparedStatement upirst = conn.prepareStatement(upir);
-                    ResultSet rsir = upirst.executeQuery();
-                    if (rsir.next()) {
-                        irnr1 = rsir.getString("nextir");
-                        String upir2 = "Update branch set nextir = '" + (Integer.parseInt(irnr1) + 1) + "'";
-                        PreparedStatement upirst2 = conn.prepareStatement(upir2);
-                        upirst2.executeUpdate();
-                    }
+            System.out.println("taskUpdate " + tranid + " new task");
+            String irnr1 = "";
+            if (ir == "true") { // requested ir, must update
+                String upir = "select nextir from branch";
+                PreparedStatement upirst = conn.prepareStatement(upir);
+                ResultSet rsir = upirst.executeQuery();
+                if (rsir.next()) {
+                    irnr1 = rsir.getString("nextir");
+                    String upir2 = "Update branch set nextir = '" + (Integer.parseInt(irnr1) + 1) + "'";
+                    PreparedStatement upirst2 = conn.prepareStatement(upir2);
+                    upirst2.executeUpdate();
                 }
-        String newSql = "insert into tasks (taskfrom,taskuser,taskto1,taskto2,taskto3,taskto4,taskto5,taskto6,taskto7,taskto8,taskto9,taskto10,taskto11,taskto12,taskto13,taskto14,taskto15,description,recur,recura,recurb,recurc,recurd,recure, startdate,revdate,enddate,taskprior, taskfull,taskdate, recurday, recurf,recdayofweek,taskby,recurg,recurgam, recurh, recuri,irnr ) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,current_timestamp,?,?,?,?,?,?,?,?,?)";
-        PreparedStatement newPstm = conn.prepareStatement(newSql);
-        newPstm.setString(1, fromUser);
-        newPstm.setString(2,Username.getUserName() );
-        newPstm.setString(3,taskTo1 );
-        newPstm.setString(4,taskTo2 );
-        newPstm.setString(5, taskTo3);
-        newPstm.setString(6,taskTo4 );
-        newPstm.setString(7, taskTo5);
-        newPstm.setString(8, taskTo6);
-        newPstm.setString(9, taskTo7);
-        newPstm.setString(10, taskTo8);
-        newPstm.setString(11, taskTo9);
-        newPstm.setString(12, taskTo10);
-        newPstm.setString(13, taskTo11);
-        newPstm.setString(14, taskTo12);
-        newPstm.setString(15, taskTo13);
-        newPstm.setString(16, taskTo14);
-        newPstm.setString(17, taskTo15);
-        newPstm.setString(18, tasksumm);
-        newPstm.setString(19, recur);
-        newPstm.setString(20, recura);
-        newPstm.setString(21, recurb);
-        newPstm.setString(22, recurc);
-        newPstm.setString(23, recurd);
-        newPstm.setString(24, recure);
-        newPstm.setString(25, sdate);
-        newPstm.setString(26, rdate);
-        newPstm.setString(27, edate);
-        newPstm.setString(28, prior );
-        newPstm.setString(29, taskfull );
-        newPstm.setString(30, recur4 );
-        newPstm.setString(31, recurf );
-        newPstm.setString(32, recur11 );
-        newPstm.setString(33, Username.getUserName() );
-        newPstm.setString(34, recurg);
-        newPstm.setString(35, recur13);
-        newPstm.setString(36, recurh);
-        newPstm.setString(37, recuri);
-        newPstm.setString(38,irnr1 );
-        
-        newPstm.executeUpdate();
-        
-        result="task created";
-        }
-        else {
-       
-        String sql = "select taskfrom,irnr,taskto1, taskto2, taskto3, taskto4, taskto5, taskto6, taskto7, taskto8, taskto9, taskto10,taskto11, taskto12, taskto13, taskto14, taskto15 from tasks where tranid = ?";
-        PreparedStatement pstm = conn.prepareStatement(sql);
-        pstm.setString(1, tranid);
-        ResultSet rs = pstm.executeQuery();
-        if (rs.next()) {
-            if (rs.getString("taskfrom").equals(Username.getUserName())) {
-                if (rs.getString("irnr").length() < 4 && ir == "true") { // requested ir, must update
-                    String upir = "select nextir from branch";
-                    PreparedStatement upirst = conn.prepareStatement(upir);
-                    ResultSet rsir = upirst.executeQuery();
-                    if (rs.next()) {
-                        String thisir = rs.getString("nextir");
-                        String upir2 = "Update branch set nextir = '" + (Integer.parseInt(thisir) + 1) + "'";
-                        PreparedStatement upirst2 = conn.prepareStatement(upir2);
-                        upirst2.executeUpdate();
+            }
+            String newSql = "insert into tasks (taskfrom,taskuser,taskto1,taskto2,taskto3,taskto4,taskto5,taskto6,taskto7,taskto8,taskto9,taskto10,taskto11,taskto12,taskto13,taskto14,taskto15,description,recur,recura,recurb,recurc,recurd,recure, startdate,revdate,enddate,taskprior, taskfull,taskdate, recurday, recurf,recdayofweek,taskby,recurg,recurgam, recurh, recuri,irnr ) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,current_timestamp,?,?,?,?,?,?,?,?,?)";
+            PreparedStatement newPstm = conn.prepareStatement(newSql);
+            newPstm.setString(1, fromUser);
+            newPstm.setString(2, Username.getUserName());
+            newPstm.setString(3, taskTo1);
+            newPstm.setString(4, taskTo2);
+            newPstm.setString(5, taskTo3);
+            newPstm.setString(6, taskTo4);
+            newPstm.setString(7, taskTo5);
+            newPstm.setString(8, taskTo6);
+            newPstm.setString(9, taskTo7);
+            newPstm.setString(10, taskTo8);
+            newPstm.setString(11, taskTo9);
+            newPstm.setString(12, taskTo10);
+            newPstm.setString(13, taskTo11);
+            newPstm.setString(14, taskTo12);
+            newPstm.setString(15, taskTo13);
+            newPstm.setString(16, taskTo14);
+            newPstm.setString(17, taskTo15);
+            newPstm.setString(18, tasksumm);
+            newPstm.setString(19, recur);
+            newPstm.setString(20, recura);
+            newPstm.setString(21, recurb);
+            newPstm.setString(22, recurc);
+            newPstm.setString(23, recurd);
+            newPstm.setString(24, recure);
+            newPstm.setString(25, sdate);
+            newPstm.setString(26, rdate);
+            newPstm.setString(27, edate);
+            newPstm.setString(28, prior);
+            newPstm.setString(29, taskfull);
+            newPstm.setString(30, recur4);
+            newPstm.setString(31, recurf);
+            newPstm.setString(32, recur11);
+            newPstm.setString(33, Username.getUserName());
+            newPstm.setString(34, recurg);
+            newPstm.setString(35, recur13);
+            newPstm.setString(36, recurh);
+            newPstm.setString(37, recuri);
+            newPstm.setString(38, irnr1);
 
-                        String upir3 = "update tasks set irnr = '" + thisir + "' where tranid = ?";
-                        PreparedStatement upirst3 = conn.prepareStatement(upir3);
-                        upirst.setString(1, tranid);
-                        upirst3.executeUpdate();
+            newPstm.executeUpdate();
+
+            result = "task created";
+        } else {
+
+            String sql = "select taskfrom,irnr,taskto1, taskto2, taskto3, taskto4, taskto5, taskto6, taskto7, taskto8, taskto9, taskto10,taskto11, taskto12, taskto13, taskto14, taskto15 from tasks where tranid = ?";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.setString(1, tranid);
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()) {
+                if (rs.getString("taskfrom").equals(Username.getUserName())) {
+                    if (rs.getString("irnr").length() < 4 && ir == "true") { // requested ir, must update
+                        String upir = "select nextir from branch";
+                        PreparedStatement upirst = conn.prepareStatement(upir);
+                        ResultSet rsir = upirst.executeQuery();
+                        if (rs.next()) {
+                            String thisir = rs.getString("nextir");
+                            String upir2 = "Update branch set nextir = '" + (Integer.parseInt(thisir) + 1) + "'";
+                            PreparedStatement upirst2 = conn.prepareStatement(upir2);
+                            upirst2.executeUpdate();
+
+                            String upir3 = "update tasks set irnr = '" + thisir + "' where tranid = ?";
+                            PreparedStatement upirst3 = conn.prepareStatement(upir3);
+                            upirst.setString(1, tranid);
+                            upirst3.executeUpdate();
+                        }
                     }
+
+                    String sqlu1 = "update tasks set description=?, taskfull=?, startdate=?, revdate=?, enddate=?, taskprior=?, taskstat=?, recur=?, recura=?, recurb=?, recurc=?, recurd=?, recure=?, recurf=?, recurg=?, recurh=?, recuri=?, recdayofweek=?, recurday=?, recurgam=? where tranid = ?";
+                    PreparedStatement upta = conn.prepareStatement(sqlu1);
+                    upta.setString(1, tasksumm);
+                    upta.setString(2, taskfull);
+                    upta.setString(3, sdate);
+                    upta.setString(4, rdate);
+                    upta.setString(5, edate);
+                    upta.setString(6, prior);
+                    upta.setString(7, stats);
+
+                    upta.setString(8, recur);
+                    upta.setString(9, recura);
+                    upta.setString(10, recurb);
+                    upta.setString(11, recurc);
+                    upta.setString(12, recurd);
+                    upta.setString(13, recure);
+                    upta.setString(14, recurf);
+                    upta.setString(15, recurg);
+                    upta.setString(16, recurh);
+                    upta.setString(17, recuri);
+
+                    upta.setString(18, recur11);
+                    upta.setString(19, recur4);
+                    upta.setString(20, recur13);
+
+                    upta.setString(21, tranid);
+
+                    upta.executeUpdate();
+                    result = "success";
+
+                    //PreparedStatement pstmu = conn.prepareStatement(sqlu1);
+                    //pstmu.setString(1, ir);
+                    //pstmu.executeUpdate();
                 }
-                
+                // not this user, only update status
+                if (rs.getString("taskto1").equals(Username.getUserName())) {
+                    String sql1 = "update tasks set taskstat1 = ? , task1date=current_timestamp where tranid = ?";
+                    PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                    pstm1.setString(1, stats);
+                    pstm1.setString(2, tranid);
+                    pstm1.executeUpdate();
+                    result = "success";
+                }
 
-                String sqlu1 = "update tasks set description=?, taskfull=?, startdate=?, revdate=?, enddate=?, taskprior=?, taskstat=?, recur=?, recura=?, recurb=?, recurc=?, recurd=?, recure=?, recurf=?, recurg=?, recurh=?, recuri=?, recdayofweek=?, recurday=?, recurgam=? where tranid = ?";
-                PreparedStatement upta = conn.prepareStatement(sqlu1);
-                upta.setString(1, tasksumm);
-                upta.setString(2, taskfull);
-                upta.setString(3, sdate);
-                upta.setString(4, rdate);
-                upta.setString(5, edate);
-                upta.setString(6, prior);
-                upta.setString(7, stats);
-
-                upta.setString(8, recur);
-                upta.setString(9, recura);
-                upta.setString(10, recurb);
-                upta.setString(11, recurc);
-                upta.setString(12, recurd);
-                upta.setString(13, recure);
-                upta.setString(14, recurf);
-                upta.setString(15, recurg);
-                upta.setString(16, recurh);
-                upta.setString(17, recuri);
-
-                upta.setString(18, recur11);
-                upta.setString(19, recur4);
-                upta.setString(20, recur13);
-
-                upta.setString(21, tranid);
-
-                upta.executeUpdate();
-                result = "success";
-
-                //PreparedStatement pstmu = conn.prepareStatement(sqlu1);
-                //pstmu.setString(1, ir);
-                //pstmu.executeUpdate();
+            } else {  // no task, return error           
+                result = "Task not found";
             }
-            // not this user, only update status
-            if (rs.getString("taskto1").equals(Username.getUserName())) {
-                String sql1 = "update tasks set taskstat1 = ? , task1date=current_timestamp where tranid = ?";
-                PreparedStatement pstm1 = conn.prepareStatement(sql1);
-                pstm1.setString(1, stats);
-                pstm1.setString(2, tranid);
-                pstm1.executeUpdate();
-                result="success";
-            }
-
-        } else {  // no task, return error           
-            result ="Task not found";
         }
-        }
-Generics generics = new Generics();
-                    generics.setGenericDescriptionEng(result);
-                    list.add(generics);
+        Generics generics = new Generics();
+        generics.setGenericDescriptionEng(result);
+        list.add(generics);
         return list;
     }
 
@@ -2551,102 +2604,102 @@ Generics generics = new Generics();
             pstm2.setString(1, newcomm);
             pstm2.setString(2, tranid);
             pstm2.executeUpdate();
-            
+
             if (rs.getString("taskfrom").equals(user.getUserName())) {
-                  String sqlf = "update tasks set newt1=null, newt2=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt8=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
-                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
-                    pstmf.setString(1, tranid);
-                    pstmf.executeUpdate();  
+                String sqlf = "update tasks set newt1=null, newt2=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt8=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
+                PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                pstmf.setString(1, tranid);
+                pstmf.executeUpdate();
             }
             if (rs.getString("taskto1").equals(user.getUserName())) {
-                  String sqlf = "update tasks set newtf=null, newt2=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt8=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
-                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
-                    pstmf.setString(1, tranid);
-                    pstmf.executeUpdate();  
+                String sqlf = "update tasks set newtf=null, newt2=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt8=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
+                PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                pstmf.setString(1, tranid);
+                pstmf.executeUpdate();
             }
             if (rs.getString("taskto2").equals(user.getUserName())) {
-                  String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt8=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
-                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
-                    pstmf.setString(1, tranid);
-                    pstmf.executeUpdate();  
-            }            
+                String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt8=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
+                PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                pstmf.setString(1, tranid);
+                pstmf.executeUpdate();
+            }
             if (rs.getString("taskto3").equals(user.getUserName())) {
-                  String sqlf = "update tasks set newtf=null, newt1=null, newt2=null, newt4=null, newt5=null, newt6=null, newt7=null, newt8=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
-                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
-                    pstmf.setString(1, tranid);
-                    pstmf.executeUpdate();  
-            }  
+                String sqlf = "update tasks set newtf=null, newt1=null, newt2=null, newt4=null, newt5=null, newt6=null, newt7=null, newt8=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
+                PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                pstmf.setString(1, tranid);
+                pstmf.executeUpdate();
+            }
             if (rs.getString("taskto4").equals(user.getUserName())) {
-                  String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt2=null, newt5=null, newt6=null, newt7=null, newt8=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
-                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
-                    pstmf.setString(1, tranid);
-                    pstmf.executeUpdate();  
-            }  
+                String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt2=null, newt5=null, newt6=null, newt7=null, newt8=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
+                PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                pstmf.setString(1, tranid);
+                pstmf.executeUpdate();
+            }
             if (rs.getString("taskto5").equals(user.getUserName())) {
-                  String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt2=null, newt6=null, newt7=null, newt8=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
-                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
-                    pstmf.setString(1, tranid);
-                    pstmf.executeUpdate();  
+                String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt2=null, newt6=null, newt7=null, newt8=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
+                PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                pstmf.setString(1, tranid);
+                pstmf.executeUpdate();
             }
             if (rs.getString("taskto6").equals(user.getUserName())) {
-                  String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt2=null, newt7=null, newt8=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
-                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
-                    pstmf.setString(1, tranid);
-                    pstmf.executeUpdate();  
+                String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt2=null, newt7=null, newt8=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
+                PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                pstmf.setString(1, tranid);
+                pstmf.executeUpdate();
             }
             if (rs.getString("taskto7").equals(user.getUserName())) {
-                  String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt6=null, newt2=null, newt8=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
-                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
-                    pstmf.setString(1, tranid);
-                    pstmf.executeUpdate();  
+                String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt6=null, newt2=null, newt8=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
+                PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                pstmf.setString(1, tranid);
+                pstmf.executeUpdate();
             }
             if (rs.getString("taskto8").equals(user.getUserName())) {
-                  String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt2=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
-                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
-                    pstmf.setString(1, tranid);
-                    pstmf.executeUpdate();  
+                String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt2=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
+                PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                pstmf.setString(1, tranid);
+                pstmf.executeUpdate();
             }
             if (rs.getString("taskto9").equals(user.getUserName())) {
-                  String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt2=null, newt8=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
-                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
-                    pstmf.setString(1, tranid);
-                    pstmf.executeUpdate();  
+                String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt2=null, newt8=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
+                PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                pstmf.setString(1, tranid);
+                pstmf.executeUpdate();
             }
             if (rs.getString("taskto10").equals(user.getUserName())) {
-                  String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt2=null, newt9=null, newt8=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
-                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
-                    pstmf.setString(1, tranid);
-                    pstmf.executeUpdate();  
+                String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt2=null, newt9=null, newt8=null, newt11=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
+                PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                pstmf.setString(1, tranid);
+                pstmf.executeUpdate();
             }
             if (rs.getString("taskto11").equals(user.getUserName())) {
-                  String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt2=null, newt9=null, newt10=null, newt8=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
-                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
-                    pstmf.setString(1, tranid);
-                    pstmf.executeUpdate();  
+                String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt2=null, newt9=null, newt10=null, newt8=null, newt12=null, newt13=null, newt14=null, newt15=null where tranid = ?";
+                PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                pstmf.setString(1, tranid);
+                pstmf.executeUpdate();
             }
             if (rs.getString("taskto12").equals(user.getUserName())) {
-                  String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt2=null, newt9=null, newt10=null, newt11=null, newt8=null, newt13=null, newt14=null, newt15=null where tranid = ?";
-                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
-                    pstmf.setString(1, tranid);
-                    pstmf.executeUpdate();  
+                String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt2=null, newt9=null, newt10=null, newt11=null, newt8=null, newt13=null, newt14=null, newt15=null where tranid = ?";
+                PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                pstmf.setString(1, tranid);
+                pstmf.executeUpdate();
             }
             if (rs.getString("taskto13").equals(user.getUserName())) {
-                  String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt2=null, newt9=null, newt10=null, newt11=null, newt12=null, newt8=null, newt14=null, newt15=null where tranid = ?";
-                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
-                    pstmf.setString(1, tranid);
-                    pstmf.executeUpdate();  
+                String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt2=null, newt9=null, newt10=null, newt11=null, newt12=null, newt8=null, newt14=null, newt15=null where tranid = ?";
+                PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                pstmf.setString(1, tranid);
+                pstmf.executeUpdate();
             }
             if (rs.getString("taskto14").equals(user.getUserName())) {
-                  String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt2=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt8=null, newt15=null where tranid = ?";
-                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
-                    pstmf.setString(1, tranid);
-                    pstmf.executeUpdate();  
+                String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt2=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt8=null, newt15=null where tranid = ?";
+                PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                pstmf.setString(1, tranid);
+                pstmf.executeUpdate();
             }
             if (rs.getString("taskto15").equals(user.getUserName())) {
-                  String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt2=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt8=null where tranid = ?";
-                    PreparedStatement pstmf = conn.prepareStatement(sqlf);
-                    pstmf.setString(1, tranid);
-                    pstmf.executeUpdate();  
+                String sqlf = "update tasks set newtf=null, newt1=null, newt3=null, newt4=null, newt5=null, newt6=null, newt7=null, newt2=null, newt9=null, newt10=null, newt11=null, newt12=null, newt13=null, newt14=null, newt8=null where tranid = ?";
+                PreparedStatement pstmf = conn.prepareStatement(sqlf);
+                pstmf.setString(1, tranid);
+                pstmf.executeUpdate();
             }
         }
 
@@ -2677,8 +2730,8 @@ Generics generics = new Generics();
         System.out.println("TaskUpdatePeople " + tranid);
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, tranid);
-        String result = "no updates done" ;
-        
+        String result = "no updates done";
+
         ResultSet rs = pstm.executeQuery();
         if (rs.next()) {
             if (rs.getString("taskfrom").equals(user.getUserName())) {
@@ -2688,12 +2741,12 @@ Generics generics = new Generics();
                     pstm1.setString(1, user1);
                     pstm1.setString(2, tranid);
                     pstm1.executeUpdate();
-                    result="success";
+                    result = "success";
                     System.out.println("TaskUpdatePeople success");
                 }
 
             } else {
-                result ="not your task";                
+                result = "not your task";
                 System.out.println("TaskUpdatePeople not your task");
             }
         } else {
@@ -2704,8 +2757,8 @@ Generics generics = new Generics();
         list.add(generics);
         return list;
     }
-    
-        public static ArrayList<Tasks> getTaskSearch(Connection conn, UserAccount Username, String idSearch, String summSearch) throws SQLException {
+
+    public static ArrayList<Tasks> getTaskSearch(Connection conn, UserAccount Username, String idSearch, String summSearch) throws SQLException {
         System.out.println("getTaskSearch " + idSearch);
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
@@ -2715,66 +2768,60 @@ Generics generics = new Generics();
         String day = Integer.toString(cal.get(Calendar.DAY_OF_MONTH));
         String hour = Integer.toString(cal.get(Calendar.HOUR_OF_DAY));
         String minute = Integer.toString(cal.get(Calendar.MINUTE));
-        String temp1 =Username.getsecurestr();
+        String temp1 = Username.getsecurestr();
         String sql = "";
         PreparedStatement pstm = null;
         System.out.println("getTaskSearch " + temp1.substring(143, 144) + " " + idSearch.length());
         if (temp1.substring(143, 144).equals("1") && idSearch.length() > 0) {
-        System.out.println("getTaskSearch 1");    
-        sql = "select * from tasks where (tranid=?) ";
-        pstm = conn.prepareStatement(sql);
-        pstm.setString(1, idSearch);
+            sql = "select * from tasks where (tranid=?) ";
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, idSearch);
         }
         if (temp1.substring(143, 144).equals("0") && idSearch.length() > 0) {
-        System.out.println("getTaskSearch 2");        
-        sql = "select * from tasks where (tranid=?) and ((taskfrom is ?) or (taskto1 = ?) or (taskto2 = ?) or (taskto3 = ?) or (taskto4 = ?) or (taskto5 = ?) or (taskto6 = ?) or (taskto7 = ?) or (taskto8 = ?) or (taskto9 = ?) or (taskto10 = ?) or (taskto11 = ?) or (taskto12 = ?) or (taskto13 = ?) or (taskto14 = ?) or (taskto15 = ?)) ";    
-        pstm = conn.prepareStatement(sql);
-        pstm.setString(1, idSearch);
-        pstm.setString(2, Username.getUserName());
-        pstm.setString(3, Username.getUserName());
-        pstm.setString(4, Username.getUserName());
-        pstm.setString(5, Username.getUserName());
-        pstm.setString(6, Username.getUserName());
-        pstm.setString(7, Username.getUserName());
-        pstm.setString(8, Username.getUserName());
-        pstm.setString(9, Username.getUserName());
-        pstm.setString(10, Username.getUserName());
-        pstm.setString(11, Username.getUserName());
-        pstm.setString(12, Username.getUserName());
-        pstm.setString(13, Username.getUserName());
-        pstm.setString(14, Username.getUserName());
-        pstm.setString(15, Username.getUserName());
-        pstm.setString(16, Username.getUserName());
-        pstm.setString(17, Username.getUserName());
+            sql = "select * from tasks where (tranid=?) and ((taskfrom is ?) or (taskto1 = ?) or (taskto2 = ?) or (taskto3 = ?) or (taskto4 = ?) or (taskto5 = ?) or (taskto6 = ?) or (taskto7 = ?) or (taskto8 = ?) or (taskto9 = ?) or (taskto10 = ?) or (taskto11 = ?) or (taskto12 = ?) or (taskto13 = ?) or (taskto14 = ?) or (taskto15 = ?)) ";
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, idSearch);
+            pstm.setString(2, Username.getUserName());
+            pstm.setString(3, Username.getUserName());
+            pstm.setString(4, Username.getUserName());
+            pstm.setString(5, Username.getUserName());
+            pstm.setString(6, Username.getUserName());
+            pstm.setString(7, Username.getUserName());
+            pstm.setString(8, Username.getUserName());
+            pstm.setString(9, Username.getUserName());
+            pstm.setString(10, Username.getUserName());
+            pstm.setString(11, Username.getUserName());
+            pstm.setString(12, Username.getUserName());
+            pstm.setString(13, Username.getUserName());
+            pstm.setString(14, Username.getUserName());
+            pstm.setString(15, Username.getUserName());
+            pstm.setString(16, Username.getUserName());
+            pstm.setString(17, Username.getUserName());
         }
-        
+
         if (temp1.substring(143, 144).equals("1") && summSearch.length() > 0) {
-            System.out.println("getTaskSearch 3");    
-        sql = "select * from tasks where (description like %?%)";
-        pstm = conn.prepareStatement(sql);
-                pstm.setString(1, summSearch);
+            sql = "select * from tasks where (description like '%" + summSearch + "%')";
+            pstm = conn.prepareStatement(sql);
         }
         if (temp1.substring(143, 144).equals("0") && summSearch.length() > 0) {
-            System.out.println("getTaskSearch 4");    
-        sql = "select * from tasks where (description like %?%) and ((taskfrom is ?) or (taskto1 = ?) or (taskto2 = ?) or (taskto3 = ?) or (taskto4 = ?) or (taskto5 = ?) or (taskto6 = ?) or (taskto7 = ?) or (taskto8 = ?) or (taskto9 = ?) or (taskto10 = ?) or (taskto11 = ?) or (taskto12 = ?) or (taskto13 = ?) or (taskto14 = ?) or (taskto15 = ?)) ";
-        pstm = conn.prepareStatement(sql);
-        pstm.setString(1, idSearch);
-        pstm.setString(2, Username.getUserName());
-        pstm.setString(3, Username.getUserName());
-        pstm.setString(4, Username.getUserName());
-        pstm.setString(5, Username.getUserName());
-        pstm.setString(6, Username.getUserName());
-        pstm.setString(7, Username.getUserName());
-        pstm.setString(8, Username.getUserName());
-        pstm.setString(9, Username.getUserName());
-        pstm.setString(10, Username.getUserName());
-        pstm.setString(11, Username.getUserName());
-        pstm.setString(12, Username.getUserName());
-        pstm.setString(13, Username.getUserName());
-        pstm.setString(14, Username.getUserName());
-        pstm.setString(15, Username.getUserName());
-        pstm.setString(16, Username.getUserName());
-        pstm.setString(17, Username.getUserName());        
+            sql = "select * from tasks where (description like '%" + summSearch + "%') and ((taskfrom is ?) or (taskto1 = ?) or (taskto2 = ?) or (taskto3 = ?) or (taskto4 = ?) or (taskto5 = ?) or (taskto6 = ?) or (taskto7 = ?) or (taskto8 = ?) or (taskto9 = ?) or (taskto10 = ?) or (taskto11 = ?) or (taskto12 = ?) or (taskto13 = ?) or (taskto14 = ?) or (taskto15 = ?)) ";
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, Username.getUserName());
+            pstm.setString(2, Username.getUserName());
+            pstm.setString(3, Username.getUserName());
+            pstm.setString(4, Username.getUserName());
+            pstm.setString(5, Username.getUserName());
+            pstm.setString(6, Username.getUserName());
+            pstm.setString(7, Username.getUserName());
+            pstm.setString(8, Username.getUserName());
+            pstm.setString(9, Username.getUserName());
+            pstm.setString(10, Username.getUserName());
+            pstm.setString(11, Username.getUserName());
+            pstm.setString(12, Username.getUserName());
+            pstm.setString(13, Username.getUserName());
+            pstm.setString(14, Username.getUserName());
+            pstm.setString(15, Username.getUserName());
+            pstm.setString(16, Username.getUserName());
         }
         ResultSet rs = pstm.executeQuery();
         ArrayList<Tasks> list = new ArrayList<Tasks>();
@@ -2862,10 +2909,854 @@ Generics generics = new Generics();
             task.setStartdate(startdate);
 
             list.add(task);
+        }
+        return list;
+    }
+
+    public static String getTaskIdea(Connection conn, UserAccount Username) throws SQLException {
+        System.out.println("getTaskIdea " + Username.getUserName());
+
+        String sql = "select myidea from users where name = ?";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, Username.getUserName());
+
+        ResultSet rs = pstm.executeQuery();
+        // ArrayList<String> list = new ArrayList<String>();
+        String idea1 = "";
+        if (rs.next()) {
+            idea1 = rs.getString("myidea");
+        }
+        return idea1;
+    }
+
+    public static ArrayList<Generics> taskUpdateIdea(Connection conn, UserAccount user, String myIdea) throws SQLException {
+        ArrayList<Generics> list = new ArrayList<Generics>();
+        System.out.println("TaskUpdateIdea");
+
+        String sql = "update users set myidea = ? where name =?";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, myIdea);
+        pstm.setString(2, user.getUserName());
+        pstm.executeUpdate();
+
+        String result = "success";
+
+        Generics generics = new Generics();
+        generics.setGenericDescriptionEng(result);
+        list.add(generics);
+        return list;
+    }
+
+    public static ArrayList<Tasks> getReportFor(Connection conn, UserAccount Username, String reportFor, String reportPeople) throws SQLException {
+        System.out.println("getReportFor " + reportPeople);
+        Date date = new Date();
+        Calendar cal = Calendar.getInstance();
+        
+        String year = Integer.toString(cal.get(Calendar.YEAR));
+        String month = Integer.toString(cal.get(Calendar.MONTH) + 1);
+        String day = Integer.toString(cal.get(Calendar.DAY_OF_MONTH));
+        String hour = Integer.toString(cal.get(Calendar.HOUR_OF_DAY));
+        String minute = Integer.toString(cal.get(Calendar.MINUTE));
+        String second = Integer.toString(cal.get(Calendar.SECOND));
+        ArrayList<Tasks> list = new ArrayList<Tasks>();
+        String filename = Username.getUserName() + "-" + hour + "-" + minute + "-" + second + ".csv";
+        if (reportFor.length() == 0) {
+            String sql = "select * from tasks where (taskto1='" + reportPeople + "' or taskto2='" + reportPeople + "' or taskto3='" + reportPeople + "' or taskto4='" + reportPeople + "' or taskto5='" + reportPeople + "' or taskto6='" + reportPeople + "' or taskto7='" + reportPeople + "' or taskto8='" + reportPeople + "' or taskto9='" + reportPeople + "' or taskto10='" + reportPeople + "' or taskto11='" + reportPeople + "' or taskto12='" + reportPeople + "' or taskto13='" + reportPeople + "' or taskto14='" + reportPeople + "' or taskto15='" + reportPeople + "')";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+//            pstm.setString(1, reportPeople);
+//        pstm.setString(2, reportPeople);
+//        pstm.setString(3, reportPeople);
+//        pstm.setString(4, reportPeople);
+//        pstm.setString(5, reportPeople);
+//        pstm.setString(6, reportPeople);
+//        pstm.setString(7, reportPeople);
+//        pstm.setString(8, reportPeople);
+//        pstm.setString(9, reportPeople);
+//        pstm.setString(10, reportPeople);
+//        pstm.setString(11, reportPeople);
+//        pstm.setString(12, reportPeople);
+//        pstm.setString(13, reportPeople);
+//        pstm.setString(14, reportPeople);
+ //       pstm.setString(15, reportPeople);
+        ResultSet rs = pstm.executeQuery();
+           
+                  try{
+    PrintWriter writer = new PrintWriter("C:/java/ffsint3/ffsint2/build/web/resources/" + filename, "UTF-8");
+    writer.println("id ,taskfrom, description , startdate , revdate , enddate , taskstat");  
+        while (rs.next()) {
+            Date date1 = new Date();
+            Calendar cal1 = new GregorianCalendar();
+            if (rs.getTimestamp("revdate") == null) {
+                cal1.setTime(rs.getTimestamp("enddate"));
+            } else {
+                cal1.setTime(rs.getTimestamp("revdate"));
+            }
+            String year1 = Integer.toString(cal1.get(Calendar.YEAR));
+            String month1 = Integer.toString(cal1.get(Calendar.MONTH) + 1);
+            String day1 = Integer.toString(cal1.get(Calendar.DAY_OF_MONTH));
+            String hour1 = Integer.toString(cal1.get(Calendar.HOUR_OF_DAY));
+            String minute1 = Integer.toString(cal1.get(Calendar.MINUTE));
+            if (hour1.length() == 1) {
+                hour1 = "0" + hour1;
+            }
+            if (minute1.length() == 1) {
+                minute1 = "0" + minute1;
+            }
+            if (month1.length() == 1) {
+                month1 = "0" + month1;
+            }
+            if (day1.length() == 1) {
+                day1 = "0" + day1;
+            }
+            Date date2 = new Date();
+            Calendar cal2 = new GregorianCalendar();
+
+            cal2.setTime(rs.getTimestamp("enddate"));
+            String year2 = Integer.toString(cal2.get(Calendar.YEAR));
+            String month2 = Integer.toString(cal2.get(Calendar.MONTH) + 1);
+            String day2 = Integer.toString(cal2.get(Calendar.DAY_OF_MONTH));
+            String hour2 = Integer.toString(cal2.get(Calendar.HOUR_OF_DAY));
+            String minute2 = Integer.toString(cal2.get(Calendar.MINUTE));
+            if (hour2.length() == 1) {
+                hour2 = "0" + hour2;
+            }
+            if (minute2.length() == 1) {
+                minute2 = "0" + minute2;
+            }
+            if (month2.length() == 1) {
+                month2 = "0" + month2;
+            }
+            if (day2.length() == 1) {
+                day2 = "0" + day2;
+            }
+            Date date3 = new Date();
+            Calendar cal3 = new GregorianCalendar();
+
+            cal3.setTime(rs.getTimestamp("startdate"));
+            String year3 = Integer.toString(cal3.get(Calendar.YEAR));
+            String month3 = Integer.toString(cal3.get(Calendar.MONTH) + 1);
+            String day3 = Integer.toString(cal3.get(Calendar.DAY_OF_MONTH));
+            String hour3 = Integer.toString(cal3.get(Calendar.HOUR_OF_DAY));
+            String minute3 = Integer.toString(cal3.get(Calendar.MINUTE));
+            if (hour3.length() == 1) {
+                hour3 = "0" + hour3;
+            }
+            if (minute3.length() == 1) {
+                minute3 = "0" + minute3;
+            }
+            if (month3.length() == 1) {
+                month3 = "0" + month3;
+            }
+            if (day3.length() == 1) {
+                day3 = "0" + day3;
+            }
+            String tranid = rs.getString("tranid");
+            String taskfrom = rs.getString("taskfrom");
+            String description = rs.getString("description");
+            String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
+            String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
+            String taskstat = rs.getString("taskstat");
+            String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
+            Tasks task = new Tasks();
+            writer.println(tranid + "," + taskfrom + "," + description + "," + startdate + "," + revdate + "," + enddate + "," + taskstat);
+            task.setTranid(tranid);
+            task.setTaskfrom(taskfrom);
+            task.setDescription(description);
+            task.setRevdate(revdate);
+            task.setEnddate(enddate);
+            task.setTaskstat(taskstat);
+            task.setStartdate(startdate);
+
+        //    list.add(task);
 
         }
+        writer.close();
+      } catch (IOException e) {
+   // do something
+}
+        
+        } else {
+            String sql = "select * from tasks where (taskto1='" + reportPeople + "' or taskto2='" + reportPeople + "' or taskto3='" + reportPeople + "' or taskto4='" + reportPeople + "' or taskto5='" + reportPeople + "' or taskto6='" + reportPeople + "' or taskto7='" + reportPeople + "' or taskto8='" + reportPeople + "' or taskto9='" + reportPeople + "' or taskto10='" + reportPeople + "' or taskto11='" + reportPeople + "' or taskto12='" + reportPeople + "' or taskto13='" + reportPeople + "' or taskto14='" + reportPeople + "' or taskto15='" + reportPeople + "') and taskstat='" + reportFor + "'";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+ //           pstm.setString(1, reportPeople);
+//        pstm.setString(2, reportPeople);
+//        pstm.setString(3, reportPeople);
+//        pstm.setString(4, reportPeople);
+//        pstm.setString(5,reportPeople);
+//        pstm.setString(6, reportPeople);
+//        pstm.setString(7, reportPeople);
+//        pstm.setString(8, reportPeople);
+//        pstm.setString(9, reportPeople);
+//        pstm.setString(10, reportPeople);
+//        pstm.setString(11, reportPeople);
+//        pstm.setString(12, reportPeople);
+//        pstm.setString(13, reportPeople);
+//        pstm.setString(14, reportPeople);
+//        pstm.setString(15, reportPeople);
+//        pstm.setString(16, reportFor);
+ResultSet rs = pstm.executeQuery();
+                  try{
+    PrintWriter writer = new PrintWriter("C:/java/ffsint3/ffsint2/build/web/resources/" + filename, "UTF-8");
+writer.println("id ,taskfrom, description , startdate , revdate , enddate , taskstat");    
+        while (rs.next()) {
+            Date date1 = new Date();
+            Calendar cal1 = new GregorianCalendar();
+            if (rs.getTimestamp("revdate") == null) {
+                cal1.setTime(rs.getTimestamp("enddate"));
+            } else {
+                cal1.setTime(rs.getTimestamp("revdate"));
+            }
+            String year1 = Integer.toString(cal1.get(Calendar.YEAR));
+            String month1 = Integer.toString(cal1.get(Calendar.MONTH) + 1);
+            String day1 = Integer.toString(cal1.get(Calendar.DAY_OF_MONTH));
+            String hour1 = Integer.toString(cal1.get(Calendar.HOUR_OF_DAY));
+            String minute1 = Integer.toString(cal1.get(Calendar.MINUTE));
+            if (hour1.length() == 1) {
+                hour1 = "0" + hour1;
+            }
+            if (minute1.length() == 1) {
+                minute1 = "0" + minute1;
+            }
+            if (month1.length() == 1) {
+                month1 = "0" + month1;
+            }
+            if (day1.length() == 1) {
+                day1 = "0" + day1;
+            }
+            Date date2 = new Date();
+            Calendar cal2 = new GregorianCalendar();
+
+            cal2.setTime(rs.getTimestamp("enddate"));
+            String year2 = Integer.toString(cal2.get(Calendar.YEAR));
+            String month2 = Integer.toString(cal2.get(Calendar.MONTH) + 1);
+            String day2 = Integer.toString(cal2.get(Calendar.DAY_OF_MONTH));
+            String hour2 = Integer.toString(cal2.get(Calendar.HOUR_OF_DAY));
+            String minute2 = Integer.toString(cal2.get(Calendar.MINUTE));
+            if (hour2.length() == 1) {
+                hour2 = "0" + hour2;
+            }
+            if (minute2.length() == 1) {
+                minute2 = "0" + minute2;
+            }
+            if (month2.length() == 1) {
+                month2 = "0" + month2;
+            }
+            if (day2.length() == 1) {
+                day2 = "0" + day2;
+            }
+            Date date3 = new Date();
+            Calendar cal3 = new GregorianCalendar();
+
+            cal3.setTime(rs.getTimestamp("startdate"));
+            String year3 = Integer.toString(cal3.get(Calendar.YEAR));
+            String month3 = Integer.toString(cal3.get(Calendar.MONTH) + 1);
+            String day3 = Integer.toString(cal3.get(Calendar.DAY_OF_MONTH));
+            String hour3 = Integer.toString(cal3.get(Calendar.HOUR_OF_DAY));
+            String minute3 = Integer.toString(cal3.get(Calendar.MINUTE));
+            if (hour3.length() == 1) {
+                hour3 = "0" + hour3;
+            }
+            if (minute3.length() == 1) {
+                minute3 = "0" + minute3;
+            }
+            if (month3.length() == 1) {
+                month3 = "0" + month3;
+            }
+            if (day3.length() == 1) {
+                day3 = "0" + day3;
+            }
+            String tranid = rs.getString("tranid");
+            String taskfrom = rs.getString("taskfrom");
+            String description = rs.getString("description");
+            String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
+            String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
+            String taskstat = rs.getString("taskstat");
+            String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
+            Tasks task = new Tasks();
+            writer.println(tranid + "," + taskfrom + "," + description + "," + startdate + "," + revdate + "," + enddate + "," + taskstat);
+            task.setTranid(tranid);
+            task.setTaskfrom(taskfrom);
+            task.setDescription(description);
+            task.setRevdate(revdate);
+            task.setEnddate(enddate);
+            task.setTaskstat(taskstat);
+            task.setStartdate(startdate);
+
+       //     list.add(task);
+
+        }
+        writer.close();
+      } catch (IOException e) {
+   // do something
+}        
+        }
+        
+        Tasks task = new Tasks();
+            task.setTaskfrom(filename);
+     list.add(task);
 
         return list;
     }
 
+  public static ArrayList<Tasks> getReportBranch(Connection conn, UserAccount Username, String reportFor, String reportBranch) throws SQLException {
+        System.out.println("getReportBranch " + reportBranch);
+        Date date = new Date();
+        Calendar cal = Calendar.getInstance();
+        
+        String year = Integer.toString(cal.get(Calendar.YEAR));
+        String month = Integer.toString(cal.get(Calendar.MONTH) + 1);
+        String day = Integer.toString(cal.get(Calendar.DAY_OF_MONTH));
+        String hour = Integer.toString(cal.get(Calendar.HOUR_OF_DAY));
+        String minute = Integer.toString(cal.get(Calendar.MINUTE));
+        String second = Integer.toString(cal.get(Calendar.SECOND));
+        ArrayList<Tasks> list = new ArrayList<Tasks>();
+        String filename = Username.getUserName() + "-" + hour + "-" + minute + "-" + second + ".csv";
+        if (reportFor.length() == 0) {
+            String sql1 = "select name from users where branch = '" + reportBranch + "'";
+            PreparedStatement pstm1 = conn.prepareStatement(sql1);
+            ResultSet rs1 = pstm1.executeQuery();
+            
+            while (rs1.next()) {
+            
+          String sql = "select * from tasks where (taskto1='" + rs1.getString("name") + "' or taskto2='" + rs1.getString("name") + "' or taskto3='" + rs1.getString("name") + "' or taskto4='" + rs1.getString("name") + "' or taskto5='" + rs1.getString("name") + "' or taskto6='" + rs1.getString("name") + "' or taskto7='" + rs1.getString("name") + "' or taskto8='" + rs1.getString("name") + "' or taskto9='" + rs1.getString("name") + "' or taskto10='" + rs1.getString("name") + "' or taskto11='" + rs1.getString("name") + "' or taskto12='" + rs1.getString("name") + "' or taskto13='" + rs1.getString("name") + "' or taskto14='" + rs1.getString("name") + "' or taskto15='" + rs1.getString("name") + "')";
+         PreparedStatement pstm = conn.prepareStatement(sql);
+        ResultSet rs = pstm.executeQuery();
+           
+                  try{
+    PrintWriter writer = new PrintWriter("C:/java/ffsint3/ffsint2/build/web/resources/" + filename, "UTF-8");
+    writer.println("id ,taskfrom, description , startdate , revdate , enddate , taskstat");  
+        while (rs.next()) {
+            Date date1 = new Date();
+            Calendar cal1 = new GregorianCalendar();
+            if (rs.getTimestamp("revdate") == null) {
+                cal1.setTime(rs.getTimestamp("enddate"));
+            } else {
+                cal1.setTime(rs.getTimestamp("revdate"));
+            }
+            String year1 = Integer.toString(cal1.get(Calendar.YEAR));
+            String month1 = Integer.toString(cal1.get(Calendar.MONTH) + 1);
+            String day1 = Integer.toString(cal1.get(Calendar.DAY_OF_MONTH));
+            String hour1 = Integer.toString(cal1.get(Calendar.HOUR_OF_DAY));
+            String minute1 = Integer.toString(cal1.get(Calendar.MINUTE));
+            if (hour1.length() == 1) {
+                hour1 = "0" + hour1;
+            }
+            if (minute1.length() == 1) {
+                minute1 = "0" + minute1;
+            }
+            if (month1.length() == 1) {
+                month1 = "0" + month1;
+            }
+            if (day1.length() == 1) {
+                day1 = "0" + day1;
+            }
+            Date date2 = new Date();
+            Calendar cal2 = new GregorianCalendar();
+
+            cal2.setTime(rs.getTimestamp("enddate"));
+            String year2 = Integer.toString(cal2.get(Calendar.YEAR));
+            String month2 = Integer.toString(cal2.get(Calendar.MONTH) + 1);
+            String day2 = Integer.toString(cal2.get(Calendar.DAY_OF_MONTH));
+            String hour2 = Integer.toString(cal2.get(Calendar.HOUR_OF_DAY));
+            String minute2 = Integer.toString(cal2.get(Calendar.MINUTE));
+            if (hour2.length() == 1) {
+                hour2 = "0" + hour2;
+            }
+            if (minute2.length() == 1) {
+                minute2 = "0" + minute2;
+            }
+            if (month2.length() == 1) {
+                month2 = "0" + month2;
+            }
+            if (day2.length() == 1) {
+                day2 = "0" + day2;
+            }
+            Date date3 = new Date();
+            Calendar cal3 = new GregorianCalendar();
+
+            cal3.setTime(rs.getTimestamp("startdate"));
+            String year3 = Integer.toString(cal3.get(Calendar.YEAR));
+            String month3 = Integer.toString(cal3.get(Calendar.MONTH) + 1);
+            String day3 = Integer.toString(cal3.get(Calendar.DAY_OF_MONTH));
+            String hour3 = Integer.toString(cal3.get(Calendar.HOUR_OF_DAY));
+            String minute3 = Integer.toString(cal3.get(Calendar.MINUTE));
+            if (hour3.length() == 1) {
+                hour3 = "0" + hour3;
+            }
+            if (minute3.length() == 1) {
+                minute3 = "0" + minute3;
+            }
+            if (month3.length() == 1) {
+                month3 = "0" + month3;
+            }
+            if (day3.length() == 1) {
+                day3 = "0" + day3;
+            }
+            String tranid = rs.getString("tranid");
+            String taskfrom = rs.getString("taskfrom");
+            String description = rs.getString("description");
+            String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
+            String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
+            String taskstat = rs.getString("taskstat");
+            String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
+            Tasks task = new Tasks();
+            writer.println(tranid + "," + taskfrom + "," + description + "," + startdate + "," + revdate + "," + enddate + "," + taskstat);
+            task.setTranid(tranid);
+            task.setTaskfrom(taskfrom);
+            task.setDescription(description);
+            task.setRevdate(revdate);
+            task.setEnddate(enddate);
+            task.setTaskstat(taskstat);
+            task.setStartdate(startdate);
+        }
+        writer.close();
+      } catch (IOException e) {
+   // do something
+}
+            }
+        
+        } else {
+            String sql2 = "select name from users where branch = '" + reportBranch + "'";
+            PreparedStatement pstm2 = conn.prepareStatement(sql2);
+            ResultSet rs2 = pstm2.executeQuery();
+            
+            while (rs2.next()) {            
+            String sql = "select * from tasks where (taskto1='" + rs2.getString("name") + "' or taskto2='" + rs2.getString("name") + "' or taskto3='" + rs2.getString("name") + "' or taskto4='" + rs2.getString("name")+ "' or taskto5='" + rs2.getString("name") + "' or taskto6='" + rs2.getString("name") + "' or taskto7='" + rs2.getString("name") + "' or taskto8='" + rs2.getString("name") + "' or taskto9='" + rs2.getString("name") + "' or taskto10='" + rs2.getString("name") + "' or taskto11='" + rs2.getString("name") + "' or taskto12='" + rs2.getString("name") + "' or taskto13='" + rs2.getString("name") + "' or taskto14='" + rs2.getString("name") + "' or taskto15='" + rs2.getString("name") + "') and taskstat='" + reportFor + "'";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+ResultSet rs = pstm.executeQuery();
+                  try{
+    PrintWriter writer = new PrintWriter("C:/java/ffsint3/ffsint2/build/web/resources/" + filename, "UTF-8");
+writer.println("id ,taskfrom, description , startdate , revdate , enddate , taskstat");    
+        while (rs.next()) {
+            Date date1 = new Date();
+            Calendar cal1 = new GregorianCalendar();
+            if (rs.getTimestamp("revdate") == null) {
+                cal1.setTime(rs.getTimestamp("enddate"));
+            } else {
+                cal1.setTime(rs.getTimestamp("revdate"));
+            }
+            String year1 = Integer.toString(cal1.get(Calendar.YEAR));
+            String month1 = Integer.toString(cal1.get(Calendar.MONTH) + 1);
+            String day1 = Integer.toString(cal1.get(Calendar.DAY_OF_MONTH));
+            String hour1 = Integer.toString(cal1.get(Calendar.HOUR_OF_DAY));
+            String minute1 = Integer.toString(cal1.get(Calendar.MINUTE));
+            if (hour1.length() == 1) {
+                hour1 = "0" + hour1;
+            }
+            if (minute1.length() == 1) {
+                minute1 = "0" + minute1;
+            }
+            if (month1.length() == 1) {
+                month1 = "0" + month1;
+            }
+            if (day1.length() == 1) {
+                day1 = "0" + day1;
+            }
+            Date date2 = new Date();
+            Calendar cal2 = new GregorianCalendar();
+
+            cal2.setTime(rs.getTimestamp("enddate"));
+            String year2 = Integer.toString(cal2.get(Calendar.YEAR));
+            String month2 = Integer.toString(cal2.get(Calendar.MONTH) + 1);
+            String day2 = Integer.toString(cal2.get(Calendar.DAY_OF_MONTH));
+            String hour2 = Integer.toString(cal2.get(Calendar.HOUR_OF_DAY));
+            String minute2 = Integer.toString(cal2.get(Calendar.MINUTE));
+            if (hour2.length() == 1) {
+                hour2 = "0" + hour2;
+            }
+            if (minute2.length() == 1) {
+                minute2 = "0" + minute2;
+            }
+            if (month2.length() == 1) {
+                month2 = "0" + month2;
+            }
+            if (day2.length() == 1) {
+                day2 = "0" + day2;
+            }
+            Date date3 = new Date();
+            Calendar cal3 = new GregorianCalendar();
+
+            cal3.setTime(rs.getTimestamp("startdate"));
+            String year3 = Integer.toString(cal3.get(Calendar.YEAR));
+            String month3 = Integer.toString(cal3.get(Calendar.MONTH) + 1);
+            String day3 = Integer.toString(cal3.get(Calendar.DAY_OF_MONTH));
+            String hour3 = Integer.toString(cal3.get(Calendar.HOUR_OF_DAY));
+            String minute3 = Integer.toString(cal3.get(Calendar.MINUTE));
+            if (hour3.length() == 1) {
+                hour3 = "0" + hour3;
+            }
+            if (minute3.length() == 1) {
+                minute3 = "0" + minute3;
+            }
+            if (month3.length() == 1) {
+                month3 = "0" + month3;
+            }
+            if (day3.length() == 1) {
+                day3 = "0" + day3;
+            }
+            String tranid = rs.getString("tranid");
+            String taskfrom = rs.getString("taskfrom");
+            String description = rs.getString("description");
+            String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
+            String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
+            String taskstat = rs.getString("taskstat");
+            String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
+            Tasks task = new Tasks();
+            writer.println(tranid + "," + taskfrom + "," + description + "," + startdate + "," + revdate + "," + enddate + "," + taskstat);
+            task.setTranid(tranid);
+            task.setTaskfrom(taskfrom);
+            task.setDescription(description);
+            task.setRevdate(revdate);
+            task.setEnddate(enddate);
+            task.setTaskstat(taskstat);
+            task.setStartdate(startdate);
+
+       //     list.add(task);
+
+        }
+        writer.close();
+      } catch (IOException e) {
+   // do something
+}        
+        }
+        }
+        Tasks task = new Tasks();
+            task.setTaskfrom(filename);
+     list.add(task);
+
+        return list;
+    }    
+    
+    public static ArrayList<Tasks> getReportRole(Connection conn, UserAccount Username, String reportFor, String reportRole) throws SQLException {
+        System.out.println("getReportRole " + reportRole);
+        Date date = new Date();
+        Calendar cal = Calendar.getInstance();
+        
+        String year = Integer.toString(cal.get(Calendar.YEAR));
+        String month = Integer.toString(cal.get(Calendar.MONTH) + 1);
+        String day = Integer.toString(cal.get(Calendar.DAY_OF_MONTH));
+        String hour = Integer.toString(cal.get(Calendar.HOUR_OF_DAY));
+        String minute = Integer.toString(cal.get(Calendar.MINUTE));
+        String second = Integer.toString(cal.get(Calendar.SECOND));
+        ArrayList<Tasks> list = new ArrayList<Tasks>();
+        String filename = Username.getUserName() + "-" + hour + "-" + minute + "-" + second + ".csv";
+        if (reportFor.length() == 0) {
+            String sql = "select * from tasks where (taskto1='" + reportRole + "' or taskto2='" + reportRole + "' or taskto3='" + reportRole + "' or taskto4='" + reportRole + "' or taskto5='" + reportRole + "' or taskto6='" + reportRole + "' or taskto7='" + reportRole + "' or taskto8='" + reportRole + "' or taskto9='" + reportRole + "' or taskto10='" + reportRole + "' or taskto11='" + reportRole + "' or taskto12='" + reportRole + "' or taskto13='" + reportRole + "' or taskto14='" + reportRole + "' or taskto15='" + reportRole + "')";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+        ResultSet rs = pstm.executeQuery();
+           
+                  try{
+    PrintWriter writer = new PrintWriter("C:/java/ffsint3/ffsint2/build/web/resources/" + filename, "UTF-8");
+    writer.println("id ,taskfrom, description , startdate , revdate , enddate , taskstat");  
+        while (rs.next()) {
+            Date date1 = new Date();
+            Calendar cal1 = new GregorianCalendar();
+            if (rs.getTimestamp("revdate") == null) {
+                cal1.setTime(rs.getTimestamp("enddate"));
+            } else {
+                cal1.setTime(rs.getTimestamp("revdate"));
+            }
+            String year1 = Integer.toString(cal1.get(Calendar.YEAR));
+            String month1 = Integer.toString(cal1.get(Calendar.MONTH) + 1);
+            String day1 = Integer.toString(cal1.get(Calendar.DAY_OF_MONTH));
+            String hour1 = Integer.toString(cal1.get(Calendar.HOUR_OF_DAY));
+            String minute1 = Integer.toString(cal1.get(Calendar.MINUTE));
+            if (hour1.length() == 1) {
+                hour1 = "0" + hour1;
+            }
+            if (minute1.length() == 1) {
+                minute1 = "0" + minute1;
+            }
+            if (month1.length() == 1) {
+                month1 = "0" + month1;
+            }
+            if (day1.length() == 1) {
+                day1 = "0" + day1;
+            }
+            Date date2 = new Date();
+            Calendar cal2 = new GregorianCalendar();
+
+            cal2.setTime(rs.getTimestamp("enddate"));
+            String year2 = Integer.toString(cal2.get(Calendar.YEAR));
+            String month2 = Integer.toString(cal2.get(Calendar.MONTH) + 1);
+            String day2 = Integer.toString(cal2.get(Calendar.DAY_OF_MONTH));
+            String hour2 = Integer.toString(cal2.get(Calendar.HOUR_OF_DAY));
+            String minute2 = Integer.toString(cal2.get(Calendar.MINUTE));
+            if (hour2.length() == 1) {
+                hour2 = "0" + hour2;
+            }
+            if (minute2.length() == 1) {
+                minute2 = "0" + minute2;
+            }
+            if (month2.length() == 1) {
+                month2 = "0" + month2;
+            }
+            if (day2.length() == 1) {
+                day2 = "0" + day2;
+            }
+            Date date3 = new Date();
+            Calendar cal3 = new GregorianCalendar();
+
+            cal3.setTime(rs.getTimestamp("startdate"));
+            String year3 = Integer.toString(cal3.get(Calendar.YEAR));
+            String month3 = Integer.toString(cal3.get(Calendar.MONTH) + 1);
+            String day3 = Integer.toString(cal3.get(Calendar.DAY_OF_MONTH));
+            String hour3 = Integer.toString(cal3.get(Calendar.HOUR_OF_DAY));
+            String minute3 = Integer.toString(cal3.get(Calendar.MINUTE));
+            if (hour3.length() == 1) {
+                hour3 = "0" + hour3;
+            }
+            if (minute3.length() == 1) {
+                minute3 = "0" + minute3;
+            }
+            if (month3.length() == 1) {
+                month3 = "0" + month3;
+            }
+            if (day3.length() == 1) {
+                day3 = "0" + day3;
+            }
+            String tranid = rs.getString("tranid");
+            String taskfrom = rs.getString("taskfrom");
+            String description = rs.getString("description");
+            String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
+            String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
+            String taskstat = rs.getString("taskstat");
+            String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
+            Tasks task = new Tasks();
+            writer.println(tranid + "," + taskfrom + "," + description + "," + startdate + "," + revdate + "," + enddate + "," + taskstat);
+            task.setTranid(tranid);
+            task.setTaskfrom(taskfrom);
+            task.setDescription(description);
+            task.setRevdate(revdate);
+            task.setEnddate(enddate);
+            task.setTaskstat(taskstat);
+            task.setStartdate(startdate);
+
+        //    list.add(task);
+
+        }
+        writer.close();
+      } catch (IOException e) {
+   // do something
+}
+        
+        } else {
+            String sql = "select * from tasks where (taskto1='" + reportRole + "' or taskto2='" + reportRole + "' or taskto3='" + reportRole + "' or taskto4='" + reportRole + "' or taskto5='" + reportRole + "' or taskto6='" + reportRole + "' or taskto7='" + reportRole + "' or taskto8='" + reportRole + "' or taskto9='" + reportRole + "' or taskto10='" + reportRole + "' or taskto11='" + reportRole + "' or taskto12='" + reportRole + "' or taskto13='" + reportRole + "' or taskto14='" + reportRole + "' or taskto15='" + reportRole + "') and taskstat='" + reportFor + "'";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+
+ResultSet rs = pstm.executeQuery();
+                  try{
+    PrintWriter writer = new PrintWriter("C:/java/ffsint3/ffsint2/build/web/resources/" + filename, "UTF-8");
+writer.println("id ,taskfrom, description , startdate , revdate , enddate , taskstat");    
+        while (rs.next()) {
+            Date date1 = new Date();
+            Calendar cal1 = new GregorianCalendar();
+            if (rs.getTimestamp("revdate") == null) {
+                cal1.setTime(rs.getTimestamp("enddate"));
+            } else {
+                cal1.setTime(rs.getTimestamp("revdate"));
+            }
+            String year1 = Integer.toString(cal1.get(Calendar.YEAR));
+            String month1 = Integer.toString(cal1.get(Calendar.MONTH) + 1);
+            String day1 = Integer.toString(cal1.get(Calendar.DAY_OF_MONTH));
+            String hour1 = Integer.toString(cal1.get(Calendar.HOUR_OF_DAY));
+            String minute1 = Integer.toString(cal1.get(Calendar.MINUTE));
+            if (hour1.length() == 1) {
+                hour1 = "0" + hour1;
+            }
+            if (minute1.length() == 1) {
+                minute1 = "0" + minute1;
+            }
+            if (month1.length() == 1) {
+                month1 = "0" + month1;
+            }
+            if (day1.length() == 1) {
+                day1 = "0" + day1;
+            }
+            Date date2 = new Date();
+            Calendar cal2 = new GregorianCalendar();
+
+            cal2.setTime(rs.getTimestamp("enddate"));
+            String year2 = Integer.toString(cal2.get(Calendar.YEAR));
+            String month2 = Integer.toString(cal2.get(Calendar.MONTH) + 1);
+            String day2 = Integer.toString(cal2.get(Calendar.DAY_OF_MONTH));
+            String hour2 = Integer.toString(cal2.get(Calendar.HOUR_OF_DAY));
+            String minute2 = Integer.toString(cal2.get(Calendar.MINUTE));
+            if (hour2.length() == 1) {
+                hour2 = "0" + hour2;
+            }
+            if (minute2.length() == 1) {
+                minute2 = "0" + minute2;
+            }
+            if (month2.length() == 1) {
+                month2 = "0" + month2;
+            }
+            if (day2.length() == 1) {
+                day2 = "0" + day2;
+            }
+            Date date3 = new Date();
+            Calendar cal3 = new GregorianCalendar();
+
+            cal3.setTime(rs.getTimestamp("startdate"));
+            String year3 = Integer.toString(cal3.get(Calendar.YEAR));
+            String month3 = Integer.toString(cal3.get(Calendar.MONTH) + 1);
+            String day3 = Integer.toString(cal3.get(Calendar.DAY_OF_MONTH));
+            String hour3 = Integer.toString(cal3.get(Calendar.HOUR_OF_DAY));
+            String minute3 = Integer.toString(cal3.get(Calendar.MINUTE));
+            if (hour3.length() == 1) {
+                hour3 = "0" + hour3;
+            }
+            if (minute3.length() == 1) {
+                minute3 = "0" + minute3;
+            }
+            if (month3.length() == 1) {
+                month3 = "0" + month3;
+            }
+            if (day3.length() == 1) {
+                day3 = "0" + day3;
+            }
+            String tranid = rs.getString("tranid");
+            String taskfrom = rs.getString("taskfrom");
+            String description = rs.getString("description");
+            String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
+            String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
+            String taskstat = rs.getString("taskstat");
+            String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
+            Tasks task = new Tasks();
+            writer.println(tranid + "," + taskfrom + "," + description + "," + startdate + "," + revdate + "," + enddate + "," + taskstat);
+            task.setTranid(tranid);
+            task.setTaskfrom(taskfrom);
+            task.setDescription(description);
+            task.setRevdate(revdate);
+            task.setEnddate(enddate);
+            task.setTaskstat(taskstat);
+            task.setStartdate(startdate);
+
+       //     list.add(task);
+
+        }
+        writer.close();
+      } catch (IOException e) {
+   // do something
+}        
+        }
+        
+        Tasks task = new Tasks();
+            task.setTaskfrom(filename);
+     list.add(task);
+
+        return list;
+    }
+    
+    public static ArrayList<TaskImage> getTaskImage(Connection connconn, UserAccount UserName, String tranid1) throws SQLException {
+System.out.println("getTaskImage " + tranid1);
+        String tranid2 = "";
+        Integer comp = 2;
+        Integer tranlen = tranid1.length();
+
+        if (tranlen.equals(1)) {
+            tranid2 = "0" + tranid1;
+        }
+        if (tranlen.equals(2)) {
+            tranid2 = tranid1;
+        }
+        if (tranlen > 2) {
+            tranid2 = tranid1.substring(tranid1.length() - 2);
+        }
+        String sql = "Select tranid,user,imagedesc,imagetype,dateup from taskimag" + tranid2 + " a where a.taskid =?";
+
+        PreparedStatement pstm = connconn.prepareStatement(sql);
+        pstm.setString(1, tranid1);
+
+        ResultSet rs = pstm.executeQuery();
+        ArrayList<TaskImage> list = new ArrayList<TaskImage>();
+        while (rs.next()) {
+            String Tranid = rs.getString("tranid");
+            String User = rs.getString("user");
+            String ImageDesc = rs.getString("imagedesc");
+            String ImageType = rs.getString("imagetype");
+
+            Date date = new Date();
+            Calendar calendar = new GregorianCalendar();
+
+            calendar.setTime(rs.getTimestamp("dateup"));
+            String year = Integer.toString(calendar.get(Calendar.YEAR));
+            String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
+            String day = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH));
+            String hour = Integer.toString(calendar.get(Calendar.HOUR_OF_DAY));
+            String minute = Integer.toString(calendar.get(Calendar.MINUTE));
+            int length = month.length();
+            if (length == 1) {
+                month = "0" + month;
+            }
+            int length2 = day.length();
+            if (length2 == 1) {
+                day = "0" + day;
+            }
+            int length3 = hour.length();
+            if (length3 == 1) {
+                hour = "0" + hour;
+            }
+            int length4 = minute.length();
+            if (length4 == 1) {
+                minute = "0" + minute;
+            }
+            String thistime = year + "/" + month + "/" + day;
+            String DateUp = thistime;
+
+            TaskImage taskimage = new TaskImage();
+            taskimage.setTranid(Tranid);
+            taskimage.setUser(User);
+            taskimage.setImageDesc(ImageDesc);
+            taskimage.setImageType(ImageType);
+            taskimage.setDateUp(DateUp);
+
+            list.add(taskimage);
+        }
+        return list;
+    }  
+    
+   public static ArrayList<Tasks> TaskFile(Connection conn, String tranid, String diaryid) throws SQLException, FileNotFoundException, IOException {
+        String tranid2;
+        Integer comp = 2;
+        Integer tranlen = tranid.length();
+        int retval = comp.compareTo(tranlen);
+        if (retval > 0) {
+            tranid2 = "0" + tranid;
+        } else if (retval < 0) {
+            tranid2 = tranid.substring(tranid.length() - 2);
+        } else {
+            tranid2 = tranid;
+        }
+        
+        System.out.println("tranid2 " + tranid2 + " diaryid " + diaryid + " tranid " + tranid);
+
+        String sql = "Select * from taskimag" + tranid2 + " where tranid = ? and taskid = ?";
+
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, diaryid);
+        pstm.setString(2, tranid);
+
+        ResultSet rs = pstm.executeQuery();
+        ArrayList<Tasks> list = new ArrayList<Tasks>();
+        if (rs.next()) {
+            String thisFile = rs.getString("imagedesc") + rs.getString("imagetype");
+            String filename = "C:/java/ffsint3/ffsint2/build/web/resources/" + rs.getString("imagedesc") + rs.getString("imagetype");
+            File file = new File(filename);
+            
+            FileOutputStream output = new FileOutputStream(file);
+            InputStream input = rs.getBinaryStream("imag1");
+            byte[] buffer = new byte[1024];
+            while (input.read(buffer) > 0) {
+                output.write(buffer);
+            }
+
+            Tasks tasks = new Tasks();
+            tasks.setTaskfrom(thisFile);
+            list.add(tasks);
+
+        }
+        return list;
+    }    
+  
 }

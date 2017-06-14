@@ -1,15 +1,17 @@
 package servlets;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -20,42 +22,53 @@ import ffsutils.TaskUtils;
 import ffsutils.MyUtils;
 import java.sql.Connection;
 import java.sql.SQLException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/TaskServlet")
-public class TaskServlet extends HttpServlet {
+@WebServlet("/TaskReportRole")
+public class TaskReportRole extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    public TaskServlet() {
+    public TaskReportRole() {
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("TaskServlet");
+        
         Connection conn = MyUtils.getStoredConnection(request);
         HttpSession session = request.getSession();
         UserAccount loginedUser = MyUtils.getLoginedUser(session);
         ArrayList<Tasks> task = new ArrayList<Tasks>();
-        session.setAttribute("taskView", "taskServlet");
+        String reportFor = request.getParameter("reportFor");
+        String reportRole = request.getParameter("reportRole");
+        System.out.println("TaskReportRole " + reportRole);
         try {
-            task = TaskUtils.getTask(conn, loginedUser.getUserName());
+            task = TaskUtils.getReportRole(conn, loginedUser, reportFor, reportRole);
+          // write file here ,, no written by takutils ??? 
+
         } catch (SQLException e) {
             e.printStackTrace();
-            //  errorString = e.getMessage();
         }
+        
         Gson gson = new Gson();
         JsonElement element = gson.toJsonTree(task, new TypeToken<List<Tasks>>() {
         }.getType());
+// redirect to another page >> taskreportdown.java ??
+
 
         JsonArray jsonArray = element.getAsJsonArray();
-        response.setContentType("application/json");
+       response.setContentType("application/json");
         response.getWriter().print(jsonArray);
 
+         
     }
+
+    
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
+    
 
 }

@@ -14,38 +14,41 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
-import ffsbeans.Tasks;
-import ffsbeans.UserAccount;
+import ffsbeans.Diary;
 import ffsutils.TaskUtils;
+import ffsutils.DBUtils;
 import ffsutils.MyUtils;
 import java.sql.Connection;
 import java.sql.SQLException;
+import ffsbeans.DiaryImag;
+import ffsbeans.TaskImage;
+import ffsbeans.UserAccount;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/TaskServlet")
-public class TaskServlet extends HttpServlet {
+@WebServlet("/TaskImage")
+public class TaskImageGet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    public TaskServlet() {
+    public TaskImageGet() {
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("TaskServlet");
         Connection conn = MyUtils.getStoredConnection(request);
+        String tranid = request.getParameter("tranid");
         HttpSession session = request.getSession();
         UserAccount loginedUser = MyUtils.getLoginedUser(session);
-        ArrayList<Tasks> task = new ArrayList<Tasks>();
-        session.setAttribute("taskView", "taskServlet");
+        System.out.println("TaskImageGet " + tranid);
+        ArrayList<TaskImage> taskImage = new ArrayList<TaskImage>();
         try {
-            task = TaskUtils.getTask(conn, loginedUser.getUserName());
+            taskImage = TaskUtils.getTaskImage(conn,loginedUser, tranid);
         } catch (SQLException e) {
             e.printStackTrace();
             //  errorString = e.getMessage();
         }
         Gson gson = new Gson();
-        JsonElement element = gson.toJsonTree(task, new TypeToken<List<Tasks>>() {
+        JsonElement element = gson.toJsonTree(taskImage, new TypeToken<List<Diary>>() {
         }.getType());
 
         JsonArray jsonArray = element.getAsJsonArray();

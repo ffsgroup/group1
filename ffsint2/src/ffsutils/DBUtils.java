@@ -1251,14 +1251,6 @@ public class DBUtils {
         Integer comp = 2;
         Integer tranlen = tranid1.length();
 
-        //int retval = comp.compareTo(tranlen);
-        //if (retval > 0) {
-//            tranid2 = "0" + tranid1;
-//        } else if (retval < 0) {
-//            tranid2 = tranid1.substring(tranid1.length() - 1);
-//        } else {
-//            tranid2 = tranid1;
-//        }
         if (tranlen.equals(1)) {
             tranid2 = "0" + tranid1;
         }
@@ -1812,7 +1804,7 @@ public class DBUtils {
         return list;
     }
 
-    public static ArrayList<String> DiaryFile(Connection conn, String tranid, String diaryid) throws SQLException, FileNotFoundException, IOException {
+    public static ArrayList<Diary> DiaryFile(Connection conn, String tranid, String diaryid) throws SQLException, FileNotFoundException, IOException {
         String tranid2;
         Integer comp = 2;
         Integer tranlen = tranid.length();
@@ -1820,7 +1812,7 @@ public class DBUtils {
         if (retval > 0) {
             tranid2 = "0" + tranid;
         } else if (retval < 0) {
-            tranid2 = tranid.substring(tranid.length() - 1);
+            tranid2 = tranid.substring(tranid.length() - 2);
         } else {
             tranid2 = tranid;
         }
@@ -1833,10 +1825,12 @@ public class DBUtils {
         pstm.setString(2, tranid);
 
         ResultSet rs = pstm.executeQuery();
-        ArrayList<String> list = new ArrayList<String>();
+        ArrayList<Diary> list = new ArrayList<Diary>();
         if (rs.next()) {
-            String filename = rs.getString("imagedesc") + rs.getString("imagetype");
+            String thisFile = rs.getString("imagedesc") + rs.getString("imagetype");
+            String filename = "C:/java/ffsint3/ffsint2/build/web/resources/" + rs.getString("imagedesc") + rs.getString("imagetype");
             File file = new File(filename);
+            
             FileOutputStream output = new FileOutputStream(file);
             InputStream input = rs.getBinaryStream("imag1");
             byte[] buffer = new byte[1024];
@@ -1844,9 +1838,9 @@ public class DBUtils {
                 output.write(buffer);
             }
 
-            String name = filename;
-
-            list.add(name);
+            Diary diary = new Diary();
+            diary.setlocat(thisFile);
+            list.add(diary);
 
         }
         return list;

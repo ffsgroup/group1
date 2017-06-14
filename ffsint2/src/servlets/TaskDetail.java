@@ -2,6 +2,7 @@ package servlets;
 
 import ffsbeans.Tasks;
 import ffsbeans.UserAccount;
+import ffsbeans.TaskImage;
 import ffsutils.MyUtils;
 import ffsutils.TaskUtils;
 import java.io.IOException;
@@ -28,7 +29,7 @@ public class TaskDetail extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException {        
         Connection conn = MyUtils.getStoredConnection(request);
         HttpSession session = request.getSession();
         UserAccount loginedUser = MyUtils.getLoginedUser(session);
@@ -43,6 +44,15 @@ public class TaskDetail extends HttpServlet {
             e.printStackTrace();
             //  errorString = e.getMessage();
         }
+
+        ArrayList<TaskImage> taskImage = new ArrayList<TaskImage>();
+        try {
+         taskImage = TaskUtils.getTaskImage(conn, loginedUser, tranid);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            //  errorString = e.getMessage();
+        }
+        
         String a = "";
         String b = "";
         String c = "";
@@ -114,10 +124,10 @@ public class TaskDetail extends HttpServlet {
         String br = "";
         String bs = "";
         String bt = "";
-         String bg = "";
-
+        String bg = "";
+        String ti="";
+        
         for (Tasks task1 : task) {
-
             a = task1.getTranid();
             b = "'" + task1.getDescription() + "'";
             c = task1.getTaskfrom();
@@ -191,6 +201,11 @@ public class TaskDetail extends HttpServlet {
             bt = task1.getStatusday15();
             bg = task1.getTaskstat();
         }
+       
+        for (TaskImage taskImage1 : taskImage ) {
+         ti = ti + "   <tr> <td style='min-width:120px; width:120px;'>" + taskImage1.getDateUp()+ "</td> <td style='min-width:180px; width:180px;'>" + taskImage1.getUser() + " </td> <td style='min-width:200px; width:200px;'> " + taskImage1.getImageDesc() + " </td > <td style='min-width:40px; width:40px;'>" + taskImage1.getTranid() + " </td></tr>";   
+        }
+        
         request.setAttribute("taskid", a);
         request.setAttribute("description", b);
         request.setAttribute("taskfrom", c);
@@ -263,6 +278,7 @@ public class TaskDetail extends HttpServlet {
         request.setAttribute("statusday14", bs);
         request.setAttribute("statusday15", bt);
         request.setAttribute("taskstatus", bg);
+        request.setAttribute("taskimage", ti);
         
         RequestDispatcher dispatcher = request.getServletContext()
                 .getRequestDispatcher("/WEB-INF/views/taskView.jsp");

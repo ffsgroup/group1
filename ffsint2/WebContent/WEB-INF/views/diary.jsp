@@ -65,76 +65,71 @@
 
             <script src="resources/dhtmlxcalendar.js"></script>
             <link rel="stylesheet" type="text/css" href="resources/dhtmlxcalendar_1.css"/>
-            
+
             <script type="text/javascript">
                 $(document).ready(function () {
                     $("#diarysavepeople").click(function (event) {
-                        // document.getElementById("diaryimag").rows[row].cells[3].innerHTML;
-                        $.get('DiaryUpdatePeople', {duser1 : document.getElementById('diaryuser1').value , duser2 : document.getElementById('diaryuser2').value, duser3 : document.getElementById('diaryuser3').value, duser4 : document.getElementById('diaryuser4').value, duser5 : document.getElementById('diaryuser5').value, duser6 : document.getElementById('diaryuser6').value, duser7 : document.getElementById('diaryuser7').value, duser8 : document.getElementById('diaryuser8').value, duser9 : document.getElementById('diaryuser9').value, duser10 : document.getElementById('diaryuser10').value, resp1 : document.getElementById('response1').value, resp2 : document.getElementById('response2').value, resp3 : document.getElementById('response3').value, resp4 : document.getElementById('response4').value, resp5 : document.getElementById('response5').value, resp6 : document.getElementById('response6').value, resp7 : document.getElementById('response7').value, resp8 : document.getElementById('response8').value, resp9 : document.getElementById('response9').value, resp10 : document.getElementById('response10').value, fromuser : document.getElementById('fromuser').innerHTML, tranid : document.getElementById('diaryid').innerHTML }, function (responseJson) {
+                        $.get('DiaryUpdatePeople', {duser1: document.getElementById('diaryuser1').value, duser2: document.getElementById('diaryuser2').value, duser3: document.getElementById('diaryuser3').value, duser4: document.getElementById('diaryuser4').value, duser5: document.getElementById('diaryuser5').value, duser6: document.getElementById('diaryuser6').value, duser7: document.getElementById('diaryuser7').value, duser8: document.getElementById('diaryuser8').value, duser9: document.getElementById('diaryuser9').value, duser10: document.getElementById('diaryuser10').value, resp1: document.getElementById('response1').value, resp2: document.getElementById('response2').value, resp3: document.getElementById('response3').value, resp4: document.getElementById('response4').value, resp5: document.getElementById('response5').value, resp6: document.getElementById('response6').value, resp7: document.getElementById('response7').value, resp8: document.getElementById('response8').value, resp9: document.getElementById('response9').value, resp10: document.getElementById('response10').value, fromuser: document.getElementById('fromuser').innerHTML, tranid: document.getElementById('diaryid').innerHTML}, function (responseJson) {
                             if (responseJson != null) {
                                 $("#delresp").empty();
                                 document.getElementById("addresp").value = "";
-                                 $.each(responseJson, function (key, value) {
-                                $('#delresp').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
+                                $.each(responseJson, function (key, value) {
+                                    $('#delresp').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
                                 });
                             }
                         });
                     });
-                });                  
-                
+                });
+
                 $(document).ready(function () {
                     $("#diarysave").click(function (event) {
-                        // document.getElementById("diaryimag").rows[row].cells[3].innerHTML;
-                        $.get('DiaryCreateNew', {diarysumm : document.getElementById('diarysumm').value , startdate : document.getElementById('startdate').value , enddate : document.getElementById('enddate').value , locat : document.getElementById('locat').value , diarytask : document.getElementById('diarytask').value , diarynotes : document.getElementById('diarynotes').value, duser1 : document.getElementById('diaryuser1').value, duser2 : document.getElementById('diaryuser2').value, duser3 : document.getElementById('diaryuser3').value, duser4 : document.getElementById('diaryuser4').value, duser5 : document.getElementById('diaryuser5').value, duser6 : document.getElementById('diaryuser6').value, duser7 : document.getElementById('diaryuser7').value, duser8 : document.getElementById('diaryuser8').value, duser9 : document.getElementById('diaryuser9').value, duser10 : document.getElementById('diaryuser10').value, resp1 : document.getElementById('response1').value, resp2 : document.getElementById('response2').value, resp3 : document.getElementById('response3').value, resp4 : document.getElementById('response4').value, resp5 : document.getElementById('response5').value, resp6 : document.getElementById('response6').value, resp7 : document.getElementById('response7').value, resp8 : document.getElementById('response8').value, resp9 : document.getElementById('response9').value, resp10 : document.getElementById('response10').value, fromuser : document.getElementById('fromuser').innerHTML, tranid : document.getElementById('diaryid').innerHTML }, function (responseJson) {
+                        $.get('DiaryCreateNew', {diarysumm: document.getElementById('diarysumm').value, startdate: document.getElementById('startdate').value, enddate: document.getElementById('enddate').value, locat: document.getElementById('locat').value, diarytask: document.getElementById('diarytask').value, diarynotes: document.getElementById('diarynotes').value, duser1: document.getElementById('diaryuser1').value, duser2: document.getElementById('diaryuser2').value, duser3: document.getElementById('diaryuser3').value, duser4: document.getElementById('diaryuser4').value, duser5: document.getElementById('diaryuser5').value, duser6: document.getElementById('diaryuser6').value, duser7: document.getElementById('diaryuser7').value, duser8: document.getElementById('diaryuser8').value, duser9: document.getElementById('diaryuser9').value, duser10: document.getElementById('diaryuser10').value, resp1: document.getElementById('response1').value, resp2: document.getElementById('response2').value, resp3: document.getElementById('response3').value, resp4: document.getElementById('response4').value, resp5: document.getElementById('response5').value, resp6: document.getElementById('response6').value, resp7: document.getElementById('response7').value, resp8: document.getElementById('response8').value, resp9: document.getElementById('response9').value, resp10: document.getElementById('response10').value, fromuser: document.getElementById('fromuser').innerHTML, tranid: document.getElementById('diaryid').innerHTML}, function (responseJson) {
                             if (responseJson != null) {
                                 $("#delresp").empty();
                                 document.getElementById("addresp").value = "";
-                                 $.each(responseJson, function (key, value) {
-                                $('#delresp').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
+                                $.each(responseJson, function (key, value) {
+                                    $('#delresp').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
                                 });
                             }
                         });
                     });
-                });                 
-                
+                });
+
                 $(document).ready(function () {
                     $("#addrespbut").click(function (event) {
-                        // document.getElementById("diaryimag").rows[row].cells[3].innerHTML;
-                        $.get('DiaryAddResp', {locat : document.getElementById("addresp").value}, function (responseJson) {
+                        $.get('DiaryAddResp', {locat: document.getElementById("addresp").value}, function (responseJson) {
                             if (responseJson != null) {
                                 $("#delresp").empty();
                                 document.getElementById("addresp").value = "";
-                                 $.each(responseJson, function (key, value) {
-                                $('#delresp').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
+                                $.each(responseJson, function (key, value) {
+                                    $('#delresp').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
                                 });
                             }
                         });
                     });
-                });                   
-                
+                });
+
                 $(document).ready(function () {
                     $("#addlocatbut").click(function (event) {
-                        // document.getElementById("diaryimag").rows[row].cells[3].innerHTML;
-                        $.get('DiaryAddLocat', {locat : document.getElementById("addlocat").value}, function (responseJson) {
+                        $.get('DiaryAddLocat', {locat: document.getElementById("addlocat").value}, function (responseJson) {
                             if (responseJson != null) {
                                 $("#dellocat").empty();
                                 document.getElementById("addlocat").value = "";
-                                 $.each(responseJson, function (key, value) {
-                                $('#dellocat').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
+                                $.each(responseJson, function (key, value) {
+                                    $('#dellocat').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
                                 });
                             }
                         });
                     });
-                });                
-                
+                });
+
                 $(document).ready(function () {
                     $("#dellocatbut").click(function (event) {
-                        // document.getElementById("diaryimag").rows[row].cells[3].innerHTML;
-                        $.get('DiaryDelLocat', {locat : document.getElementById("dellocat").value}, function (responseJson) {
+                        $.get('DiaryDelLocat', {locat: document.getElementById("dellocat").value}, function (responseJson) {
                             if (responseJson != null) {
                                 $("#dellocat").empty();
-                                 $.each(responseJson, function (key, value) {
-                                $('#dellocat').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
+                                $.each(responseJson, function (key, value) {
+                                    $('#dellocat').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
                                 });
                             }
                         });
@@ -143,12 +138,11 @@
 
                 $(document).ready(function () {
                     $("#delrespbut").click(function (event) {
-                        // document.getElementById("diaryimag").rows[row].cells[3].innerHTML;
-                        $.get('DiaryDelResp', {locat : document.getElementById("delresp").value}, function (responseJson) {
+                        $.get('DiaryDelResp', {locat: document.getElementById("delresp").value}, function (responseJson) {
                             if (responseJson != null) {
                                 $("#delresp").empty();
-                                 $.each(responseJson, function (key, value) {
-                                $('#delresp').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
+                                $.each(responseJson, function (key, value) {
+                                    $('#delresp').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
                                 });
                             }
                         });
@@ -156,7 +150,7 @@
                 });
 
             </script>
-            
+
             <script type="text/javascript">
                 $(document).ready(function () {
                     $("#diaryimag").click(function (event) {
@@ -164,19 +158,22 @@
                         $td = target.closest('td');
                         var col = $td.index();
                         var row = $td.closest('tr').index();
-                        // document.getElementById("diaryimag").rows[row].cells[3].innerHTML;
                         $.get('DiaryViewImage', {diaryid: document.getElementById("diaryimag").rows[row].cells[3].innerHTML, tranid: document.getElementById("diaryid").innerHTML}, function (responseJson) {
                             if (responseJson != null) {
                                 $.each(responseJson, function (key, value) {
-
+                                    if (value['locat'].length > 1) {
+                                        // window.location = "resources/" + value['locat']; 
+                                        var url = "resources/" + value['locat'];
+                                        window.open(url, 'Download');
+                                    } else {
+                                        alert("failed");
+                                    }
                                 });
                             }
                         });
                     });
                 });
-
-
-            </script>
+ </script>
 
             <script type="text/javascript">
                 $(document).ready(function () {
@@ -203,7 +200,7 @@
             <script type="text/javascript">
                 $(document).ready(function () {
                     $("#diarysavecomm").click(function (event) {
-                        $.get('DiarySaveComm', {comment: document.getElementById("diarycomment").value, tranid: document.getElementById("diaryid").innerHTML}, function (responseJson) {                            
+                        $.get('DiarySaveComm', {comment: document.getElementById("diarycomment").value, tranid: document.getElementById("diaryid").innerHTML}, function (responseJson) {
                             if (responseJson != null) {
                                 $.each(responseJson, function (key, value) {
                                     document.getElementById("diarycomment").value = value['comm'];
@@ -348,8 +345,8 @@
                 function doOnLoad() {
                     myCalendar = new dhtmlXCalendarObject("calendarHere");
                     //		myCalendar.setSkin("material");
-                  //  myCalendar.setDate(new Date(2016, 7, 7, 16, 0));
-                  myCalendar.setDate(new Date);
+                    //  myCalendar.setDate(new Date(2016, 7, 7, 16, 0));
+                    myCalendar.setDate(new Date);
                     myCalendar.show();
                     myCalendar.hideTime();
                     myCalendar.showToday();
@@ -363,7 +360,7 @@
                     myCalendar.setTooltip("2017-05-01", "Workers Day", true, true);
                     myCalendar.setTooltip("2017-06-16", "Youth Day", true, true);
                     //  myCalendar.setInsensitiveRange(null, "2012-05-04");
-                   // myCalendar._drawMonth(new Date(2016, 7, 1));
+                    // myCalendar._drawMonth(new Date(2016, 7, 1));
                     myCalendar._drawMonth(new Date);
                     myCalendar.attachEvent("onClick", function (side, d) {
                         //	writeLog("onClick event called, "+side+" calendar, date "+myCalendar.getFormatedDate(null,d));
@@ -575,19 +572,19 @@
                                     if (document.getElementById("diaryuser1").value == 'undefined') {
                                         document.getElementById("diaryuser1").value = "";
                                     }
-                                     if (document.getElementById("diaryuser2").value == 'undefined') {
+                                    if (document.getElementById("diaryuser2").value == 'undefined') {
                                         document.getElementById("diaryuser2").value = "";
                                     }
                                     if (document.getElementById("diaryuser3").value == 'undefined') {
                                         document.getElementById("diaryuser3").value = "";
                                     }
-                                     if (document.getElementById("diaryuser4").value == 'undefined') {
+                                    if (document.getElementById("diaryuser4").value == 'undefined') {
                                         document.getElementById("diaryuser4").value = "";
                                     }
                                     if (document.getElementById("diaryuser5").value == 'undefined') {
                                         document.getElementById("diaryuser5").value = "";
                                     }
-                                     if (document.getElementById("diaryuser6").value == 'undefined') {
+                                    if (document.getElementById("diaryuser6").value == 'undefined') {
                                         document.getElementById("diaryuser6").value = "";
                                     }
                                     if (document.getElementById("diaryuser7").value == 'undefined') {
@@ -602,7 +599,7 @@
                                     if (document.getElementById("diaryuser10").value == 'undefined') {
                                         document.getElementById("diaryuser10").value = "";
                                     }
-                                    
+
                                 });
 
                             }
@@ -1317,10 +1314,10 @@
                                             $.each(responseJson, function (key, value) {
                                                 if (value['GenGroupId'] == "44") {
                                                     $('#dellocat').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
-                                                     }
+                                                }
                                                 if (value['GenGroupId'] == "45") {
                                                     $('#delresp').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
-                                                     }                                                     
+                                                }
 
                                             });
                                         }
