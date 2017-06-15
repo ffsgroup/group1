@@ -605,7 +605,7 @@
                             }
                         });
 
-                        $.get('DiaryImage', {tranid: document.getElementById("countrytable").rows[row].cells[3].innerHTML}, function (responseJson) {
+                        $.get('DiaryImageLoad', {tranid: document.getElementById("diaryimag").rows[row].cells[3].innerHTML}, function (responseJson) {
                             $("#diaryimag").find("tr:gt(0)").remove();
                             if (responseJson != null) {
                                 var table2 = $("#diaryimag");
@@ -669,7 +669,6 @@
                         if (count.valueOf() < 3) {
                             $.get('DiaryResponse', function (responseJson) {
                                 if (responseJson != null) {
-
                                     $.each(responseJson, function (key, value) {
                                         var option = document.createElement('option');
                                         option.value = value['GenericDescriptionEng'];
@@ -706,6 +705,7 @@
                                 }
                             });
                         }
+                        
                         var count = $("#duser1 option").length;
                         if (count.valueOf() < 3) {
                             $.get('DiaryUser', function (responseJson) {
@@ -746,7 +746,22 @@
                                 }
                             });
                         }
-
+                        
+                        $.get('DiaryImageLoad', {tranid: document.getElementById("diaryid").innerHTML}, function (responseJson) {
+                            $("#diaryimag").find("tr:gt(0)").remove();
+                            if (responseJson != null) {
+                                var table2 = $("#diaryimag");
+                                $.each(responseJson, function (key, value) {
+                                    var rowNew = $("<tr><td></td><td></td><td></td><td></td></tr>");
+                                    rowNew.children().eq(0).text(value['DateUp']);
+                                    rowNew.children().eq(1).text(value['User']);
+                                    rowNew.children().eq(2).text(value['ImageDesc']);
+                                    rowNew.children().eq(3).text(value['Tranid']);
+                                    rowNew.appendTo(table2);
+                                });
+                            }
+                        });                        
+                        
                     });
                 });
 

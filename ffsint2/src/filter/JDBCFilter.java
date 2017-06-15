@@ -118,7 +118,7 @@ public class JDBCFilter implements Filter {
        // With commons requests (images, css, html, ..)
        // No need to open the connection.        
        else {
- 
+ System.out.println("No Connection for: " + req.getServletPath());
            // Allow request to go forward
            // (Go to the next filter or target)            
            chain.doFilter(request, response);
