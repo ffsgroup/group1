@@ -1,8 +1,5 @@
 package ffsutils;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import ffsbeans.Product;
 import ffsbeans.Diary;
@@ -12,11 +9,19 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import ffsbeans.DiaryImag;
 import ffsbeans.UserAccount;
-import java.sql.Connection;
 import java.util.List;
 import org.apache.commons.fileupload.FileItem;
 import java.io.*;
 import java.text.SimpleDateFormat;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class DBUtils {
 
@@ -1066,7 +1071,7 @@ public class DBUtils {
     }
 
     public static ArrayList<Diary> getOneDiary(Connection connconn, UserAccount loginedUser, String tranid1) throws SQLException {
-
+        System.out.println("getOneDiary " + tranid1);
         String sql = "Select * from Diary a where a.tranid =?";
 
         PreparedStatement pstm = connconn.prepareStatement(sql);
@@ -1135,7 +1140,7 @@ public class DBUtils {
             String notes = rs.getString("notes");
             String comm = rs.getString("comm");
             String user1 = rs.getString("user1");
-            System.out.println("user1 " + user1);
+
             String user2 = rs.getString("user2");
             String user3 = rs.getString("user3");
             String user4 = rs.getString("user4");
@@ -1258,9 +1263,10 @@ public class DBUtils {
             tranid2 = tranid1;
         }
         if (tranlen > 2) {
-            tranid2 = tranid1.substring(tranid1.length() - 2);
+            tranid2 = tranid1.substring(tranid1.length() - 1);
         }
-        String sql = "Select * from Diaryimag" + tranid2 + " a where a.diaryid =?";
+        System.out.println("getDiaryImag " + tranid2 + " " + tranid1);
+        String sql = "Select * from diaryimag" + tranid2 + " where diaryid =?";
 
         PreparedStatement pstm = connconn.prepareStatement(sql);
         pstm.setString(1, tranid1);
@@ -1326,40 +1332,28 @@ public class DBUtils {
         } else {
             tranid2 = tranid1;
         }
-
-        System.out.println("username " + userName + " size " + String.valueOf(thisfile.getSize()));
+        System.out.println("getDiaryUpImag " + userName + " size " + String.valueOf(thisfile.getSize()) + ' ' + filetype);
         PreparedStatement pstm2 = null;
-        FileInputStream fis;
-
-        pstm2 = connconn.prepareStatement("insert into diaryimag01 (user, dateup,imagedesc, diaryid, imagetype, imag1) values (?, current_timestamp, ? , '" + tranid1 + "' ,'" + filetype + "', ?)");
-//PreparedStatement pstm2 = connconn.prepareStatement(sql2);
-        OutputStream inputstream = null;
-        try {
-            inputstream = thisfile.getOutputStream();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        pstm2 = connconn.prepareStatement("insert into diaryimag" +tranid2 +" (user, dateup,imagedesc, diaryid, imagetype, imag1) values (?, current_timestamp, ? , '" + tranid1 + "' ,'" + filetype + "', ?)");
         pstm2.setString(1, userName);
         pstm2.setString(2, Description);
-//pstm2.setBlob(3,inputstream);
         try {
             pstm2.setBinaryStream(3, thisfile.getInputStream(), (int) thisfile.getSize());
         } catch (IOException e) {
             e.printStackTrace();
-
         }
-// pstm2.setString(1, tranid1);
 
-        Integer temp1 = pstm2.executeUpdate();
-
-        String sql = "Select * from Diaryimag" + tranid2 + " a where a.diaryid =?";
+        Integer temp1 = pstm2.executeUpdate();        
+        String sql = "Select * from diaryimag" + tranid2 + " where diaryid =?";
 
         PreparedStatement pstm = connconn.prepareStatement(sql);
         pstm.setString(1, tranid1);
 
         ResultSet rs = pstm.executeQuery();
         ArrayList<DiaryImag> list = new ArrayList<DiaryImag>();
+        System.out.println("1");
         while (rs.next()) {
+            System.out.println("2 " + rs.getString("tranid"));
             String Tranid = rs.getString("tranid");
             String User = rs.getString("user");
             String ImageDesc = rs.getString("imagedesc");
@@ -1830,7 +1824,7 @@ public class DBUtils {
             String thisFile = rs.getString("imagedesc") + rs.getString("imagetype");
             String filename = "C:/java/ffsint3/ffsint2/build/web/resources/" + rs.getString("imagedesc") + rs.getString("imagetype");
             File file = new File(filename);
-            
+
             FileOutputStream output = new FileOutputStream(file);
             InputStream input = rs.getBinaryStream("imag1");
             byte[] buffer = new byte[1024];

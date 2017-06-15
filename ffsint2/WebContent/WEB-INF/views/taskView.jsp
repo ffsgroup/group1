@@ -785,6 +785,10 @@
                     <input type ="button" value ="Update" id="Taskupdatepeople" style="width:75px;  float: right; margin-right: 5px"/>
 
             </div>
+                    
+            
+                   
+                    
             <script>
                         var a = ${taskid};
                         if (a == "0") {
@@ -843,17 +847,46 @@ ${taskimage}
                 <label for="imageText">Enter description</label>
 
                 <input id="imageText" name="ImageText" type="text" > <br/>
-
                 <label for="imageFile"/>Select file </label>
-
                 <input id="imageFile" name="imageFile" type="file" > <br/>
-
                 <input id="uploadBtn" type="button" value="Upload" onClick="performAjaxSubmit();">
 
-
-
             </div>
+<script type="text/javascript">
 
+            function performAjaxSubmit() {
+
+                var sampleText = document.getElementById('imageText').value;
+
+                var sampleFile1 = document.getElementById('imageFile').files[0];
+
+                var formdata = new FormData();
+
+                formdata.append("imageText", sampleText);
+
+                formdata.append("imageFile", sampleFile1);
+                formdata.append("tranId", document.getElementById("taskid").innerHTML);
+
+                var xhr = new XMLHttpRequest();
+
+                xhr.open("POST", "TaskFileUploader", true);
+
+                xhr.send(formdata);
+
+                xhr.onload = function (e) {
+
+                    if (this.status == 200) {
+
+                        alert(this.responseText);
+
+                    }
+
+                };
+
+            }
+
+        </script> 
+        
         </div>
 
     </body>

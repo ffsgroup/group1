@@ -6,6 +6,7 @@
 package ffsutils;
 
 import ffsbeans.Diary;
+import ffsbeans.TaskImage;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.http.HttpServlet;
@@ -21,11 +22,14 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import ffsbeans.UserAccount;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.Connection;
 import java.text.SimpleDateFormat;
+import org.apache.commons.fileupload.FileItem;
 
 public class TaskUtils extends HttpServlet {
 
@@ -3757,6 +3761,99 @@ System.out.println("getTaskImage " + tranid1);
 
         }
         return list;
-    }    
+    }  
+   
+ public static ArrayList<TaskImage> getTaskUpImag(Connection connconn, String tranid1, String userName, String Description, String filetype, FileItem thisfile) throws SQLException {
+
+        String tranid2;
+        Integer comp = 2;
+        Integer tranlen = tranid1.length();
+        int retval = comp.compareTo(tranlen);
+        if (retval > 0) {
+            tranid2 = "0" + tranid1;
+        } else if (retval < 0) {
+            tranid2 = tranid1.substring(tranid1.length() - 2);
+        } else {
+            tranid2 = tranid1;
+        }
+
+        System.out.println("getTaskUpImag " + userName + " size " + String.valueOf(thisfile.getSize())+ " "+ tranid2 );
+        PreparedStatement pstm2 = null;
+        FileInputStream fis;
+
+        pstm2 = connconn.prepareStatement("insert into taskimag" + tranid2 + " (user, dateup,imagedesc, taskid, imagetype, imag1) values (?, current_timestamp, ? , '" + tranid1 + "' ,'" + filetype + "', ?)");
+//PreparedStatement pstm2 = connconn.prepareStatement(sql2);
+        OutputStream inputstream = null;
+        try {
+            inputstream = thisfile.getOutputStream();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        pstm2.setString(1, userName);
+        pstm2.setString(2, Description);
+//pstm2.setBlob(3,inputstream);
+        try {
+            pstm2.setBinaryStream(3, thisfile.getInputStream(), (int) thisfile.getSize());
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+// pstm2.setString(1, tranid1);
+
+        Integer temp1 = pstm2.executeUpdate();
+
+        String sql = "Select * from taskimag" + tranid2 + " a where a.taskid =?";
+
+        PreparedStatement pstm = connconn.prepareStatement(sql);
+        pstm.setString(1, tranid1);
+
+        ResultSet rs = pstm.executeQuery();
+        ArrayList<TaskImage> list = new ArrayList<TaskImage>();
+        while (rs.next()) {
+            String Tranid = rs.getString("tranid");
+            String User = rs.getString("user");
+            String ImageDesc = rs.getString("imagedesc");
+            String ImageType = rs.getString("imagetype");
+
+            Date date = new Date();
+            Calendar calendar = new GregorianCalendar();
+
+            calendar.setTime(rs.getTimestamp("dateup"));
+            String year = Integer.toString(calendar.get(Calendar.YEAR));
+            String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
+            String day = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH));
+            String hour = Integer.toString(calendar.get(Calendar.HOUR_OF_DAY));
+            String minute = Integer.toString(calendar.get(Calendar.MINUTE));
+            int length = month.length();
+            if (length == 1) {
+                month = "0" + month;
+            }
+            int length2 = day.length();
+            if (length2 == 1) {
+                day = "0" + day;
+            }
+            int length3 = hour.length();
+            if (length3 == 1) {
+                hour = "0" + hour;
+            }
+            int length4 = minute.length();
+            if (length4 == 1) {
+                minute = "0" + minute;
+            }
+            String thistime = year + "/" + month + "/" + day + " " + hour + ":" + minute;
+            String DateUp = thistime;
+
+            TaskImage taskimage = new TaskImage();
+            taskimage.setTranid(Tranid);
+            taskimage.setUser(User);
+            taskimage.setImageDesc(ImageDesc);
+            
+            taskimage.setImageType(ImageType);
+            taskimage.setDateUp(DateUp);
+
+            list.add(taskimage);
+        }
+        return list;
+    }   
   
 }

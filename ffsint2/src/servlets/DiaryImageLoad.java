@@ -21,11 +21,11 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import ffsbeans.DiaryImag;
 
-@WebServlet("/DiaryImage")
-public class DiaryImage extends HttpServlet {
+@WebServlet("/DiaryImageLoad")
+public class DiaryImageLoad extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public DiaryImage() {
+    public DiaryImageLoad() {
         
     }
 	
@@ -33,6 +33,7 @@ public class DiaryImage extends HttpServlet {
 		Connection conn = MyUtils.getStoredConnection(request);
                 String tranid = request.getParameter("tranid"); 
 		ArrayList<DiaryImag> diaryimag =new ArrayList<DiaryImag>();
+                 System.out.println("DiaryImage " + tranid);
                 try {
 		diaryimag=DBUtils.getDiaryImag(conn, tranid);
                         } catch (SQLException e) {

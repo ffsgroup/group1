@@ -21,7 +21,7 @@ public class FileUploader extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+       System.out.println("1");
        String tranid = "0";
        String description = "";
        String filetype = "";

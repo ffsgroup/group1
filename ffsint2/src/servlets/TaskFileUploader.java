@@ -1,12 +1,11 @@
 package servlets;
 import ffsbeans.UserAccount;
-import ffsbeans.DiaryImag;
 import ffsutils.DBUtils;
 import ffsutils.MyUtils;
+import ffsutils.TaskUtils;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.fileupload.FileItem;
@@ -18,19 +17,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/DiaryFileUploader")
-
-
-public class DiaryFileUploader extends HttpServlet {
-   private static final long serialVersionUID = 1L; 
-    public DiaryFileUploader() {
-        
-    }
+//@WebServlet("/TaskFileUploader")
+@WebServlet(urlPatterns = { "/TaskFileUploader" })
+public class TaskFileUploader extends HttpServlet {
     private final String UPLOAD_DIRECTORY = "C:/temp";
    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {      
+            throws ServletException, IOException {
+       
        String tranid = "0";
        String description = "";
        String filetype = "";
@@ -39,7 +34,7 @@ public class DiaryFileUploader extends HttpServlet {
       HttpSession session = request.getSession();
       UserAccount loginedUser = MyUtils.getLoginedUser(session);
       String userName = loginedUser.getUserName();
-      System.out.println("DiaryFileUploader " + userName   );           
+      System.out.println("TaskFileUploader " + userName  );           
         //process only if its multipart content
         if(ServletFileUpload.isMultipartContent(request)){
             try {
@@ -72,8 +67,7 @@ public class DiaryFileUploader extends HttpServlet {
                  
                     
                 }
-                ArrayList<DiaryImag> diaryimag =new ArrayList<DiaryImag>();
-  diaryimag = DBUtils.getDiaryUpImag(conn, tranid, userName, description, filetype, thisfile);
+ TaskUtils.getTaskUpImag(conn, tranid, userName, description, filetype, thisfile);
  
                //File uploaded successfully
                request.setAttribute("message", "File Uploaded Successfully");
