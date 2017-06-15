@@ -39,7 +39,8 @@
                         <ul>
                             <li><a href="#">Dairy</a></li>
 
-                            <li>
+                            <li><a href="#">Task Manager</a></li>
+<!--                            <li>
                                 <a href="#">Task Manager</a>
                                 <ul>
                                     <li><a href="#">Lorem dolor</a></li>
@@ -48,12 +49,12 @@
                                     <li><a href="#">Etiam nisl</a></li>
                                     <li><a href="#">Veroeros feugiat</a></li>
                                 </ul>
-                            </li>
+                            </li>-->
 
                         </ul>
                     </li>
                     <li><a href="left-sidebar.html">About Us</a></li>
-                    <li><a href="right-sidebar.html">Contact Us</a></li>
+<!--                    <li><a href="right-sidebar.html">Contact Us</a></li>-->
                     <!--                    <li><a href="two-sidebar.html">Two Sidebar</a></li>-->
                     <li><a href="${pageContext.request.contextPath}/login">Login</a></li>
                 </ul>
@@ -150,10 +151,10 @@
                 <div class="row">
                     <section class="6u 12u(narrower)">
                         <div class="box post">
-                            <a href="#" class="image left"><img src="resources/cal2.jpg" alt="" /></a>
+                            <a href="#" class="image left"><img src="resources/diary.png" alt="" /></a>
                             <div class="inner">
                                 <h3>DIARY</h3>
-                                <p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
+                                <p> Keep your diary, journal, photos and manage appointments all in a single diary software.</p>
                             </div>
                         </div>
                     </section>
@@ -162,7 +163,7 @@
                             <a href="#" class="image left"><img src="resources/Task4.jpg" alt="" /></a>
                             <div class="inner">
                                 <h3>TASKS</h3>
-                                <p>Track everything you or your employes's does – in-house tasks, personal tasks all in one place.</p>
+                                <p>Track everything you or your employee's does – in-house tasks, personal tasks all in one place.</p>
                             </div>
                         </div>
                     </section>
@@ -170,10 +171,10 @@
                 <div class="row">
                     <section class="6u 12u(narrower)">
                         <div class="box post">
-                            <a href="#" class="image left"><img src="resources/images5.jpg" alt="" /></a>
+                            <a href="#" class="image left"><img src="resources/document.jpg" alt="" /></a>
                             <div class="inner">
-                                <h3>FOLLOW A TASK</h3>
-                                <p>Add users as followers, without specifically assigning a task to them. This involves employees so they can comment, provide advice, guidance or feedback.</p>
+                                <h3>DOCUMENTS</h3>
+                                <p>Upload documents to both Task and Dairy modules for all in one solution, Any format may be uploaded.</p>
                             </div>
                         </div>
                     </section>
@@ -182,7 +183,7 @@
                             <a href="#" class="image left"><img src="resources/secure1.jpg" alt="" width="150" height ="150"/></a>
                             <div class="inner">
                                 <h3>ACCESS CONTROL</h3>
-                                <p>Employee's are restricted according to their security settings</p>
+                                <p>Access are restricted according to their security settings.</p>
                             </div>
                         </div>
                     </section>
@@ -199,8 +200,8 @@
                     <section class="3u 6u(narrower) 12u">
                         <h3>Contact</h3>
                         <ul class="links">
-                            <li><img src="resources/email-icon.jpg" alt="" width="20" height ="20" />  it@safin.co.za</li>
-                            <li><img src="resources/address.jpg" alt="" width="20" height ="20"  />  9 Mack Road,Emapengeni,3880</a></li>
+                            <li><img src="resources/email-icon.jpg" alt="" width="20" height ="20" /> it@safin.co.za</li>
+                            <li><img src="resources/address.jpg" alt="" width="20" height ="20"  />  9 Mack Road, Emapengeni, 3880</li>
                             <li><img src="resources/phone.jpg" alt="" width="20" height ="20"  />  035 772 3226</li>
 <!--                            <li><a href="#">Rutrum accumsan dolor</a></li>
                             <li><a href="#">Mattis rutrum accumsan</a></li>
@@ -260,14 +261,13 @@
             <!-- Copyright -->
             <div class="copyright">
                 <ul class="menu">
-                    <li>  &copy; FFS  Pty Ltd. 2017 All rights reserved</li>
+                    <li>  &copy; FFS (Pty) Ltd. 2017 All rights reserved</li>
                 </ul>
             </div>
 
         </div>
 
     </div>
-
 
 </body>
 </html>
