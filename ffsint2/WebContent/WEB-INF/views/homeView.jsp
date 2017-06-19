@@ -53,7 +53,7 @@
 
                         </ul>
                     </li>
-                    <li><a href="left-sidebar.html">About Us</a></li>
+                    <li><a href="${pageContext.request.contextPath}/aboutus">About Us</a></li>
 <!--                    <li><a href="right-sidebar.html">Contact Us</a></li>-->
                     <!--                    <li><a href="two-sidebar.html">Two Sidebar</a></li>-->
                     <li><a href="${pageContext.request.contextPath}/login">Login</a></li>
