@@ -11,7 +11,6 @@ import ffsbeans.DiaryImag;
 import ffsbeans.UserAccount;
 import java.util.List;
 import org.apache.commons.fileupload.FileItem;
-import java.io.*;
 import java.text.SimpleDateFormat;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -1516,7 +1515,7 @@ public class DBUtils {
                 if (comm.equals("null")) {
                     comm = "";
                 }
-                String newcomm = comm + "~Diary times changed~ Old Start " + thistime + " New Start " + startdate + "~Old End " + thistime1 + " New End " + enddate + "~" + userName + " " + date + " " + strTime + "~______________________";
+                String newcomm = comm + "~Diary times changed~ Old Start " + thistime + "~ New Start " + startdate + "~Old End " + thistime1 + "~ New End " + enddate + "~" + userName + " " + date + " " + strTime + "~______________________~";
 
                 String sql1 = "update diary set comm = ? where tranid = ?";
 

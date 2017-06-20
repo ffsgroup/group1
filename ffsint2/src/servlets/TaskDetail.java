@@ -203,7 +203,7 @@ public class TaskDetail extends HttpServlet {
         }
        
         for (TaskImage taskImage1 : taskImage ) {
-         ti = ti + "   <tr> <td style='min-width:120px; width:120px;'>" + taskImage1.getDateUp()+ "</td> <td style='min-width:180px; width:180px;'>" + taskImage1.getUser() + " </td> <td style='min-width:200px; width:200px;'> " + taskImage1.getImageDesc() + " </td > <td style='min-width:40px; width:40px;'>" + taskImage1.getTranid() + " </td></tr>";   
+         ti = ti + "   <tr> <td style='min-width:120px; width:120px;border:1px solid black;'>" + taskImage1.getDateUp()+ "</td> <td style='min-width:180px; width:180px;border:1px solid black;'>" + taskImage1.getUser() + " </td> <td style='min-width:200px; width:200px;border:1px solid black;'> " + taskImage1.getImageDesc() + " </td > <td style='min-width:40px; width:40px;border:1px solid black;'>" + taskImage1.getTranid() + " </td></tr>";   
         }
         
         request.setAttribute("taskid", a);

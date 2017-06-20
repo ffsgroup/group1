@@ -1,28 +1,12 @@
 package ffsutils;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import ffsbeans.Product;
-import ffsbeans.Tasks;
 import ffsbeans.Generics;
-import java.util.Date;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import ffsbeans.DiaryImag;
 import ffsbeans.UserAccount;
 import java.sql.Connection;
-import java.util.List;
-import org.apache.commons.fileupload.FileItem;
-import java.io.*;
-import java.text.SimpleDateFormat;
 
 public class SecureUtils {
 

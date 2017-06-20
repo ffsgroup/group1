@@ -5,8 +5,6 @@
  */
 package ffsutils;
 
-import ffsbeans.Diary;
-import ffsbeans.TaskImage;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.http.HttpServlet;
@@ -2512,7 +2510,9 @@ public class TaskUtils extends HttpServlet {
             ResultSet rs = pstm.executeQuery();
             if (rs.next()) {
                 if (rs.getString("taskfrom").equals(Username.getUserName())) {
-                    if (rs.getString("irnr").length() < 4 && ir == "true") { // requested ir, must update
+                    String temp1 = rs.getString("irnr");
+                    if (temp1 == null) {temp1 = "";}
+                    if (temp1.length() < 4 && ir == "true") { // requested ir, must update
                         String upir = "select nextir from branch";
                         PreparedStatement upirst = conn.prepareStatement(upir);
                         ResultSet rsir = upirst.executeQuery();
@@ -2731,7 +2731,7 @@ public class TaskUtils extends HttpServlet {
     public static ArrayList<Generics> taskUpdatePeople(Connection conn, UserAccount user, String tranid, String user1, String user2, String user3, String user4, String user5, String user6, String user7, String user8, String user9, String user10, String user11, String user12, String user13, String user14, String user15) throws SQLException {
         ArrayList<Generics> list = new ArrayList<Generics>();
         String sql = "Select taskfrom, taskto1, taskto2, taskto3, taskto4, taskto5, taskto6, taskto7, taskto8, taskto9, taskto10, taskto11, taskto12, taskto13, taskto14, taskto15 from tasks where tranid = ?";
-        System.out.println("TaskUpdatePeople " + tranid);
+        System.out.println("TaskUpdatePeople " + tranid + " " + user1);
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, tranid);
         String result = "no updates done";
@@ -2748,6 +2748,133 @@ public class TaskUtils extends HttpServlet {
                     result = "success";
                     System.out.println("TaskUpdatePeople success");
                 }
+                if (!rs.getString("taskto2").equals(user2)) {
+                    String sql1 = "update tasks set taskto2 = ?,task2date = current_timestamp where tranid = ?";
+                    PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                    pstm1.setString(1, user2);
+                    pstm1.setString(2, tranid);
+                    pstm1.executeUpdate();
+                    result = "success";
+                    System.out.println("TaskUpdatePeople success");
+                }
+                if (!rs.getString("taskto3").equals(user3)) {
+                    String sql1 = "update tasks set taskto3 = ?,task3date = current_timestamp where tranid = ?";
+                    PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                    pstm1.setString(1, user3);
+                    pstm1.setString(2, tranid);
+                    pstm1.executeUpdate();
+                    result = "success";
+                    System.out.println("TaskUpdatePeople success");
+                }
+                if (!rs.getString("taskto4").equals(user4)) {
+                    String sql1 = "update tasks set taskto4 = ?,task4date = current_timestamp where tranid = ?";
+                    PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                    pstm1.setString(1, user4);
+                    pstm1.setString(2, tranid);
+                    pstm1.executeUpdate();
+                    result = "success";
+                    System.out.println("TaskUpdatePeople success");
+                }
+                if (!rs.getString("taskto5").equals(user5)) {
+                    String sql1 = "update tasks set taskto5 = ?,task5date = current_timestamp where tranid = ?";
+                    PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                    pstm1.setString(1, user5);
+                    pstm1.setString(2, tranid);
+                    pstm1.executeUpdate();
+                    result = "success";
+                    System.out.println("TaskUpdatePeople success");
+                }
+                if (!rs.getString("taskto6").equals(user6)) {
+                    String sql1 = "update tasks set taskto6 = ?,task6date = current_timestamp where tranid = ?";
+                    PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                    pstm1.setString(1, user6);
+                    pstm1.setString(2, tranid);
+                    pstm1.executeUpdate();
+                    result = "success";
+                    System.out.println("TaskUpdatePeople success");
+                }
+                if (!rs.getString("taskto7").equals(user7)) {
+                    String sql1 = "update tasks set taskto7 = ?,task7date = current_timestamp where tranid = ?";
+                    PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                    pstm1.setString(1, user7);
+                    pstm1.setString(2, tranid);
+                    pstm1.executeUpdate();
+                    result = "success";
+                    System.out.println("TaskUpdatePeople success");
+                }
+                if (!rs.getString("taskto8").equals(user8)) {
+                    String sql1 = "update tasks set taskto8 = ?,task8date = current_timestamp where tranid = ?";
+                    PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                    pstm1.setString(1, user8);
+                    pstm1.setString(2, tranid);
+                    pstm1.executeUpdate();
+                    result = "success";
+                    System.out.println("TaskUpdatePeople success");
+                }
+                if (!rs.getString("taskto9").equals(user9)) {
+                    String sql1 = "update tasks set taskto9 = ?,task9date = current_timestamp where tranid = ?";
+                    PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                    pstm1.setString(1, user9);
+                    pstm1.setString(2, tranid);
+                    pstm1.executeUpdate();
+                    result = "success";
+                    System.out.println("TaskUpdatePeople success");
+                }
+                if (!rs.getString("taskto10").equals(user10)) {
+                    String sql1 = "update tasks set taskto10 = ?,task10date = current_timestamp where tranid = ?";
+                    PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                    pstm1.setString(1, user10);
+                    pstm1.setString(2, tranid);
+                    pstm1.executeUpdate();
+                    result = "success";
+                    System.out.println("TaskUpdatePeople success");
+                }
+                if (!rs.getString("taskto11").equals(user11)) {
+                    String sql1 = "update tasks set taskto11 = ?,task11date = current_timestamp where tranid = ?";
+                    PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                    pstm1.setString(1, user11);
+                    pstm1.setString(2, tranid);
+                    pstm1.executeUpdate();
+                    result = "success";
+                    System.out.println("TaskUpdatePeople success");
+                }
+                if (!rs.getString("taskto12").equals(user12)) {
+                    String sql1 = "update tasks set taskto12 = ?,task12date = current_timestamp where tranid = ?";
+                    PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                    pstm1.setString(1, user12);
+                    pstm1.setString(2, tranid);
+                    pstm1.executeUpdate();
+                    result = "success";
+                    System.out.println("TaskUpdatePeople success");
+                }
+                if (!rs.getString("taskto13").equals(user13)) {
+                    String sql1 = "update tasks set taskto13 = ?,task13date = current_timestamp where tranid = ?";
+                    PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                    pstm1.setString(1, user13);
+                    pstm1.setString(2, tranid);
+                    pstm1.executeUpdate();
+                    result = "success";
+                    System.out.println("TaskUpdatePeople success");
+                }
+                if (!rs.getString("taskto14").equals(user14)) {
+                    String sql1 = "update tasks set taskto14 = ?,task14date = current_timestamp where tranid = ?";
+                    PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                    pstm1.setString(1, user14);
+                    pstm1.setString(2, tranid);
+                    pstm1.executeUpdate();
+                    result = "success";
+                    System.out.println("TaskUpdatePeople success");
+                }
+                if (!rs.getString("taskto15").equals(user15)) {
+                    String sql1 = "update tasks set taskto15 = ?,task15date = current_timestamp where tranid = ?";
+                    PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                    pstm1.setString(1, user15);
+                    pstm1.setString(2, tranid);
+                    pstm1.executeUpdate();
+                    result = "success";
+                    System.out.println("TaskUpdatePeople success");
+                }
+                
 
             } else {
                 result = "not your task";

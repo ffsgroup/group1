@@ -1,5 +1,4 @@
 package ffsbeans;
-import java.util.Date;
 public class Generics {
 	 
 	   private String GenGroupId;

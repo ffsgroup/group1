@@ -15,7 +15,40 @@
             <link rel="stylesheet" type="text/css" href="resources/dhtmlxcalendar_1.css"/>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <title>Task</title>
-
+            
+            <script>
+                var myCalendar;
+                function doOnLoad() {
+                    myCalendar = new dhtmlXCalendarObject("calendarHere");
+                    //		myCalendar.setSkin("material");
+                    //  myCalendar.setDate(new Date(2016, 7, 7, 16, 0));
+                    myCalendar.setDate(new Date);
+                    myCalendar.show();
+                    myCalendar.hideTime();
+                    myCalendar.showToday();
+                    myCalendar.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09","2017-09-24","2017-09-25","2017-12-16","2017-12-25","2017-12-26","2018-01-01"]);
+                    myCalendar.setTooltip("2017-01-01", "New Year's Day", true, true);
+                    myCalendar.setTooltip("2017-01-02", "Public HoliDay", true, true);
+                    myCalendar.setTooltip("2017-03-21", "Human Rights Day", true, true);
+                    myCalendar.setTooltip("2017-04-14", "Good Friday", true, true);
+                    myCalendar.setTooltip("2017-04-17", "Family Day", true, true);
+                    myCalendar.setTooltip("2017-04-27", "Freedom Day", true, true);
+                    myCalendar.setTooltip("2017-05-01", "Workers Day", true, true);
+                    myCalendar.setTooltip("2017-06-16", "Youth Day", true, true);
+                    myCalendar.setTooltip("2017-08-09", "National Womens Day", true, true);
+                    myCalendar.setTooltip("2017-09-24", "Heritage Day", true, true);
+                    myCalendar.setTooltip("2017-09-25", "Public Holiday", true, true);
+                    myCalendar.setTooltip("2017-12-16", "Day of Reconciliation", true, true);
+                    myCalendar.setTooltip("2017-12-25", "Christmas Day", true, true);
+                    myCalendar.setTooltip("2017-12-26", "Day of Good Will", true, true);
+                    myCalendar.setTooltip("2018-01-01", "New Years Day", true, true);
+                    
+                    myCalendar._drawMonth(new Date);
+                    myCalendar.attachEvent("onClick", function (side, d) {
+                        //	writeLog("onClick event called, "+side+" calendar, date "+myCalendar.getFormatedDate(null,d));
+                    });
+                }
+            </script>
 
             <script>
                 $(function () {
@@ -53,6 +86,21 @@
                     if (count.valueOf() < 2) {
                         $.get('SecurityGetActiveUser', function (responseJson) {
                             if (responseJson != null) {
+                                    $('#dsee1').append('<option value=""></option>');
+                                    $('#dsee2').append('<option value=""></option>');
+                                    $('#dsee3').append('<option value=""></option>');
+                                    $('#dsee4').append('<option value=""></option>');
+                                    $('#dsee5').append('<option value=""></option>');
+                                    $('#dsee6').append('<option value=""></option>');
+                                    $('#dsee7').append('<option value=""></option>');
+                                    $('#dsee8').append('<option value=""></option>');
+                                    $('#dsee9').append('<option value=""></option>');
+                                    $('#dsee10').append('<option value=""></option>');
+                                    $('#dsee11').append('<option value=""></option>');
+                                    $('#dsee12').append('<option value=""></option>');
+                                    $('#dsee13').append('<option value=""></option>');
+                                    $('#dsee14').append('<option value=""></option>');
+                                    $('#dsee15').append('<option value=""></option>');
                                 $.each(responseJson, function (key, value) {
                                     $('#dsee1').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
                                     $('#dsee2').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
@@ -162,7 +210,7 @@
             <script>
                 $(document).ready(function () {
                     $("#Taskupdatepeople").click(function (event) {
-                        $.get('TaskUpdatePeople', {tranid: document.getElementById("taskid").innerHTML, user1: document.getElementById("dsee1").value, user2: document.getElementById("dsee2").value, user3: document.getElementById("dsee3").value, user4: document.getElementById("dsee4").value, user5: document.getElementById("dsee5").value, user6: document.getElementById("dsee6").value, user7: document.getElementById("dsee7").value, user8: document.getElementById("dsee8").value, user9: document.getElementById("dsee9").value, user10: document.getElementById("dsee10").value, user11: document.getElementById("dsee11").value, user12: document.getElementById("dsee12").value, user13: document.getElementById("dsee13").value, user14: document.getElementById("dsee14").value, user15: document.getElementById("dsee1").value}, function (responseJson) {
+                        $.get('TaskUpdatePeople', {tranid: document.getElementById("taskid").innerHTML, user1: document.getElementById("dsee1").value, user2: document.getElementById("dsee2").value, user3: document.getElementById("dsee3").value, user4: document.getElementById("dsee4").value, user5: document.getElementById("dsee5").value, user6: document.getElementById("dsee6").value, user7: document.getElementById("dsee7").value, user8: document.getElementById("dsee8").value, user9: document.getElementById("dsee9").value, user10: document.getElementById("dsee10").value, user11: document.getElementById("dsee11").value, user12: document.getElementById("dsee12").value, user13: document.getElementById("dsee13").value, user14: document.getElementById("dsee14").value, user15: document.getElementById("dsee15").value}, function (responseJson) {
 
                             if (responseJson !== null) {
 
@@ -429,15 +477,63 @@
                 <br>
                 End Date :<label> <input type="text" id = "enddate" style="margin-left:32px; width: 135px;" value= ${enddate}></label>
                 <script>
-                    var myCalendar1 = new dhtmlXCalendarObject(["startdate"]);
+                     var myCalendar1 = new dhtmlXCalendarObject(["startdate"]);
+                      myCalendar1.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09","2017-09-24","2017-09-25","2017-12-16","2017-12-25","2017-12-26","2018-01-01"]);
+                    myCalendar1.setTooltip("2017-01-01", "New Year's Day", true, true);
+                    myCalendar1.setTooltip("2017-01-02", "Public HoliDay", true, true);
+                    myCalendar1.setTooltip("2017-03-21", "Human Rights Day", true, true);
+                    myCalendar1.setTooltip("2017-04-14", "Good Friday", true, true);
+                    myCalendar1.setTooltip("2017-04-17", "Family Day", true, true);
+                    myCalendar1.setTooltip("2017-04-27", "Freedom Day", true, true);
+                    myCalendar1.setTooltip("2017-05-01", "Workers Day", true, true);
+                    myCalendar1.setTooltip("2017-06-16", "Youth Day", true, true);
+                    myCalendar1.setTooltip("2017-08-09", "National Womens Day", true, true);
+                    myCalendar1.setTooltip("2017-09-24", "Heritage Day", true, true);
+                    myCalendar1.setTooltip("2017-09-25", "Public Holiday", true, true);
+                    myCalendar1.setTooltip("2017-12-16", "Day of Reconciliation", true, true);
+                    myCalendar1.setTooltip("2017-12-25", "Christmas Day", true, true);
+                    myCalendar1.setTooltip("2017-12-26", "Day of Good Will", true, true);
+                    myCalendar1.setTooltip("2018-01-01", "New Years Day", true, true);
                     myCalendar1.setDateFormat("%Y/%m/%d %H:%i");
                 </script>
                 <script>
-                    var myCalendar2 = new dhtmlXCalendarObject(["reviewdate"]);
+                      var myCalendar2 = new dhtmlXCalendarObject(["reviewdate"]);
+                      myCalendar2.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09","2017-09-24","2017-09-25","2017-12-16","2017-12-25","2017-12-26","2018-01-01"]);
+                    myCalendar2.setTooltip("2017-01-01", "New Year's Day", true, true);
+                    myCalendar2.setTooltip("2017-01-02", "Public HoliDay", true, true);
+                    myCalendar2.setTooltip("2017-03-21", "Human Rights Day", true, true);
+                    myCalendar2.setTooltip("2017-04-14", "Good Friday", true, true);
+                    myCalendar2.setTooltip("2017-04-17", "Family Day", true, true);
+                    myCalendar2.setTooltip("2017-04-27", "Freedom Day", true, true);
+                    myCalendar2.setTooltip("2017-05-01", "Workers Day", true, true);
+                    myCalendar2.setTooltip("2017-06-16", "Youth Day", true, true);
+                    myCalendar2.setTooltip("2017-08-09", "National Womens Day", true, true);
+                    myCalendar2.setTooltip("2017-09-24", "Heritage Day", true, true);
+                    myCalendar2.setTooltip("2017-09-25", "Public Holiday", true, true);
+                    myCalendar2.setTooltip("2017-12-16", "Day of Reconciliation", true, true);
+                    myCalendar2.setTooltip("2017-12-25", "Christmas Day", true, true);
+                    myCalendar2.setTooltip("2017-12-26", "Day of Good Will", true, true);
+                    myCalendar2.setTooltip("2018-01-01", "New Years Day", true, true);
                     myCalendar2.setDateFormat("%Y/%m/%d %H:%i");
                 </script>
                 <script>
-                    var myCalendar3 = new dhtmlXCalendarObject(["enddate"]);
+                         var myCalendar3 = new dhtmlXCalendarObject(["enddate"]);
+                      myCalendar3.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09","2017-09-24","2017-09-25","2017-12-16","2017-12-25","2017-12-26","2018-01-01"]);
+                    myCalendar3.setTooltip("2017-01-01", "New Year's Day", true, true);
+                    myCalendar3.setTooltip("2017-01-02", "Public HoliDay", true, true);
+                    myCalendar3.setTooltip("2017-03-21", "Human Rights Day", true, true);
+                    myCalendar3.setTooltip("2017-04-14", "Good Friday", true, true);
+                    myCalendar3.setTooltip("2017-04-17", "Family Day", true, true);
+                    myCalendar3.setTooltip("2017-04-27", "Freedom Day", true, true);
+                    myCalendar3.setTooltip("2017-05-01", "Workers Day", true, true);
+                    myCalendar3.setTooltip("2017-06-16", "Youth Day", true, true);
+                    myCalendar3.setTooltip("2017-08-09", "National Womens Day", true, true);
+                    myCalendar3.setTooltip("2017-09-24", "Heritage Day", true, true);
+                    myCalendar3.setTooltip("2017-09-25", "Public Holiday", true, true);
+                    myCalendar3.setTooltip("2017-12-16", "Day of Reconciliation", true, true);
+                    myCalendar3.setTooltip("2017-12-25", "Christmas Day", true, true);
+                    myCalendar3.setTooltip("2017-12-26", "Day of Good Will", true, true);
+                    myCalendar3.setTooltip("2018-01-01", "New Years Day", true, true);
                     myCalendar3.setDateFormat("%Y/%m/%d %H:%i");
                 </script>
                 <br>
@@ -510,7 +606,7 @@
                     <br>
                     <br>
                     <select name="dseel" id = "dsee1" style="width:170px" onClick="loadMember();">
-                        <option value=${taskto1}>${taskto1}</option>
+                        <option value="${taskto1}">${taskto1}</option>
                     </select>
 
                     <label id="taskstat1" style=" margin-left:50px;"/>${taskstat1}</label>
@@ -524,7 +620,7 @@
                     <label id="taskstatdate1" style=" margin-left:50px;"/>${statusday1}</label>
                     <br>
                     <select name="dsee2" id = "dsee2" style="width:170px" onClick="loadMember();">
-                        <option value=${taskto2}>${taskto2}</option>
+                        <option value="${taskto2}">${taskto2}</option>
                     </select>
                     <label id="taskstat2" style=" margin-left:50px;"/>${taskstat2}</label>
                     <script>
@@ -536,7 +632,7 @@
                     <label id="taskstatdate2" style=" margin-left:50px;"/>${statusday2}</label>
                     <br>
                     <select name="dsee3" id = "dsee3" style="width:170px" onClick="loadMember();">
-                        <option value=${taskto3}>${taskto3}</option>
+                        <option value="${taskto3}">${taskto3}</option>
                     </select>           
                     <label id="taskstat3" style=" margin-left:50px;"/>${taskstat3}</label>
                     <script>
@@ -547,7 +643,7 @@
                     <label id="taskstatdate3" style=" margin-left:50px;"/>${statusday3}</label>
                     <br>
                     <select name="dsee4" id = "dsee4" style="width:170px" onClick="loadMember();">
-                        <option value=${taskto4}>${taskto4}</option>
+                        <option value="${taskto4}">${taskto4}</option>
                     </select>           
                     <label id="taskstat4" style=" margin-left:50px;"/>${taskstat4}</label>
                     <script>
@@ -558,7 +654,7 @@
                     <label id="taskstatdate4" style=" margin-left:50px;"/>${statusday4}</label>
                     <br>
                     <select name="dsee5" id = "dsee5" style="width:170px" onClick="loadMember();">
-                        <option value=${taskto5}>${taskto5}</option>
+                        <option value="${taskto5}">${taskto5}</option>
                     </select>           
                     <label id="taskstat5" style=" margin-left:50px;"/>${taskstat5}</label>
                     <script>
@@ -569,7 +665,7 @@
                     <label id="taskstatdate5" style=" margin-left:50px;"/>${statusday5}</label>
                     <br>
                     <select name="dsee6" id = "dsee6" style="width:170px" onClick="loadMember();">
-                        <option value=${taskto6}>${taskto6}</option>
+                        <option value="${taskto6}">${taskto6}</option>
                     </select>           
                     <label id="taskstat6" style=" margin-left:50px;"/>${taskstat6}</label>
                     <script>
@@ -580,7 +676,7 @@
                     <label id="taskstatdate6" style=" margin-left:50px;"/>${statusday6}</label>
                     <br>
                     <select name="dsee7" id = "dsee7" style="width:170px" onClick="loadMember();">
-                        <option value=${taskto7}>${taskto7}</option>
+                        <option value="${taskto7}">${taskto7}</option>
                     </select> 
                     <label id="taskstat7" style=" margin-left:50px;"/>${taskstat7}</label>
                     <script>
@@ -591,7 +687,7 @@
                     <label id="taskstatdate7" style=" margin-left:50px;"/>${statusday7}</label>
                     <br>
                     <select name="dsee8" id = "dsee8" style="width:170px" onClick="loadMember();">
-                        <option value=${taskto8}>${taskto8}</option>
+                        <option value="${taskto8}">${taskto8}</option>
                     </select>           
                     <label id="taskstat8" style=" margin-left:50px;"/>${taskstat8}</label>
                     <script>
@@ -602,7 +698,7 @@
                     <label id="taskstatdate8" style=" margin-left:50px;"/>${statusday8}</label>
                     <br>
                     <select name="dsee9" id = "dsee9" style="width:170px" onClick="loadMember();">
-                        <option value=${taskto9}>${taskto9}</option>
+                        <option value="${taskto9}">${taskto9}</option>
                     </select>           
                     <label id="taskstat9" style=" margin-left:50px;"/>${taskstat9}</label>
                     <script>
@@ -613,7 +709,7 @@
                     <label id="taskstatdate9" style=" margin-left:50px;"/>${statusday9}</label>
                     <br>
                     <select name="dsee10" id = "dsee10" style="width:170px" onClick="loadMember();">
-                        <option value=${taskto10}>${taskto10}</option>
+                        <option value="${taskto10}">${taskto10}</option>
                     </select> 
                     <label id="taskstat10" style=" margin-left:50px;"/>${taskstat10}</label>
                     <script>
@@ -624,7 +720,7 @@
                     <label id="taskstatdate10" style=" margin-left:50px;"/>${statusday10}</label>
                     <br>
                     <select name="dsee11" id = "dsee11" style="width:170px" onClick="loadMember();">
-                        <option value=${taskto11}>${taskto11}</option>
+                        <option value="${taskto11}">${taskto11}</option>
                     </select>           
                     <label id="taskstat11" style=" margin-left:50px;"/>${taskstat11}</label>
                     <script>
@@ -635,7 +731,7 @@
                     <label id="taskstatdate11" style=" margin-left:50px;"/>${statusday11}</label>
                     <br>
                     <select name="dsee12" id = "dsee12" style="width:170px" onClick="loadMember();">
-                        <option value=${taskto12}>${taskto12}</option>
+                        <option value="${taskto12}">${taskto12}</option>
                     </select>           
                     <label id="taskstat12" style=" margin-left:50px;"/>${taskstat12}</label>
                     <script>
@@ -646,7 +742,7 @@
                     <label id="taskstatdate12" style=" margin-left:50px;"/>${statusday12}</label>
                     <br>
                     <select name="dsee13" id = "dsee13" style="width:170px" onClick="loadMember();">
-                        <option value=${taskto13}>${taskto13}</option>
+                        <option value="${taskto13}">${taskto13}</option>
                     </select>           
                     <label id="taskstat13" style=" margin-left:50px;"/>${taskstat13}</label>
                     <script>
@@ -657,7 +753,7 @@
                     <label id="taskstatdate13" style=" margin-left:50px;"/>${statusday13}</label>
                     <br>
                     <select name="dsee14" id = "dsee14" style="width:170px" onClick="loadMember();">
-                        <option value=${taskto14}>${taskto14}</option>
+                        <option value="${taskto14}">${taskto14}</option>
                     </select>           
                     <label id="taskstat14" style=" margin-left:50px;"/>${taskstat14}</label>
                     <script>
@@ -668,7 +764,7 @@
                     <label id="taskstatdate14" style=" margin-left:50px;"/>${statusday14}</label>
                     <br>
                     <select name="dsee15" id = "dsee15" style="width:170px" onClick="loadMember();">
-                        <option value=${taskto15}>${taskto15}</option>
+                        <option value="${taskto15}">${taskto15}</option>
                     </select> 
                     <label id="taskstat15" style=" margin-left:50px;"/>${taskstat15}</label>
                     <label id="taskstatdate15" style=" margin-left:50px;"/>${statusday15}</label>
@@ -874,7 +970,7 @@ ${taskimage}
                 xhr.send(formdata);
 
                 xhr.onload = function (e) {
-
+            location.reload(true);
                     if (this.status == 200) {
 
                         alert(this.responseText);

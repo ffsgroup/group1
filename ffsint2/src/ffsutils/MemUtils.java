@@ -1,6 +1,6 @@
 package ffsutils;
 
-import ffsbeans.memberNotes;
+import ffsbeans.MemberNotes;
 import ffsbeans.MemberDepen;
 import ffsbeans.MemberRec;
 import ffsbeans.Member;
@@ -12,16 +12,12 @@ import ffsbeans.Generics;
 import java.util.Date;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.text.SimpleDateFormat;
-import java.text.DateFormat;
-
-
 import java.sql.Connection;
 
 public class MemUtils {
     
     
-    public static ArrayList<memberNotes> getmemberNotes(Connection conn, String thisMember, String userName) throws SQLException {
+    public static ArrayList<MemberNotes> getmemberNotes(Connection conn, String thisMember, String userName) throws SQLException {
 
         System.out.println("getmemberNotes " + thisMember);
         String sql = "Select * from tblcomments where lidno = ?";
@@ -29,9 +25,9 @@ public class MemUtils {
         pstm.setString(1, thisMember);
 
         ResultSet rs = pstm.executeQuery();
-        ArrayList<memberNotes> list = new ArrayList<memberNotes>();
+        ArrayList<MemberNotes> list = new ArrayList<MemberNotes>();
         while (rs.next()) {
-            memberNotes membernotes = new memberNotes();
+            MemberNotes membernotes = new MemberNotes();
                           Date date = new Date();
             Calendar calendar = new GregorianCalendar();
 
