@@ -1,7 +1,4 @@
 package ffsbeans;
-
-import java.util.Date;
-
 public class Member {
 
     private String tranid;

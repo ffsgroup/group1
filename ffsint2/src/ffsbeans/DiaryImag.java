@@ -1,5 +1,4 @@
 package ffsbeans;
-import java.util.Date;
 import java.io.File;
 public class DiaryImag {
 	 

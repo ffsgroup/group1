@@ -18,7 +18,7 @@ import ffsbeans.Member;
 import ffsbeans.UserAccount;
 import ffsutils.DBUtils;
 import ffsbeans.MemberRec;
-import ffsbeans.memberNotes;
+import ffsbeans.MemberNotes;
 import ffsutils.MyUtils;
 import ffsutils.MemUtils;
 import java.sql.Connection;
@@ -40,7 +40,7 @@ public class memberGetNotes extends HttpServlet {
                  String thisMember = request.getParameter("thisMember");                 
                  System.out.println("memberGetNotes " + thisMember);
                  UserAccount loginedUser = MyUtils.getLoginedUser(session);
-		ArrayList<memberNotes> membernotes =new ArrayList<memberNotes>();
+		ArrayList<MemberNotes> membernotes =new ArrayList<MemberNotes>();
                 try {
 		membernotes=MemUtils.getmemberNotes(conn, thisMember, loginedUser.getUserName());
                         } catch (SQLException e) {

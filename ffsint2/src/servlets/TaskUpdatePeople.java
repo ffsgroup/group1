@@ -53,7 +53,7 @@ public class TaskUpdatePeople extends HttpServlet {
         String user14 = request.getParameter("user14");
         String user15 = request.getParameter("user15");
 
-        System.out.println("TaskUpdatepeople " + tranid);
+        System.out.println("TaskUpdatepeople " + tranid + " " + user1);
         ArrayList<Generics> generics = new ArrayList<Generics>();
 
         try {

@@ -1,5 +1,4 @@
 package ffsbeans;
-import java.util.Date;
 public class MemberRec {
 	 
 	   private String tranid;
