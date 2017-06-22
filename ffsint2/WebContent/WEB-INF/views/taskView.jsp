@@ -314,6 +314,9 @@
                     <option value="Sunday">Sunday</option>
                 </select> 
                 <script>
+                    if (document.getElementById("dayr5").value == "null") {
+                       document.getElementById("dayr5").value = "" 
+                    }
                     document.getElementById("dayr5").value = ${recdayofweek};
                 </script>
 

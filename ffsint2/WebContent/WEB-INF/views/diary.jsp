@@ -926,7 +926,7 @@
             <div id="tabs-1">
                 <p>
                 <div style="float: right; text-align: right;">
-                    ID :  <label id="diaryid"/>0</label>
+                    ID :  <label id="diaryid">0</label>
                 </div>     
 
                 From <label id="fromuser" style="margin-left:14px"/></label> 
