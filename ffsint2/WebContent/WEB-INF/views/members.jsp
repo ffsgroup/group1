@@ -17,7 +17,7 @@
 
             <script>
 
-            function memberGetNotes() {
+                function memberGetNotes() {
 
                     // get member notes
                     $.get('memberGetNotes', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
@@ -28,8 +28,8 @@
                                 var rowNew = $("<tr><td></td><td></td><td></td></tr>");
                                 rowNew.children().eq(0).text(value['dateMod']);
                                 rowNew.children().eq(1).text(value['tranUserId']);
-                                rowNew.children().eq(2).text(value['tranComment']);            
-                           
+                                rowNew.children().eq(2).text(value['tranComment']);
+
 
 
                                 rowNew.appendTo(table2);
@@ -245,17 +245,55 @@
                                 });
                             } else {
                                 document.getElementById("memtitle").value = "No such member";
+                                document.getElementById("memname").value = "";
+                                document.getElementById("memsur").value = "";
+                                document.getElementById("memidno").value = "";
+                                document.getElementById("memgend").value = "";
+                                document.getElementById("mememail").value = "";
+                                document.getElementById("memrecruit").value = "";
+                                document.getElementById("memrecruitdate").value = "";
+                                document.getElementById("marriage").selectedIndex = "";
+//                                    document.getElementById("memage").value = "";
+                                document.getElementById("memdob").value = "";
+                                document.getElementById("poldate").value = "";
+                                document.getElementById("memcomp").selectedIndex = "";
+                                document.getElementById("memstatusday").value = "";
+                                document.getElementById("mempoltype").selectedIndex = "";
+                                document.getElementById("memlang").value = "";
+                                document.getElementById("cancode").value = "";
+                                document.getElementById("memstatus").selectedIndex = "";
+                                document.getElementById("memprem").value = "";
+                                document.getElementById("memtotprem").value = "";
                             }
                         });
                         $("#depend").find("tr:gt(0)").remove();
                         $("#recgrid").find("tr:gt(0)").remove();
-                         $("#notesgrid").find("tr:gt(0)").remove();
+                        $("#notesgrid").find("tr:gt(0)").remove();
 
 
 
 
                     } else {
                         document.getElementById("memtitle").value = "No such member";
+                        document.getElementById("memname").value = "";
+                        document.getElementById("memsur").value = "";
+                        document.getElementById("memidno").value = "";
+                        document.getElementById("memgend").value = 0;
+                        document.getElementById("mememail").value = "";
+                        document.getElementById("memrecruit").value = "";
+                        document.getElementById("memrecruitdate").value = "";
+                        document.getElementById("marriage").selectedIndex = "";
+//                                    document.getElementById("memage").value = "";
+                        document.getElementById("memdob").value = "";
+                        document.getElementById("poldate").value = "";
+                        document.getElementById("memcomp").selectedIndex = "";
+                        document.getElementById("memstatusday").value = "";
+                        document.getElementById("mempoltype").selectedIndex = "";
+                        document.getElementById("memlang").value = "";
+                        document.getElementById("cancode").value = "";
+                        document.getElementById("memstatus").selectedIndex = "";
+                        document.getElementById("memprem").value = "";
+                        document.getElementById("memtotprem").value = "";
                     }
                 }
             </script>            
