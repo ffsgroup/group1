@@ -62,6 +62,8 @@
 
 
                                 rowNew.appendTo(table2);
+                                // Display payment method
+                                 document.getElementById("paidrecmeth").innerHTML = value['betmet'];
                             });
                         } else {
                             document.getElementById("memtitle").value = "No such member";
@@ -237,6 +239,9 @@
                                     document.getElementById("benefid").value = value['benefID'];
                                     document.getElementById("benefrelation").value = value['benefRelation'];
                                     document.getElementById("benefdate").value = value['benefdate'];
+                                    //Tab 5 Receipts
+                                    document.getElementById("paidrecdate").innerHTML = value['bettot'];
+                                    
                                     
 
                                 });
@@ -686,9 +691,9 @@
                     </div>
                     <div id="tabs-5">  
                         This policy paid until :
-                        <label style="margin-left:5px" id="paidrecdate">2017/03/31 </label>
+                        <label style="margin-left:5px" id="paidrecdate"></label>
                         <label style="margin-left:60px"> Payment Method : </label>
-                        <label id="paidrecmeth" style="margin-left:5px"> Cash </label>
+                        <label id="paidrecmeth" style="margin-left:5px"></label>
 
                         <input type="button" id="bankfeerec" value="Bank Fees" style="margin-left:30px;width:90px">
                         <input type="button" id="cancellrec" value="Cancell" style="margin-left:20px;width:90px">
@@ -696,7 +701,7 @@
                         <br>
                         <label style="margin-left:0px"> Credit </label>
                         <label style="margin-left:10px"> 00 </label>      
-                        <input type="button" id="printoldrec" value="Print" style="margin-left:425px;width:90px;">
+                        <input type="button" id="printoldrec" value="Print" style="margin-left:485px;width:90px;">
                     <input type="button" id="viewoldrec" value="View Old" style="margin-left:20px; width:90px;">
                     <br>
                     <div id="recdiv">
