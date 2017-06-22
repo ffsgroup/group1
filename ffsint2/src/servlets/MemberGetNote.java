@@ -16,7 +16,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import ffsbeans.Member;
 import ffsbeans.UserAccount;
-import ffsbeans.MemberNotes;
+import ffsbeans.MemberNote;
 import ffsutils.MyUtils;
 import ffsutils.MemUtils;
 import java.sql.Connection;
@@ -38,7 +38,7 @@ public class MemberGetNote extends HttpServlet {
                  String thisMember = request.getParameter("thisMember");                 
                  System.out.println("memberGetNotes " + thisMember);
                  UserAccount loginedUser = MyUtils.getLoginedUser(session);
-		ArrayList<MemberNotes> membernotes =new ArrayList<MemberNotes>();
+		ArrayList<MemberNote> membernotes =new ArrayList<MemberNote>();
                 try {
 		membernotes=MemUtils.getmemberNotes(conn, thisMember, loginedUser.getUserName());
                         } catch (SQLException e) {

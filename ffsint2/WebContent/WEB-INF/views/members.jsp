@@ -20,7 +20,7 @@
                 function memberGetNotes() {
 
                     // get member notes
-                    $.get('MemberGetNotes', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
+                    $.get('MemberGetNote', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
 
                         if (responseJson != null) {
                             var table2 = $("#notesgrid");

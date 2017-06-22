@@ -21,17 +21,9 @@
         <servlet-name>HomeAboutUs</servlet-name>
         <servlet-class>servlets.HomeAboutUs</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>MemberGetNote</servlet-name>
-        <servlet-class>servlets.MemberGetNote</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>HomeAboutUs</servlet-name>
         <url-pattern>/AboutUs</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>MemberGetNote</servlet-name>
-        <url-pattern>/MemberGetNote</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>home</welcome-file>
