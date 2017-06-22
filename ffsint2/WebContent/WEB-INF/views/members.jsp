@@ -14,13 +14,13 @@
             table, th, td {
                 border: 1px solid black;
             </style>
-
+            <title>Members</title>
             <script>
 
                 function memberGetNotes() {
 
                     // get member notes
-                    $.get('memberGetNotes', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
+                    $.get('MemberGetNotes', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
 
                         if (responseJson != null) {
                             var table2 = $("#notesgrid");
@@ -30,13 +30,11 @@
                                 rowNew.children().eq(1).text(value['tranUserId']);
                                 rowNew.children().eq(2).text(value['tranComment']);
 
-
-
                                 rowNew.appendTo(table2);
-                            });
+                            });   
                         } else {
                             document.getElementById("memtitle").value = "No such member";
-                        }
+                        } 
                     });
 
                 }
@@ -87,10 +85,10 @@
 //                                    rowNew.children().eq(5).text(value['tranid']);
                                 rowNew.children().eq(6).text(value['premie']);
                                 rowNew.children().eq(7).text(value['status']);
-                                rowNew.children().eq(8).text(value['statusdate']);
+                                rowNew.children().eq(8).text(value['statusdate']); 
                                 rowNew.children().eq(9).text(value['tranid']);
 
-
+                                
 
 
                                 rowNew.appendTo(table3);
@@ -239,8 +237,7 @@
                                     document.getElementById("benefid").value = value['benefID'];
                                     document.getElementById("benefrelation").value = value['benefRelation'];
                                     document.getElementById("benefdate").value = value['benefdate'];
-
-
+                                    
 
                                 });
                             } else {
@@ -671,16 +668,18 @@
                             <input type="text" style="margin-left:35px; width:80px" >
                             <br>
                             <script>
-                                var myCalendar5 = new dhtmlXCalendarObject(["joindat"]);
-                                myCalendar5.setDateFormat("%Y/%m/%d");
-                                var myCalendar5 = new dhtmlXCalendarObject(["claimdat"]);
-                                myCalendar5.setDateFormat("%Y/%m/%d");
-                                var myCalendar5 = new dhtmlXCalendarObject(["benefdate"]);
-                                myCalendar5.setDateFormat("%Y/%m/%d");
-                                var myCalendar5 = new dhtmlXCalendarObject(["debitdate"]);
-                                myCalendar5.setDateFormat("%Y/%m/%d");
-                                var myCalendar5 = new dhtmlXCalendarObject(["stoporderdate"]);
-                                myCalendar5.setDateFormat("%Y/%m/%d");
+                                var myCalendar6 = new dhtmlXCalendarObject(["joindat"]);
+                                myCalendar6.setDateFormat("%Y/%m/%d");
+                                var myCalendar7 = new dhtmlXCalendarObject(["claimdat"]);
+                                myCalendar7.setDateFormat("%Y/%m/%d");
+                                var myCalendar8 = new dhtmlXCalendarObject(["bettot"]);
+                                myCalendar8.setDateFormat("%Y/%m/%d");
+                                var myCalendar9 = new dhtmlXCalendarObject(["benefdate"]);
+                                myCalendar9.setDateFormat("%Y/%m/%d");
+                                var myCalendar10 = new dhtmlXCalendarObject(["debitdate"]);
+                                myCalendar10.setDateFormat("%Y/%m/%d");
+                                var myCalendar11 = new dhtmlXCalendarObject(["stoporderdate"]);
+                                myCalendar11.setDateFormat("%Y/%m/%d");
                             </script>  
                         </fieldset>
 

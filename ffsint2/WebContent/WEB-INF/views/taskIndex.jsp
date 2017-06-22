@@ -130,6 +130,13 @@
             <link rel="stylesheet" type="text/css" href="resources/dhtmlxcalendar_1.css">
 
             <script>
+                    var x = document.getElementById("countrytable").rows.length;
+                    document.getElementById("taskcounter").innerHTML = x ;
+               
+            </script>
+
+            <script>
+
                 var myCalendar;
                 function doOnLoad() {
                     myCalendar = new dhtmlXCalendarObject("calendarHere");
@@ -137,7 +144,7 @@
                     myCalendar.show();
                     myCalendar.hideTime();
                     myCalendar.showToday();
-                    myCalendar.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09","2017-09-24","2017-09-25","2017-12-16","2017-12-25","2017-12-26","2018-01-01"]);
+                    myCalendar.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01"]);
                     myCalendar.setTooltip("2017-01-01", "New Year's Day", true, true);
                     myCalendar.setTooltip("2017-01-02", "Public HoliDay", true, true);
                     myCalendar.setTooltip("2017-03-21", "Human Rights Day", true, true);
@@ -232,7 +239,7 @@
                                     rowNew.appendTo(table1);
                                 });
                                 document.getElementById('taskcounter').value = counter;
-                                
+
                                 document.getElementsById("countrytable")[0].style.width = '20px';
                             } else
                             {
@@ -543,9 +550,9 @@
             <input type="checkbox" id="UpdatedTasks" value="ToMe">Updated Tasks
             <input type="checkbox" id="UrgentTasks" value="ByMe">Urgent Tasks
             <input type="checkbox" id="TrainingTasks" value="ToMe">Training Tasks
-<label style="margin-left:150px;">
-                   <label id="taskcounter">0</label>
-                </label>  
+            <label style="margin-left:150px;">
+                <label id="taskcounter">0</label>
+            </label>  
             <script>
                 if (document.getElementById("ToMeInProg").checked == false && document.getElementById("ByMeInProg").checked == false && document.getElementById("TaskInFuture").checked == false && document.getElementById("ByMeComp").checked == false && document.getElementById("NewTask").checked == false && document.getElementById("UpdatedTasks").checked == false && document.getElementById("UrgentTasks").checked == false && document.getElementById("TrainingTasks").checked == false) {
                     document.getElementById("UrgentTasks").checked = true;
