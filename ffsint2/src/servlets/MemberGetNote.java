@@ -16,8 +16,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import ffsbeans.Member;
 import ffsbeans.UserAccount;
-import ffsutils.DBUtils;
-import ffsbeans.MemberRec;
 import ffsbeans.MemberNotes;
 import ffsutils.MyUtils;
 import ffsutils.MemUtils;
@@ -25,11 +23,11 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/MemberGetNotes")
-public class MemberGetNotes extends HttpServlet {
+@WebServlet("/MemberGetNote")
+public class MemberGetNote extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public MemberGetNotes() {
+    public MemberGetNote() {
         
     }
 	

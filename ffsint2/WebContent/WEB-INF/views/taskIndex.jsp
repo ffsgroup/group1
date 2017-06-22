@@ -129,11 +129,6 @@
             <script src="resources/dhtmlxcalendar.js"></script>
             <link rel="stylesheet" type="text/css" href="resources/dhtmlxcalendar_1.css">
 
-            <script>
-                    var x = document.getElementById("countrytable").rows.length;
-                    document.getElementById("taskcounter").innerHTML = x ;
-               
-            </script>
 
             <script>
 
