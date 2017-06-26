@@ -31,10 +31,10 @@
                                 rowNew.children().eq(2).text(value['tranComment']);
 
                                 rowNew.appendTo(table2);
-                            });   
+                            });
                         } else {
                             document.getElementById("memtitle").value = "No such member";
-                        } 
+                        }
                     });
 
                 }
@@ -63,7 +63,7 @@
 
                                 rowNew.appendTo(table2);
                                 // Display payment method
-                                 document.getElementById("paidrecmeth").innerHTML = value['betmet'];
+                                document.getElementById("paidrecmeth").innerHTML = value['betmet'];
                             });
                         } else {
                             document.getElementById("memtitle").value = "No such member";
@@ -72,12 +72,13 @@
 
                 }
                 function membergetdepen() {
-
+                    var countDepen = 0;
                     $.get('MemberGetDepen', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
 
                         if (responseJson != null) {
                             var table3 = $("#depend");
                             $.each(responseJson, function (key, value) {
+                                countDepen++;
                                 var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
                                 rowNew.children().eq(0).text(value['ini']);
                                 rowNew.children().eq(1).text(value['sur']);
@@ -87,14 +88,15 @@
 //                                    rowNew.children().eq(5).text(value['tranid']);
                                 rowNew.children().eq(6).text(value['premie']);
                                 rowNew.children().eq(7).text(value['status']);
-                                rowNew.children().eq(8).text(value['statusdate']); 
+                                rowNew.children().eq(8).text(value['statusdate']);
                                 rowNew.children().eq(9).text(value['tranid']);
 
-                                
+
 
 
                                 rowNew.appendTo(table3);
                             });
+                            document.getElementById('nrdepen').value = countDepen;
                         } else {
                             var table3 = $("#depend");
                             var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
@@ -241,8 +243,8 @@
                                     document.getElementById("benefdate").value = value['benefdate'];
                                     //Tab 5 Receipts
                                     document.getElementById("paidrecdate").innerHTML = value['bettot'];
-                                    
-                                    
+                                    document.getElementById("creditrec").innerHTML = value['krediet'];
+
 
                                 });
                             } else {
@@ -310,7 +312,7 @@
                     myCalendar.show();
                     myCalendar.hideTime();
                     myCalendar.showToday();
-                    myCalendar.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09","2017-09-24","2017-09-25","2017-12-16","2017-12-25","2017-12-26","2018-01-01"]);
+                    myCalendar.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01"]);
                     myCalendar.setTooltip("2017-01-01", "New Year's Day", true, true);
                     myCalendar.setTooltip("2017-01-02", "Public HoliDay", true, true);
                     myCalendar.setTooltip("2017-03-21", "Human Rights Day", true, true);
@@ -326,7 +328,7 @@
                     myCalendar.setTooltip("2017-12-25", "Christmas Day", true, true);
                     myCalendar.setTooltip("2017-12-26", "Day of Good Will", true, true);
                     myCalendar.setTooltip("2018-01-01", "New Years Day", true, true);
-                    
+
                     myCalendar._drawMonth(new Date);
                     myCalendar.attachEvent("onClick", function (side, d) {
                         //	writeLog("onClick event called, "+side+" calendar, date "+myCalendar.getFormatedDate(null,d));
@@ -406,7 +408,7 @@
                     <script>
                         var myCalendar1 = new dhtmlXCalendarObject(["poldate"]);
                         myCalendar1.setDateFormat("%Y/%m/%d %H:%i");
-                        
+
                         var myCalendar2 = new dhtmlXCalendarObject(["memstatusday"]);
                         myCalendar2.setDateFormat("%Y/%m/%d %H:%i");
                         var myCalendar3 = new dhtmlXCalendarObject(["memrecruitdate"]);
@@ -700,7 +702,7 @@
                         <input type="button" id="newrec" value="New Rec" style="margin-left:20px;width:90px">
                         <br>
                         <label style="margin-left:0px"> Credit </label>
-                        <label style="margin-left:10px"> 00 </label>      
+                        <label style="margin-left:10px" id="creditrec"> 00 </label>      
                         <input type="button" id="printoldrec" value="Print" style="margin-left:485px;width:90px;">
                     <input type="button" id="viewoldrec" value="View Old" style="margin-left:20px; width:90px;">
                     <br>
@@ -840,6 +842,6 @@
                     </div> 
 
                 </div>
-
+              
             </body>
         </html>

@@ -492,6 +492,7 @@ public class MemUtils {
             members.setbenefname(rs.getString("benefname"));
             members.setbenefID(rs.getString("benefID"));
             members.setbenefRelation(rs.getString("benefRelation"));
+            members.setkrediet(rs.getString("krediet"));
 //                members.setbenefdate(rs.getString("benefdate"));
             members.setbenefdate(benefdate);
 

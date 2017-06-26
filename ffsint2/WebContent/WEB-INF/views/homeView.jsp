@@ -28,7 +28,7 @@
         <div id="header" style="background-color: grey" >
 
             <!-- Logo -->
-            <h1><a href="${pageContext.request.contextPath}/#" id="logo">FFS GROUP<em>(Pty) LTD</em></a></h1>
+            <h1><a href="${pageContext.request.contextPath}/#" id="logo">INTRANET SOLUTIONS <em>(Pty) LTD</em></a></h1>
 
             <!-- Nav -->
             <nav id="nav">
@@ -56,7 +56,7 @@
                     <li><a href="${pageContext.request.contextPath}/aboutus">About Us</a></li>
 <!--                    <li><a href="right-sidebar.html">Contact Us</a></li>-->
                     <!--                    <li><a href="two-sidebar.html">Two Sidebar</a></li>-->
-                    <li><a href="${pageContext.request.contextPath}/login">Login</a></li>
+                    <li><a href="${pageContext.request.contextPath}/login">Demo</a></li>
                 </ul>
             </nav>
 
@@ -261,7 +261,7 @@
             <!-- Copyright -->
             <div class="copyright">
                 <ul class="menu">
-                    <li>  &copy; FFS (Pty) Ltd. 2017 All rights reserved</li>
+                    <li>  &copy; INTRANET SOLUTIONS (Pty) Ltd. 2017 All rights reserved</li>
                 </ul>
             </div>
 
