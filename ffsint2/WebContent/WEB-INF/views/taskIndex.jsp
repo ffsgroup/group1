@@ -258,12 +258,14 @@
                         document.getElementById("ToMeComp").checked = false;
                         document.getElementById("UpdatedTasks").checked = false;
                         document.getElementById("TrainingTasks").checked = false;
+                          var counter = 0;
                         $.get('taskUrgent', function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
 
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
+                                     counter++;
                                     var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
@@ -274,6 +276,7 @@
                                     rowNew.children().eq(6).text(value['startdate']);
                                     rowNew.appendTo(table1);
                                 });
+                                  document.getElementById('taskcounter').innerHTML = counter;
                                 document.getElementsById("countrytable")[0].style.width = '20px';
                             } else
                             {
@@ -297,12 +300,14 @@
                         document.getElementById("ToMeComp").checked = false;
                         document.getElementById("UrgentTasks").checked = false;
                         document.getElementById("TrainingTasks").checked = false;
+                              var counter = 0;
                         $.get('TaskUpdated', function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
 
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
+                                       counter++;
                                     var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
@@ -313,6 +318,7 @@
                                     rowNew.children().eq(6).text(value['startdate']);
                                     rowNew.appendTo(table1);
                                 });
+                                  document.getElementById('taskcounter').innerHTML = counter;
                                 document.getElementsById("countrytable")[0].style.width = '20px';
                             } else
                             {
@@ -336,12 +342,14 @@
                         document.getElementById("UpdatedTasks").checked = false;
                         document.getElementById("UrgentTasks").checked = false;
                         document.getElementById("TrainingTasks").checked = false;
+                              var counter = 0;
                         $.get('TaskToMeComp', function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
 
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
+                                           counter++;
                                     var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
@@ -352,6 +360,7 @@
                                     rowNew.children().eq(6).text(value['startdate']);
                                     rowNew.appendTo(table1);
                                 });
+                                  document.getElementById('taskcounter').innerHTML = counter;
                                 document.getElementsById("countrytable")[0].style.width = '20px';
                             }
                         });
@@ -370,12 +379,14 @@
                         document.getElementById("UpdatedTasks").checked = false;
                         document.getElementById("UrgentTasks").checked = false;
                         document.getElementById("TrainingTasks").checked = false;
+                        var counter = 0;
                         $.get('TaskNew', function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
 
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
+                                       counter++;
                                     var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
@@ -386,6 +397,7 @@
                                     rowNew.children().eq(6).text(value['startdate']);
                                     rowNew.appendTo(table1);
                                 });
+                                  document.getElementById('taskcounter').innerHTML = counter;
                                 document.getElementsById("countrytable")[0].style.width = '20px';
                             }
                         });
@@ -404,12 +416,14 @@
                         document.getElementById("UpdatedTasks").checked = false;
                         document.getElementById("UrgentTasks").checked = false;
                         document.getElementById("TrainingTasks").checked = false;
+                        var counter = 0;
                         $.get('TaskByMeComp', function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
 
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
+                                       counter++;
                                     var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskto1']);
@@ -420,6 +434,7 @@
                                     rowNew.children().eq(6).text(value['startdate']);
                                     rowNew.appendTo(table1);
                                 });
+                                  document.getElementById('taskcounter').innerHTML = counter;
                                 document.getElementsById("countrytable")[0].style.width = '20px';
                             }
                         });
@@ -437,12 +452,14 @@
                         document.getElementById("UpdatedTasks").checked = false;
                         document.getElementById("UrgentTasks").checked = false;
                         document.getElementById("TrainingTasks").checked = false;
+                             var counter = 0;
                         $.get('TaskInFuture', function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
 
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
+                                      counter++;
                                     var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
@@ -453,6 +470,7 @@
                                     rowNew.children().eq(6).text(value['startdate']);
                                     rowNew.appendTo(table1);
                                 });
+                                  document.getElementById('taskcounter').innerHTML = counter;
                                 document.getElementsById("countrytable")[0].style.width = '20px';
                             }
                         });
@@ -471,12 +489,14 @@
                         document.getElementById("UpdatedTasks").checked = false;
                         document.getElementById("UrgentTasks").checked = false;
                         document.getElementById("TrainingTasks").checked = false;
+                        var counter = 0;
                         $.get('TaskByMe', function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
 
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
+                                    counter++;
                                     var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskto1']);
@@ -487,6 +507,7 @@
                                     rowNew.children().eq(6).text(value['startdate']);
                                     rowNew.appendTo(table1);
                                 });
+                                document.getElementById('taskcounter').innerHTML = counter;
                                 document.getElementsById("countrytable")[0].style.width = '20px';
                             }
                         });
@@ -545,7 +566,7 @@
             <input type="checkbox" id="UpdatedTasks" value="ToMe">Updated Tasks
             <input type="checkbox" id="UrgentTasks" value="ByMe">Urgent Tasks
             <input type="checkbox" id="TrainingTasks" value="ToMe">Training Tasks
-            <label style="margin-left:150px;">
+            <label style="margin-left:400px;">
                 <label id="taskcounter">0</label>
             </label>  
             <script>

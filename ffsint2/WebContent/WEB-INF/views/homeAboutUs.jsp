@@ -30,7 +30,7 @@
             <div id="header" style="background-color: grey" >
 
                 <!-- Logo -->
-                <h1><a href="${pageContext.request.contextPath}/#" id="logo">FFS GROUP<em>(Pty) LTD</em></a></h1>
+                <h1><a href="${pageContext.request.contextPath}/#" id="logo">INTRANET SOLUTIONS <em>(Pty) LTD</em></a></h1>
 
                 <!-- Nav -->
                 <nav id="nav">
@@ -58,7 +58,7 @@
                         <li class="current"><a href="${pageContext.request.contextPath}/aboutus">About Us</a></li>
                         <!--                    <li><a href="right-sidebar.html">Contact Us</a></li>-->
                         <!--                    <li><a href="two-sidebar.html">Two Sidebar</a></li>-->
-                        <li><a href="${pageContext.request.contextPath}/login">Login</a></li>
+                        <li><a href="${pageContext.request.contextPath}/login">Demo</a></li>
                     </ul>
                 </nav>
 
@@ -79,7 +79,7 @@
 
                             <span class="image featured"><img src="resources/images/banner.jpg" alt="" /></span>
 
-                            <p>FFS Group is Powering Businesses Through Information and Technology and is driven by the desire to help businesses like yours
+                            <p>Intranet Solutions is Powering Businesses Through Information and Technology and is driven by the desire to help businesses like yours
                                 unlock the power of information and technology – to function optimally. Our services are purposefully designed to let you work smarter, 
                                 not harder – from placing useful data at your fingertips – to creating technology platforms to enable business success. 
                                 This includes the custom engineering of software, solutions to leverage business intelligence, Task Manager, Diary, 
@@ -87,7 +87,7 @@
                                </p>
 
                             <h3>INDUSTRIES AND CLIENTS</h3>
-                            <p>FFS Group has delivered consulting services in the private and corporate sector. We have been consulted to provide consulting and
+                            <p>Intranet Solutions has delivered consulting services in the private and corporate sector. We have been consulted to provide consulting and
                                 software development services for various corporate firms such as SANLAM SKY, GRADRISK and W J MITCHELL & ASSOCIATES  amongst others.</p>
                             
                             <h3>OUR MISSION</h3>
@@ -169,7 +169,7 @@
             <!-- Copyright -->
             <div class="copyright">
                 <ul class="menu">
-                    <li>  &copy; FFS (Pty) Ltd. 2017 All rights reserved</li>
+                    <li>  &copy; INTRANET SOLUTIONS (Pty) Ltd. 2017 All rights reserved</li>
                 </ul>
             </div>
 
