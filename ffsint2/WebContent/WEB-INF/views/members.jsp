@@ -244,10 +244,8 @@
                                     //Tab 5 Receipts
                                     document.getElementById("paidrecdate").innerHTML = value['bettot'];
                                     document.getElementById("creditrec").innerHTML = value['krediet'];
-
-
                                 });
-                            } else {
+                            } else {  // json response not null
                                 document.getElementById("memtitle").value = "No such member";
                                 document.getElementById("memname").value = "";
                                 document.getElementById("memsur").value = "";
@@ -270,12 +268,50 @@
                                 document.getElementById("memtotprem").value = "";
                             }
                         });
+
+                        if (document.getElementById("memnum").value.length === 8) {
+                            $.get('MemberGetExtraPol', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
+                                if (responseJson != null) {
+                                    $.each(responseJson, function (key, value) {
+                                        document.getElementById("addpol1").innerHTML = value['secPol1'];
+                                        document.getElementById("addpol1am").innerHTML  = value['secPol1Premie'];
+                                        document.getElementById("addpol2").innerHTML  = value['secPol2'];
+                                        document.getElementById("addpol2am").innerHTML  = value['secPol2Premie'];
+                                        document.getElementById("addpol3").innerHTML  = value['secPol3'];
+                                        document.getElementById("addpol3am").innerHTML  = value['secPol3Premie'];
+                                        document.getElementById("addpol4").innerHTML  = value['secPol4'];
+                                        document.getElementById("addpol4am").innerHTML = value['secPol4Premie'];
+                                        document.getElementById("addpol5").innerHTML = value['secPol5'];
+                                        document.getElementById("addpol5am").innerHTML  = value['secPol5Premie'];
+                                        document.getElementById("addpol6").innerHTML  = value['secPol6'];
+                                        document.getElementById("addpol6am").innerHTML  = value['secPol6Premie'];
+                                        document.getElementById("addpol7").innerHTML  = value['secPol7'];
+                                        document.getElementById("addpol7am").innerHTML  = value['secPol7Premie'];
+                                       
+                                    });
+                                } else {
+                                    document.getElementById("addpol1").innerHTML  = "";
+                                        document.getElementById("addpol1am").innerHTML  = "";
+                                        document.getElementById("addpol2").innerHTML  = "";
+                                        document.getElementById("addpol2am").innerHTML  = "";
+                                        document.getElementById("addpol3").innerHTML  = "";
+                                        document.getElementById("addpol3am").innerHTML  = "";
+                                        document.getElementById("addpol4").innerHTML  = "";
+                                        document.getElementById("addpol4am").innerHTML  = "";
+                                        document.getElementById("addpol5").innerHTML  = "";
+                                        document.getElementById("addpol5am").innerHTML  = "";
+                                        document.getElementById("addpol6").innerHTML  = "";
+                                        document.getElementById("addpol6am").innerHTML  = "";
+                                        document.getElementById("addpol7").innerHTML  = "";
+                                        document.getElementById("addpol7am").innerHTML  = "";
+                                }
+                            });
+                        }
+
+
                         $("#depend").find("tr:gt(0)").remove();
                         $("#recgrid").find("tr:gt(0)").remove();
                         $("#notesgrid").find("tr:gt(0)").remove();
-
-
-
 
                     } else {
                         document.getElementById("memtitle").value = "No such member";
@@ -842,6 +878,6 @@
                     </div> 
 
                 </div>
-              
+
             </body>
         </html>

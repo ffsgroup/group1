@@ -4,6 +4,7 @@ import ffsbeans.MemberNote;
 import ffsbeans.MemberDepen;
 import ffsbeans.MemberRec;
 import ffsbeans.Member;
+import ffsbeans.MemberExtraPol;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,8 +16,7 @@ import java.util.GregorianCalendar;
 import java.sql.Connection;
 
 public class MemUtils {
-    
-    
+
     public static ArrayList<MemberNote> getmemberNotes(Connection conn, String thisMember, String userName) throws SQLException {
 
         System.out.println("getmemberNotes " + thisMember);
@@ -28,18 +28,19 @@ public class MemUtils {
         ArrayList<MemberNote> list = new ArrayList<MemberNote>();
         while (rs.next()) {
             MemberNote membernotes = new MemberNote();
-                          Date date = new Date();
+            Date date = new Date();
             Calendar calendar = new GregorianCalendar();
 
-        //Fails if date is 0000-00-00
-             if (rs.getTimestamp("trandate") == null) {
-                System.out.println("12" );
+            //Fails if date is 0000-00-00
+            if (rs.getTimestamp("trandate") == null) {
+                System.out.println("12");
                 calendar.setTime(rs.getTimestamp("dateMod"));
-            } else {if(rs.getTimestamp("trandate").getYear() > 1900){
-               calendar.setTime(rs.getTimestamp("trandate"));  
-            } else{
-                calendar.setTime(rs.getTimestamp("dateMod"));
-            }
+            } else {
+                if (rs.getTimestamp("trandate").getYear() > 1900) {
+                    calendar.setTime(rs.getTimestamp("trandate"));
+                } else {
+                    calendar.setTime(rs.getTimestamp("dateMod"));
+                }
             }
 
             String year = Integer.toString(calendar.get(Calendar.YEAR));
@@ -53,16 +54,14 @@ public class MemUtils {
             }
             String dateMod = year + "/" + month + "/" + day;
 
-              membernotes.settranId(rs.getString("tranId"));
-               membernotes.settranUserId(rs.getString("tranUserId"));
-                membernotes.settranComment(rs.getString("tranComment"));
-                membernotes.setdateMod(dateMod);
+            membernotes.settranId(rs.getString("tranId"));
+            membernotes.settranUserId(rs.getString("tranUserId"));
+            membernotes.settranComment(rs.getString("tranComment"));
+            membernotes.setdateMod(dateMod);
             list.add(membernotes);
         }
         return list;
     }
-    
-    
 
     public static ArrayList<MemberDepen> getMemberDepen(Connection conn, String thisMember, String userName) throws SQLException {
 
@@ -248,7 +247,10 @@ public class MemUtils {
 //            members.setrecruitdate(rs.getString("recruitdate"));
             Date date = new Date();
             Calendar calendar = new GregorianCalendar();
-
+            String thistime;
+            if (rs.getTimestamp("postdate") == null) {
+              thistime = "";  
+            } else {
             calendar.setTime(rs.getTimestamp("recruitdate"));
             String year = Integer.toString(calendar.get(Calendar.YEAR));
             String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
@@ -261,7 +263,8 @@ public class MemUtils {
             if (length2 == 1) {
                 day = "0" + day;
             }
-
+            thistime = year + "/" + month + "/" + day;
+            }
             Date date1 = new Date();
             Calendar cal1 = new GregorianCalendar();
 
@@ -402,7 +405,6 @@ public class MemUtils {
             if (day6.length() == 1) {
                 day6 = "0" + day6;
             }
-            
             // Calender for today
             Date date16 = new Date();
             Calendar calendar16 = new GregorianCalendar();
@@ -430,23 +432,11 @@ public class MemUtils {
             if (day7.length() == 1) {
                 day7 = "0" + day7;
             }
-            
-               int yearsInBetween = calendar6.get(Calendar.YEAR) 
-                                - calendar16.get(Calendar.YEAR);
-                int monthsDiff = calendar6.get(Calendar.MONTH) 
-                                - calendar16.get(Calendar.MONTH);
 
-//                if (month6 > month16)
-//                {
-//                  String byear = year16 - year6 - 1;
-//                  String bmonth = 12 - month6 + month16; 
-//                }
-
-
-      
-
-
-
+            int yearsInBetween = calendar6.get(Calendar.YEAR)
+                    - calendar16.get(Calendar.YEAR);
+            int monthsDiff = calendar6.get(Calendar.MONTH)
+                    - calendar16.get(Calendar.MONTH);
             String aanstdat = year7 + "/" + month7 + "/" + day7;
             String gebdat = year6 + "/" + month6 + "/" + day6;
             String benefdate = year5 + "/" + month5 + "/" + day5;
@@ -454,14 +444,11 @@ public class MemUtils {
             String eisdat = year3 + "/" + month3 + "/" + day3;
             String joindat = year2 + "/" + month2 + "/" + day2;
             String postdate = year1 + "/" + month1 + "/" + day1;
-            String thistime = year + "/" + month + "/" + day;
-            members.setrecruitdate(thistime);
             
-          
+            members.setrecruitdate(thistime);
             members.settroustat(rs.getString("troustat"));
             members.setgebdat(gebdat);
             members.setaanstdat(aanstdat);
-//            members.setjoindat(rs.getString("joindat"));
             members.setorgid(rs.getString("orgid"));
             members.setlidtipe(rs.getString("lidtipe"));
             members.settaal(rs.getString("taal"));
@@ -568,4 +555,39 @@ public class MemUtils {
         return list;
     }
 
+        public static ArrayList<MemberExtraPol> getMemberExtraPol(Connection conn, String thisMember, String loginedUser) throws SQLException {
+        System.out.println("getMemberExtraPol " + thisMember);    
+        String sql = "Select * from extrapol where mainpol = ?";
+
+        PreparedStatement pstm = conn.prepareStatement(sql);
+pstm.setString(1, thisMember);
+        ResultSet rs = pstm.executeQuery();
+        ArrayList<MemberExtraPol> list = new ArrayList<MemberExtraPol>();
+        while (rs.next()) {
+            MemberExtraPol memberextra = new MemberExtraPol();
+            memberextra.setSecPol1(rs.getString("secpol1"));
+            memberextra.setSecPol1Premie(rs.getString("secpol1premie"));
+            memberextra.setSecPol2(rs.getString("secpol2"));
+            memberextra.setSecPol2Premie(rs.getString("secpol2premie"));
+            memberextra.setSecPol3(rs.getString("secpol3"));
+            memberextra.setSecPol3Premie(rs.getString("secpol3premie"));
+            memberextra.setSecPol4(rs.getString("secpol4"));
+            memberextra.setSecPol4Premie(rs.getString("secpol4premie"));
+            memberextra.setSecPol5(rs.getString("secpol5"));
+            memberextra.setSecPol5Premie(rs.getString("secpol5premie"));
+            memberextra.setSecPol6(rs.getString("secpol6"));
+            memberextra.setSecPol6Premie(rs.getString("secpol6premie"));
+            memberextra.setSecPol7(rs.getString("secpol7"));
+            memberextra.setSecPol7Premie(rs.getString("secpol7premie"));
+            memberextra.setSecPol8(rs.getString("secpol8"));
+            memberextra.setSecPol8Premie(rs.getString("secpol8premie"));
+            memberextra.setSecPol9(rs.getString("secpol9"));
+            memberextra.setSecPol9Premie(rs.getString("secpol9premie"));
+            memberextra.setSecPol10(rs.getString("secpol10"));
+            memberextra.setSecPol10Premie(rs.getString("secpol10premie"));
+            list.add(memberextra);
+        }
+        return list;
+    }
+        
 }
