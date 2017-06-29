@@ -1,5 +1,6 @@
 package ffsutils;
 
+import ffsbeans.MemberImages;
 import ffsbeans.MemberNote;
 import ffsbeans.MemberDepen;
 import ffsbeans.MemberRec;
@@ -16,6 +17,54 @@ import java.util.GregorianCalendar;
 import java.sql.Connection;
 
 public class MemUtils {
+    
+    public static ArrayList<MemberImages> getmemberImages(Connection conn, String thisMember, String userName) throws SQLException {
+
+        System.out.println("getmemberImages " + thisMember);
+         String tranid2 = "";
+        Integer comp = 2;
+        Integer tranlen = thisMember.length();
+
+        if (tranlen.equals(1)) {
+            tranid2 = "0" + thisMember;
+        }
+        if (tranlen.equals(2)) {
+            tranid2 = thisMember;
+        }
+        if (tranlen > 2) {
+            tranid2 = thisMember.substring(thisMember.length() - 2);
+        }
+        String sql = "Select tranid,user,description,datemod from imagelibrary" + tranid2 + " a where lidno = ?";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, thisMember);
+
+        ResultSet rs = pstm.executeQuery();
+        ArrayList<MemberImages> list = new ArrayList<MemberImages>();
+        while (rs.next()) {
+            MemberImages memberimages = new MemberImages();
+            Date date = new Date();
+            Calendar calendar = new GregorianCalendar();
+
+            calendar.setTime(rs.getTimestamp("dateMod"));
+            String year = Integer.toString(calendar.get(Calendar.YEAR));
+            String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
+            String day = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH));
+            if (month.length() == 1) {
+                month = "0" + month;
+            }
+            if (day.length() == 1) {
+                day = "0" + day;
+            }
+            String dateMod = year + "/" + month + "/" + day;
+
+            memberimages.settranId(rs.getString("tranId"));
+            memberimages.setuser(rs.getString("user"));
+            memberimages.setdescription(rs.getString("description"));
+            memberimages.setdateMod(dateMod);
+            list.add(memberimages);
+        }
+        return list;
+    }
 
     public static ArrayList<MemberNote> getmemberNotes(Connection conn, String thisMember, String userName) throws SQLException {
 
