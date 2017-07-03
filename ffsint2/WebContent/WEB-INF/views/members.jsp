@@ -13,9 +13,36 @@
         <style type="text/css">
             table, th, td {
                 border: 1px solid black;
+            }
             </style>
             <title>Members</title>
             <script>
+                
+                function memberGetClaims() {
+
+                    // get member notes
+                    $.get('MemberGetClaims', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
+
+                        if (responseJson != null) {
+                            var table2 = $("#claimgrid");
+                            $.each(responseJson, function (key, value) {
+                                var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+                                rowNew.children().eq(0).text(value['ClaimNr']);
+                                rowNew.children().eq(1).text(value['ClaimDate']);
+                                rowNew.children().eq(2).text(value['DeceasedIni']);
+                                rowNew.children().eq(3).text(value['DeceasedSur']);
+                                rowNew.children().eq(4).text(value['DateOfDeath']);
+                                rowNew.children().eq(5).text(value['ClaimStatus']);
+
+                                rowNew.appendTo(table2);
+                            });
+                        } else { 
+                            document.getElementById("memtitle").value = "No such member";
+                        }
+                    });
+
+                }
+                
                 
                 function memberGetImages() {
 
@@ -336,6 +363,7 @@
                         $("#recgrid").find("tr:gt(0)").remove();
                         $("#notesgrid").find("tr:gt(0)").remove();
                         $("#imagegrid").find("tr:gt(0)").remove();
+                        $("#claimgrid").find("tr:gt(0)").remove();
 
                     } else {
                         document.getElementById("memtitle").value = "No such member";
@@ -488,7 +516,7 @@
                     <li><a href="#tabs-4">Account</a></li>
                     <li><a href="#tabs-5" onclick="membergetrec();">Receipts</a></li>
                     <li><a href="#tabs-6" onclick="memberGetNotes();">Notes</a></li>
-                    <li><a href="#tabs-7">Claims</a></li>
+                    <li><a href="#tabs-7" onclick="memberGetClaims()">Claims</a></li>
                     <li><a href="#tabs-8" onclick="memberGetImages();">Images</a></li>
                     <li><a href="#tabs-9">Letters</a></li>
                     <li><a href="#tabs-10">Voice</a></li>
