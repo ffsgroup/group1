@@ -13,9 +13,82 @@
         <style type="text/css">
             table, th, td {
                 border: 1px solid black;
+            }
             </style>
             <title>Members</title>
             <script>
+                
+                function memberGetVoice() {
+
+                    // get member notes
+                    $.get('MemberGetVoice', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
+
+                        if (responseJson != null) {
+                            var table2 = $("#voicegrid");
+                            $.each(responseJson, function (key, value) {
+                                var rowNew = $("<tr><td></td><td></td><td></td></tr>");
+                                rowNew.children().eq(0).text(value['user']);
+                                rowNew.children().eq(1).text(value['dateMod']);
+                                rowNew.children().eq(2).text(value['description']);
+
+                                rowNew.appendTo(table2);
+                            });
+                        } else {
+                            document.getElementById("memtitle").value = "No such member";
+                        }
+                    });
+
+                }
+                
+                
+                function memberGetClaims() {
+
+                    // get member notes
+                    $.get('MemberGetClaims', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
+
+                        if (responseJson != null) {
+                            var table2 = $("#claimgrid");
+                            $.each(responseJson, function (key, value) {
+                                var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+                                rowNew.children().eq(0).text(value['ClaimNr']);
+                                rowNew.children().eq(1).text(value['ClaimDate']);
+                                rowNew.children().eq(2).text(value['DeceasedIni']);
+                                rowNew.children().eq(3).text(value['DeceasedSur']);
+                                rowNew.children().eq(4).text(value['DateOfDeath']);
+                                rowNew.children().eq(5).text(value['ClaimStatus']);
+
+                                rowNew.appendTo(table2);
+                            });
+                        } else { 
+                            document.getElementById("memtitle").value = "No such member";
+                        }
+                    });
+
+                }
+                
+                
+                function memberGetImages() {
+
+                    // get member notes
+                    $.get('MemberGetImages', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
+
+                        if (responseJson != null) {
+                            var table2 = $("#imagegrid");
+                            $.each(responseJson, function (key, value) {
+                                var rowNew = $("<tr><td></td><td></td><td></td></tr>");
+                                rowNew.children().eq(0).text(value['user']);
+                                rowNew.children().eq(1).text(value['dateMod']);
+                                rowNew.children().eq(2).text(value['description']);
+
+                                rowNew.appendTo(table2);
+                            });
+                        } else {
+                            document.getElementById("memtitle").value = "No such member";
+                        }
+                    });
+
+                }
+
 
                 function memberGetNotes() {
 
@@ -312,6 +385,8 @@
                         $("#depend").find("tr:gt(0)").remove();
                         $("#recgrid").find("tr:gt(0)").remove();
                         $("#notesgrid").find("tr:gt(0)").remove();
+                        $("#imagegrid").find("tr:gt(0)").remove();
+                        $("#claimgrid").find("tr:gt(0)").remove();
 
                     } else {
                         document.getElementById("memtitle").value = "No such member";
@@ -464,10 +539,10 @@
                     <li><a href="#tabs-4">Account</a></li>
                     <li><a href="#tabs-5" onclick="membergetrec();">Receipts</a></li>
                     <li><a href="#tabs-6" onclick="memberGetNotes();">Notes</a></li>
-                    <li><a href="#tabs-7">Claims</a></li>
-                    <li><a href="#tabs-8">Images</a></li>
+                    <li><a href="#tabs-7" onclick="memberGetClaims()">Claims</a></li>
+                    <li><a href="#tabs-8" onclick="memberGetImages();">Images</a></li>
                     <li><a href="#tabs-9">Letters</a></li>
-                    <li><a href="#tabs-10">Voice</a></li>
+                    <li><a href="#tabs-10" onclick="memberGetVoice();">Voice</a></li>
                 </ul>
 
                 <div id="tabs-1">
@@ -488,31 +563,31 @@
                     <br>
                     <div id="alert5" style="color:red; float:left;"> Alert 5 </div>
                     <div id="alert6" style="color:red; float:left; margin-left:200px"> Alert 6 </div>
-                        <div id="addpol1am" style="float: right; text-align: right;margin-right:30px;">100</div>
-                    <div id ="addpol1" style="float: right; text-align: right;margin-right:30px;">00000001</div>
+                        <div id="addpol1am" style="float: right; text-align: right;margin-right:30px;"></div>
+                    <div id ="addpol1" style="float: right; text-align: right;margin-right:30px;"></div>
                     <br>
                     <div id="alert7" style="color:red; float:left;"> Alert 7 </div>
                     <div id="alert8" style="color:red; float:left; margin-left:200px"> Alert 8 </div> 
-                        <div id="addpol2am" style="float: right; text-align: right;margin-right:30px;">80</div>
-                    <div id ="addpol2" style="float: right; text-align: right;margin-right:30px;">00000002</div>
+                        <div id="addpol2am" style="float: right; text-align: right;margin-right:30px;"></div>
+                    <div id ="addpol2" style="float: right; text-align: right;margin-right:30px;"></div>
                     <br>
                     <div id="alert9" style="color:red; float:left;"> Alert 9 </div>
-                    <div id="addpol3am" style="float: right; text-align: right;margin-right:30px;">70</div>
-                    <div id ="addpol3" style="float: right; text-align: right;margin-right:30px;">00000003</div>
+                    <div id="addpol3am" style="float: right; text-align: right;margin-right:30px;"></div>
+                    <div id ="addpol3" style="float: right; text-align: right;margin-right:30px;"></div>
                     <br>
                     <div id="alert10" style="color:red; float:left;"> Alert Dependent </div>
-                    <div id="addpol4am" style="float: right; text-align: right;margin-right:30px;">60</div>
-                    <div id ="addpol4" style="float: right; text-align: right;margin-right:30px;">00000004</div>
+                    <div id="addpol4am" style="float: right; text-align: right;margin-right:30px;"></div>
+                    <div id ="addpol4" style="float: right; text-align: right;margin-right:30px;"></div>
                     <br>
 
-                    <div id="addpol5am" style="float: right; text-align: right;margin-right:30px;">50</div>
-                    <div id ="addpol5" style="float: right; text-align: right;margin-right:30px;">00000005</div>
+                    <div id="addpol5am" style="float: right; text-align: right;margin-right:30px;"></div>
+                    <div id ="addpol5" style="float: right; text-align: right;margin-right:30px;"></div>
                     <br>                
-                    <div id="addpol6am" style="float: right; text-align: right;margin-right:30px;">40</div>
-                    <div id ="addpol6" style="float: right; text-align: right;margin-right:30px;">00000006</div>
+                    <div id="addpol6am" style="float: right; text-align: right;margin-right:30px;"></div>
+                    <div id ="addpol6" style="float: right; text-align: right;margin-right:30px;"></div>
                     <br>                
-                    <div id="addpol7am" style="float: right; text-align: right;margin-right:30px;">30</div>
-                    <div id ="addpol7" style="float: right; text-align: right;margin-right:30px;">00000007</div>
+                    <div id="addpol7am" style="float: right; text-align: right;margin-right:30px;"></div>
+                    <div id ="addpol7" style="float: right; text-align: right;margin-right:30px;"></div>
                     <br>
                 </div>
 
@@ -581,7 +656,7 @@
                                     <th style="width:100px" scope="col">ID</th> 
 
                                 </tr>
-                                <tr>
+<!--                                <tr>
                                     <td> 08:00 </td> <td> </td> <td> </td> <td> </td></tr>
                                 <tr>   <td> 08:30 </td> <td> </td> <td> </td> <td> </td></tr>
                                 <tr><td> 09:00 </td> <td> </td> <td> </td> <td> </td></tr>
@@ -589,7 +664,7 @@
                                 <tr><td> 10:00 </td> <td> </td> <td> </td> <td> </td></tr>
                                 <tr><td> 10:30 </td> <td> </td> <td> </td> <td> </td></tr>
                                 <tr><td> 11:00 </td> <td> </td> <td> </td> <td> </td></tr>
-                                <tr><td> 11:30 </td> <td> </td> <td> </td> <td> </td></tr>
+                                <tr><td> 11:30 </td> <td> </td> <td> </td> <td> </td></tr>-->
 
                             </table>
                         </div>
@@ -758,7 +833,7 @@
                                     <th style="width:100px" scope="col">Declaration</th> 
 
                                 </tr>
-                                <tr>
+<!--                                <tr>
                                     <td> 08:00 </td> <td> </td> <td> </td> <td> </td></tr>
                                 <tr>   <td> 08:30 </td> <td> </td> <td> </td> <td> </td></tr>
                                 <tr><td> 09:00 </td> <td> </td> <td> </td> <td> </td></tr>
@@ -766,7 +841,7 @@
                                 <tr><td> 10:00 </td> <td> </td> <td> </td> <td> </td></tr>
                                 <tr><td> 10:30 </td> <td> </td> <td> </td> <td> </td></tr>
                                 <tr><td> 11:00 </td> <td> </td> <td> </td> <td> </td></tr>
-                                <tr><td> 11:30 </td> <td> </td> <td> </td> <td> </td></tr>
+                                <tr><td> 11:30 </td> <td> </td> <td> </td> <td> </td></tr>-->
 
                             </table>
                         </div>
@@ -787,12 +862,12 @@
                                     <th style="width:100px" scope="col">Description</th> 
 
                                 </tr>
-                                <tr>
+<!--                                <tr>
                                     <td> 08:00 </td> <td> </td> <td> </td> <td> </td></tr>
                                 <tr>   <td> 08:30 </td> <td> </td> <td> </td> <td> </td></tr>
                                 <tr><td> 09:00 </td> <td> </td> <td> </td> <td> </td></tr>
                                 <tr><td> 09:30 </td> <td> </td> <td> </td> <td> </td></tr>
-                                <tr><td> 10:00 </td> <td> </td> <td> </td> <td> </td></tr>                             
+                                <tr><td> 10:00 </td> <td> </td> <td> </td> <td> </td></tr>                             -->
 
                             </table>
                         </div> 
@@ -834,12 +909,12 @@
                                     <th style="width:100px" scope="col">Date</th> 
                                     <th style="width:100px" scope="col">Description</th>  
                                 </tr>
-                                <tr>
+<!--                                <tr>
                                     <td> 08:00 </td> <td> </td> <td> </td> <td> </td></tr>
                                 <tr>   <td> 08:30 </td> <td> </td> <td> </td> <td> </td></tr>
                                 <tr><td> 09:00 </td> <td> </td> <td> </td> <td> </td></tr>
                                 <tr><td> 09:30 </td> <td> </td> <td> </td> <td> </td></tr>
-                                <tr><td> 10:00 </td> <td> </td> <td> </td> <td> </td></tr>                             
+                                <tr><td> 10:00 </td> <td> </td> <td> </td> <td> </td></tr>                             -->
                             </table>
                         </div> 
                     </div> 
@@ -867,12 +942,12 @@
                                     <th style="width:100px" scope="col">Date</th> 
                                     <th style="width:100px" scope="col">Description</th>  
                                 </tr>
-                                <tr>
+<!--                                <tr>
                                     <td> 08:00 </td> <td> </td> <td> </td> <td> </td></tr>
                                 <tr>   <td> 08:30 </td> <td> </td> <td> </td> <td> </td></tr>
                                 <tr><td> 09:00 </td> <td> </td> <td> </td> <td> </td></tr>
                                 <tr><td> 09:30 </td> <td> </td> <td> </td> <td> </td></tr>
-                                <tr><td> 10:00 </td> <td> </td> <td> </td> <td> </td></tr>                             
+                                <tr><td> 10:00 </td> <td> </td> <td> </td> <td> </td></tr>                             -->
                             </table>
                         </div> 
                     </div> 

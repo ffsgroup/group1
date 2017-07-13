@@ -1,5 +1,7 @@
 package ffsutils;
 
+import ffsbeans.MemberClaims;
+import ffsbeans.MemberImages;
 import ffsbeans.MemberNote;
 import ffsbeans.MemberDepen;
 import ffsbeans.MemberRec;
@@ -16,6 +18,166 @@ import java.util.GregorianCalendar;
 import java.sql.Connection;
 
 public class MemUtils {
+    
+    public static ArrayList<MemberImages> getmemberVoice(Connection conn, String thisMember, String userName) throws SQLException {
+
+        System.out.println("getmemberVoice " + thisMember);
+        String tranid2 = "";
+        Integer comp = 2;
+        Integer tranlen = thisMember.length();
+
+        if (tranlen.equals(1)) {
+            tranid2 = "0" + thisMember;
+        }
+        if (tranlen.equals(2)) {
+            tranid2 = thisMember;
+        }
+        if (tranlen > 2) {
+            tranid2 = thisMember.substring(thisMember.length() - 2);
+        }
+        String sql = "Select tranid,user,description,datemod,imagetype from imagelibrary" + tranid2 + " a where lidno = ? and ((imagetype like 'wav%') or (imagetype like 'wav%')or (imagetype like 'wav%'))";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, thisMember);
+
+        ResultSet rs = pstm.executeQuery();
+        ArrayList<MemberImages> list = new ArrayList<MemberImages>();
+        while (rs.next()) {
+            MemberImages membervoice = new MemberImages();
+            Date date = new Date();
+            Calendar calendar = new GregorianCalendar();
+
+            calendar.setTime(rs.getTimestamp("dateMod"));
+            String year = Integer.toString(calendar.get(Calendar.YEAR));
+            String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
+            String day = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH));
+            if (month.length() == 1) {
+                month = "0" + month;
+            }
+            if (day.length() == 1) {
+                day = "0" + day;
+            }
+            String dateMod = year + "/" + month + "/" + day;
+
+            membervoice.settranId(rs.getString("tranId"));
+            membervoice.setuser(rs.getString("user"));
+            membervoice.setdescription(rs.getString("description"));
+            membervoice.setdateMod(dateMod);
+            list.add(membervoice);
+        }
+        return list;
+    }
+    
+    
+
+    public static ArrayList<MemberClaims> getmemberClaims(Connection conn, String thisMember, String userName) throws SQLException {
+
+        System.out.println("getmemberClaims " + thisMember);
+        String sql = "Select * from claims where lidno = ?";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, thisMember);
+
+        ResultSet rs = pstm.executeQuery();
+        ArrayList<MemberClaims> list = new ArrayList<MemberClaims>();
+        while (rs.next()) {
+            MemberClaims memberclaims = new MemberClaims();
+            Date date = new Date();
+            Calendar calendar = new GregorianCalendar();
+
+            calendar.setTime(rs.getTimestamp("ClaimDate"));
+            String year = Integer.toString(calendar.get(Calendar.YEAR));
+            String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
+            String day = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH));
+            if (month.length() == 1) {
+                month = "0" + month;
+            }
+            if (day.length() == 1) {
+                day = "0" + day;
+            }
+
+            Date date1 = new Date();
+            Calendar cal1 = new GregorianCalendar();
+
+            cal1.setTime(rs.getTimestamp("DateOfDeath"));
+            String year1 = Integer.toString(cal1.get(Calendar.YEAR));
+            String month1 = Integer.toString(cal1.get(Calendar.MONTH) + 1);
+            String day1 = Integer.toString(cal1.get(Calendar.DAY_OF_MONTH));
+            String hour1 = Integer.toString(cal1.get(Calendar.HOUR_OF_DAY));
+            String minute1 = Integer.toString(cal1.get(Calendar.MINUTE));
+            if (hour1.length() == 1) {
+                hour1 = "0" + hour1;
+            }
+            if (minute1.length() == 1) {
+                minute1 = "0" + minute1;
+            }
+            if (month1.length() == 1) {
+                month1 = "0" + month1;
+            }
+            if (day1.length() == 1) {
+                day1 = "0" + day1;
+            }
+
+            String ClaimDate = year + "/" + month + "/" + day;
+            String dod = year1 + "/" + month1 + "/" + day;
+
+            memberclaims.settranId(rs.getString("tranId"));
+            memberclaims.setClaimNr(rs.getString("ClaimNr"));
+            memberclaims.setDeceasedSur(rs.getString("DeceasedSur"));
+            memberclaims.setDeceasedIni(rs.getString("DeceasedIni"));
+             memberclaims.setClaimStatus(rs.getString("ClaimStatus"));
+            memberclaims.setClaimDate(ClaimDate);
+            memberclaims.setDateOfDeath(dod);
+            list.add(memberclaims);
+        }
+        return list;
+    }
+
+    public static ArrayList<MemberImages> getmemberImages(Connection conn, String thisMember, String userName) throws SQLException {
+
+        System.out.println("getmemberImages " + thisMember);
+        String tranid2 = "";
+        Integer comp = 2;
+        Integer tranlen = thisMember.length();
+
+        if (tranlen.equals(1)) {
+            tranid2 = "0" + thisMember;
+        }
+        if (tranlen.equals(2)) {
+            tranid2 = thisMember;
+        }
+        if (tranlen > 2) {
+            tranid2 = thisMember.substring(thisMember.length() - 2);
+        }
+        String sql = "Select tranid,user,description,datemod,imagetype from imagelibrary" + tranid2 + " a where lidno = ? and not ((imagetype like 'wav%') or (imagetype like 'wav%')or (imagetype like 'wav%'))";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, thisMember);
+
+        ResultSet rs = pstm.executeQuery();
+        ArrayList<MemberImages> list = new ArrayList<MemberImages>();
+        while (rs.next()) {
+            MemberImages memberimages = new MemberImages();
+            Date date = new Date();
+            Calendar calendar = new GregorianCalendar();
+
+            calendar.setTime(rs.getTimestamp("dateMod"));
+            String year = Integer.toString(calendar.get(Calendar.YEAR));
+            String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
+            String day = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH));
+            if (month.length() == 1) {
+                month = "0" + month;
+            }
+            if (day.length() == 1) {
+                day = "0" + day;
+            }
+            String dateMod = year + "/" + month + "/" + day;
+
+            memberimages.settranId(rs.getString("tranId"));
+            memberimages.setuser(rs.getString("user"));
+            memberimages.setdescription(rs.getString("description"));
+            memberimages.setdateMod(dateMod);
+            list.add(memberimages);
+        }
+        return list;
+    }
 
     public static ArrayList<MemberNote> getmemberNotes(Connection conn, String thisMember, String userName) throws SQLException {
 
@@ -249,21 +411,21 @@ public class MemUtils {
             Calendar calendar = new GregorianCalendar();
             String thistime;
             if (rs.getTimestamp("postdate") == null) {
-              thistime = "";  
+                thistime = "";
             } else {
-            calendar.setTime(rs.getTimestamp("recruitdate"));
-            String year = Integer.toString(calendar.get(Calendar.YEAR));
-            String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
-            String day = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH));
-            int length = month.length();
-            if (length == 1) {
-                month = "0" + month;
-            }
-            int length2 = day.length();
-            if (length2 == 1) {
-                day = "0" + day;
-            }
-            thistime = year + "/" + month + "/" + day;
+                calendar.setTime(rs.getTimestamp("recruitdate"));
+                String year = Integer.toString(calendar.get(Calendar.YEAR));
+                String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
+                String day = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH));
+                int length = month.length();
+                if (length == 1) {
+                    month = "0" + month;
+                }
+                int length2 = day.length();
+                if (length2 == 1) {
+                    day = "0" + day;
+                }
+                thistime = year + "/" + month + "/" + day;
             }
             Date date1 = new Date();
             Calendar cal1 = new GregorianCalendar();
@@ -444,7 +606,7 @@ public class MemUtils {
             String eisdat = year3 + "/" + month3 + "/" + day3;
             String joindat = year2 + "/" + month2 + "/" + day2;
             String postdate = year1 + "/" + month1 + "/" + day1;
-            
+
             members.setrecruitdate(thistime);
             members.settroustat(rs.getString("troustat"));
             members.setgebdat(gebdat);
@@ -555,12 +717,12 @@ public class MemUtils {
         return list;
     }
 
-        public static ArrayList<MemberExtraPol> getMemberExtraPol(Connection conn, String thisMember, String loginedUser) throws SQLException {
-        System.out.println("getMemberExtraPol " + thisMember);    
+    public static ArrayList<MemberExtraPol> getMemberExtraPol(Connection conn, String thisMember, String loginedUser) throws SQLException {
+        System.out.println("getMemberExtraPol " + thisMember);
         String sql = "Select * from extrapol where mainpol = ?";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
-pstm.setString(1, thisMember);
+        pstm.setString(1, thisMember);
         ResultSet rs = pstm.executeQuery();
         ArrayList<MemberExtraPol> list = new ArrayList<MemberExtraPol>();
         while (rs.next()) {
@@ -589,5 +751,5 @@ pstm.setString(1, thisMember);
         }
         return list;
     }
-        
+
 }
