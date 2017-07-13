@@ -129,9 +129,23 @@
             <script src="resources/dhtmlxcalendar.js"></script>
             <link rel="stylesheet" type="text/css" href="resources/dhtmlxcalendar_1.css">
 
-
+<script>
+                function loadMember() {
+                    var count = $("#taskPeople option").length;
+                    if (count.valueOf() < 2) {
+                        $.get('SecurityGetActiveUser', function (responseJson) {
+                            if (responseJson != null) {
+                                    
+                                $.each(responseJson, function (key, value) {
+                                    $('#taskPeople').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');   
+                                });
+                            }
+                        });
+                    }
+                }
+            </script>
+            
             <script>
-
                 var myCalendar;
                 function doOnLoad() {
                     myCalendar = new dhtmlXCalendarObject("calendarHere");
@@ -215,7 +229,7 @@
                         document.getElementById("ToMeComp").checked = false;
                         document.getElementById("UpdatedTasks").checked = false;
                         document.getElementById("UrgentTasks").checked = false;
-                        $.get('TaskTraining', function (responseJson) {
+                        $.get('TaskTraining', {onlyUser:document.getElementById("taskPeople").value },function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
 
@@ -259,7 +273,7 @@
                         document.getElementById("UpdatedTasks").checked = false;
                         document.getElementById("TrainingTasks").checked = false;
                           var counter = 0;
-                        $.get('taskUrgent', function (responseJson) {
+                        $.get('taskUrgent', {onlyUser:document.getElementById("taskPeople").value },function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
 
@@ -301,7 +315,7 @@
                         document.getElementById("UrgentTasks").checked = false;
                         document.getElementById("TrainingTasks").checked = false;
                               var counter = 0;
-                        $.get('TaskUpdated', function (responseJson) {
+                        $.get('TaskUpdated',{onlyUser:document.getElementById("taskPeople").value }, function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
 
@@ -343,7 +357,7 @@
                         document.getElementById("UrgentTasks").checked = false;
                         document.getElementById("TrainingTasks").checked = false;
                               var counter = 0;
-                        $.get('TaskToMeComp', function (responseJson) {
+                        $.get('TaskToMeComp',{onlyUser:document.getElementById("taskPeople").value }, function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
 
@@ -380,7 +394,7 @@
                         document.getElementById("UrgentTasks").checked = false;
                         document.getElementById("TrainingTasks").checked = false;
                         var counter = 0;
-                        $.get('TaskNew', function (responseJson) {
+                        $.get('TaskNew',{onlyUser:document.getElementById("taskPeople").value }, function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
 
@@ -417,7 +431,7 @@
                         document.getElementById("UrgentTasks").checked = false;
                         document.getElementById("TrainingTasks").checked = false;
                         var counter = 0;
-                        $.get('TaskByMeComp', function (responseJson) {
+                        $.get('TaskByMeComp',{onlyUser:document.getElementById("taskPeople").value }, function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
 
@@ -453,7 +467,7 @@
                         document.getElementById("UrgentTasks").checked = false;
                         document.getElementById("TrainingTasks").checked = false;
                              var counter = 0;
-                        $.get('TaskInFuture', function (responseJson) {
+                        $.get('TaskInFuture',{onlyUser:document.getElementById("taskPeople").value }, function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
 
@@ -490,7 +504,7 @@
                         document.getElementById("UrgentTasks").checked = false;
                         document.getElementById("TrainingTasks").checked = false;
                         var counter = 0;
-                        $.get('TaskByMe', function (responseJson) {
+                        $.get('TaskByMe',{onlyUser:document.getElementById("taskPeople").value }, function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
 
@@ -526,7 +540,7 @@
                         document.getElementById("UrgentTasks").checked = false;
                         document.getElementById("TrainingTasks").checked = false;
                         var counter = 0;
-                        $.get('TaskServlet', function (responseJson) {
+                        $.get('TaskServlet',{onlyUser:document.getElementById("taskPeople").value }, function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
 
@@ -560,16 +574,22 @@
             <b>Tasks In Progress :</b><input type="checkbox" id="ToMeInProg" value="ToMe">Assigned To Me
             <input type="checkbox" id="ByMeInProg" value="ByMe">Assigned By Me
             <input type="checkbox" id="TaskInFuture" value="InFuture">Tasks In The Future<br>
-            <b>Tasks Completed :</b><input type="checkbox" id="ToMeComp" value="CompToMe">Assigned To Me
-            <input type="checkbox" id="ByMeComp" value="CompByMe">Assigned By Me<br>
-            <input type="checkbox" id="NewTask" value="ByMe">New Tasks
-            <input type="checkbox" id="UpdatedTasks" value="ToMe">Updated Tasks
-            <input type="checkbox" id="UrgentTasks" value="ByMe">Urgent Tasks
-            <input type="checkbox" id="TrainingTasks" value="ToMe">Training Tasks
-            <label style="margin-left:400px;">
+            <b>Tasks Completed :</b><input style="margin-left:7px" type="checkbox" id="ToMeComp" value="CompToMe">Assigned To Me
+            <input style="margin-left:5px" type="checkbox" id="ByMeComp" value="CompByMe">Assigned By Me<br>
+            <input style="margin-left:30px" type="checkbox" id="NewTask" value="ByMe">New Tasks
+            <input style="margin-left:18px" type="checkbox" id="UpdatedTasks" value="ToMe">Updated Tasks
+            <input style="margin-left:11px" type="checkbox" id="UrgentTasks" value="ByMe">Urgent Tasks
+            <input style="margin-left:21px" type="checkbox" id="TrainingTasks" value="ToMe">Training Tasks
+                <select name="taskPeople" id = "taskPeople" style=" margin-left: 70px; width: 130px;" onClick="loadMember();" >
+                                  
+                     <option value="${taskFilter}">${taskFilter}</option>
+                </select> 
+            
+            <label style="margin-left:70px;">
                 <label id="taskcounter">0</label>
             </label>  
             <script>
+                
                 if (document.getElementById("ToMeInProg").checked == false && document.getElementById("ByMeInProg").checked == false && document.getElementById("TaskInFuture").checked == false && document.getElementById("ByMeComp").checked == false && document.getElementById("NewTask").checked == false && document.getElementById("UpdatedTasks").checked == false && document.getElementById("UrgentTasks").checked == false && document.getElementById("TrainingTasks").checked == false) {
                     document.getElementById("UrgentTasks").checked = true;
                 }
@@ -606,9 +626,6 @@
         <input type ="button" value ="Search" id="taskSearch" style="width:75px;margin-left:10px;" >
         <input type ="button" value ="Reports" id="taskReport" style="width:75px;margin-left:10px;" >
         <input type ="button" value ="My Ideas" id="taskMyIdea" style="width:75px;margin-left:10px;" >
-
-
-
         <br>
 
         <script>

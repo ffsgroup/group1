@@ -32,14 +32,16 @@ public class TaskTraining extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("StartedgetTask");
+        String onlyUser = request.getParameter("onlyUser");
+        System.out.println("TaskTraining " + onlyUser);
         Connection conn = MyUtils.getStoredConnection(request);
         HttpSession session = request.getSession();
         UserAccount loginedUser = MyUtils.getLoginedUser(session);
         session.setAttribute("taskView", "taskTraining");
+        session.setAttribute("taskFilter", onlyUser);
         ArrayList<Tasks> task = new ArrayList<Tasks>();
         try {
-            task = TaskUtils.getTrainingTask(conn, loginedUser.getUserName());
+            task = TaskUtils.getTrainingTask(conn, loginedUser.getUserName(), onlyUser);
         } catch (SQLException e) {
             e.printStackTrace();
             //  errorString = e.getMessage();

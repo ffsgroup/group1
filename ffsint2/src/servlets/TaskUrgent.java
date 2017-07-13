@@ -32,14 +32,16 @@ public class TaskUrgent extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("TaskUrgent");
+        String onlyUser = request.getParameter("onlyUser");
+        System.out.println("TaskUrgent " + onlyUser);
         Connection conn = MyUtils.getStoredConnection(request);
         HttpSession session = request.getSession();
         UserAccount loginedUser = MyUtils.getLoginedUser(session);
         ArrayList<Tasks> task = new ArrayList<Tasks>();
         session.setAttribute("taskView", "taskUrgent");
+        session.setAttribute("taskFilter", onlyUser);
         try {
-            task = TaskUtils.getUrgentTasks(conn, loginedUser.getUserName());
+            task = TaskUtils.getUrgentTasks(conn, loginedUser.getUserName(), onlyUser);
         } catch (SQLException e) {
             e.printStackTrace();
             //  errorString = e.getMessage();

@@ -126,6 +126,7 @@ public class TaskDetail extends HttpServlet {
         String bt = "";
         String bg = "";
         String ti="";
+        String ti1 ="";
         
         for (Tasks task1 : task) {
             a = task1.getTranid();
@@ -200,6 +201,8 @@ public class TaskDetail extends HttpServlet {
             bs = task1.getStatusday14();
             bt = task1.getStatusday15();
             bg = task1.getTaskstat();
+            ti1 = "'" + task1.getTrain() +"'";
+        System.out.println("ti1 " + ti1);    
         }
        
         for (TaskImage taskImage1 : taskImage ) {
@@ -276,9 +279,13 @@ public class TaskDetail extends HttpServlet {
         request.setAttribute("statusday12", bq);
         request.setAttribute("statusday13", br);
         request.setAttribute("statusday14", bs);
+        request.setAttribute("train", ti1);
         request.setAttribute("statusday15", bt);
         request.setAttribute("taskstatus", bg);
+        request.setAttribute("taskFiler", session.getAttribute("taskFilter"));
+        
         request.setAttribute("taskimage", ti);
+        
         
         RequestDispatcher dispatcher = request.getServletContext()
                 .getRequestDispatcher("/WEB-INF/views/taskView.jsp");
