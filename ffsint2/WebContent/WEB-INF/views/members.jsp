@@ -18,6 +18,29 @@
             <title>Members</title>
             <script>
                 
+                function memberGetVoice() {
+
+                    // get member notes
+                    $.get('MemberGetVoice', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
+
+                        if (responseJson != null) {
+                            var table2 = $("#voicegrid");
+                            $.each(responseJson, function (key, value) {
+                                var rowNew = $("<tr><td></td><td></td><td></td></tr>");
+                                rowNew.children().eq(0).text(value['user']);
+                                rowNew.children().eq(1).text(value['dateMod']);
+                                rowNew.children().eq(2).text(value['description']);
+
+                                rowNew.appendTo(table2);
+                            });
+                        } else {
+                            document.getElementById("memtitle").value = "No such member";
+                        }
+                    });
+
+                }
+                
+                
                 function memberGetClaims() {
 
                     // get member notes
@@ -519,7 +542,7 @@
                     <li><a href="#tabs-7" onclick="memberGetClaims()">Claims</a></li>
                     <li><a href="#tabs-8" onclick="memberGetImages();">Images</a></li>
                     <li><a href="#tabs-9">Letters</a></li>
-                    <li><a href="#tabs-10">Voice</a></li>
+                    <li><a href="#tabs-10" onclick="memberGetVoice();">Voice</a></li>
                 </ul>
 
                 <div id="tabs-1">
@@ -919,12 +942,12 @@
                                     <th style="width:100px" scope="col">Date</th> 
                                     <th style="width:100px" scope="col">Description</th>  
                                 </tr>
-                                <tr>
+<!--                                <tr>
                                     <td> 08:00 </td> <td> </td> <td> </td> <td> </td></tr>
                                 <tr>   <td> 08:30 </td> <td> </td> <td> </td> <td> </td></tr>
                                 <tr><td> 09:00 </td> <td> </td> <td> </td> <td> </td></tr>
                                 <tr><td> 09:30 </td> <td> </td> <td> </td> <td> </td></tr>
-                                <tr><td> 10:00 </td> <td> </td> <td> </td> <td> </td></tr>                             
+                                <tr><td> 10:00 </td> <td> </td> <td> </td> <td> </td></tr>                             -->
                             </table>
                         </div> 
                     </div> 

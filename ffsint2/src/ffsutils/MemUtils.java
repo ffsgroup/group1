@@ -18,6 +18,56 @@ import java.util.GregorianCalendar;
 import java.sql.Connection;
 
 public class MemUtils {
+    
+    public static ArrayList<MemberImages> getmemberVoice(Connection conn, String thisMember, String userName) throws SQLException {
+
+        System.out.println("getmemberVoice " + thisMember);
+        String tranid2 = "";
+        Integer comp = 2;
+        Integer tranlen = thisMember.length();
+
+        if (tranlen.equals(1)) {
+            tranid2 = "0" + thisMember;
+        }
+        if (tranlen.equals(2)) {
+            tranid2 = thisMember;
+        }
+        if (tranlen > 2) {
+            tranid2 = thisMember.substring(thisMember.length() - 2);
+        }
+        String sql = "Select tranid,user,description,datemod,imagetype from imagelibrary" + tranid2 + " a where lidno = ? and ((imagetype like 'wav%') or (imagetype like 'wav%')or (imagetype like 'wav%'))";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, thisMember);
+
+        ResultSet rs = pstm.executeQuery();
+        ArrayList<MemberImages> list = new ArrayList<MemberImages>();
+        while (rs.next()) {
+            MemberImages membervoice = new MemberImages();
+            Date date = new Date();
+            Calendar calendar = new GregorianCalendar();
+
+            calendar.setTime(rs.getTimestamp("dateMod"));
+            String year = Integer.toString(calendar.get(Calendar.YEAR));
+            String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
+            String day = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH));
+            if (month.length() == 1) {
+                month = "0" + month;
+            }
+            if (day.length() == 1) {
+                day = "0" + day;
+            }
+            String dateMod = year + "/" + month + "/" + day;
+
+            membervoice.settranId(rs.getString("tranId"));
+            membervoice.setuser(rs.getString("user"));
+            membervoice.setdescription(rs.getString("description"));
+            membervoice.setdateMod(dateMod);
+            list.add(membervoice);
+        }
+        return list;
+    }
+    
+    
 
     public static ArrayList<MemberClaims> getmemberClaims(Connection conn, String thisMember, String userName) throws SQLException {
 
@@ -97,7 +147,7 @@ public class MemUtils {
         if (tranlen > 2) {
             tranid2 = thisMember.substring(thisMember.length() - 2);
         }
-        String sql = "Select tranid,user,description,datemod from imagelibrary" + tranid2 + " a where lidno = ?";
+        String sql = "Select tranid,user,description,datemod,imagetype from imagelibrary" + tranid2 + " a where lidno = ? and not ((imagetype like 'wav%') or (imagetype like 'wav%')or (imagetype like 'wav%'))";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, thisMember);
 
