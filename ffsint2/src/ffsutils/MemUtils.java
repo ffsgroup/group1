@@ -1,5 +1,6 @@
 package ffsutils;
 
+import ffsbeans.MemberDebitOrder;
 import ffsbeans.MemberClaims;
 import ffsbeans.MemberImages;
 import ffsbeans.MemberNote;
@@ -18,7 +19,76 @@ import java.util.GregorianCalendar;
 import java.sql.Connection;
 
 public class MemUtils {
-    
+
+    public static ArrayList<MemberDebitOrder> getmemberDebitOrder(Connection conn, String thisMember, String userName) throws SQLException {
+
+        System.out.println("getmemberDebitOrder " + thisMember);
+        String sql = "Select * from tbldebitorder where lidno = ?";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, thisMember);
+
+        ResultSet rs = pstm.executeQuery();
+        ArrayList<MemberDebitOrder> list = new ArrayList<MemberDebitOrder>();
+        while (rs.next()) {
+            MemberDebitOrder memberdebitorder = new MemberDebitOrder();
+            Date date = new Date();
+            Calendar calendar = new GregorianCalendar();
+
+            calendar.setTime(rs.getTimestamp("DAT1"));
+            String year = Integer.toString(calendar.get(Calendar.YEAR));
+            String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
+            String day = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH));
+            if (month.length() == 1) {
+                month = "0" + month;
+            }
+            if (day.length() == 1) {
+                day = "0" + day;
+            }
+
+//            Date date1 = new Date();
+//            Calendar cal1 = new GregorianCalendar();
+//
+//            cal1.setTime(rs.getTimestamp("DateOfDeath"));
+//            String year1 = Integer.toString(cal1.get(Calendar.YEAR));
+//            String month1 = Integer.toString(cal1.get(Calendar.MONTH) + 1);
+//            String day1 = Integer.toString(cal1.get(Calendar.DAY_OF_MONTH));
+//            String hour1 = Integer.toString(cal1.get(Calendar.HOUR_OF_DAY));
+//            String minute1 = Integer.toString(cal1.get(Calendar.MINUTE));
+//            if (hour1.length() == 1) {
+//                hour1 = "0" + hour1;
+//            }
+//            if (minute1.length() == 1) {
+//                minute1 = "0" + minute1;
+//            }
+//            if (month1.length() == 1) {
+//                month1 = "0" + month1;
+//            }
+//            if (day1.length() == 1) {
+//                day1 = "0" + day1;
+//            }
+//
+            String DAT1 = day + "/" + month + "/" + year;
+//            String dod = year1 + "/" + month1 + "/" + day;
+
+            memberdebitorder.settranId(rs.getString("tranId"));
+            memberdebitorder.setREK_NAAM(rs.getString("REK_NAAM"));
+            memberdebitorder.setREK_NO(rs.getString("REK_NO"));
+            memberdebitorder.setKERE(rs.getString("KERE"));
+            memberdebitorder.setBankName(rs.getString("BankName"));
+            memberdebitorder.setTIPE_REK(rs.getString("TIPE_REK"));
+            memberdebitorder.setTAKKODE(rs.getString("TAKKODE"));
+            memberdebitorder.setEmpName1(rs.getString("EmpName1"));
+            memberdebitorder.setEmpName2(rs.getString("EmpName2"));
+            memberdebitorder.setPayerID(rs.getString("PayerID"));
+            memberdebitorder.setPayerName(rs.getString("PayerName"));
+            memberdebitorder.setSalNr(rs.getString("SalNr"));
+            memberdebitorder.setDAT1(DAT1);
+//            memberdebitorder.setDateOfDeath(dod);
+            list.add(memberdebitorder);
+        }
+        return list;
+    }
+
     public static ArrayList<MemberImages> getmemberVoice(Connection conn, String thisMember, String userName) throws SQLException {
 
         System.out.println("getmemberVoice " + thisMember);
@@ -66,8 +136,6 @@ public class MemUtils {
         }
         return list;
     }
-    
-    
 
     public static ArrayList<MemberClaims> getmemberClaims(Connection conn, String thisMember, String userName) throws SQLException {
 
@@ -123,7 +191,7 @@ public class MemUtils {
             memberclaims.setClaimNr(rs.getString("ClaimNr"));
             memberclaims.setDeceasedSur(rs.getString("DeceasedSur"));
             memberclaims.setDeceasedIni(rs.getString("DeceasedIni"));
-             memberclaims.setClaimStatus(rs.getString("ClaimStatus"));
+            memberclaims.setClaimStatus(rs.getString("ClaimStatus"));
             memberclaims.setClaimDate(ClaimDate);
             memberclaims.setDateOfDeath(dod);
             list.add(memberclaims);
@@ -644,6 +712,7 @@ public class MemUtils {
             members.setkrediet(rs.getString("krediet"));
 //                members.setbenefdate(rs.getString("benefdate"));
             members.setbenefdate(benefdate);
+            members.setGroupSc(rs.getString("GroupSc"));
 
             list.add(members);
         }
