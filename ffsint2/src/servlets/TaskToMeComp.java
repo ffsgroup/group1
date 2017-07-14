@@ -32,14 +32,18 @@ public class TaskToMeComp extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("TaskToMeComp");
+        String onlyUser = request.getParameter("onlyUser");
+        System.out.println("TaskToMeComp " + onlyUser);
         Connection conn = MyUtils.getStoredConnection(request);
         HttpSession session = request.getSession();
         UserAccount loginedUser = MyUtils.getLoginedUser(session);
         ArrayList<Tasks> task = new ArrayList<Tasks>();
         session.setAttribute("taskView", "taskToMeComp");
+        session.setAttribute("taskFilter", onlyUser);
+        session.setAttribute("taskDisp", "5");
+        
         try {
-            task = TaskUtils.getTaskToMeComp(conn, loginedUser.getUserName());
+            task = TaskUtils.getTaskToMeComp(conn, loginedUser.getUserName(), onlyUser);
         } catch (SQLException e) {
             e.printStackTrace();
             //  errorString = e.getMessage();

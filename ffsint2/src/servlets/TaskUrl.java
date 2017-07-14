@@ -34,13 +34,14 @@ public class TaskUrl extends HttpServlet {
         HttpSession session = request.getSession();
         UserAccount loginedUser = MyUtils.getLoginedUser(session);
         String taskView = (String) session.getAttribute("taskView");
+        String taskFilter = (String) session.getAttribute("taskFilter");
         System.out.println("current taskView " + taskView);
         String a = "";
       
         if (taskView == "taskUrgent" || taskView == "") {
         ArrayList<Tasks> task = new ArrayList<Tasks>();
         try {
-            task = TaskUtils.getUrgentTasks(conn, loginedUser.getUserName());
+            task = TaskUtils.getUrgentTasks(conn, loginedUser.getUserName(), taskFilter);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -52,7 +53,7 @@ public class TaskUrl extends HttpServlet {
         if (taskView == "taskTraining")  {
         ArrayList<Tasks> task = new ArrayList<Tasks>();
         try {
-            task = TaskUtils.getTrainingTask(conn, loginedUser.getUserName());
+            task = TaskUtils.getTrainingTask(conn, loginedUser.getUserName(), taskFilter);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -64,7 +65,7 @@ public class TaskUrl extends HttpServlet {
         if (taskView == "taskUpdated")  {
         ArrayList<Tasks> task = new ArrayList<Tasks>();
         try {
-            task = TaskUtils.getUpdatedTasks(conn, loginedUser.getUserName());
+            task = TaskUtils.getUpdatedTasks(conn, loginedUser.getUserName(),taskFilter);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -76,7 +77,7 @@ public class TaskUrl extends HttpServlet {
         if (taskView == "taskInFuture")  {
         ArrayList<Tasks> task = new ArrayList<Tasks>();
         try {
-            task = TaskUtils.getTaskInFuture(conn, loginedUser.getUserName());
+            task = TaskUtils.getTaskInFuture(conn, loginedUser.getUserName(), taskFilter);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -88,7 +89,7 @@ public class TaskUrl extends HttpServlet {
         if (taskView == "taskNew")  {
         ArrayList<Tasks> task = new ArrayList<Tasks>();
         try {
-            task = TaskUtils.getNewTask(conn, loginedUser.getUserName());
+            task = TaskUtils.getNewTask(conn, loginedUser.getUserName(), taskFilter);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -100,7 +101,7 @@ public class TaskUrl extends HttpServlet {
         if (taskView == "taskByMe")  {
         ArrayList<Tasks> task = new ArrayList<Tasks>();
         try {
-            task = TaskUtils.getTaskByMe(conn, loginedUser.getUserName());
+            task = TaskUtils.getTaskByMe(conn, loginedUser.getUserName(), taskFilter);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -112,7 +113,7 @@ public class TaskUrl extends HttpServlet {
         if (taskView == "taskToMeComp")  {
         ArrayList<Tasks> task = new ArrayList<Tasks>();
         try {
-            task = TaskUtils.getTaskToMeComp(conn, loginedUser.getUserName());
+            task = TaskUtils.getTaskToMeComp(conn, loginedUser.getUserName(), taskFilter);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -124,7 +125,7 @@ public class TaskUrl extends HttpServlet {
         if (taskView == "taskByMeComp")  {
         ArrayList<Tasks> task = new ArrayList<Tasks>();
         try {
-            task = TaskUtils.getTaskByMeComp(conn, loginedUser.getUserName());
+            task = TaskUtils.getTaskByMeComp(conn, loginedUser.getUserName(), taskFilter);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -136,7 +137,7 @@ public class TaskUrl extends HttpServlet {
         if (taskView == "taskServlet")  {
         ArrayList<Tasks> task = new ArrayList<Tasks>();
         try {
-            task = TaskUtils.getTask(conn, loginedUser.getUserName());
+            task = TaskUtils.getTask(conn, loginedUser.getUserName(), taskFilter);
         } catch (SQLException e) {
             e.printStackTrace();
         }

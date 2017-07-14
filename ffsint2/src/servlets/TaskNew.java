@@ -32,14 +32,17 @@ public class TaskNew extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("StartedgetTask");
+        String onlyUser = request.getParameter("onlyUser");
+        System.out.println("TaskNew " + onlyUser);
         Connection conn = MyUtils.getStoredConnection(request);
         HttpSession session = request.getSession();
         UserAccount loginedUser = MyUtils.getLoginedUser(session);
         ArrayList<Tasks> task = new ArrayList<Tasks>();
         session.setAttribute("taskView", "taskNew");
+        session.setAttribute("taskFilter", onlyUser);
+        session.setAttribute("taskDisp", "9");
         try {
-            task = TaskUtils.getNewTask(conn, loginedUser.getUserName());
+            task = TaskUtils.getNewTask(conn, loginedUser.getUserName(), onlyUser);
         } catch (SQLException e) {
             e.printStackTrace();
             //  errorString = e.getMessage();

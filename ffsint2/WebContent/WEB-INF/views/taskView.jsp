@@ -233,7 +233,9 @@
 
                 $(document).ready(function () {
                     $("#Tasksave").click(function (event) {
-                        $.get('TaskUpdate', {tranid: document.getElementById("taskid").innerHTML, recur1: document.getElementById("recur").checked, recur3: document.getElementById("recureveryday").checked, recur4: document.getElementById("recurofeverymonth").value, recur5: document.getElementById("recurweekly").checked, recur6: document.getElementById("recureveryweekday").checked, recur7: document.getElementById("recurlastday").checked, recur8: document.getElementById("recurmonthly").checked, recur9: document.getElementById("recurexceptsun").checked, recur10: document.getElementById("recurevery").checked, ir: document.getElementById("requestir").checked, tasksumm: document.getElementById("tasksumm").value, taskfull: document.getElementById("taskfull").value, recur13: document.getElementById("rmonth1").value, recur11: document.getElementById("dayr5").value, recur12: document.getElementById("monthr3").checked, sdate: document.getElementById("startdate").value, rdate: document.getElementById("reviewdate").value, edate: document.getElementById("enddate").value, prior: document.getElementById("Priority1").value, stats: document.getElementById("Status1").value, recur2: document.getElementById("dayr7").checked, taskto1: document.getElementById("dsee1").value, taskto2: document.getElementById("dsee2").value, taskto3: document.getElementById("dsee3").value, taskto4: document.getElementById("dsee4").value, taskto5: document.getElementById("dsee5").value, taskto6: document.getElementById("dsee6").value, taskto7: document.getElementById("dsee7").value, taskto8: document.getElementById("dsee8").value, taskto9: document.getElementById("dsee9").value, taskto10: document.getElementById("dsee10").value, taskto11: document.getElementById("dsee11").value, taskto12: document.getElementById("dsee12").value, taskto13: document.getElementById("dsee13").value, taskto14: document.getElementById("dsee14").value, taskto15: document.getElementById("dsee15").value, fromUser: document.getElementById("FromUser1").value}, function (responseJson) {
+                        if (document.getElementById("trainingtask").checked == true) {training = "Y";}
+                        else { training = "N";}
+                        $.get('TaskUpdate', {tranid: document.getElementById("taskid").innerHTML, recur1: document.getElementById("recur").checked, recur3: document.getElementById("recureveryday").checked, recur4: document.getElementById("recurofeverymonth").value, recur5: document.getElementById("recurweekly").checked, recur6: document.getElementById("recureveryweekday").checked, recur7: document.getElementById("recurlastday").checked, recur8: document.getElementById("recurmonthly").checked, recur9: document.getElementById("recurexceptsun").checked, recur10: document.getElementById("recurevery").checked, ir: document.getElementById("requestir").checked, tasksumm: document.getElementById("tasksumm").value, taskfull: document.getElementById("taskfull").value, recur13: document.getElementById("rmonth1").value, recur11: document.getElementById("dayr5").value, recur12: document.getElementById("monthr3").checked, sdate: document.getElementById("startdate").value, rdate: document.getElementById("reviewdate").value, edate: document.getElementById("enddate").value, prior: document.getElementById("Priority1").value, stats: document.getElementById("Status1").value, recur2: document.getElementById("dayr7").checked, taskto1: document.getElementById("dsee1").value, taskto2: document.getElementById("dsee2").value, taskto3: document.getElementById("dsee3").value, taskto4: document.getElementById("dsee4").value, taskto5: document.getElementById("dsee5").value, taskto6: document.getElementById("dsee6").value, taskto7: document.getElementById("dsee7").value, taskto8: document.getElementById("dsee8").value, taskto9: document.getElementById("dsee9").value, taskto10: document.getElementById("dsee10").value, taskto11: document.getElementById("dsee11").value, taskto12: document.getElementById("dsee12").value, taskto13: document.getElementById("dsee13").value, taskto14: document.getElementById("dsee14").value, taskto15: document.getElementById("dsee15").value, fromUser: document.getElementById("FromUser1").value, train:training }, function (responseJson) {
                             if (responseJson != null) {
                                 $.each(responseJson, function (key, value) {
                                     if (value['GenericDescriptionEng'] == "success") {
@@ -272,11 +274,14 @@
                     <div style="float: Left; text-align: left;">
                         Task :  <label id="taskid">${taskid}</label>
                 </div>
+                <label style="float:right">
+                <input type="checkbox" id="trainingtask" > This is a training task   
+                </label>
 
                 <br>
                 <label id="TaskFromLabel" style="float:left">Task From :</label>
                 <select name="FromUser" id = "FromUser1" style=" margin-left: 10px; width: 180px" >
-                    <option value=${taskfrom}>${taskfrom}</option>
+                    <option value="${taskfrom}">${taskfrom}</option>
                 </select>
                 <script>
                     document.getElementById("FromUser1").value =${taskFromString};
@@ -314,10 +319,11 @@
                     <option value="Sunday">Sunday</option>
                 </select> 
                 <script>
+                      document.getElementById("dayr5").value = ${recdayofweek};
+                      
                     if (document.getElementById("dayr5").value == "null") {
                        document.getElementById("dayr5").value = "" 
                     }
-                    document.getElementById("dayr5").value = ${recdayofweek};
                 </script>
 
                 <br>
@@ -472,6 +478,18 @@
                         document.getElementById("taskfull").value = document.getElementById("taskfull").value.replace(/~/g, "\n");
                     }
                 </script>
+                <script>
+              //  document.getElementById("taskid").innerHTML = "111";
+              var a = ${train}
+                  if (${train} == "Y") {
+                        document.getElementById("trainingtask").checked = true;
+                        
+                    } else
+                    {
+                        document.getElementById("trainingtask").checked = false;
+                    }
+                    </script>
+                
                 <label id="linkedTasks" style="color:blue; float: right; text-align: right; margin-right:100px;">Linked Tasks</label>
                 <br>
                 Start Date :<label> <input type="text" id = "startdate" style="margin-left:27px; width: 135px;" value= ${startdate} ></label> 
@@ -598,7 +616,14 @@
                     <input type ="button" value ="Update" id="Taskupdatecomm" onClick="updateComm();" style="width:75px; float:right"/>
                     <input type ="button" value ="Save" id="Tasksavecomm" style="width:75px;visibility: hidden;"/>
 
-
+                    <script>
+                      if (${train} == "Y") {
+                        $("#Taskupdatecomm").css("visibility","hidden");
+                      } else {
+                         $("#Taskupdatecomm").css("visibility","visible"); 
+                      }
+                      
+                     </script>   
 
             </div>
             <div id="tabs-3">
