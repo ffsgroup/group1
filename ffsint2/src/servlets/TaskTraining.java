@@ -39,6 +39,7 @@ public class TaskTraining extends HttpServlet {
         UserAccount loginedUser = MyUtils.getLoginedUser(session);
         session.setAttribute("taskView", "taskTraining");
         session.setAttribute("taskFilter", onlyUser);
+        session.setAttribute("taskDisp", "6");
         ArrayList<Tasks> task = new ArrayList<Tasks>();
         try {
             task = TaskUtils.getTrainingTask(conn, loginedUser.getUserName(), onlyUser);

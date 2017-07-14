@@ -39,6 +39,7 @@ public class TaskInFuture extends HttpServlet {
         UserAccount loginedUser = MyUtils.getLoginedUser(session);
         session.setAttribute("taskView", "taskInFuture");
         session.setAttribute("taskFilter", onlyUser);
+        session.setAttribute("taskDisp", "3");
         ArrayList<Tasks> task = new ArrayList<Tasks>();
         try {
             task = TaskUtils.getTaskInFuture(conn, loginedUser.getUserName(), onlyUser);

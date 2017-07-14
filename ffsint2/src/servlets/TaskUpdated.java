@@ -39,6 +39,7 @@ public class TaskUpdated extends HttpServlet {
         UserAccount loginedUser = MyUtils.getLoginedUser(session);
         session.setAttribute("taskView", "taskUpdated");
         session.setAttribute("taskFilter", onlyUser);
+        session.setAttribute("taskDisp", "7");
         ArrayList<Tasks> task = new ArrayList<Tasks>();
         try {
             task = TaskUtils.getUpdatedTasks(conn, loginedUser.getUserName(), onlyUser);

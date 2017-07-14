@@ -40,6 +40,8 @@ public class TaskToMeComp extends HttpServlet {
         ArrayList<Tasks> task = new ArrayList<Tasks>();
         session.setAttribute("taskView", "taskToMeComp");
         session.setAttribute("taskFilter", onlyUser);
+        session.setAttribute("taskDisp", "5");
+        
         try {
             task = TaskUtils.getTaskToMeComp(conn, loginedUser.getUserName(), onlyUser);
         } catch (SQLException e) {

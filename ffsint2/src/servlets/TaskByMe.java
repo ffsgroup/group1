@@ -40,6 +40,10 @@ public class TaskByMe extends HttpServlet {
         ArrayList<Tasks> task = new ArrayList<Tasks>();
         session.setAttribute("taskView", "taskByMe");
         session.setAttribute("taskFilter", onlyUser);
+        session.setAttribute("taskDisp", "1");
+        
+        
+        
         try {
             task = TaskUtils.getTaskByMe(conn, loginedUser.getUserName(), onlyUser);
         } catch (SQLException e) {

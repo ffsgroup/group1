@@ -40,6 +40,7 @@ String onlyUser = request.getParameter("onlyUser");
         ArrayList<Tasks> task = new ArrayList<Tasks>();
         session.setAttribute("taskView", "taskServlet");
         session.setAttribute("taskFilter", onlyUser);
+        session.setAttribute("taskDisp", "4");
         try {
             task = TaskUtils.getTask(conn, loginedUser.getUserName(), onlyUser);
         } catch (SQLException e) {

@@ -129,22 +129,22 @@
             <script src="resources/dhtmlxcalendar.js"></script>
             <link rel="stylesheet" type="text/css" href="resources/dhtmlxcalendar_1.css">
 
-<script>
+            <script>
                 function loadMember() {
                     var count = $("#taskPeople option").length;
                     if (count.valueOf() < 2) {
                         $.get('SecurityGetActiveUser', function (responseJson) {
                             if (responseJson != null) {
-                                    
+                            $('#taskPeople').append('<option value=""></option>');
                                 $.each(responseJson, function (key, value) {
-                                    $('#taskPeople').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');   
+                                    $('#taskPeople').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
                                 });
                             }
                         });
                     }
                 }
             </script>
-            
+
             <script>
                 var myCalendar;
                 function doOnLoad() {
@@ -229,7 +229,7 @@
                         document.getElementById("ToMeComp").checked = false;
                         document.getElementById("UpdatedTasks").checked = false;
                         document.getElementById("UrgentTasks").checked = false;
-                        $.get('TaskTraining', {onlyUser:document.getElementById("taskPeople").value },function (responseJson) {
+                        $.get('TaskTraining', {onlyUser: document.getElementById("taskPeople").value}, function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
 
@@ -272,14 +272,14 @@
                         document.getElementById("ToMeComp").checked = false;
                         document.getElementById("UpdatedTasks").checked = false;
                         document.getElementById("TrainingTasks").checked = false;
-                          var counter = 0;
-                        $.get('taskUrgent', {onlyUser:document.getElementById("taskPeople").value },function (responseJson) {
+                        var counter = 0;
+                        $.get('taskUrgent', {onlyUser: document.getElementById("taskPeople").value}, function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
 
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-                                     counter++;
+                                    counter++;
                                     var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
@@ -290,7 +290,7 @@
                                     rowNew.children().eq(6).text(value['startdate']);
                                     rowNew.appendTo(table1);
                                 });
-                                  document.getElementById('taskcounter').innerHTML = counter;
+                                document.getElementById('taskcounter').innerHTML = counter;
                                 document.getElementsById("countrytable")[0].style.width = '20px';
                             } else
                             {
@@ -314,14 +314,14 @@
                         document.getElementById("ToMeComp").checked = false;
                         document.getElementById("UrgentTasks").checked = false;
                         document.getElementById("TrainingTasks").checked = false;
-                              var counter = 0;
-                        $.get('TaskUpdated',{onlyUser:document.getElementById("taskPeople").value }, function (responseJson) {
+                        var counter = 0;
+                        $.get('TaskUpdated', {onlyUser: document.getElementById("taskPeople").value}, function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
 
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-                                       counter++;
+                                    counter++;
                                     var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
@@ -332,7 +332,7 @@
                                     rowNew.children().eq(6).text(value['startdate']);
                                     rowNew.appendTo(table1);
                                 });
-                                  document.getElementById('taskcounter').innerHTML = counter;
+                                document.getElementById('taskcounter').innerHTML = counter;
                                 document.getElementsById("countrytable")[0].style.width = '20px';
                             } else
                             {
@@ -356,14 +356,14 @@
                         document.getElementById("UpdatedTasks").checked = false;
                         document.getElementById("UrgentTasks").checked = false;
                         document.getElementById("TrainingTasks").checked = false;
-                              var counter = 0;
-                        $.get('TaskToMeComp',{onlyUser:document.getElementById("taskPeople").value }, function (responseJson) {
+                        var counter = 0;
+                        $.get('TaskToMeComp', {onlyUser: document.getElementById("taskPeople").value}, function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
 
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-                                           counter++;
+                                    counter++;
                                     var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
@@ -374,7 +374,7 @@
                                     rowNew.children().eq(6).text(value['startdate']);
                                     rowNew.appendTo(table1);
                                 });
-                                  document.getElementById('taskcounter').innerHTML = counter;
+                                document.getElementById('taskcounter').innerHTML = counter;
                                 document.getElementsById("countrytable")[0].style.width = '20px';
                             }
                         });
@@ -394,13 +394,13 @@
                         document.getElementById("UrgentTasks").checked = false;
                         document.getElementById("TrainingTasks").checked = false;
                         var counter = 0;
-                        $.get('TaskNew',{onlyUser:document.getElementById("taskPeople").value }, function (responseJson) {
+                        $.get('TaskNew', {onlyUser: document.getElementById("taskPeople").value}, function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
 
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-                                       counter++;
+                                    counter++;
                                     var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
@@ -411,7 +411,7 @@
                                     rowNew.children().eq(6).text(value['startdate']);
                                     rowNew.appendTo(table1);
                                 });
-                                  document.getElementById('taskcounter').innerHTML = counter;
+                                document.getElementById('taskcounter').innerHTML = counter;
                                 document.getElementsById("countrytable")[0].style.width = '20px';
                             }
                         });
@@ -431,13 +431,13 @@
                         document.getElementById("UrgentTasks").checked = false;
                         document.getElementById("TrainingTasks").checked = false;
                         var counter = 0;
-                        $.get('TaskByMeComp',{onlyUser:document.getElementById("taskPeople").value }, function (responseJson) {
+                        $.get('TaskByMeComp', {onlyUser: document.getElementById("taskPeople").value}, function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
 
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-                                       counter++;
+                                    counter++;
                                     var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskto1']);
@@ -448,7 +448,7 @@
                                     rowNew.children().eq(6).text(value['startdate']);
                                     rowNew.appendTo(table1);
                                 });
-                                  document.getElementById('taskcounter').innerHTML = counter;
+                                document.getElementById('taskcounter').innerHTML = counter;
                                 document.getElementsById("countrytable")[0].style.width = '20px';
                             }
                         });
@@ -466,14 +466,14 @@
                         document.getElementById("UpdatedTasks").checked = false;
                         document.getElementById("UrgentTasks").checked = false;
                         document.getElementById("TrainingTasks").checked = false;
-                             var counter = 0;
-                        $.get('TaskInFuture',{onlyUser:document.getElementById("taskPeople").value }, function (responseJson) {
+                        var counter = 0;
+                        $.get('TaskInFuture', {onlyUser: document.getElementById("taskPeople").value}, function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
 
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-                                      counter++;
+                                    counter++;
                                     var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
@@ -484,7 +484,7 @@
                                     rowNew.children().eq(6).text(value['startdate']);
                                     rowNew.appendTo(table1);
                                 });
-                                  document.getElementById('taskcounter').innerHTML = counter;
+                                document.getElementById('taskcounter').innerHTML = counter;
                                 document.getElementsById("countrytable")[0].style.width = '20px';
                             }
                         });
@@ -504,7 +504,7 @@
                         document.getElementById("UrgentTasks").checked = false;
                         document.getElementById("TrainingTasks").checked = false;
                         var counter = 0;
-                        $.get('TaskByMe',{onlyUser:document.getElementById("taskPeople").value }, function (responseJson) {
+                        $.get('TaskByMe', {onlyUser: document.getElementById("taskPeople").value}, function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
 
@@ -540,7 +540,7 @@
                         document.getElementById("UrgentTasks").checked = false;
                         document.getElementById("TrainingTasks").checked = false;
                         var counter = 0;
-                        $.get('TaskServlet',{onlyUser:document.getElementById("taskPeople").value }, function (responseJson) {
+                        $.get('TaskServlet', {onlyUser: document.getElementById("taskPeople").value}, function (responseJson) {
                             $("#countrytable").find("tr:gt(0)").remove();
                             if (responseJson != null) {
 
@@ -580,39 +580,39 @@
             <input style="margin-left:18px" type="checkbox" id="UpdatedTasks" value="ToMe">Updated Tasks
             <input style="margin-left:11px" type="checkbox" id="UrgentTasks" value="ByMe">Urgent Tasks
             <input style="margin-left:21px" type="checkbox" id="TrainingTasks" value="ToMe">Training Tasks
-                <select name="taskPeople" id = "taskPeople" style=" margin-left: 70px; width: 130px;" onClick="loadMember();" >
-                                  
-                     <option value="${taskFilter}">${taskFilter}</option>
-                </select> 
-            
-            <label style="margin-left:70px;">
-                <label id="taskcounter">0</label>
-            </label>  
-            <script>
-                
-                if (document.getElementById("ToMeInProg").checked == false && document.getElementById("ByMeInProg").checked == false && document.getElementById("TaskInFuture").checked == false && document.getElementById("ByMeComp").checked == false && document.getElementById("NewTask").checked == false && document.getElementById("UpdatedTasks").checked == false && document.getElementById("UrgentTasks").checked == false && document.getElementById("TrainingTasks").checked == false) {
-                    document.getElementById("UrgentTasks").checked = true;
-                }
+            <select name="taskPeople" id = "taskPeople" style=" margin-left: 70px; width: 130px;" onClick="loadMember();" >
 
-            </script>   
-            <div id="calendarHere" style="position:relative;height:320px; float:right;margin-right: 250px"></div>
+                <option value="${taskFilter}">${taskFilter}</option>
+        </select> 
 
-            <div id="tablediv">
+        <label style="margin-left:70px;">
+            <label id="taskcounter">0</label>
+        </label>  
+        <script>
 
-                <table cellspacing="0" id="countrytable" margin-right:20px > 
-                    <thead>
-                        <tr> 
-                            <th style="min-width:50px; width:50px;" scope="col">ID</th> 
-                            <th style="min-width:200px; width:200px;" scope="col">To</th> 
-                            <th style="min-width:220px; width:220px;"scope="col">Description</th> 
-                            <th style="min-width:130px; width:130px;" scope="col">Review Date</th> 
-                            <th style="min-width:130px; width:130px;" scope="col">End Date</th> 
-                            <th style="min-width:90px; width:90px;"scope="col">Status</th> 
-                            <th style="min-width:130px; width:130px;" scope="col">Start Date</th> 
-                        </tr>
-                    </thead>      
-                    <tbody>
-                    <p>${errorString}</p>
+            if (document.getElementById("ToMeInProg").checked == false && document.getElementById("ByMeInProg").checked == false && document.getElementById("TaskInFuture").checked == false && document.getElementById("ByMeComp").checked == false && document.getElementById("NewTask").checked == false && document.getElementById("UpdatedTasks").checked == false && document.getElementById("UrgentTasks").checked == false && document.getElementById("TrainingTasks").checked == false) {
+                document.getElementById("UrgentTasks").checked = true;
+            }
+
+        </script>   
+        <div id="calendarHere" style="position:relative;height:320px; float:right;margin-right: 250px"></div>
+
+        <div id="tablediv">
+
+            <table cellspacing="0" id="countrytable" margin-right:20px > 
+                <thead>
+                    <tr> 
+                        <th style="min-width:50px; width:50px;" scope="col">ID</th> 
+                        <th style="min-width:200px; width:200px;" scope="col">To</th> 
+                        <th style="min-width:220px; width:220px;"scope="col">Description</th> 
+                        <th style="min-width:130px; width:130px;" scope="col">Review Date</th> 
+                        <th style="min-width:130px; width:130px;" scope="col">End Date</th> 
+                        <th style="min-width:90px; width:90px;"scope="col">Status</th> 
+                        <th style="min-width:130px; width:130px;" scope="col">Start Date</th> 
+                    </tr>
+                </thead>      
+                <tbody>
+                <p>${errorString}</p>
 
                 </tbody>
 
@@ -633,7 +633,54 @@
                 $("table > *").width($("table").width() + $("table").scrollLeft());
             });
         </script>
-
+        <script>
+            var a = ${taskDisp};
+            var b = document.getElementById("taskcounter").innerHTML;
+            document.getElementById("taskcounter").innerHTML = b + a;
+            if (a == "1") {
+                document.getElementById("ByMeInProg").checked = true;
+                document.getElementById("UrgentTasks").checked = false;
+            }
+            if (a == "2") {
+                document.getElementById("ByMeComp").checked = true;
+                document.getElementById("UrgentTasks").checked = false;
+                document.getElementById("ByMeInProg").checked = false;
+            }
+            if (a == "3") {
+                document.getElementById("TaskInFuture").checked = true;
+                document.getElementById("UrgentTasks").checked = false;
+                document.getElementById("ByMeInProg").checked = false;
+            }
+            if (a == "4") {
+                document.getElementById("ToMeInProg").checked = true;
+                document.getElementById("UrgentTasks").checked = false;
+                document.getElementById("ByMeInProg").checked = false;
+            }
+            if (a == "5") {
+                document.getElementById("ToMeComp").checked = true;
+                document.getElementById("UrgentTasks").checked = false;
+                document.getElementById("ByMeInProg").checked = false;
+            }
+            if (a == "6") {
+                document.getElementById("TrainingTasks").checked = true;
+                document.getElementById("UrgentTasks").checked = false;
+                document.getElementById("ByMeInProg").checked = false;
+            }
+            if (a == "7") {
+                document.getElementById("UpdatedTasks").checked = true;
+                document.getElementById("UrgentTasks").checked = false;
+                document.getElementById("ByMeInProg").checked = false;
+            }
+            if (a == "8") {
+                document.getElementById("UrgentTasks").checked = true;
+                document.getElementById("ByMeInProg").checked = false;
+            }
+            if (a == "9") {
+                document.getElementById("NewTask").checked = true;
+                document.getElementById("UrgentTasks").checked = false;
+                document.getElementById("ByMeInProg").checked = false;
+            }
+        </script>
 
     </body>
     <jsp:include page="_footer.jsp"></jsp:include>

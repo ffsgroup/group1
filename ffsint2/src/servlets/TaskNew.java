@@ -40,6 +40,7 @@ public class TaskNew extends HttpServlet {
         ArrayList<Tasks> task = new ArrayList<Tasks>();
         session.setAttribute("taskView", "taskNew");
         session.setAttribute("taskFilter", onlyUser);
+        session.setAttribute("taskDisp", "9");
         try {
             task = TaskUtils.getNewTask(conn, loginedUser.getUserName(), onlyUser);
         } catch (SQLException e) {
