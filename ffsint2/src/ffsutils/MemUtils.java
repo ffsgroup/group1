@@ -19,6 +19,27 @@ import java.util.GregorianCalendar;
 import java.sql.Connection;
 
 public class MemUtils {
+    
+    public static ArrayList<MemberDepen> getMemberActiveDepen(Connection conn, String thisMember, String userName) throws SQLException {
+
+        System.out.println("getMemberActiveDepen" + thisMember);
+        String sql = "select count(status) from afhank where lidno = ? and status = 'active'";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, thisMember);
+
+        ResultSet rs = pstm.executeQuery();
+        ArrayList<MemberDepen> list = new ArrayList<MemberDepen>();
+        while (rs.next()) {
+            MemberDepen memberactivedepen = new MemberDepen();
+
+            
+            memberactivedepen.setstatus(rs.getString("count(status)"));
+      System.out.println("getMemberActiveDepen Count:" + rs.getString("count(status)"));
+            list.add(memberactivedepen);
+        }
+        return list;
+    }
+    
 
     public static ArrayList<MemberDebitOrder> getmemberDebitOrder(Connection conn, String thisMember, String userName) throws SQLException {
 

@@ -177,11 +177,23 @@
                         rowNew.appendTo(table3);
                     }
                 });
+                
+                //  Active dependant Count
+                  $.get('MemberGetActiveDepen', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
+                            if (responseJson != null) {
 
+                              
+                                $.each(responseJson, function (key, value) {
+
+                                     document.getElementById('actDepen').value = value['status'];;
+                                     
+                                });
+                            }
+                        });
+                
             }
 
-
-
+            
 
 
             function loadMember()
@@ -319,27 +331,27 @@
                                 document.getElementById("paidrecdate").innerHTML = value['bettot'];
                                 document.getElementById("creditrec").innerHTML = value['krediet'];
                             });
-                        } else {  // json response not null
-                            document.getElementById("memtitle").value = "No such member";
-                            document.getElementById("memname").value = "";
-                            document.getElementById("memsur").value = "";
-                            document.getElementById("memidno").value = "";
-                            document.getElementById("memgend").value = "";
-                            document.getElementById("mememail").value = "";
-                            document.getElementById("memrecruit").value = "";
-                            document.getElementById("memrecruitdate").value = "";
-                            document.getElementById("marriage").selectedIndex = "";
-//                                    document.getElementById("memage").value = "";
-                            document.getElementById("memdob").value = "";
-                            document.getElementById("poldate").value = "";
-                            document.getElementById("memcomp").selectedIndex = "";
-                            document.getElementById("memstatusday").value = "";
-                            document.getElementById("mempoltype").selectedIndex = "";
-                            document.getElementById("memlang").value = "";
-                            document.getElementById("cancode").value = "";
-                            document.getElementById("memstatus").selectedIndex = "";
-                            document.getElementById("memprem").value = "";
-                            document.getElementById("memtotprem").value = "";
+//                        } else {  // json response not null
+//                            document.getElementById("memtitle").value = "No such member";
+//                            document.getElementById("memname").value = "";
+//                            document.getElementById("memsur").value = "";
+//                            document.getElementById("memidno").value = "";
+//                            document.getElementById("memgend").value = "";
+//                            document.getElementById("mememail").value = "";
+//                            document.getElementById("memrecruit").value = "";
+//                            document.getElementById("memrecruitdate").value = "";
+//                            document.getElementById("marriage").selectedIndex = "";
+////                                    document.getElementById("memage").value = "";
+//                            document.getElementById("memdob").value = "";
+//                            document.getElementById("poldate").value = "";
+//                            document.getElementById("memcomp").selectedIndex = "";
+//                            document.getElementById("memstatusday").value = "";
+//                            document.getElementById("mempoltype").selectedIndex = "";
+//                            document.getElementById("memlang").value = "";
+//                            document.getElementById("cancode").value = "";
+//                            document.getElementById("memstatus").selectedIndex = "";
+//                            document.getElementById("memprem").value = "";
+//                            document.getElementById("memtotprem").value = "";
                         }
                     });
 
@@ -363,21 +375,21 @@
                                     document.getElementById("addpol7am").innerHTML = value['secPol7Premie'];
 
                                 });
-                            } else {
-                                document.getElementById("addpol1").innerHTML = "";
-                                document.getElementById("addpol1am").innerHTML = "";
-                                document.getElementById("addpol2").innerHTML = "";
-                                document.getElementById("addpol2am").innerHTML = "";
-                                document.getElementById("addpol3").innerHTML = "";
-                                document.getElementById("addpol3am").innerHTML = "";
-                                document.getElementById("addpol4").innerHTML = "";
-                                document.getElementById("addpol4am").innerHTML = "";
-                                document.getElementById("addpol5").innerHTML = "";
-                                document.getElementById("addpol5am").innerHTML = "";
-                                document.getElementById("addpol6").innerHTML = "";
-                                document.getElementById("addpol6am").innerHTML = "";
-                                document.getElementById("addpol7").innerHTML = "";
-                                document.getElementById("addpol7am").innerHTML = "";
+//                            } else {
+//                                document.getElementById("addpol1").innerHTML = "";
+//                                document.getElementById("addpol1am").innerHTML = "";
+//                                document.getElementById("addpol2").innerHTML = "";
+//                                document.getElementById("addpol2am").innerHTML = "";
+//                                document.getElementById("addpol3").innerHTML = "";
+//                                document.getElementById("addpol3am").innerHTML = "";
+//                                document.getElementById("addpol4").innerHTML = "";
+//                                document.getElementById("addpol4am").innerHTML = "";
+//                                document.getElementById("addpol5").innerHTML = "";
+//                                document.getElementById("addpol5am").innerHTML = "";
+//                                document.getElementById("addpol6").innerHTML = "";
+//                                document.getElementById("addpol6am").innerHTML = "";
+//                                document.getElementById("addpol7").innerHTML = "";
+//                                document.getElementById("addpol7am").innerHTML = "";
                             }
                         });
                     }
@@ -394,6 +406,7 @@
                                     document.getElementById("accType").value = value['TIPE_REK'];
                                     document.getElementById("debitdate").value = value['DAT1'];
                                     document.getElementById("branchNr").value = value['TAKKODE'];
+
                                     //Stop Order
                                     document.getElementById("empName1").value = value['EmpName1'];
                                     document.getElementById("empName2").value = value['EmpName2'];
@@ -402,26 +415,27 @@
                                     document.getElementById("payerId").value = value['PayerID'];
                                     document.getElementById("salNr").value = value['SalNr'];
 
-                                        
-                                  
+
+
                                 });
-                            } else {
-                                
-                                    //Debit order
-                                    document.getElementById("accholder").value = "";
-                                    document.getElementById("accNo").value = "";
-                                    document.getElementById("deductDay").value = "";
-                                    document.getElementById("bankName").value = "";
-                                    document.getElementById("accType").value = "";
-                                    document.getElementById("debitdate").value = "";
-                                    document.getElementById("branchNr").value = "";
-                                    //Stop Order
-                                    document.getElementById("empName1").value = "";
-                                    document.getElementById("empName2").value = "";
-                                    document.getElementById("stopOrderDate").value = "";
-                                    document.getElementById("payerName").value = "";
-                                    document.getElementById("payerId").value = "";
-                                    document.getElementById("salNr").value = "";
+
+//                            } else {
+//
+//                                //Debit order
+//                                document.getElementById("accholder").value = "";
+//                                document.getElementById("accNo").value = "";
+//                                document.getElementById("deductDay").value = "";
+//                                document.getElementById("bankName").value = "";
+//                                document.getElementById("accType").value = "";
+//                                document.getElementById("debitdate").value = "";
+//                                document.getElementById("branchNr").value = "";
+//                                //Stop Order
+//                                document.getElementById("empName1").value = "";
+//                                document.getElementById("empName2").value = "";
+//                                document.getElementById("stopOrderDate").value = "";
+//                                document.getElementById("payerName").value = "";
+//                                document.getElementById("payerId").value = "";
+//                                document.getElementById("salNr").value = "";
 
                             }
                         });
@@ -433,8 +447,10 @@
                     $("#notesgrid").find("tr:gt(0)").remove();
                     $("#imagegrid").find("tr:gt(0)").remove();
                     $("#claimgrid").find("tr:gt(0)").remove();
+                    $("#voicegrid").find("tr:gt(0)").remove();
 
                 } else {
+                    //Member Details
                     document.getElementById("memtitle").value = "No such member";
                     document.getElementById("memname").value = "";
                     document.getElementById("memsur").value = "";
@@ -451,10 +467,84 @@
                     document.getElementById("memstatusday").value = "";
                     document.getElementById("mempoltype").selectedIndex = "";
                     document.getElementById("memlang").value = "";
-                    document.getElementById("cancode").value = "";
+                    document.getElementById("cancode").selectedIndex = "";
                     document.getElementById("memstatus").selectedIndex = "";
                     document.getElementById("memprem").value = "";
                     document.getElementById("memtotprem").value = "";
+                    //tab 2 Contact
+                    document.getElementById("padd1").value = "";
+                    document.getElementById("padd2").value = "";
+                    document.getElementById("padd3").value = "";
+                    document.getElementById("pcode").value = "";
+                    document.getElementById("post1").value = "";
+                    document.getElementById("post2").value = "";
+                    document.getElementById("post3").value = "";
+                    document.getElementById("postcode").value = "";
+                    document.getElementById("postdate").value = "";
+                    document.getElementById("phonecell").value = "";
+                    document.getElementById("phonehome").value = "";
+                    document.getElementById("phonework").value = "";
+                    //tab 3 Dependants
+                    document.getElementById('nrdepen').value = "0";
+                     document.getElementById('actDepen').value = "0";
+                    $("#depend").find("tr:gt(0)").remove();
+                    //tab 4 Account
+                    document.getElementById("joindat").value = "";
+                    document.getElementById("claimdat").value = "";
+                    document.getElementById("mbranch").value = "";
+                    document.getElementById("coveramount").value = "";
+                    document.getElementById("bettot").value = "";
+                    document.getElementById("paymet").selectedIndex = "";
+                    document.getElementById("paypoint").value = "";
+                    document.getElementById("benefname").value = "";
+                    document.getElementById("benefid").value = "";
+                    document.getElementById("benefrelation").value = "";
+                    document.getElementById("benefdate").value = "";
+                    //Debit order
+                    document.getElementById("accholder").value = "";
+                    document.getElementById("accNo").value = "";
+                    document.getElementById("deductDay").value = "";
+                    document.getElementById("bankName").value = "";
+                    document.getElementById("accType").value = "";
+                    document.getElementById("debitdate").value = "";
+                    document.getElementById("branchNr").value = "";
+                    document.getElementById("groupScheme").value = "";
+                    //Stop Order
+                    document.getElementById("empName1").value = "";
+                    document.getElementById("empName2").value = "";
+                    document.getElementById("stopOrderDate").value = "";
+                    document.getElementById("payerName").value = "";
+                    document.getElementById("payerId").value = "";
+                    document.getElementById("salNr").value = "";
+                    //tab 5 Receipts
+                    document.getElementById("paidrecdate").innerHTML = "YYYY/MM/DD";
+                    document.getElementById("creditrec").innerHTML = "0.00";
+                    document.getElementById("paidrecmeth").innerHTML = "";
+                    $("#recgrid").find("tr:gt(0)").remove();
+                    //tab 6 Notes
+                    $("#notesgrid").find("tr:gt(0)").remove();
+                    //tab 7 Claims
+                    $("#imagegrid").find("tr:gt(0)").remove();
+                    //tab 8 Images
+                    $("#claimgrid").find("tr:gt(0)").remove();
+                    //tab 10 Voice
+                    $("#voicegrid").find("tr:gt(0)").remove();
+                    //Extra Policies
+                    document.getElementById("addpol1").innerHTML = "";
+                    document.getElementById("addpol1am").innerHTML = "";
+                    document.getElementById("addpol2").innerHTML = "";
+                    document.getElementById("addpol2am").innerHTML = "";
+                    document.getElementById("addpol3").innerHTML = "";
+                    document.getElementById("addpol3am").innerHTML = "";
+                    document.getElementById("addpol4").innerHTML = "";
+                    document.getElementById("addpol4am").innerHTML = "";
+                    document.getElementById("addpol5").innerHTML = "";
+                    document.getElementById("addpol5am").innerHTML = "";
+                    document.getElementById("addpol6").innerHTML = "";
+                    document.getElementById("addpol6am").innerHTML = "";
+                    document.getElementById("addpol7").innerHTML = "";
+                    document.getElementById("addpol7am").innerHTML = "";
+
                 }
             }
 
@@ -554,7 +644,7 @@
             <label style="margin-left:100px"> Status Date <input type="text" id="memstatusday" width="25" style = "margin-left:27px"> </label>
             <br>
             <label Style ="margin-left:20px"> Date <input type="text" id="memrecruitdate" style="margin-left:25px" > </label>
-            <label style="margin-left:100px" > Premium <input type="text" id="memprem" style="width:60px; margin-left:45px" > </label>
+            <label style="margin-left:100px" > Premium <input type="text" id="memprem" style="width:60px; margin-left:45px; " > </label>
             <br>
             <label> Age <input type ="text" id="memage" style="margin-left:48px; width:60px"> </label>
             <label style="margin-left:185px" > Total Premium  <input type="text" id="memtotprem" style="width:60px;margin-left:10px" > </label>
@@ -683,7 +773,7 @@
                 <label style="float:left;"> Dependants </label>
                 <input type="text" style="margin-left:10px;width:30px;" id="nrdepen"> 
                 <label style="margin-left:30px">/  Active </label>
-                <input id="" style="margin-left:10px; width:30px;">
+                <input id="actDepen" style="margin-left:10px; width:30px;">
                 <input type="button" value="New" id="newdepen" style="width:75px; float:right;">
                 <br>  
 
@@ -812,8 +902,8 @@
                         <option value="GS004">GS004</option>
                         <option value="GS005">GS005</option>
                         <option value="GS006">GS006</option>
-                        
-                       
+
+
                     </select> 
                 </fieldset>
 
@@ -823,9 +913,9 @@
                     <label> Employer 1 </label>
                     <label style="margin-left:10px">
                         <input type="text" list ="emp1" id= "empName1" style="width:170px">
-<!--                        <datalist id="emp1">
-                            <option> </option>
-                        </datalist>-->
+                        <!--                        <datalist id="emp1">
+                                                    <option> </option>
+                                                </datalist>-->
                     </label>
                     <label style="margin-left:25px;"> Payer Name </label>
                     <input type="text" id="payerName" style="margin-left:10px;width:150px">
@@ -833,9 +923,9 @@
                     <label> Employer 2 </label>
                     <label style="margin-left:10px">
                         <input type="text" list="emp2" id="empName2" style="width:170px">
-<!--                        <datalist id="emp2" >
-                            <option> </option>
-                        </datalist>-->
+                        <!--                        <datalist id="emp2" >
+                                                    <option> </option>
+                                                </datalist>-->
                     </label>
                     <label Style="margin-left:25px"> Payer Id </label>
                     <input type="text" id="payerId" style="width:150px;margin-left:40px;">
@@ -872,8 +962,8 @@
                 <input type="button" id="cancellrec" value="Cancell" style="margin-left:20px;width:90px">
                 <input type="button" id="newrec" value="New Rec" style="margin-left:20px;width:90px">
                 <br>
-                <label style="margin-left:0px"> Credit </label>
-                <label style="margin-left:10px" id="creditrec"> 00 </label>      
+                <label style="margin-left:0px"> Credit:</label>
+                <label style="margin-left:10px" id="creditrec"></label>      
                 <input type="button" id="printoldrec" value="Print" style="margin-left:485px;width:90px;">
                 <input type="button" id="viewoldrec" value="View Old" style="margin-left:20px; width:90px;">
                 <br>
@@ -950,12 +1040,12 @@
                             <th style="width:100px" scope="col">Death Date</th> 
                             <th style="width:100px" scope="col">Status</th> 
                         </tr>
-<!--                        <tr>
-                            <td> 08:00 </td> <td> </td> <td> </td> <td> </td></tr>
-                        <tr>   <td> 08:30 </td> <td> </td> <td> </td> <td> </td></tr>
-                        <tr><td> 09:00 </td> <td> </td> <td> </td> <td> </td></tr>
-                        <tr><td> 09:30 </td> <td> </td> <td> </td> <td> </td></tr>
-                        <tr><td> 10:00 </td> <td> </td> <td> </td> <td> </td></tr>                             -->
+                        <!--                        <tr>
+                                                    <td> 08:00 </td> <td> </td> <td> </td> <td> </td></tr>
+                                                <tr>   <td> 08:30 </td> <td> </td> <td> </td> <td> </td></tr>
+                                                <tr><td> 09:00 </td> <td> </td> <td> </td> <td> </td></tr>
+                                                <tr><td> 09:30 </td> <td> </td> <td> </td> <td> </td></tr>
+                                                <tr><td> 10:00 </td> <td> </td> <td> </td> <td> </td></tr>                             -->
                     </table>
                 </div> 
             </div>  
