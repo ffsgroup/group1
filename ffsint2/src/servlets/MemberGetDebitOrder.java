@@ -16,18 +16,18 @@ import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import ffsbeans.Member;
 import ffsbeans.UserAccount;
-import ffsbeans.MemberClaims;
+import ffsbeans.MemberDebitOrder;
 import ffsutils.MyUtils;
 import ffsutils.MemUtils;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/MemberGetClaims")
-public class MemberGetClaims extends HttpServlet {
+@WebServlet("/MemberGetDebitOrder")
+public class MemberGetDebitOrder extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public MemberGetClaims() {
+    public MemberGetDebitOrder() {
         
     }
 	
@@ -36,17 +36,17 @@ public class MemberGetClaims extends HttpServlet {
                 HttpSession session = request.getSession();
                 
                  String thisMember = request.getParameter("thisMember");                 
-                 System.out.println("MemberGetClaims " + thisMember);
+                 System.out.println("MemberGetDebitOrder " + thisMember);
                  UserAccount loginedUser = MyUtils.getLoginedUser(session);
-		ArrayList<MemberClaims> memberclaims =new ArrayList<MemberClaims>();
+		ArrayList<MemberDebitOrder> memberdebitorder =new ArrayList<MemberDebitOrder>();
                 try {
-		memberclaims=MemUtils.getmemberClaims(conn, thisMember, loginedUser.getUserName());
+		memberdebitorder=MemUtils.getmemberDebitOrder(conn, thisMember, loginedUser.getUserName());
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();
         }
 		Gson gson = new Gson();
-		JsonElement element = gson.toJsonTree(memberclaims, new TypeToken<List<Member>>() {}.getType());
+		JsonElement element = gson.toJsonTree(memberdebitorder, new TypeToken<List<Member>>() {}.getType());
 
 		JsonArray jsonArray = element.getAsJsonArray();
 		response.setContentType("application/json");

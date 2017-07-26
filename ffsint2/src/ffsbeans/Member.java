@@ -47,11 +47,12 @@ public class Member {
       private String benefRelation;
        private String benefdate;
        private String memAge;
+        private String GroupSc;
     public Member() {
 
     }
 
-    public Member(String tranid, String lidno, String sur, String ini, String shortname, String orgid, String lidtipe, String gebdat, String aanstdat, String troustat, String pobox, String street, String city, String zip, String physline1, String physline2, String physline3, String physcode, String idno, String sex, String taal, String verwlidno, String telh, String telw, String newprelidno, String eisdat, String krediet, String bettot, String joindat, String status, String email, String recruiter, String recruitdate, String troutstat, String cancode, String initialPayment, String postdate, String opmaak, String branch, String coveramount, String betmet, String paypoint, String benefname, String benefID, String benefRelation, String benefdate, String memAge) {
+    public Member(String tranid, String lidno, String sur, String ini, String shortname, String orgid, String lidtipe, String gebdat, String aanstdat, String troustat, String pobox, String street, String city, String zip, String physline1, String physline2, String physline3, String physcode, String idno, String sex, String taal, String verwlidno, String telh, String telw, String newprelidno, String eisdat, String krediet, String bettot, String joindat, String status, String email, String recruiter, String recruitdate, String troutstat, String cancode, String initialPayment, String postdate, String opmaak, String branch, String coveramount, String betmet, String paypoint, String benefname, String benefID, String benefRelation, String benefdate, String memAge, String GroupSc) {
         this.tranid = tranid;
         this.lidno = lidno;
         this.sur = sur;
@@ -98,6 +99,7 @@ public class Member {
         this.benefRelation = benefRelation;
         this.benefdate = benefdate;
         this.memAge = memAge;
+        this.GroupSc = GroupSc;
     }
 
     public String getTranid() {
@@ -463,5 +465,12 @@ public class Member {
 
     public void setmemAge(String memAge) {
         this.memAge = memAge;
+    }
+     public String getGroupSc() {
+        return GroupSc;
+    }
+
+    public void setGroupSc(String GroupSc) {
+        this.GroupSc = GroupSc;
     }
 }
