@@ -181,11 +181,19 @@
                     });
                 });
             </script>        
-
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
             <script type="text/javascript">
                 $(document).ready(function () {
                     $("#Tasksavecomm").click(function (event) {
-                        $.get('TaskSaveComm', {comment: document.getElementById("tasknotes").value, tranid: document.getElementById("taskid").innerHTML}, function (responseJson) {
+                     var a11 = "1";   
+                     var b11 ="2";
+                     if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (p) {
+        var LatLng = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
+        document.getElementById("coord").innerHTML = p.coords.latitude + "," + p.coords.longitude;
+        a11 = String(p.coords.latitude);
+        b11 = String(p.coords.longitude);
+        $.get('TaskSaveComm', {comment: document.getElementById("tasknotes").value, tranid: document.getElementById("taskid").innerHTML, coordsa:a11 , coordsb:b11 }, function (responseJson) {
                             if (responseJson != null) {
                                 $.each(responseJson, function (key, value) {
                                     document.getElementById("tasknotes").value = value['tasknote'];
@@ -200,6 +208,42 @@
                                 });
                             }
                         });
+    });
+} else {
+   a11 = "0" ;
+   b11="0";
+$.get('TaskSaveComm', {comment: document.getElementById("tasknotes").value, tranid: document.getElementById("taskid").innerHTML, coordsa:a11 , coordsb:b11 }, function (responseJson) {
+                            if (responseJson != null) {
+                                $.each(responseJson, function (key, value) {
+                                    document.getElementById("tasknotes").value = value['tasknote'];
+                                    if (document.getElementById("tasknotes").value == "undefined") {
+                                        document.getElementById("tasknotes").value = "";
+                                    }
+                                    if (document.getElementById("tasknotes").value.length > 0) {
+                                        //   document.getElementById("tasknotes").value = "2"; 
+                                        document.getElementById("tasknotes").value = value['tasknote'].replace(/~/g, "\n");
+                                    }
+
+                                });
+                            }
+                        });   
+}                     
+//                        $.get('TaskSaveComm', {comment: document.getElementById("tasknotes").value, tranid: document.getElementById("taskid").innerHTML, coordsa:a11 , coordsb:b11 }, function (responseJson) {
+//                            if (responseJson != null) {
+//                                $.each(responseJson, function (key, value) {
+//                                    document.getElementById("tasknotes").value = value['tasknote'];
+//                                    if (document.getElementById("tasknotes").value == "undefined") {
+//                                        document.getElementById("tasknotes").value = "";
+//                                    }
+//                                    if (document.getElementById("tasknotes").value.length > 0) {
+//                                        //   document.getElementById("tasknotes").value = "2"; 
+//                                        document.getElementById("tasknotes").value = value['tasknote'].replace(/~/g, "\n");
+//                                    }
+//
+//                                });
+//                            }
+//                        });
+                        
                         //    $("#tablediv").show();  
                         $("#Taskupdatecomm").css("visibility", "visible");
                         $("#Tasksavecomm").css("visibility", "hidden");
@@ -976,6 +1020,8 @@ ${taskimage}
                 <input id="uploadBtn" type="button" value="Upload" onClick="performAjaxSubmit();">
 
             </div>
+                    
+                    <label id = "coord">aaa </label>
 <script type="text/javascript">
 
             function performAjaxSubmit() {

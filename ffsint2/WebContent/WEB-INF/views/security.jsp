@@ -15,6 +15,779 @@
         <title>Security</title>
 
         <script>
+            
+            $(document).ready(function () {
+                $("#securityUpdate").click(function (event) {            
+              var a="";
+              if (document.getElementById("sec1").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec2").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0"; 
+              }
+              if (document.getElementById("sec3").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec4").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec5").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec6").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec7").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec8").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec9").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec10").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec11").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec12").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec13").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec14").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec15").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec16").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec17").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec18").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec19").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec20").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec21").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec22").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec23").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec24").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec25").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec26").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec27").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec28").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec29").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec30").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec31").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec32").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec33").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec34").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec35").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec36").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec37").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec38").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec39").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec40").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec41").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec42").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec43").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec44").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec45").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec46").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec47").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec48").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec49").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec50").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec51").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec52").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec53").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec54").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec55").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec56").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec57").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec58").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec59").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec60").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec61").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec62").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec63").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec64").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec65").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec66").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec67").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec68").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec69").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec70").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec71").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec72").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec73").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec74").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec75").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec76").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec77").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec78").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec79").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec80").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec81").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec82").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec83").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec84").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec85").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec86").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec87").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec88").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec89").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec90").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec91").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec92").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec93").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec94").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec95").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec96").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec97").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec98").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec99").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec100").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+if (document.getElementById("sec101").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec102").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec103").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec104").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec105").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec106").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec107").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec108").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec109").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec110").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec111").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec112").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec113").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec114").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec115").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec116").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec117").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec118").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec119").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec120").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec121").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec122").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec123").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec124").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec125").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec126").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec127").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec128").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec129").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec130").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec131").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+                            if (document.getElementById("sec132").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec133").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec134").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec135").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+if (document.getElementById("sec136").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec137").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec138").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec139").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec140").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              
+              if (document.getElementById("sec141").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec142").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec143").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec144").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec145").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec146").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec147").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec148").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec149").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              if (document.getElementById("sec150").checked == true) {
+                  a = a+"1";
+              } else {
+                  a=a+"0";
+              }
+              
+                    $.get('SecurityUpdateUser', {name: document.getElementById("username").innerHTML ,secure:a}, function (responseJson) {
+                        if (responseJson != null) {
+                            $.each(responseJson, function (key, value) {
+                                if (value["GenericDescriptionEng"] == "success") {
+                                    document.getElementById("newname").value = "";
+                                    document.getElementById("newuser").value = "";
+                                    alert("User was updated.");
+                                } else {
+                                    alert("An error ocurred. This user was not updated");
+                                }
+                            });
+                        }
+                    });
+                    //     }
+                });
+            });
+            
             $(document).ready(function () {
                 $("#logoff").click(function (event) {
                     if (document.getElementById("username").innerHTML.length > 1) {
@@ -901,6 +1674,11 @@
                                 } else {
                                     document.getElementById("sec147").checked = false;
                                 }
+                                if (value['securestr'].substring(149, 150) == "1") {
+                                    document.getElementById("sec150").checked = true;
+                                } else {
+                                    document.getElementById("sec150").checked = false;
+                                }
 
                             });
 
@@ -977,6 +1755,7 @@
             </ul>
             <div id="tabs-1" style="height:220px;color:black">
                 User : <label id="username"> </label>
+                <input type ="button" id = "securityUpdate" value="Update" style="margin-left:80px; width:80px;" >
                 <br>
                 Id : <label id="userid"> </label>
                 <br>
@@ -1260,6 +2039,7 @@
                         </tr>  
                         <tr>
                             <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec110"> View Incidents </label></td>
+                            <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec150"> Show Location </label></td>
                         </tr>  
                     <br>
                     </tbody>
@@ -1315,7 +2095,7 @@
                         <tr>
                             <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec116"> Register CV </label></td>
                             <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec84"> Alarm Code </label></td>
-                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec134"> Stop / Debit Dates </label></td>   
+                            <td style="min-width:200px; width:200px;"> <label><input type ="checkbox" id="sec135"> Stop / Debit Dates </label></td>   
                         </tr>
                         <tr>
                             <td style="min-width:200px; width:200px;"><label><input type ="checkbox" id="sec117"> Pol Change Vote 1 </label></td>

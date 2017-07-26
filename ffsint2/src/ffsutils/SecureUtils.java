@@ -226,4 +226,24 @@ public static ArrayList<UserAccount> getAllActiveUser(Connection conn, String Us
         return list;
     }
     
+        public static ArrayList<Generics> UpdateUser(Connection conn, String name, String secure) throws SQLException {
+        System.out.println("UpdateUser " + name);
+        String result = "";
+        String sql = "update users set lidno = ? where name = ?";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, secure);
+        pstm.setString(2, name);
+        pstm.executeUpdate();
+
+            result = "success";
+
+        ArrayList<Generics> list = new ArrayList<Generics>();
+
+        Generics gen1 = new Generics();
+        gen1.setGenericDescriptionEng(result);
+        list.add(gen1);
+
+        return list;
+    }
+    
 }

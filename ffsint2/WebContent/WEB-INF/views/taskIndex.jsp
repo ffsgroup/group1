@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -135,7 +135,7 @@
                     if (count.valueOf() < 2) {
                         $.get('SecurityGetActiveUser', function (responseJson) {
                             if (responseJson != null) {
-                            $('#taskPeople').append('<option value=""></option>');
+                                $('#taskPeople').append('<option value=""></option>');
                                 $.each(responseJson, function (key, value) {
                                     $('#taskPeople').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
                                 });
@@ -238,6 +238,26 @@
                                 $.each(responseJson, function (key, value) {
                                     counter++;
                                     var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    
+                                    if ((value['linkup1'] == "green") && (value['linkup2']== "black") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:teal'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "red") && (value['linkup2']== "black") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "orange") && (value['linkup2']== "black") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    
+                                    if ((value['linkup1'] == "green") && (value['linkup2']== "green") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px; color:teal'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:teal'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "red") && (value['linkup2']== "green") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px; color:teal'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "orange") && (value['linkup2']== "green") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px; color:teal'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
                                     rowNew.children().eq(2).text(value['description']);
@@ -281,6 +301,26 @@
                                 $.each(responseJson, function (key, value) {
                                     counter++;
                                     var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    
+                                    if ((value['linkup1'] == "green") && (value['linkup2']== "black") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:teal'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "red") && (value['linkup2']== "black") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "orange") && (value['linkup2']== "black") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    
+                                    if ((value['linkup1'] == "green") && (value['linkup2']== "green") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px; color:teal'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:teal'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "red") && (value['linkup2']== "green") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px; color:teal'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "orange") && (value['linkup2']== "green") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px; color:teal'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
                                     rowNew.children().eq(2).text(value['description']);
@@ -323,6 +363,26 @@
                                 $.each(responseJson, function (key, value) {
                                     counter++;
                                     var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    
+                                    if ((value['linkup1'] == "green") && (value['linkup2']== "black") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:teal'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "red") && (value['linkup2']== "black") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "orange") && (value['linkup2']== "black") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    
+                                    if ((value['linkup1'] == "green") && (value['linkup2']== "green") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px; color:teal'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:teal'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "red") && (value['linkup2']== "green") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px; color:teal'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "orange") && (value['linkup2']== "green") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px; color:teal'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
                                     rowNew.children().eq(2).text(value['description']);
@@ -365,6 +425,26 @@
                                 $.each(responseJson, function (key, value) {
                                     counter++;
                                     var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    
+                                    if ((value['linkup1'] == "green") && (value['linkup2']== "black") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:teal'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "red") && (value['linkup2']== "black") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "orange") && (value['linkup2']== "black") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    
+                                    if ((value['linkup1'] == "green") && (value['linkup2']== "green") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px; color:teal'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:teal'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "red") && (value['linkup2']== "green") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px; color:teal'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "orange") && (value['linkup2']== "green") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px; color:teal'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
                                     rowNew.children().eq(2).text(value['description']);
@@ -402,6 +482,26 @@
                                 $.each(responseJson, function (key, value) {
                                     counter++;
                                     var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    
+                                    if ((value['linkup1'] == "green") && (value['linkup2']== "black") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:teal'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "red") && (value['linkup2']== "black") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "orange") && (value['linkup2']== "black") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    
+                                    if ((value['linkup1'] == "green") && (value['linkup2']== "green") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px; color:teal'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:teal'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "red") && (value['linkup2']== "green") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px; color:teal'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "orange") && (value['linkup2']== "green") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px; color:teal'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
                                     rowNew.children().eq(2).text(value['description']);
@@ -439,6 +539,26 @@
                                 $.each(responseJson, function (key, value) {
                                     counter++;
                                     var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    
+                                    if ((value['linkup1'] == "green") && (value['linkup2']== "black") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:teal'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "red") && (value['linkup2']== "black") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "orange") && (value['linkup2']== "black") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    
+                                    if ((value['linkup1'] == "green") && (value['linkup2']== "green") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px; color:teal'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:teal'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "red") && (value['linkup2']== "green") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px; color:teal'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "orange") && (value['linkup2']== "green") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px; color:teal'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskto1']);
                                     rowNew.children().eq(2).text(value['description']);
@@ -475,6 +595,26 @@
                                 $.each(responseJson, function (key, value) {
                                     counter++;
                                     var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    
+                                    if ((value['linkup1'] == "green") && (value['linkup2']== "black") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:teal'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "red") && (value['linkup2']== "black") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "orange") && (value['linkup2']== "black") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    
+                                    if ((value['linkup1'] == "green") && (value['linkup2']== "green") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px; color:teal'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:teal'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "red") && (value['linkup2']== "green") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px; color:teal'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "orange") && (value['linkup2']== "green") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px; color:teal'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
                                     rowNew.children().eq(2).text(value['description']);
@@ -511,7 +651,27 @@
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
                                     counter++;
-                                    var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                   var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    
+                                    if ((value['linkup1'] == "green") && (value['linkup2']== "black") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:teal'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "red") && (value['linkup2']== "black") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "orange") && (value['linkup2']== "black") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    
+                                    if ((value['linkup1'] == "green") && (value['linkup2']== "green") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px; color:teal'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:teal'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "red") && (value['linkup2']== "green") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px; color:teal'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "orange") && (value['linkup2']== "green") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px; color:teal'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskto1']);
                                     rowNew.children().eq(2).text(value['description']);
@@ -548,10 +708,31 @@
                                 $.each(responseJson, function (key, value) {
                                     counter++;
                                     var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    
+                                    if ((value['linkup1'] == "green") && (value['linkup2']== "black") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:teal'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "red") && (value['linkup2']== "black") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "orange") && (value['linkup2']== "black") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    
+                                    if ((value['linkup1'] == "green") && (value['linkup2']== "green") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px; color:teal'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:teal'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "red") && (value['linkup2']== "green") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px; color:teal'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
+                                    if ((value['linkup1'] == "orange") && (value['linkup2']== "green") ) {
+                                        var rowNew = $("   <tr> <td style='min-width:50px; width:50px; color:teal'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
+                                    }
                                     rowNew.children().eq(0).text(value['tranid']);
                                     rowNew.children().eq(1).text(value['taskfrom']);
                                     rowNew.children().eq(2).text(value['description']);
                                     rowNew.children().eq(3).text(value['revdate']);
+
                                     rowNew.children().eq(4).text(value['enddate']);
                                     rowNew.children().eq(5).text(value['taskstat']);
                                     rowNew.children().eq(6).text(value['startdate']);

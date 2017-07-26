@@ -14,41 +14,43 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
-import ffsbeans.Tasks;
+import ffsbeans.Member;
+import ffsbeans.Generics;
 import ffsbeans.UserAccount;
-import ffsutils.TaskUtils;
+import ffsutils.DBUtils;
 import ffsutils.MyUtils;
+import ffsutils.SecureUtils;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/TaskSaveComm")
-public class TaskSaveComm extends HttpServlet {
+@WebServlet("/SecurityUpdateUser")
+public class SecurityUpdateUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public TaskSaveComm() {
+    public SecurityUpdateUser() {
         
     }
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Connection conn = MyUtils.getStoredConnection(request);
                 HttpSession session = request.getSession();
-                UserAccount loginedUser = MyUtils.getLoginedUser(session);
-                String comments = request.getParameter("comment");  
-                String tranid = request.getParameter("tranid"); 
-                String coordsa = request.getParameter("coordsa"); 
-                String coordsb = request.getParameter("coordsb"); 
-                System.out.println("TaskSaveComm " + tranid + " " + coordsa + " " + coordsb);
-		ArrayList<Tasks> tasks =new ArrayList<Tasks>();
+                
+                 String name = request.getParameter("name");   
+                 String secure = request.getParameter("secure");  
+                 
+                 System.out.println("SecurityUpdateUser " + name + ' ' + secure);
+                 
+                 UserAccount loginedUser = MyUtils.getLoginedUser(session);
+		ArrayList<Generics> generic =new ArrayList<Generics>();
                 try {
-		tasks=TaskUtils.TaskSaveComm(conn,loginedUser, comments, tranid, coordsa, coordsb);
-                        } catch (SQLException|InterruptedException e) {
+		generic=SecureUtils.UpdateUser(conn, name, secure );
+                        } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();
         }
-             
 		Gson gson = new Gson();
-		JsonElement element = gson.toJsonTree(tasks, new TypeToken<List<Tasks>>() {}.getType());
+		JsonElement element = gson.toJsonTree(generic, new TypeToken<List<Member>>() {}.getType());
 
 		JsonArray jsonArray = element.getAsJsonArray();
 		response.setContentType("application/json");
