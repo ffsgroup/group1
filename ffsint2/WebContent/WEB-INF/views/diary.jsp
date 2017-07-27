@@ -880,13 +880,13 @@
 
         <div id="tablediv">
 
-            <table cellspacing="0" id="countrytable" margin-right:20px style="table-layout:fixed;float: left; border-collapse: collapse;margin-left:290px;"> 
+            <table cellspacing="0" id="countrytable" margin-right:10px style="table-layout:fixed;float: left; border-collapse: collapse;margin-left:290px;"> 
 
                 <tr> 
-                    <th style="width:50px" scope="col">Time</th> 
-                    <th style="width:100px" scope="col">User</th> 
-                    <th style="width:100px" scope="col">Description</th> 
-                    <th style="width:20px" scope="col">ID</th> 
+                    <th style="width:3%" scope="col">Time</th> 
+                    <th style="width:13%" scope="col">User</th> 
+                    <th style="width:13%" scope="col">Description</th> 
+                    <th style="width:3%" scope="col">ID</th> 
                 </tr>
                 <tr>
                     <td> 08:00 </td> <td> </td> <td> </td> <td> </td></tr>
@@ -915,7 +915,7 @@
         </div>
 
 
-        <div id="tabs" style="width:30%; float:right;">
+        <div id="tabs" style="width:28%; float:right;">
             <ul>
                 <li><a href="#tabs-1">Details</a></li>
                 <li><a href="#tabs-2">Notes</a></li>
@@ -1203,7 +1203,9 @@
         <br/>
         <br/>
         <br/>
-
+        <br/>
+        <br/>
+        <br/>
         <br/>
         <br/>
         <br/>
@@ -1278,7 +1280,6 @@
                         $.get('DiaryUser', function (responseJson) {
                             if (responseJson != null) {
 
-                                //  var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
 
                                     $('#dsee1').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');

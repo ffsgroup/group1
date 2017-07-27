@@ -10,7 +10,7 @@
   <div style="float: left">
       <h1>FFS Group</h1>        
      </div>
-    <div style="float: right; padding: 10px;" >
+    <div style="float: right; padding: 5px;" >
   <!-- User store in session with attribute: loginedUser -->
     <b>${loginedUser.userName}</b>
     <br>
