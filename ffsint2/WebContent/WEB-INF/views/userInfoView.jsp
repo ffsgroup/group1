@@ -60,25 +60,7 @@
     
     </table>     
      <br>
-     
-     <label id="locate"> test </label>
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-<script type="text/javascript">
-if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function (p) {
-        var LatLng = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
-        document.getElementById("locate").innerHTML = p.coords.latitude + " " + p.coords.longitude;
-        var mapOptions = {
-            center: LatLng,
-            zoom: 13,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-    });
-}
-
-</script>
-
-     
+    
     <jsp:include page="_footer.jsp"></jsp:include>
  
  </body>
