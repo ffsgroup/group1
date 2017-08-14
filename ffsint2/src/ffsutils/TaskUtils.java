@@ -285,10 +285,14 @@ public class TaskUtils extends HttpServlet {
                     cal7.setTime(rs.getTimestamp("statusday2"));
                 }
                 String training;
+                if (rs.getString("train") == null ) {
+                 training = "N";   
+                } else {
                 if (rs.getString("train").equals("Y")) {
                     training = "Y";
                 } else {
                     training = "N";
+                }
                 }
                 String year7 = Integer.toString(cal7.get(Calendar.YEAR));
                 String month7 = Integer.toString(cal7.get(Calendar.MONTH) + 1);
@@ -707,8 +711,11 @@ public class TaskUtils extends HttpServlet {
                     System.out.println("getTaskOne Security 150=1");
                 } else {
                     System.out.println("getTaskOne Security 150=0");
-                    String TaskNote = rs.getString("tasknote");
-
+                    String TaskNote = "";
+                    
+                    if (rs.getString("tasknote") != null ) {
+                     TaskNote = rs.getString("tasknote");
+                    }
                     String TempString = "";
                     Integer TempI = TaskNote.indexOf("http://google.com/maps");
                     while (TempI != -1) {
@@ -2440,6 +2447,7 @@ task.setlinkup2(color2);
                 color1 = "green";
             }
             task.setlinkup1(color1);
+            System.out.println("getTask " + color1 );
             if ( (Username.equals(rs.getString("taskto1")) && (!"Y".equals(rs.getString("newt1")))) || (Username.equals(rs.getString("taskto2")) && (!"Y".equals(rs.getString("newt2")))) || (Username.equals(rs.getString("taskto3")) && (!"Y".equals(rs.getString("newt3")))) || (Username.equals(rs.getString("taskto4")) && (!"Y".equals(rs.getString("newt4")))) || (Username.equals(rs.getString("taskto5")) && (!"Y".equals(rs.getString("newt5")))) || (Username.equals(rs.getString("taskto6")) && (!"Y".equals(rs.getString("newt6")))) || (Username.equals(rs.getString("taskto7")) && (!"Y".equals(rs.getString("newt7")))) || (Username.equals(rs.getString("taskto8")) && (!"Y".equals(rs.getString("newt8")))) || (Username.equals(rs.getString("taskto9")) && (!"Y".equals(rs.getString("newt9")))) || (Username.equals(rs.getString("taskto10")) && (!"Y".equals(rs.getString("newt10")))) || (Username.equals(rs.getString("taskto11")) && (!"Y".equals(rs.getString("newt11")))) || (Username.equals(rs.getString("taskto12")) && (!"Y".equals(rs.getString("newt12")))) || (Username.equals(rs.getString("taskto13")) && (!"Y".equals(rs.getString("newt13")))) || (Username.equals(rs.getString("taskto14")) && (!"Y".equals(rs.getString("newt14")))) || (Username.equals(rs.getString("taskto15")) && (!"Y".equals(rs.getString("newt15")))) ) {
              color2 = "green";    
             }
