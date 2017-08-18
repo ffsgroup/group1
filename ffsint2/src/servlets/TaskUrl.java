@@ -37,284 +37,295 @@ public class TaskUrl extends HttpServlet {
         String taskFilter = (String) session.getAttribute("taskFilter");
         System.out.println("current taskView " + taskView);
         String a = "";
-      
+        Integer b = 0;
+
         if (taskView == "taskUrgent" || taskView == "") {
-        ArrayList<Tasks> task = new ArrayList<Tasks>();
-        try {
-            task = TaskUtils.getUrgentTasks(conn, loginedUser.getUserName(), taskFilter);
-        } catch (SQLException e) {
-            e.printStackTrace();
+            ArrayList<Tasks> task = new ArrayList<Tasks>();
+            try {
+                task = TaskUtils.getUrgentTasks(conn, loginedUser.getUserName(), taskFilter);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            for (Tasks task1 : task) {
+                b++;
+                String rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px;'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+
+                if (task1.getlinkup1() == "green" && task1.getlinkup2() == "black") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:teal'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                if (task1.getlinkup1() == "red" && task1.getlinkup2() == "black") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                if (task1.getlinkup1() == "orange" && task1.getlinkup2() == "black") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+
+                if (task1.getlinkup1() == "green" && task1.getlinkup2() == "green") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:teal'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                if (task1.getlinkup1() == "red" && task1.getlinkup2() == "green") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                if (task1.getlinkup1() == "orange" && task1.getlinkup2() == "green") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                a = a + rowNew;
+            }
         }
-        for (Tasks task1 : task) {
-                                   String rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px;'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    
-                                    if (task1.getlinkup1() == "green" && task1.getlinkup2() == "black") {
-                                        rowNew =  "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:teal'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    if (task1.getlinkup1() == "red" && task1.getlinkup2() == "black") {
-                                        rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    if (task1.getlinkup1() == "orange" && task1.getlinkup2() == "black")  {
-                                         rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    
-                                    if (task1.getlinkup1() == "green" && task1.getlinkup2() == "green")  {
-                                        rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:teal'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    if (task1.getlinkup1() == "red" && task1.getlinkup2() == "green")  {
-                                        rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    if (task1.getlinkup1() == "orange" && task1.getlinkup2() == "green")  {
-                                        rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }            
-            a = a + rowNew;
+
+        if (taskView == "taskTraining") {
+            ArrayList<Tasks> task = new ArrayList<Tasks>();
+            try {
+                task = TaskUtils.getTrainingTask(conn, loginedUser.getUserName(), taskFilter);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            for (Tasks task1 : task) {
+                b++;
+                String rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px;'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+
+                if (task1.getlinkup1() == "green" && task1.getlinkup2() == "black") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:teal'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                if (task1.getlinkup1() == "red" && task1.getlinkup2() == "black") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                if (task1.getlinkup1() == "orange" && task1.getlinkup2() == "black") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+
+                if (task1.getlinkup1() == "green" && task1.getlinkup2() == "green") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:teal'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                if (task1.getlinkup1() == "red" && task1.getlinkup2() == "green") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                if (task1.getlinkup1() == "orange" && task1.getlinkup2() == "green") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                a = a + rowNew;
+            }
         }
+
+        if (taskView == "taskUpdated") {
+            ArrayList<Tasks> task = new ArrayList<Tasks>();
+            try {
+                task = TaskUtils.getUpdatedTasks(conn, loginedUser.getUserName(), taskFilter);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            for (Tasks task1 : task) {
+                b++;
+                String rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px;'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+
+                if (task1.getlinkup1() == "green" && task1.getlinkup2() == "black") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:teal'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                if (task1.getlinkup1() == "red" && task1.getlinkup2() == "black") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                if (task1.getlinkup1() == "orange" && task1.getlinkup2() == "black") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+
+                if (task1.getlinkup1() == "green" && task1.getlinkup2() == "green") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:teal'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                if (task1.getlinkup1() == "red" && task1.getlinkup2() == "green") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                if (task1.getlinkup1() == "orange" && task1.getlinkup2() == "green") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                a = a + rowNew;
+            }
         }
-        
-        if (taskView == "taskTraining")  {
-        ArrayList<Tasks> task = new ArrayList<Tasks>();
-        try {
-            task = TaskUtils.getTrainingTask(conn, loginedUser.getUserName(), taskFilter);
-        } catch (SQLException e) {
-            e.printStackTrace();
+
+        if (taskView == "taskInFuture") {
+            ArrayList<Tasks> task = new ArrayList<Tasks>();
+            try {
+                task = TaskUtils.getTaskInFuture(conn, loginedUser.getUserName(), taskFilter);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            for (Tasks task1 : task) {
+                b++;
+                String rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px;'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+
+                if (task1.getlinkup1() == "green" && task1.getlinkup2() == "black") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:teal'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                if (task1.getlinkup1() == "red" && task1.getlinkup2() == "black") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                if (task1.getlinkup1() == "orange" && task1.getlinkup2() == "black") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+
+                if (task1.getlinkup1() == "green" && task1.getlinkup2() == "green") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:teal'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                if (task1.getlinkup1() == "red" && task1.getlinkup2() == "green") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                if (task1.getlinkup1() == "orange" && task1.getlinkup2() == "green") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                a = a + rowNew;
+            }
         }
-        for (Tasks task1 : task) {
-                                   String rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px;'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    
-                                    if (task1.getlinkup1() == "green" && task1.getlinkup2() == "black") {
-                                        rowNew =  "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:teal'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    if (task1.getlinkup1() == "red" && task1.getlinkup2() == "black") {
-                                        rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    if (task1.getlinkup1() == "orange" && task1.getlinkup2() == "black")  {
-                                         rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    
-                                    if (task1.getlinkup1() == "green" && task1.getlinkup2() == "green")  {
-                                        rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:teal'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    if (task1.getlinkup1() == "red" && task1.getlinkup2() == "green")  {
-                                        rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    if (task1.getlinkup1() == "orange" && task1.getlinkup2() == "green")  {
-                                        rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }            
-            a = a + rowNew;
+
+        if (taskView == "taskNew") {
+            ArrayList<Tasks> task = new ArrayList<Tasks>();
+            try {
+                task = TaskUtils.getNewTask(conn, loginedUser.getUserName(), taskFilter);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            for (Tasks task1 : task) {
+                a = a + "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px;'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+            }
         }
+
+        if (taskView == "taskByMe") {
+            ArrayList<Tasks> task = new ArrayList<Tasks>();
+            try {
+                task = TaskUtils.getTaskByMe(conn, loginedUser.getUserName(), taskFilter);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            for (Tasks task1 : task) {
+                b++;
+                String rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px;'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+
+                if (task1.getlinkup1() == "green" && task1.getlinkup2() == "black") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:teal'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                if (task1.getlinkup1() == "red" && task1.getlinkup2() == "black") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                if (task1.getlinkup1() == "orange" && task1.getlinkup2() == "black") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+
+                if (task1.getlinkup1() == "green" && task1.getlinkup2() == "green") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:teal'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                if (task1.getlinkup1() == "red" && task1.getlinkup2() == "green") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                if (task1.getlinkup1() == "orange" && task1.getlinkup2() == "green") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                a = a + rowNew;
+            }
         }
-        
-        if (taskView == "taskUpdated")  {
-        ArrayList<Tasks> task = new ArrayList<Tasks>();
-        try {
-            task = TaskUtils.getUpdatedTasks(conn, loginedUser.getUserName(),taskFilter);
-        } catch (SQLException e) {
-            e.printStackTrace();
+
+        if (taskView == "taskToMeComp") {
+            ArrayList<Tasks> task = new ArrayList<Tasks>();
+            try {
+                task = TaskUtils.getTaskToMeComp(conn, loginedUser.getUserName(), taskFilter);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            for (Tasks task1 : task) {
+                b++;
+                String rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px;'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+
+                if (task1.getlinkup1() == "green" && task1.getlinkup2() == "black") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:teal'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                if (task1.getlinkup1() == "red" && task1.getlinkup2() == "black") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                if (task1.getlinkup1() == "orange" && task1.getlinkup2() == "black") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+
+                if (task1.getlinkup1() == "green" && task1.getlinkup2() == "green") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:teal'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                if (task1.getlinkup1() == "red" && task1.getlinkup2() == "green") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                if (task1.getlinkup1() == "orange" && task1.getlinkup2() == "green") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                a = a + rowNew;
+            }
         }
-        for (Tasks task1 : task) {
-                                               String rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px;'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    
-                                    if (task1.getlinkup1() == "green" && task1.getlinkup2() == "black") {
-                                        rowNew =  "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:teal'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    if (task1.getlinkup1() == "red" && task1.getlinkup2() == "black") {
-                                        rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    if (task1.getlinkup1() == "orange" && task1.getlinkup2() == "black")  {
-                                         rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    
-                                    if (task1.getlinkup1() == "green" && task1.getlinkup2() == "green")  {
-                                        rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:teal'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    if (task1.getlinkup1() == "red" && task1.getlinkup2() == "green")  {
-                                        rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    if (task1.getlinkup1() == "orange" && task1.getlinkup2() == "green")  {
-                                        rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }            
-            a = a + rowNew;
+
+        if (taskView == "taskByMeComp") {
+            ArrayList<Tasks> task = new ArrayList<Tasks>();
+            try {
+                task = TaskUtils.getTaskByMeComp(conn, loginedUser.getUserName(), taskFilter);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            for (Tasks task1 : task) {
+                b++;
+                String rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px;'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+
+                if (task1.getlinkup1() == "green" && task1.getlinkup2() == "black") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:teal'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                if (task1.getlinkup1() == "red" && task1.getlinkup2() == "black") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                if (task1.getlinkup1() == "orange" && task1.getlinkup2() == "black") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+
+                if (task1.getlinkup1() == "green" && task1.getlinkup2() == "green") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:teal'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                if (task1.getlinkup1() == "red" && task1.getlinkup2() == "green") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                if (task1.getlinkup1() == "orange" && task1.getlinkup2() == "green") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                a = a + rowNew;
+            }
         }
+
+        if (taskView == "taskServlet") {
+            ArrayList<Tasks> task = new ArrayList<Tasks>();
+            try {
+                task = TaskUtils.getTask(conn, loginedUser.getUserName(), taskFilter);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            for (Tasks task1 : task) {
+                b++;
+                String rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px;'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+
+                if (task1.getlinkup1() == "green" && task1.getlinkup2() == "black") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:teal'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                if (task1.getlinkup1() == "red" && task1.getlinkup2() == "black") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                if (task1.getlinkup1() == "orange" && task1.getlinkup2() == "black") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+
+                if (task1.getlinkup1() == "green" && task1.getlinkup2() == "green") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:teal'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                if (task1.getlinkup1() == "red" && task1.getlinkup2() == "green") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                if (task1.getlinkup1() == "orange" && task1.getlinkup2() == "green") {
+                    rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
+                }
+                a = a + rowNew;
+            }
         }
-        
-        if (taskView == "taskInFuture")  {
-        ArrayList<Tasks> task = new ArrayList<Tasks>();
-        try {
-            task = TaskUtils.getTaskInFuture(conn, loginedUser.getUserName(), taskFilter);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        for (Tasks task1 : task) {
-                                               String rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px;'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    
-                                    if (task1.getlinkup1() == "green" && task1.getlinkup2() == "black") {
-                                        rowNew =  "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:teal'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    if (task1.getlinkup1() == "red" && task1.getlinkup2() == "black") {
-                                        rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    if (task1.getlinkup1() == "orange" && task1.getlinkup2() == "black")  {
-                                         rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    
-                                    if (task1.getlinkup1() == "green" && task1.getlinkup2() == "green")  {
-                                        rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:teal'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    if (task1.getlinkup1() == "red" && task1.getlinkup2() == "green")  {
-                                        rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    if (task1.getlinkup1() == "orange" && task1.getlinkup2() == "green")  {
-                                        rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }            
-            a = a + rowNew;
-        }
-        }
-        
-        if (taskView == "taskNew")  {
-        ArrayList<Tasks> task = new ArrayList<Tasks>();
-        try {
-            task = TaskUtils.getNewTask(conn, loginedUser.getUserName(), taskFilter);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        for (Tasks task1 : task) {
-            a = a + "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px;'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-        }
-        }
-        
-        if (taskView == "taskByMe")  {
-        ArrayList<Tasks> task = new ArrayList<Tasks>();
-        try {
-            task = TaskUtils.getTaskByMe(conn, loginedUser.getUserName(), taskFilter);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        for (Tasks task1 : task) {
-                                               String rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px;'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    
-                                    if (task1.getlinkup1() == "green" && task1.getlinkup2() == "black") {
-                                        rowNew =  "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:teal'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    if (task1.getlinkup1() == "red" && task1.getlinkup2() == "black") {
-                                        rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    if (task1.getlinkup1() == "orange" && task1.getlinkup2() == "black")  {
-                                         rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    
-                                    if (task1.getlinkup1() == "green" && task1.getlinkup2() == "green")  {
-                                        rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:teal'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    if (task1.getlinkup1() == "red" && task1.getlinkup2() == "green")  {
-                                        rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    if (task1.getlinkup1() == "orange" && task1.getlinkup2() == "green")  {
-                                        rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }            
-            a = a + rowNew;
-        }
-        }
-        
-        if (taskView == "taskToMeComp")  {
-        ArrayList<Tasks> task = new ArrayList<Tasks>();
-        try {
-            task = TaskUtils.getTaskToMeComp(conn, loginedUser.getUserName(), taskFilter);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        for (Tasks task1 : task) {
-                                               String rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px;'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    
-                                    if (task1.getlinkup1() == "green" && task1.getlinkup2() == "black") {
-                                        rowNew =  "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:teal'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    if (task1.getlinkup1() == "red" && task1.getlinkup2() == "black") {
-                                        rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    if (task1.getlinkup1() == "orange" && task1.getlinkup2() == "black")  {
-                                         rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    
-                                    if (task1.getlinkup1() == "green" && task1.getlinkup2() == "green")  {
-                                        rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:teal'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    if (task1.getlinkup1() == "red" && task1.getlinkup2() == "green")  {
-                                        rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    if (task1.getlinkup1() == "orange" && task1.getlinkup2() == "green")  {
-                                        rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }            
-            a = a + rowNew;
-        }
-        }
-        
-        if (taskView == "taskByMeComp")  {
-        ArrayList<Tasks> task = new ArrayList<Tasks>();
-        try {
-            task = TaskUtils.getTaskByMeComp(conn, loginedUser.getUserName(), taskFilter);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        for (Tasks task1 : task) {
-                                               String rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px;'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    
-                                    if (task1.getlinkup1() == "green" && task1.getlinkup2() == "black") {
-                                        rowNew =  "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:teal'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    if (task1.getlinkup1() == "red" && task1.getlinkup2() == "black") {
-                                        rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    if (task1.getlinkup1() == "orange" && task1.getlinkup2() == "black")  {
-                                         rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    
-                                    if (task1.getlinkup1() == "green" && task1.getlinkup2() == "green")  {
-                                        rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:teal'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    if (task1.getlinkup1() == "red" && task1.getlinkup2() == "green")  {
-                                        rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    if (task1.getlinkup1() == "orange" && task1.getlinkup2() == "green")  {
-                                        rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }            
-            a = a + rowNew;
-        }
-        }
-        
-        if (taskView == "taskServlet")  {
-        ArrayList<Tasks> task = new ArrayList<Tasks>();
-        try {
-            task = TaskUtils.getTask(conn, loginedUser.getUserName(), taskFilter);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        for (Tasks task1 : task) {
-                                               String rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px;'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    
-                                    if (task1.getlinkup1() == "green" && task1.getlinkup2() == "black") {
-                                        rowNew =  "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:teal'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    if (task1.getlinkup1() == "red" && task1.getlinkup2() == "black") {
-                                        rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    if (task1.getlinkup1() == "orange" && task1.getlinkup2() == "black")  {
-                                         rowNew = "   <tr> <td style='min-width:50px; width:50px;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    
-                                    if (task1.getlinkup1() == "green" && task1.getlinkup2() == "green")  {
-                                        rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:teal'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    if (task1.getlinkup1() == "red" && task1.getlinkup2() == "green")  {
-                                        rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(148,0,211)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }
-                                    if (task1.getlinkup1() == "orange" && task1.getlinkup2() == "green")  {
-                                        rowNew = "   <tr> <td style='min-width:50px; width:50px;color:teal;'>" + task1.getTranid() + "</td> <td style='min-width:200px; width:200px;'>" + task1.getTaskfrom() + " </td> <td style='min-width:220px; width:220px;'> " + task1.getDescription() + " </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'>" + task1.getRevdate() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getEnddate() + " </td> <td style='min-width:90px; width:90px;'>" + task1.getTaskstat() + "  </td> <td style='min-width:130px; width:130px;'>" + task1.getStartdate() + "  </td></tr>";
-                                    }            
-            a = a + rowNew;
-        }
-        }
-        
+
         request.setAttribute("errorString", a);
+        request.setAttribute("nrTask", b);
+
         RequestDispatcher dispatcher = request.getServletContext()
                 .getRequestDispatcher("/WEB-INF/views/taskIndex.jsp");
         dispatcher.forward(request, response);

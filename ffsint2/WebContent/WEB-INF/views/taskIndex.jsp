@@ -767,7 +767,7 @@
         </select> 
 
         <label style="margin-left:70px;">
-            <label id="taskcounter">0</label>
+            <label id="taskcounter">${nrTask}</label>
         </label>  
         <script>
 
@@ -817,7 +817,7 @@
         <script>
             var a = ${taskDisp};
             var b = document.getElementById("taskcounter").innerHTML;
-            document.getElementById("taskcounter").innerHTML = b + a;
+//            document.getElementById("taskcounter").innerHTML = b + a;
             if (a == "1") {
                 document.getElementById("ByMeInProg").checked = true;
                 document.getElementById("UrgentTasks").checked = false;

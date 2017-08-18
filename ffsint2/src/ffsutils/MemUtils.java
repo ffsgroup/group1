@@ -725,6 +725,7 @@ public class MemUtils {
             members.setbranch(rs.getString("branch"));
             members.setcoveramount(rs.getString("coveramount"));
             members.setbetmet(rs.getString("betmet"));
+            System.out.println("getMember " + rs.getString("betmet"));
             members.setbettot(bettot);
             members.setpaypoint(rs.getString("paypoint"));
             members.setbenefname(rs.getString("benefname"));
@@ -734,6 +735,15 @@ public class MemUtils {
 //                members.setbenefdate(rs.getString("benefdate"));
             members.setbenefdate(benefdate);
             members.setGroupSc(rs.getString("GroupSc"));
+            String Alerted = rs.getString("newprelidno");
+            if (rs.getString("newprelidno") == null) {
+              Alerted = "NNNNNNNNN";
+            }
+  
+            while (Alerted.length() < 9) {
+              Alerted = Alerted + 'N'  ;
+            }
+            members.setnewprelidno(Alerted);
 
             list.add(members);
         }

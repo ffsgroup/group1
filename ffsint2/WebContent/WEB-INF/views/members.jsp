@@ -146,6 +146,9 @@
             }
             function membergetdepen() {
                 var countDepen = 0;
+                var dependAlert = "Check Dependents over 21 > ";
+                var dependAlert2 = "Check Dependents almost 21 > ";
+                
                 $.get('MemberGetDepen', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
 
                     if (responseJson != null) {
@@ -158,23 +161,44 @@
                             rowNew.children().eq(2).text(value['gebdat']);
                             rowNew.children().eq(3).text(value['sex']);
                             rowNew.children().eq(4).text(value['verwskap']);
-//                                    rowNew.children().eq(5).text(value['tranid']);
                             rowNew.children().eq(6).text(value['premie']);
                             rowNew.children().eq(7).text(value['status']);
                             rowNew.children().eq(8).text(value['statusdate']);
                             rowNew.children().eq(9).text(value['tranid']);
-
-
-
-
+      var startdate = new Date(value['gebdat']);
+      var enddate = new Date();
+      var monthsDif = enddate.getMonth() - startdate.getMonth() + 
+       (12 * (enddate.getFullYear() - startdate.getFullYear()));
+       if (monthsDif > 252 && (value['status'] == "ACTIVE" || value['status'] == "RE-JOINED") && value['verwskap'] == "CHILD" ) {
+//          
+           dependAlert = dependAlert + " " + value['ini'] + " " + value['sur'];
+            //alert(dependAlert);
+       }
+       if (monthsDif > 250 && monthsDif < 253 && (value['status'] == "ACTIVE" || value['status'] == "RE-JOINED") && value['verwskap'] == "CHILD" ) {
+//          
+           dependAlert2 = dependAlert2 + " " + value['ini'] + " " + value['sur'];
+            //alert(dependAlert);
+       }
+      
                             rowNew.appendTo(table3);
                         });
+
                         document.getElementById('nrdepen').value = countDepen;
                     } else {
                         var table3 = $("#depend");
                         var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
                         rowNew.children().eq(0).text("No Dependents");
                         rowNew.appendTo(table3);
+                    }
+                    if (dependAlert == "Check Dependents over 21 > ") {
+                      document.getElementById("alert10").innerHTML = "";    
+                    } else {
+                         document.getElementById("alert10").innerHTML = dependAlert;
+                     }
+                    if (dependAlert2 == "Check Dependents almost 21 > ") { 
+                       document.getElementById("alert11").innerHTML = ""; 
+                    } else {
+                        document.getElementById("alert11").innerHTML = dependAlert2;
                     }
                 });
                 
@@ -321,6 +345,7 @@
                                 document.getElementById("coveramount").value = value['coveramount'];
                                 document.getElementById("bettot").value = value['bettot'];
                                 document.getElementById("paymet").value = value['betmet'];
+                                
                                 document.getElementById("paypoint").value = value['paypoint'];
                                 document.getElementById("benefname").value = value['benefname'];
                                 document.getElementById("benefid").value = value['benefID'];
@@ -330,7 +355,77 @@
                                 //Tab 5 Receipts
                                 document.getElementById("paidrecdate").innerHTML = value['bettot'];
                                 document.getElementById("creditrec").innerHTML = value['krediet'];
+                             if (document.getElementById("paypoint").value === "undefined") {
+                                 document.getElementById("paypoint").value = "";
+                             }
+                             if (document.getElementById("benefname").value === "undefined") {
+                                 document.getElementById("benefname").value = "";
+                             }
+                             if (document.getElementById("benefid").value === "undefined") {
+                                 document.getElementById("benefid").value = "";
+                             }
+                             if (document.getElementById("benefrelation").value === "undefined") {
+                                 document.getElementById("benefrelation").value = "";
+                             }
+                                if (value['betmet'] === "6") {
+                                $("#stopDetail").css("visibility", "visible");
+                                } else {
+                                  $("#stopDetail").css("visibility", "hidden");  
+                                }
+                                if (value['betmet'] ==="3" ) {
+                                $("#debitDetail").css("visibility", "visible");
+                                } else {
+                                  $("#debitDetail").css("visibility", "hidden");  
+                                }
+
+                                if (value['newprelidno'].substring(0,1) == "Y" ) {
+                                 $("#alert1").css("visibility", "visible");     
+                                } else {
+                                  $("#alert1").css("visibility", "hidden");       
+                                }
+                              if (value['newprelidno'].substring(1,2) == "Y" ) {
+                                 $("#alert2").css("visibility", "visible");     
+                                } else {
+                                  $("#alert2").css("visibility", "hidden");       
+                                }
+                                if (value['newprelidno'].substring(2,3) == "Y" ) {
+                                 $("#alert3").css("visibility", "visible");     
+                                } else {
+                                  $("#alert3").css("visibility", "hidden");       
+                                }
+                                if (value['newprelidno'].substring(3,4) == "Y" ) {
+                                 $("#alert4").css("visibility", "visible");     
+                                } else {
+                                  $("#alert4").css("visibility", "hidden");       
+                                }
+                                if (value['newprelidno'].substring(4,5) == "Y" ) {
+                                 $("#alert5").css("visibility", "visible");     
+                                } else {
+                                  $("#alert5").css("visibility", "hidden");       
+                                }
+                                if (value['newprelidno'].substring(5,6) == "Y" ) {
+                                 $("#alert6").css("visibility", "visible");     
+                                } else {
+                                  $("#alert6").css("visibility", "hidden");       
+                                }
+                                if (value['newprelidno'].substring(6,7) == "Y" ) {
+                                 $("#alert7").css("visibility", "visible");     
+                                } else {
+                                  $("#alert7").css("visibility", "hidden");       
+                                }
+                                if (value['newprelidno'].substring(7,8) == "Y" ) {
+                                 $("#alert8").css("visibility", "visible");     
+                                } else {
+                                  $("#alert8").css("visibility", "hidden");       
+                                }
+                                if (value['newprelidno'].substring(8,9) == "Y" ) {
+                                 $("#alert9").css("visibility", "visible");     
+                                } else {
+                                  $("#alert9").css("visibility", "hidden");       
+                                }
+                                
                             });
+                           membergetdepen(); 
 //                        } else {  // json response not null
 //                            document.getElementById("memtitle").value = "No such member";
 //                            document.getElementById("memname").value = "";
@@ -673,7 +768,7 @@
             <ul>
                 <li><a href="#tabs-1">Home</a></li>
                 <li><a href="#tabs-2">Contacts</a></li>
-                <li><a href="#tabs-3" onclick="membergetdepen();" >Dependants</a></li>
+                <li><a href="#tabs-3">Dependants</a></li>
                 <li><a href="#tabs-4">Account</a></li>
                 <li><a href="#tabs-5" onclick="membergetrec();">Receipts</a></li>
                 <li><a href="#tabs-6" onclick="memberGetNotes();">Notes</a></li>
@@ -684,14 +779,14 @@
             </ul>
 
             <div id="tabs-1">
-                <div id="alert1" style="color:red; float:left;"> Alert 1 </div>
-                <div id="alert2" style="color:red; float:left; margin-left:200px"> Alert 2 </div>
+                <div id="alert1" style="color:red; float:left;"> Postal address incorrect </div>
+                <div id="alert2" style="color:red; float:left; margin-left:200px"> ID No incorrect </div>
                 <div style="float: right; text-align: right;margin-right:20;">
                     Additional / Extra Policies
                 </div>     
                 <br>
-                <div id="alert3" style="color:red; float:left;"> Alert 3 </div>
-                <div id="alert4" style="color:red; float:left; margin-left:200px"> Alert 4 </div>
+                <div id="alert3" style="color:red; float:left;"> Cell nr incorrect </div>
+                <div id="alert4" style="color:red; float:left; margin-left:200px"> Contact HO </div>
                 <div style="float: right; text-align: right;margin-right:15px;">
                     Premium 
                 </div>
@@ -699,17 +794,17 @@
                     Policy
                 </div>
                 <br>
-                <div id="alert5" style="color:red; float:left;"> Alert 5 </div>
-                <div id="alert6" style="color:red; float:left; margin-left:200px"> Alert 6 </div>
+                <div id="alert5" style="color:red; float:left;"> Check dependents </div>
+                <div id="alert6" style="color:red; float:left; margin-left:200px"> Check premium </div>
                 <div id="addpol1am" style="float: right; text-align: right;margin-right:30px;"></div>
                 <div id ="addpol1" style="float: right; text-align: right;margin-right:30px;"></div>
                 <br>
-                <div id="alert7" style="color:red; float:left;"> Alert 7 </div>
-                <div id="alert8" style="color:red; float:left; margin-left:200px"> Alert 8 </div> 
+                <div id="alert7" style="color:red; float:left;"> Read Notes </div>
+                <div id="alert8" style="color:red; float:left; margin-left:200px"> Stop order premium </div> 
                 <div id="addpol2am" style="float: right; text-align: right;margin-right:30px;"></div>
                 <div id ="addpol2" style="float: right; text-align: right;margin-right:30px;"></div>
                 <br>
-                <div id="alert9" style="color:red; float:left;"> Alert 9 </div>
+                <div id="alert9" style="color:red; float:left;"> Check express post </div>
                 <div id="addpol3am" style="float: right; text-align: right;margin-right:30px;"></div>
                 <div id ="addpol3" style="float: right; text-align: right;margin-right:30px;"></div>
                 <br>
@@ -717,7 +812,7 @@
                 <div id="addpol4am" style="float: right; text-align: right;margin-right:30px;"></div>
                 <div id ="addpol4" style="float: right; text-align: right;margin-right:30px;"></div>
                 <br>
-
+                <div id="alert11" style="color:red; float:left;"> Alert Dependent </div>
                 <div id="addpol5am" style="float: right; text-align: right;margin-right:30px;"></div>
                 <div id ="addpol5" style="float: right; text-align: right;margin-right:30px;"></div>
                 <br>                
@@ -869,7 +964,7 @@
                 <input type="text" id="benefdate" style="width:100px; margin-left:60px">
                 <input type="button" value="Update" style="float:right;width:85px">
                 <br>
-                <fieldset>
+                <fieldset id="debitDetail">
                     Bank Details
                     <br>
                     <label> Acc Holder </label>
@@ -907,7 +1002,7 @@
                     </select> 
                 </fieldset>
 
-                <fieldset>
+                <fieldset id="stopDetail">
                     Stop Order
                     <br>
                     <label> Employer 1 </label>
