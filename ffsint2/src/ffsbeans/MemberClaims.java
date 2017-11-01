@@ -1,29 +1,26 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ffsbeans;
 
-/**
- *
- * @author user149
- */
 public class MemberClaims {
 
     private String tranId;
     private String DeceasedSur;
     private String DeceasedIni;
     private String ClaimNr;
-     private String ClaimDate;
-      private String DateOfDeath;
-      private String ClaimStatus;
+    private String ClaimDate;
+    private String DateOfDeath;
+    private String ClaimStatus;
+    private String ClaimSur;
+    private String ClaimId;
+    private String ClaimRel;
+    private String BenefName;
+    private String BenefId;
+    
 
     public MemberClaims() {
 
     }
 
-    public MemberClaims(String tranId, String DeceasedSur, String DeceasedIni, String ClaimNr, String ClaimDate, String DateOfDeath, String ClaimStatus) {
+    public MemberClaims(String tranId, String DeceasedSur, String DeceasedIni, String ClaimNr, String ClaimDate, String DateOfDeath, String ClaimStatus, String ClaimSur, String ClaimId, String ClaimRel, String BenefName, String BenefId) {
         this.tranId = tranId;
         this.DeceasedSur = DeceasedSur;
         this.DeceasedIni = DeceasedIni;
@@ -31,6 +28,12 @@ public class MemberClaims {
         this.ClaimDate = ClaimDate;
         this.DateOfDeath = DateOfDeath;
         this.ClaimStatus = ClaimStatus;
+        this.ClaimSur = ClaimSur;
+        this.ClaimId = ClaimId;
+        this.ClaimRel = ClaimRel;
+        this.BenefName = BenefName;
+        this.BenefId = BenefId;
+
     }
 
     public String gettranId() {
@@ -64,21 +67,23 @@ public class MemberClaims {
     public void setClaimNr(String ClaimNr) {
         this.ClaimNr = ClaimNr;
     }
-    
-     public String getClaimDate() {
+
+    public String getClaimDate() {
         return ClaimDate;
     }
 
     public void setClaimDate(String ClaimDate) {
         this.ClaimDate = ClaimDate;
     }
-     public String getDateOfDeath() {
+
+    public String getDateOfDeath() {
         return DateOfDeath;
     }
 
     public void setDateOfDeath(String DateOfDeath) {
         this.DateOfDeath = DateOfDeath;
     }
+
     public String getClaimStatus() {
         return DateOfDeath;
     }
@@ -87,4 +92,44 @@ public class MemberClaims {
         this.ClaimStatus = ClaimStatus;
     }
 
+        public String getClaimSur() {
+        return ClaimSur;
+    }
+
+    public void setClaimSur(String ClaimSur) {
+        this.ClaimSur = ClaimSur;
+    }
+    
+    public String getClaimId() {
+        return ClaimId;
+    }
+
+    public void setClaimId(String ClaimId) {
+        this.ClaimId = ClaimId;
+    }
+
+        public String getClaimRel() {
+        return ClaimRel;
+    }
+
+    public void setClaimRel(String ClaimRel) {
+        this.ClaimRel = ClaimRel;
+    }
+    
+    public String getBenefName() {
+        return BenefName;
+    }
+
+    public void setBenefName(String BenefName) {
+        this.BenefName = BenefName;
+    }
+
+        public String getBenefId() {
+        return BenefId;
+    }
+
+    public void setBenefId(String BenefId) {
+        this.BenefId = BenefId;
+    }
+    
 }

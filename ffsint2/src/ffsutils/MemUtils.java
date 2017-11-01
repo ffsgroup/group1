@@ -7,6 +7,7 @@ import ffsbeans.MemberNote;
 import ffsbeans.MemberDepen;
 import ffsbeans.MemberRec;
 import ffsbeans.Member;
+import ffsbeans.MemberClaimSumm;
 import ffsbeans.MemberExtraPol;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,7 +20,7 @@ import java.util.GregorianCalendar;
 import java.sql.Connection;
 
 public class MemUtils {
-    
+
     public static ArrayList<MemberDepen> getMemberActiveDepen(Connection conn, String thisMember, String userName) throws SQLException {
 
         System.out.println("getMemberActiveDepen" + thisMember);
@@ -32,14 +33,12 @@ public class MemUtils {
         while (rs.next()) {
             MemberDepen memberactivedepen = new MemberDepen();
 
-            
             memberactivedepen.setstatus(rs.getString("count(status)"));
-      System.out.println("getMemberActiveDepen Count:" + rs.getString("count(status)"));
+            System.out.println("getMemberActiveDepen Count:" + rs.getString("count(status)"));
             list.add(memberactivedepen);
         }
         return list;
     }
-    
 
     public static ArrayList<MemberDebitOrder> getmemberDebitOrder(Connection conn, String thisMember, String userName) throws SQLException {
 
@@ -171,8 +170,11 @@ public class MemUtils {
             MemberClaims memberclaims = new MemberClaims();
             Date date = new Date();
             Calendar calendar = new GregorianCalendar();
+            if (rs.getTimestamp("ClaimDate") == null) {
+            } else {
+                calendar.setTime(rs.getTimestamp("ClaimDate"));
+            }
 
-            calendar.setTime(rs.getTimestamp("ClaimDate"));
             String year = Integer.toString(calendar.get(Calendar.YEAR));
             String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
             String day = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH));
@@ -186,7 +188,11 @@ public class MemUtils {
             Date date1 = new Date();
             Calendar cal1 = new GregorianCalendar();
 
-            cal1.setTime(rs.getTimestamp("DateOfDeath"));
+            if (rs.getTimestamp("DateOfDeath") == null) {
+            } else {
+                calendar.setTime(rs.getTimestamp("DateOfDeath"));
+            }
+
             String year1 = Integer.toString(cal1.get(Calendar.YEAR));
             String month1 = Integer.toString(cal1.get(Calendar.MONTH) + 1);
             String day1 = Integer.toString(cal1.get(Calendar.DAY_OF_MONTH));
@@ -330,6 +336,19 @@ public class MemUtils {
             Calendar calendar = new GregorianCalendar();
 
             calendar.setTime(rs.getTimestamp("gebdat"));
+
+            //                       var startdate = new Date(value['gebdat']);
+            Date enddate = new Date();
+            Calendar calendarEnd = new GregorianCalendar();
+            calendarEnd.setTime(enddate);
+
+            int monthsDif = calendarEnd.get(Calendar.MONTH) - calendar.get(Calendar.MONTH);
+            int yearsDif = calendarEnd.get(calendar.YEAR) - calendar.get(Calendar.YEAR);
+            if (monthsDif < 1) {
+                monthsDif += 12;
+                yearsDif--;
+            }
+
             String year = Integer.toString(calendar.get(Calendar.YEAR));
             String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
             String day = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH));
@@ -370,7 +389,7 @@ public class MemUtils {
 
             String statusdate = year1 + "/" + month1 + "/" + day1;
             String gebdat = year + "/" + month + "/" + day;
-
+            memberdepen.setage(Integer.toString(yearsDif) + "." + Integer.toString(monthsDif));
             memberdepen.setini(rs.getString("ini"));
             memberdepen.setsur(rs.getString("sur"));
             memberdepen.setgebdat(gebdat);
@@ -737,11 +756,11 @@ public class MemUtils {
             members.setGroupSc(rs.getString("GroupSc"));
             String Alerted = rs.getString("newprelidno");
             if (rs.getString("newprelidno") == null) {
-              Alerted = "NNNNNNNNN";
+                Alerted = "NNNNNNNNN";
             }
-  
+
             while (Alerted.length() < 9) {
-              Alerted = Alerted + 'N'  ;
+                Alerted = Alerted + 'N';
             }
             members.setnewprelidno(Alerted);
 
@@ -849,6 +868,60 @@ public class MemUtils {
             memberextra.setSecPol10Premie(rs.getString("secpol10premie"));
             list.add(memberextra);
         }
+        return list;
+    }
+
+    public static ArrayList<Generics> getMemberHavePost(Connection conn, String thisMember, String loginedUser) throws SQLException {
+        System.out.println("getMemberHavePost " + thisMember);
+        String sql = "Select * from postsend where lidno = ? and recby = 'Nobody'";
+
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, thisMember);
+        ResultSet rs = pstm.executeQuery();
+        ArrayList<Generics> list = new ArrayList<Generics>();
+        Generics generic1 = new Generics();
+        if (rs.next()) {
+            generic1.setGenGroupId("Y");
+            System.out.println("getMemberHavePost found post");
+        } else {
+            generic1.setGenGroupId("N");
+        }
+        list.add(generic1);
+        return list;
+    }
+
+    public static ArrayList<MemberClaims> getClaimSumm(Connection conn, String thisUser, String tranId) throws SQLException {
+        System.out.println("getClaimSumm " + tranId);
+        String sql = "Select summid from claims where claimnr = ?";
+
+        ArrayList<MemberClaims> list = new ArrayList<MemberClaims>();
+        MemberClaims claimDet = new MemberClaims();
+
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, tranId);
+        ResultSet rs = pstm.executeQuery();
+
+        if (rs.next()) {
+            System.out.println("getClaimSumm found summ " + rs.getString("summid"));
+            String sql1 = "Select * from claimsumm where tranid = ?";
+            PreparedStatement pstm1 = conn.prepareStatement(sql1);
+            pstm1.setString(1, rs.getString("summid"));
+            ResultSet rs1 = pstm1.executeQuery();
+            if (rs1.next()) {
+                System.out.println("getClaimSumm set taskenq " + rs1.getString("taskclaim"));
+                claimDet.setClaimStatus(rs1.getString("taskenq"));
+                claimDet.setClaimNr(rs1.getString("taskclaim"));
+                claimDet.setDeceasedIni(rs1.getString("deceased"));
+                claimDet.setClaimSur(rs1.getString("taskpay"));
+                claimDet.setClaimId(rs1.getString("decid"));
+                claimDet.setClaimRel(rs1.getString("lidno"));
+                claimDet.setBenefName(tranId);                 // claim id
+                claimDet.setBenefId(rs1.getString("tranid"));  // summ id
+
+            }
+        }
+
+        list.add(claimDet);        
         return list;
     }
 

@@ -17,12 +17,19 @@
         </style>
         <title>Members</title>
         <script>
+                $(document).ready(function () {
+                    $("#claimgrid").click(function (event) {
+                        var target = $(event.target);
+                        $td = target.closest('td');
+                        var col = $td.index();
+                        var row = $td.closest('tr').index();
+                        window.location = "MemberClaimSumm.jsp?key=" + encodeURIComponent(document.getElementById("claimgrid").rows[row].cells[0].innerHTML);
+
+                    });
+                });
 
             function memberGetVoice() {
-
-                // get member notes
                 $.get('MemberGetVoice', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
-
                     if (responseJson != null) {
                         var table2 = $("#voicegrid");
                         $.each(responseJson, function (key, value) {
@@ -30,22 +37,19 @@
                             rowNew.children().eq(0).text(value['user']);
                             rowNew.children().eq(1).text(value['dateMod']);
                             rowNew.children().eq(2).text(value['description']);
-
                             rowNew.appendTo(table2);
                         });
                     } else {
                         document.getElementById("memtitle").value = "No such member";
                     }
                 });
-
             }
 
 
             function memberGetClaims() {
-
-                // get member notes
+                $("#claimgrid").find("tr:gt(0)").remove()
                 $.get('MemberGetClaims', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
-
+                
                     if (responseJson != null) {
                         var table2 = $("#claimgrid");
                         $.each(responseJson, function (key, value) {
@@ -146,44 +150,45 @@
             }
             function membergetdepen() {
                 var countDepen = 0;
+                var activeDepen = 0;
                 var dependAlert = "Check Dependents over 21 > ";
                 var dependAlert2 = "Check Dependents almost 21 > ";
-                
-                $.get('MemberGetDepen', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
 
+                $.get('MemberGetDepen', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
                     if (responseJson != null) {
                         var table3 = $("#depend");
                         $.each(responseJson, function (key, value) {
                             countDepen++;
+                            if (value['status'] == "ACTIVE" || value['status'] == "RE-JOINED") {
+                               activeDepen++;
+                            }
                             var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
                             rowNew.children().eq(0).text(value['ini']);
                             rowNew.children().eq(1).text(value['sur']);
                             rowNew.children().eq(2).text(value['gebdat']);
                             rowNew.children().eq(3).text(value['sex']);
                             rowNew.children().eq(4).text(value['verwskap']);
+                            rowNew.children().eq(5).text(value['age']);
                             rowNew.children().eq(6).text(value['premie']);
                             rowNew.children().eq(7).text(value['status']);
                             rowNew.children().eq(8).text(value['statusdate']);
                             rowNew.children().eq(9).text(value['tranid']);
-      var startdate = new Date(value['gebdat']);
-      var enddate = new Date();
-      var monthsDif = enddate.getMonth() - startdate.getMonth() + 
-       (12 * (enddate.getFullYear() - startdate.getFullYear()));
-       if (monthsDif > 252 && (value['status'] == "ACTIVE" || value['status'] == "RE-JOINED") && value['verwskap'] == "CHILD" ) {
-//          
-           dependAlert = dependAlert + " " + value['ini'] + " " + value['sur'];
-            //alert(dependAlert);
-       }
-       if (monthsDif > 250 && monthsDif < 253 && (value['status'] == "ACTIVE" || value['status'] == "RE-JOINED") && value['verwskap'] == "CHILD" ) {
-//          
-           dependAlert2 = dependAlert2 + " " + value['ini'] + " " + value['sur'];
-            //alert(dependAlert);
-       }
-      
+                            var startdate = new Date(value['gebdat']);
+                            var enddate = new Date();
+                            var monthsDif = enddate.getMonth() - startdate.getMonth() +
+                                    (12 * (enddate.getFullYear() - startdate.getFullYear()));
+                            if (monthsDif > 252 && (value['status'] == "ACTIVE" || value['status'] == "RE-JOINED") && value['verwskap'] == "CHILD") {
+                                dependAlert = dependAlert + " " + value['ini'] + " " + value['sur'];
+                            }
+                            if (monthsDif > 250 && monthsDif < 253 && (value['status'] == "ACTIVE" || value['status'] == "RE-JOINED") && value['verwskap'] == "CHILD") {
+                                dependAlert2 = dependAlert2 + " " + value['ini'] + " " + value['sur'];
+                            }
+
                             rowNew.appendTo(table3);
                         });
 
                         document.getElementById('nrdepen').value = countDepen;
+                         document.getElementById('actDepen').value = activeDepen;                      
                     } else {
                         var table3 = $("#depend");
                         var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
@@ -191,35 +196,46 @@
                         rowNew.appendTo(table3);
                     }
                     if (dependAlert == "Check Dependents over 21 > ") {
-                      document.getElementById("alert10").innerHTML = "";    
+                        document.getElementById("alert10").innerHTML = "";
                     } else {
-                         document.getElementById("alert10").innerHTML = dependAlert;
-                     }
-                    if (dependAlert2 == "Check Dependents almost 21 > ") { 
-                       document.getElementById("alert11").innerHTML = ""; 
+                        document.getElementById("alert10").innerHTML = dependAlert;
+                    }
+                    if (dependAlert2 == "Check Dependents almost 21 > ") {
+                        document.getElementById("alert11").innerHTML = "";
                     } else {
                         document.getElementById("alert11").innerHTML = dependAlert2;
                     }
                 });
-                
-                //  Active dependant Count
-                  $.get('MemberGetActiveDepen', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
-                            if (responseJson != null) {
-
-                              
-                                $.each(responseJson, function (key, value) {
-
-                                     document.getElementById('actDepen').value = value['status'];;
-                                     
-                                });
-                            }
-                        });
-                
             }
 
+            function membergetclaim() {
+
+                $.get('MemberGetClaims', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
+                    if (responseJson != null) {
+                        var table3 = $("#claimgrid");
+                        $.each(responseJson, function (key, value) {
+                            var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+                            rowNew.children().eq(0).text(value['ini']);
+                            rowNew.children().eq(1).text(value['sur']);
+                            rowNew.children().eq(2).text(value['gebdat']);
+                            rowNew.children().eq(3).text(value['sex']);
+                            rowNew.children().eq(4).text(value['verwskap']);
+                            rowNew.children().eq(5).text(value['age']);
+                            rowNew.children().eq(6).text(value['premie']);
+                            rowNew.children().eq(7).text(value['status']);
+                            rowNew.children().eq(8).text(value['statusdate']);
+                            rowNew.children().eq(9).text(value['tranid']);
+                            rowNew.appendTo(table3);
+                        });                   
+                    } else {
+                        var table3 = $("#depend");
+                        var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+                        rowNew.children().eq(0).text("No Claims");
+                        rowNew.appendTo(table3);
+                    }
+                });
+            }
             
-
-
             function loadMember()
             {
                 if (document.getElementById("memnum").value.length === 8) {
@@ -227,10 +243,7 @@
                     if (count.valueOf() < 3) {
                         $.get('MemberGetRecruiter', function (responseJson) {
                             if (responseJson != null) {
-
-                                //  var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-
                                     $('#memrecruit').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
 
                                 });
@@ -242,10 +255,7 @@
                     if (count.valueOf() < 2) {
                         $.get('MemberGetMarriage', function (responseJson) {
                             if (responseJson != null) {
-
-                                //  var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-
                                     $('#marriage').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
 
                                 });
@@ -257,10 +267,7 @@
                     if (count.valueOf() < 2) {
                         $.get('MemberGetCompanyName', function (responseJson) {
                             if (responseJson != null) {
-
-                                //  var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-
                                     $('#memcomp').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
 
                                 });
@@ -272,12 +279,8 @@
                     if (count.valueOf() < 2) {
                         $.get('MemberGetPolType', function (responseJson) {
                             if (responseJson != null) {
-
-                                //  var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-
                                     $('#mempoltype').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
-
                                 });
                             }
                         });
@@ -287,12 +290,8 @@
                     if (count.valueOf() < 2) {
                         $.get('MemberGetPolStatus', function (responseJson) {
                             if (responseJson != null) {
-
-                                //  var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
-
                                     $('#memstatus').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
-
                                 });
                             }
                         });
@@ -345,7 +344,7 @@
                                 document.getElementById("coveramount").value = value['coveramount'];
                                 document.getElementById("bettot").value = value['bettot'];
                                 document.getElementById("paymet").value = value['betmet'];
-                                
+
                                 document.getElementById("paypoint").value = value['paypoint'];
                                 document.getElementById("benefname").value = value['benefname'];
                                 document.getElementById("benefid").value = value['benefID'];
@@ -355,98 +354,78 @@
                                 //Tab 5 Receipts
                                 document.getElementById("paidrecdate").innerHTML = value['bettot'];
                                 document.getElementById("creditrec").innerHTML = value['krediet'];
-                             if (document.getElementById("paypoint").value === "undefined") {
-                                 document.getElementById("paypoint").value = "";
-                             }
-                             if (document.getElementById("benefname").value === "undefined") {
-                                 document.getElementById("benefname").value = "";
-                             }
-                             if (document.getElementById("benefid").value === "undefined") {
-                                 document.getElementById("benefid").value = "";
-                             }
-                             if (document.getElementById("benefrelation").value === "undefined") {
-                                 document.getElementById("benefrelation").value = "";
-                             }
-                                if (value['betmet'] === "6") {
-                                $("#stopDetail").css("visibility", "visible");
-                                } else {
-                                  $("#stopDetail").css("visibility", "hidden");  
+                                if (document.getElementById("paypoint").value === "undefined") {
+                                    document.getElementById("paypoint").value = "";
                                 }
-                                if (value['betmet'] ==="3" ) {
-                                $("#debitDetail").css("visibility", "visible");
+                                if (document.getElementById("benefname").value === "undefined") {
+                                    document.getElementById("benefname").value = "";
+                                }
+                                if (document.getElementById("benefid").value === "undefined") {
+                                    document.getElementById("benefid").value = "";
+                                }
+                                if (document.getElementById("benefrelation").value === "undefined") {
+                                    document.getElementById("benefrelation").value = "";
+                                }
+                                if (value['betmet'] === "6") {
+                                    $("#stopDetail").css("visibility", "visible");
                                 } else {
-                                  $("#debitDetail").css("visibility", "hidden");  
+                                    $("#stopDetail").css("visibility", "hidden");
+                                }
+                                if (value['betmet'] === "3") {
+                                    $("#debitDetail").css("visibility", "visible");
+                                } else {
+                                    $("#debitDetail").css("visibility", "hidden");
                                 }
 
-                                if (value['newprelidno'].substring(0,1) == "Y" ) {
-                                 $("#alert1").css("visibility", "visible");     
+                                if (value['newprelidno'].substring(0, 1) == "Y") {
+                                    $("#alert1").css("visibility", "visible");
                                 } else {
-                                  $("#alert1").css("visibility", "hidden");       
+                                    $("#alert1").css("visibility", "hidden");
                                 }
-                              if (value['newprelidno'].substring(1,2) == "Y" ) {
-                                 $("#alert2").css("visibility", "visible");     
+                                if (value['newprelidno'].substring(1, 2) == "Y") {
+                                    $("#alert2").css("visibility", "visible");
                                 } else {
-                                  $("#alert2").css("visibility", "hidden");       
+                                    $("#alert2").css("visibility", "hidden");
                                 }
-                                if (value['newprelidno'].substring(2,3) == "Y" ) {
-                                 $("#alert3").css("visibility", "visible");     
+                                if (value['newprelidno'].substring(2, 3) == "Y") {
+                                    $("#alert3").css("visibility", "visible");
                                 } else {
-                                  $("#alert3").css("visibility", "hidden");       
+                                    $("#alert3").css("visibility", "hidden");
                                 }
-                                if (value['newprelidno'].substring(3,4) == "Y" ) {
-                                 $("#alert4").css("visibility", "visible");     
+                                if (value['newprelidno'].substring(3, 4) == "Y") {
+                                    $("#alert4").css("visibility", "visible");
                                 } else {
-                                  $("#alert4").css("visibility", "hidden");       
+                                    $("#alert4").css("visibility", "hidden");
                                 }
-                                if (value['newprelidno'].substring(4,5) == "Y" ) {
-                                 $("#alert5").css("visibility", "visible");     
+                                if (value['newprelidno'].substring(4, 5) == "Y") {
+                                    $("#alert5").css("visibility", "visible");
                                 } else {
-                                  $("#alert5").css("visibility", "hidden");       
+                                    $("#alert5").css("visibility", "hidden");
                                 }
-                                if (value['newprelidno'].substring(5,6) == "Y" ) {
-                                 $("#alert6").css("visibility", "visible");     
+                                if (value['newprelidno'].substring(5, 6) == "Y") {
+                                    $("#alert6").css("visibility", "visible");
                                 } else {
-                                  $("#alert6").css("visibility", "hidden");       
+                                    $("#alert6").css("visibility", "hidden");
                                 }
-                                if (value['newprelidno'].substring(6,7) == "Y" ) {
-                                 $("#alert7").css("visibility", "visible");     
+                                if (value['newprelidno'].substring(6, 7) == "Y") {
+                                    $("#alert7").css("visibility", "visible");
                                 } else {
-                                  $("#alert7").css("visibility", "hidden");       
+                                    $("#alert7").css("visibility", "hidden");
                                 }
-                                if (value['newprelidno'].substring(7,8) == "Y" ) {
-                                 $("#alert8").css("visibility", "visible");     
+                                if (value['newprelidno'].substring(7, 8) == "Y") {
+                                    $("#alert8").css("visibility", "visible");
                                 } else {
-                                  $("#alert8").css("visibility", "hidden");       
+                                    $("#alert8").css("visibility", "hidden");
                                 }
-                                if (value['newprelidno'].substring(8,9) == "Y" ) {
-                                 $("#alert9").css("visibility", "visible");     
+                                if (value['newprelidno'].substring(8, 9) == "Y") {
+                                    $("#alert9").css("visibility", "visible");
                                 } else {
-                                  $("#alert9").css("visibility", "hidden");       
+                                    $("#alert9").css("visibility", "hidden");
                                 }
-                                
+
                             });
-                           membergetdepen(); 
-//                        } else {  // json response not null
-//                            document.getElementById("memtitle").value = "No such member";
-//                            document.getElementById("memname").value = "";
-//                            document.getElementById("memsur").value = "";
-//                            document.getElementById("memidno").value = "";
-//                            document.getElementById("memgend").value = "";
-//                            document.getElementById("mememail").value = "";
-//                            document.getElementById("memrecruit").value = "";
-//                            document.getElementById("memrecruitdate").value = "";
-//                            document.getElementById("marriage").selectedIndex = "";
-////                                    document.getElementById("memage").value = "";
-//                            document.getElementById("memdob").value = "";
-//                            document.getElementById("poldate").value = "";
-//                            document.getElementById("memcomp").selectedIndex = "";
-//                            document.getElementById("memstatusday").value = "";
-//                            document.getElementById("mempoltype").selectedIndex = "";
-//                            document.getElementById("memlang").value = "";
-//                            document.getElementById("cancode").value = "";
-//                            document.getElementById("memstatus").selectedIndex = "";
-//                            document.getElementById("memprem").value = "";
-//                            document.getElementById("memtotprem").value = "";
+                            membergetdepen();                            
+                            membergetclaim();   
                         }
                     });
 
@@ -468,25 +447,70 @@
                                     document.getElementById("addpol6am").innerHTML = value['secPol6Premie'];
                                     document.getElementById("addpol7").innerHTML = value['secPol7'];
                                     document.getElementById("addpol7am").innerHTML = value['secPol7Premie'];
+                                    if (document.getElementById("addpol1").innerHTML == "undefined") {
+                                        document.getElementById("addpol1").innerHTML = "";
+                                    }
+                                    if (document.getElementById("addpol2").innerHTML == "undefined") {
+                                        document.getElementById("addpol2").innerHTML = "";
+                                    }
+                                    if (document.getElementById("addpol3").innerHTML == "undefined") {
+                                        document.getElementById("addpol3").innerHTML = "";
+                                    }
+                                    if (document.getElementById("addpol4").innerHTML == "undefined") {
+                                        document.getElementById("addpol4").innerHTML = "";
+                                    }
+                                    if (document.getElementById("addpol5").innerHTML == "undefined") {
+                                        document.getElementById("addpol5").innerHTML = "";
+                                    }
+                                    if (document.getElementById("addpol6").innerHTML == "undefined") {
+                                        document.getElementById("addpol6").innerHTML = "";
+                                    }
+                                    if (document.getElementById("addpol7").innerHTML == "undefined") {
+                                        document.getElementById("addpol7").innerHTML = "";
+                                    }
+                                    if (document.getElementById("addpol1am").innerHTML == "undefined") {
+                                        document.getElementById("addpol1am").innerHTML = "";
+                                    }
+                                    if (document.getElementById("addpol2am").innerHTML == "undefined") {
+                                        document.getElementById("addpol2am").innerHTML = "";
+                                    }
+                                    if (document.getElementById("addpol3am").innerHTML == "undefined") {
+                                        document.getElementById("addpol3am").innerHTML = "";
+                                    }
+                                    if (document.getElementById("addpol4am").innerHTML == "undefined") {
+                                        document.getElementById("addpol4am").innerHTML = "";
+                                    }
+                                    if (document.getElementById("addpol5am").innerHTML == "undefined") {
+                                        document.getElementById("addpol5am").innerHTML = "";
+                                    }
+                                    if (document.getElementById("addpol6am").innerHTML == "undefined") {
+                                        document.getElementById("addpol6am").innerHTML = "";
+                                    }
+                                    if (document.getElementById("addpol7am").innerHTML == "undefined") {
+                                        document.getElementById("addpol7am").innerHTML = "";
+                                    }
 
                                 });
-//                            } else {
-//                                document.getElementById("addpol1").innerHTML = "";
-//                                document.getElementById("addpol1am").innerHTML = "";
-//                                document.getElementById("addpol2").innerHTML = "";
-//                                document.getElementById("addpol2am").innerHTML = "";
-//                                document.getElementById("addpol3").innerHTML = "";
-//                                document.getElementById("addpol3am").innerHTML = "";
-//                                document.getElementById("addpol4").innerHTML = "";
-//                                document.getElementById("addpol4am").innerHTML = "";
-//                                document.getElementById("addpol5").innerHTML = "";
-//                                document.getElementById("addpol5am").innerHTML = "";
-//                                document.getElementById("addpol6").innerHTML = "";
-//                                document.getElementById("addpol6am").innerHTML = "";
-//                                document.getElementById("addpol7").innerHTML = "";
-//                                document.getElementById("addpol7am").innerHTML = "";
                             }
                         });
+                    }
+                    
+                    if (document.getElementById("memnum").value.length === 8) {
+                        $.get('MemberHavePost', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
+                            $("#alert12").css("visibility", "hidden");  
+                                                       
+                            if (responseJson != null) {
+                                $.each(responseJson, function (key, value) {                                    
+                                    if (value['GenGroupId'] == "Y" ) {                                       
+                                     $("#alert12").css("visibility", "visible");   
+                                    } else {
+                                        $("#alert12").css("visibility", "hidden");  
+                                    }                                    
+                                });
+                            }
+                        });
+//  get post send for alert here                        
+                        
                     }
                     // Tab 4 Accouts
                     if (document.getElementById("memnum").value.length === 8) {
@@ -510,32 +534,10 @@
                                     document.getElementById("payerId").value = value['PayerID'];
                                     document.getElementById("salNr").value = value['SalNr'];
 
-
-
                                 });
-
-//                            } else {
-//
-//                                //Debit order
-//                                document.getElementById("accholder").value = "";
-//                                document.getElementById("accNo").value = "";
-//                                document.getElementById("deductDay").value = "";
-//                                document.getElementById("bankName").value = "";
-//                                document.getElementById("accType").value = "";
-//                                document.getElementById("debitdate").value = "";
-//                                document.getElementById("branchNr").value = "";
-//                                //Stop Order
-//                                document.getElementById("empName1").value = "";
-//                                document.getElementById("empName2").value = "";
-//                                document.getElementById("stopOrderDate").value = "";
-//                                document.getElementById("payerName").value = "";
-//                                document.getElementById("payerId").value = "";
-//                                document.getElementById("salNr").value = "";
-
                             }
                         });
                     }
-
 
                     $("#depend").find("tr:gt(0)").remove();
                     $("#recgrid").find("tr:gt(0)").remove();
@@ -581,7 +583,7 @@
                     document.getElementById("phonework").value = "";
                     //tab 3 Dependants
                     document.getElementById('nrdepen').value = "0";
-                     document.getElementById('actDepen').value = "0";
+                    document.getElementById('actDepen').value = "0";
                     $("#depend").find("tr:gt(0)").remove();
                     //tab 4 Account
                     document.getElementById("joindat").value = "";
@@ -805,6 +807,7 @@
                 <div id ="addpol2" style="float: right; text-align: right;margin-right:30px;"></div>
                 <br>
                 <div id="alert9" style="color:red; float:left;"> Check express post </div>
+                <div id="alert12" style="color:red; float:left;margin-left:200px "> Check post </div>
                 <div id="addpol3am" style="float: right; text-align: right;margin-right:30px;"></div>
                 <div id ="addpol3" style="float: right; text-align: right;margin-right:30px;"></div>
                 <br>
@@ -887,17 +890,7 @@
                             <th style="width:100px" scope="col">Status</th> 
                             <th style="width:100px" scope="col">Status Date</th> 
                             <th style="width:100px" scope="col">ID</th> 
-
-                        </tr>
-                        <!--                                <tr>
-                                                            <td> 08:00 </td> <td> </td> <td> </td> <td> </td></tr>
-                                                        <tr>   <td> 08:30 </td> <td> </td> <td> </td> <td> </td></tr>
-                                                        <tr><td> 09:00 </td> <td> </td> <td> </td> <td> </td></tr>
-                                                        <tr><td> 09:30 </td> <td> </td> <td> </td> <td> </td></tr>
-                                                        <tr><td> 10:00 </td> <td> </td> <td> </td> <td> </td></tr>
-                                                        <tr><td> 10:30 </td> <td> </td> <td> </td> <td> </td></tr>
-                                                        <tr><td> 11:00 </td> <td> </td> <td> </td> <td> </td></tr>
-                                                        <tr><td> 11:30 </td> <td> </td> <td> </td> <td> </td></tr>-->
+                        </tr>                       
 
                     </table>
                 </div>

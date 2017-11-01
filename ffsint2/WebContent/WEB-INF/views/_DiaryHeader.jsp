@@ -1,8 +1,4 @@
-<%-- 
-    Document   : _TaskHeader
-    Created on : Apr 12, 2017, 10:01:23 AM
-    Author     : user149
---%>
+
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>

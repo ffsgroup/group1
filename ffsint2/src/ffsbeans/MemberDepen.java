@@ -12,12 +12,12 @@ public class MemberDepen {
     private String premie;
     private String status;
     private String statusdate;
-
+    private String age;
+    
     public MemberDepen() {
-
     }
 
-    public MemberDepen(String tranid, String lidno, String ini, String sur, String gebdat, String sex, String verwskap, String premie, String status, String statusdate) {
+    public MemberDepen(String tranid, String lidno, String ini, String sur, String gebdat, String sex, String verwskap, String premie, String status, String statusdate, String age) {
         this.tranid = tranid;
         this.lidno = lidno;
         this.ini = ini;
@@ -28,7 +28,7 @@ public class MemberDepen {
         this.premie = premie;
         this.status = status;
         this.statusdate = statusdate;
-
+        this.age = age;
     }
 
     public String getTranid() {
@@ -110,4 +110,12 @@ public class MemberDepen {
     public void setstatusdate(String statusdate) {
         this.statusdate = statusdate;
     }
+
+    public String getage() {
+        return age;
+    }
+
+    public void setage(String age) {
+        this.age = age;
+    }    
 }
