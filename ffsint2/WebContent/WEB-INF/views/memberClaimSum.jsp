@@ -8,7 +8,6 @@
         <h1>FFS Group</h1>        
     </div>
     <div style="float: right; padding: 5px;" >
-        <!-- User store in session with attribute: loginedUser -->
         <b>${loginedUser.userName}</b>
         <br>
         <a href="${pageContext.request.contextPath}/userInfo">Home</a>
@@ -19,13 +18,22 @@
         <h2>Claim Summary</h2>       
     </div>
     <title>Claim Summary</title>
+    
+    <script>
+                $(document).ready(function () {
+                    $("#claimDetail").click(function (event) {
+                        var target = $(event.target);
+                        window.location = "MemberClaimDetails.jsp?key=" + encodeURIComponent(document.getElementById("lidno").innerHTML);
+                    });
+                });        
+        
+    </script>    
+        
 </head>  
-
 
 </div>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
 
 <body>
     <br><br>
@@ -35,8 +43,8 @@
     <div style="border:1px solid grey; width:300px; float:left">
         <label>Name :   ${deceased} </label> <br>
         <label>ID No :  ${decid}</label> <br>
-        <label>Member Details </label> <br>
-        <label>Claim Details </label> <br>
+        <label id="memDetail">Member Details </label> <br>
+        <input type="button" id="claimDetail" value="Claim Details" > <br>
         <label id="fundone"> Funeral arrangements not done </label>
         <br>
     </div>  
@@ -57,15 +65,15 @@
         <table cellspacing="0" id="claimdoc" margin-right:20px style="position:relative;height:320px;border:1px solid grey;" > 
             <thead>
                 <tr> 
-                    <th style="min-width:50px; width:50px;" scope="col">Document</th> 
-                    <th style="min-width:200px; width:200px;" scope="col">User</th> 
-                    <th style="min-width:220px; width:220px;"scope="col">Date Received</th> 
-                    <th style="min-width:130px; width:130px;" scope="col">Delete</th> 
-                    <th style="min-width:130px; width:130px;" scope="col">Not Needed</th>                         
+                    <th style="min-width:180px; width:180px;border-collapse:collapse; border:1px solid grey" scope="col">Document</th> 
+                    <th style="min-width:160px; width:160px;border-collapse:collapse; border:1px solid grey" scope="col">User</th> 
+                    <th style="min-width:160px; width:160px;border-collapse:collapse; border:1px solid grey"scope="col">Date Received</th> 
+                    <th style="min-width:95px; width:95px;border-collapse:collapse; border:1px solid grey" scope="col">Delete</th> 
+                    <th style="min-width:95px; width:95px;border-collapse:collapse; border:1px solid grey" scope="col">Not Needed</th>                         
                 </tr>
             </thead>      
             <tbody>
-            <p>${errorString}</p>
+            <p>${docs}</p>
             </tbody>
         </table>
     </div>    

@@ -15,7 +15,7 @@
             <link rel="stylesheet" type="text/css" href="resources/dhtmlxcalendar_1.css"/>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <title>Task</title>
-            
+
             <script>
                 var myCalendar;
                 function doOnLoad() {
@@ -26,7 +26,7 @@
                     myCalendar.show();
                     myCalendar.hideTime();
                     myCalendar.showToday();
-                    myCalendar.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09","2017-09-24","2017-09-25","2017-12-16","2017-12-25","2017-12-26","2018-01-01"]);
+                    myCalendar.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01"]);
                     myCalendar.setTooltip("2017-01-01", "New Year's Day", true, true);
                     myCalendar.setTooltip("2017-01-02", "Public HoliDay", true, true);
                     myCalendar.setTooltip("2017-03-21", "Human Rights Day", true, true);
@@ -42,7 +42,7 @@
                     myCalendar.setTooltip("2017-12-25", "Christmas Day", true, true);
                     myCalendar.setTooltip("2017-12-26", "Day of Good Will", true, true);
                     myCalendar.setTooltip("2018-01-01", "New Years Day", true, true);
-                    
+
                     myCalendar._drawMonth(new Date);
                     myCalendar.attachEvent("onClick", function (side, d) {
                         //	writeLog("onClick event called, "+side+" calendar, date "+myCalendar.getFormatedDate(null,d));
@@ -78,7 +78,7 @@
                         });
                     });
                 });
- </script>            
+            </script>            
 
             <script>
                 function loadMember() {
@@ -86,21 +86,21 @@
                     if (count.valueOf() < 2) {
                         $.get('SecurityGetActiveUser', function (responseJson) {
                             if (responseJson != null) {
-                                    $('#dsee1').append('<option value=""></option>');
-                                    $('#dsee2').append('<option value=""></option>');
-                                    $('#dsee3').append('<option value=""></option>');
-                                    $('#dsee4').append('<option value=""></option>');
-                                    $('#dsee5').append('<option value=""></option>');
-                                    $('#dsee6').append('<option value=""></option>');
-                                    $('#dsee7').append('<option value=""></option>');
-                                    $('#dsee8').append('<option value=""></option>');
-                                    $('#dsee9').append('<option value=""></option>');
-                                    $('#dsee10').append('<option value=""></option>');
-                                    $('#dsee11').append('<option value=""></option>');
-                                    $('#dsee12').append('<option value=""></option>');
-                                    $('#dsee13').append('<option value=""></option>');
-                                    $('#dsee14').append('<option value=""></option>');
-                                    $('#dsee15').append('<option value=""></option>');
+                                $('#dsee1').append('<option value=""></option>');
+                                $('#dsee2').append('<option value=""></option>');
+                                $('#dsee3').append('<option value=""></option>');
+                                $('#dsee4').append('<option value=""></option>');
+                                $('#dsee5').append('<option value=""></option>');
+                                $('#dsee6').append('<option value=""></option>');
+                                $('#dsee7').append('<option value=""></option>');
+                                $('#dsee8').append('<option value=""></option>');
+                                $('#dsee9').append('<option value=""></option>');
+                                $('#dsee10').append('<option value=""></option>');
+                                $('#dsee11').append('<option value=""></option>');
+                                $('#dsee12').append('<option value=""></option>');
+                                $('#dsee13').append('<option value=""></option>');
+                                $('#dsee14').append('<option value=""></option>');
+                                $('#dsee15').append('<option value=""></option>');
                                 $.each(responseJson, function (key, value) {
                                     $('#dsee1').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
                                     $('#dsee2').append('<option value="' + value['userName'] + '">' + value['userName'] + '</option>');
@@ -181,70 +181,53 @@
                     });
                 });
             </script>        
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+            <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
             <script type="text/javascript">
                 $(document).ready(function () {
                     $("#Tasksavecomm").click(function (event) {
-                     var a11 = "1";   
-                     var b11 ="2";
-                     if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function (p) {
-        var LatLng = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
-        document.getElementById("coord").innerHTML = p.coords.latitude + "," + p.coords.longitude;
-        a11 = String(p.coords.latitude);
-        b11 = String(p.coords.longitude);
-        $.get('TaskSaveComm', {comment: document.getElementById("tasknotes").value, tranid: document.getElementById("taskid").innerHTML, coordsa:a11 , coordsb:b11 }, function (responseJson) {
-                            if (responseJson != null) {
-                                $.each(responseJson, function (key, value) {
-                                    document.getElementById("tasknotes").value = value['tasknote'];
-                                    if (document.getElementById("tasknotes").value == "undefined") {
-                                        document.getElementById("tasknotes").value = "";
-                                    }
-                                    if (document.getElementById("tasknotes").value.length > 0) {
-                                        //   document.getElementById("tasknotes").value = "2"; 
-                                        document.getElementById("tasknotes").value = value['tasknote'].replace(/~/g, "\n");
-                                    }
+                        var a11 = "1";
+                        var b11 = "2";
+                        if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition(function (p) {
+                                var LatLng = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
+                                document.getElementById("coord").innerHTML = p.coords.latitude + "," + p.coords.longitude;
+                                a11 = String(p.coords.latitude);
+                                b11 = String(p.coords.longitude);
+                                $.get('TaskSaveComm', {comment: document.getElementById("tasknotes").value, tranid: document.getElementById("taskid").innerHTML, coordsa: a11, coordsb: b11}, function (responseJson) {
+                                    if (responseJson != null) {
+                                        $.each(responseJson, function (key, value) {
+                                            document.getElementById("tasknotes").value = value['tasknote'];
+                                            if (document.getElementById("tasknotes").value == "undefined") {
+                                                document.getElementById("tasknotes").value = "";
+                                            }
+                                            if (document.getElementById("tasknotes").value.length > 0) {
+                                                //   document.getElementById("tasknotes").value = "2"; 
+                                                document.getElementById("tasknotes").value = value['tasknote'].replace(/~/g, "\n");
+                                            }
 
+                                        });
+                                    }
                                 });
-                            }
-                        });
-    });
-} else {
-   a11 = "0" ;
-   b11="0";
-$.get('TaskSaveComm', {comment: document.getElementById("tasknotes").value, tranid: document.getElementById("taskid").innerHTML, coordsa:a11 , coordsb:b11 }, function (responseJson) {
-                            if (responseJson != null) {
-                                $.each(responseJson, function (key, value) {
-                                    document.getElementById("tasknotes").value = value['tasknote'];
-                                    if (document.getElementById("tasknotes").value == "undefined") {
-                                        document.getElementById("tasknotes").value = "";
-                                    }
-                                    if (document.getElementById("tasknotes").value.length > 0) {
-                                        //   document.getElementById("tasknotes").value = "2"; 
-                                        document.getElementById("tasknotes").value = value['tasknote'].replace(/~/g, "\n");
-                                    }
+                            });
+                        } else {
+                            a11 = "0";
+                            b11 = "0";
+                            $.get('TaskSaveComm', {comment: document.getElementById("tasknotes").value, tranid: document.getElementById("taskid").innerHTML, coordsa: a11, coordsb: b11}, function (responseJson) {
+                                if (responseJson != null) {
+                                    $.each(responseJson, function (key, value) {
+                                        document.getElementById("tasknotes").value = value['tasknote'];
+                                        if (document.getElementById("tasknotes").value == "undefined") {
+                                            document.getElementById("tasknotes").value = "";
+                                        }
+                                        if (document.getElementById("tasknotes").value.length > 0) {
+                                            //   document.getElementById("tasknotes").value = "2"; 
+                                            document.getElementById("tasknotes").value = value['tasknote'].replace(/~/g, "\n");
+                                        }
 
-                                });
-                            }
-                        });   
-}                     
-//                        $.get('TaskSaveComm', {comment: document.getElementById("tasknotes").value, tranid: document.getElementById("taskid").innerHTML, coordsa:a11 , coordsb:b11 }, function (responseJson) {
-//                            if (responseJson != null) {
-//                                $.each(responseJson, function (key, value) {
-//                                    document.getElementById("tasknotes").value = value['tasknote'];
-//                                    if (document.getElementById("tasknotes").value == "undefined") {
-//                                        document.getElementById("tasknotes").value = "";
-//                                    }
-//                                    if (document.getElementById("tasknotes").value.length > 0) {
-//                                        //   document.getElementById("tasknotes").value = "2"; 
-//                                        document.getElementById("tasknotes").value = value['tasknote'].replace(/~/g, "\n");
-//                                    }
-//
-//                                });
-//                            }
-//                        });
-                        
-                        //    $("#tablediv").show();  
+                                    });
+                                }
+                            });
+                        }
                         $("#Taskupdatecomm").css("visibility", "visible");
                         $("#Tasksavecomm").css("visibility", "hidden");
                     });
@@ -255,13 +238,9 @@ $.get('TaskSaveComm', {comment: document.getElementById("tasknotes").value, tran
                 $(document).ready(function () {
                     $("#Taskupdatepeople").click(function (event) {
                         $.get('TaskUpdatePeople', {tranid: document.getElementById("taskid").innerHTML, user1: document.getElementById("dsee1").value, user2: document.getElementById("dsee2").value, user3: document.getElementById("dsee3").value, user4: document.getElementById("dsee4").value, user5: document.getElementById("dsee5").value, user6: document.getElementById("dsee6").value, user7: document.getElementById("dsee7").value, user8: document.getElementById("dsee8").value, user9: document.getElementById("dsee9").value, user10: document.getElementById("dsee10").value, user11: document.getElementById("dsee11").value, user12: document.getElementById("dsee12").value, user13: document.getElementById("dsee13").value, user14: document.getElementById("dsee14").value, user15: document.getElementById("dsee15").value}, function (responseJson) {
-
                             if (responseJson !== null) {
-
                                 $.each(responseJson, function (key, value) {
-
                                     var t1 = value['GenericDescriptionEng'];
-                                    // alert(t1); 
                                     if (t1 == "success") {
                                         alert("success");
                                     } else {
@@ -277,9 +256,12 @@ $.get('TaskSaveComm', {comment: document.getElementById("tasknotes").value, tran
 
                 $(document).ready(function () {
                     $("#Tasksave").click(function (event) {
-                        if (document.getElementById("trainingtask").checked == true) {training = "Y";}
-                        else { training = "N";}
-                        $.get('TaskUpdate', {tranid: document.getElementById("taskid").innerHTML, recur1: document.getElementById("recur").checked, recur3: document.getElementById("recureveryday").checked, recur4: document.getElementById("recurofeverymonth").value, recur5: document.getElementById("recurweekly").checked, recur6: document.getElementById("recureveryweekday").checked, recur7: document.getElementById("recurlastday").checked, recur8: document.getElementById("recurmonthly").checked, recur9: document.getElementById("recurexceptsun").checked, recur10: document.getElementById("recurevery").checked, ir: document.getElementById("requestir").checked, tasksumm: document.getElementById("tasksumm").value, taskfull: document.getElementById("taskfull").value, recur13: document.getElementById("rmonth1").value, recur11: document.getElementById("dayr5").value, recur12: document.getElementById("monthr3").checked, sdate: document.getElementById("startdate").value, rdate: document.getElementById("reviewdate").value, edate: document.getElementById("enddate").value, prior: document.getElementById("Priority1").value, stats: document.getElementById("Status1").value, recur2: document.getElementById("dayr7").checked, taskto1: document.getElementById("dsee1").value, taskto2: document.getElementById("dsee2").value, taskto3: document.getElementById("dsee3").value, taskto4: document.getElementById("dsee4").value, taskto5: document.getElementById("dsee5").value, taskto6: document.getElementById("dsee6").value, taskto7: document.getElementById("dsee7").value, taskto8: document.getElementById("dsee8").value, taskto9: document.getElementById("dsee9").value, taskto10: document.getElementById("dsee10").value, taskto11: document.getElementById("dsee11").value, taskto12: document.getElementById("dsee12").value, taskto13: document.getElementById("dsee13").value, taskto14: document.getElementById("dsee14").value, taskto15: document.getElementById("dsee15").value, fromUser: document.getElementById("FromUser1").value, train:training }, function (responseJson) {
+                        if (document.getElementById("trainingtask").checked == true) {
+                            training = "Y";
+                        } else {
+                            training = "N";
+                        }
+                        $.get('TaskUpdate', {tranid: document.getElementById("taskid").innerHTML, recur1: document.getElementById("recur").checked, recur3: document.getElementById("recureveryday").checked, recur4: document.getElementById("recurofeverymonth").value, recur5: document.getElementById("recurweekly").checked, recur6: document.getElementById("recureveryweekday").checked, recur7: document.getElementById("recurlastday").checked, recur8: document.getElementById("recurmonthly").checked, recur9: document.getElementById("recurexceptsun").checked, recur10: document.getElementById("recurevery").checked, ir: document.getElementById("requestir").checked, tasksumm: document.getElementById("tasksumm").value, taskfull: document.getElementById("taskfull").value, recur13: document.getElementById("rmonth1").value, recur11: document.getElementById("dayr5").value, recur12: document.getElementById("monthr3").checked, sdate: document.getElementById("startdate").value, rdate: document.getElementById("reviewdate").value, edate: document.getElementById("enddate").value, prior: document.getElementById("Priority1").value, stats: document.getElementById("Status1").value, recur2: document.getElementById("dayr7").checked, taskto1: document.getElementById("dsee1").value, taskto2: document.getElementById("dsee2").value, taskto3: document.getElementById("dsee3").value, taskto4: document.getElementById("dsee4").value, taskto5: document.getElementById("dsee5").value, taskto6: document.getElementById("dsee6").value, taskto7: document.getElementById("dsee7").value, taskto8: document.getElementById("dsee8").value, taskto9: document.getElementById("dsee9").value, taskto10: document.getElementById("dsee10").value, taskto11: document.getElementById("dsee11").value, taskto12: document.getElementById("dsee12").value, taskto13: document.getElementById("dsee13").value, taskto14: document.getElementById("dsee14").value, taskto15: document.getElementById("dsee15").value, fromUser: document.getElementById("FromUser1").value, train: training}, function (responseJson) {
                             if (responseJson != null) {
                                 $.each(responseJson, function (key, value) {
                                     if (value['GenericDescriptionEng'] == "success") {
@@ -319,7 +301,7 @@ $.get('TaskSaveComm', {comment: document.getElementById("tasknotes").value, tran
                         Task :  <label id="taskid">${taskid}</label>
                 </div>
                 <label style="float:right">
-                <input type="checkbox" id="trainingtask" > This is a training task   
+                    <input type="checkbox" id="trainingtask" > This is a training task   
                 </label>
 
                 <br>
@@ -363,10 +345,10 @@ $.get('TaskSaveComm', {comment: document.getElementById("tasknotes").value, tran
                     <option value="Sunday">Sunday</option>
                 </select> 
                 <script>
-                      document.getElementById("dayr5").value = ${recdayofweek};
-                      
+                    document.getElementById("dayr5").value = ${recdayofweek};
+
                     if (document.getElementById("dayr5").value == "null") {
-                       document.getElementById("dayr5").value = "" 
+                        document.getElementById("dayr5").value = ""
                     }
                 </script>
 
@@ -523,17 +505,17 @@ $.get('TaskSaveComm', {comment: document.getElementById("tasknotes").value, tran
                     }
                 </script>
                 <script>
-              //  document.getElementById("taskid").innerHTML = "111";
-              var a = ${train}
-                  if (${train} == "Y") {
+                    //  document.getElementById("taskid").innerHTML = "111";
+                    var a = ${train}
+                    if (${train} == "Y") {
                         document.getElementById("trainingtask").checked = true;
-                        
+
                     } else
                     {
                         document.getElementById("trainingtask").checked = false;
                     }
-                    </script>
-                
+                </script>
+
                 <label id="linkedTasks" style="color:blue; float: right; text-align: right; margin-right:100px;">Linked Tasks</label>
                 <br>
                 Start Date :<label> <input type="text" id = "startdate" style="margin-left:27px; width: 135px;" value= ${startdate} ></label> 
@@ -542,8 +524,8 @@ $.get('TaskSaveComm', {comment: document.getElementById("tasknotes").value, tran
                 <br>
                 End Date :<label> <input type="text" id = "enddate" style="margin-left:32px; width: 135px;" value= ${enddate}></label>
                 <script>
-                     var myCalendar1 = new dhtmlXCalendarObject(["startdate"]);
-                      myCalendar1.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09","2017-09-24","2017-09-25","2017-12-16","2017-12-25","2017-12-26","2018-01-01"]);
+                    var myCalendar1 = new dhtmlXCalendarObject(["startdate"]);
+                    myCalendar1.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01"]);
                     myCalendar1.setTooltip("2017-01-01", "New Year's Day", true, true);
                     myCalendar1.setTooltip("2017-01-02", "Public HoliDay", true, true);
                     myCalendar1.setTooltip("2017-03-21", "Human Rights Day", true, true);
@@ -562,8 +544,8 @@ $.get('TaskSaveComm', {comment: document.getElementById("tasknotes").value, tran
                     myCalendar1.setDateFormat("%Y/%m/%d %H:%i");
                 </script>
                 <script>
-                      var myCalendar2 = new dhtmlXCalendarObject(["reviewdate"]);
-                      myCalendar2.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09","2017-09-24","2017-09-25","2017-12-16","2017-12-25","2017-12-26","2018-01-01"]);
+                    var myCalendar2 = new dhtmlXCalendarObject(["reviewdate"]);
+                    myCalendar2.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01"]);
                     myCalendar2.setTooltip("2017-01-01", "New Year's Day", true, true);
                     myCalendar2.setTooltip("2017-01-02", "Public HoliDay", true, true);
                     myCalendar2.setTooltip("2017-03-21", "Human Rights Day", true, true);
@@ -582,8 +564,8 @@ $.get('TaskSaveComm', {comment: document.getElementById("tasknotes").value, tran
                     myCalendar2.setDateFormat("%Y/%m/%d %H:%i");
                 </script>
                 <script>
-                         var myCalendar3 = new dhtmlXCalendarObject(["enddate"]);
-                      myCalendar3.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09","2017-09-24","2017-09-25","2017-12-16","2017-12-25","2017-12-26","2018-01-01"]);
+                    var myCalendar3 = new dhtmlXCalendarObject(["enddate"]);
+                    myCalendar3.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01"]);
                     myCalendar3.setTooltip("2017-01-01", "New Year's Day", true, true);
                     myCalendar3.setTooltip("2017-01-02", "Public HoliDay", true, true);
                     myCalendar3.setTooltip("2017-03-21", "Human Rights Day", true, true);
@@ -661,13 +643,13 @@ $.get('TaskSaveComm', {comment: document.getElementById("tasknotes").value, tran
                     <input type ="button" value ="Save" id="Tasksavecomm" style="width:75px;visibility: hidden;"/>
 
                     <script>
-                      if (${train} == "Y") {
-                        $("#Taskupdatecomm").css("visibility","hidden");
-                      } else {
-                         $("#Taskupdatecomm").css("visibility","visible"); 
-                      }
-                      
-                     </script>   
+                        if (${train} == "Y") {
+                            $("#Taskupdatecomm").css("visibility", "hidden");
+                        } else {
+                            $("#Taskupdatecomm").css("visibility", "visible");
+                        }
+
+                    </script>   
 
             </div>
             <div id="tabs-3">
@@ -947,55 +929,49 @@ $.get('TaskSaveComm', {comment: document.getElementById("tasknotes").value, tran
                     <br/>
                     <br/>
                     <br/>
-
                     Task Status : <label id="taskstatus" style=" margin-left:50px;"/>${taskstatus}</label>
-
                     <input type ="button" value ="Update" id="Taskupdatepeople" style="width:75px;  float: right; margin-right: 5px"/>
-
             </div>
-                    
-            
-                   
-                    
+
             <script>
-                        var a = ${taskid};
-                        if (a == "0") {
-                            $("#tabs-2").css("visibility", "hidden");
-                            $("#tabs-4").css("visibility", "hidden");
-                            document.getElementById("recur").checked = false;
-                            document.getElementById("startdate").value = "";
-                            document.getElementById("reviewdate").value = "";
-                            document.getElementById("enddate").value = "";
-                            document.getElementById("tasksumm").value = "";
-                            document.getElementById("Irnr").value = "";
-                            document.getElementById("recurofeverymonth").value = "";
-                            document.getElementById("rmonth1").value = "";
+                var a = ${taskid};
+                if (a == "0") {
+                    $("#tabs-2").css("visibility", "hidden");
+                    $("#tabs-4").css("visibility", "hidden");
+                    document.getElementById("recur").checked = false;
+                    document.getElementById("startdate").value = "";
+                    document.getElementById("reviewdate").value = "";
+                    document.getElementById("enddate").value = "";
+                    document.getElementById("tasksumm").value = "";
+                    document.getElementById("Irnr").value = "";
+                    document.getElementById("recurofeverymonth").value = "";
+                    document.getElementById("rmonth1").value = "";
 
-                            $("#recureveryday").css("visibility", "hidden");
-                            $("#Recurlabel1").css("visibility", "hidden");
-                            $("#dayr7").css("visibility", "hidden");
-                            $("#Recurlabel2").css("visibility", "hidden");
-                            $("#recurofeverymonth").css("visibility", "hidden");
-                            $("#Recurlabel3").css("visibility", "hidden");
-                            $("#recurWeekly").css("visibility", "hidden");
-                            $("#Recurlabel4").css("visibility", "hidden");
-                            $("#recureveryweekday").css("visibility", "hidden");
-                            $("#Recurlabel5").css("visibility", "hidden");
-                            $("#recurlastday").css("visibility", "hidden");
-                            $("#Recurlabel6").css("visibility", "hidden");
-                            $("#recurmonthly").css("visibility", "hidden");
-                            $("#Recurlabel7").css("visibility", "hidden");
-                            $("#recurexceptsun").css("visibility", "hidden");
-                            $("#Recurlabel8").css("visibility", "hidden");
-                            $("#recurevery").css("visibility", "hidden");
-                            $("#Recurlabel9").css("visibility", "hidden");
-                            $("#dayr5").css("visibility", "hidden");
-                            $("#monthr3").css("visibility", "hidden");
-                            $("#Recurlabel10").css("visibility", "hidden");
-                            $("#rmonth1").css("visibility", "hidden");
-                            $("#Recurlabel11").css("visibility", "hidden");
+                    $("#recureveryday").css("visibility", "hidden");
+                    $("#Recurlabel1").css("visibility", "hidden");
+                    $("#dayr7").css("visibility", "hidden");
+                    $("#Recurlabel2").css("visibility", "hidden");
+                    $("#recurofeverymonth").css("visibility", "hidden");
+                    $("#Recurlabel3").css("visibility", "hidden");
+                    $("#recurWeekly").css("visibility", "hidden");
+                    $("#Recurlabel4").css("visibility", "hidden");
+                    $("#recureveryweekday").css("visibility", "hidden");
+                    $("#Recurlabel5").css("visibility", "hidden");
+                    $("#recurlastday").css("visibility", "hidden");
+                    $("#Recurlabel6").css("visibility", "hidden");
+                    $("#recurmonthly").css("visibility", "hidden");
+                    $("#Recurlabel7").css("visibility", "hidden");
+                    $("#recurexceptsun").css("visibility", "hidden");
+                    $("#Recurlabel8").css("visibility", "hidden");
+                    $("#recurevery").css("visibility", "hidden");
+                    $("#Recurlabel9").css("visibility", "hidden");
+                    $("#dayr5").css("visibility", "hidden");
+                    $("#monthr3").css("visibility", "hidden");
+                    $("#Recurlabel10").css("visibility", "hidden");
+                    $("#rmonth1").css("visibility", "hidden");
+                    $("#Recurlabel11").css("visibility", "hidden");
 
-                        }
+                }
             </script>
             <div id="tabs-4"> 
                 <div id="imagdiv">
@@ -1006,7 +982,7 @@ $.get('TaskSaveComm', {comment: document.getElementById("tasknotes").value, tran
                             <th style="width:200px;border-collapse: collapse;border:1px solid black;" scope="col">Description</th> 
                             <th style="width:40px;border-collapse: collapse;border:1px solid black;" scope="col">ID</th> 
                         </tr> 
-${taskimage}                        
+                        ${taskimage}                        
                     </table>
                 </div>
                 <br>
@@ -1020,43 +996,43 @@ ${taskimage}
                 <input id="uploadBtn" type="button" value="Upload" onClick="performAjaxSubmit();">
 
             </div>
-                    
-                    <label id = "coord">aaa </label>
-<script type="text/javascript">
 
-            function performAjaxSubmit() {
+            <label id = "coord">aaa </label>
+            <script type="text/javascript">
 
-                var sampleText = document.getElementById('imageText').value;
+                function performAjaxSubmit() {
 
-                var sampleFile1 = document.getElementById('imageFile').files[0];
+                    var sampleText = document.getElementById('imageText').value;
 
-                var formdata = new FormData();
+                    var sampleFile1 = document.getElementById('imageFile').files[0];
 
-                formdata.append("imageText", sampleText);
+                    var formdata = new FormData();
 
-                formdata.append("imageFile", sampleFile1);
-                formdata.append("tranId", document.getElementById("taskid").innerHTML);
+                    formdata.append("imageText", sampleText);
 
-                var xhr = new XMLHttpRequest();
+                    formdata.append("imageFile", sampleFile1);
+                    formdata.append("tranId", document.getElementById("taskid").innerHTML);
 
-                xhr.open("POST", "TaskFileUploader", true);
+                    var xhr = new XMLHttpRequest();
 
-                xhr.send(formdata);
+                    xhr.open("POST", "TaskFileUploader", true);
 
-                xhr.onload = function (e) {
-            location.reload(true);
-                    if (this.status == 200) {
+                    xhr.send(formdata);
 
-                        alert(this.responseText);
+                    xhr.onload = function (e) {
+                        location.reload(true);
+                        if (this.status == 200) {
 
-                    }
+                            alert(this.responseText);
 
-                };
+                        }
 
-            }
+                    };
 
-        </script> 
-        
+                }
+
+            </script> 
+
         </div>
 
     </body>

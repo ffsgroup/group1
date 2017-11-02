@@ -183,28 +183,24 @@
                 $(document).ready(function () {
                     $("#taskSearch").click(function (event) {
                         window.location = "doTaskSearch.jsp";
-
                     });
                 });
 
                 $(document).ready(function () {
                     $("#taskReport").click(function (event) {
                         window.location = "doTaskReport.jsp";
-
                     });
                 });
 
                 $(document).ready(function () {
                     $("#taskMyIdea").click(function (event) {
                         window.location = "doTaskMyIdea.jsp";
-
                     });
                 });
 
                 $(document).ready(function () {
                     $("#doNewTask").click(function (event) {
                         window.location = "TaskView.jsp?key=" + encodeURIComponent("0");
-
                     });
                 });
 
@@ -215,7 +211,6 @@
                         var col = $td.index();
                         var row = $td.closest('tr').index();
                         window.location = "TaskView.jsp?key=" + encodeURIComponent(document.getElementById("countrytable").rows[row + 1].cells[0].innerHTML);
-
                     });
                 });
 
@@ -238,7 +233,6 @@
                                 $.each(responseJson, function (key, value) {
                                     counter++;
                                     var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px;'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
-                                    
                                     if ((value['linkup1'] == "green") && (value['linkup2']== "black") ) {
                                         var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:teal'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
                                     }
@@ -248,7 +242,6 @@
                                     if ((value['linkup1'] == "orange") && (value['linkup2']== "black") ) {
                                         var rowNew = $("   <tr> <td style='min-width:50px; width:50px;'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:rgb(153,153,0)'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
                                     }
-                                    
                                     if ((value['linkup1'] == "green") && (value['linkup2']== "green") ) {
                                         var rowNew = $("   <tr> <td style='min-width:50px; width:50px; color:teal'></td> <td style='min-width:200px; width:200px;'> </td> <td style='min-width:220px; width:220px;'> </td > <td style='min-width:130px; width:130px; color:teal'> </td> <td style='min-width:130px; width:130px;'> </td> <td style='min-width:90px; width:90px;'> </td> <td style='min-width:130px; width:130px;'> </td></tr>");
                                     }
@@ -279,8 +272,6 @@
                         });
                     });
                 });
-
-
 
                 $(document).ready(function () {
                     $("#UrgentTasks").click(function (event) {

@@ -23,12 +23,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(urlPatterns = {"/MemberClaimSumm.jsp"})
-public class MemberClaimGetSumm extends HttpServlet {
+@WebServlet(urlPatterns = {"/MemberClaimDetails.jsp"})
+public class MemberClaimGetDetails extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    public MemberClaimGetSumm() {
+    public MemberClaimGetDetails() {
         super();
     }
 
@@ -110,7 +110,7 @@ public class MemberClaimGetSumm extends HttpServlet {
         request.setAttribute("docs", z);
         
         RequestDispatcher dispatcher = request.getServletContext()
-                .getRequestDispatcher("/WEB-INF/views/memberClaimSum.jsp");
+                .getRequestDispatcher("/WEB-INF/views/memberClaimDetails.jsp");
         dispatcher.forward(request, response);
 
     }

@@ -9,11 +9,14 @@ import ffsbeans.MemberRec;
 import ffsbeans.Member;
 import ffsbeans.MemberClaimSumm;
 import ffsbeans.MemberExtraPol;
+import ffsbeans.UserAccount;
+import ffsbeans.Generics;
+import ffsbeans.MemberClaimDoc;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import ffsbeans.Generics;
 import java.util.Date;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -65,31 +68,7 @@ public class MemUtils {
                 day = "0" + day;
             }
 
-//            Date date1 = new Date();
-//            Calendar cal1 = new GregorianCalendar();
-//
-//            cal1.setTime(rs.getTimestamp("DateOfDeath"));
-//            String year1 = Integer.toString(cal1.get(Calendar.YEAR));
-//            String month1 = Integer.toString(cal1.get(Calendar.MONTH) + 1);
-//            String day1 = Integer.toString(cal1.get(Calendar.DAY_OF_MONTH));
-//            String hour1 = Integer.toString(cal1.get(Calendar.HOUR_OF_DAY));
-//            String minute1 = Integer.toString(cal1.get(Calendar.MINUTE));
-//            if (hour1.length() == 1) {
-//                hour1 = "0" + hour1;
-//            }
-//            if (minute1.length() == 1) {
-//                minute1 = "0" + minute1;
-//            }
-//            if (month1.length() == 1) {
-//                month1 = "0" + month1;
-//            }
-//            if (day1.length() == 1) {
-//                day1 = "0" + day1;
-//            }
-//
             String DAT1 = day + "/" + month + "/" + year;
-//            String dod = year1 + "/" + month1 + "/" + day;
-
             memberdebitorder.settranId(rs.getString("tranId"));
             memberdebitorder.setREK_NAAM(rs.getString("REK_NAAM"));
             memberdebitorder.setREK_NO(rs.getString("REK_NO"));
@@ -103,7 +82,6 @@ public class MemUtils {
             memberdebitorder.setPayerName(rs.getString("PayerName"));
             memberdebitorder.setSalNr(rs.getString("SalNr"));
             memberdebitorder.setDAT1(DAT1);
-//            memberdebitorder.setDateOfDeath(dod);
             list.add(memberdebitorder);
         }
         return list;
@@ -892,15 +870,14 @@ public class MemUtils {
 
     public static ArrayList<MemberClaims> getClaimSumm(Connection conn, String thisUser, String tranId) throws SQLException {
         System.out.println("getClaimSumm " + tranId);
+        
         String sql = "Select summid from claims where claimnr = ?";
-
-        ArrayList<MemberClaims> list = new ArrayList<MemberClaims>();
-        MemberClaims claimDet = new MemberClaims();
-
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, tranId);
         ResultSet rs = pstm.executeQuery();
-
+        
+        ArrayList<MemberClaims> list = new ArrayList<MemberClaims>();        
+        
         if (rs.next()) {
             System.out.println("getClaimSumm found summ " + rs.getString("summid"));
             String sql1 = "Select * from claimsumm where tranid = ?";
@@ -909,6 +886,7 @@ public class MemUtils {
             ResultSet rs1 = pstm1.executeQuery();
             if (rs1.next()) {
                 System.out.println("getClaimSumm set taskenq " + rs1.getString("taskclaim"));
+                MemberClaims claimDet = new MemberClaims();
                 claimDet.setClaimStatus(rs1.getString("taskenq"));
                 claimDet.setClaimNr(rs1.getString("taskclaim"));
                 claimDet.setDeceasedIni(rs1.getString("deceased"));
@@ -917,11 +895,42 @@ public class MemUtils {
                 claimDet.setClaimRel(rs1.getString("lidno"));
                 claimDet.setBenefName(tranId);                 // claim id
                 claimDet.setBenefId(rs1.getString("tranid"));  // summ id
-
+                list.add(claimDet);
             }
         }
+        return list;
+    }
 
-        list.add(claimDet);        
+    public static ArrayList<MemberClaimDoc> getClaimImage(Connection conn, UserAccount thisUser, String tranId) throws SQLException {
+        System.out.println("getClaimImage " + tranId);
+        
+        String sql1 = "Select summid from claims where claimnr = ?";
+        PreparedStatement pstm1 = conn.prepareStatement(sql1);
+        pstm1.setString(1, tranId);
+        ResultSet rs1 = pstm1.executeQuery();
+        
+        String summId = "0";
+        if (rs1.next()) {
+          summId =  rs1.getString("summid"); 
+        }
+        
+        String sql = "Select * from claimdoc where claimsumm = ? order by doc1user";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, summId);
+        ResultSet rs = pstm.executeQuery();
+               
+        ArrayList<MemberClaimDoc> list = new ArrayList<MemberClaimDoc>();
+        
+        while (rs.next()) {
+            MemberClaimDoc memDoc = new MemberClaimDoc();
+            memDoc.setdoc1(rs.getString("doc1"));
+            memDoc.setdoc1User(rs.getString("doc1user"));
+            memDoc.setdoc1Date(rs.getString("doc1date"));
+            memDoc.setwhatDoc(rs.getString("whatdoc"));
+            memDoc.setnotNeeded(rs.getString("notNeeded"));
+            list.add(memDoc);
+        }
+        
         return list;
     }
 
