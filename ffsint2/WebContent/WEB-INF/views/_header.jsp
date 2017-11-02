@@ -12,6 +12,8 @@
     <br>
    <a href="${pageContext.request.contextPath}/">Home</a>
    |
+   <a href="resources/Package/FFS/setup.exe">Download</a>
+   |
    <a href="${pageContext.request.contextPath}/login">Login</a>
   </div>
  

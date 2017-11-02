@@ -33,7 +33,7 @@
             <!-- Nav -->
             <nav id="nav">
                 <ul>
-                    <li class="current"><a href="index.html">Home</a></li>
+                    <li class="current"><a href="${pageContext.request.contextPath}/home">Home</a></li>
                     <li>
                         <a href="#">Products</a>
                         <ul>
@@ -56,7 +56,38 @@
                     <li><a href="${pageContext.request.contextPath}/aboutus">About Us</a></li>
 <!--                    <li><a href="right-sidebar.html">Contact Us</a></li>-->
                     <!--                    <li><a href="two-sidebar.html">Two Sidebar</a></li>-->
-                    <li><a href="${pageContext.request.contextPath}/login">Demo</a></li>
+                   
+                 <li>
+                        <a href="#">Demo</a>
+                        <ul>
+                        <li><a href="${pageContext.request.contextPath}/login">Sanlam</a></li>
+
+                        </ul>
+                    </li>
+<!--                    <li><a href="resources/Package/FFS/setup.exe">Download</a></li>-->
+<!--                    <li><a href="" onclick="getDownload();">Download</a></li>
+                    <script>
+
+                        function getDownload() {
+
+                            $file = 'Z://Package/FFS/setup ffs intranet.exe'.$file;
+
+                            if (!$file) { // file does not exist
+                                die('file not found');
+                            } else {
+                                header("Cache-Control: public");
+                                header("Content-Description: File Transfer");
+                                header("Content-Disposition: attachment; filename=$file");
+                                header("Content-Type: application/zip");
+                                header("Content-Transfer-Encoding: binary");
+
+                                // read the file from disk
+                                readfile($file);
+                            }
+
+                        }
+                    </script>-->
+                    
                 </ul>
             </nav>
 

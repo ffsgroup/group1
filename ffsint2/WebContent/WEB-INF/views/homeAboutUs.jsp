@@ -58,7 +58,13 @@
                         <li class="current"><a href="${pageContext.request.contextPath}/aboutus">About Us</a></li>
                         <!--                    <li><a href="right-sidebar.html">Contact Us</a></li>-->
                         <!--                    <li><a href="two-sidebar.html">Two Sidebar</a></li>-->
-                        <li><a href="${pageContext.request.contextPath}/login">Demo</a></li>
+                      <li>
+                        <a href="#">Demo</a>
+                        <ul>
+                        <li><a href="${pageContext.request.contextPath}/login">Sanlam</a></li>
+
+                        </ul>
+                    </li>
                     </ul>
                 </nav>
 
