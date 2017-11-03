@@ -316,7 +316,7 @@
                 Task Created :  <label id="TaskCreated">${taskdate}</label>
 
                 <br>
-                Task Summary :<label> <input type="text" id="tasksumm" style=" width:250px; margin-left:15px;" value=${description}  > </label>     
+                Task Summary :<label> <input type="text" id="tasksumm" style="width:250px; margin-left:15px;" value=${description}  > </label>     
                 <br>
                 IR Nr : <label> <input type="text" id="Irnr" style="width:60px; margin-left:83px;" value=${irnr} > </label> 
                 <input type="checkbox" id="requestir" value="ReqIR">Request IR Nr

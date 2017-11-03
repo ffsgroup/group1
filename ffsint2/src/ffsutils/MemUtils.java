@@ -871,7 +871,7 @@ public class MemUtils {
     public static ArrayList<MemberClaims> getClaimSumm(Connection conn, String thisUser, String tranId) throws SQLException {
         System.out.println("getClaimSumm " + tranId);
         
-        String sql = "Select summid from claims where claimnr = ?";
+        String sql = "Select summid, tranid from claims where claimnr = ?";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, tranId);
         ResultSet rs = pstm.executeQuery();
@@ -879,6 +879,7 @@ public class MemUtils {
         ArrayList<MemberClaims> list = new ArrayList<MemberClaims>();        
         
         if (rs.next()) {
+            String ClaimTranId = rs.getString("tranid");
             System.out.println("getClaimSumm found summ " + rs.getString("summid"));
             String sql1 = "Select * from claimsumm where tranid = ?";
             PreparedStatement pstm1 = conn.prepareStatement(sql1);
@@ -893,7 +894,7 @@ public class MemUtils {
                 claimDet.setClaimSur(rs1.getString("taskpay"));
                 claimDet.setClaimId(rs1.getString("decid"));
                 claimDet.setClaimRel(rs1.getString("lidno"));
-                claimDet.setBenefName(tranId);                 // claim id
+                claimDet.setBenefName(ClaimTranId);                 // claim id
                 claimDet.setBenefId(rs1.getString("tranid"));  // summ id
                 list.add(claimDet);
             }
@@ -929,9 +930,45 @@ public class MemUtils {
             memDoc.setwhatDoc(rs.getString("whatdoc"));
             memDoc.setnotNeeded(rs.getString("notNeeded"));
             list.add(memDoc);
-        }
-        
+        }        
         return list;
     }
 
+    public static ArrayList<MemberClaims> getClaimDetails(Connection conn, UserAccount thisUser, String tranId) throws SQLException {
+        System.out.println("getClaimDetails " + tranId);
+        
+        String sql1 = "Select * from claims where tranid = ?";
+        PreparedStatement pstm1 = conn.prepareStatement(sql1);
+        pstm1.setString(1, tranId);
+        ResultSet rs1 = pstm1.executeQuery();               
+               
+        ArrayList<MemberClaims> list = new ArrayList<MemberClaims>();
+        
+        if (rs1.next()) {
+            MemberClaims memClaim = new MemberClaims();            
+            memClaim.setClaimNr(rs1.getString("claimnr"));
+            memClaim.setClaimDate(rs1.getString("claimdate"));
+            memClaim.setDeceasedIni(rs1.getString("deceasedini"));
+            memClaim.setDeceasedSur(rs1.getString("deceasedsur"));
+            memClaim.setDateOfDeath(rs1.getString("dateofdeath"));
+            memClaim.setlidNo(rs1.getString("lidno"));
+            memClaim.setsummId(rs1.getString("summid"));
+            memClaim.settombNr(rs1.getString("tombnr"));
+            memClaim.setBenefName(rs1.getString("benefname"));
+            memClaim.setBenefId(rs1.getString("benefid"));
+            
+        String sql2 = "select lidtipe,(select genericdescriptioneng from generics where gengroupid='33' and genericid=lededata.lidtipe) as tipe from lededata where lidno = ?";
+        PreparedStatement pstm2 = conn.prepareStatement(sql2);
+        pstm2.setString(1, rs1.getString("lidno"));
+        ResultSet rs2 = pstm2.executeQuery();             
+        String tTipe = "Unknown";
+        if (rs2.next()) {
+            tTipe = rs2.getString("tipe");
+        }
+        memClaim.setpolTipe(tTipe);
+            list.add(memClaim);
+        }        
+        return list;
+    }    
+    
 }

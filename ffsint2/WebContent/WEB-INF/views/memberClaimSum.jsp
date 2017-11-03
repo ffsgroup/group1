@@ -1,41 +1,44 @@
 
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<head>
-<div style="background: #E0E0E0; height: 55px; padding: 5px;">
-    <div style="float: left">
-        <h1>FFS Group</h1>        
-    </div>
-    <div style="float: right; padding: 5px;" >
-        <b>${loginedUser.userName}</b>
-        <br>
-        <a href="${pageContext.request.contextPath}/userInfo">Home</a>
-        |
-        <a href="${pageContext.request.contextPath}/login">Login</a>
-    </div>
-    <div style="text-align: center;">
-        <h2>Claim Summary</h2>       
-    </div>
-    <title>Claim Summary</title>
-    
-    <script>
-                $(document).ready(function () {
-                    $("#claimDetail").click(function (event) {
-                        var target = $(event.target);
-                        window.location = "MemberClaimDetails.jsp?key=" + encodeURIComponent(document.getElementById("lidno").innerHTML);
-                    });
-                });        
-        
-    </script>    
-        
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <link href = "https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel = "stylesheet">
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
+        <script src = "https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <link href='http://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+        <script>
+            $(document).ready(function () {
+                $("#claimDetail").click(function (event) {
+                    var target = $(event.target);
+                    window.location = "MemberClaimDetails.jsp?claim=" + encodeURIComponent(document.getElementById("claimno").innerHTML);
+                });
+            });
+
+        </script>  
+
+  
 </head>  
 
-</div>
-
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
 <body>
+    <div style="background: #E0E0E0; height: 55px; padding: 5px;">
+        <div style="float: left">
+            <h1>FFS Group</h1>        
+        </div>
+        <div style="float: right; padding: 5px;" >
+            <b>${loginedUser.userName}</b>
+            <br>
+            <a href="${pageContext.request.contextPath}/userInfo">Home</a>
+            |
+            <a href="${pageContext.request.contextPath}/login">Login</a>
+        </div>
+        <div style="text-align: center;">
+            <h2>Claim Summary</h2>       
+        </div>
+        <title>Claim Summary</title>
+    </div>    
     <br><br>
     Member <label id="lidno">${lidno}</label>   Claim No <label id="claimno"> ${claimid} </label>   Summary  <label id="summid"> ${summid} </label>
     <br>
@@ -43,8 +46,8 @@
     <div style="border:1px solid grey; width:300px; float:left">
         <label>Name :   ${deceased} </label> <br>
         <label>ID No :  ${decid}</label> <br>
-        <label id="memDetail">Member Details </label> <br>
-        <input type="button" id="claimDetail" value="Claim Details" > <br>
+        <input type="button" style="width:120px;" id="memDetail" value="Member Details" > <br>
+        <input type="button" style="width:120px;" id="claimDetail" value="Claim Details" > <br>
         <label id="fundone"> Funeral arrangements not done </label>
         <br>
     </div>  

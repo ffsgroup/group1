@@ -39,21 +39,13 @@ public class MemberClaimGetDetails extends HttpServlet {
         HttpSession session = request.getSession();
         UserAccount loginedUser = MyUtils.getLoginedUser(session);
         
-        String tranid = request.getParameter("key");
-        System.out.println("MemberClaimGetSumm " + tranid);
+        String tranid = request.getParameter("claim");
+        System.out.println("MemberClaimGetDetails " + tranid);
         ArrayList<MemberClaims> claimSumm = new ArrayList<MemberClaims>();
         try {
-            claimSumm = MemUtils.getClaimSumm(conn, loginedUser.getUserName() , tranid);
+            claimSumm = MemUtils.getClaimDetails(conn, loginedUser , tranid);
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        
-        ArrayList<MemberClaimDoc> claimDoc = new ArrayList<MemberClaimDoc>();
-        try {
-         claimDoc = MemUtils.getClaimImage(conn, loginedUser, tranid);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            //  errorString = e.getMessage();
         }        
 
         String a= "";
@@ -64,50 +56,41 @@ public class MemberClaimGetDetails extends HttpServlet {
         String f= "";
         String g= "";
         String h= "";
+String i= "";        
+String j= "";
+String k= "";
+
         for (MemberClaims memberClaim1 : claimSumm) {
-            a=memberClaim1.getClaimStatus();
-            b=memberClaim1.getClaimNr();
+            a=memberClaim1.getClaimNr();
+            b=memberClaim1.getClaimDate();
             c=memberClaim1.getDeceasedIni();
-            d=memberClaim1.getClaimSur();
-            e=memberClaim1.getClaimId();
-            f=memberClaim1.getClaimRel();
-            g=memberClaim1.getBenefName();
-            h=memberClaim1.getBenefId(); 
+            d=memberClaim1.getDeceasedSur();
+            e=memberClaim1.getDateOfDeath();
+            f=memberClaim1.getlidNo();
+            g=memberClaim1.getsummId();
+            h=memberClaim1.gettombNr();
+            i=memberClaim1.getpolTipe();
+            j=memberClaim1.getBenefName();
+            k=memberClaim1.getBenefId();
+            
+            System.out.println("MemberClaimGetDetails " +memberClaim1.getlidNo() );
         }
-        
+       
         String showDel = "";
         String showNee = "";
-        String secure = (loginedUser.getsecurestr().substring(148,149) ) ;  // from 0, secure[149] 
-        
-        String z = "";
-        for (MemberClaimDoc claimDoc1 : claimDoc) {          
-          String docUser = claimDoc1.getdoc1User();
-          String docDate = claimDoc1.getdoc1Date();
-          if (docUser == null ) { docUser = "";
-          docDate = "";
-          }
-          
-          if (secure.equals("1") && !docUser.equals("") ) {
-              showDel = "Delete";
-          } else {showDel = "";}
-          if (secure.equals("1") && docUser.equals("") ) {
-              showNee = "Not Needed";
-          } else {showNee = "";}
-          if (claimDoc1.getdoc1().length() > 3) {
-          z = z + "<tr> <td style='min-width:180px; width:180px;border:1px solid grey;border-collapse:collapse;'>" + claimDoc1.getdoc1()+ "</td> <td style='min-width:160px; width:160px;border:1px solid grey;border-collapse:collapse;'>" + docUser + "</td> <td style='min-width:160px; width:160px;border:1px solid grey;'> " + docDate + " </td> <td style='min-width:95px; width:95px;border:1px solid grey;border-collapse:collapse;'>" + showDel + " </td> <td style='min-width:95px; width:95px;border:1px solid grey;border-collapse:collapse;'>" + showNee + " </td></tr> ";             
-          }         
-        }
+        String secure = (loginedUser.getsecurestr().substring(148,149) ) ;  // from 0, secure[149]         
       
-        request.setAttribute("taskenq", a);
-        request.setAttribute("taskclaim", b);
-        request.setAttribute("deceased", c);
-        request.setAttribute("taskpay", d);
-        request.setAttribute("decid", e);
+        request.setAttribute("claimnr", a);
+        request.setAttribute("claimdate", b);
+        request.setAttribute("ini", c);
+        request.setAttribute("sur", d);
+        request.setAttribute("dod", e);
         request.setAttribute("lidno", f);
-        request.setAttribute("claimid", g);
-        request.setAttribute("summid", h);
-        
-        request.setAttribute("docs", z);
+        request.setAttribute("summid", g);
+        request.setAttribute("tombnr", h);
+       request.setAttribute("poltipe", i);
+       request.setAttribute("benname", j);
+       request.setAttribute("benid", k);
         
         RequestDispatcher dispatcher = request.getServletContext()
                 .getRequestDispatcher("/WEB-INF/views/memberClaimDetails.jsp");

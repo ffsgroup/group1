@@ -3,6 +3,9 @@ package ffsbeans;
 public class MemberClaims {
 
     private String tranId;
+    private String lidNo;
+    private String summId;
+    private String tombNr;
     private String DeceasedSur;
     private String DeceasedIni;
     private String ClaimNr;
@@ -14,13 +17,14 @@ public class MemberClaims {
     private String ClaimRel;
     private String BenefName;
     private String BenefId;
+    private String polTipe;
     
 
     public MemberClaims() {
 
     }
 
-    public MemberClaims(String tranId, String DeceasedSur, String DeceasedIni, String ClaimNr, String ClaimDate, String DateOfDeath, String ClaimStatus, String ClaimSur, String ClaimId, String ClaimRel, String BenefName, String BenefId) {
+    public MemberClaims(String tranId, String DeceasedSur, String DeceasedIni, String ClaimNr, String ClaimDate, String DateOfDeath, String ClaimStatus, String ClaimSur, String ClaimId, String ClaimRel, String BenefName, String BenefId, String lidNo, String summId, String tombNr, String polTipe) {
         this.tranId = tranId;
         this.DeceasedSur = DeceasedSur;
         this.DeceasedIni = DeceasedIni;
@@ -33,7 +37,10 @@ public class MemberClaims {
         this.ClaimRel = ClaimRel;
         this.BenefName = BenefName;
         this.BenefId = BenefId;
-
+this.lidNo = lidNo;
+this.summId = summId;
+this.tombNr = tombNr;
+this.polTipe = polTipe;
     }
 
     public String gettranId() {
@@ -131,5 +138,38 @@ public class MemberClaims {
     public void setBenefId(String BenefId) {
         this.BenefId = BenefId;
     }
+    
+        public String getlidNo() {
+        return lidNo;
+    }
+
+    public void setlidNo(String lidNo) {
+        this.lidNo = lidNo;
+    }
+
+        public String getsummId() {
+        return summId;
+    }
+
+    public void setsummId(String summId) {
+        this.summId = summId;
+    }
+
+        public String gettombNr() {
+        return tombNr;
+    }
+
+    public void settombNr(String tombNr) {
+        this.tombNr = tombNr;
+    }
+
+        public String getpolTipe() {
+        return polTipe;
+    }
+
+    public void setpolTipe(String polTipe) {
+        this.polTipe = polTipe;
+    }
+
     
 }
