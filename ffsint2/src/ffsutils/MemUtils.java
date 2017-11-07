@@ -934,7 +934,7 @@ public class MemUtils {
         return list;
     }
 
-    public static ArrayList<MemberClaims> getClaimDetails(Connection conn, UserAccount thisUser, String tranId) throws SQLException {
+    public static MemberClaims getClaimDetails(Connection conn, UserAccount thisUser, String tranId) throws SQLException {
         System.out.println("getClaimDetails " + tranId);
         
         String sql1 = "Select * from claims where tranid = ?";
@@ -943,9 +943,10 @@ public class MemUtils {
         ResultSet rs1 = pstm1.executeQuery();               
                
         ArrayList<MemberClaims> list = new ArrayList<MemberClaims>();
-        
+         MemberClaims memClaim = new MemberClaims(); 
+         
         if (rs1.next()) {
-            MemberClaims memClaim = new MemberClaims();            
+                      
             memClaim.setClaimNr(rs1.getString("claimnr"));
             memClaim.setClaimDate(rs1.getString("claimdate"));
             memClaim.setDeceasedIni(rs1.getString("deceasedini"));
@@ -956,19 +957,23 @@ public class MemUtils {
             memClaim.settombNr(rs1.getString("tombnr"));
             memClaim.setBenefName(rs1.getString("benefname"));
             memClaim.setBenefId(rs1.getString("benefid"));
+            memClaim.settranId(rs1.getString("tranid"));
+            memClaim.setdeceasedId(rs1.getString("deceasedid"));
+            memClaim.setdecRel (rs1.getString("claimrelate"));
+            memClaim.setClaimSur(rs1.getString("claimsur"));
             
+        String tTipe = "Unknown";    
         String sql2 = "select lidtipe,(select genericdescriptioneng from generics where gengroupid='33' and genericid=lededata.lidtipe) as tipe from lededata where lidno = ?";
         PreparedStatement pstm2 = conn.prepareStatement(sql2);
         pstm2.setString(1, rs1.getString("lidno"));
         ResultSet rs2 = pstm2.executeQuery();             
-        String tTipe = "Unknown";
         if (rs2.next()) {
             tTipe = rs2.getString("tipe");
         }
         memClaim.setpolTipe(tTipe);
             list.add(memClaim);
         }        
-        return list;
+        return memClaim;
     }    
     
 }

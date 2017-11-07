@@ -18,13 +18,14 @@ public class MemberClaims {
     private String BenefName;
     private String BenefId;
     private String polTipe;
-    
+    private String deceasedId;
+    private String decRel;
 
     public MemberClaims() {
 
     }
 
-    public MemberClaims(String tranId, String DeceasedSur, String DeceasedIni, String ClaimNr, String ClaimDate, String DateOfDeath, String ClaimStatus, String ClaimSur, String ClaimId, String ClaimRel, String BenefName, String BenefId, String lidNo, String summId, String tombNr, String polTipe) {
+    public MemberClaims(String tranId, String DeceasedSur, String DeceasedIni, String ClaimNr, String ClaimDate, String DateOfDeath, String ClaimStatus, String ClaimSur, String ClaimId, String ClaimRel, String BenefName, String BenefId, String lidNo, String summId, String tombNr, String polTipe, String deceasedId, String decRel) {
         this.tranId = tranId;
         this.DeceasedSur = DeceasedSur;
         this.DeceasedIni = DeceasedIni;
@@ -37,10 +38,12 @@ public class MemberClaims {
         this.ClaimRel = ClaimRel;
         this.BenefName = BenefName;
         this.BenefId = BenefId;
-this.lidNo = lidNo;
-this.summId = summId;
-this.tombNr = tombNr;
-this.polTipe = polTipe;
+        this.lidNo = lidNo;
+        this.summId = summId;
+        this.tombNr = tombNr;
+        this.polTipe = polTipe;
+        this.deceasedId = deceasedId;
+        this.decRel = decRel;
     }
 
     public String gettranId() {
@@ -99,14 +102,14 @@ this.polTipe = polTipe;
         this.ClaimStatus = ClaimStatus;
     }
 
-        public String getClaimSur() {
+    public String getClaimSur() {
         return ClaimSur;
     }
 
     public void setClaimSur(String ClaimSur) {
         this.ClaimSur = ClaimSur;
     }
-    
+
     public String getClaimId() {
         return ClaimId;
     }
@@ -115,14 +118,14 @@ this.polTipe = polTipe;
         this.ClaimId = ClaimId;
     }
 
-        public String getClaimRel() {
+    public String getClaimRel() {
         return ClaimRel;
     }
 
     public void setClaimRel(String ClaimRel) {
         this.ClaimRel = ClaimRel;
     }
-    
+
     public String getBenefName() {
         return BenefName;
     }
@@ -131,15 +134,15 @@ this.polTipe = polTipe;
         this.BenefName = BenefName;
     }
 
-        public String getBenefId() {
+    public String getBenefId() {
         return BenefId;
     }
 
     public void setBenefId(String BenefId) {
         this.BenefId = BenefId;
     }
-    
-        public String getlidNo() {
+
+    public String getlidNo() {
         return lidNo;
     }
 
@@ -147,7 +150,7 @@ this.polTipe = polTipe;
         this.lidNo = lidNo;
     }
 
-        public String getsummId() {
+    public String getsummId() {
         return summId;
     }
 
@@ -155,7 +158,7 @@ this.polTipe = polTipe;
         this.summId = summId;
     }
 
-        public String gettombNr() {
+    public String gettombNr() {
         return tombNr;
     }
 
@@ -163,7 +166,7 @@ this.polTipe = polTipe;
         this.tombNr = tombNr;
     }
 
-        public String getpolTipe() {
+    public String getpolTipe() {
         return polTipe;
     }
 
@@ -171,5 +174,20 @@ this.polTipe = polTipe;
         this.polTipe = polTipe;
     }
 
+    public String getdeceasedId() {
+        return deceasedId;
+    }
+
+    public void setdeceasedId(String deceasedId) {
+        this.deceasedId = deceasedId;
+    }
+
+        public String getdecRel() {
+        return decRel;
+    }
+
+    public void setdecRel(String decRel) {
+        this.decRel = decRel;
+    }
     
 }
