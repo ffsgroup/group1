@@ -961,8 +961,23 @@ public class MemUtils {
             memClaim.setdeceasedId(rs1.getString("deceasedid"));
             memClaim.setdecRel (rs1.getString("claimrelate"));
             memClaim.setClaimSur(rs1.getString("claimsur"));
+            memClaim.setClaimId(rs1.getString("claimid"));
+            memClaim.setClaimRel(rs1.getString("claimrel"));
+            memClaim.setCause1(rs1.getString("causedeath"));
+            memClaim.setCause2(rs1.getString("causedeath2"));
+            memClaim.setclaimAm(rs1.getString("claimamount"));
+            memClaim.setdateOfDeath(rs1.getString("dateofdeath"));
+            memClaim.setgrocery(rs1.getString("grocery"));
+            memClaim.setclaimTel(rs1.getString("claimtel"));
+            memClaim.setcashFuneral(rs1.getString("cashfuneral"));
+            memClaim.setbank(rs1.getString("bank"));
+            memClaim.setclaimAdd1(rs1.getString("claimadd1"));
+            memClaim.setfuneralAmount(rs1.getString("funeralamount"));
+            memClaim.setbranchNr(rs1.getString("branchnr"));
+            memClaim.setclaimAdd2(rs1.getString("claimadd2"));
+            memClaim.setmemAge(rs1.getString("memage"));
             
-        String tTipe = "Unknown";    
+        String tTipe = "Unknown";
         String sql2 = "select lidtipe,(select genericdescriptioneng from generics where gengroupid='33' and genericid=lededata.lidtipe) as tipe from lededata where lidno = ?";
         PreparedStatement pstm2 = conn.prepareStatement(sql2);
         pstm2.setString(1, rs1.getString("lidno"));
