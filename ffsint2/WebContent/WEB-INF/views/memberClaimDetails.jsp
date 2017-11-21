@@ -74,7 +74,7 @@
                 <td style="width:90px;"> <label> Deceased </label> </td> 
                 <td style="width:100px"> </td>
                 <td style="width:90px"> </td>
-                <td style="width:90px;"><label> Beneficiary </label></td> 
+                <td style="width:100px;"><label> Beneficiary </label></td> 
                 <td style="width:100px"> </td>
                 <td style="width:90px"> </td>
                 <td style="width:105px"> </td>
@@ -199,16 +199,137 @@
         <td> Funeral amount </td> <td> <input type="text" style="width:120px;" value=${funam} > </td>
     </tr>
     <tr>
-        <td> Branch nr </td>
-        <td> <input type="text" style="width:120px;" value=${branchnr} > </td>
+        <td> Branch nr </td> <td> <input type="text" style="width:120px;" value=${branchnr} > </td>
         <td> </td>
         <td> Address 2 </td> <td><input type="text" style="width:120px;" value=${address2} > </td>
         <td> </td>
-        <td>Deceased age</td> <td> <input type="text" style="width:80px" value=${decage} > </td>
-        
+        <td>Deceased age</td> <td> <input type="text" style="width:80px" value=${decage} > </td>        
     </tr>   
-
+    <tr>
+        <td> Account Type </td> <td> <input type="text" style="width:120px;" value=${acctype} > </td>
+        <td></td>
+        <td> Address 3 </td> <td> <input type="text" style="width:120px;" value=${address3} > </td>
+        <td></td>  
+        <td> Policy Duration </td> <td> <input type="text" style ="width:120px" value=${poldur} > </td>
+    </tr>
+    <tr>
+        <td> Acc name </td> <td> <input type="text" style="width:120px;" value=${accname} > </td>
+        <td> </td>
+        <td> Approved </td> <td><input type="text" id="appdate1" style="width:120px" value=${appdate} > </td>
+        <td></td>
+        <td> Status </td> <td> <input type="text" style="width:120px" value =${status} > </td>       
+    </tr>
+    <script>
+        var myCalendar1 = new dhtmlXCalendarObject(["appdate1"]);
+        myCalendar1.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01"]);
+        myCalendar1.setTooltip("2017-01-01", "New Year's Day", true, true);
+        myCalendar1.setTooltip("2017-01-02", "Public HoliDay", true, true);
+        myCalendar1.setTooltip("2017-03-21", "Human Rights Day", true, true);
+        myCalendar1.setTooltip("2017-04-14", "Good Friday", true, true);
+        myCalendar1.setTooltip("2017-04-17", "Family Day", true, true);
+        myCalendar1.setTooltip("2017-04-27", "Freedom Day", true, true);
+        myCalendar1.setTooltip("2017-05-01", "Workers Day", true, true);
+        myCalendar1.setTooltip("2017-06-16", "Youth Day", true, true);
+        myCalendar1.setTooltip("2017-08-09", "National Womens Day", true, true);
+        myCalendar1.setTooltip("2017-09-24", "Heritage Day", true, true);
+        myCalendar1.setTooltip("2017-09-25", "Public Holiday", true, true);
+        myCalendar1.setTooltip("2017-12-16", "Day of Reconciliation", true, true);
+        myCalendar1.setTooltip("2017-12-25", "Christmas Day", true, true);
+        myCalendar1.setTooltip("2017-12-26", "Day of Good Will", true, true);
+        myCalendar1.setTooltip("2018-01-01", "New Years Day", true, true);
+        myCalendar1.setDateFormat("%Y/%m/%d");
+    </script>      
+    <tr>
+        <td>Account nr </td> <td> <input type="text" style="width:120px;" value=${accnr} > </td>
+        <td> </td>
+        <td> Effective </td> <td> <input type="text" id="effdate1" style="width:120px;" value=${effdate} > </td>
+        <td></td>
+        <td> Status date </td> <td> <input type="text" style="width:120px;" id ="statdate" value=${statusdate} > </td>
+    </tr>    
+    <script>
+        var myCalendar1 = new dhtmlXCalendarObject(["statdate"]);
+        myCalendar1.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01"]);
+        myCalendar1.setTooltip("2017-01-01", "New Year's Day", true, true);
+        myCalendar1.setTooltip("2017-01-02", "Public HoliDay", true, true);
+        myCalendar1.setTooltip("2017-03-21", "Human Rights Day", true, true);
+        myCalendar1.setTooltip("2017-04-14", "Good Friday", true, true);
+        myCalendar1.setTooltip("2017-04-17", "Family Day", true, true);
+        myCalendar1.setTooltip("2017-04-27", "Freedom Day", true, true);
+        myCalendar1.setTooltip("2017-05-01", "Workers Day", true, true);
+        myCalendar1.setTooltip("2017-06-16", "Youth Day", true, true);
+        myCalendar1.setTooltip("2017-08-09", "National Womens Day", true, true);
+        myCalendar1.setTooltip("2017-09-24", "Heritage Day", true, true);
+        myCalendar1.setTooltip("2017-09-25", "Public Holiday", true, true);
+        myCalendar1.setTooltip("2017-12-16", "Day of Reconciliation", true, true);
+        myCalendar1.setTooltip("2017-12-25", "Christmas Day", true, true);
+        myCalendar1.setTooltip("2017-12-26", "Day of Good Will", true, true);
+        myCalendar1.setTooltip("2018-01-01", "New Years Day", true, true);
+        myCalendar1.setDateFormat("%Y/%m/%d");
+    </script>      
+    <script>
+        var myCalendar1 = new dhtmlXCalendarObject(["effdate1"]);
+        myCalendar1.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01"]);
+        myCalendar1.setTooltip("2017-01-01", "New Year's Day", true, true);
+        myCalendar1.setTooltip("2017-01-02", "Public HoliDay", true, true);
+        myCalendar1.setTooltip("2017-03-21", "Human Rights Day", true, true);
+        myCalendar1.setTooltip("2017-04-14", "Good Friday", true, true);
+        myCalendar1.setTooltip("2017-04-17", "Family Day", true, true);
+        myCalendar1.setTooltip("2017-04-27", "Freedom Day", true, true);
+        myCalendar1.setTooltip("2017-05-01", "Workers Day", true, true);
+        myCalendar1.setTooltip("2017-06-16", "Youth Day", true, true);
+        myCalendar1.setTooltip("2017-08-09", "National Womens Day", true, true);
+        myCalendar1.setTooltip("2017-09-24", "Heritage Day", true, true);
+        myCalendar1.setTooltip("2017-09-25", "Public Holiday", true, true);
+        myCalendar1.setTooltip("2017-12-16", "Day of Reconciliation", true, true);
+        myCalendar1.setTooltip("2017-12-25", "Christmas Day", true, true);
+        myCalendar1.setTooltip("2017-12-26", "Day of Good Will", true, true);
+        myCalendar1.setTooltip("2018-01-01", "New Years Day", true, true);
+        myCalendar1.setDateFormat("%Y/%m/%d");
+    </script>         
+    <tr>
+        <td></td> <td></td>
+        <td></td>
+        <td> Claim status 1 </td> <td> <select name="claimstat1" id = "claims1" style="margin-left: 5px; width: 120px;" >
+                <option value="${claimstatus1}">${claimstatus1}</option>
+                <option value="Accepted">Accepted</option>
+                <option value="Waiting">Waiting</option>
+                <option value="Completed">Completed</option>                    
+                <option value="Invalid">Invalid</option>                    
+            </select> </td>
+        <td> </td>
+        <td> Claim status 2 </td> <td> <select name="claimstat2" id = "claims2" style="margin-left: 5px; width: 120px;" >
+                <option value="${claimstatus2}">${claimstatus2}</option>
+                <option value="File Closed">File Closed</option>
+                <option value="Waiting Documents">Waiting Documents</option>         
+            </select>
+        </td>
+        <td></td> 
+    </tr>
+    <tr>
+        <td></td><td></td>
+        <td></td>
+        <td></td><td></td>
+        <td></td>
+        <td> Tombstone ir </td> <td><input type="text" style="width:120px;" value=${tombir} > </td>
+    </tr>
+    <tr>
+        <td>Approved <input type="checkbox" id = "appclaim" value="Approved" > </td>
+        <td></td>
+        <td></td>
+        <td>Settled <input type="checkbox" id= "settclaim" value="Claim settled" > </td>
+    </tr>
+    <script>
+      if (${claimapp} == "Y") {
+          document.getElementById("appclaim").checked = true;
+      }
+      if (${claimsettled} == "Y") {
+          document.getElementById("settclaim").checked = true;
+      }
+    </script>    
 </table>
-
+<label> <textarea name="notes" id="claimnotes" style="width:600px; height: 255px;" cols="50" rows="5" >${claimnotes}</textarea> </label>     
+<br>
+<input type="button" value="Save" style="margin-left:100px;width:100px">
+<input type="button" value="Finance" style="margin-left:100px;width:100px" >
 </body>
 </html>

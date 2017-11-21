@@ -976,16 +976,37 @@ public class MemUtils {
             memClaim.setbranchNr(rs1.getString("branchnr"));
             memClaim.setclaimAdd2(rs1.getString("claimadd2"));
             memClaim.setmemAge(rs1.getString("memage"));
-            
+            memClaim.setaccType(rs1.getString("acctipe"));
+            memClaim.setclaimAdd3(rs1.getString("claimadd3"));
+            memClaim.setpolDur(rs1.getString("polduration"));
+            memClaim.setaccName(rs1.getString("accholder"));
+            memClaim.setapprovalDate(rs1.getString("appovaldate"));
+           memClaim.setaccNr(rs1.getString("accountnr"));
+           memClaim.seteffDate(rs1.getString("effectivedate"));
+          memClaim.setclaimStatus(rs1.getString("claimstatus"));
+          memClaim.setclaimStat2(rs1.getString("claimstat2"));
+          memClaim.setstoneIr(rs1.getString("stoneir"));
+          memClaim.setclaimApp(rs1.getString("claimapp"));
+          memClaim.setclaimSettled(rs1.getString("claimsettled"));
+          memClaim.setcomments(rs1.getString("comments"));
+                    
         String tTipe = "Unknown";
-        String sql2 = "select lidtipe,(select genericdescriptioneng from generics where gengroupid='33' and genericid=lededata.lidtipe) as tipe from lededata where lidno = ?";
+        String sStat = "Unknown";
+        String sDate = "";
+        
+        String sql2 = "select datadr, status, lidtipe,(select genericdescriptioneng from generics where gengroupid='33' and genericid=lededata.lidtipe) as tipe, (select genericdescriptioneng from generics where gengroupid='10' and genericid=lededata.status) as status1 from lededata where lidno = ?";
         PreparedStatement pstm2 = conn.prepareStatement(sql2);
         pstm2.setString(1, rs1.getString("lidno"));
         ResultSet rs2 = pstm2.executeQuery();             
         if (rs2.next()) {
             tTipe = rs2.getString("tipe");
+            sStat = rs2.getString("status1");
+            sDate = rs2.getString("datadr");
         }
         memClaim.setpolTipe(tTipe);
+        memClaim.setstatus(sStat);
+        memClaim.setstatusDate(sDate);
+        
             list.add(memClaim);
         }        
         return memClaim;

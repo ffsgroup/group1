@@ -33,12 +33,27 @@ public class MemberClaims {
     private String branchNr;
     private String claimAdd2;
     private String memAge;
+    private String claimAdd3;
+    private String accType;
+    private String polDur;
+    private String accName;
+    private String approvalDate;
+    private String status;
+    private String accNr;
+    private String effDate;
+    private String statusDate;
+    private String claimStatus;
+    private String claimStat2;
+    private String stoneIr;
+    private String claimApp;
+    private String claimSettled;
+    private String comments;
 
     public MemberClaims() {
 
     }
 
-    public MemberClaims(String tranId, String DeceasedSur, String DeceasedIni, String ClaimNr, String ClaimDate, String DateOfDeath, String ClaimStatus, String ClaimSur, String ClaimId, String ClaimRel, String BenefName, String BenefId, String lidNo, String summId, String tombNr, String polTipe, String deceasedId, String decRel, String claimId, String cause1, String claimAm, String cause2, String grocery, String dateOfDeath, String claimTel, String cashFuneral, String bank, String claimAdd1, String funeralAmount) {
+    public MemberClaims(String tranId, String DeceasedSur, String DeceasedIni, String ClaimNr, String ClaimDate, String DateOfDeath, String ClaimStatus, String ClaimSur, String ClaimId, String ClaimRel, String BenefName, String BenefId, String lidNo, String summId, String tombNr, String polTipe, String deceasedId, String decRel, String claimId, String cause1, String claimAm, String cause2, String grocery, String dateOfDeath, String claimTel, String cashFuneral, String bank, String claimAdd1, String funeralAmount, String accType, String claimAdd3, String polDur, String accName, String ApprovalDate, String status, String accNr, String effDate, String statusDate, String claimStatus, String claimStat2, String stoneIr, String claimApp, String claimSettled, String comments) {
         this.tranId = tranId;
         this.DeceasedSur = DeceasedSur;
         this.DeceasedIni = DeceasedIni;
@@ -67,6 +82,21 @@ public class MemberClaims {
         this.bank = bank;
         this.claimAdd1 = claimAdd1;
         this.funeralAmount = funeralAmount;
+        this.accType = accType;
+        this.claimAdd3 = claimAdd3;
+        this.polDur = polDur;
+        this.accName = accName;
+        this.approvalDate = approvalDate;
+        this.status = status;
+        this.accNr = accNr;
+        this.effDate = effDate;
+        this.statusDate = statusDate;
+        this.ClaimStatus = claimStatus;
+        this.claimStat2 = claimStat2;
+        this.stoneIr = stoneIr;
+        this.claimApp = claimApp;
+        this.claimSettled = claimSettled;
+        this.comments = comments;
 
     }
 
@@ -289,6 +319,7 @@ public class MemberClaims {
     public String getfuneralAmount() {
         return funeralAmount;
     }
+
     public void setfuneralAmount(String funeralAmount) {
         this.funeralAmount = funeralAmount;
     }
@@ -296,6 +327,7 @@ public class MemberClaims {
     public String getbranchNr() {
         return branchNr;
     }
+
     public void setbranchNr(String branchNr) {
         this.branchNr = branchNr;
     }
@@ -303,15 +335,138 @@ public class MemberClaims {
     public String getclaimAdd2() {
         return claimAdd2;
     }
+
     public void setclaimAdd2(String claimAdd2) {
         this.claimAdd2 = claimAdd2;
     }
-    
+
     public String getmemAge() {
         return memAge;
     }
+
     public void setmemAge(String memAge) {
         this.memAge = memAge;
-    }    
+    }
+
+    public String getaccType() {
+        return accType;
+    }
+
+    public void setaccType(String accType) {
+        this.accType = accType;
+    }
+
+    public String getclaimAdd3() {
+        return claimAdd3;
+    }
+
+    public void setclaimAdd3(String claimAdd3) {
+        this.claimAdd3 = claimAdd3;
+    }
+
+    public String getpolDur() {
+        return polDur;
+    }
+
+    public void setpolDur(String polDur) {
+        this.polDur = polDur;
+    }
+    
+    public String getaccName() {
+        return accName;
+    }
+
+    public void setaccName(String accName) {
+        this.accName = accName;
+    }
+
+    public String getapprovalDate() {
+        return approvalDate;
+    }
+
+    public void setapprovalDate(String approvalDate) {
+        this.approvalDate = approvalDate;
+    }
+
+    public String getstatus() {
+        return status;
+    }
+
+    public void setstatus(String status) {
+        this.status = status;
+    }
+
+    public String getaccNr() {
+        return accNr;
+    }
+
+    public void setaccNr(String accNr) {
+        this.accNr = accNr;
+    }
+
+    public String geteffDate() {
+        return effDate;
+    }
+
+    public void seteffDate(String effDate) {
+        this.effDate = effDate;
+    }
+
+    public String getstatusDate() {
+        return statusDate;
+    }
+
+    public void setstatusDate(String statusDate) {
+        this.statusDate = statusDate;
+    }
+
+    public String getclaimStatus() {
+        return claimStatus;
+    }
+
+    public void setclaimStatus(String claimStatus) {
+        this.claimStatus = claimStatus;
+    }
+
+    public String getclaimStat2() {
+        return claimStat2;
+    }
+
+    public void setclaimStat2(String claimStat2) {
+        this.claimStat2 = claimStat2;
+    }
+
+    public String getstoneIr() {
+        return stoneIr;
+    }
+
+    public void setstoneIr(String stoneIr) {
+        this.stoneIr = stoneIr;
+    }
+
+    public String getclaimApp() {
+        return claimApp;
+    }
+
+    public void setclaimApp(String claimApp) {
+        this.claimApp = claimApp;
+    }
+
+    public String getclaimSettled() {
+        return claimSettled;
+    }
+
+    public void setclaimSettled(String claimSettled) {
+        this.claimSettled = claimSettled;
+    }
+
+    public String getcomments() {
+        return comments;
+    }
+
+    public void setcomments(String comments) {
+        this.comments = comments;
+    }
+
     
 }
