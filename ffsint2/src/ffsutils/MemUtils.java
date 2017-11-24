@@ -870,14 +870,14 @@ public class MemUtils {
 
     public static ArrayList<MemberClaims> getClaimSumm(Connection conn, String thisUser, String tranId) throws SQLException {
         System.out.println("getClaimSumm " + tranId);
-        
+
         String sql = "Select summid, tranid from claims where claimnr = ?";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, tranId);
         ResultSet rs = pstm.executeQuery();
-        
-        ArrayList<MemberClaims> list = new ArrayList<MemberClaims>();        
-        
+
+        ArrayList<MemberClaims> list = new ArrayList<MemberClaims>();
+
         if (rs.next()) {
             String ClaimTranId = rs.getString("tranid");
             System.out.println("getClaimSumm found summ " + rs.getString("summid"));
@@ -904,24 +904,24 @@ public class MemUtils {
 
     public static ArrayList<MemberClaimDoc> getClaimImage(Connection conn, UserAccount thisUser, String tranId) throws SQLException {
         System.out.println("getClaimImage " + tranId);
-        
+
         String sql1 = "Select summid from claims where claimnr = ?";
         PreparedStatement pstm1 = conn.prepareStatement(sql1);
         pstm1.setString(1, tranId);
         ResultSet rs1 = pstm1.executeQuery();
-        
+
         String summId = "0";
         if (rs1.next()) {
-          summId =  rs1.getString("summid"); 
+            summId = rs1.getString("summid");
         }
-        
+
         String sql = "Select * from claimdoc where claimsumm = ? order by doc1user";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, summId);
         ResultSet rs = pstm.executeQuery();
-               
+
         ArrayList<MemberClaimDoc> list = new ArrayList<MemberClaimDoc>();
-        
+
         while (rs.next()) {
             MemberClaimDoc memDoc = new MemberClaimDoc();
             memDoc.setdoc1(rs.getString("doc1"));
@@ -930,23 +930,23 @@ public class MemUtils {
             memDoc.setwhatDoc(rs.getString("whatdoc"));
             memDoc.setnotNeeded(rs.getString("notNeeded"));
             list.add(memDoc);
-        }        
+        }
         return list;
     }
 
     public static MemberClaims getClaimDetails(Connection conn, UserAccount thisUser, String tranId) throws SQLException {
         System.out.println("getClaimDetails " + tranId);
-        
+
         String sql1 = "Select * from claims where tranid = ?";
         PreparedStatement pstm1 = conn.prepareStatement(sql1);
         pstm1.setString(1, tranId);
-        ResultSet rs1 = pstm1.executeQuery();               
-               
+        ResultSet rs1 = pstm1.executeQuery();
+
         ArrayList<MemberClaims> list = new ArrayList<MemberClaims>();
-         MemberClaims memClaim = new MemberClaims(); 
-         
+        MemberClaims memClaim = new MemberClaims();
+
         if (rs1.next()) {
-                      
+
             memClaim.setClaimNr(rs1.getString("claimnr"));
             memClaim.setClaimDate(rs1.getString("claimdate"));
             memClaim.setDeceasedIni(rs1.getString("deceasedini"));
@@ -959,7 +959,7 @@ public class MemUtils {
             memClaim.setBenefId(rs1.getString("benefid"));
             memClaim.settranId(rs1.getString("tranid"));
             memClaim.setdeceasedId(rs1.getString("deceasedid"));
-            memClaim.setdecRel (rs1.getString("claimrelate"));
+            memClaim.setdecRel(rs1.getString("claimrelate"));
             memClaim.setClaimSur(rs1.getString("claimsur"));
             memClaim.setClaimId(rs1.getString("claimid"));
             memClaim.setClaimRel(rs1.getString("claimrel"));
@@ -981,35 +981,107 @@ public class MemUtils {
             memClaim.setpolDur(rs1.getString("polduration"));
             memClaim.setaccName(rs1.getString("accholder"));
             memClaim.setapprovalDate(rs1.getString("appovaldate"));
-           memClaim.setaccNr(rs1.getString("accountnr"));
-           memClaim.seteffDate(rs1.getString("effectivedate"));
-          memClaim.setclaimStatus(rs1.getString("claimstatus"));
-          memClaim.setclaimStat2(rs1.getString("claimstat2"));
-          memClaim.setstoneIr(rs1.getString("stoneir"));
-          memClaim.setclaimApp(rs1.getString("claimapp"));
-          memClaim.setclaimSettled(rs1.getString("claimsettled"));
-          memClaim.setcomments(rs1.getString("comments"));
-                    
-        String tTipe = "Unknown";
-        String sStat = "Unknown";
-        String sDate = "";
-        
-        String sql2 = "select datadr, status, lidtipe,(select genericdescriptioneng from generics where gengroupid='33' and genericid=lededata.lidtipe) as tipe, (select genericdescriptioneng from generics where gengroupid='10' and genericid=lededata.status) as status1 from lededata where lidno = ?";
-        PreparedStatement pstm2 = conn.prepareStatement(sql2);
-        pstm2.setString(1, rs1.getString("lidno"));
-        ResultSet rs2 = pstm2.executeQuery();             
-        if (rs2.next()) {
-            tTipe = rs2.getString("tipe");
-            sStat = rs2.getString("status1");
-            sDate = rs2.getString("datadr");
-        }
-        memClaim.setpolTipe(tTipe);
-        memClaim.setstatus(sStat);
-        memClaim.setstatusDate(sDate);
-        
+            memClaim.setaccNr(rs1.getString("accountnr"));
+            memClaim.seteffDate(rs1.getString("effectivedate"));
+            memClaim.setclaimStatus(rs1.getString("claimstatus"));
+            memClaim.setclaimStat2(rs1.getString("claimstat2"));
+            memClaim.setstoneIr(rs1.getString("stoneir"));
+            memClaim.setclaimApp(rs1.getString("claimapp"));
+            memClaim.setclaimSettled(rs1.getString("claimsettled"));
+            memClaim.setcomments(rs1.getString("comments"));
+
+            String tTipe = "Unknown";
+            String sStat = "Unknown";
+            String sDate = "";
+
+            String sql2 = "select datadr, status, lidtipe,(select genericdescriptioneng from generics where gengroupid='33' and genericid=lededata.lidtipe) as tipe, (select genericdescriptioneng from generics where gengroupid='10' and genericid=lededata.status) as status1 from lededata where lidno = ?";
+            PreparedStatement pstm2 = conn.prepareStatement(sql2);
+            pstm2.setString(1, rs1.getString("lidno"));
+            ResultSet rs2 = pstm2.executeQuery();
+            if (rs2.next()) {
+                tTipe = rs2.getString("tipe");
+                sStat = rs2.getString("status1");
+                sDate = rs2.getString("datadr");
+            }
+            memClaim.setpolTipe(tTipe);
+            memClaim.setstatus(sStat);
+            memClaim.setstatusDate(sDate);
+
             list.add(memClaim);
-        }        
+        }
         return memClaim;
-    }    
-    
+    }
+
+    public static Member getMemberRecDetails(Connection conn, UserAccount userName, String member) throws SQLException {
+
+        System.out.println("getMemberRecDetails " + member);
+        String sql = "Select status, initialpayment, bettot, sur, ini, shortname, lidno, krediet from lededata where lidno = ?";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, member);
+
+        ResultSet rs = pstm.executeQuery();
+        Member members = new Member();
+        if (rs.next()) {
+
+            members.setlidno(rs.getString("lidno"));
+            members.setsur(rs.getString("sur"));
+            members.setini(rs.getString("ini"));
+            members.setshortname(rs.getString("shortname"));
+
+            Date date2 = new Date();
+            Calendar cal2 = new GregorianCalendar();
+            cal2.setTime(rs.getTimestamp("bettot"));
+
+            String year2 = Integer.toString(cal2.get(Calendar.YEAR));
+            String month2 = Integer.toString(cal2.get(Calendar.MONTH) + 1);
+            String day2 = Integer.toString(cal2.get(Calendar.DAY_OF_MONTH));
+            if (month2.length() == 1) {
+                month2 = "0" + month2;
+            }
+            if (day2.length() == 1) {
+                day2 = "0" + day2;
+            }
+            Date today = new Date();
+            Calendar caltoday = new GregorianCalendar();
+            caltoday.setTime(today);
+            if (caltoday.after(cal2)) {
+                members.setbranch("after");  // today is after bettot
+                if (caltoday.get(Calendar.MONTH) - 1 == cal2.get(Calendar.MONTH) && caltoday.get(Calendar.DAY_OF_MONTH) < 8) {
+                    members.setpobox(Integer.toString(rs.getInt("initialpayment")));
+                    members.setemail("0");
+                    members.setcity("Member will be asked to sign declaration");
+                }
+                if (caltoday.get(Calendar.MONTH) - 1 == cal2.get(Calendar.MONTH) && caltoday.get(Calendar.DAY_OF_MONTH) > 7) {
+                    members.setpobox(Integer.toString(rs.getInt("initialpayment") * 1));
+                    members.setcity("Member will be asked to sign declaration");
+                    members.setemail("1");
+                }
+                if (caltoday.get(Calendar.MONTH) - 1 == cal2.get(Calendar.MONTH) && caltoday.get(Calendar.DAY_OF_MONTH) > 14) {
+                    members.setpobox(Integer.toString(rs.getInt("initialpayment") * 2));
+                    members.setcity("Member will be asked to sign declaration");
+                    members.setemail("1");
+                }                
+                if (caltoday.get(Calendar.MONTH) - 2 == cal2.get(Calendar.MONTH) && caltoday.get(Calendar.DAY_OF_MONTH) > 7) {
+                    members.setpobox(Integer.toString(rs.getInt("initialpayment") * 2));
+                    members.setcity("Member will be asked to sign declaration");
+                    members.setemail("1");
+                }
+                if (caltoday.get(Calendar.MONTH) - 3 == cal2.get(Calendar.MONTH) && caltoday.get(Calendar.DAY_OF_MONTH) > 7) {
+                    members.setpobox(Integer.toString(rs.getInt("initialpayment") * 3));
+                    members.setcity("Member will be asked to sign declaration");
+                    members.setemail("1");
+                }                
+            } else {
+                members.setbranch("before"); //today is before bettot
+                members.setpobox(rs.getString("initialpayment"));
+            }
+            members.setinitialPayment(rs.getString("initialPayment"));
+            members.setbettot(year2 + "/" + month2 + "/" + day2);
+            members.setkrediet(rs.getString("krediet"));
+            members.setstatus(rs.getString("status"));
+            
+        }
+        return members;
+    }
+
 }

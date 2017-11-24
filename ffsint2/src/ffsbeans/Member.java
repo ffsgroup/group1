@@ -1,4 +1,5 @@
 package ffsbeans;
+
 public class Member {
 
     private String tranid;
@@ -43,11 +44,12 @@ public class Member {
     private String betmet;
     private String paypoint;
     private String benefname;
-     private String benefID;
-      private String benefRelation;
-       private String benefdate;
-       private String memAge;
-        private String GroupSc;
+    private String benefID;
+    private String benefRelation;
+    private String benefdate;
+    private String memAge;
+    private String GroupSc;
+
     public Member() {
 
     }
@@ -430,35 +432,38 @@ public class Member {
         this.paypoint = paypoint;
     }
 
-          public String getbenefname() {
+    public String getbenefname() {
         return benefname;
     }
 
     public void setbenefname(String benefname) {
         this.benefname = benefname;
     }
-     public String getbenefID() {
+
+    public String getbenefID() {
         return benefID;
     }
 
     public void setbenefID(String benefID) {
         this.benefID = benefID;
     }
-     public String getbenefRelation() {
+
+    public String getbenefRelation() {
         return benefRelation;
     }
 
     public void setbenefRelation(String benefRelation) {
         this.benefRelation = benefRelation;
     }
-     public String getbenefdate() {
+
+    public String getbenefdate() {
         return benefdate;
     }
 
     public void setbenefdate(String benefdate) {
         this.benefdate = benefdate;
     }
-    
+
     public String getmemAge() {
         return memAge;
     }
@@ -466,7 +471,8 @@ public class Member {
     public void setmemAge(String memAge) {
         this.memAge = memAge;
     }
-     public String getGroupSc() {
+
+    public String getGroupSc() {
         return GroupSc;
     }
 

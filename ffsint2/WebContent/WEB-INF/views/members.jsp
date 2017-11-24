@@ -18,6 +18,12 @@
         <title>Members</title>
         <script>
                 $(document).ready(function () {
+                    $("#newrec").click(function (event) {
+                        window.location = "MemberNewRec.jsp?key=" + encodeURIComponent(document.getElementById("memnum").value);
+                    });
+                });
+                
+                $(document).ready(function () {
                     $("#claimgrid").click(function (event) {
                         var target = $(event.target);
                         $td = target.closest('td');
@@ -1052,7 +1058,7 @@
                 <br>
                 <label style="margin-left:0px"> Credit:</label>
                 <label style="margin-left:10px" id="creditrec"></label>      
-                <input type="button" id="printoldrec" value="Print" style="margin-left:485px;width:90px;">
+                <input type="button" id="printoldrec" value="Print" style="margin-left:533px;width:90px;">
                 <input type="button" id="viewoldrec" value="View Old" style="margin-left:20px; width:90px;">
                 <br>
                 <div id="recdiv">
@@ -1128,12 +1134,7 @@
                             <th style="width:100px" scope="col">Death Date</th> 
                             <th style="width:100px" scope="col">Status</th> 
                         </tr>
-                        <!--                        <tr>
-                                                    <td> 08:00 </td> <td> </td> <td> </td> <td> </td></tr>
-                                                <tr>   <td> 08:30 </td> <td> </td> <td> </td> <td> </td></tr>
-                                                <tr><td> 09:00 </td> <td> </td> <td> </td> <td> </td></tr>
-                                                <tr><td> 09:30 </td> <td> </td> <td> </td> <td> </td></tr>
-                                                <tr><td> 10:00 </td> <td> </td> <td> </td> <td> </td></tr>                             -->
+
                     </table>
                 </div> 
             </div>  

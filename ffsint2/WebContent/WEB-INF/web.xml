@@ -25,6 +25,10 @@
         <servlet-name>MemberClaimGetDetails</servlet-name>
         <servlet-class>servlets.MemberClaimGetDetails</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MemberReceiptNew</servlet-name>
+        <servlet-class>servlets.MemberReceiptNew</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeAboutUs</servlet-name>
         <url-pattern>/AboutUs</url-pattern>
@@ -32,6 +36,10 @@
     <servlet-mapping>
         <servlet-name>MemberClaimGetDetails</servlet-name>
         <url-pattern>/MemberClaimGetDetails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MemberReceiptNew</servlet-name>
+        <url-pattern>/MemberReceiptNew</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>home</welcome-file>
