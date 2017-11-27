@@ -8,23 +8,40 @@
         <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
         <script src = "https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>        
         <jsp:include page="_MembersHeader.jsp"></jsp:include>
+            <script>
+                $(document).ready(function () {
+                    $("#saverec").click(function (event) {
+                    //         document.getElementById("message2").innerHTML = "Member will be asked to sign declaration"
+                        str1 = document.getElementById("message2").innerHTML;
+                        if (str1 == "Member will be asked to sign declaration") {
+                            window.location = "MemberNewRec.jsp?member=" + encodeURIComponent(document.getElementById("memno").innerHTML) + ", paid=" + encodeURIComponent(document.getElementById("ampaid").value);
+                            // must sign first' !!!
+                            
+                        } else {
+                            window.location = "MemberNewRec.jsp?key=" + encodeURIComponent(document.getElementById("premi").innerHTML);
+                            // just issue rec , no sign
+                        }
+                    });
+                });
+
+            </script>    
         </head>
         <body>
             <br> <br>
             <label style="font-size:18pt"> Member receipt issue</label> <br> <br>
             <table>   
                 <tr>
-                    <td>  Member nr : </td> <td> ${lidno} </td>
+                    <td>  Member nr : </td> <td> <label id ="memno" >${lidno}</label> </td>
             </tr>
             <tr>
                 <td>    Member name :</td> <td> ${name} </td>
             </tr>
             <tr>
-                <td>   Premium : </td> <td> ${premium} </td>
+                <td>   Premium : </td> <td> <label id="premi" >${premium}</label> </td>
             </tr> 
             <tr> <td> Credit </td>
                 <td> ${credit} </td>
-                
+
             </tr>
             <tr> <td> Paid until : </td>  <td>  ${bettot} </td>  
             </tr> 
@@ -34,7 +51,7 @@
 
         </table>
         <br>
-        ${message1}
+        <label id="message2">${message1}</label>
         <br> <br>
         <table>
             <tr>
@@ -56,7 +73,7 @@
             </tr>
         </table>
         <br>
-        <input type="button" value="Save" style="width:100px;margin-left:40px;" >
+        <input type="button" id="saverec" value="Save" style="width:100px;margin-left:40px;" >
         <script>
             var a = ${canchange}
             if (a == "1") {
@@ -65,14 +82,14 @@
             }
             var b = ${status}
             if (b == "6") {
-              document.getElementById("ampaid").value = "0";  
-              document.getElementById("ampaid").readOnly = true;   
-            } 
-            if (b == "7") {
-              document.getElementById("ampaid").value = "0";  
-              document.getElementById("ampaid").readOnly = true;   
+                document.getElementById("ampaid").value = "0";
+                document.getElementById("ampaid").readOnly = true;
             }
-            
+            if (b == "7") {
+                document.getElementById("ampaid").value = "0";
+                document.getElementById("ampaid").readOnly = true;
+            }
+
         </script>
 
     </body>
