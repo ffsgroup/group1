@@ -4,19 +4,9 @@
  * and open the template in the editor.
  */
 package servlets;
-//
-// DemoButtons.java
-//
-// Displays a form with 3 buttons on the STU pad and on Windows allowing user to input a signature.
-// The final signature is then reproduced on a second window on the PC screen
-//
-// Copyright (c) 2015 Wacom GmbH. All rights reserved.
-//
-//
 
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
 import javax.swing.border.*;
 
@@ -34,6 +24,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.servlet.annotation.WebServlet;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -43,6 +34,7 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
+@WebServlet(urlPatterns = {"/MemberReceiptPrint"})
 // Notes:
 // There are three coordinate spaces to deal with that are named:
 //   tablet: the raw tablet coordinate
@@ -51,7 +43,8 @@ import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 public class MemberReceiptPrint extends JFrame {
 
     private static final long serialVersionUID = 1L;
-
+    public String member;
+    
     static class SignatureDialog extends JDialog implements ITabletHandler {
 
         private static final long serialVersionUID = 1L;
@@ -665,40 +658,124 @@ public class MemberReceiptPrint extends JFrame {
                             signatureDialog.getInformation());
                     imagePanel.repaint();
                     ImageIO.write(signatureImage, "PNG", new File("c:/reports/filename.png"));
-        PDDocument doc = new PDDocument();
-        try
-        {
-            PDPage page = new PDPage();
-            doc.addPage(page);
-            
-            PDFont font = PDType1Font.TIMES_ROMAN;
+                    PDDocument doc = new PDDocument();
+                    try {
+                        PDPage page = new PDPage();
+                        doc.addPage(page);
 
-            PDPageContentStream contents = new PDPageContentStream(doc, page);
-            contents.beginText();
-            contents.setFont(font, 12);
-            contents.newLineAtOffset(100, 700);
-            contents.showText("test 1");
-            contents.endText();
-            contents.close();
-            
-           PDImageXObject pdImage = PDImageXObject.createFromFile("c:/reports/filename.png", doc);
-            
-            PDPageContentStream contents1 = new PDPageContentStream(doc, page);
-            
-            // draw the image at full size at (x=20, y=20)
-            contents1.drawImage(pdImage, 20, 20);
-            
-            // to draw the image at half size at (x=20, y=20) use
-            // contents.drawImage(pdImage, 20, 20, pdImage.getWidth() / 2, pdImage.getHeight() / 2);
-            
-            contents1.close();
-            
-            doc.save("c:/reports/1.pdf");
-        }
-        finally
-        {
-            doc.close();
-        }
+                        PDFont font = PDType1Font.TIMES_ROMAN;
+
+                        PDPageContentStream contents = new PDPageContentStream(doc, page);
+                        contents.beginText();
+                        contents.setFont(font, 14);
+                        contents.newLineAtOffset(60, 720);
+                        contents.showText("SANLAM     Client Declaration");
+                        contents.endText();
+                        contents.close();
+                        
+                        PDPageContentStream contents2 = new PDPageContentStream(doc, page,PDPageContentStream.AppendMode.APPEND, false);
+                        contents2.beginText();
+                        contents2.setFont(font, 10);
+                        contents2.newLineAtOffset(30, 670);
+                        contents2.showText("1 Notification is hereby given by FFS GROUP with regards to policy number " + member  + " that");
+                        contents2.endText();
+                        contents2.close();                        
+                        PDPageContentStream contents3 = new PDPageContentStream(doc, page,PDPageContentStream.AppendMode.APPEND, false);
+                        contents3.beginText();
+                        contents3.setFont(font, 10);
+                        contents3.newLineAtOffset(30, 655);
+                        contents3.showText("premiums for the current month are required to be paid before closure of the 7th business day of each");
+                        contents3.endText();
+                        contents3.close();       
+                        PDPageContentStream contents4 = new PDPageContentStream(doc, page,PDPageContentStream.AppendMode.APPEND, false);
+                        contents4.beginText();
+                        contents4.setFont(font, 10);
+                        contents4.newLineAtOffset(30, 640);
+                        contents4.showText("month, or policy benefits will be suspended and the policy may lapse.");
+                        contents4.endText();
+                        contents4.close();     
+                        PDPageContentStream contents5 = new PDPageContentStream(doc, page,PDPageContentStream.AppendMode.APPEND, false);
+                        contents5.beginText();
+                        contents5.setFont(font, 10);
+                        contents5.newLineAtOffset(30, 610);
+                        contents5.showText("2. The policy is currently in arrears and requies a double (2X) premium to be paid in order");
+                        contents5.endText();
+                        contents5.close();                          
+                        PDPageContentStream contents6 = new PDPageContentStream(doc, page,PDPageContentStream.AppendMode.APPEND, false);
+                        contents6.beginText();
+                        contents6.setFont(font, 10);
+                        contents6.newLineAtOffset(30, 595);
+                        contents6.showText("to bring the policy up to date and un-suspend the policy benefits.");
+                        contents6.endText();
+                        contents6.close(); 
+                        PDPageContentStream contents7 = new PDPageContentStream(doc, page,PDPageContentStream.AppendMode.APPEND, false);
+                        contents7.beginText();
+                        contents7.setFont(font, 10);
+                        contents7.newLineAtOffset(30, 565);
+                        contents7.showText("3. In the event that premiums can only be paid between the 8th and last day of the month, notification");
+                        contents7.endText();
+                        contents7.close();                         
+                        PDPageContentStream contents8 = new PDPageContentStream(doc, page,PDPageContentStream.AppendMode.APPEND, false);
+                        contents8.beginText();
+                        contents8.setFont(font, 10);
+                        contents8.newLineAtOffset(30, 550);
+                        contents8.showText("is given that such premiums must be in advance for the month to follow.");
+                        contents8.endText();
+                        contents8.close(); 
+                        PDPageContentStream contents9 = new PDPageContentStream(doc, page,PDPageContentStream.AppendMode.APPEND, false);
+                        contents9.beginText();
+                        contents9.setFont(font, 10);
+                        contents9.newLineAtOffset(30, 520);
+                        contents9.showText("4. The premium payer hereby declares that there is no outstanding claims in regards with un-reported");
+                        contents9.endText();
+                        contents9.close();                         
+                        PDPageContentStream contents10 = new PDPageContentStream(doc, page,PDPageContentStream.AppendMode.APPEND, false);
+                        contents10.beginText();
+                        contents10.setFont(font, 10);
+                        contents10.newLineAtOffset(30, 505);
+                        contents10.showText("deaths on this policy and FFS GROUP places on record that it receives the arrear premium for");
+                        contents10.endText();
+                        contents10.close();  
+                        PDPageContentStream contents11 = new PDPageContentStream(doc, page,PDPageContentStream.AppendMode.APPEND, false);
+                        contents11.beginText();
+                        contents11.setFont(font, 10);
+                        contents11.newLineAtOffset(30, 490);
+                        contents11.showText("the sole purpose of bringing the policy contributions up to date for policy benefits to be");
+                        contents11.endText();
+                        contents11.close();  
+                        PDPageContentStream contents12 = new PDPageContentStream(doc, page,PDPageContentStream.AppendMode.APPEND, false);
+                        contents12.beginText();
+                        contents12.setFont(font, 10);
+                        contents12.newLineAtOffset(30, 475);
+                        contents12.showText("un-suspended and be made active from the date and time the premium was received.");                        
+                        contents12.endText();
+                        contents12.close();                          
+
+                        
+//                        PDPageContentStream contents12 = new PDPageContentStream(doc, page,PDPageContentStream.AppendMode.APPEND, false);
+//                        contents12.beginText();
+//                        contents12.setFont(font, 10);
+//                        contents12.newLineAtOffset(30, 505);
+//                        contents12.showText("un-suspended and be made active from the date and time the premium was received.");
+//                        contents12.endText();
+//                        contents12.close();                        
+
+                        
+                        PDImageXObject pdImage = PDImageXObject.createFromFile("c:/reports/filename.png", doc);
+                        PDPageContentStream contents1 = new PDPageContentStream(doc, page, PDPageContentStream.AppendMode.APPEND, false);
+
+                        // draw the image at full size at (x=20, y=20)
+                        contents1.drawImage(pdImage, 10, 20, pdImage.getWidth() / 2, pdImage.getHeight() / 2);
+
+                        
+                        // to draw the image at half size at (x=20, y=20) use
+                        // contents.drawImage(pdImage, 20, 20, pdImage.getWidth() / 2, pdImage.getHeight() / 2);
+                        contents1.close();
+
+                        doc.save("c:/reports/1.pdf");
+                    } finally {
+                        doc.close();
+                    }
                 }
                 signatureDialog.dispose();
 
@@ -714,14 +791,14 @@ public class MemberReceiptPrint extends JFrame {
         }
     }
 
-    public MemberReceiptPrint() {
-        this.setTitle("Wacom STU SDK");
+    public MemberReceiptPrint(String member) {
+        this.setTitle("Member sign");
         this.setLayout(new BorderLayout());
 
         JPanel panel = new JPanel();
         panel.setLayout(new FlowLayout());
 
-        JButton btn = new JButton("GetSignature");
+        JButton btn = new JButton("Get Signature");
         btn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 try {
@@ -732,6 +809,8 @@ public class MemberReceiptPrint extends JFrame {
             }
         });
         panel.add(btn);
+JLabel lbl1 = new JLabel(member);
+panel.add(lbl1);
 
         imagePanel = new JPanel() {
             private static final long serialVersionUID = 1L;
@@ -769,15 +848,17 @@ public class MemberReceiptPrint extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    private static void runProgram() {
-        MemberReceiptPrint sample = new MemberReceiptPrint();
+    private static void runProgram(String member) {
+        MemberReceiptPrint sample = new MemberReceiptPrint(member);
         sample.setVisible(true);
     }
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
-                runProgram();
+              String member = "0";
+              
+                runProgram(member);
             }
         });
     }

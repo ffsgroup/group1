@@ -8,13 +8,16 @@
         <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
         <script src = "https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>        
         <jsp:include page="_MembersHeader.jsp"></jsp:include>
+         <script src="http://java.com/js/deployJava.js"></script>
             <script>
                 $(document).ready(function () {
                     $("#saverec").click(function (event) {
                     //         document.getElementById("message2").innerHTML = "Member will be asked to sign declaration"
                         str1 = document.getElementById("message2").innerHTML;
                         if (str1 == "Member will be asked to sign declaration") {
-                            window.location = "MemberNewRec.jsp?member=" + encodeURIComponent(document.getElementById("memno").innerHTML) + ", paid=" + encodeURIComponent(document.getElementById("ampaid").value);
+               
+//                            window.location = "MemberReceiptPrint";
+                            //window.location = "MemberReceiptPrint?key=" + encodeURIComponent(document.getElementById("memno").innerHTML) + ", paid=" + encodeURIComponent(document.getElementById("ampaid").value);
                             // must sign first' !!!
                             
                         } else {
@@ -91,6 +94,9 @@
             }
 
         </script>
-
+        <script>
+            deployJava.createWebStartLaunchButton("launch.jnlp")
+        </script>
+        <a href="resources/launch.jnlp">launch </a>
     </body>
 </html>    
