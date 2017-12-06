@@ -30,6 +30,8 @@
             </script>    
         </head>
         <body>
+         <applet code="first.class" width="300" height="300">   
+             </applet>  
             <br> <br>
             <label style="font-size:18pt"> Member receipt issue</label> <br> <br>
             <table>   
