@@ -46,7 +46,8 @@
     <tr></tr>
     <tr>
         <td>   
-     <a href ="${pageContext.request.contextPath}/Security.jsp">
+<%--     <a href ="${pageContext.request.contextPath}/Security.jsp">  --%>
+<a href ="">
         <img  style="float: left ; border-right: 100px; " alt="Security" src="resources/secure1.jpg" width="100" height ="100">    
     </a>
         <td>        
@@ -54,7 +55,10 @@
     </tr>
     <tr>
         <td>
-   <a href="${pageContext.request.contextPath}/Security.jsp" style="margin-left:30px">Security</a>        
+            
+  <%-- 
+      <a href="${pageContext.request.contextPath}/Security.jsp" style="margin-left:30px">Security</a>    --%>   
+      <a href="" style="margin-left:30px">Security</a> 
         </td>
     </tr>
     

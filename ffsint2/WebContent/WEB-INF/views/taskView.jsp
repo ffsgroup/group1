@@ -68,7 +68,8 @@
                                 $.each(responseJson, function (key, value) {
                                     if (value['taskfrom'].length > 1) {
                                         // window.location = "resources/" + value['locat']; 
-                                        var url = "resources/" + value['taskfrom'];
+                                        // var url = "resources" + value['taskfrom'];
+                                        var url = value['taskfrom'];
                                         window.open(url, 'Download');
                                     } else {
                                         alert("failed");
