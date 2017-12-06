@@ -20,6 +20,7 @@ import javax.servlet.annotation.WebFilter;
         @Override  
         public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)   
               throws IOException, ServletException {  
+            System.out.println("default filter " );
             defaultRequestDispatcher.forward(request, response);  
         }  
       
