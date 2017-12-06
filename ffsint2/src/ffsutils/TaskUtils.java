@@ -2313,6 +2313,7 @@ task.setlinkup2(color2);
       System.out.println("getTask " + Username + " " + onlyUser);
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
+        Calendar cal7 = Calendar.getInstance();
 
         GregorianCalendar cal121 = new GregorianCalendar();
         cal121.setTime(date);
@@ -2437,12 +2438,23 @@ task.setlinkup2(color2);
             task.setStartdate(startdate);
             String color1 = "";
             String color2 = "black";
-            if (date.after(rs.getTimestamp("revdate"))) {
+            if (rs.getTimestamp("revdate") == null) {
+                cal7.setTime(rs.getTimestamp("enddate"));
+            } else {
+                cal7.setTime(rs.getTimestamp("revdate"));
+            }
+            if (date.after(cal7.getTime())) {
                 color1 = "red";
             }
-            if (color1 == "" && days3.after(rs.getTimestamp("revdate"))) {
+            if (color1 == "" && days3.after(cal7.getTime())) {
                 color1 = "orange";
             }
+//            if (date.after(rs.getTimestamp("revdate"))) {
+//                color1 = "red";
+//            }
+//            if (color1 == "" && days3.after(rs.getTimestamp("revdate"))) {
+//                color1 = "orange";
+//            }
             if (color1 == "") {
                 color1 = "green";
             }
