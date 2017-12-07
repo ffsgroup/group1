@@ -20,6 +20,7 @@ import ffsutils.TaskUtils;
 import ffsutils.MyUtils;
 import java.sql.Connection;
 import java.sql.SQLException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
 
 @WebServlet("/TaskByMe")
@@ -36,14 +37,19 @@ public class TaskByMe extends HttpServlet {
         System.out.println("TaskByMe " + onlyUser);
         Connection conn = MyUtils.getStoredConnection(request);
         HttpSession session = request.getSession();
+        if (session == null) {
+            session.invalidate();
+            RequestDispatcher dispatcher = request.getServletContext()
+                    .getRequestDispatcher("/WEB-INF/views/login");
+            dispatcher.forward(request, response);
+        } else {
+
         UserAccount loginedUser = MyUtils.getLoginedUser(session);
         ArrayList<Tasks> task = new ArrayList<Tasks>();
         session.setAttribute("taskView", "taskByMe");
         session.setAttribute("taskFilter", onlyUser);
         session.setAttribute("taskDisp", "1");
-        
-        
-        
+
         try {
             task = TaskUtils.getTaskByMe(conn, loginedUser.getUserName(), onlyUser);
         } catch (SQLException e) {
@@ -57,7 +63,7 @@ public class TaskByMe extends HttpServlet {
         JsonArray jsonArray = element.getAsJsonArray();
         response.setContentType("application/json");
         response.getWriter().print(jsonArray);
-
+        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

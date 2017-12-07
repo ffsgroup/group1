@@ -40,54 +40,29 @@
                             <li><a href="#">Dairy</a></li>
 
                             <li><a href="#">Task Manager</a></li>
-<!--                            <li>
-                                <a href="#">Task Manager</a>
-                                <ul>
-                                    <li><a href="#">Lorem dolor</a></li>
-                                    <li><a href="#">Phasellus magna</a></li>
-                                    <li><a href="#">Magna phasellus</a></li>
-                                    <li><a href="#">Etiam nisl</a></li>
-                                    <li><a href="#">Veroeros feugiat</a></li>
-                                </ul>
-                            </li>-->
+                            <!--                            <li>
+                                                            <a href="#">Task Manager</a>
+                                                            <ul>
+                                                                <li><a href="#">Lorem dolor</a></li>
+                                                                <li><a href="#">Phasellus magna</a></li>
+                                                                <li><a href="#">Magna phasellus</a></li>
+                                                                <li><a href="#">Etiam nisl</a></li>
+                                                                <li><a href="#">Veroeros feugiat</a></li>
+                                                            </ul>
+                                                        </li>-->
 
                         </ul>
                     </li>
                     <li><a href="${pageContext.request.contextPath}/aboutus">About Us</a></li>
-<!--                    <li><a href="right-sidebar.html">Contact Us</a></li>-->
-                    <!--                    <li><a href="two-sidebar.html">Two Sidebar</a></li>-->
-                   
-                 <li>
+
+                    <li>
                         <a href="#">Demo</a>
                         <ul>
-                        <li><a href="${pageContext.request.contextPath}/login">Sanlam</a></li>
+                            <li><a href="${pageContext.request.contextPath}/login">Sanlam</a></li>
 
                         </ul>
                     </li>
-<!--                    <li><a href="resources/Package/FFS/setup.exe">Download</a></li>-->
-<!--                    <li><a href="" onclick="getDownload();">Download</a></li>
-                    <script>
 
-                        function getDownload() {
-
-                            $file = 'Z://Package/FFS/setup ffs intranet.exe'.$file;
-
-                            if (!$file) { // file does not exist
-                                die('file not found');
-                            } else {
-                                header("Cache-Control: public");
-                                header("Content-Description: File Transfer");
-                                header("Content-Disposition: attachment; filename=$file");
-                                header("Content-Type: application/zip");
-                                header("Content-Transfer-Encoding: binary");
-
-                                // read the file from disk
-                                readfile($file);
-                            }
-
-                        }
-                    </script>-->
-                    
                 </ul>
             </nav>
 
@@ -234,24 +209,24 @@
                             <li><img src="resources/email-icon.jpg" alt="" width="20" height ="20" /> it@safin.co.za</li>
                             <li><img src="resources/address.jpg" alt="" width="20" height ="20"  />  9 Mack Road, Emapengeni, 3880</li>
                             <li><img src="resources/phone.jpg" alt="" width="20" height ="20"  />  035 772 3226</li>
-<!--                            <li><a href="#">Rutrum accumsan dolor</a></li>
-                            <li><a href="#">Mattis rutrum accumsan</a></li>
-                            <li><a href="#">Suspendisse varius nibh</a></li>
-                            <li><a href="#">Sed et dapibus mattis</a></li>-->
+                            <!--                            <li><a href="#">Rutrum accumsan dolor</a></li>
+                                                        <li><a href="#">Mattis rutrum accumsan</a></li>
+                                                        <li><a href="#">Suspendisse varius nibh</a></li>
+                                                        <li><a href="#">Sed et dapibus mattis</a></li>-->
                         </ul>
                     </section>
-<!--                    <section class="3u 6u 12u">
-                        <h3>More Links to Stuff</h3>
-                        <ul class="links">
-                            <li><a href="#">Duis neque nisi dapibus</a></li>
-                            <li><a href="#">Sed et dapibus quis</a></li>
-                            <li><a href="#">Rutrum accumsan sed</a></li>
-                            <li><a href="#">Mattis et sed accumsan</a></li>
-                            <li><a href="#">Duis neque nisi sed</a></li>
-                            <li><a href="#">Sed et dapibus quis</a></li>
-                            <li><a href="#">Rutrum amet varius</a></li>
-                        </ul>
-                    </section>-->
+                    <!--                    <section class="3u 6u 12u">
+                                            <h3>More Links to Stuff</h3>
+                                            <ul class="links">
+                                                <li><a href="#">Duis neque nisi dapibus</a></li>
+                                                <li><a href="#">Sed et dapibus quis</a></li>
+                                                <li><a href="#">Rutrum accumsan sed</a></li>
+                                                <li><a href="#">Mattis et sed accumsan</a></li>
+                                                <li><a href="#">Duis neque nisi sed</a></li>
+                                                <li><a href="#">Sed et dapibus quis</a></li>
+                                                <li><a href="#">Rutrum amet varius</a></li>
+                                            </ul>
+                                        </section>-->
                     <section class="6u 12u(narrower)">
                         <h3>Get In Touch</h3>
                         <form>

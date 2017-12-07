@@ -84,7 +84,7 @@ public class DoLoginServlet extends HttpServlet {
         else {
             HttpSession session = request.getSession();
             MyUtils.storeLoginedUser(session, user);
-             
+            session.setAttribute("secureStr" , user.getsecurestr()); 
              // If user checked "Remember me".
             if(remember)  {
                 MyUtils.storeUserCookie(response,user);

@@ -34,6 +34,7 @@ public class MyUtils {
  
        // On the JSP can access ${loginedUser}
        session.setAttribute("loginedUser", loginedUser);
+       //session.setAttribute("secureStr" , loginedUser.getsecurestr());
    }
  
  

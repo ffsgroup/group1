@@ -1821,7 +1821,7 @@ public class DBUtils {
         ArrayList<Diary> list = new ArrayList<Diary>();
         if (rs.next()) {
             String thisFile = rs.getString("imagedesc") + rs.getString("imagetype");
-            String filename = "C:/java/ffsint3/ffsint2/build/web/resources/" + rs.getString("imagedesc") + rs.getString("imagetype");
+            String filename = "C:/java-app/group1/ffsint3/ffsint2/build/web/resources/" + rs.getString("imagedesc") + rs.getString("imagetype");
             File file = new File(filename);
 
             FileOutputStream output = new FileOutputStream(file);

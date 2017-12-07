@@ -22,10 +22,6 @@
                     <file>${file.reference.commons-fileupload-1.3.2.jar}</file>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.wgssSTU.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
-                </library>
-                <library dirs="200">
                     <file>${file.reference.pdfbox-2.0.5.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>

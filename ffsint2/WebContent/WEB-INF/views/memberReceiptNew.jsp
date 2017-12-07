@@ -21,7 +21,7 @@
                             // must sign first' !!!
                             
                         } else {
-                            window.location = "MemberNewRec.jsp?key=" + encodeURIComponent(document.getElementById("premi").innerHTML);
+//                            window.location = "MemberNewRec.jsp?key=" + encodeURIComponent(document.getElementById("premi").innerHTML);
                             // just issue rec , no sign
                         }
                     });

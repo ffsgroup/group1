@@ -2459,7 +2459,7 @@ task.setlinkup2(color2);
                 color1 = "green";
             }
             task.setlinkup1(color1);
-            System.out.println("getTask " + color1 );
+//            System.out.println("getTask " + color1 );
             if ( (Username.equals(rs.getString("taskto1")) && (!"Y".equals(rs.getString("newt1")))) || (Username.equals(rs.getString("taskto2")) && (!"Y".equals(rs.getString("newt2")))) || (Username.equals(rs.getString("taskto3")) && (!"Y".equals(rs.getString("newt3")))) || (Username.equals(rs.getString("taskto4")) && (!"Y".equals(rs.getString("newt4")))) || (Username.equals(rs.getString("taskto5")) && (!"Y".equals(rs.getString("newt5")))) || (Username.equals(rs.getString("taskto6")) && (!"Y".equals(rs.getString("newt6")))) || (Username.equals(rs.getString("taskto7")) && (!"Y".equals(rs.getString("newt7")))) || (Username.equals(rs.getString("taskto8")) && (!"Y".equals(rs.getString("newt8")))) || (Username.equals(rs.getString("taskto9")) && (!"Y".equals(rs.getString("newt9")))) || (Username.equals(rs.getString("taskto10")) && (!"Y".equals(rs.getString("newt10")))) || (Username.equals(rs.getString("taskto11")) && (!"Y".equals(rs.getString("newt11")))) || (Username.equals(rs.getString("taskto12")) && (!"Y".equals(rs.getString("newt12")))) || (Username.equals(rs.getString("taskto13")) && (!"Y".equals(rs.getString("newt13")))) || (Username.equals(rs.getString("taskto14")) && (!"Y".equals(rs.getString("newt14")))) || (Username.equals(rs.getString("taskto15")) && (!"Y".equals(rs.getString("newt15")))) ) {
              color2 = "green";    
             }
@@ -3472,7 +3472,7 @@ task.setlinkup2(color2);
             ResultSet rs = pstm.executeQuery();
 
             try {
-                PrintWriter writer = new PrintWriter("C:/java/ffsint3/ffsint2/build/web/resources/" + filename, "UTF-8");
+                PrintWriter writer = new PrintWriter("C:/java-app/group1/ffsint3/ffsint2/build/web/resources/" + filename, "UTF-8");
                 writer.println("id ,taskfrom, description , startdate , revdate , enddate , taskstat");
                 while (rs.next()) {
                     Date date1 = new Date();
@@ -3564,7 +3564,7 @@ task.setlinkup2(color2);
             PreparedStatement pstm = conn.prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();
             try {
-                PrintWriter writer = new PrintWriter("C:/java/ffsint3/ffsint2/build/web/resources/" + filename, "UTF-8");
+                PrintWriter writer = new PrintWriter("C:/java-app/group1/ffsint3/ffsint2/build/web/resources/" + filename, "UTF-8");
                 writer.println("id ,taskfrom, description , startdate , revdate , enddate , taskstat");
                 while (rs.next()) {
                     Date date1 = new Date();
@@ -3682,7 +3682,7 @@ task.setlinkup2(color2);
                 ResultSet rs = pstm.executeQuery();
 
                 try {
-                    PrintWriter writer = new PrintWriter("C:/java/ffsint3/ffsint2/build/web/resources/" + filename, "UTF-8");
+                    PrintWriter writer = new PrintWriter("C:/java-app/group1/ffsint3/ffsint2/build/web/resources/" + filename, "UTF-8");
                     writer.println("id ,taskfrom, description , startdate , revdate , enddate , taskstat");
                     while (rs.next()) {
                         Date date1 = new Date();
@@ -3784,7 +3784,7 @@ task.setlinkup2(color2);
                 PreparedStatement pstm = conn.prepareStatement(sql);
                 ResultSet rs = pstm.executeQuery();
                 try {
-                    PrintWriter writer = new PrintWriter("C:/java/ffsint3/ffsint2/build/web/resources/" + filename, "UTF-8");
+                    PrintWriter writer = new PrintWriter("C:/java-app/group1/ffsint3/ffsint2/build/web/resources/" + filename, "UTF-8");
                     writer.println("id ,taskfrom, description , startdate , revdate , enddate , taskstat");
                     while (rs.next()) {
                         Date date1 = new Date();
@@ -3904,7 +3904,7 @@ task.setlinkup2(color2);
             ResultSet rs = pstm.executeQuery();
 
             try {
-                PrintWriter writer = new PrintWriter("C:/java/ffsint3/ffsint2/build/web/resources/" + filename, "UTF-8");
+                PrintWriter writer = new PrintWriter("C:/java-app/group1/ffsint3/ffsint2/build/web/resources/" + filename, "UTF-8");
                 writer.println("id ,taskfrom, description , startdate , revdate , enddate , taskstat");
                 while (rs.next()) {
                     Date date1 = new Date();
@@ -4003,7 +4003,7 @@ task.setlinkup2(color2);
 
             ResultSet rs = pstm.executeQuery();
             try {
-                PrintWriter writer = new PrintWriter("C:/java/ffsint3/ffsint2/build/web/resources/" + filename, "UTF-8");
+                PrintWriter writer = new PrintWriter("C:/java-app/group1/ffsint3/ffsint2/build/web/resources/" + filename, "UTF-8");
                 writer.println("id ,taskfrom, description , startdate , revdate , enddate , taskstat");
                 while (rs.next()) {
                     Date date1 = new Date();
@@ -4197,7 +4197,7 @@ task.setlinkup2(color2);
         ArrayList<Tasks> list = new ArrayList<Tasks>();
         if (rs.next()) {
             String thisFile = rs.getString("imagedesc") + rs.getString("imagetype");
-            String filename = "C:/java/ffsint3/ffsint2/build/web/resources/" + rs.getString("imagedesc") + rs.getString("imagetype");
+            String filename = "C:/java-app/group1/ffsint3/ffsint2/build/web/resources/" + rs.getString("imagedesc") + rs.getString("imagetype");
             
             File file = new File(filename);
 
