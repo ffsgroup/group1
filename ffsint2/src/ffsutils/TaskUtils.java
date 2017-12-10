@@ -687,7 +687,13 @@ public class TaskUtils extends HttpServlet {
                 String description = rs.getString("description");
                 String revdate = year1 + "/" + month1 + "/" + day1 + " " + hour1 + ":" + minute1;
                 String enddate = year2 + "/" + month2 + "/" + day2 + " " + hour2 + ":" + minute2;
-                String taskstat = rs.getString("taskstat");
+                String taskstat;
+              //  String taskstat = rs.getString("taskstat");
+              if (rs.getString("taskstat") == null) {
+             taskstat = "Not Started";
+        } else {
+            taskstat = rs.getString("taskstat");
+                }
                 String startdate = year3 + "/" + month3 + "/" + day3 + " " + hour3 + ":" + minute3;
 
                 Tasks task = new Tasks();
@@ -702,7 +708,8 @@ public class TaskUtils extends HttpServlet {
                 task.setTaskdate(taskdate);
                 task.setTaskfull(rs.getString("taskfull"));
                 task.setTaskprior(rs.getString("taskprior"));
-                task.setTaskstat(rs.getString("taskstat"));
+              
+             //   task.setTaskstat(rs.getString("taskstat"));
                 task.setStatusday(statusday);
 
                 String temp1 = Username.getsecurestr();
@@ -1027,7 +1034,13 @@ public class TaskUtils extends HttpServlet {
             String description = rs.getString("description");
             String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
             String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
-            String taskstat = rs.getString("taskstat");
+            String taskstat;
+           if (rs.getString("taskstat") == null) {
+             taskstat = "Not Started";
+        } else {
+             taskstat = rs.getString("taskstat");
+                }            
+            //String taskstat = rs.getString("taskstat");
             String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
             Tasks task = new Tasks();
             task.setTranid(tranid);
@@ -1169,7 +1182,13 @@ task.setlinkup2(color2);
             String description = rs.getString("description");
             String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
             String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
-            String taskstat = rs.getString("taskstat");
+            String taskstat;
+           if (rs.getString("taskstat") == null) {
+             taskstat = "Not Started";
+        } else {
+             taskstat = rs.getString("taskstat");
+                }               
+            //String taskstat = rs.getString("taskstat");
             String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
             Tasks task = new Tasks();
             task.setTranid(tranid);
@@ -1299,7 +1318,13 @@ task.setlinkup2(color2);
             String description = rs1.getString("description");
             String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
             String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
-            String taskstat = rs1.getString("taskstat");
+            String taskstat;
+           if (rs1.getString("taskstat") == null) {
+             taskstat = "Not Started";
+        } else {
+             taskstat = rs1.getString("taskstat");
+                }               
+            //String taskstat = rs1.getString("taskstat");
             String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
             Tasks task = new Tasks();
             task.setTranid(tranid);
@@ -1445,7 +1470,13 @@ task.setlinkup2(color2);
             String description = rs.getString("description");
             String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
             String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
-            String taskstat = rs.getString("taskstat");
+            String taskstat;
+           if (rs.getString("taskstat") == null) {
+             taskstat = "Not Started";
+        } else {
+             taskstat = rs.getString("taskstat");
+                }               
+            //String taskstat = rs.getString("taskstat");
             String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
             Tasks task = new Tasks();
             task.setTranid(tranid);
@@ -1591,7 +1622,13 @@ task.setlinkup2(color2);
             String description = rs.getString("description");
             String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
             String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
-            String taskstat = rs.getString("taskstat");
+            String taskstat;
+           if (rs.getString("taskstat") == null) {
+             taskstat = "Not Started";
+        } else {
+             taskstat = rs.getString("taskstat");
+                }               
+            //String taskstat = rs.getString("taskstat");
             String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
             Tasks task = new Tasks();
             task.setTranid(tranid);
@@ -1716,7 +1753,13 @@ task.setlinkup2(color2);
             String description = rs1.getString("description");
             String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
             String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
-            String taskstat = rs1.getString("taskstat");
+            String taskstat;
+           if (rs1.getString("taskstat") == null) {
+             taskstat = "Not Started";
+        } else {
+             taskstat = rs1.getString("taskstat");
+                }               
+            //String taskstat = rs1.getString("taskstat");
             String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
             Tasks task = new Tasks();
             task.setTranid(tranid);
@@ -1863,7 +1906,13 @@ task.setlinkup2(color2);
             String description = rs.getString("description");
             String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
             String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
-            String taskstat = rs.getString("taskstat");
+            String taskstat;
+           if (rs.getString("taskstat") == null) {
+             taskstat = "Not Started";
+        } else {
+             taskstat = rs.getString("taskstat");
+                }               
+            //String taskstat = rs.getString("taskstat");
             String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
             Tasks task = new Tasks();
             task.setTranid(tranid);
@@ -1995,7 +2044,13 @@ task.setlinkup2(color2);
             String description = rs.getString("description");
             String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
             String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
-            String taskstat = rs.getString("taskstat");
+            String taskstat;
+           if (rs.getString("taskstat") == null) {
+             taskstat = "Not Started";
+        } else {
+             taskstat = rs.getString("taskstat");
+                }               
+            //String taskstat = rs.getString("taskstat");
             String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
             Tasks task = new Tasks();
             task.setTranid(tranid);
@@ -2143,7 +2198,13 @@ task.setlinkup2(color2);
             String description = rs.getString("description");
             String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
             String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
-            String taskstat = rs.getString("taskstat");
+            String taskstat;
+           if (rs.getString("taskstat") == null) {
+             taskstat = "Not Started";
+        } else {
+             taskstat = rs.getString("taskstat");
+                }               
+            //String taskstat = rs.getString("taskstat");
             String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
             Tasks task = new Tasks();
             task.setTranid(tranid);
@@ -2272,7 +2333,13 @@ task.setlinkup2(color2);
             String description = rs1.getString("description");
             String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
             String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
-            String taskstat = rs1.getString("taskstat");
+            String taskstat;
+           if (rs1.getString("taskstat") == null) {
+             taskstat = "Not Started";
+        } else {
+             taskstat = rs1.getString("taskstat");
+                }               
+            //String taskstat = rs1.getString("taskstat");
             String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
             Tasks task = new Tasks();
             task.setTranid(tranid);
@@ -2424,8 +2491,13 @@ task.setlinkup2(color2);
             String taskfrom = rs.getString("taskfrom");
             String description = rs.getString("description");
             String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
-            String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
-            String taskstat = rs.getString("taskstat");
+                        String taskstat;
+           if (rs.getString("taskstat") == null) {
+             taskstat = "Not Started";
+        } else {
+             taskstat = rs.getString("taskstat");
+                }   String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
+            //String taskstat = rs.getString("taskstat");
             String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
 
             Tasks task = new Tasks();
@@ -2563,7 +2635,13 @@ task.setlinkup2(color2);
             String description = rs1.getString("description");
             String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
             String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
-            String taskstat = rs1.getString("taskstat");
+            String taskstat;
+           if (rs1.getString("taskstat") == null) {
+             taskstat = "Not Started";
+        } else {
+             taskstat = rs1.getString("taskstat");
+                }               
+            //String taskstat = rs1.getString("taskstat");
             String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
             Tasks task = new Tasks();
             task.setTranid(tranid);
@@ -2699,7 +2777,12 @@ task.setlinkup2(color2);
             String description = rs.getString("description");
             String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
             String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
-            String taskstat = rs.getString("taskstat");
+            String taskstat;
+            if (rs.getString("taskstat") == null) {
+             taskstat = "Not Started";
+        } else {
+            taskstat = rs.getString("taskstat");
+                }
             String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
             Tasks task = new Tasks();
             task.setTranid(tranid);
@@ -2947,7 +3030,119 @@ task.setlinkup2(color2);
                     pstm1.executeUpdate();
                     result = "success";
                 }
-
+                if (rs.getString("taskto2").equals(Username.getUserName())) {
+                    String sql1 = "update tasks set taskstat2 = ? , task2date=current_timestamp where tranid = ?";
+                    PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                    pstm1.setString(1, stats);
+                    pstm1.setString(2, tranid);
+                    pstm1.executeUpdate();
+                    result = "success";
+                }
+                                if (rs.getString("taskto3").equals(Username.getUserName())) {
+                    String sql1 = "update tasks set taskstat3 = ? , task3date=current_timestamp where tranid = ?";
+                    PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                    pstm1.setString(1, stats);
+                    pstm1.setString(2, tranid);
+                    pstm1.executeUpdate();
+                    result = "success";
+                }
+                if (rs.getString("taskto4").equals(Username.getUserName())) {
+                    String sql1 = "update tasks set taskstat4 = ? , task4date=current_timestamp where tranid = ?";
+                    PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                    pstm1.setString(1, stats);
+                    pstm1.setString(2, tranid);
+                    pstm1.executeUpdate();
+                    result = "success";
+                }
+                if (rs.getString("taskto5").equals(Username.getUserName())) {
+                    String sql1 = "update tasks set taskstat5 = ? , task5date=current_timestamp where tranid = ?";
+                    PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                    pstm1.setString(1, stats);
+                    pstm1.setString(2, tranid);
+                    pstm1.executeUpdate();
+                    result = "success";
+                }
+                                if (rs.getString("taskto6").equals(Username.getUserName())) {
+                    String sql1 = "update tasks set taskstat6 = ? , task6date=current_timestamp where tranid = ?";
+                    PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                    pstm1.setString(1, stats);
+                    pstm1.setString(2, tranid);
+                    pstm1.executeUpdate();
+                    result = "success";
+                }
+                if (rs.getString("taskto7").equals(Username.getUserName())) {
+                    String sql1 = "update tasks set taskstat7 = ? , task7date=current_timestamp where tranid = ?";
+                    PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                    pstm1.setString(1, stats);
+                    pstm1.setString(2, tranid);
+                    pstm1.executeUpdate();
+                    result = "success";
+                }
+                if (rs.getString("taskto8").equals(Username.getUserName())) {
+                    String sql1 = "update tasks set taskstat8 = ? , task8date=current_timestamp where tranid = ?";
+                    PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                    pstm1.setString(1, stats);
+                    pstm1.setString(2, tranid);
+                    pstm1.executeUpdate();
+                    result = "success";
+                }
+                                if (rs.getString("taskto9").equals(Username.getUserName())) {
+                    String sql1 = "update tasks set taskstat9 = ? , task9date=current_timestamp where tranid = ?";
+                    PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                    pstm1.setString(1, stats);
+                    pstm1.setString(2, tranid);
+                    pstm1.executeUpdate();
+                    result = "success";
+                }
+                if (rs.getString("taskto10").equals(Username.getUserName())) {
+                    String sql1 = "update tasks set taskstat10 = ? , task10date=current_timestamp where tranid = ?";
+                    PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                    pstm1.setString(1, stats);
+                    pstm1.setString(2, tranid);
+                    pstm1.executeUpdate();
+                    result = "success";
+                }
+                if (rs.getString("taskto11").equals(Username.getUserName())) {
+                    String sql1 = "update tasks set taskstat11 = ? , task11date=current_timestamp where tranid = ?";
+                    PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                    pstm1.setString(1, stats);
+                    pstm1.setString(2, tranid);
+                    pstm1.executeUpdate();
+                    result = "success";
+                }
+                                if (rs.getString("taskto12").equals(Username.getUserName())) {
+                    String sql1 = "update tasks set taskstat12 = ? , task12date=current_timestamp where tranid = ?";
+                    PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                    pstm1.setString(1, stats);
+                    pstm1.setString(2, tranid);
+                    pstm1.executeUpdate();
+                    result = "success";
+                }
+                if (rs.getString("taskto13").equals(Username.getUserName())) {
+                    String sql1 = "update tasks set taskstat13 = ? , task13date=current_timestamp where tranid = ?";
+                    PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                    pstm1.setString(1, stats);
+                    pstm1.setString(2, tranid);
+                    pstm1.executeUpdate();
+                    result = "success";
+                }
+                if (rs.getString("taskto14").equals(Username.getUserName())) {
+                    String sql1 = "update tasks set taskstat14 = ? , task14date=current_timestamp where tranid = ?";
+                    PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                    pstm1.setString(1, stats);
+                    pstm1.setString(2, tranid);
+                    pstm1.executeUpdate();
+                    result = "success";
+                }                
+                 if (rs.getString("taskto15").equals(Username.getUserName())) {
+                    String sql1 = "update tasks set taskstat15 = ? , task15date=current_timestamp where tranid = ?";
+                    PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                    pstm1.setString(1, stats);
+                    pstm1.setString(2, tranid);
+                    pstm1.executeUpdate();
+                    result = "success";
+                }                 
+                
             } else {  // no task, return error           
                 result = "Task not found";
             }
@@ -3402,7 +3597,13 @@ task.setlinkup2(color2);
             String description = rs.getString("description");
             String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
             String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
-            String taskstat = rs.getString("taskstat");
+            String taskstat;
+           if (rs.getString("taskstat") == null) {
+             taskstat = "Not Started";
+        } else {
+             taskstat = rs.getString("taskstat");
+                }               
+            //String taskstat = rs.getString("taskstat");
             String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
             Tasks task = new Tasks();
             task.setTranid(tranid);
@@ -3546,7 +3747,13 @@ task.setlinkup2(color2);
                     String description = rs.getString("description");
                     String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
                     String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
-                    String taskstat = rs.getString("taskstat");
+            String taskstat;
+           if (rs.getString("taskstat") == null) {
+             taskstat = "Not Started";
+        } else {
+             taskstat = rs.getString("taskstat");
+                }                       
+                    //String taskstat = rs.getString("taskstat");
                     String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
 
                     writer.println(tranid + "," + taskfrom + "," + description + "," + startdate + "," + revdate + "," + enddate + "," + taskstat);
@@ -3638,7 +3845,13 @@ task.setlinkup2(color2);
                     String description = rs.getString("description");
                     String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
                     String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
-                    String taskstat = rs.getString("taskstat");
+            String taskstat;
+           if (rs.getString("taskstat") == null) {
+             taskstat = "Not Started";
+        } else {
+             taskstat = rs.getString("taskstat");
+                }                       
+//                    String taskstat = rs.getString("taskstat");
                     String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
                     writer.println(tranid + "," + taskfrom + "," + description + "," + startdate + "," + revdate + "," + enddate + "," + taskstat);
 
@@ -3756,7 +3969,13 @@ task.setlinkup2(color2);
                         String description = rs.getString("description");
                         String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
                         String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
-                        String taskstat = rs.getString("taskstat");
+            String taskstat;
+           if (rs.getString("taskstat") == null) {
+             taskstat = "Not Started";
+        } else {
+             taskstat = rs.getString("taskstat");
+                }                           
+                    //    String taskstat = rs.getString("taskstat");
                         String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
                         Tasks task = new Tasks();
                         writer.println(tranid + "," + taskfrom + "," + description + "," + startdate + "," + revdate + "," + enddate + "," + taskstat);
@@ -3858,7 +4077,13 @@ task.setlinkup2(color2);
                         String description = rs.getString("description");
                         String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
                         String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
-                        String taskstat = rs.getString("taskstat");
+            String taskstat;
+           if (rs.getString("taskstat") == null) {
+             taskstat = "Not Started";
+        } else {
+             taskstat = rs.getString("taskstat");
+                }                           
+                    //    String taskstat = rs.getString("taskstat");
                         String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
                         Tasks task = new Tasks();
                         writer.println(tranid + "," + taskfrom + "," + description + "," + startdate + "," + revdate + "," + enddate + "," + taskstat);
@@ -3978,7 +4203,13 @@ task.setlinkup2(color2);
                     String description = rs.getString("description");
                     String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
                     String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
-                    String taskstat = rs.getString("taskstat");
+            String taskstat;
+           if (rs.getString("taskstat") == null) {
+             taskstat = "Not Started";
+        } else {
+             taskstat = rs.getString("taskstat");
+                }                       
+//                    String taskstat = rs.getString("taskstat");
                     String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
                     Tasks task = new Tasks();
                     writer.println(tranid + "," + taskfrom + "," + description + "," + startdate + "," + revdate + "," + enddate + "," + taskstat);
@@ -4077,7 +4308,13 @@ task.setlinkup2(color2);
                     String description = rs.getString("description");
                     String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
                     String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
-                    String taskstat = rs.getString("taskstat");
+            String taskstat;
+           if (rs.getString("taskstat") == null) {
+             taskstat = "Not Started";
+        } else {
+             taskstat = rs.getString("taskstat");
+                }                       
+//                    String taskstat = rs.getString("taskstat");
                     String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
                     Tasks task = new Tasks();
                     writer.println(tranid + "," + taskfrom + "," + description + "," + startdate + "," + revdate + "," + enddate + "," + taskstat);
