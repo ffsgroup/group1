@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jnlp codebase="" href="resources/launch.jnlp" spec="1.0+">
+    <information>
+        <title>MemberSignDec</title>
+        <vendor>User</vendor>
+        <homepage href=""/>
+        <description>MemberSignDec</description>
+        <description kind="short">MemberSignDec</description>
+    </information>
+    <update check="always"/>
+    <security>
+<all-permissions/>
+</security>
+    <resources>
+        <j2se version="1.8+"/>
+        <jar href="MemberSignDec.jar" main="true"/>
+    <jar href="pdfbox-2.0.5.jar"/>
+<jar href="wgssSTU.jar"/>
+<jar href="javax.servlet.jsp.jstl-1.2.4.jar"/>
+<jar href="javax.servlet.jsp.jstl-api-1.2.1.jar"/>
+<jar href="javax.servlet-3.0.jar"/>
+</resources>
+    <application-desc main-class="MemberSignDec.MemberSignDec">
+    </application-desc>
+</jnlp>

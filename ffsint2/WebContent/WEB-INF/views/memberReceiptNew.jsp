@@ -1,4 +1,4 @@
-<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
@@ -8,21 +8,18 @@
         <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
         <script src = "https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>        
         <jsp:include page="_MembersHeader.jsp"></jsp:include>
-         <script src="http://java.com/js/deployJava.js"></script>
+            <script src="http://java.com/js/deployJava.js"></script>
             <script>
                 $(document).ready(function () {
                     $("#saverec").click(function (event) {
-                    //         document.getElementById("message2").innerHTML = "Member will be asked to sign declaration"
+                        //         document.getElementById("message2").innerHTML = "Member will be asked to sign declaration"
                         str1 = document.getElementById("message2").innerHTML;
                         if (str1 == "Member will be asked to sign declaration") {
-               
-//                            window.location = "MemberReceiptPrint";
-                            //window.location = "MemberReceiptPrint?key=" + encodeURIComponent(document.getElementById("memno").innerHTML) + ", paid=" + encodeURIComponent(document.getElementById("ampaid").value);
-                            // must sign first' !!!
-                            
+ //                            window.location = "resources/signdec.jsp?member=" + document.getElementById("memno").innerHTML + "&amount=" + document.getElementById("payAmount").innerHTML;
+              window.location = "MemSignDec.jsp?member=" + document.getElementById("memno").innerHTML + "&amount=" + document.getElementById("payAmount").innerHTML;
                         } else {
-//                            window.location = "MemberNewRec.jsp?key=" + encodeURIComponent(document.getElementById("premi").innerHTML);
-                            // just issue rec , no sign
+//                             window.location = "resources/signdec.jsp?member=" + document.getElementById("memno").innerHTML + "&amount=" + document.getElementById("payAmount").innerHTML;
+              window.location = "MemSignDec.jsp?member=" + document.getElementById("memno").innerHTML + "&amount=" + document.getElementById("payAmount").innerHTML;
                         }
                     });
                 });
@@ -30,75 +27,77 @@
             </script>    
         </head>
         <body>
-         <applet code="first.class" width="300" height="300">   
-             </applet>  
-            <br> <br>
-            <label style="font-size:18pt"> Member receipt issue</label> <br> <br>
-            <table>   
-                <tr>
-                    <td>  Member nr : </td> <td> <label id ="memno" >${lidno}</label> </td>
-            </tr>
-            <tr>
-                <td>    Member name :</td> <td> ${name} </td>
-            </tr>
-            <tr>
-                <td>   Premium : </td> <td> <label id="premi" >${premium}</label> </td>
-            </tr> 
-            <tr> <td> Credit </td>
-                <td> ${credit} </td>
 
-            </tr>
-            <tr> <td> Paid until : </td>  <td>  ${bettot} </td>  
-            </tr> 
-            <tr> <td> Minimum payment </td>
-                <td> ${amount}</td>
-            </tr>  
-
-        </table>
-        <br>
-        <label id="message2">${message1}</label>
         <br> <br>
-        <table>
+        <label style="font-size:18pt"> Member receipt issue</label> <br> <br>
+        <table>   
             <tr>
-                <td> Amount Paid </td> <td> <input type ="text" style="widht:80px;" id="ampaid" > </td>
-            </tr>
-            <tr> <td> Payer Name </td> <td> <input type= "text" size="20" id="payername" </td>
-            </tr>
-            <tr>
-                <td> Relation </td>
-                <td> <input type="text" size ="20" list="list1" id="payerrel" >
-                    <datalist id="list1" >
-                        <option value="Main Member" ></option>
-                        <option value="Parent" ></option>
-                        <option value="Child" ></option>
-                        <option value="Spouse" ></option>
-                        <option value="Neighbour" ></option>
-                        <option value="Friend" ></option>                                
-                    </datalist>
-            </tr>
-        </table>
-        <br>
-        <input type="button" id="saverec" value="Save" style="width:100px;margin-left:40px;" >
-        <script>
-            var a = ${canchange}
-            if (a == "1") {
-                document.getElementById("ampaid").value = ${amount};
-                document.getElementById("ampaid").readOnly = true;
-            }
-            var b = ${status}
-            if (b == "6") {
-                document.getElementById("ampaid").value = "0";
-                document.getElementById("ampaid").readOnly = true;
-            }
-            if (b == "7") {
-                document.getElementById("ampaid").value = "0";
-                document.getElementById("ampaid").readOnly = true;
-            }
+                <td>  Member nr : </td> <td> <label id ="memno" >${lidno}</label> </td>
+        </tr>
+        <tr>
+            <td>    Member name :</td> <td> ${name} </td>
+        </tr>
+        <tr>
+            <td>   Premium : </td> <td> <label id="premi" >${premium}</label> </td>
+        </tr> 
+        <tr> <td> Credit </td>
+            <td> ${credit} </td>
 
-        </script>
-        <script>
-            deployJava.createWebStartLaunchButton("launch.jnlp")
-        </script>
-        <a href="resources/launch.jnlp">launch </a>
-    </body>
+        </tr>
+        <tr> <td> Paid until : </td>  <td>  ${bettot} </td>  
+        </tr> 
+        <tr> <td> Minimum payment </td>
+            <td> <label id="payAmount"> ${amount}</label> </td>
+        </tr>  
+
+    </table>
+    <br>
+    <label id="message2">${message1}</label>
+    <br> <br>
+    <table>
+        <tr>
+            <td> Amount Paid </td> <td> <input type ="text" style="widht:80px;" id="ampaid" > </td>
+        </tr>
+        <tr> <td> Payer Name </td> <td> <input type= "text" size="20" id="payername" </td>
+        </tr>
+        <tr>
+            <td> Relation </td>
+            <td> <input type="text" size ="20" list="list1" id="payerrel" >
+                <datalist id="list1" >
+                    <option value="Main Member" ></option>
+                    <option value="Parent" ></option>
+                    <option value="Child" ></option>
+                    <option value="Spouse" ></option>
+                    <option value="Neighbour" ></option>
+                    <option value="Friend" ></option>                                
+                </datalist>
+        </tr>
+    </table>
+    <br>
+    <input type="button" id="saverec" value="Save" style="width:100px;margin-left:40px;" >
+    <script>
+        var a = ${canchange}
+        if (a == "1") {
+            document.getElementById("ampaid").value = ${amount};
+            document.getElementById("ampaid").readOnly = true;
+        }
+        var b = ${status}
+        if (b == "6") {
+            document.getElementById("ampaid").value = "0";
+            document.getElementById("ampaid").readOnly = true;
+        }
+        if (b == "7") {
+            document.getElementById("ampaid").value = "0";
+            document.getElementById("ampaid").readOnly = true;
+        }
+
+    </script>
+    <br>
+    start <br>
+    <a href="resources/signdec.jsp.jnlp " + document.getElementById("payAmount").innerHTML > sign </a>
+    
+        <br>
+        end
+        
+</body>
 </html>    
