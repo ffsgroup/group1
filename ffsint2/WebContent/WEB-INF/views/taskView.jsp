@@ -998,7 +998,7 @@
 
             </div>
 
-            <label id = "coord">aaa </label>
+            <label id = "coord" style="visibility:hidden"> </label>
             <script type="text/javascript">
 
                 function performAjaxSubmit() {

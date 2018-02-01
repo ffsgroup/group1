@@ -4,14 +4,14 @@
          %>
 <%
     String member = request.getParameter("member");
-    String amount = request.getParameter("amount");
+  
 %>
 
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<jnlp codebase="" spec="1.0+">
+<jnlp codebase="http://localhost:8080/" href="memSign.jsp" spec="1.0+">
     <information>
-        <title>MemberSignDec</title>
-        <vendor>User</vendor>
+        <title>membersigndec</title>
+        <vendor>intranetsolutions.co.za</vendor>
 
         <description>MemberSignDec</description>
         <description kind="short">MemberSignDec</description>
@@ -31,7 +31,7 @@
     </resources>
     <application-desc main-class="MemberSignDec.MemberSignDec">
         <argument><%= member%></argument>
-        <argument><%= amount%></argument>
+
     </application-desc>
 
 </jnlp>

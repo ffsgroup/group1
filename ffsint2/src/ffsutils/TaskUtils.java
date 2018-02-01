@@ -2395,10 +2395,10 @@ task.setlinkup2(color2);
 
         String sql = "";
         if (onlyUser.length() < 4) {
-            sql = "select * from tasks where (recur = '0') and (startdate < '" + year + "/" + month + "/" + day + " 23:59') and (taskstat <> 'Completed') and (((taskto1 = ? ) and ((taskstat1 <> 'Completed') or (taskstat1 is NULL))) or ((taskto2 = ?) and ((taskstat2 <> 'Completed') or (taskstat2 is NULL))) or ((taskto3 = ?) and ((taskstat3 <> 'Completed') or (taskstat3 is NULL))) or ((taskto4 = ?) and ((taskstat4 <> 'Completed') or (taskstat4 is NULL))) or ((taskto5 = ?) and ((taskstat5 <> 'Completed') or (taskstat5 is NULL))) or ((taskto6 = ?) and ((taskstat6 <> 'Completed') or (taskstat6 is NULL))) or ((taskto7 = ?) and ((taskstat7 <> 'Completed') or (taskstat7 is NULL))) or ((taskto8 = ?) and ((taskstat8 <> 'Completed') or (taskstat8 is NULL))) or ((taskto9 = ?) and ((taskstat9 <> 'Completed') or (taskstat9 is NULL))) or ((taskto10 = ?) and ((taskstat10 <> 'Completed') or (taskstat10 is NULL))) or ((taskto11 = ?) and ((taskstat11 <> 'Completed') or (taskstat11 is NULL))) or ((taskto12 = ?) and ((taskstat12 <> 'Completed') or (taskstat12 is NULL))) or ((taskto13 = ?) and ((taskstat13 <> 'Completed') or (taskstat13 is NULL))) or ((taskto14 = ?) and ((taskstat14 <> 'Completed') or (taskstat14 is NULL))) or ((taskto15 = ?) and ((taskstat15 <> 'Completed') or (taskstat15 is NULL)))) ";
+            sql = "select * from tasks where (recur = '0') and (startdate < '" + year + "/" + month + "/" + day + " 23:59') and ((taskstat <> 'Completed') or (taskstat is NULL)) and (((taskto1 = ? ) and ((taskstat1 <> 'Completed') or (taskstat1 is NULL))) or ((taskto2 = ?) and ((taskstat2 <> 'Completed') or (taskstat2 is NULL))) or ((taskto3 = ?) and ((taskstat3 <> 'Completed') or (taskstat3 is NULL))) or ((taskto4 = ?) and ((taskstat4 <> 'Completed') or (taskstat4 is NULL))) or ((taskto5 = ?) and ((taskstat5 <> 'Completed') or (taskstat5 is NULL))) or ((taskto6 = ?) and ((taskstat6 <> 'Completed') or (taskstat6 is NULL))) or ((taskto7 = ?) and ((taskstat7 <> 'Completed') or (taskstat7 is NULL))) or ((taskto8 = ?) and ((taskstat8 <> 'Completed') or (taskstat8 is NULL))) or ((taskto9 = ?) and ((taskstat9 <> 'Completed') or (taskstat9 is NULL))) or ((taskto10 = ?) and ((taskstat10 <> 'Completed') or (taskstat10 is NULL))) or ((taskto11 = ?) and ((taskstat11 <> 'Completed') or (taskstat11 is NULL))) or ((taskto12 = ?) and ((taskstat12 <> 'Completed') or (taskstat12 is NULL))) or ((taskto13 = ?) and ((taskstat13 <> 'Completed') or (taskstat13 is NULL))) or ((taskto14 = ?) and ((taskstat14 <> 'Completed') or (taskstat14 is NULL))) or ((taskto15 = ?) and ((taskstat15 <> 'Completed') or (taskstat15 is NULL)))) ";
         } else {
 
-            sql = "select * from tasks where (recur = '0') and (startdate < '" + year + "/" + month + "/" + day + " 23:59') and (taskstat <> 'Completed') and (((taskto1 = ? ) and ((taskstat1 <> 'Completed') or (taskstat1 is NULL))) or ((taskto2 = ?) and ((taskstat2 <> 'Completed') or (taskstat2 is NULL))) or ((taskto3 = ?) and ((taskstat3 <> 'Completed') or (taskstat3 is NULL))) or ((taskto4 = ?) and ((taskstat4 <> 'Completed') or (taskstat4 is NULL))) or ((taskto5 = ?) and ((taskstat5 <> 'Completed') or (taskstat5 is NULL))) or ((taskto6 = ?) and ((taskstat6 <> 'Completed') or (taskstat6 is NULL))) or ((taskto7 = ?) and ((taskstat7 <> 'Completed') or (taskstat7 is NULL))) or ((taskto8 = ?) and ((taskstat8 <> 'Completed') or (taskstat8 is NULL))) or ((taskto9 = ?) and ((taskstat9 <> 'Completed') or (taskstat9 is NULL))) or ((taskto10 = ?) and ((taskstat10 <> 'Completed') or (taskstat10 is NULL))) or ((taskto11 = ?) and ((taskstat11 <> 'Completed') or (taskstat11 is NULL))) or ((taskto12 = ?) and ((taskstat12 <> 'Completed') or (taskstat12 is NULL))) or ((taskto13 = ?) and ((taskstat13 <> 'Completed') or (taskstat13 is NULL))) or ((taskto14 = ?) and ((taskstat14 <> 'Completed') or (taskstat14 is NULL))) or ((taskto15 = ?) and ((taskstat15 <> 'Completed') or (taskstat15 is NULL)))) and (taskfrom = '" + onlyUser + "')";
+            sql = "select * from tasks where (recur = '0') and (startdate < '" + year + "/" + month + "/" + day + " 23:59') and ((taskstat <> 'Completed') or (taskstat is NULL)) and (((taskto1 = ? ) and ((taskstat1 <> 'Completed') or (taskstat1 is NULL))) or ((taskto2 = ?) and ((taskstat2 <> 'Completed') or (taskstat2 is NULL))) or ((taskto3 = ?) and ((taskstat3 <> 'Completed') or (taskstat3 is NULL))) or ((taskto4 = ?) and ((taskstat4 <> 'Completed') or (taskstat4 is NULL))) or ((taskto5 = ?) and ((taskstat5 <> 'Completed') or (taskstat5 is NULL))) or ((taskto6 = ?) and ((taskstat6 <> 'Completed') or (taskstat6 is NULL))) or ((taskto7 = ?) and ((taskstat7 <> 'Completed') or (taskstat7 is NULL))) or ((taskto8 = ?) and ((taskstat8 <> 'Completed') or (taskstat8 is NULL))) or ((taskto9 = ?) and ((taskstat9 <> 'Completed') or (taskstat9 is NULL))) or ((taskto10 = ?) and ((taskstat10 <> 'Completed') or (taskstat10 is NULL))) or ((taskto11 = ?) and ((taskstat11 <> 'Completed') or (taskstat11 is NULL))) or ((taskto12 = ?) and ((taskstat12 <> 'Completed') or (taskstat12 is NULL))) or ((taskto13 = ?) and ((taskstat13 <> 'Completed') or (taskstat13 is NULL))) or ((taskto14 = ?) and ((taskstat14 <> 'Completed') or (taskstat14 is NULL))) or ((taskto15 = ?) and ((taskstat15 <> 'Completed') or (taskstat15 is NULL)))) and (taskfrom = '" + onlyUser + "')";
         }
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, Username);
@@ -2541,7 +2541,7 @@ task.setlinkup2(color2);
 
         }
 
-        String sql1 = "select * from tasks where (recur =1) and (taskstat <> 'Completed') and  (startdate <= '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (((taskto1 = ?) and ((taskstat1 <> 'Completed') or (taskstat1 is NULL)) and (RECURDATE1 <= '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate1 < enddate)) or ((taskto2 = ?) and ((taskstat2 <> 'Completed') or (taskstat2 is NULL)) and (RECURDATE2 <= '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate2 < enddate)) or ((taskto3 = ?) and ((taskstat3 <> 'Completed') or (taskstat3 is NULL)) and (RECURDATE3 <= '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate3 < enddate)) or ((taskto4 = ?) and ((taskstat4 <> 'Completed') or (taskstat4 is NULL)) and (RECURDATE4 <= '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate4 < enddate)) or ((taskto5 = ?) and ((taskstat5 <> 'Completed') or (taskstat5 is NULL)) and (RECURDATE5 <= '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate5 < enddate)) or ((taskto6 = ?) and ((taskstat6 <> 'Completed') or (taskstat6 is NULL)) and (RECURDATE6 <= '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate6 < enddate)) or ((taskto7 = ?) and ((taskstat7 <> 'Completed') or (taskstat7 is NULL)) and (RECURDATE7 <= '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate7 < enddate)) or ((taskto8 = ?) and ((taskstat8 <> 'Completed') or (taskstat8 is NULL)) and (RECURDATE8 <= '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate8 < enddate)) or ((taskto9 = ?) and ((taskstat9 <> 'Completed') or (taskstat9 is NULL)) and (RECURDATE9 <= '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate9 < enddate)) or ((taskto11 = ?) and ((taskstat11 <> 'Completed') or (taskstat11 is NULL)) and (RECURDATE11 <= '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate11 < enddate)) or ((taskto12 = ?) and ((taskstat12 <> 'Completed') or (taskstat12 is NULL)) and (RECURDATE12 <= '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate12 < enddate)) or ((taskto13 = ?) and ((taskstat13 <> 'Completed') or (taskstat13 is NULL)) and (RECURDATE13 <= '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate13 < enddate)) or ((taskto14 = ?) and ((taskstat14 <> 'Completed') or (taskstat14 is NULL)) and (RECURDATE14 <= '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate14 < enddate)) or ((taskto15 = ?) and ((taskstat15 <> 'Completed') or (taskstat15 is NULL)) and (RECURDATE15 <= '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate15 < enddate)) or ((taskto10 = ?) and ((taskstat10 <> 'Completed') or (taskstat10 is NULL)) and (RECURDATE10 <= '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate10 < enddate)))";
+        String sql1 = "select * from tasks where (recur =1) and ((taskstat <> 'Completed') or (taskstat is NULL)) and  (startdate <= '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (((taskto1 = ?) and ((taskstat1 <> 'Completed') or (taskstat1 is NULL)) and (RECURDATE1 <= '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate1 < enddate)) or ((taskto2 = ?) and ((taskstat2 <> 'Completed') or (taskstat2 is NULL)) and (RECURDATE2 <= '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate2 < enddate)) or ((taskto3 = ?) and ((taskstat3 <> 'Completed') or (taskstat3 is NULL)) and (RECURDATE3 <= '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate3 < enddate)) or ((taskto4 = ?) and ((taskstat4 <> 'Completed') or (taskstat4 is NULL)) and (RECURDATE4 <= '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate4 < enddate)) or ((taskto5 = ?) and ((taskstat5 <> 'Completed') or (taskstat5 is NULL)) and (RECURDATE5 <= '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate5 < enddate)) or ((taskto6 = ?) and ((taskstat6 <> 'Completed') or (taskstat6 is NULL)) and (RECURDATE6 <= '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate6 < enddate)) or ((taskto7 = ?) and ((taskstat7 <> 'Completed') or (taskstat7 is NULL)) and (RECURDATE7 <= '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate7 < enddate)) or ((taskto8 = ?) and ((taskstat8 <> 'Completed') or (taskstat8 is NULL)) and (RECURDATE8 <= '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate8 < enddate)) or ((taskto9 = ?) and ((taskstat9 <> 'Completed') or (taskstat9 is NULL)) and (RECURDATE9 <= '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate9 < enddate)) or ((taskto11 = ?) and ((taskstat11 <> 'Completed') or (taskstat11 is NULL)) and (RECURDATE11 <= '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate11 < enddate)) or ((taskto12 = ?) and ((taskstat12 <> 'Completed') or (taskstat12 is NULL)) and (RECURDATE12 <= '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate12 < enddate)) or ((taskto13 = ?) and ((taskstat13 <> 'Completed') or (taskstat13 is NULL)) and (RECURDATE13 <= '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate13 < enddate)) or ((taskto14 = ?) and ((taskstat14 <> 'Completed') or (taskstat14 is NULL)) and (RECURDATE14 <= '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate14 < enddate)) or ((taskto15 = ?) and ((taskstat15 <> 'Completed') or (taskstat15 is NULL)) and (RECURDATE15 <= '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate15 < enddate)) or ((taskto10 = ?) and ((taskstat10 <> 'Completed') or (taskstat10 is NULL)) and (RECURDATE10 <= '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate10 < enddate)))";
         PreparedStatement pstm1 = conn.prepareStatement(sql1);
 
         pstm1.setString(1, Username);
@@ -2694,9 +2694,9 @@ task.setlinkup2(color2);
 
         String sql = "";
         if (onlyUser.length() < 4) {
-            sql = "select * from tasks where (taskfrom = ?) and (taskstat <> 'Completed')";
+            sql = "select * from tasks where (taskfrom = ?) and ((taskstat <> 'Completed') or (taskstat is NULL))";
         } else {
-            sql = "select * from tasks where ((taskfrom = ?) and (taskstat <> 'Completed')) and ((taskto1 = '" + onlyUser + "') or (taskto2 = '" + onlyUser + "') or (taskto3 = '" + onlyUser + "') or (taskto4 = '" + onlyUser + "') or (taskto5 = '" + onlyUser + "') or (taskto6 = '" + onlyUser + "') or (taskto7 = '" + onlyUser + "') or (taskto8 = '" + onlyUser + "') or (taskto9 = '" + onlyUser + "') or (taskto10 = '" + onlyUser + "') or (taskto11 = '" + onlyUser + "') or (taskto12 = '" + onlyUser + "') or (taskto13 = '" + onlyUser + "') or (taskto14 = '" + onlyUser + "') or (taskto15 = '" + onlyUser + "')) ";
+            sql = "select * from tasks where ((taskfrom = ?) and ((taskstat <> 'Completed') or (taskstat is NULL)) ) and ((taskto1 = '" + onlyUser + "') or (taskto2 = '" + onlyUser + "') or (taskto3 = '" + onlyUser + "') or (taskto4 = '" + onlyUser + "') or (taskto5 = '" + onlyUser + "') or (taskto6 = '" + onlyUser + "') or (taskto7 = '" + onlyUser + "') or (taskto8 = '" + onlyUser + "') or (taskto9 = '" + onlyUser + "') or (taskto10 = '" + onlyUser + "') or (taskto11 = '" + onlyUser + "') or (taskto12 = '" + onlyUser + "') or (taskto13 = '" + onlyUser + "') or (taskto14 = '" + onlyUser + "') or (taskto15 = '" + onlyUser + "')) ";
         }
 
         PreparedStatement pstm = conn.prepareStatement(sql);
@@ -3167,8 +3167,12 @@ task.setlinkup2(color2);
             SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm:ss");
             Date now = new Date();
             String strTime = sdfTime.format(now);
-
-            String oldcomm = rs.getString("tasknote");
+            String oldcomm;
+           if (rs.getString("tasknote")==null) {
+               oldcomm = "";
+           } else {
+            oldcomm = rs.getString("tasknote");
+           }
             String newcomm = rs.getString("tasknote") + "~" + comments + "~http://google.com/maps/place/" + coordsa + "," + coordsb + '~' + user.getUserName() + " " + date + " " + strTime + "~______________________~";
 
             String sql1 = "update tasks set tasknote = ? where tranid = ?";
@@ -3285,13 +3289,47 @@ task.setlinkup2(color2);
         pstm3.setString(1, tranid);
 
         ResultSet rs3 = pstm3.executeQuery();
+//String Username = user.getUserName();
 
         ArrayList<Tasks> list = new ArrayList<Tasks>();
         if (rs3.next()) {
-            String diarycomm = rs3.getString("tasknote");
+ //           String diarycomm = rs3.getString("tasknote");
+ 
 
             Tasks tasks = new Tasks();
-            tasks.setTasknote(diarycomm);
+  String temp1 = user.getsecurestr();
+                if (temp1.substring(149, 150) == "1") {
+                    tasks.setTasknote(rs.getString("tasknote"));
+                    System.out.println("getTaskOne Security 150=1");
+                } else {
+                    System.out.println("getTaskOne Security 150=0");
+                    String TaskNote = "";
+                    
+                    if (rs.getString("tasknote") != null ) {
+                     TaskNote = rs.getString("tasknote");
+                    }
+                    String TempString = "";
+                    Integer TempI = TaskNote.indexOf("http://google.com/maps");
+                    while (TempI != -1) {
+                        System.out.println("getTaskOne found location");
+                        Integer TempI2 = TempI + 15;
+                        do {
+                            TempString = TaskNote.substring(TempI2 - 1, TempI2);
+                            TempI2++;
+                            //                  System.out.println("TaskEditNote TempString -" + TempString + "- " + TempI2.toString());
+                        } while (!TempString.equals("~") && TempI2 < TaskNote.length() - 1);
+                        TempI2--;
+                        String delStr = TaskNote.substring(TempI, TempI2);
+                        String newStr = TaskNote.replace(delStr, "");
+                        TaskNote = newStr;
+                        TempI = TaskNote.indexOf("http://google.com/maps");
+                    }
+
+                    tasks.setTasknote((TaskNote));
+                }           
+            
+            
+//            tasks.setTasknote(diarycomm);
 
             list.add(tasks);
         }

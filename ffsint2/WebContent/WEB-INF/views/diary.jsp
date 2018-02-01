@@ -420,7 +420,14 @@
             </style>
 
 
+            
             <script type="text/javascript">
+                  $(document).ready(function () {
+                    $("#opentask").click(function (event) {
+                        window.location = "TaskView.jsp?key=" + encodeURIComponent(document.getElementById("diarytask").value);
+                    });
+                });
+                
                 $(document).ready(function () {
                     $("#imagupload2").click(function (event) {
                         $.get('DiaryUpImage', {tranid: document.getElementById("diaryid").innerHTML}, function (responseJson) {

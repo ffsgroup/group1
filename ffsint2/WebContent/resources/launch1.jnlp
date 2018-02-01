@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jnlp codebase="http://localhost:8080/resources/" href="launch1.jnlp" spec="1.0+">
+    <information>
+        <title>ConverterPrj</title>
+        <vendor>intranetsolutions.co.za</vendor>
+        <homepage href=""/>
+        <description>ConverterPrj</description>
+        <description kind="short">ConverterPrj</description>
+    </information>
+    <update check="always"/>
+    <security>
+<all-permissions/>
+</security>
+    <resources>
+        <j2se version="1.6+"/>
+        <jar href="ConverterPrj.jar" main="true"/>
+    </resources>
+    <application-desc main-class="Converter">
+    </application-desc>
+</jnlp>

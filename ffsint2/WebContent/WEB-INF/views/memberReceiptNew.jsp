@@ -15,11 +15,13 @@
                         //         document.getElementById("message2").innerHTML = "Member will be asked to sign declaration"
                         str1 = document.getElementById("message2").innerHTML;
                         if (str1 == "Member will be asked to sign declaration") {
- //                            window.location = "resources/signdec.jsp?member=" + document.getElementById("memno").innerHTML + "&amount=" + document.getElementById("payAmount").innerHTML;
-              window.location = "MemSignDec.jsp?member=" + document.getElementById("memno").innerHTML + "&amount=" + document.getElementById("payAmount").innerHTML;
+ //           window.location = "resources/signdec.jsp?member=" + document.getElementById("memno").innerHTML + "&amount=" + document.getElementById("payAmount").innerHTML;
+ //           window.location = "MemSignDec.jsp?member=" + document.getElementById("memno").innerHTML + "&amount=" + document.getElementById("payAmount").innerHTML;
+              window.location = "resources/launch.jnlp";
+//  resources/launch.jnlp
                         } else {
 //                             window.location = "resources/signdec.jsp?member=" + document.getElementById("memno").innerHTML + "&amount=" + document.getElementById("payAmount").innerHTML;
-              window.location = "MemSignDec.jsp?member=" + document.getElementById("memno").innerHTML + "&amount=" + document.getElementById("payAmount").innerHTML;
+              window.location = "resources/launch.jnlp";
                         }
                     });
                 });
@@ -94,10 +96,10 @@
     </script>
     <br>
     start <br>
-    <a href="resources/signdec.jsp.jnlp " + document.getElementById("payAmount").innerHTML > sign </a>
+    <a href="resources/launch.jnlp" > sign </a>
     
         <br>
         end
-        
+   <a href="resources/launch1.jnlp " > sign-con </a>     
 </body>
 </html>    
