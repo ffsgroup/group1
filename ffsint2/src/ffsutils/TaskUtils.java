@@ -2898,7 +2898,7 @@ task.setlinkup2(color2);
                     upirst2.executeUpdate();
                 }
             }
-            String newSql = "insert into tasks (taskfrom,taskuser,taskto1,taskto2,taskto3,taskto4,taskto5,taskto6,taskto7,taskto8,taskto9,taskto10,taskto11,taskto12,taskto13,taskto14,taskto15,description,recur,recura,recurb,recurc,recurd,recure, startdate,revdate,enddate,taskprior, taskfull,taskdate, recurday, recurf,recdayofweek,taskby,recurg,recurgam, recurh, recuri,irnr,train ) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,current_timestamp,?,?,?,?,?,?,?,?,?,?)";
+            String newSql = "insert into tasks (taskfrom,taskuser,taskto1,taskto2,taskto3,taskto4,taskto5,taskto6,taskto7,taskto8,taskto9,taskto10,taskto11,taskto12,taskto13,taskto14,taskto15,description,recur,recura,recurb,recurc,recurd,recure, startdate,revdate,enddate,taskprior, taskfull,taskdate, recurday, recurf,recdayofweek,taskby,recurg,recurgam, recurh, recuri,irnr,train, taskstat ) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,current_timestamp,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement newPstm = conn.prepareStatement(newSql);
             newPstm.setString(1, fromUser);
             newPstm.setString(2, Username.getUserName());
@@ -2939,6 +2939,7 @@ task.setlinkup2(color2);
             newPstm.setString(37, recuri);
             newPstm.setString(38, irnr1);
             newPstm.setString(39, train);
+            newPstm.setString(40, "Not Started");
 
             newPstm.executeUpdate();
 
