@@ -42,7 +42,7 @@ public class DiaryViewImage extends HttpServlet {
 		ArrayList<Diary> diary =new ArrayList<Diary>();
                 try {
                     
-		diary=DBUtils.DiaryFile(conn, tranid, diaryid);
+		diary=DBUtils.DiaryFile(conn, tranid, diaryid, loginedUser);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

@@ -42,7 +42,7 @@ public class SecurityLogoff extends HttpServlet {
                  UserAccount loginedUser = MyUtils.getLoginedUser(session);
 		ArrayList<Generics> generic =new ArrayList<Generics>();
                 try {
-		generic=SecureUtils.logoff(conn, name);
+		generic=SecureUtils.logoff(conn, name, loginedUser);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

@@ -42,7 +42,7 @@ public class TaskUrl extends HttpServlet {
         if (taskView == "taskUrgent" || taskView == "") {
             ArrayList<Tasks> task = new ArrayList<Tasks>();
             try {
-                task = TaskUtils.getUrgentTasks(conn, loginedUser.getUserName(), taskFilter);
+                task = TaskUtils.getUrgentTasks(conn, loginedUser, taskFilter);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -76,7 +76,7 @@ public class TaskUrl extends HttpServlet {
         if (taskView == "taskTraining") {
             ArrayList<Tasks> task = new ArrayList<Tasks>();
             try {
-                task = TaskUtils.getTrainingTask(conn, loginedUser.getUserName(), taskFilter);
+                task = TaskUtils.getTrainingTask(conn, loginedUser, taskFilter);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -110,7 +110,7 @@ public class TaskUrl extends HttpServlet {
         if (taskView == "taskUpdated") {
             ArrayList<Tasks> task = new ArrayList<Tasks>();
             try {
-                task = TaskUtils.getUpdatedTasks(conn, loginedUser.getUserName(), taskFilter);
+                task = TaskUtils.getUpdatedTasks(conn, loginedUser, taskFilter);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -144,7 +144,7 @@ public class TaskUrl extends HttpServlet {
         if (taskView == "taskInFuture") {
             ArrayList<Tasks> task = new ArrayList<Tasks>();
             try {
-                task = TaskUtils.getTaskInFuture(conn, loginedUser.getUserName(), taskFilter);
+                task = TaskUtils.getTaskInFuture(conn, loginedUser, taskFilter);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -178,7 +178,7 @@ public class TaskUrl extends HttpServlet {
         if (taskView == "taskNew") {
             ArrayList<Tasks> task = new ArrayList<Tasks>();
             try {
-                task = TaskUtils.getNewTask(conn, loginedUser.getUserName(), taskFilter);
+                task = TaskUtils.getNewTask(conn, loginedUser, taskFilter);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -190,7 +190,7 @@ public class TaskUrl extends HttpServlet {
         if (taskView == "taskByMe") {
             ArrayList<Tasks> task = new ArrayList<Tasks>();
             try {
-                task = TaskUtils.getTaskByMe(conn, loginedUser.getUserName(), taskFilter);
+                task = TaskUtils.getTaskByMe(conn, loginedUser, taskFilter);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -224,7 +224,7 @@ public class TaskUrl extends HttpServlet {
         if (taskView == "taskToMeComp") {
             ArrayList<Tasks> task = new ArrayList<Tasks>();
             try {
-                task = TaskUtils.getTaskToMeComp(conn, loginedUser.getUserName(), taskFilter);
+                task = TaskUtils.getTaskToMeComp(conn, loginedUser, taskFilter);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -258,7 +258,7 @@ public class TaskUrl extends HttpServlet {
         if (taskView == "taskByMeComp") {
             ArrayList<Tasks> task = new ArrayList<Tasks>();
             try {
-                task = TaskUtils.getTaskByMeComp(conn, loginedUser.getUserName(), taskFilter);
+                task = TaskUtils.getTaskByMeComp(conn, loginedUser, taskFilter);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -292,7 +292,7 @@ public class TaskUrl extends HttpServlet {
         if (taskView == "taskServlet") {
             ArrayList<Tasks> task = new ArrayList<Tasks>();
             try {
-                task = TaskUtils.getTask(conn, loginedUser.getUserName(), taskFilter);
+                task = TaskUtils.getTask(conn, loginedUser, taskFilter);
             } catch (SQLException e) {
                 e.printStackTrace();
             }

@@ -38,7 +38,7 @@ public class DiaryResponse extends HttpServlet {
                 
 		ArrayList<Generics> generics =new ArrayList<Generics>();
                 try {
-		generics=DBUtils.DiaryRespond(conn);
+		generics=DBUtils.DiaryRespond(conn, loginedUser);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

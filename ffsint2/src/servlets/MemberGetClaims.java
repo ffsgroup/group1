@@ -40,7 +40,7 @@ public class MemberGetClaims extends HttpServlet {
                  UserAccount loginedUser = MyUtils.getLoginedUser(session);
 		ArrayList<MemberClaims> memberclaims =new ArrayList<MemberClaims>();
                 try {
-		memberclaims=MemUtils.getmemberClaims(conn, thisMember, loginedUser.getUserName());
+		memberclaims=MemUtils.getmemberClaims(conn, thisMember, loginedUser);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

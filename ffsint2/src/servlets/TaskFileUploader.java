@@ -67,7 +67,7 @@ public class TaskFileUploader extends HttpServlet {
                  
                     
                 }
- TaskUtils.getTaskUpImag(conn, tranid, userName, description, filetype, thisfile);
+ TaskUtils.getTaskUpImag(conn, tranid, loginedUser, description, filetype, thisfile);
  
                //File uploaded successfully
                request.setAttribute("message", "File Uploaded Successfully");

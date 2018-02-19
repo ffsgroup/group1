@@ -20,6 +20,8 @@ import ffsutils.MyUtils;
 import java.sql.Connection;
 import java.sql.SQLException;
 import ffsbeans.DiaryImag;
+import ffsbeans.UserAccount;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/DiaryImageLoad")
 public class DiaryImageLoad extends HttpServlet {
@@ -31,11 +33,15 @@ public class DiaryImageLoad extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Connection conn = MyUtils.getStoredConnection(request);
+                HttpSession session = request.getSession();
+                UserAccount loginedUser = MyUtils.getLoginedUser(session);
+                
                 String tranid = request.getParameter("tranid"); 
+                
 		ArrayList<DiaryImag> diaryimag =new ArrayList<DiaryImag>();
                  System.out.println("DiaryImage " + tranid);
                 try {
-		diaryimag=DBUtils.getDiaryImag(conn, tranid);
+		diaryimag=DBUtils.getDiaryImag(conn, tranid, loginedUser);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

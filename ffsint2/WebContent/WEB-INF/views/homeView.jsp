@@ -56,10 +56,13 @@
                     <li><a href="${pageContext.request.contextPath}/aboutus">About Us</a></li>
 
                     <li>
-                        <a href="#">Demo</a>
-                        <ul>
-                            <li><a href="${pageContext.request.contextPath}/login">Sanlam</a></li>
-
+                        <a href="#">Log In</a>
+                        <ul><li><a href="${pageContext.request.contextPath}/login?comp=Demo">Demo</a></li>
+                            <li><a href="${pageContext.request.contextPath}/login?comp=Melville">Melville</a></li>
+                            <li><a href="${pageContext.request.contextPath}/login?comp=Sanlam">Sanlam</a></li>
+                            <li><a href="${pageContext.request.contextPath}/login?comp=Schoonhoven">Schoonhoven</a></li>
+                            <li><a href="${pageContext.request.contextPath}/login?comp=Wjmitchell">WJ Mitchell</a></li>
+                            
                         </ul>
                     </li>
 

@@ -39,7 +39,7 @@ public class MemberGetPolStatus extends HttpServlet {
                  System.out.println("Get Policy Status");
 		ArrayList<Generics> generics =new ArrayList<Generics>();
                 try {
-		generics=MemUtils.getPolStatus(conn);
+		generics=MemUtils.getPolStatus(conn, loginedUser);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

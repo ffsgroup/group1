@@ -42,7 +42,7 @@ public class SecurityDelUser extends HttpServlet {
                  UserAccount loginedUser = MyUtils.getLoginedUser(session);
 		ArrayList<Generics> generic =new ArrayList<Generics>();
                 try {
-		generic=SecureUtils.delUser(conn, name );
+		generic=SecureUtils.delUser(conn, name, loginedUser );
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

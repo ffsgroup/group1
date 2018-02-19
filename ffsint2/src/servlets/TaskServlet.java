@@ -42,7 +42,7 @@ String onlyUser = request.getParameter("onlyUser");
         session.setAttribute("taskFilter", onlyUser);
         session.setAttribute("taskDisp", "4");
         try {
-            task = TaskUtils.getTask(conn, loginedUser.getUserName(), onlyUser);
+            task = TaskUtils.getTask(conn, loginedUser, onlyUser);
         } catch (SQLException e) {
             e.printStackTrace();
             //  errorString = e.getMessage();

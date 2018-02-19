@@ -51,7 +51,7 @@ public class TaskByMe extends HttpServlet {
         session.setAttribute("taskDisp", "1");
 
         try {
-            task = TaskUtils.getTaskByMe(conn, loginedUser.getUserName(), onlyUser);
+            task = TaskUtils.getTaskByMe(conn, loginedUser, onlyUser);
         } catch (SQLException e) {
             e.printStackTrace();
             //  errorString = e.getMessage();

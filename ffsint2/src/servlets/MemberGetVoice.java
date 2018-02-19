@@ -40,7 +40,7 @@ public class MemberGetVoice extends HttpServlet {
                  UserAccount loginedUser = MyUtils.getLoginedUser(session);
 		ArrayList<MemberImages> membervoice =new ArrayList<MemberImages>();
                 try {
-		membervoice=MemUtils.getmemberVoice(conn, thisMember, loginedUser.getUserName());
+		membervoice=MemUtils.getmemberVoice(conn, thisMember, loginedUser);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

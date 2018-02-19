@@ -42,7 +42,7 @@ public class TaskUrgent extends HttpServlet {
         session.setAttribute("taskFilter", onlyUser);
         session.setAttribute("taskDisp", "8");
         try {
-            task = TaskUtils.getUrgentTasks(conn, loginedUser.getUserName(), onlyUser);
+            task = TaskUtils.getUrgentTasks(conn, loginedUser, onlyUser);
         } catch (SQLException e) {
             e.printStackTrace();
             //  errorString = e.getMessage();

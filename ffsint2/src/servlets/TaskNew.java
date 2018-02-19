@@ -42,7 +42,7 @@ public class TaskNew extends HttpServlet {
         session.setAttribute("taskFilter", onlyUser);
         session.setAttribute("taskDisp", "9");
         try {
-            task = TaskUtils.getNewTask(conn, loginedUser.getUserName(), onlyUser);
+            task = TaskUtils.getNewTask(conn, loginedUser, onlyUser);
         } catch (SQLException e) {
             e.printStackTrace();
             //  errorString = e.getMessage();

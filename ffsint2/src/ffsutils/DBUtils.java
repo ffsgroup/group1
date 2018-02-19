@@ -24,9 +24,9 @@ import java.sql.SQLException;
 
 public class DBUtils {
 
-    public static UserAccount findUser(Connection conn, String userName, String password) throws SQLException {
+    public static UserAccount findUser(Connection conn, String userName, String password, String company) throws SQLException {
 
-        String sql = "Select a.name, a.Passw, a.lidno from Users a "
+        String sql = "Select a.name, a.Passw, a.lidno from " + company + ".Users a "
                 + " where a.code = ? and a.passw= ?";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
@@ -44,9 +44,9 @@ public class DBUtils {
         return null;
     }
 
-    public static UserAccount findUser(Connection conn, String userName) throws SQLException {
+    public static UserAccount findUser(Connection conn, String userName, String company) throws SQLException {
 
-        String sql = "Select a.Name, a.Passw, a.lidno from Users a " + " where a.code = ? ";
+        String sql = "Select a.Name, a.Passw, a.lidno from " + company + ".Users a " + " where a.code = ? ";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, userName);
@@ -135,7 +135,7 @@ public class DBUtils {
         pstm.executeUpdate();
     }
 
-    public static ArrayList<Diary> getDiary(Connection conn, String thisDate, String userName, String thisUser) throws SQLException {
+    public static ArrayList<Diary> getDiary(Connection conn, String thisDate, UserAccount userName, String thisUser) throws SQLException {
         String tranid = "";
         String user = "";
         String desc1 = "";
@@ -150,7 +150,7 @@ public class DBUtils {
 
         System.out.println("thisUser2:" + rightRemoved);
 
-        String sql = "Select Tranid, User, Desc1, sdate from Diary where (sdate > ?) and (sdate < ?) and (user = ?) order by sdate asc";
+        String sql = "Select Tranid, User, Desc1, sdate from " + userName.getcompany() + ".Diary where (sdate > ?) and (sdate < ?) and (user = ?) order by sdate asc";
         System.out.println(sql);
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, thisDate + " 00:00");
@@ -1071,7 +1071,7 @@ public class DBUtils {
 
     public static ArrayList<Diary> getOneDiary(Connection connconn, UserAccount loginedUser, String tranid1) throws SQLException {
         System.out.println("getOneDiary " + tranid1);
-        String sql = "Select * from Diary a where a.tranid =?";
+        String sql = "Select * from " + loginedUser.getcompany() + ".Diary a where a.tranid =?";
 
         PreparedStatement pstm = connconn.prepareStatement(sql);
         pstm.setString(1, tranid1);
@@ -1196,8 +1196,8 @@ public class DBUtils {
         return list;
     }
 
-    public static ArrayList<Generics> DiaryLocate(Connection conn) throws SQLException {
-        String sql = "Select a.GenericDescriptionEng from Generics a where GenGroupId = '44'";
+    public static ArrayList<Generics> DiaryLocate(Connection conn, UserAccount user) throws SQLException {
+        String sql = "Select a.GenericDescriptionEng from " + user.getcompany() + ".Generics a where GenGroupId = '44'";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
 
@@ -1214,8 +1214,8 @@ public class DBUtils {
         return list;
     }
 
-    public static ArrayList<Generics> DiaryRespond(Connection conn) throws SQLException {
-        String sql = "Select a.GenericDescriptionEng from Generics a where GenGroupId = '45'";
+    public static ArrayList<Generics> DiaryRespond(Connection conn, UserAccount user) throws SQLException {
+        String sql = "Select a.GenericDescriptionEng from " + user.getcompany() + ".Generics a where GenGroupId = '45'";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
 
@@ -1232,8 +1232,8 @@ public class DBUtils {
         return list;
     }
 
-    public static ArrayList<UserAccount> DiaryUsers(Connection conn) throws SQLException {
-        String sql = "Select Name from users where lidno like '1%' order by name";
+    public static ArrayList<UserAccount> DiaryUsers(Connection conn, UserAccount user) throws SQLException {
+        String sql = "Select Name from " + user.getcompany() + ".users where lidno like '1%' order by name";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
 
@@ -1250,7 +1250,7 @@ public class DBUtils {
         return list;
     }
 
-    public static ArrayList<DiaryImag> getDiaryImag(Connection connconn, String tranid1) throws SQLException {
+    public static ArrayList<DiaryImag> getDiaryImag(Connection connconn, String tranid1 , UserAccount user) throws SQLException {
         String tranid2 = "";
         Integer comp = 2;
         Integer tranlen = tranid1.length();
@@ -1265,7 +1265,7 @@ public class DBUtils {
             tranid2 = tranid1.substring(tranid1.length() - 1);
         }
         System.out.println("getDiaryImag " + tranid2 + " " + tranid1);
-        String sql = "Select * from diaryimag" + tranid2 + " where diaryid =?";
+        String sql = "Select * from " + user.getcompany() + ".diaryimag" + tranid2 + " where diaryid =?";
 
         PreparedStatement pstm = connconn.prepareStatement(sql);
         pstm.setString(1, tranid1);
@@ -1318,7 +1318,7 @@ public class DBUtils {
         return list;
     }
 
-    public static ArrayList<DiaryImag> getDiaryUpImag(Connection connconn, String tranid1, String userName, String Description, String filetype, FileItem thisfile) throws SQLException {
+    public static ArrayList<DiaryImag> getDiaryUpImag(Connection connconn, String tranid1, UserAccount userName, String Description, String filetype, FileItem thisfile) throws SQLException {
 
         String tranid2;
         Integer comp = 2;
@@ -1333,8 +1333,8 @@ public class DBUtils {
         }
         System.out.println("getDiaryUpImag " + userName + " size " + String.valueOf(thisfile.getSize()) + ' ' + filetype);
         PreparedStatement pstm2 = null;
-        pstm2 = connconn.prepareStatement("insert into diaryimag" +tranid2 +" (user, dateup,imagedesc, diaryid, imagetype, imag1) values (?, current_timestamp, ? , '" + tranid1 + "' ,'" + filetype + "', ?)");
-        pstm2.setString(1, userName);
+        pstm2 = connconn.prepareStatement("insert into " + userName.getcompany() + ".diaryimag" +tranid2 +" (user, dateup,imagedesc, diaryid, imagetype, imag1) values (?, current_timestamp, ? , '" + tranid1 + "' ,'" + filetype + "', ?)");
+        pstm2.setString(1, userName.getUserName());
         pstm2.setString(2, Description);
         try {
             pstm2.setBinaryStream(3, thisfile.getInputStream(), (int) thisfile.getSize());
@@ -1343,7 +1343,7 @@ public class DBUtils {
         }
 
         Integer temp1 = pstm2.executeUpdate();        
-        String sql = "Select * from diaryimag" + tranid2 + " where diaryid =?";
+        String sql = "Select * from " + userName.getcompany() + ".diaryimag" + tranid2 + " where diaryid =?";
 
         PreparedStatement pstm = connconn.prepareStatement(sql);
         pstm.setString(1, tranid1);
@@ -1398,16 +1398,16 @@ public class DBUtils {
         return list;
     }
 
-    public static ArrayList<Generics> NewDiary(Connection connconn, String tranid, String userName, String diarysumm, String startdate, String enddate, String locat, String diarytask, String diarynotes, String duser1, String duser2, String duser3, String duser4, String duser5, String duser6, String duser7, String duser8, String duser9, String duser10, String resp1, String resp2, String resp3, String resp4, String resp5, String resp6, String resp7, String resp8, String resp9, String resp10, String fromuser) throws SQLException {
+    public static ArrayList<Generics> NewDiary(Connection connconn, String tranid, UserAccount userName, String diarysumm, String startdate, String enddate, String locat, String diarytask, String diarynotes, String duser1, String duser2, String duser3, String duser4, String duser5, String duser6, String duser7, String duser8, String duser9, String duser10, String resp1, String resp2, String resp3, String resp4, String resp5, String resp6, String resp7, String resp8, String resp9, String resp10, String fromuser) throws SQLException {
 
         System.out.println("username " + userName + " tranid " + tranid);
 
         if (tranid.equals("0")) {
             System.out.println("insert diary" + userName + " tranid " + tranid);
             PreparedStatement pstm2 = null;
-            pstm2 = connconn.prepareStatement("insert into diary(user, sdate, edate, locat, desc1, notes,datedone, taskid, doneby, user1, user2, user3, user4, user5, user6, user7, user8, user9, user10, user1ans,user2ans,user3ans,user4ans,user5ans,user6ans,user7ans,user8ans,user9ans,user10ans) values (?, ?, ? , ? ,?, ?, current_timestamp, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            pstm2 = connconn.prepareStatement("insert into " + userName.getcompany() + ".diary(user, sdate, edate, locat, desc1, notes,datedone, taskid, doneby, user1, user2, user3, user4, user5, user6, user7, user8, user9, user10, user1ans,user2ans,user3ans,user4ans,user5ans,user6ans,user7ans,user8ans,user9ans,user10ans) values (?, ?, ? , ? ,?, ?, current_timestamp, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
-            pstm2.setString(1, userName);
+            pstm2.setString(1, userName.getUserName());
             pstm2.setString(2, startdate);
             pstm2.setString(3, enddate);
             pstm2.setString(4, locat);
@@ -1415,7 +1415,7 @@ public class DBUtils {
             pstm2.setString(6, diarynotes);
 
             pstm2.setString(7, diarytask);
-            pstm2.setString(8, userName);
+            pstm2.setString(8, userName.getUserName());
 
             pstm2.setString(9, duser1);
 
@@ -1442,7 +1442,7 @@ public class DBUtils {
             Integer temp1 = pstm2.executeUpdate();
         }
         if (!tranid.equals("0")) {
-            String sql = "Select * from Diary a where a.tranid =?";
+            String sql = "Select * from " + userName.getcompany() + ".Diary a where a.tranid =?";
 
             PreparedStatement pstm = connconn.prepareStatement(sql);
             pstm.setString(1, tranid);
@@ -1517,7 +1517,7 @@ public class DBUtils {
                 }
                 String newcomm = comm + "~Diary times changed~ Old Start " + thistime + "~ New Start " + startdate + "~Old End " + thistime1 + "~ New End " + enddate + "~" + userName + " " + date + " " + strTime + "~______________________~";
 
-                String sql1 = "update diary set comm = ? where tranid = ?";
+                String sql1 = "update " + userName.getcompany() + ".diary set comm = ? where tranid = ?";
 
                 PreparedStatement pstm2 = connconn.prepareStatement(sql1);
 
@@ -1527,7 +1527,7 @@ public class DBUtils {
             }
 
             PreparedStatement pstm2 = null;
-            pstm2 = connconn.prepareStatement("update diary set sdate = ? , edate = ? , locat = ? , desc1 = ? , notes = ? , taskid = ? where tranid = ?");
+            pstm2 = connconn.prepareStatement("update " + userName.getcompany() + ".diary set sdate = ? , edate = ? , locat = ? , desc1 = ? , notes = ? , taskid = ? where tranid = ?");
             pstm2.setString(1, startdate);
             pstm2.setString(2, enddate);
             pstm2.setString(3, locat);
@@ -1543,13 +1543,13 @@ public class DBUtils {
         return list;
     }
 
-    public static ArrayList<Generics> SavePeople(Connection connconn, String tranid, String userName, String duser1, String duser2, String duser3, String duser4, String duser5, String duser6, String duser7, String duser8, String duser9, String duser10, String resp1, String resp2, String resp3, String resp4, String resp5, String resp6, String resp7, String resp8, String resp9, String resp10, String fromuser) throws SQLException {
+    public static ArrayList<Generics> SavePeople(Connection connconn, String tranid, UserAccount userName, String duser1, String duser2, String duser3, String duser4, String duser5, String duser6, String duser7, String duser8, String duser9, String duser10, String resp1, String resp2, String resp3, String resp4, String resp5, String resp6, String resp7, String resp8, String resp9, String resp10, String fromuser) throws SQLException {
 
         System.out.println("username " + userName + " people " + tranid);
 
         if (!tranid.equals("0") && (userName.equals(fromuser))) {
             PreparedStatement pstm2 = null;
-            pstm2 = connconn.prepareStatement("update diary set user1 =?,user2=?,user3=?,user4=?,user5=?,user6=?,user7=?,user8=?,user9=?,user10=?,user1ans=?,user2ans=?,user3ans=?, user4ans=?,user5ans=?,user6ans=?,user7ans=?,user8ans=?,user9ans=?,user10ans=? where tranid = ?");
+            pstm2 = connconn.prepareStatement("update " + userName.getcompany() + ".diary set user1 =?,user2=?,user3=?,user4=?,user5=?,user6=?,user7=?,user8=?,user9=?,user10=?,user1ans=?,user2ans=?,user3ans=?, user4ans=?,user5ans=?,user6ans=?,user7ans=?,user8ans=?,user9ans=?,user10ans=? where tranid = ?");
             pstm2.setString(1, duser1);
             pstm2.setString(2, duser2);
             pstm2.setString(3, duser3);
@@ -1580,7 +1580,7 @@ public class DBUtils {
 
     public static ArrayList<Diary> DiarySaveComm(Connection conn, UserAccount user, String comments, String tranid) throws SQLException, InterruptedException {
 
-        String sql = "Select a.comm from diary a where tranid = ?";
+        String sql = "Select a.comm from " + user.getcompany() + ".diary a where tranid = ?";
         System.out.println("Diarycomm2 " + comments);
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, tranid);
@@ -1596,7 +1596,7 @@ public class DBUtils {
             String oldcomm = rs.getString("comm");
             String newcomm = rs.getString("comm") + "~" + comments + "~" + user.getUserName() + " " + date + " " + strTime + "~______________________";
 
-            String sql1 = "update diary set comm = ? where tranid = ?";
+            String sql1 = "update " + user.getcompany() + ".diary set comm = ? where tranid = ?";
 
             PreparedStatement pstm2 = conn.prepareStatement(sql1);
 
@@ -1608,7 +1608,7 @@ public class DBUtils {
 
         Thread.sleep(1000);
 
-        String sql3 = "Select a.comm from diary a where tranid = ?";
+        String sql3 = "Select a.comm from " + user.getcompany() + ".diary a where tranid = ?";
 
         PreparedStatement pstm3 = conn.prepareStatement(sql3);
         pstm3.setString(1, tranid);
@@ -1628,7 +1628,7 @@ public class DBUtils {
     }
 
     public static ArrayList<UserAccount> DiaryAvails(Connection conn, UserAccount loginedUser) throws SQLException {
-        String sql = "Select a.diary1, a.diary2, a.diary3, a.diary4, a.diary5, a.diary6, a.diary7, a.diary8, a.diary9, a.diary10 from users a where name = ?";
+        String sql = "Select a.diary1, a.diary2, a.diary3, a.diary4, a.diary5, a.diary6, a.diary7, a.diary8, a.diary9, a.diary10 from " + loginedUser.getcompany() + ".users a where name = ?";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, loginedUser.getUserName());
@@ -1708,11 +1708,11 @@ public class DBUtils {
         return list;
     }
 
-    public static ArrayList<UserAccount> DiaryUsersSett(Connection conn, String loginedUser) throws SQLException {
-        String sql = "Select diary1, diary2, diary3, diary4, diary5, diary6, diary7, diary8, diary9, diary10 from users where name = ?";
+    public static ArrayList<UserAccount> DiaryUsersSett(Connection conn, UserAccount loginedUser) throws SQLException {
+        String sql = "Select diary1, diary2, diary3, diary4, diary5, diary6, diary7, diary8, diary9, diary10 from " + loginedUser.getcompany() + ".users where name = ?";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
-        pstm.setString(1, loginedUser);
+        pstm.setString(1, loginedUser.getUserName());
 
         ResultSet rs = pstm.executeQuery();
         ArrayList<UserAccount> list = new ArrayList<UserAccount>();
@@ -1771,20 +1771,20 @@ public class DBUtils {
         return list;
     }
 
-    public static ArrayList<UserAccount> DiaryUsersAvail(Connection conn, String loginedUser) throws SQLException {
-        String sql = "Select name from users where diary1=? or diary2=? or diary3=? or diary4=? or diary5=? or diary6=? or diary7=? or diary8=? or diary9=? or diary10=? order by name";
+    public static ArrayList<UserAccount> DiaryUsersAvail(Connection conn, UserAccount loginedUser) throws SQLException {
+        String sql = "Select name from " + loginedUser.getcompany() + ".users where diary1=? or diary2=? or diary3=? or diary4=? or diary5=? or diary6=? or diary7=? or diary8=? or diary9=? or diary10=? order by name";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
-        pstm.setString(1, loginedUser);
-        pstm.setString(2, loginedUser);
-        pstm.setString(3, loginedUser);
-        pstm.setString(4, loginedUser);
-        pstm.setString(5, loginedUser);
-        pstm.setString(6, loginedUser);
-        pstm.setString(7, loginedUser);
-        pstm.setString(8, loginedUser);
-        pstm.setString(9, loginedUser);
-        pstm.setString(10, loginedUser);
+        pstm.setString(1, loginedUser.getUserName());
+        pstm.setString(2, loginedUser.getUserName());
+        pstm.setString(3, loginedUser.getUserName());
+        pstm.setString(4, loginedUser.getUserName());
+        pstm.setString(5, loginedUser.getUserName());
+        pstm.setString(6, loginedUser.getUserName());
+        pstm.setString(7, loginedUser.getUserName());
+        pstm.setString(8, loginedUser.getUserName());
+        pstm.setString(9, loginedUser.getUserName());
+        pstm.setString(10, loginedUser.getUserName());
 
         ResultSet rs = pstm.executeQuery();
         ArrayList<UserAccount> list = new ArrayList<UserAccount>();
@@ -1797,7 +1797,7 @@ public class DBUtils {
         return list;
     }
 
-    public static ArrayList<Diary> DiaryFile(Connection conn, String tranid, String diaryid) throws SQLException, FileNotFoundException, IOException {
+    public static ArrayList<Diary> DiaryFile(Connection conn, String tranid, String diaryid, UserAccount user) throws SQLException, FileNotFoundException, IOException {
         String tranid2;
         Integer comp = 2;
         Integer tranlen = tranid.length();
@@ -1811,7 +1811,7 @@ public class DBUtils {
         }
         System.out.println("tranid2 " + tranid2 + " diaryid " + diaryid + " tranid " + tranid);
 
-        String sql = "Select * from diaryimag" + tranid2 + " where tranid = ? and diaryid = ?";
+        String sql = "Select * from " + user.getcompany() + ".diaryimag" + tranid2 + " where tranid = ? and diaryid = ?";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, diaryid);
@@ -1839,11 +1839,11 @@ public class DBUtils {
         return list;
     }
 
-    public static ArrayList<Generics> getDiarySet(Connection conn, String loginedUser) throws SQLException {
-        String sql = "Select name, lidno from users where name = ?";
+    public static ArrayList<Generics> getDiarySet(Connection conn, UserAccount loginedUser) throws SQLException {
+        String sql = "Select name, lidno from " + loginedUser.getcompany() + ".users where name = ?";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
-        pstm.setString(1, loginedUser);
+        pstm.setString(1, loginedUser.getUserName());
 
         ResultSet rs = pstm.executeQuery();
         ArrayList<Generics> list = new ArrayList<Generics>();
@@ -1857,8 +1857,8 @@ public class DBUtils {
         return list;
     }
 
-    public static ArrayList<Generics> getDiaryGen(Connection conn, String loginedUser) throws SQLException {
-        String sql = "Select * from generics where gengroupid = '44' or gengroupid = '45'";
+    public static ArrayList<Generics> getDiaryGen(Connection conn, UserAccount loginedUser) throws SQLException {
+        String sql = "Select * from " + loginedUser.getcompany() + ".generics where gengroupid = '44' or gengroupid = '45'";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
 
@@ -1878,14 +1878,14 @@ public class DBUtils {
         return list;
     }
 
-    public static ArrayList<Generics> getDiaryLocat(Connection conn, String loginedUser, String thisLocat) throws SQLException {
+    public static ArrayList<Generics> getDiaryLocat(Connection conn, UserAccount loginedUser, String thisLocat) throws SQLException {
 
-        String sql1 = "delete from generics where gengroupid = '44' and genericdescriptioneng = ?";
+        String sql1 = "delete from " + loginedUser.getcompany() + ".generics where gengroupid = '44' and genericdescriptioneng = ?";
         PreparedStatement pstm1 = conn.prepareStatement(sql1);
         pstm1.setString(1, thisLocat);
         pstm1.executeUpdate();
 
-        String sql = "Select * from generics where gengroupid = '44'";
+        String sql = "Select * from " + loginedUser.getcompany() + ".generics where gengroupid = '44'";
         PreparedStatement pstm = conn.prepareStatement(sql);
         ResultSet rs = pstm.executeQuery();
         ArrayList<Generics> list = new ArrayList<Generics>();
@@ -1903,14 +1903,14 @@ public class DBUtils {
         return list;
     }
 
-    public static ArrayList<Generics> getDiaryResp(Connection conn, String loginedUser, String thisLocat) throws SQLException {
+    public static ArrayList<Generics> getDiaryResp(Connection conn, UserAccount loginedUser, String thisLocat) throws SQLException {
 
-        String sql1 = "delete from generics where gengroupid = '45' and genericdescriptioneng = ?";
+        String sql1 = "delete from " + loginedUser.getcompany() + ".generics where gengroupid = '45' and genericdescriptioneng = ?";
         PreparedStatement pstm1 = conn.prepareStatement(sql1);
         pstm1.setString(1, thisLocat);
         pstm1.executeUpdate();
 
-        String sql = "Select * from generics where gengroupid = '45'";
+        String sql = "Select * from " + loginedUser.getcompany() + ".generics where gengroupid = '45'";
         PreparedStatement pstm = conn.prepareStatement(sql);
         ResultSet rs = pstm.executeQuery();
         ArrayList<Generics> list = new ArrayList<Generics>();
@@ -1928,14 +1928,14 @@ public class DBUtils {
         return list;
     }
 
-    public static ArrayList<Generics> AddDiaryLocat(Connection conn, String loginedUser, String thisLocat) throws SQLException {
+    public static ArrayList<Generics> AddDiaryLocat(Connection conn, UserAccount loginedUser, String thisLocat) throws SQLException {
 
-        String sql1 = "insert into generics (gengroupid, genericdescriptioneng) values ('44', ?)";
+        String sql1 = "insert into " + loginedUser.getcompany() + ".generics (gengroupid, genericdescriptioneng) values ('44', ?)";
         PreparedStatement pstm1 = conn.prepareStatement(sql1);
         pstm1.setString(1, thisLocat);
         pstm1.executeUpdate();
 
-        String sql = "Select * from generics where gengroupid = '44'";
+        String sql = "Select * from " + loginedUser.getcompany() + ".generics where gengroupid = '44'";
         PreparedStatement pstm = conn.prepareStatement(sql);
         ResultSet rs = pstm.executeQuery();
         ArrayList<Generics> list = new ArrayList<Generics>();
@@ -1953,14 +1953,14 @@ public class DBUtils {
         return list;
     }
 
-    public static ArrayList<Generics> AddDiaryResp(Connection conn, String loginedUser, String thisLocat) throws SQLException {
+    public static ArrayList<Generics> AddDiaryResp(Connection conn, UserAccount loginedUser, String thisLocat) throws SQLException {
 
-        String sql1 = "insert into generics (gengroupid, genericdescriptioneng) values ('45', ?)";
+        String sql1 = "insert into " + loginedUser.getcompany() + ".generics (gengroupid, genericdescriptioneng) values ('45', ?)";
         PreparedStatement pstm1 = conn.prepareStatement(sql1);
         pstm1.setString(1, thisLocat);
         pstm1.executeUpdate();
 
-        String sql = "Select * from generics where gengroupid = '45'";
+        String sql = "Select * from " + loginedUser.getcompany() + ".generics where gengroupid = '45'";
         PreparedStatement pstm = conn.prepareStatement(sql);
         ResultSet rs = pstm.executeQuery();
         ArrayList<Generics> list = new ArrayList<Generics>();

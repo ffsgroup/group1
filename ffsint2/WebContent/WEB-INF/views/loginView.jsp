@@ -10,32 +10,33 @@
  
     <jsp:include page="_LoginHeader.jsp"></jsp:include>
   
- 
-    <h3>Login Page</h3>
+ <form method="POST" action="doLogin">
+    <h3 id ="compName">Login ${company}</h3>
  
     <p style="color: red;">${errorString}</p>
  
-    <form method="POST" action="doLogin">
+    
        <table border="0">
           <tr>
              <td>User Name</td>
-             <td><input type="text" name="userName" value= "${user.userName}" /> </td>
+             <td><input type="text" name="userName" value= "${user.userName}" > </td>
           </tr>
           <tr>
              <td>Password</td>
-             <td><input type="password" name="password" value= "${user.password}" /> </td>
+             <td><input type="password" name="password" value= "${user.password}" > </td>
           </tr>
           <tr>
              <td>Remember me</td>
-             <td><input type="checkbox" name="rememberMe" value= "Y" /> </td>
+             <td><input type="checkbox" name="rememberMe" value= "Y" > </td>
           </tr>
           <tr>
              <td colspan ="2">
-                <input type="submit" value= "Submit" />
-                <a href="${pageContext.request.contextPath}/">Cancel</a>
+                <input type="submit" value= "Log In" />
+                <a href="${pageContext.request.contextPath}/">  Cancel</a>
              </td>
           </tr>
        </table>
+        <input style ="visibility: hidden" type="text" name ="company" value=${company} >
     </form>
  
   

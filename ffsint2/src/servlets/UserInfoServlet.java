@@ -25,11 +25,11 @@ public class UserInfoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
- 
+        String Company = session.getAttribute("company").toString();
  
         // Check User has logged on
         UserAccount loginedUser = MyUtils.getLoginedUser(session);
- 
+ System.out.println("UserInfoServlet " + loginedUser.getUserName() + Company);
   
         // Not logged in
         if (loginedUser == null) {

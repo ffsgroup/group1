@@ -44,7 +44,7 @@ public class SecurityUpdateUser extends HttpServlet {
                  UserAccount loginedUser = MyUtils.getLoginedUser(session);
 		ArrayList<Generics> generic =new ArrayList<Generics>();
                 try {
-		generic=SecureUtils.UpdateUser(conn, name, secure );
+		generic=SecureUtils.UpdateUser(conn, name, secure ,loginedUser);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

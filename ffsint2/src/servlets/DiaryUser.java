@@ -38,7 +38,7 @@ public class DiaryUser extends HttpServlet {
                 
 		ArrayList<UserAccount> users =new ArrayList<UserAccount>();
                 try {
-		users=DBUtils.DiaryUsers(conn);
+		users=DBUtils.DiaryUsers(conn, loginedUser);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

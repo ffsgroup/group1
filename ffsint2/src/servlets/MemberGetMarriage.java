@@ -39,7 +39,7 @@ public class MemberGetMarriage extends HttpServlet {
                  System.out.println("Get Marriage");
 		ArrayList<Generics> generics =new ArrayList<Generics>();
                 try {
-		generics=MemUtils.getMarriage(conn);
+		generics=MemUtils.getMarriage(conn, loginedUser);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

@@ -45,7 +45,7 @@ public class SecurityNewUser extends HttpServlet {
                  UserAccount loginedUser = MyUtils.getLoginedUser(session);
 		ArrayList<Generics> generic =new ArrayList<Generics>();
                 try {
-		generic=SecureUtils.createUser(conn, name, user, branch );
+		generic=SecureUtils.createUser(conn, name, user, branch, loginedUser );
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

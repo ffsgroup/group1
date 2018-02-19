@@ -63,7 +63,7 @@ public class FileUploader extends HttpServlet {
                  
                     
                 }
- DBUtils.getDiaryUpImag(conn, tranid, userName, description, filetype, thisfile);
+ DBUtils.getDiaryUpImag(conn, tranid, loginedUser, description, filetype, thisfile);
  
                //File uploaded successfully
                request.setAttribute("message", "File Uploaded Successfully");

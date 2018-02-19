@@ -36,7 +36,7 @@ public class DiaryLocat extends HttpServlet {
                  System.out.println("diary locate");
 		ArrayList<Generics> generics =new ArrayList<Generics>();
                 try {
-		generics=DBUtils.DiaryLocate(conn);
+		generics=DBUtils.DiaryLocate(conn, loginedUser);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

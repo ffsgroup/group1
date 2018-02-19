@@ -40,7 +40,7 @@ public class MemberGetImages extends HttpServlet {
                  UserAccount loginedUser = MyUtils.getLoginedUser(session);
 		ArrayList<MemberImages> memberimages =new ArrayList<MemberImages>();
                 try {
-		memberimages=MemUtils.getmemberImages(conn, thisMember, loginedUser.getUserName());
+		memberimages=MemUtils.getmemberImages(conn, thisMember, loginedUser);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

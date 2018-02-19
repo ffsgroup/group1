@@ -42,7 +42,7 @@ public class TaskUpdated extends HttpServlet {
         session.setAttribute("taskDisp", "7");
         ArrayList<Tasks> task = new ArrayList<Tasks>();
         try {
-            task = TaskUtils.getUpdatedTasks(conn, loginedUser.getUserName(), onlyUser);
+            task = TaskUtils.getUpdatedTasks(conn, loginedUser, onlyUser);
         } catch (SQLException e) {
             e.printStackTrace();
             //  errorString = e.getMessage();

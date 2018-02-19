@@ -41,7 +41,7 @@ public class MemberReceiptGet extends HttpServlet {
                  UserAccount loginedUser = MyUtils.getLoginedUser(session);
 		ArrayList<MemberRec> memberrec =new ArrayList<MemberRec>();
                 try {
-		memberrec=MemUtils.getMemberRec(conn, thisMember, loginedUser.getUserName());
+		memberrec=MemUtils.getMemberRec(conn, thisMember, loginedUser);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

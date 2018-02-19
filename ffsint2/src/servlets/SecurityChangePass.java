@@ -44,7 +44,7 @@ public class SecurityChangePass extends HttpServlet {
                  UserAccount loginedUser = MyUtils.getLoginedUser(session);
 		ArrayList<Generics> generic =new ArrayList<Generics>();
                 try {
-		generic=SecureUtils.changePass(conn, name, passw );
+		generic=SecureUtils.changePass(conn, name, passw, loginedUser );
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

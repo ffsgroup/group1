@@ -37,7 +37,7 @@ public class DiaryAddResp extends HttpServlet {
                 
 		ArrayList<Generics> generics =new ArrayList<Generics>();
                 try {
-		generics=DBUtils.AddDiaryResp(conn, loginedUser.getUserName(), thislocat);
+		generics=DBUtils.AddDiaryResp(conn, loginedUser, thislocat);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

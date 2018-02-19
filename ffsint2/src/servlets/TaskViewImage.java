@@ -43,7 +43,7 @@ public class TaskViewImage extends HttpServlet {
 		ArrayList<Tasks> tasks =new ArrayList<Tasks>();
                 try {
                     
-		tasks=TaskUtils.TaskFile(conn, tranid, diaryid);
+		tasks=TaskUtils.TaskFile(conn, tranid, diaryid, loginedUser);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

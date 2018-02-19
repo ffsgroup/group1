@@ -31,8 +31,14 @@ public class DoLoginServlet extends HttpServlet {
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
         String rememberMeStr = request.getParameter("rememberMe");
+        String company = request.getParameter("company");
+                    if (company.equals("Sanlam")) { company = "fas";}
+            if (company.equals("Demo")) { company = "fbs";}
+            if (company.equals("Melville")) { company = "mlv";}
+            if (company.equals("WJ Mitchell")) { company = "wjm";}
+            if (company.equals("Schoonhoven")) { company = "schoonies";}
         boolean remember= "Y".equals(rememberMeStr);
- 
+ System.out.println(userName + " " + company);
          
         UserAccount user = null;
         boolean hasError = false;
@@ -46,12 +52,12 @@ public class DoLoginServlet extends HttpServlet {
             Connection conn = MyUtils.getStoredConnection(request);
             try {
               
-                user = DBUtils.findUser(conn, userName, password);
+                user = DBUtils.findUser(conn, userName, password, company);
                  
                 if (user == null) {
                     hasError = true;
                     errorString = "User Name or password invalid";
-                }
+                } 
             } catch (SQLException e) {
                 e.printStackTrace();
                 hasError = true;
@@ -64,12 +70,12 @@ public class DoLoginServlet extends HttpServlet {
             user = new UserAccount();
             user.setUserName(userName);
             user.setPassword(password);
-             
+            
         
             // Store information in request attribute, before forward.
             request.setAttribute("errorString", errorString);
             request.setAttribute("user", user);
- 
+ request.setAttribute("company", company);
        
             // Forward to /WEB-INF/views/login.jsp
             RequestDispatcher dispatcher //
@@ -83,8 +89,15 @@ public class DoLoginServlet extends HttpServlet {
         // And redirect to userInfo page.
         else {
             HttpSession session = request.getSession();
+
+            
+            user.setcompany(company);
             MyUtils.storeLoginedUser(session, user);
-            session.setAttribute("secureStr" , user.getsecurestr()); 
+            session.setAttribute("secureStr" , user.getsecurestr());
+
+            
+            session.setAttribute("company" , company); 
+            
              // If user checked "Remember me".
             if(remember)  {
                 MyUtils.storeUserCookie(response,user);

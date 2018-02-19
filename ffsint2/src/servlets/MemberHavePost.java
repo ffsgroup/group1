@@ -42,7 +42,7 @@ public class MemberHavePost extends HttpServlet {
                  UserAccount loginedUser = MyUtils.getLoginedUser(session);
 		ArrayList<Generics> generics =new ArrayList<Generics>();
                 try {
-		generics=MemUtils.getMemberHavePost(conn, thisMember, loginedUser.getUserName());
+		generics=MemUtils.getMemberHavePost(conn, thisMember, loginedUser);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

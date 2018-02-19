@@ -39,7 +39,7 @@ public class MemberGetPolType extends HttpServlet {
                  System.out.println("Get Policy Name");
 		ArrayList<Generics> generics =new ArrayList<Generics>();
                 try {
-		generics=MemUtils.getPolicyType(conn);
+		generics=MemUtils.getPolicyType(conn, loginedUser);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

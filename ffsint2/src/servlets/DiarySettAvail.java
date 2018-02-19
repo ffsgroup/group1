@@ -39,7 +39,7 @@ public class DiarySettAvail extends HttpServlet {
                 
 		ArrayList<UserAccount> users =new ArrayList<UserAccount>();
                 try {
-		users=DBUtils.DiaryUsersAvail(conn,loginedUser.getUserName());
+		users=DBUtils.DiaryUsersAvail(conn,loginedUser);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

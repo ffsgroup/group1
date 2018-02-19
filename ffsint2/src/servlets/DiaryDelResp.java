@@ -37,7 +37,7 @@ public class DiaryDelResp extends HttpServlet {
                 
 		ArrayList<Generics> generics =new ArrayList<Generics>();
                 try {
-		generics=DBUtils.getDiaryResp(conn, loginedUser.getUserName(), thislocat);
+		generics=DBUtils.getDiaryResp(conn, loginedUser, thislocat);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

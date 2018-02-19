@@ -39,7 +39,7 @@ public class MemberGetCompanyName extends HttpServlet {
                  System.out.println("Get Company Name");
 		ArrayList<Generics> generics =new ArrayList<Generics>();
                 try {
-		generics=MemUtils.getCompanyName(conn);
+		generics=MemUtils.getCompanyName(conn, loginedUser);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

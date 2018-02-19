@@ -42,7 +42,7 @@ public class MemberGetDepen extends HttpServlet {
                  UserAccount loginedUser = MyUtils.getLoginedUser(session);
 		ArrayList<MemberDepen> memberdepen =new ArrayList<MemberDepen>();
                 try {
-		memberdepen=MemUtils.getMemberDepen(conn, thisMember, loginedUser.getUserName());
+		memberdepen=MemUtils.getMemberDepen(conn, thisMember, loginedUser);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

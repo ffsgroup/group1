@@ -61,7 +61,7 @@ public class DiaryUpdatePeople extends HttpServlet {
                 
         	ArrayList<Generics> generics =new ArrayList<Generics>();
                 try {
-		generics = DBUtils.SavePeople(conn, tranid, userName, duser1, duser2, duser3, duser4, duser5, duser6, duser7, duser8, duser9, duser10, resp1, resp2, resp3, resp4, resp5, resp6, resp7, resp8, resp9, resp10, fromuser);
+		generics = DBUtils.SavePeople(conn, tranid, loginedUser, duser1, duser2, duser3, duser4, duser5, duser6, duser7, duser8, duser9, duser10, resp1, resp2, resp3, resp4, resp5, resp6, resp7, resp8, resp9, resp10, fromuser);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

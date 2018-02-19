@@ -40,7 +40,7 @@ public class MemberGetDebitOrder extends HttpServlet {
                  UserAccount loginedUser = MyUtils.getLoginedUser(session);
 		ArrayList<MemberDebitOrder> memberdebitorder =new ArrayList<MemberDebitOrder>();
                 try {
-		memberdebitorder=MemUtils.getmemberDebitOrder(conn, thisMember, loginedUser.getUserName());
+		memberdebitorder=MemUtils.getmemberDebitOrder(conn, thisMember, loginedUser);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

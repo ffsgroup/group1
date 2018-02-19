@@ -39,7 +39,7 @@ public class MemberGetRecruiter extends HttpServlet {
                  System.out.println("Get Recruiter");
 		ArrayList<Generics> generics =new ArrayList<Generics>();
                 try {
-		generics=MemUtils.getRecruit(conn);
+		generics=MemUtils.getRecruit(conn, loginedUser);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

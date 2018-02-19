@@ -43,7 +43,7 @@ public class MemberClaimGetSumm extends HttpServlet {
         System.out.println("MemberClaimGetSumm " + tranid);
         ArrayList<MemberClaims> claimSumm = new ArrayList<MemberClaims>();
         try {
-            claimSumm = MemUtils.getClaimSumm(conn, loginedUser.getUserName() , tranid);
+            claimSumm = MemUtils.getClaimSumm(conn, loginedUser , tranid);
         } catch (SQLException e) {
             e.printStackTrace();
         }

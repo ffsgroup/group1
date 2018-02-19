@@ -38,7 +38,7 @@ public class SecurityGetBranch extends HttpServlet {
                 
 		ArrayList<Generics> generics =new ArrayList<Generics>();
                 try {
-		generics=SecureUtils.getBranch(conn);
+		generics=SecureUtils.getBranch(conn, loginedUser);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

@@ -40,7 +40,7 @@ public class MemberGetExtraPol extends HttpServlet {
                  UserAccount loginedUser = MyUtils.getLoginedUser(session);
 		ArrayList<MemberExtraPol> member =new ArrayList<MemberExtraPol>();
                 try {
-		member=MemUtils.getMemberExtraPol(conn, thisMember, loginedUser.getUserName());
+		member=MemUtils.getMemberExtraPol(conn, thisMember, loginedUser);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

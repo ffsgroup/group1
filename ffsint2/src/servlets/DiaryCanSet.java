@@ -35,7 +35,7 @@ public class DiaryCanSet extends HttpServlet {
                 
 		ArrayList<Generics> generics =new ArrayList<Generics>();
                 try {
-		generics=DBUtils.getDiarySet(conn, loginedUser.getUserName());
+		generics=DBUtils.getDiarySet(conn, loginedUser);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

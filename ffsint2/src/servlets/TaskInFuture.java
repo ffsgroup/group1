@@ -42,7 +42,7 @@ public class TaskInFuture extends HttpServlet {
         session.setAttribute("taskDisp", "3");
         ArrayList<Tasks> task = new ArrayList<Tasks>();
         try {
-            task = TaskUtils.getTaskInFuture(conn, loginedUser.getUserName(), onlyUser);
+            task = TaskUtils.getTaskInFuture(conn, loginedUser, onlyUser);
         } catch (SQLException e) {
             e.printStackTrace();
             //  errorString = e.getMessage();

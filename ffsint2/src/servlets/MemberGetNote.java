@@ -40,7 +40,7 @@ public class MemberGetNote extends HttpServlet {
                  UserAccount loginedUser = MyUtils.getLoginedUser(session);
 		ArrayList<MemberNote> membernotes =new ArrayList<MemberNote>();
                 try {
-		membernotes=MemUtils.getmemberNotes(conn, thisMember, loginedUser.getUserName());
+		membernotes=MemUtils.getmemberNotes(conn, thisMember, loginedUser);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

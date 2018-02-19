@@ -24,10 +24,10 @@ import java.sql.Connection;
 
 public class MemUtils {
 
-    public static ArrayList<MemberDepen> getMemberActiveDepen(Connection conn, String thisMember, String userName) throws SQLException {
+    public static ArrayList<MemberDepen> getMemberActiveDepen(Connection conn, String thisMember, UserAccount userName) throws SQLException {
 
         System.out.println("getMemberActiveDepen" + thisMember);
-        String sql = "select count(status) from afhank where lidno = ? and status = 'active'";
+        String sql = "select count(status) from " + userName.getcompany() + ".afhank where lidno = ? and status = 'active'";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, thisMember);
 
@@ -43,10 +43,10 @@ public class MemUtils {
         return list;
     }
 
-    public static ArrayList<MemberDebitOrder> getmemberDebitOrder(Connection conn, String thisMember, String userName) throws SQLException {
+    public static ArrayList<MemberDebitOrder> getmemberDebitOrder(Connection conn, String thisMember, UserAccount userName) throws SQLException {
 
         System.out.println("getmemberDebitOrder " + thisMember);
-        String sql = "Select * from tbldebitorder where lidno = ?";
+        String sql = "Select * from " + userName.getcompany() + ".tbldebitorder where lidno = ?";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, thisMember);
 
@@ -87,7 +87,7 @@ public class MemUtils {
         return list;
     }
 
-    public static ArrayList<MemberImages> getmemberVoice(Connection conn, String thisMember, String userName) throws SQLException {
+    public static ArrayList<MemberImages> getmemberVoice(Connection conn, String thisMember, UserAccount userName) throws SQLException {
 
         System.out.println("getmemberVoice " + thisMember);
         String tranid2 = "";
@@ -103,7 +103,7 @@ public class MemUtils {
         if (tranlen > 2) {
             tranid2 = thisMember.substring(thisMember.length() - 2);
         }
-        String sql = "Select tranid,user,description,datemod,imagetype from imagelibrary" + tranid2 + " a where lidno = ? and ((imagetype like 'wav%') or (imagetype like 'wav%')or (imagetype like 'wav%'))";
+        String sql = "Select tranid,user,description,datemod,imagetype from " + userName.getcompany() + ".imagelibrary" + tranid2 + " a where lidno = ? and ((imagetype like 'wav%') or (imagetype like 'wav%')or (imagetype like 'wav%'))";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, thisMember);
 
@@ -135,10 +135,10 @@ public class MemUtils {
         return list;
     }
 
-    public static ArrayList<MemberClaims> getmemberClaims(Connection conn, String thisMember, String userName) throws SQLException {
+    public static ArrayList<MemberClaims> getmemberClaims(Connection conn, String thisMember, UserAccount userName) throws SQLException {
 
         System.out.println("getmemberClaims " + thisMember);
-        String sql = "Select * from claims where lidno = ?";
+        String sql = "Select * from " + userName.getcompany() + ".claims where lidno = ?";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, thisMember);
 
@@ -204,7 +204,7 @@ public class MemUtils {
         return list;
     }
 
-    public static ArrayList<MemberImages> getmemberImages(Connection conn, String thisMember, String userName) throws SQLException {
+    public static ArrayList<MemberImages> getmemberImages(Connection conn, String thisMember, UserAccount userName) throws SQLException {
 
         System.out.println("getmemberImages " + thisMember);
         String tranid2 = "";
@@ -220,7 +220,7 @@ public class MemUtils {
         if (tranlen > 2) {
             tranid2 = thisMember.substring(thisMember.length() - 2);
         }
-        String sql = "Select tranid,user,description,datemod,imagetype from imagelibrary" + tranid2 + " a where lidno = ? and not ((imagetype like 'wav%') or (imagetype like 'wav%')or (imagetype like 'wav%'))";
+        String sql = "Select tranid,user,description,datemod,imagetype from " + userName.getcompany() + ".imagelibrary" + tranid2 + " a where lidno = ? and not ((imagetype like 'wav%') or (imagetype like 'wav%')or (imagetype like 'wav%'))";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, thisMember);
 
@@ -252,10 +252,10 @@ public class MemUtils {
         return list;
     }
 
-    public static ArrayList<MemberNote> getmemberNotes(Connection conn, String thisMember, String userName) throws SQLException {
+    public static ArrayList<MemberNote> getmemberNotes(Connection conn, String thisMember,UserAccount userName) throws SQLException {
 
         System.out.println("getmemberNotes " + thisMember);
-        String sql = "Select * from tblcomments where lidno = ?";
+        String sql = "Select * from " + userName.getcompany() + ".tblcomments where lidno = ?";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, thisMember);
 
@@ -298,10 +298,10 @@ public class MemUtils {
         return list;
     }
 
-    public static ArrayList<MemberDepen> getMemberDepen(Connection conn, String thisMember, String userName) throws SQLException {
+    public static ArrayList<MemberDepen> getMemberDepen(Connection conn, String thisMember, UserAccount userName) throws SQLException {
 
         System.out.println("getMemberDepen " + thisMember);
-        String sql = "Select *,(select genericdescriptioneng from generics where gengroupid = '9' and genericid = afhank.sex) as depensex,(select genericdescriptioneng from generics where gengroupid = '14' and genericid = afhank.verwskap) as relationship from afhank where lidno = ?";
+        String sql = "Select *,(select genericdescriptioneng from " + userName.getcompany() + ".generics where gengroupid = '9' and genericid = afhank.sex) as depensex,(select genericdescriptioneng from " + userName.getcompany() + ".generics where gengroupid = '14' and genericid = afhank.verwskap) as relationship from " + userName.getcompany() + ".afhank where lidno = ?";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, thisMember);
 
@@ -383,8 +383,8 @@ public class MemUtils {
         return list;
     }
 
-    public static ArrayList<Generics> getPolStatus(Connection conn) throws SQLException {
-        String sql = "Select a.GenericDescriptionEng from Generics a where GenGroupId = '10' order by GenericID asc";
+    public static ArrayList<Generics> getPolStatus(Connection conn, UserAccount userName) throws SQLException {
+        String sql = "Select a.GenericDescriptionEng from " + userName.getcompany() + ".Generics a where GenGroupId = '10' order by GenericID asc";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
 
@@ -401,8 +401,8 @@ public class MemUtils {
         return list;
     }
 
-    public static ArrayList<Generics> getPolicyType(Connection conn) throws SQLException {
-        String sql = "Select a.GenericDescriptionEng from Generics a where GenGroupId = '33' order by GenericID asc";
+    public static ArrayList<Generics> getPolicyType(Connection conn, UserAccount userName) throws SQLException {
+        String sql = "Select a.GenericDescriptionEng from " + userName.getcompany() + ".Generics a where GenGroupId = '33' order by GenericID asc";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
 
@@ -419,8 +419,8 @@ public class MemUtils {
         return list;
     }
 
-    public static ArrayList<Generics> getCompanyName(Connection conn) throws SQLException {
-        String sql = "Select a.GenericDescriptionEng from Generics a where GenGroupId = '32' order by GenericID asc";
+    public static ArrayList<Generics> getCompanyName(Connection conn, UserAccount userName) throws SQLException {
+        String sql = "Select a.GenericDescriptionEng from " + userName.getcompany() + ".Generics a where GenGroupId = '32' order by GenericID asc";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
 
@@ -437,8 +437,8 @@ public class MemUtils {
         return list;
     }
 
-    public static ArrayList<Generics> getMarriage(Connection conn) throws SQLException {
-        String sql = "Select a.GenericDescriptionEng from Generics a where GenGroupId = '12' order by GenericID asc";
+    public static ArrayList<Generics> getMarriage(Connection conn, UserAccount userName) throws SQLException {
+        String sql = "Select a.GenericDescriptionEng from " + userName.getcompany() + ".Generics a where GenGroupId = '12' order by GenericID asc";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
 
@@ -455,8 +455,8 @@ public class MemUtils {
         return list;
     }
 
-    public static ArrayList<Generics> getRecruit(Connection conn) throws SQLException {
-        String sql = "Select a.GenericDescriptionEng from Generics a where GenGroupId = '35'";
+    public static ArrayList<Generics> getRecruit(Connection conn, UserAccount userName) throws SQLException {
+        String sql = "Select a.GenericDescriptionEng from " + userName.getcompany() + ".Generics a where GenGroupId = '35'";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
 
@@ -473,10 +473,10 @@ public class MemUtils {
         return list;
     }
 
-    public static ArrayList<Member> getMember(Connection conn, String thisMember, String userName) throws SQLException {
+    public static ArrayList<Member> getMember(Connection conn, String thisMember, UserAccount userName) throws SQLException {
 
         System.out.println("getMember " + thisMember);
-        String sql = "Select * from lededata where lidno = ?";
+        String sql = "Select * from " + userName.getcompany() + ".lededata where lidno = ?";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, thisMember);
 
@@ -747,10 +747,10 @@ public class MemUtils {
         return list;
     }
 
-    public static ArrayList<MemberRec> getMemberRec(Connection conn, String thisMember, String userName) throws SQLException {
+    public static ArrayList<MemberRec> getMemberRec(Connection conn, String thisMember, UserAccount userName) throws SQLException {
 
         System.out.println("getMemberRec " + thisMember);
-        String sql = "Select *,(select genericdescriptioneng from generics where gengroupid = '3' and genericid = lidkwit.betmet) as recpaymet from lidkwit where lidno = ? order by tranid desc";
+        String sql = "Select *,(select genericdescriptioneng from " + userName.getcompany() + ".generics where gengroupid = '3' and genericid = lidkwit.betmet) as recpaymet from " + userName.getcompany() + ".lidkwit where lidno = ? order by tranid desc";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, thisMember);
 
@@ -814,9 +814,9 @@ public class MemUtils {
         return list;
     }
 
-    public static ArrayList<MemberExtraPol> getMemberExtraPol(Connection conn, String thisMember, String loginedUser) throws SQLException {
+    public static ArrayList<MemberExtraPol> getMemberExtraPol(Connection conn, String thisMember, UserAccount userName) throws SQLException {
         System.out.println("getMemberExtraPol " + thisMember);
-        String sql = "Select * from extrapol where mainpol = ?";
+        String sql = "Select * from " + userName.getcompany() + ".extrapol where mainpol = ?";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, thisMember);
@@ -849,9 +849,9 @@ public class MemUtils {
         return list;
     }
 
-    public static ArrayList<Generics> getMemberHavePost(Connection conn, String thisMember, String loginedUser) throws SQLException {
+    public static ArrayList<Generics> getMemberHavePost(Connection conn, String thisMember, UserAccount userName) throws SQLException {
         System.out.println("getMemberHavePost " + thisMember);
-        String sql = "Select * from postsend where lidno = ? and recby = 'Nobody'";
+        String sql = "Select * from " + userName.getcompany() + ".postsend where lidno = ? and recby = 'Nobody'";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, thisMember);
@@ -868,10 +868,10 @@ public class MemUtils {
         return list;
     }
 
-    public static ArrayList<MemberClaims> getClaimSumm(Connection conn, String thisUser, String tranId) throws SQLException {
+    public static ArrayList<MemberClaims> getClaimSumm(Connection conn, UserAccount userName, String tranId) throws SQLException {
         System.out.println("getClaimSumm " + tranId);
 
-        String sql = "Select summid, tranid from claims where claimnr = ?";
+        String sql = "Select summid, tranid from " + userName.getcompany() + ".claims where claimnr = ?";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, tranId);
         ResultSet rs = pstm.executeQuery();
@@ -881,7 +881,7 @@ public class MemUtils {
         if (rs.next()) {
             String ClaimTranId = rs.getString("tranid");
             System.out.println("getClaimSumm found summ " + rs.getString("summid"));
-            String sql1 = "Select * from claimsumm where tranid = ?";
+            String sql1 = "Select * from " + userName.getcompany() + ".claimsumm where tranid = ?";
             PreparedStatement pstm1 = conn.prepareStatement(sql1);
             pstm1.setString(1, rs.getString("summid"));
             ResultSet rs1 = pstm1.executeQuery();
@@ -905,7 +905,7 @@ public class MemUtils {
     public static ArrayList<MemberClaimDoc> getClaimImage(Connection conn, UserAccount thisUser, String tranId) throws SQLException {
         System.out.println("getClaimImage " + tranId);
 
-        String sql1 = "Select summid from claims where claimnr = ?";
+        String sql1 = "Select summid from " + thisUser.getcompany() + ".claims where claimnr = ?";
         PreparedStatement pstm1 = conn.prepareStatement(sql1);
         pstm1.setString(1, tranId);
         ResultSet rs1 = pstm1.executeQuery();
@@ -915,7 +915,7 @@ public class MemUtils {
             summId = rs1.getString("summid");
         }
 
-        String sql = "Select * from claimdoc where claimsumm = ? order by doc1user";
+        String sql = "Select * from " + thisUser.getcompany() + ".claimdoc where claimsumm = ? order by doc1user";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, summId);
         ResultSet rs = pstm.executeQuery();
@@ -937,7 +937,7 @@ public class MemUtils {
     public static MemberClaims getClaimDetails(Connection conn, UserAccount thisUser, String tranId) throws SQLException {
         System.out.println("getClaimDetails " + tranId);
 
-        String sql1 = "Select * from claims where tranid = ?";
+        String sql1 = "Select * from " + thisUser.getcompany() + ".claims where tranid = ?";
         PreparedStatement pstm1 = conn.prepareStatement(sql1);
         pstm1.setString(1, tranId);
         ResultSet rs1 = pstm1.executeQuery();
@@ -994,7 +994,7 @@ public class MemUtils {
             String sStat = "Unknown";
             String sDate = "";
 
-            String sql2 = "select datadr, status, lidtipe,(select genericdescriptioneng from generics where gengroupid='33' and genericid=lededata.lidtipe) as tipe, (select genericdescriptioneng from generics where gengroupid='10' and genericid=lededata.status) as status1 from lededata where lidno = ?";
+            String sql2 = "select datadr, status, lidtipe,(select genericdescriptioneng from " + thisUser.getcompany() + ".generics where gengroupid='33' and genericid=lededata.lidtipe) as tipe, (select genericdescriptioneng from " + thisUser.getcompany() + ".generics where gengroupid='10' and genericid=lededata.status) as status1 from " + thisUser.getcompany() + ".lededata where lidno = ?";
             PreparedStatement pstm2 = conn.prepareStatement(sql2);
             pstm2.setString(1, rs1.getString("lidno"));
             ResultSet rs2 = pstm2.executeQuery();
@@ -1015,7 +1015,7 @@ public class MemUtils {
     public static Member getMemberRecDetails(Connection conn, UserAccount userName, String member) throws SQLException {
 
         System.out.println("getMemberRecDetails " + member);
-        String sql = "Select status, initialpayment, bettot, sur, ini, shortname, lidno, krediet from lededata where lidno = ?";
+        String sql = "Select status, initialpayment, bettot, sur, ini, shortname, lidno, krediet from " + userName.getcompany() + ".lededata where lidno = ?";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, member);
 

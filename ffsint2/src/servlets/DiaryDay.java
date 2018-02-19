@@ -36,7 +36,7 @@ public class DiaryDay extends HttpServlet {
                  UserAccount loginedUser = MyUtils.getLoginedUser(session);
 		ArrayList<Diary> diary =new ArrayList<Diary>();
                 try {
-		diary=DBUtils.getDiary(conn, thisdate, loginedUser.getUserName(), thisUser);
+		diary=DBUtils.getDiary(conn, thisdate, loginedUser, thisUser);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

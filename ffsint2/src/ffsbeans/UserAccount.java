@@ -22,6 +22,7 @@ public class UserAccount {
     private String taskclaim;
     private String taskpay;
     private String myIdea;
+    private String company;
     public UserAccount() {
 
     }
@@ -185,5 +186,11 @@ public class UserAccount {
     public void setmyIdea(String myIdea) {
         this.myIdea = myIdea;
     }
+    public String getcompany() {
+        return company;
+    }
 
+    public void setcompany(String company) {
+        this.company = company;
+    }
 }

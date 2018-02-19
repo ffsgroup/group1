@@ -23,7 +23,10 @@ public class LoginServlet extends HttpServlet {
  
          
         // Forward to /WEB-INF/views/loginView.jsp
-        // (Users can not access directly into JSP pages placed in WEB-INF)        
+        // (Users can not access directly into JSP pages placed in WEB-INF)    
+        String thisComp = request.getParameter("comp");        
+        System.out.println("company " + thisComp);
+        request.setAttribute("company", thisComp);
         RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/loginView.jsp");
          
         dispatcher.forward(request, response);

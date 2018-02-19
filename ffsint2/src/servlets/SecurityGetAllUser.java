@@ -38,7 +38,7 @@ public class SecurityGetAllUser extends HttpServlet {
                  UserAccount loginedUser = MyUtils.getLoginedUser(session);
 		ArrayList<UserAccount> users =new ArrayList<UserAccount>();
                 try {
-		users=SecureUtils.getAllUser(conn, loginedUser.getUserName());
+		users=SecureUtils.getAllUser(conn, loginedUser);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

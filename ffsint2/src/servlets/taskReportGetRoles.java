@@ -40,7 +40,7 @@ public class taskReportGetRoles extends HttpServlet {
                  System.out.println("Get Task Roles");
 		ArrayList<Generics> generics =new ArrayList<Generics>();
                 try {
-		generics=TaskUtils.getTaskReportRoles(conn);
+		generics=TaskUtils.getTaskReportRoles(conn, loginedUser);
                         } catch (SQLException e) {
             e.printStackTrace();
           //  errorString = e.getMessage();

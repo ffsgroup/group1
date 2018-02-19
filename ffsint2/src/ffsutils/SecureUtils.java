@@ -14,9 +14,9 @@ public class SecureUtils {
 
     private static final String ATT_NAME_USER_NAME = "ATTRIBUTE_FOR_STORE_USER_NAME_IN_COOKIE";
 
-public static ArrayList<UserAccount> getAllActiveUser(Connection conn, String Username) throws SQLException {
+public static ArrayList<UserAccount> getAllActiveUser(Connection conn, UserAccount Username) throws SQLException {
         System.out.println("getAllUsers");
-        String sql = "Select code, name, branch, tranid from users where lidno like '1%' order by name";
+        String sql = "Select code, name, branch, tranid from " + Username.getcompany() + ".users where lidno like '1%' order by name";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
 
@@ -33,9 +33,9 @@ public static ArrayList<UserAccount> getAllActiveUser(Connection conn, String Us
         return list;
     }    
     
-    public static ArrayList<UserAccount> getAllUsers(Connection conn, String Username) throws SQLException {
+    public static ArrayList<UserAccount> getAllUsers(Connection conn, UserAccount Username) throws SQLException {
         System.out.println("getAllUsers");
-        String sql = "Select code, name, branch, tranid from users order by name";
+        String sql = "Select code, name, branch, tranid from " + Username.getcompany() + ".users order by name";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
 
@@ -52,9 +52,9 @@ public static ArrayList<UserAccount> getAllActiveUser(Connection conn, String Us
         return list;
     }
 
-    public static ArrayList<UserAccount> getUser(Connection conn, String tranid, String Username) throws SQLException {
+    public static ArrayList<UserAccount> getUser(Connection conn, String tranid, UserAccount Username) throws SQLException {
         System.out.println("getUser " + tranid);
-        String sql = "Select * from users where tranid = ?";
+        String sql = "Select * from " + Username.getcompany() + ".users where tranid = ?";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, tranid);
@@ -76,9 +76,9 @@ public static ArrayList<UserAccount> getAllActiveUser(Connection conn, String Us
         return list;
     }
 
-    public static ArrayList<Generics> getBranch(Connection conn) throws SQLException {
+    public static ArrayList<Generics> getBranch(Connection conn, UserAccount Username) throws SQLException {
         System.out.println("getBranch ");
-        String sql = "Select branchname from branch order by branchname";
+        String sql = "Select branchname from " + Username.getcompany() + ".branch order by branchname";
         PreparedStatement pstm = conn.prepareStatement(sql);
         ResultSet rs = pstm.executeQuery();
         ArrayList<Generics> list = new ArrayList<Generics>();
@@ -90,10 +90,10 @@ public static ArrayList<UserAccount> getAllActiveUser(Connection conn, String Us
         return list;
     }
 
-    public static ArrayList<Generics> createUser(Connection conn, String name, String user, String branch) throws SQLException {
+    public static ArrayList<Generics> createUser(Connection conn, String name, String user, String branch, UserAccount loginedUser) throws SQLException {
         System.out.println("CreateUser " + name);
         String result = "";
-        String sql = "select tranid from users where code = ? or name = ?";
+        String sql = "select tranid from " + loginedUser.getcompany() + ".users where code = ? or name = ?";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, user);
         pstm.setString(2, name);
@@ -102,7 +102,7 @@ public static ArrayList<UserAccount> getAllActiveUser(Connection conn, String Us
         if (rs.next()) {
             result = "user exist";
         } else {
-            String sql2 = "insert into users (code, name, passw, lidno, branch, loggedon, logout, remind1) values(?,?,?,'1000',?,'N','200','Remember to check : Tasks assigned by me')";
+            String sql2 = "insert into " + loginedUser.getcompany() + ".users (code, name, passw, lidno, branch, loggedon, logout, remind1) values(?,?,?,'1000',?,'N','200','Remember to check : Tasks assigned by me')";
             PreparedStatement pstm2 = conn.prepareStatement(sql2);
             pstm2.setString(1, user);
             pstm2.setString(2, name);
@@ -120,9 +120,9 @@ public static ArrayList<UserAccount> getAllActiveUser(Connection conn, String Us
         return list;
     }
 
-    public static ArrayList<UserAccount> getAllUser(Connection conn, String Username) throws SQLException {
+    public static ArrayList<UserAccount> getAllUser(Connection conn, UserAccount Username) throws SQLException {
         System.out.println("getUser");
-        String sql = "Select name from users order by name";
+        String sql = "Select name from " + Username.getcompany() + ".users order by name";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
 
@@ -136,15 +136,15 @@ public static ArrayList<UserAccount> getAllActiveUser(Connection conn, String Us
         return list;
     }
 
-    public static ArrayList<Generics> delUser(Connection conn, String name) throws SQLException {
+    public static ArrayList<Generics> delUser(Connection conn, String name, UserAccount loginedUser) throws SQLException {
         System.out.println("delUser " + name);
         String result = "";
-        String sql = "delete from users where name = ?";
+        String sql = "delete from " + loginedUser.getcompany() + ".users where name = ?";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, name);
         pstm.executeUpdate();
 
-        String sql1 = "select tranid from users where name = ?";
+        String sql1 = "select tranid from " + loginedUser.getcompany() + ".users where name = ?";
         PreparedStatement pstm1 = conn.prepareStatement(sql1);
         pstm1.setString(1, name);
         ResultSet rs = pstm1.executeQuery();
@@ -163,16 +163,16 @@ public static ArrayList<UserAccount> getAllActiveUser(Connection conn, String Us
         return list;
     }
 
-    public static ArrayList<Generics> changePass(Connection conn, String name, String passw) throws SQLException {
+    public static ArrayList<Generics> changePass(Connection conn, String name, String passw, UserAccount Username) throws SQLException {
         System.out.println("ChangePass " + name);
         String result = "";
-        String sql = "update users set passw = ?, expire='2015/01/01' where name = ?";
+        String sql = "update " + Username.getcompany() + ".users set passw = ?, expire='2015/01/01' where name = ?";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, passw);
         pstm.setString(2, name);
         pstm.executeUpdate();
 
-        String sql2 = "select passw from users where name = ?";
+        String sql2 = "select passw from " + Username.getcompany() + ".users where name = ?";
         PreparedStatement pstm2 = conn.prepareStatement(sql2);
         pstm2.setString(1, name);
         ResultSet rs2 = pstm2.executeQuery();
@@ -195,15 +195,15 @@ public static ArrayList<UserAccount> getAllActiveUser(Connection conn, String Us
         return list;
     }
 
-    public static ArrayList<Generics> logoff(Connection conn, String name) throws SQLException {
+    public static ArrayList<Generics> logoff(Connection conn, String name, UserAccount Username) throws SQLException {
         System.out.println("logoff " + name);
         String result = "";
-        String sql = "update users set loggedon = 'N' where name = ?";
+        String sql = "update " + Username.getcompany() + ".users set loggedon = 'N' where name = ?";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, name);
         pstm.executeUpdate();
 
-        String sql2 = "select loggedon from users where name = ?";
+        String sql2 = "select loggedon from " + Username.getcompany() + ".users where name = ?";
         PreparedStatement pstm2 = conn.prepareStatement(sql2);
         pstm2.setString(1, name);
         ResultSet rs2 = pstm2.executeQuery();
@@ -226,10 +226,10 @@ public static ArrayList<UserAccount> getAllActiveUser(Connection conn, String Us
         return list;
     }
     
-        public static ArrayList<Generics> UpdateUser(Connection conn, String name, String secure) throws SQLException {
+        public static ArrayList<Generics> UpdateUser(Connection conn, String name, String secure, UserAccount Username) throws SQLException {
         System.out.println("UpdateUser " + name);
         String result = "";
-        String sql = "update users set lidno = ? where name = ?";
+        String sql = "update " + Username.getcompany() + ".users set lidno = ? where name = ?";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, secure);
         pstm.setString(2, name);
