@@ -32,7 +32,7 @@ public class DoLoginServlet extends HttpServlet {
         String password = request.getParameter("password");
         String rememberMeStr = request.getParameter("rememberMe");
         String company = request.getParameter("company");
-                    if (company.equals("Sanlam")) { company = "fas";}
+                    if (company.equals("Sanlam")) { company = "intrasol";}
             if (company.equals("Demo")) { company = "fbs";}
             if (company.equals("Melville")) { company = "mlv";}
             if (company.equals("WJ Mitchell")) { company = "wjm";}

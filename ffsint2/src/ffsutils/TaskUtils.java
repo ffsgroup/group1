@@ -34,10 +34,10 @@ import org.apache.commons.fileupload.FileItem;
 
 public class TaskUtils extends HttpServlet {
 
-    public static ArrayList<Generics> getTaskReportRoles(Connection conn, UserAccount user ) throws SQLException {
+    public static ArrayList<Generics> getTaskReportRoles(Connection conn, UserAccount user) throws SQLException {
 
         System.out.println("getTaskReportRoles ");
-        
+
         String sql = "Select genericdescriptioneng from " + user.getcompany() + ".generics where gengroupid = 43";
         PreparedStatement pstm = conn.prepareStatement(sql);
         ResultSet rs = pstm.executeQuery();
@@ -289,14 +289,14 @@ public class TaskUtils extends HttpServlet {
                     cal7.setTime(rs.getTimestamp("statusday2"));
                 }
                 String training;
-                if (rs.getString("train") == null ) {
-                 training = "N";   
-                } else {
-                if (rs.getString("train").equals("Y")) {
-                    training = "Y";
-                } else {
+                if (rs.getString("train") == null) {
                     training = "N";
-                }
+                } else {
+                    if (rs.getString("train").equals("Y")) {
+                        training = "Y";
+                    } else {
+                        training = "N";
+                    }
                 }
                 String year7 = Integer.toString(cal7.get(Calendar.YEAR));
                 String month7 = Integer.toString(cal7.get(Calendar.MONTH) + 1);
@@ -692,11 +692,11 @@ public class TaskUtils extends HttpServlet {
                 String revdate = year1 + "/" + month1 + "/" + day1 + " " + hour1 + ":" + minute1;
                 String enddate = year2 + "/" + month2 + "/" + day2 + " " + hour2 + ":" + minute2;
                 String taskstat;
-              //  String taskstat = rs.getString("taskstat");
-              if (rs.getString("taskstat") == null) {
-             taskstat = "Not Started";
-        } else {
-            taskstat = rs.getString("taskstat");
+                //  String taskstat = rs.getString("taskstat");
+                if (rs.getString("taskstat") == null) {
+                    taskstat = "Not Started";
+                } else {
+                    taskstat = rs.getString("taskstat");
                 }
                 String startdate = year3 + "/" + month3 + "/" + day3 + " " + hour3 + ":" + minute3;
 
@@ -712,8 +712,8 @@ public class TaskUtils extends HttpServlet {
                 task.setTaskdate(taskdate);
                 task.setTaskfull(rs.getString("taskfull"));
                 task.setTaskprior(rs.getString("taskprior"));
-              
-             //   task.setTaskstat(rs.getString("taskstat"));
+
+                //   task.setTaskstat(rs.getString("taskstat"));
                 task.setStatusday(statusday);
 
                 String temp1 = Username.getsecurestr();
@@ -723,9 +723,9 @@ public class TaskUtils extends HttpServlet {
                 } else {
                     System.out.println("getTaskOne Security 150=0");
                     String TaskNote = "";
-                    
-                    if (rs.getString("tasknote") != null ) {
-                     TaskNote = rs.getString("tasknote");
+
+                    if (rs.getString("tasknote") != null) {
+                        TaskNote = rs.getString("tasknote");
                     }
                     String TempString = "";
                     Integer TempI = TaskNote.indexOf("http://google.com/maps");
@@ -790,6 +790,14 @@ public class TaskUtils extends HttpServlet {
                 task.setTaskstat13(rs.getString("taskstat13"));
                 task.setTaskstat14(rs.getString("taskstat14"));
                 task.setTaskstat15(rs.getString("taskstat15"));
+                task.setlinkup1(rs.getString("linkup1"));
+                task.setlinkup2(rs.getString("linkup2"));
+                task.setlinkup3(rs.getString("linkup3"));
+                task.setlinkup4(rs.getString("linkup4"));
+                task.setlinkup5(rs.getString("linkup5"));
+                task.setlinkup6(rs.getString("linkup6"));
+                task.setlinkup7(rs.getString("linkup7"));
+                task.setlinkup8(rs.getString("linkup8"));
                 task.setStatusday1(statusday1);
                 task.setStatusday2(statusday2);
                 task.setStatusday3(statusday3);
@@ -1039,11 +1047,11 @@ public class TaskUtils extends HttpServlet {
             String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
             String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
             String taskstat;
-           if (rs.getString("taskstat") == null) {
-             taskstat = "Not Started";
-        } else {
-             taskstat = rs.getString("taskstat");
-                }            
+            if (rs.getString("taskstat") == null) {
+                taskstat = "Not Started";
+            } else {
+                taskstat = rs.getString("taskstat");
+            }
             //String taskstat = rs.getString("taskstat");
             String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
             Tasks task = new Tasks();
@@ -1066,11 +1074,11 @@ public class TaskUtils extends HttpServlet {
             }
             task.setlinkup1(color1);
             String color2 = "black";
-            if ( (Username.equals(rs.getString("taskto1")) && (!"Y".equals(rs.getString("newt1")))) || (Username.equals(rs.getString("taskto2")) && (!"Y".equals(rs.getString("newt2")))) || (Username.equals(rs.getString("taskto3")) && (!"Y".equals(rs.getString("newt3")))) || (Username.equals(rs.getString("taskto4")) && (!"Y".equals(rs.getString("newt4")))) || (Username.equals(rs.getString("taskto5")) && (!"Y".equals(rs.getString("newt5")))) || (Username.equals(rs.getString("taskto6")) && (!"Y".equals(rs.getString("newt6")))) || (Username.equals(rs.getString("taskto7")) && (!"Y".equals(rs.getString("newt7")))) || (Username.equals(rs.getString("taskto8")) && (!"Y".equals(rs.getString("newt8")))) || (Username.equals(rs.getString("taskto9")) && (!"Y".equals(rs.getString("newt9")))) || (Username.equals(rs.getString("taskto10")) && (!"Y".equals(rs.getString("newt10")))) || (Username.equals(rs.getString("taskto11")) && (!"Y".equals(rs.getString("newt11")))) || (Username.equals(rs.getString("taskto12")) && (!"Y".equals(rs.getString("newt12")))) || (Username.equals(rs.getString("taskto13")) && (!"Y".equals(rs.getString("newt13")))) || (Username.equals(rs.getString("taskto14")) && (!"Y".equals(rs.getString("newt14")))) || (Username.equals(rs.getString("taskto15")) && (!"Y".equals(rs.getString("newt15")))) ) {
-             color2 = "green";    
+            if ((Username.equals(rs.getString("taskto1")) && (!"Y".equals(rs.getString("newt1")))) || (Username.equals(rs.getString("taskto2")) && (!"Y".equals(rs.getString("newt2")))) || (Username.equals(rs.getString("taskto3")) && (!"Y".equals(rs.getString("newt3")))) || (Username.equals(rs.getString("taskto4")) && (!"Y".equals(rs.getString("newt4")))) || (Username.equals(rs.getString("taskto5")) && (!"Y".equals(rs.getString("newt5")))) || (Username.equals(rs.getString("taskto6")) && (!"Y".equals(rs.getString("newt6")))) || (Username.equals(rs.getString("taskto7")) && (!"Y".equals(rs.getString("newt7")))) || (Username.equals(rs.getString("taskto8")) && (!"Y".equals(rs.getString("newt8")))) || (Username.equals(rs.getString("taskto9")) && (!"Y".equals(rs.getString("newt9")))) || (Username.equals(rs.getString("taskto10")) && (!"Y".equals(rs.getString("newt10")))) || (Username.equals(rs.getString("taskto11")) && (!"Y".equals(rs.getString("newt11")))) || (Username.equals(rs.getString("taskto12")) && (!"Y".equals(rs.getString("newt12")))) || (Username.equals(rs.getString("taskto13")) && (!"Y".equals(rs.getString("newt13")))) || (Username.equals(rs.getString("taskto14")) && (!"Y".equals(rs.getString("newt14")))) || (Username.equals(rs.getString("taskto15")) && (!"Y".equals(rs.getString("newt15"))))) {
+                color2 = "green";
             }
-task.setlinkup2(color2);
-            
+            task.setlinkup2(color2);
+
             list.add(task);
 
         }
@@ -1187,11 +1195,11 @@ task.setlinkup2(color2);
             String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
             String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
             String taskstat;
-           if (rs.getString("taskstat") == null) {
-             taskstat = "Not Started";
-        } else {
-             taskstat = rs.getString("taskstat");
-                }               
+            if (rs.getString("taskstat") == null) {
+                taskstat = "Not Started";
+            } else {
+                taskstat = rs.getString("taskstat");
+            }
             //String taskstat = rs.getString("taskstat");
             String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
             Tasks task = new Tasks();
@@ -1214,12 +1222,11 @@ task.setlinkup2(color2);
             }
             task.setlinkup1(color1);
 
-
-String color2 = "black";
-            if ( (Username.equals(rs.getString("taskto1")) && (!"Y".equals(rs.getString("newt1")))) || (Username.equals(rs.getString("taskto2")) && (!"Y".equals(rs.getString("newt2")))) || (Username.equals(rs.getString("taskto3")) && (!"Y".equals(rs.getString("newt3")))) || (Username.equals(rs.getString("taskto4")) && (!"Y".equals(rs.getString("newt4")))) || (Username.equals(rs.getString("taskto5")) && (!"Y".equals(rs.getString("newt5")))) || (Username.equals(rs.getString("taskto6")) && (!"Y".equals(rs.getString("newt6")))) || (Username.equals(rs.getString("taskto7")) && (!"Y".equals(rs.getString("newt7")))) || (Username.equals(rs.getString("taskto8")) && (!"Y".equals(rs.getString("newt8")))) || (Username.equals(rs.getString("taskto9")) && (!"Y".equals(rs.getString("newt9")))) || (Username.equals(rs.getString("taskto10")) && (!"Y".equals(rs.getString("newt10")))) || (Username.equals(rs.getString("taskto11")) && (!"Y".equals(rs.getString("newt11")))) || (Username.equals(rs.getString("taskto12")) && (!"Y".equals(rs.getString("newt12")))) || (Username.equals(rs.getString("taskto13")) && (!"Y".equals(rs.getString("newt13")))) || (Username.equals(rs.getString("taskto14")) && (!"Y".equals(rs.getString("newt14")))) || (Username.equals(rs.getString("taskto15")) && (!"Y".equals(rs.getString("newt15")))) ) {
-             color2 = "green";    
+            String color2 = "black";
+            if ((Username.equals(rs.getString("taskto1")) && (!"Y".equals(rs.getString("newt1")))) || (Username.equals(rs.getString("taskto2")) && (!"Y".equals(rs.getString("newt2")))) || (Username.equals(rs.getString("taskto3")) && (!"Y".equals(rs.getString("newt3")))) || (Username.equals(rs.getString("taskto4")) && (!"Y".equals(rs.getString("newt4")))) || (Username.equals(rs.getString("taskto5")) && (!"Y".equals(rs.getString("newt5")))) || (Username.equals(rs.getString("taskto6")) && (!"Y".equals(rs.getString("newt6")))) || (Username.equals(rs.getString("taskto7")) && (!"Y".equals(rs.getString("newt7")))) || (Username.equals(rs.getString("taskto8")) && (!"Y".equals(rs.getString("newt8")))) || (Username.equals(rs.getString("taskto9")) && (!"Y".equals(rs.getString("newt9")))) || (Username.equals(rs.getString("taskto10")) && (!"Y".equals(rs.getString("newt10")))) || (Username.equals(rs.getString("taskto11")) && (!"Y".equals(rs.getString("newt11")))) || (Username.equals(rs.getString("taskto12")) && (!"Y".equals(rs.getString("newt12")))) || (Username.equals(rs.getString("taskto13")) && (!"Y".equals(rs.getString("newt13")))) || (Username.equals(rs.getString("taskto14")) && (!"Y".equals(rs.getString("newt14")))) || (Username.equals(rs.getString("taskto15")) && (!"Y".equals(rs.getString("newt15"))))) {
+                color2 = "green";
             }
-task.setlinkup2(color2);
+            task.setlinkup2(color2);
             list.add(task);
 
         }
@@ -1323,11 +1330,11 @@ task.setlinkup2(color2);
             String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
             String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
             String taskstat;
-           if (rs1.getString("taskstat") == null) {
-             taskstat = "Not Started";
-        } else {
-             taskstat = rs1.getString("taskstat");
-                }               
+            if (rs1.getString("taskstat") == null) {
+                taskstat = "Not Started";
+            } else {
+                taskstat = rs1.getString("taskstat");
+            }
             //String taskstat = rs1.getString("taskstat");
             String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
             Tasks task = new Tasks();
@@ -1350,11 +1357,11 @@ task.setlinkup2(color2);
             }
             task.setlinkup1(color1);
             String color2 = "black";
-            if ( (Username.equals(rs1.getString("taskto1")) && (!"Y".equals(rs1.getString("newt1")))) || (Username.equals(rs1.getString("taskto2")) && (!"Y".equals(rs1.getString("newt2")))) || (Username.equals(rs1.getString("taskto3")) && (!"Y".equals(rs1.getString("newt3")))) || (Username.equals(rs1.getString("taskto4")) && (!"Y".equals(rs1.getString("newt4")))) || (Username.equals(rs1.getString("taskto5")) && (!"Y".equals(rs1.getString("newt5")))) || (Username.equals(rs1.getString("taskto6")) && (!"Y".equals(rs1.getString("newt6")))) || (Username.equals(rs1.getString("taskto7")) && (!"Y".equals(rs1.getString("newt7")))) || (Username.equals(rs1.getString("taskto8")) && (!"Y".equals(rs1.getString("newt8")))) || (Username.equals(rs1.getString("taskto9")) && (!"Y".equals(rs1.getString("newt9")))) || (Username.equals(rs1.getString("taskto10")) && (!"Y".equals(rs1.getString("newt10")))) || (Username.equals(rs1.getString("taskto11")) && (!"Y".equals(rs1.getString("newt11")))) || (Username.equals(rs1.getString("taskto12")) && (!"Y".equals(rs1.getString("newt12")))) || (Username.equals(rs1.getString("taskto13")) && (!"Y".equals(rs1.getString("newt13")))) || (Username.equals(rs1.getString("taskto14")) && (!"Y".equals(rs1.getString("newt14")))) || (Username.equals(rs1.getString("taskto15")) && (!"Y".equals(rs1.getString("newt15")))) ) {
-             color2 = "green";    
+            if ((Username.equals(rs1.getString("taskto1")) && (!"Y".equals(rs1.getString("newt1")))) || (Username.equals(rs1.getString("taskto2")) && (!"Y".equals(rs1.getString("newt2")))) || (Username.equals(rs1.getString("taskto3")) && (!"Y".equals(rs1.getString("newt3")))) || (Username.equals(rs1.getString("taskto4")) && (!"Y".equals(rs1.getString("newt4")))) || (Username.equals(rs1.getString("taskto5")) && (!"Y".equals(rs1.getString("newt5")))) || (Username.equals(rs1.getString("taskto6")) && (!"Y".equals(rs1.getString("newt6")))) || (Username.equals(rs1.getString("taskto7")) && (!"Y".equals(rs1.getString("newt7")))) || (Username.equals(rs1.getString("taskto8")) && (!"Y".equals(rs1.getString("newt8")))) || (Username.equals(rs1.getString("taskto9")) && (!"Y".equals(rs1.getString("newt9")))) || (Username.equals(rs1.getString("taskto10")) && (!"Y".equals(rs1.getString("newt10")))) || (Username.equals(rs1.getString("taskto11")) && (!"Y".equals(rs1.getString("newt11")))) || (Username.equals(rs1.getString("taskto12")) && (!"Y".equals(rs1.getString("newt12")))) || (Username.equals(rs1.getString("taskto13")) && (!"Y".equals(rs1.getString("newt13")))) || (Username.equals(rs1.getString("taskto14")) && (!"Y".equals(rs1.getString("newt14")))) || (Username.equals(rs1.getString("taskto15")) && (!"Y".equals(rs1.getString("newt15"))))) {
+                color2 = "green";
             }
-task.setlinkup2(color2);
-            
+            task.setlinkup2(color2);
+
             list.add(task);
 
         }
@@ -1475,11 +1482,11 @@ task.setlinkup2(color2);
             String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
             String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
             String taskstat;
-           if (rs.getString("taskstat") == null) {
-             taskstat = "Not Started";
-        } else {
-             taskstat = rs.getString("taskstat");
-                }               
+            if (rs.getString("taskstat") == null) {
+                taskstat = "Not Started";
+            } else {
+                taskstat = rs.getString("taskstat");
+            }
             //String taskstat = rs.getString("taskstat");
             String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
             Tasks task = new Tasks();
@@ -1502,11 +1509,11 @@ task.setlinkup2(color2);
             }
             task.setlinkup1(color1);
             String color2 = "black";
-            if ( (Username.equals(rs.getString("taskto1")) && (!"Y".equals(rs.getString("newt1")))) || (Username.equals(rs.getString("taskto2")) && (!"Y".equals(rs.getString("newt2")))) || (Username.equals(rs.getString("taskto3")) && (!"Y".equals(rs.getString("newt3")))) || (Username.equals(rs.getString("taskto4")) && (!"Y".equals(rs.getString("newt4")))) || (Username.equals(rs.getString("taskto5")) && (!"Y".equals(rs.getString("newt5")))) || (Username.equals(rs.getString("taskto6")) && (!"Y".equals(rs.getString("newt6")))) || (Username.equals(rs.getString("taskto7")) && (!"Y".equals(rs.getString("newt7")))) || (Username.equals(rs.getString("taskto8")) && (!"Y".equals(rs.getString("newt8")))) || (Username.equals(rs.getString("taskto9")) && (!"Y".equals(rs.getString("newt9")))) || (Username.equals(rs.getString("taskto10")) && (!"Y".equals(rs.getString("newt10")))) || (Username.equals(rs.getString("taskto11")) && (!"Y".equals(rs.getString("newt11")))) || (Username.equals(rs.getString("taskto12")) && (!"Y".equals(rs.getString("newt12")))) || (Username.equals(rs.getString("taskto13")) && (!"Y".equals(rs.getString("newt13")))) || (Username.equals(rs.getString("taskto14")) && (!"Y".equals(rs.getString("newt14")))) || (Username.equals(rs.getString("taskto15")) && (!"Y".equals(rs.getString("newt15")))) ) {
-             color2 = "green";    
+            if ((Username.equals(rs.getString("taskto1")) && (!"Y".equals(rs.getString("newt1")))) || (Username.equals(rs.getString("taskto2")) && (!"Y".equals(rs.getString("newt2")))) || (Username.equals(rs.getString("taskto3")) && (!"Y".equals(rs.getString("newt3")))) || (Username.equals(rs.getString("taskto4")) && (!"Y".equals(rs.getString("newt4")))) || (Username.equals(rs.getString("taskto5")) && (!"Y".equals(rs.getString("newt5")))) || (Username.equals(rs.getString("taskto6")) && (!"Y".equals(rs.getString("newt6")))) || (Username.equals(rs.getString("taskto7")) && (!"Y".equals(rs.getString("newt7")))) || (Username.equals(rs.getString("taskto8")) && (!"Y".equals(rs.getString("newt8")))) || (Username.equals(rs.getString("taskto9")) && (!"Y".equals(rs.getString("newt9")))) || (Username.equals(rs.getString("taskto10")) && (!"Y".equals(rs.getString("newt10")))) || (Username.equals(rs.getString("taskto11")) && (!"Y".equals(rs.getString("newt11")))) || (Username.equals(rs.getString("taskto12")) && (!"Y".equals(rs.getString("newt12")))) || (Username.equals(rs.getString("taskto13")) && (!"Y".equals(rs.getString("newt13")))) || (Username.equals(rs.getString("taskto14")) && (!"Y".equals(rs.getString("newt14")))) || (Username.equals(rs.getString("taskto15")) && (!"Y".equals(rs.getString("newt15"))))) {
+                color2 = "green";
             }
-task.setlinkup2(color2);
-            
+            task.setlinkup2(color2);
+
             list.add(task);
 
         }
@@ -1627,11 +1634,11 @@ task.setlinkup2(color2);
             String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
             String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
             String taskstat;
-           if (rs.getString("taskstat") == null) {
-             taskstat = "Not Started";
-        } else {
-             taskstat = rs.getString("taskstat");
-                }               
+            if (rs.getString("taskstat") == null) {
+                taskstat = "Not Started";
+            } else {
+                taskstat = rs.getString("taskstat");
+            }
             //String taskstat = rs.getString("taskstat");
             String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
             Tasks task = new Tasks();
@@ -1654,10 +1661,10 @@ task.setlinkup2(color2);
             }
             task.setlinkup1(color1);
             String color2 = "black";
-            if ( (Username.equals(rs.getString("taskto1")) && (!"Y".equals(rs.getString("newt1")))) || (Username.equals(rs.getString("taskto2")) && (!"Y".equals(rs.getString("newt2")))) || (Username.equals(rs.getString("taskto3")) && (!"Y".equals(rs.getString("newt3")))) || (Username.equals(rs.getString("taskto4")) && (!"Y".equals(rs.getString("newt4")))) || (Username.equals(rs.getString("taskto5")) && (!"Y".equals(rs.getString("newt5")))) || (Username.equals(rs.getString("taskto6")) && (!"Y".equals(rs.getString("newt6")))) || (Username.equals(rs.getString("taskto7")) && (!"Y".equals(rs.getString("newt7")))) || (Username.equals(rs.getString("taskto8")) && (!"Y".equals(rs.getString("newt8")))) || (Username.equals(rs.getString("taskto9")) && (!"Y".equals(rs.getString("newt9")))) || (Username.equals(rs.getString("taskto10")) && (!"Y".equals(rs.getString("newt10")))) || (Username.equals(rs.getString("taskto11")) && (!"Y".equals(rs.getString("newt11")))) || (Username.equals(rs.getString("taskto12")) && (!"Y".equals(rs.getString("newt12")))) || (Username.equals(rs.getString("taskto13")) && (!"Y".equals(rs.getString("newt13")))) || (Username.equals(rs.getString("taskto14")) && (!"Y".equals(rs.getString("newt14")))) || (Username.equals(rs.getString("taskto15")) && (!"Y".equals(rs.getString("newt15")))) ) {
-             color2 = "green";    
+            if ((Username.equals(rs.getString("taskto1")) && (!"Y".equals(rs.getString("newt1")))) || (Username.equals(rs.getString("taskto2")) && (!"Y".equals(rs.getString("newt2")))) || (Username.equals(rs.getString("taskto3")) && (!"Y".equals(rs.getString("newt3")))) || (Username.equals(rs.getString("taskto4")) && (!"Y".equals(rs.getString("newt4")))) || (Username.equals(rs.getString("taskto5")) && (!"Y".equals(rs.getString("newt5")))) || (Username.equals(rs.getString("taskto6")) && (!"Y".equals(rs.getString("newt6")))) || (Username.equals(rs.getString("taskto7")) && (!"Y".equals(rs.getString("newt7")))) || (Username.equals(rs.getString("taskto8")) && (!"Y".equals(rs.getString("newt8")))) || (Username.equals(rs.getString("taskto9")) && (!"Y".equals(rs.getString("newt9")))) || (Username.equals(rs.getString("taskto10")) && (!"Y".equals(rs.getString("newt10")))) || (Username.equals(rs.getString("taskto11")) && (!"Y".equals(rs.getString("newt11")))) || (Username.equals(rs.getString("taskto12")) && (!"Y".equals(rs.getString("newt12")))) || (Username.equals(rs.getString("taskto13")) && (!"Y".equals(rs.getString("newt13")))) || (Username.equals(rs.getString("taskto14")) && (!"Y".equals(rs.getString("newt14")))) || (Username.equals(rs.getString("taskto15")) && (!"Y".equals(rs.getString("newt15"))))) {
+                color2 = "green";
             }
-task.setlinkup2(color2);
+            task.setlinkup2(color2);
 
             list.add(task);
 
@@ -1758,11 +1765,11 @@ task.setlinkup2(color2);
             String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
             String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
             String taskstat;
-           if (rs1.getString("taskstat") == null) {
-             taskstat = "Not Started";
-        } else {
-             taskstat = rs1.getString("taskstat");
-                }               
+            if (rs1.getString("taskstat") == null) {
+                taskstat = "Not Started";
+            } else {
+                taskstat = rs1.getString("taskstat");
+            }
             //String taskstat = rs1.getString("taskstat");
             String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
             Tasks task = new Tasks();
@@ -1785,10 +1792,10 @@ task.setlinkup2(color2);
             }
             task.setlinkup1(color1);
             String color2 = "black";
-            if ( (Username.equals(rs.getString("taskto1")) && (!"Y".equals(rs.getString("newt1")))) || (Username.equals(rs.getString("taskto2")) && (!"Y".equals(rs.getString("newt2")))) || (Username.equals(rs.getString("taskto3")) && (!"Y".equals(rs.getString("newt3")))) || (Username.equals(rs.getString("taskto4")) && (!"Y".equals(rs.getString("newt4")))) || (Username.equals(rs.getString("taskto5")) && (!"Y".equals(rs.getString("newt5")))) || (Username.equals(rs.getString("taskto6")) && (!"Y".equals(rs.getString("newt6")))) || (Username.equals(rs.getString("taskto7")) && (!"Y".equals(rs.getString("newt7")))) || (Username.equals(rs.getString("taskto8")) && (!"Y".equals(rs.getString("newt8")))) || (Username.equals(rs.getString("taskto9")) && (!"Y".equals(rs.getString("newt9")))) || (Username.equals(rs.getString("taskto10")) && (!"Y".equals(rs.getString("newt10")))) || (Username.equals(rs.getString("taskto11")) && (!"Y".equals(rs.getString("newt11")))) || (Username.equals(rs.getString("taskto12")) && (!"Y".equals(rs.getString("newt12")))) || (Username.equals(rs.getString("taskto13")) && (!"Y".equals(rs.getString("newt13")))) || (Username.equals(rs.getString("taskto14")) && (!"Y".equals(rs.getString("newt14")))) || (Username.equals(rs.getString("taskto15")) && (!"Y".equals(rs.getString("newt15")))) ) {
-             color2 = "green";    
+            if ((Username.equals(rs.getString("taskto1")) && (!"Y".equals(rs.getString("newt1")))) || (Username.equals(rs.getString("taskto2")) && (!"Y".equals(rs.getString("newt2")))) || (Username.equals(rs.getString("taskto3")) && (!"Y".equals(rs.getString("newt3")))) || (Username.equals(rs.getString("taskto4")) && (!"Y".equals(rs.getString("newt4")))) || (Username.equals(rs.getString("taskto5")) && (!"Y".equals(rs.getString("newt5")))) || (Username.equals(rs.getString("taskto6")) && (!"Y".equals(rs.getString("newt6")))) || (Username.equals(rs.getString("taskto7")) && (!"Y".equals(rs.getString("newt7")))) || (Username.equals(rs.getString("taskto8")) && (!"Y".equals(rs.getString("newt8")))) || (Username.equals(rs.getString("taskto9")) && (!"Y".equals(rs.getString("newt9")))) || (Username.equals(rs.getString("taskto10")) && (!"Y".equals(rs.getString("newt10")))) || (Username.equals(rs.getString("taskto11")) && (!"Y".equals(rs.getString("newt11")))) || (Username.equals(rs.getString("taskto12")) && (!"Y".equals(rs.getString("newt12")))) || (Username.equals(rs.getString("taskto13")) && (!"Y".equals(rs.getString("newt13")))) || (Username.equals(rs.getString("taskto14")) && (!"Y".equals(rs.getString("newt14")))) || (Username.equals(rs.getString("taskto15")) && (!"Y".equals(rs.getString("newt15"))))) {
+                color2 = "green";
             }
-task.setlinkup2(color2);
+            task.setlinkup2(color2);
 
             list.add(task);
 
@@ -1911,11 +1918,11 @@ task.setlinkup2(color2);
             String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
             String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
             String taskstat;
-           if (rs.getString("taskstat") == null) {
-             taskstat = "Not Started";
-        } else {
-             taskstat = rs.getString("taskstat");
-                }               
+            if (rs.getString("taskstat") == null) {
+                taskstat = "Not Started";
+            } else {
+                taskstat = rs.getString("taskstat");
+            }
             //String taskstat = rs.getString("taskstat");
             String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
             Tasks task = new Tasks();
@@ -1938,11 +1945,11 @@ task.setlinkup2(color2);
             }
             task.setlinkup1(color1);
             String color2 = "black";
-            if ( (Username.equals(rs.getString("taskto1")) && (!"Y".equals(rs.getString("newt1")))) || (Username.equals(rs.getString("taskto2")) && (!"Y".equals(rs.getString("newt2")))) || (Username.equals(rs.getString("taskto3")) && (!"Y".equals(rs.getString("newt3")))) || (Username.equals(rs.getString("taskto4")) && (!"Y".equals(rs.getString("newt4")))) || (Username.equals(rs.getString("taskto5")) && (!"Y".equals(rs.getString("newt5")))) || (Username.equals(rs.getString("taskto6")) && (!"Y".equals(rs.getString("newt6")))) || (Username.equals(rs.getString("taskto7")) && (!"Y".equals(rs.getString("newt7")))) || (Username.equals(rs.getString("taskto8")) && (!"Y".equals(rs.getString("newt8")))) || (Username.equals(rs.getString("taskto9")) && (!"Y".equals(rs.getString("newt9")))) || (Username.equals(rs.getString("taskto10")) && (!"Y".equals(rs.getString("newt10")))) || (Username.equals(rs.getString("taskto11")) && (!"Y".equals(rs.getString("newt11")))) || (Username.equals(rs.getString("taskto12")) && (!"Y".equals(rs.getString("newt12")))) || (Username.equals(rs.getString("taskto13")) && (!"Y".equals(rs.getString("newt13")))) || (Username.equals(rs.getString("taskto14")) && (!"Y".equals(rs.getString("newt14")))) || (Username.equals(rs.getString("taskto15")) && (!"Y".equals(rs.getString("newt15")))) ) {
-             color2 = "green";    
+            if ((Username.equals(rs.getString("taskto1")) && (!"Y".equals(rs.getString("newt1")))) || (Username.equals(rs.getString("taskto2")) && (!"Y".equals(rs.getString("newt2")))) || (Username.equals(rs.getString("taskto3")) && (!"Y".equals(rs.getString("newt3")))) || (Username.equals(rs.getString("taskto4")) && (!"Y".equals(rs.getString("newt4")))) || (Username.equals(rs.getString("taskto5")) && (!"Y".equals(rs.getString("newt5")))) || (Username.equals(rs.getString("taskto6")) && (!"Y".equals(rs.getString("newt6")))) || (Username.equals(rs.getString("taskto7")) && (!"Y".equals(rs.getString("newt7")))) || (Username.equals(rs.getString("taskto8")) && (!"Y".equals(rs.getString("newt8")))) || (Username.equals(rs.getString("taskto9")) && (!"Y".equals(rs.getString("newt9")))) || (Username.equals(rs.getString("taskto10")) && (!"Y".equals(rs.getString("newt10")))) || (Username.equals(rs.getString("taskto11")) && (!"Y".equals(rs.getString("newt11")))) || (Username.equals(rs.getString("taskto12")) && (!"Y".equals(rs.getString("newt12")))) || (Username.equals(rs.getString("taskto13")) && (!"Y".equals(rs.getString("newt13")))) || (Username.equals(rs.getString("taskto14")) && (!"Y".equals(rs.getString("newt14")))) || (Username.equals(rs.getString("taskto15")) && (!"Y".equals(rs.getString("newt15"))))) {
+                color2 = "green";
             }
-task.setlinkup2(color2);
-            
+            task.setlinkup2(color2);
+
             list.add(task);
 
         }
@@ -2049,11 +2056,11 @@ task.setlinkup2(color2);
             String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
             String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
             String taskstat;
-           if (rs.getString("taskstat") == null) {
-             taskstat = "Not Started";
-        } else {
-             taskstat = rs.getString("taskstat");
-                }               
+            if (rs.getString("taskstat") == null) {
+                taskstat = "Not Started";
+            } else {
+                taskstat = rs.getString("taskstat");
+            }
             //String taskstat = rs.getString("taskstat");
             String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
             Tasks task = new Tasks();
@@ -2077,11 +2084,11 @@ task.setlinkup2(color2);
             }
             task.setlinkup1(color1);
             String color2 = "black";
-            if ( (Username.equals(rs.getString("taskto1")) && (!"Y".equals(rs.getString("newt1")))) || (Username.equals(rs.getString("taskto2")) && (!"Y".equals(rs.getString("newt2")))) || (Username.equals(rs.getString("taskto3")) && (!"Y".equals(rs.getString("newt3")))) || (Username.equals(rs.getString("taskto4")) && (!"Y".equals(rs.getString("newt4")))) || (Username.equals(rs.getString("taskto5")) && (!"Y".equals(rs.getString("newt5")))) || (Username.equals(rs.getString("taskto6")) && (!"Y".equals(rs.getString("newt6")))) || (Username.equals(rs.getString("taskto7")) && (!"Y".equals(rs.getString("newt7")))) || (Username.equals(rs.getString("taskto8")) && (!"Y".equals(rs.getString("newt8")))) || (Username.equals(rs.getString("taskto9")) && (!"Y".equals(rs.getString("newt9")))) || (Username.equals(rs.getString("taskto10")) && (!"Y".equals(rs.getString("newt10")))) || (Username.equals(rs.getString("taskto11")) && (!"Y".equals(rs.getString("newt11")))) || (Username.equals(rs.getString("taskto12")) && (!"Y".equals(rs.getString("newt12")))) || (Username.equals(rs.getString("taskto13")) && (!"Y".equals(rs.getString("newt13")))) || (Username.equals(rs.getString("taskto14")) && (!"Y".equals(rs.getString("newt14")))) || (Username.equals(rs.getString("taskto15")) && (!"Y".equals(rs.getString("newt15")))) ) {
-             color2 = "green";    
+            if ((Username.equals(rs.getString("taskto1")) && (!"Y".equals(rs.getString("newt1")))) || (Username.equals(rs.getString("taskto2")) && (!"Y".equals(rs.getString("newt2")))) || (Username.equals(rs.getString("taskto3")) && (!"Y".equals(rs.getString("newt3")))) || (Username.equals(rs.getString("taskto4")) && (!"Y".equals(rs.getString("newt4")))) || (Username.equals(rs.getString("taskto5")) && (!"Y".equals(rs.getString("newt5")))) || (Username.equals(rs.getString("taskto6")) && (!"Y".equals(rs.getString("newt6")))) || (Username.equals(rs.getString("taskto7")) && (!"Y".equals(rs.getString("newt7")))) || (Username.equals(rs.getString("taskto8")) && (!"Y".equals(rs.getString("newt8")))) || (Username.equals(rs.getString("taskto9")) && (!"Y".equals(rs.getString("newt9")))) || (Username.equals(rs.getString("taskto10")) && (!"Y".equals(rs.getString("newt10")))) || (Username.equals(rs.getString("taskto11")) && (!"Y".equals(rs.getString("newt11")))) || (Username.equals(rs.getString("taskto12")) && (!"Y".equals(rs.getString("newt12")))) || (Username.equals(rs.getString("taskto13")) && (!"Y".equals(rs.getString("newt13")))) || (Username.equals(rs.getString("taskto14")) && (!"Y".equals(rs.getString("newt14")))) || (Username.equals(rs.getString("taskto15")) && (!"Y".equals(rs.getString("newt15"))))) {
+                color2 = "green";
             }
-task.setlinkup2(color2);
-            
+            task.setlinkup2(color2);
+
             list.add(task);
 
         }
@@ -2203,11 +2210,11 @@ task.setlinkup2(color2);
             String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
             String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
             String taskstat;
-           if (rs.getString("taskstat") == null) {
-             taskstat = "Not Started";
-        } else {
-             taskstat = rs.getString("taskstat");
-                }               
+            if (rs.getString("taskstat") == null) {
+                taskstat = "Not Started";
+            } else {
+                taskstat = rs.getString("taskstat");
+            }
             //String taskstat = rs.getString("taskstat");
             String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
             Tasks task = new Tasks();
@@ -2230,11 +2237,11 @@ task.setlinkup2(color2);
             }
             task.setlinkup1(color1);
             String color2 = "black";
-            if ( (Username.equals(rs.getString("taskto1")) && (!"Y".equals(rs.getString("newt1")))) || (Username.equals(rs.getString("taskto2")) && (!"Y".equals(rs.getString("newt2")))) || (Username.equals(rs.getString("taskto3")) && (!"Y".equals(rs.getString("newt3")))) || (Username.equals(rs.getString("taskto4")) && (!"Y".equals(rs.getString("newt4")))) || (Username.equals(rs.getString("taskto5")) && (!"Y".equals(rs.getString("newt5")))) || (Username.equals(rs.getString("taskto6")) && (!"Y".equals(rs.getString("newt6")))) || (Username.equals(rs.getString("taskto7")) && (!"Y".equals(rs.getString("newt7")))) || (Username.equals(rs.getString("taskto8")) && (!"Y".equals(rs.getString("newt8")))) || (Username.equals(rs.getString("taskto9")) && (!"Y".equals(rs.getString("newt9")))) || (Username.equals(rs.getString("taskto10")) && (!"Y".equals(rs.getString("newt10")))) || (Username.equals(rs.getString("taskto11")) && (!"Y".equals(rs.getString("newt11")))) || (Username.equals(rs.getString("taskto12")) && (!"Y".equals(rs.getString("newt12")))) || (Username.equals(rs.getString("taskto13")) && (!"Y".equals(rs.getString("newt13")))) || (Username.equals(rs.getString("taskto14")) && (!"Y".equals(rs.getString("newt14")))) || (Username.equals(rs.getString("taskto15")) && (!"Y".equals(rs.getString("newt15")))) ) {
-             color2 = "green";    
+            if ((Username.equals(rs.getString("taskto1")) && (!"Y".equals(rs.getString("newt1")))) || (Username.equals(rs.getString("taskto2")) && (!"Y".equals(rs.getString("newt2")))) || (Username.equals(rs.getString("taskto3")) && (!"Y".equals(rs.getString("newt3")))) || (Username.equals(rs.getString("taskto4")) && (!"Y".equals(rs.getString("newt4")))) || (Username.equals(rs.getString("taskto5")) && (!"Y".equals(rs.getString("newt5")))) || (Username.equals(rs.getString("taskto6")) && (!"Y".equals(rs.getString("newt6")))) || (Username.equals(rs.getString("taskto7")) && (!"Y".equals(rs.getString("newt7")))) || (Username.equals(rs.getString("taskto8")) && (!"Y".equals(rs.getString("newt8")))) || (Username.equals(rs.getString("taskto9")) && (!"Y".equals(rs.getString("newt9")))) || (Username.equals(rs.getString("taskto10")) && (!"Y".equals(rs.getString("newt10")))) || (Username.equals(rs.getString("taskto11")) && (!"Y".equals(rs.getString("newt11")))) || (Username.equals(rs.getString("taskto12")) && (!"Y".equals(rs.getString("newt12")))) || (Username.equals(rs.getString("taskto13")) && (!"Y".equals(rs.getString("newt13")))) || (Username.equals(rs.getString("taskto14")) && (!"Y".equals(rs.getString("newt14")))) || (Username.equals(rs.getString("taskto15")) && (!"Y".equals(rs.getString("newt15"))))) {
+                color2 = "green";
             }
-task.setlinkup2(color2);
-            
+            task.setlinkup2(color2);
+
             list.add(task);
 
         }
@@ -2338,11 +2345,11 @@ task.setlinkup2(color2);
             String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
             String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
             String taskstat;
-           if (rs1.getString("taskstat") == null) {
-             taskstat = "Not Started";
-        } else {
-             taskstat = rs1.getString("taskstat");
-                }               
+            if (rs1.getString("taskstat") == null) {
+                taskstat = "Not Started";
+            } else {
+                taskstat = rs1.getString("taskstat");
+            }
             //String taskstat = rs1.getString("taskstat");
             String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
             Tasks task = new Tasks();
@@ -2365,13 +2372,12 @@ task.setlinkup2(color2);
             }
             task.setlinkup1(color1);
 
-
-String color2 = "black";
-            if ( (Username.equals(rs1.getString("taskto1")) && (!"Y".equals(rs1.getString("newt1")))) || (Username.equals(rs1.getString("taskto2")) && (!"Y".equals(rs1.getString("newt2")))) || (Username.equals(rs1.getString("taskto3")) && (!"Y".equals(rs1.getString("newt3")))) || (Username.equals(rs1.getString("taskto4")) && (!"Y".equals(rs1.getString("newt4")))) || (Username.equals(rs1.getString("taskto5")) && (!"Y".equals(rs1.getString("newt5")))) || (Username.equals(rs1.getString("taskto6")) && (!"Y".equals(rs1.getString("newt6")))) || (Username.equals(rs1.getString("taskto7")) && (!"Y".equals(rs1.getString("newt7")))) || (Username.equals(rs1.getString("taskto8")) && (!"Y".equals(rs1.getString("newt8")))) || (Username.equals(rs1.getString("taskto9")) && (!"Y".equals(rs1.getString("newt9")))) || (Username.equals(rs1.getString("taskto10")) && (!"Y".equals(rs1.getString("newt10")))) || (Username.equals(rs1.getString("taskto11")) && (!"Y".equals(rs1.getString("newt11")))) || (Username.equals(rs1.getString("taskto12")) && (!"Y".equals(rs1.getString("newt12")))) || (Username.equals(rs1.getString("taskto13")) && (!"Y".equals(rs1.getString("newt13")))) || (Username.equals(rs1.getString("taskto14")) && (!"Y".equals(rs1.getString("newt14")))) || (Username.equals(rs1.getString("taskto15")) && (!"Y".equals(rs1.getString("newt15")))) ) {
-             color2 = "green";    
+            String color2 = "black";
+            if ((Username.equals(rs1.getString("taskto1")) && (!"Y".equals(rs1.getString("newt1")))) || (Username.equals(rs1.getString("taskto2")) && (!"Y".equals(rs1.getString("newt2")))) || (Username.equals(rs1.getString("taskto3")) && (!"Y".equals(rs1.getString("newt3")))) || (Username.equals(rs1.getString("taskto4")) && (!"Y".equals(rs1.getString("newt4")))) || (Username.equals(rs1.getString("taskto5")) && (!"Y".equals(rs1.getString("newt5")))) || (Username.equals(rs1.getString("taskto6")) && (!"Y".equals(rs1.getString("newt6")))) || (Username.equals(rs1.getString("taskto7")) && (!"Y".equals(rs1.getString("newt7")))) || (Username.equals(rs1.getString("taskto8")) && (!"Y".equals(rs1.getString("newt8")))) || (Username.equals(rs1.getString("taskto9")) && (!"Y".equals(rs1.getString("newt9")))) || (Username.equals(rs1.getString("taskto10")) && (!"Y".equals(rs1.getString("newt10")))) || (Username.equals(rs1.getString("taskto11")) && (!"Y".equals(rs1.getString("newt11")))) || (Username.equals(rs1.getString("taskto12")) && (!"Y".equals(rs1.getString("newt12")))) || (Username.equals(rs1.getString("taskto13")) && (!"Y".equals(rs1.getString("newt13")))) || (Username.equals(rs1.getString("taskto14")) && (!"Y".equals(rs1.getString("newt14")))) || (Username.equals(rs1.getString("taskto15")) && (!"Y".equals(rs1.getString("newt15"))))) {
+                color2 = "green";
             }
-task.setlinkup2(color2);
-            
+            task.setlinkup2(color2);
+
             list.add(task);
 
         }
@@ -2381,7 +2387,7 @@ task.setlinkup2(color2);
 
 //    Task Assined to Me
     public static ArrayList<Tasks> getTask(Connection conn, UserAccount Username, String onlyUser) throws SQLException {
-      System.out.println("getTask " + Username + " " + onlyUser);
+        System.out.println("getTask " + Username + " " + onlyUser);
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
         Calendar cal7 = Calendar.getInstance();
@@ -2495,12 +2501,13 @@ task.setlinkup2(color2);
             String taskfrom = rs.getString("taskfrom");
             String description = rs.getString("description");
             String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
-                        String taskstat;
-           if (rs.getString("taskstat") == null) {
-             taskstat = "Not Started";
-        } else {
-             taskstat = rs.getString("taskstat");
-                }   String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
+            String taskstat;
+            if (rs.getString("taskstat") == null) {
+                taskstat = "Not Started";
+            } else {
+                taskstat = rs.getString("taskstat");
+            }
+            String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
             //String taskstat = rs.getString("taskstat");
             String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
 
@@ -2536,11 +2543,11 @@ task.setlinkup2(color2);
             }
             task.setlinkup1(color1);
 //            System.out.println("getTask " + color1 );
-            if ( (Username.equals(rs.getString("taskto1")) && (!"Y".equals(rs.getString("newt1")))) || (Username.equals(rs.getString("taskto2")) && (!"Y".equals(rs.getString("newt2")))) || (Username.equals(rs.getString("taskto3")) && (!"Y".equals(rs.getString("newt3")))) || (Username.equals(rs.getString("taskto4")) && (!"Y".equals(rs.getString("newt4")))) || (Username.equals(rs.getString("taskto5")) && (!"Y".equals(rs.getString("newt5")))) || (Username.equals(rs.getString("taskto6")) && (!"Y".equals(rs.getString("newt6")))) || (Username.equals(rs.getString("taskto7")) && (!"Y".equals(rs.getString("newt7")))) || (Username.equals(rs.getString("taskto8")) && (!"Y".equals(rs.getString("newt8")))) || (Username.equals(rs.getString("taskto9")) && (!"Y".equals(rs.getString("newt9")))) || (Username.equals(rs.getString("taskto10")) && (!"Y".equals(rs.getString("newt10")))) || (Username.equals(rs.getString("taskto11")) && (!"Y".equals(rs.getString("newt11")))) || (Username.equals(rs.getString("taskto12")) && (!"Y".equals(rs.getString("newt12")))) || (Username.equals(rs.getString("taskto13")) && (!"Y".equals(rs.getString("newt13")))) || (Username.equals(rs.getString("taskto14")) && (!"Y".equals(rs.getString("newt14")))) || (Username.equals(rs.getString("taskto15")) && (!"Y".equals(rs.getString("newt15")))) ) {
-             color2 = "green";    
+            if ((Username.equals(rs.getString("taskto1")) && (!"Y".equals(rs.getString("newt1")))) || (Username.equals(rs.getString("taskto2")) && (!"Y".equals(rs.getString("newt2")))) || (Username.equals(rs.getString("taskto3")) && (!"Y".equals(rs.getString("newt3")))) || (Username.equals(rs.getString("taskto4")) && (!"Y".equals(rs.getString("newt4")))) || (Username.equals(rs.getString("taskto5")) && (!"Y".equals(rs.getString("newt5")))) || (Username.equals(rs.getString("taskto6")) && (!"Y".equals(rs.getString("newt6")))) || (Username.equals(rs.getString("taskto7")) && (!"Y".equals(rs.getString("newt7")))) || (Username.equals(rs.getString("taskto8")) && (!"Y".equals(rs.getString("newt8")))) || (Username.equals(rs.getString("taskto9")) && (!"Y".equals(rs.getString("newt9")))) || (Username.equals(rs.getString("taskto10")) && (!"Y".equals(rs.getString("newt10")))) || (Username.equals(rs.getString("taskto11")) && (!"Y".equals(rs.getString("newt11")))) || (Username.equals(rs.getString("taskto12")) && (!"Y".equals(rs.getString("newt12")))) || (Username.equals(rs.getString("taskto13")) && (!"Y".equals(rs.getString("newt13")))) || (Username.equals(rs.getString("taskto14")) && (!"Y".equals(rs.getString("newt14")))) || (Username.equals(rs.getString("taskto15")) && (!"Y".equals(rs.getString("newt15"))))) {
+                color2 = "green";
             }
             task.setlinkup2(color2);
-            
+
             list.add(task);
 
         }
@@ -2640,11 +2647,11 @@ task.setlinkup2(color2);
             String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
             String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
             String taskstat;
-           if (rs1.getString("taskstat") == null) {
-             taskstat = "Not Started";
-        } else {
-             taskstat = rs1.getString("taskstat");
-                }               
+            if (rs1.getString("taskstat") == null) {
+                taskstat = "Not Started";
+            } else {
+                taskstat = rs1.getString("taskstat");
+            }
             //String taskstat = rs1.getString("taskstat");
             String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
             Tasks task = new Tasks();
@@ -2667,12 +2674,11 @@ task.setlinkup2(color2);
             }
             task.setlinkup1(color1);
 
-
-String color2 = "black";
-            if ( (Username.equals(rs1.getString("taskto1")) && (!"Y".equals(rs1.getString("newt1")))) || (Username.equals(rs1.getString("taskto2")) && (!"Y".equals(rs1.getString("newt2")))) || (Username.equals(rs1.getString("taskto3")) && (!"Y".equals(rs1.getString("newt3")))) || (Username.equals(rs1.getString("taskto4")) && (!"Y".equals(rs1.getString("newt4")))) || (Username.equals(rs1.getString("taskto5")) && (!"Y".equals(rs1.getString("newt5")))) || (Username.equals(rs1.getString("taskto6")) && (!"Y".equals(rs1.getString("newt6")))) || (Username.equals(rs1.getString("taskto7")) && (!"Y".equals(rs1.getString("newt7")))) || (Username.equals(rs1.getString("taskto8")) && (!"Y".equals(rs1.getString("newt8")))) || (Username.equals(rs1.getString("taskto9")) && (!"Y".equals(rs1.getString("newt9")))) || (Username.equals(rs1.getString("taskto10")) && (!"Y".equals(rs1.getString("newt10")))) || (Username.equals(rs1.getString("taskto11")) && (!"Y".equals(rs1.getString("newt11")))) || (Username.equals(rs1.getString("taskto12")) && (!"Y".equals(rs1.getString("newt12")))) || (Username.equals(rs1.getString("taskto13")) && (!"Y".equals(rs1.getString("newt13")))) || (Username.equals(rs1.getString("taskto14")) && (!"Y".equals(rs1.getString("newt14")))) || (Username.equals(rs1.getString("taskto15")) && (!"Y".equals(rs1.getString("newt15")))) ) {
-             color2 = "green";    
+            String color2 = "black";
+            if ((Username.equals(rs1.getString("taskto1")) && (!"Y".equals(rs1.getString("newt1")))) || (Username.equals(rs1.getString("taskto2")) && (!"Y".equals(rs1.getString("newt2")))) || (Username.equals(rs1.getString("taskto3")) && (!"Y".equals(rs1.getString("newt3")))) || (Username.equals(rs1.getString("taskto4")) && (!"Y".equals(rs1.getString("newt4")))) || (Username.equals(rs1.getString("taskto5")) && (!"Y".equals(rs1.getString("newt5")))) || (Username.equals(rs1.getString("taskto6")) && (!"Y".equals(rs1.getString("newt6")))) || (Username.equals(rs1.getString("taskto7")) && (!"Y".equals(rs1.getString("newt7")))) || (Username.equals(rs1.getString("taskto8")) && (!"Y".equals(rs1.getString("newt8")))) || (Username.equals(rs1.getString("taskto9")) && (!"Y".equals(rs1.getString("newt9")))) || (Username.equals(rs1.getString("taskto10")) && (!"Y".equals(rs1.getString("newt10")))) || (Username.equals(rs1.getString("taskto11")) && (!"Y".equals(rs1.getString("newt11")))) || (Username.equals(rs1.getString("taskto12")) && (!"Y".equals(rs1.getString("newt12")))) || (Username.equals(rs1.getString("taskto13")) && (!"Y".equals(rs1.getString("newt13")))) || (Username.equals(rs1.getString("taskto14")) && (!"Y".equals(rs1.getString("newt14")))) || (Username.equals(rs1.getString("taskto15")) && (!"Y".equals(rs1.getString("newt15"))))) {
+                color2 = "green";
             }
-task.setlinkup2(color2);
+            task.setlinkup2(color2);
 
             list.add(task);
 
@@ -2783,10 +2789,10 @@ task.setlinkup2(color2);
             String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
             String taskstat;
             if (rs.getString("taskstat") == null) {
-             taskstat = "Not Started";
-        } else {
-            taskstat = rs.getString("taskstat");
-                }
+                taskstat = "Not Started";
+            } else {
+                taskstat = rs.getString("taskstat");
+            }
             String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
             Tasks task = new Tasks();
             task.setTranid(tranid);
@@ -2809,11 +2815,11 @@ task.setlinkup2(color2);
             }
             task.setlinkup1(color1);
             String color2 = "black";
-            if ( (Username.equals(rs.getString("taskto1")) && (!"Y".equals(rs.getString("newt1")))) || (Username.equals(rs.getString("taskto2")) && (!"Y".equals(rs.getString("newt2")))) || (Username.equals(rs.getString("taskto3")) && (!"Y".equals(rs.getString("newt3")))) || (Username.equals(rs.getString("taskto4")) && (!"Y".equals(rs.getString("newt4")))) || (Username.equals(rs.getString("taskto5")) && (!"Y".equals(rs.getString("newt5")))) || (Username.equals(rs.getString("taskto6")) && (!"Y".equals(rs.getString("newt6")))) || (Username.equals(rs.getString("taskto7")) && (!"Y".equals(rs.getString("newt7")))) || (Username.equals(rs.getString("taskto8")) && (!"Y".equals(rs.getString("newt8")))) || (Username.equals(rs.getString("taskto9")) && (!"Y".equals(rs.getString("newt9")))) || (Username.equals(rs.getString("taskto10")) && (!"Y".equals(rs.getString("newt10")))) || (Username.equals(rs.getString("taskto11")) && (!"Y".equals(rs.getString("newt11")))) || (Username.equals(rs.getString("taskto12")) && (!"Y".equals(rs.getString("newt12")))) || (Username.equals(rs.getString("taskto13")) && (!"Y".equals(rs.getString("newt13")))) || (Username.equals(rs.getString("taskto14")) && (!"Y".equals(rs.getString("newt14")))) || (Username.equals(rs.getString("taskto15")) && (!"Y".equals(rs.getString("newt15")))) ) {
-             color2 = "green";    
+            if ((Username.equals(rs.getString("taskto1")) && (!"Y".equals(rs.getString("newt1")))) || (Username.equals(rs.getString("taskto2")) && (!"Y".equals(rs.getString("newt2")))) || (Username.equals(rs.getString("taskto3")) && (!"Y".equals(rs.getString("newt3")))) || (Username.equals(rs.getString("taskto4")) && (!"Y".equals(rs.getString("newt4")))) || (Username.equals(rs.getString("taskto5")) && (!"Y".equals(rs.getString("newt5")))) || (Username.equals(rs.getString("taskto6")) && (!"Y".equals(rs.getString("newt6")))) || (Username.equals(rs.getString("taskto7")) && (!"Y".equals(rs.getString("newt7")))) || (Username.equals(rs.getString("taskto8")) && (!"Y".equals(rs.getString("newt8")))) || (Username.equals(rs.getString("taskto9")) && (!"Y".equals(rs.getString("newt9")))) || (Username.equals(rs.getString("taskto10")) && (!"Y".equals(rs.getString("newt10")))) || (Username.equals(rs.getString("taskto11")) && (!"Y".equals(rs.getString("newt11")))) || (Username.equals(rs.getString("taskto12")) && (!"Y".equals(rs.getString("newt12")))) || (Username.equals(rs.getString("taskto13")) && (!"Y".equals(rs.getString("newt13")))) || (Username.equals(rs.getString("taskto14")) && (!"Y".equals(rs.getString("newt14")))) || (Username.equals(rs.getString("taskto15")) && (!"Y".equals(rs.getString("newt15"))))) {
+                color2 = "green";
             }
-task.setlinkup2(color2);
-            
+            task.setlinkup2(color2);
+
             list.add(task);
 
         }
@@ -2821,7 +2827,7 @@ task.setlinkup2(color2);
         return list;
     }
 
-    public static ArrayList<Generics> taskUpdate(Connection conn, UserAccount Username, String tranid, String recur1, String recur3, String recur4, String recur5, String recur6, String recur7, String recur8, String recur9, String recur10, String ir, String tasksumm, String taskfull, String recur13, String recur11, String recur12, String sdate, String rdate, String edate, String prior, String stats, String recur2, String taskTo1, String taskTo2, String taskTo3, String taskTo4, String taskTo5, String taskTo6, String taskTo7, String taskTo8, String taskTo9, String taskTo10, String taskTo11, String taskTo12, String taskTo13, String taskTo14, String taskTo15, String fromUser, String train) throws SQLException {
+    public static ArrayList<Generics> taskUpdate(Connection conn, UserAccount Username, String tranid, String recur1, String recur3, String recur4, String recur5, String recur6, String recur7, String recur8, String recur9, String recur10, String ir, String tasksumm, String taskfull, String recur13, String recur11, String recur12, String sdate, String rdate, String edate, String prior, String stats, String recur2, String taskTo1, String taskTo2, String taskTo3, String taskTo4, String taskTo5, String taskTo6, String taskTo7, String taskTo8, String taskTo9, String taskTo10, String taskTo11, String taskTo12, String taskTo13, String taskTo14, String taskTo15, String fromUser, String train, String link) throws SQLException {
         System.out.println("taskUpdate " + tranid + " " + train);
         ArrayList<Generics> list = new ArrayList<Generics>();
         String result = "not updated";
@@ -2946,8 +2952,53 @@ task.setlinkup2(color2);
             newPstm.setString(40, "Not Started");
 
             newPstm.executeUpdate();
-
             result = "task created";
+
+            if (link != "0") {
+                String sqlL = "select * from " + Username.getcompany() + ".tasks where tranid = ?";
+                PreparedStatement pstmL = conn.prepareStatement(sqlL);
+                pstmL.setString(1, link);
+                ResultSet rsL = pstmL.executeQuery();
+
+                if (rsL.next()) {
+                    String thisLink = "";
+                    if (rsL.getString("linkup1") == null) {
+                        thisLink = "linkup1";
+                    } else if (rsL.getString("linkup2") == null) {
+                        thisLink = "linkup2";
+                    } else if (rsL.getString("linkup3") == null) {
+                        thisLink = "linkup3";
+                    } else if (rsL.getString("linkup4") == null) {
+                        thisLink = "linkup4";
+                    } else if (rsL.getString("linkup5") == null) {
+                        thisLink = "linkup5";
+                    } else if (rsL.getString("linkup6") == null) {
+                        thisLink = "linkup6";
+                    } else if (rsL.getString("linkup7") == null) {
+                        thisLink = "linkup7";
+                    } else if (rsL.getString("linkup8") == null) {
+                        thisLink = "linkup8";
+                    } else if (rsL.getString("linkup9") == null) {
+                        thisLink = "linkup9";
+                    } else if (rsL.getString("linkup10") == null) {
+                        thisLink = "linkup10";
+                    }
+                    if (thisLink != "") {
+                        String sqlGet = "select tranid from " + Username.getcompany() + ".tasks where taskfrom = '" + fromUser + "' and description = '" + tasksumm + "' order by tranid desc";
+                        PreparedStatement pstmGet = conn.prepareStatement(sqlGet);
+                        ResultSet rsGet = pstmGet.executeQuery();
+                        String topTask = "";
+                        if (rsGet.next()) {
+                            topTask = rsGet.getString("tranid");
+                        }
+                        String sqlUpd = "update " + Username.getcompany() + ".tasks set " + thisLink + " ='" + topTask + "' where tranid = '" + link + "'";
+                        PreparedStatement pstmUpLink = conn.prepareStatement(sqlUpd);
+                        pstmUpLink.executeUpdate();
+                    }
+                }
+
+            }
+
         } else {
 
             String sql = "select taskfull,tasknote, taskfrom,irnr,taskto1, taskto2, taskto3, taskto4, taskto5, taskto6, taskto7, taskto8, taskto9, taskto10,taskto11, taskto12, taskto13, taskto14, taskto15 from " + Username.getcompany() + ".tasks where tranid = ?";
@@ -3043,7 +3094,7 @@ task.setlinkup2(color2);
                     pstm1.executeUpdate();
                     result = "success";
                 }
-                                if (rs.getString("taskto3").equals(Username.getUserName())) {
+                if (rs.getString("taskto3").equals(Username.getUserName())) {
                     String sql1 = "update " + Username.getcompany() + ".tasks set taskstat3 = ? , task3date=current_timestamp where tranid = ?";
                     PreparedStatement pstm1 = conn.prepareStatement(sql1);
                     pstm1.setString(1, stats);
@@ -3067,7 +3118,7 @@ task.setlinkup2(color2);
                     pstm1.executeUpdate();
                     result = "success";
                 }
-                                if (rs.getString("taskto6").equals(Username.getUserName())) {
+                if (rs.getString("taskto6").equals(Username.getUserName())) {
                     String sql1 = "update " + Username.getcompany() + ".tasks set taskstat6 = ? , task6date=current_timestamp where tranid = ?";
                     PreparedStatement pstm1 = conn.prepareStatement(sql1);
                     pstm1.setString(1, stats);
@@ -3091,7 +3142,7 @@ task.setlinkup2(color2);
                     pstm1.executeUpdate();
                     result = "success";
                 }
-                                if (rs.getString("taskto9").equals(Username.getUserName())) {
+                if (rs.getString("taskto9").equals(Username.getUserName())) {
                     String sql1 = "update " + Username.getcompany() + ".tasks set taskstat9 = ? , task9date=current_timestamp where tranid = ?";
                     PreparedStatement pstm1 = conn.prepareStatement(sql1);
                     pstm1.setString(1, stats);
@@ -3115,7 +3166,7 @@ task.setlinkup2(color2);
                     pstm1.executeUpdate();
                     result = "success";
                 }
-                                if (rs.getString("taskto12").equals(Username.getUserName())) {
+                if (rs.getString("taskto12").equals(Username.getUserName())) {
                     String sql1 = "update " + Username.getcompany() + ".tasks set taskstat12 = ? , task12date=current_timestamp where tranid = ?";
                     PreparedStatement pstm1 = conn.prepareStatement(sql1);
                     pstm1.setString(1, stats);
@@ -3138,16 +3189,16 @@ task.setlinkup2(color2);
                     pstm1.setString(2, tranid);
                     pstm1.executeUpdate();
                     result = "success";
-                }                
-                 if (rs.getString("taskto15").equals(Username.getUserName())) {
+                }
+                if (rs.getString("taskto15").equals(Username.getUserName())) {
                     String sql1 = "update " + Username.getcompany() + ".tasks set taskstat15 = ? , task15date=current_timestamp where tranid = ?";
                     PreparedStatement pstm1 = conn.prepareStatement(sql1);
                     pstm1.setString(1, stats);
                     pstm1.setString(2, tranid);
                     pstm1.executeUpdate();
                     result = "success";
-                }                 
-                
+                }
+
             } else {  // no task, return error           
                 result = "Task not found";
             }
@@ -3173,11 +3224,11 @@ task.setlinkup2(color2);
             Date now = new Date();
             String strTime = sdfTime.format(now);
             String oldcomm;
-           if (rs.getString("tasknote")==null) {
-               oldcomm = "";
-           } else {
-            oldcomm = rs.getString("tasknote");
-           }
+            if (rs.getString("tasknote") == null) {
+                oldcomm = "";
+            } else {
+                oldcomm = rs.getString("tasknote");
+            }
             String newcomm = rs.getString("tasknote") + "~" + comments + "~http://google.com/maps/place/" + coordsa + "," + coordsb + '~' + user.getUserName() + " " + date + " " + strTime + "~______________________~";
 
             String sql1 = "update " + user.getcompany() + ".tasks set tasknote = ? where tranid = ?";
@@ -3298,44 +3349,41 @@ task.setlinkup2(color2);
 
         ArrayList<Tasks> list = new ArrayList<Tasks>();
         if (rs3.next()) {
- //           String diarycomm = rs3.getString("tasknote");
- 
+            //           String diarycomm = rs3.getString("tasknote");
 
             Tasks tasks = new Tasks();
-  String temp1 = user.getsecurestr();
-                if (temp1.substring(149, 150) == "1") {
-                    tasks.setTasknote(rs.getString("tasknote"));
-                    System.out.println("getTaskOne Security 150=1");
-                } else {
-                    System.out.println("getTaskOne Security 150=0");
-                    String TaskNote = "";
-                    
-                    if (rs.getString("tasknote") != null ) {
-                     TaskNote = rs.getString("tasknote");
-                    }
-                    String TempString = "";
-                    Integer TempI = TaskNote.indexOf("http://google.com/maps");
-                    while (TempI != -1) {
-                        System.out.println("getTaskOne found location");
-                        Integer TempI2 = TempI + 15;
-                        do {
-                            TempString = TaskNote.substring(TempI2 - 1, TempI2);
-                            TempI2++;
-                            //                  System.out.println("TaskEditNote TempString -" + TempString + "- " + TempI2.toString());
-                        } while (!TempString.equals("~") && TempI2 < TaskNote.length() - 1);
-                        TempI2--;
-                        String delStr = TaskNote.substring(TempI, TempI2);
-                        String newStr = TaskNote.replace(delStr, "");
-                        TaskNote = newStr;
-                        TempI = TaskNote.indexOf("http://google.com/maps");
-                    }
+            String temp1 = user.getsecurestr();
+            if (temp1.substring(149, 150) == "1") {
+                tasks.setTasknote(rs.getString("tasknote"));
+                System.out.println("getTaskOne Security 150=1");
+            } else {
+                System.out.println("getTaskOne Security 150=0");
+                String TaskNote = "";
 
-                    tasks.setTasknote((TaskNote));
-                }           
-            
-            
+                if (rs.getString("tasknote") != null) {
+                    TaskNote = rs.getString("tasknote");
+                }
+                String TempString = "";
+                Integer TempI = TaskNote.indexOf("http://google.com/maps");
+                while (TempI != -1) {
+                    System.out.println("getTaskOne found location");
+                    Integer TempI2 = TempI + 15;
+                    do {
+                        TempString = TaskNote.substring(TempI2 - 1, TempI2);
+                        TempI2++;
+                        //                  System.out.println("TaskEditNote TempString -" + TempString + "- " + TempI2.toString());
+                    } while (!TempString.equals("~") && TempI2 < TaskNote.length() - 1);
+                    TempI2--;
+                    String delStr = TaskNote.substring(TempI, TempI2);
+                    String newStr = TaskNote.replace(delStr, "");
+                    TaskNote = newStr;
+                    TempI = TaskNote.indexOf("http://google.com/maps");
+                }
+
+                tasks.setTasknote((TaskNote));
+            }
+
 //            tasks.setTasknote(diarycomm);
-
             list.add(tasks);
         }
         return list;
@@ -3641,11 +3689,11 @@ task.setlinkup2(color2);
             String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
             String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
             String taskstat;
-           if (rs.getString("taskstat") == null) {
-             taskstat = "Not Started";
-        } else {
-             taskstat = rs.getString("taskstat");
-                }               
+            if (rs.getString("taskstat") == null) {
+                taskstat = "Not Started";
+            } else {
+                taskstat = rs.getString("taskstat");
+            }
             //String taskstat = rs.getString("taskstat");
             String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
             Tasks task = new Tasks();
@@ -3790,12 +3838,12 @@ task.setlinkup2(color2);
                     String description = rs.getString("description");
                     String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
                     String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
-            String taskstat;
-           if (rs.getString("taskstat") == null) {
-             taskstat = "Not Started";
-        } else {
-             taskstat = rs.getString("taskstat");
-                }                       
+                    String taskstat;
+                    if (rs.getString("taskstat") == null) {
+                        taskstat = "Not Started";
+                    } else {
+                        taskstat = rs.getString("taskstat");
+                    }
                     //String taskstat = rs.getString("taskstat");
                     String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
 
@@ -3888,12 +3936,12 @@ task.setlinkup2(color2);
                     String description = rs.getString("description");
                     String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
                     String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
-            String taskstat;
-           if (rs.getString("taskstat") == null) {
-             taskstat = "Not Started";
-        } else {
-             taskstat = rs.getString("taskstat");
-                }                       
+                    String taskstat;
+                    if (rs.getString("taskstat") == null) {
+                        taskstat = "Not Started";
+                    } else {
+                        taskstat = rs.getString("taskstat");
+                    }
 //                    String taskstat = rs.getString("taskstat");
                     String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
                     writer.println(tranid + "," + taskfrom + "," + description + "," + startdate + "," + revdate + "," + enddate + "," + taskstat);
@@ -4012,13 +4060,13 @@ task.setlinkup2(color2);
                         String description = rs.getString("description");
                         String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
                         String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
-            String taskstat;
-           if (rs.getString("taskstat") == null) {
-             taskstat = "Not Started";
-        } else {
-             taskstat = rs.getString("taskstat");
-                }                           
-                    //    String taskstat = rs.getString("taskstat");
+                        String taskstat;
+                        if (rs.getString("taskstat") == null) {
+                            taskstat = "Not Started";
+                        } else {
+                            taskstat = rs.getString("taskstat");
+                        }
+                        //    String taskstat = rs.getString("taskstat");
                         String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
                         Tasks task = new Tasks();
                         writer.println(tranid + "," + taskfrom + "," + description + "," + startdate + "," + revdate + "," + enddate + "," + taskstat);
@@ -4120,13 +4168,13 @@ task.setlinkup2(color2);
                         String description = rs.getString("description");
                         String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
                         String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
-            String taskstat;
-           if (rs.getString("taskstat") == null) {
-             taskstat = "Not Started";
-        } else {
-             taskstat = rs.getString("taskstat");
-                }                           
-                    //    String taskstat = rs.getString("taskstat");
+                        String taskstat;
+                        if (rs.getString("taskstat") == null) {
+                            taskstat = "Not Started";
+                        } else {
+                            taskstat = rs.getString("taskstat");
+                        }
+                        //    String taskstat = rs.getString("taskstat");
                         String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
                         Tasks task = new Tasks();
                         writer.println(tranid + "," + taskfrom + "," + description + "," + startdate + "," + revdate + "," + enddate + "," + taskstat);
@@ -4246,12 +4294,12 @@ task.setlinkup2(color2);
                     String description = rs.getString("description");
                     String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
                     String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
-            String taskstat;
-           if (rs.getString("taskstat") == null) {
-             taskstat = "Not Started";
-        } else {
-             taskstat = rs.getString("taskstat");
-                }                       
+                    String taskstat;
+                    if (rs.getString("taskstat") == null) {
+                        taskstat = "Not Started";
+                    } else {
+                        taskstat = rs.getString("taskstat");
+                    }
 //                    String taskstat = rs.getString("taskstat");
                     String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
                     Tasks task = new Tasks();
@@ -4351,12 +4399,12 @@ task.setlinkup2(color2);
                     String description = rs.getString("description");
                     String revdate = year1 + "-" + month1 + "-" + day1 + " " + hour1 + ":" + minute1;
                     String enddate = year2 + "-" + month2 + "-" + day2 + " " + hour2 + ":" + minute2;
-            String taskstat;
-           if (rs.getString("taskstat") == null) {
-             taskstat = "Not Started";
-        } else {
-             taskstat = rs.getString("taskstat");
-                }                       
+                    String taskstat;
+                    if (rs.getString("taskstat") == null) {
+                        taskstat = "Not Started";
+                    } else {
+                        taskstat = rs.getString("taskstat");
+                    }
 //                    String taskstat = rs.getString("taskstat");
                     String startdate = year3 + "-" + month3 + "-" + day3 + " " + hour3 + ":" + minute3;
                     Tasks task = new Tasks();
@@ -4478,7 +4526,7 @@ task.setlinkup2(color2);
         if (rs.next()) {
             String thisFile = rs.getString("imagedesc") + rs.getString("imagetype");
             String filename = "C:/java-app/group1/ffsint3/ffsint2/build/web/resources/" + rs.getString("imagedesc") + rs.getString("imagetype");
-            
+
             File file = new File(filename);
 
             FileOutputStream output = new FileOutputStream(file);

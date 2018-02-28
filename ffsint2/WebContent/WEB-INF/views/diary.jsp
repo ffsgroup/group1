@@ -933,16 +933,16 @@
             <div id="tabs-1">
                 <p>
                 <div style="float: right; text-align: right;">
-                    ID :  <label id="diaryid">0</label>
+                    ID :  <label id="diaryid">${getid}</label>
                 </div>     
 
-                From <label id="fromuser" style="margin-left:14px"/></label> 
+                From <label id="fromuser" style="margin-left:14px"/>${fuser}</label> 
                 <br/>
-                Summary<label> <input type="text" id="diarysumm" style="margin-left:10px" /> </label> 
+                Summary<label> <input type="text" id="diarysumm" style="margin-left:10px" value =${dsumm} > </label> 
                 <br>
-                Start Date <label> <input type="text" id = "startdate" style="margin-left:5px"/> </label> 
+                Start Date <label> <input type="text" id = "startdate" style="margin-left:5px" value=${sdate} ></label> 
                 <br>     
-                End Date<label> <input type="text" id = "enddate" style="margin-left:10px"/> </label>
+                End Date<label> <input type="text" id = "enddate" style="margin-left:10px" value=${edate}  > </label>
                 <br>
                 <script>
                       var myCalendar1 = new dhtmlXCalendarObject(["startdate"]);
@@ -986,31 +986,43 @@
                 </script>
                 Location <input type="text" list="locations" id="locat">
                 <label>
-                    <datalist id="locations" >
-                        <option> 
+                    <datalist id="locations" value=${dlocat} >
+                        <option value=${dlocat}>  
                     </datalist>
                 </label>
                 <br>
-                Task <label> <input type="text" id="diarytask" style="width: 60px" /> </label> 
+                Task <label> <input type="text" id="diarytask" style="width: 60px" value=""${dtask} > </label> 
                 <input type="button" value="Open Task" id="opentask"/>
                 <br>
                 <br>
                 Descriptions <br>
-                <label> <textarea name="notes" id="diarynotes" cols="40" rows="5" ></textarea> </label>    
+                <label> <textarea name="notes" id="diarynotes" cols="40" rows="5" >${dnotes}</textarea> </label>    
                 <br>
                 <br>
                 <input type ="button" value ="Save" id="diarysave" style="width:75px; float:right;"/>
                 </p>
+                <script>
+                  if (document.getElementsById("diaryid").innerHTML == "0") {
+                      $("#diarynotes").css("visibility", "visible");
+                  } else {
+                  $("#diarynotes").css("visibility", "visible");    
+                  }
+                 </script>
+                 
             </div>
 
             <div id="tabs-2" style="visibility: hidden">
                 <p>
-                    <label> <textarea name="notes" id="diarycomment" cols="44" rows="10" ></textarea> </label>     
+                    <label> <textarea name="notes" id="diarycomment" cols="44" rows="10" > ${comm}</textarea> </label>     
                     <br>
                     <br>
                     <input type ="button" value ="Update" id="diaryupdatecomm" onClick="updateComm();" style="width:75px; float:right"/>
                     <input type ="button" value ="Save" id="diarysavecomm" style="width:75px;visibility: hidden;"/>
                 </p>
+                <script>
+                    
+                 $("#diarysavecomm").css("visibility", "visible");
+                 </script>
             </div>
 
             <div id="tabs-3">

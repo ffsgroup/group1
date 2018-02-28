@@ -11,7 +11,7 @@ public static Connection getMySQLConnection()
   
     // Note: Change the connection parameters accordingly.
     String hostName = "192.9.220.1";
-    String dbName = "fas";
+    String dbName = "intrasol";
     String userName = "root";
     String password = "pass7103uie9";
     return getMySQLConnection(hostName, dbName, userName, password);

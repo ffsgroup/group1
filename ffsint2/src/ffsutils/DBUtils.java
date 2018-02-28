@@ -1068,7 +1068,7 @@ public class DBUtils {
         }
         return list;
     }
-
+    
     public static ArrayList<Diary> getOneDiary(Connection connconn, UserAccount loginedUser, String tranid1) throws SQLException {
         System.out.println("getOneDiary " + tranid1);
         String sql = "Select * from " + loginedUser.getcompany() + ".Diary a where a.tranid =?";
@@ -1078,6 +1078,135 @@ public class DBUtils {
         ResultSet rs = pstm.executeQuery();
         ArrayList<Diary> list = new ArrayList<Diary>();
         while (rs.next()) {
+            String tranid = rs.getString("tranid");
+            String user = rs.getString("user");
+            String desc1 = rs.getString("desc1");
+            String locat = rs.getString("locat");
+
+            Date date = new Date();
+            Calendar calendar = new GregorianCalendar();
+
+            calendar.setTime(rs.getTimestamp("sdate"));
+            String year = Integer.toString(calendar.get(Calendar.YEAR));
+            String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
+            String day = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH));
+            String hour = Integer.toString(calendar.get(Calendar.HOUR_OF_DAY));
+            String minute = Integer.toString(calendar.get(Calendar.MINUTE));
+            int length = month.length();
+            if (length == 1) {
+                month = "0" + month;
+            }
+            int length2 = day.length();
+            if (length2 == 1) {
+                day = "0" + day;
+            }
+            int length3 = hour.length();
+            if (length3 == 1) {
+                hour = "0" + hour;
+            }
+            int length4 = minute.length();
+            if (length4 == 1) {
+                minute = "0" + minute;
+            }
+            String thistime = year + "/" + month + "/" + day + " " + hour + ":" + minute;
+            String sdate = thistime;
+
+            calendar.setTime(rs.getTimestamp("edate"));
+            String year1 = Integer.toString(calendar.get(Calendar.YEAR));
+            String month1 = Integer.toString(calendar.get(Calendar.MONTH) + 1);
+            String day1 = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH));
+            String hour1 = Integer.toString(calendar.get(Calendar.HOUR_OF_DAY));
+            String minute1 = Integer.toString(calendar.get(Calendar.MINUTE));
+            int length5 = month1.length();
+            if (length5 == 1) {
+                month1 = "0" + month1;
+            }
+            int length6 = day1.length();
+            if (length6 == 1) {
+                day1 = "0" + day1;
+            }
+            int length7 = hour1.length();
+            if (length7 == 1) {
+                hour1 = "0" + hour1;
+            }
+            int length8 = minute1.length();
+            if (length8 == 1) {
+                minute1 = "0" + minute1;
+            }
+            String thistime1 = year1 + "/" + month1 + "/" + day1 + " " + hour1 + ":" + minute1;
+            String edate = thistime1;
+            String task = rs.getString("taskid");
+            String notes = rs.getString("notes");
+            String comm = rs.getString("comm");
+            String user1 = rs.getString("user1");
+
+            String user2 = rs.getString("user2");
+            String user3 = rs.getString("user3");
+            String user4 = rs.getString("user4");
+            String user5 = rs.getString("user5");
+            String user6 = rs.getString("user6");
+            String user7 = rs.getString("user7");
+            String user8 = rs.getString("user8");
+            String user9 = rs.getString("user9");
+            String user10 = rs.getString("user10");
+            String user1ans = rs.getString("user1ans");
+            String user2ans = rs.getString("user2ans");
+            String user3ans = rs.getString("user3ans");
+            String user4ans = rs.getString("user4ans");
+            String user5ans = rs.getString("user5ans");
+            String user6ans = rs.getString("user6ans");
+            String user7ans = rs.getString("user7ans");
+            String user8ans = rs.getString("user8ans");
+            String user9ans = rs.getString("user9ans");
+            String user10ans = rs.getString("user10ans");
+
+            Diary diary = new Diary();
+            diary.setTranid(tranid);
+            diary.setUser(user);
+            diary.setDesc1(desc1);
+            diary.setsdate(sdate);
+            diary.setedate(edate);
+            diary.setlocat(locat);
+            diary.settask(task);
+            diary.setnotes(notes);
+            diary.setcomm(comm);
+            diary.setuser1(user1);
+            diary.setuser2(user2);
+            diary.setuser3(user3);
+            diary.setuser4(user4);
+            diary.setuser5(user5);
+            diary.setuser6(user6);
+            diary.setuser7(user7);
+            diary.setuser8(user8);
+            diary.setuser9(user9);
+            diary.setuser10(user10);
+            diary.setuser1ans(user1ans);
+            diary.setuser2ans(user2ans);
+            diary.setuser3ans(user3ans);
+            diary.setuser4ans(user4ans);
+            diary.setuser5ans(user5ans);
+            diary.setuser6ans(user6ans);
+            diary.setuser7ans(user7ans);
+            diary.setuser8ans(user8ans);
+            diary.setuser9ans(user9ans);
+            diary.setuser10ans(user10ans);
+
+            list.add(diary);
+        }
+        return list;
+    }
+
+    public static ArrayList<Diary> getOneDiaryFromTask(Connection connconn, UserAccount loginedUser, String tranid1) throws SQLException {
+        System.out.println("getOneDiaryFromTask " + tranid1);
+        String sql = "Select * from " + loginedUser.getcompany() + ".Diary where taskid =? and user = ?";
+
+        PreparedStatement pstm = connconn.prepareStatement(sql);
+        pstm.setString(1, tranid1);
+        pstm.setString(2, loginedUser.getUserName());
+        ResultSet rs = pstm.executeQuery();
+        ArrayList<Diary> list = new ArrayList<Diary>();
+        while (rs.next()) {
+            System.out.println("getOneDiaryFromTask found" );
             String tranid = rs.getString("tranid");
             String user = rs.getString("user");
             String desc1 = rs.getString("desc1");

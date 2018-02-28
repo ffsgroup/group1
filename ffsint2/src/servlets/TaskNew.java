@@ -33,6 +33,8 @@ public class TaskNew extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String onlyUser = request.getParameter("onlyUser");
+        String linkTask = request.getParameter("linkTask");
+        
         System.out.println("TaskNew " + onlyUser);
         Connection conn = MyUtils.getStoredConnection(request);
         HttpSession session = request.getSession();

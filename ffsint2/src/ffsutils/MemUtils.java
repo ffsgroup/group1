@@ -252,7 +252,7 @@ public class MemUtils {
         return list;
     }
 
-    public static ArrayList<MemberNote> getmemberNotes(Connection conn, String thisMember,UserAccount userName) throws SQLException {
+    public static ArrayList<MemberNote> getmemberNotes(Connection conn, String thisMember, UserAccount userName) throws SQLException {
 
         System.out.println("getmemberNotes " + thisMember);
         String sql = "Select * from " + userName.getcompany() + ".tblcomments where lidno = ?";
@@ -1060,7 +1060,7 @@ public class MemUtils {
                     members.setpobox(Integer.toString(rs.getInt("initialpayment") * 2));
                     members.setcity("Member will be asked to sign declaration");
                     members.setemail("1");
-                }                
+                }
                 if (caltoday.get(Calendar.MONTH) - 2 == cal2.get(Calendar.MONTH) && caltoday.get(Calendar.DAY_OF_MONTH) > 7) {
                     members.setpobox(Integer.toString(rs.getInt("initialpayment") * 2));
                     members.setcity("Member will be asked to sign declaration");
@@ -1070,7 +1070,7 @@ public class MemUtils {
                     members.setpobox(Integer.toString(rs.getInt("initialpayment") * 3));
                     members.setcity("Member will be asked to sign declaration");
                     members.setemail("1");
-                }                
+                }
             } else {
                 members.setbranch("before"); //today is before bettot
                 members.setpobox(rs.getString("initialpayment"));
@@ -1079,9 +1079,42 @@ public class MemUtils {
             members.setbettot(year2 + "/" + month2 + "/" + day2);
             members.setkrediet(rs.getString("krediet"));
             members.setstatus(rs.getString("status"));
-            
+
         }
         return members;
+    }
+
+    public static ArrayList<Generics> UpdateContact(Connection conn, UserAccount thisUser, String thisMember, String padd1, String padd2, String padd3, String pcode, String post1, String post2, String post3, String postcode, String phonecell, String phonework, String phonehome) throws SQLException {
+        ArrayList<Generics> list = new ArrayList<Generics>();
+        Generics generic1 = new Generics();
+        generic1.setGenGroupId("failed");
+         System.out.println("updateContact security " + thisMember + " " + thisUser.getsecurestr().substring(1, 2) + " " + padd1 + " " + post1 );
+        if (thisUser.getsecurestr().substring(1, 2).equals("1")) {
+            System.out.println("updateContact " + thisMember);
+            String sql1 = "update " + thisUser.getcompany() + ".lededata set pobox = ?, street = ? , city = ? , zip = ? , physline1 = ? , physline2 = ? , physline3 = ? , physcode = ? , telh = ? , telw = ? , opmaak = ? where lidno = ?";
+            PreparedStatement pstm1 = conn.prepareStatement(sql1);
+            pstm1.setString(1, post1);
+            pstm1.setString(2, post2);
+            pstm1.setString(3, post3);
+            pstm1.setString(4, postcode);
+            pstm1.setString(5, padd1);
+            pstm1.setString(6, padd2);
+            pstm1.setString(7, padd3);
+            pstm1.setString(8, pcode);
+            pstm1.setString(9, phonehome);
+            pstm1.setString(10, phonework);
+            pstm1.setString(11, phonecell);
+            pstm1.setString(12, thisMember);
+
+            pstm1.executeUpdate();
+            generic1.setGenGroupId("success");
+
+        } else {
+            System.out.println("updateContact failed " + thisMember);
+            generic1.setGenGroupId("failed");
+        }
+       list.add(generic1);
+        return list;
     }
 
 }

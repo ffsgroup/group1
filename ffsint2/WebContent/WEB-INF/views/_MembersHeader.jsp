@@ -16,7 +16,7 @@
         <b>${loginedUser.userName}</b>
         <br>
          <div class="dropdown">
-  <button onclick="myFunction()" class="dropbtn">Menu</button>
+  <button onclick="myFunction()" class="dropbtn">Menu </button>
   <div id="myDropdown" class="dropdown-content">
     <a href="#">Additionals</a>
     <a href="#">Branch New</a>

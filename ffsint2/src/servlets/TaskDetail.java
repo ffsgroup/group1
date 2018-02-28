@@ -36,7 +36,10 @@ public class TaskDetail extends HttpServlet {
         
         
         String tranid = request.getParameter("key");
-        System.out.println("TaskDetail " + tranid);
+        if (tranid == null) {tranid = "0";}
+        String link1 = request.getParameter("link");
+        if (link1 == null) {link1 = "0";}
+        System.out.println("TaskDetail " + tranid + " " + link1);
         ArrayList<Tasks> task = new ArrayList<Tasks>();
         try {
             task = TaskUtils.getTaskOne(conn, loginedUser, tranid);
@@ -127,7 +130,14 @@ public class TaskDetail extends HttpServlet {
         String bg = "";
         String ti="";
         String ti1 ="";
-        
+        String l1 = "";
+        String l2 = "";
+        String l3 = "";
+        String l4 = "";
+        String l5 = "";
+        String l6 = "";
+        String l7 = "";
+        String l8 = "";
         for (Tasks task1 : task) {
             a = task1.getTranid();
             b = "'" + task1.getDescription() + "'";
@@ -201,8 +211,16 @@ public class TaskDetail extends HttpServlet {
             bs = task1.getStatusday14();
             bt = task1.getStatusday15();
             bg = task1.getTaskstat();
+            l1 = task1.getlinkup1();
+            l2 = task1.getlinkup2();
+            l3 = task1.getlinkup3();
+            l4 = task1.getlinkup4();
+            l5 = task1.getlinkup5();
+            l6 = task1.getlinkup6();
+            l7 = task1.getlinkup7();
+            l8 = task1.getlinkup8();
             ti1 = "'" + task1.getTrain() +"'";
-        System.out.println("ti1 " + ti1);    
+        System.out.println("l1 " + l1);    
         }
        
         for (TaskImage taskImage1 : taskImage ) {
@@ -282,7 +300,17 @@ public class TaskDetail extends HttpServlet {
         request.setAttribute("train", ti1);
         request.setAttribute("statusday15", bt);
         request.setAttribute("taskstatus", bg);
+        request.setAttribute("linkup1", l1);
+        request.setAttribute("linkup2", l2);
+        request.setAttribute("linkup3", l3);
+        request.setAttribute("linkup4", l4);
+        request.setAttribute("linkup5", l5);
+        request.setAttribute("linkup6", l6);
+        request.setAttribute("linkup7", l7);
+        request.setAttribute("linkup8", l8);
+        
         request.setAttribute("taskFiler", session.getAttribute("taskFilter"));
+        request.setAttribute("linktask11", link1);
         
         request.setAttribute("taskimage", ti);
         

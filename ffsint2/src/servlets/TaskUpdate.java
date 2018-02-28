@@ -76,12 +76,13 @@ public class TaskUpdate extends HttpServlet {
                 String irnr = request.getParameter("irnr"); 
                 String requestir = request.getParameter("requestir"); 
                 String train =  request.getParameter("train"); 
+                String link = request.getParameter("link1"); 
                 
                 System.out.println("TaskUpdate " + tranid + " " + recur1);
 		ArrayList<Generics> generics =new ArrayList<Generics>();
                 
                 try {
-		generics=TaskUtils.taskUpdate(conn, loginedUser, tranid, recur1, recur3, recur4,recur5,recur6,recur7,recur8,recur9,recur10, ir,tasksumm,taskfull, recur13, recur11,recur12,sdate,rdate,edate,prior,stats,recur2,taskto1,taskto2,taskto3,taskto4,taskto5,taskto6,taskto7,taskto8,taskto9,taskto10,taskto11,taskto12,taskto13,taskto14,taskto15, fromUser, train);
+		generics=TaskUtils.taskUpdate(conn, loginedUser, tranid, recur1, recur3, recur4,recur5,recur6,recur7,recur8,recur9,recur10, ir,tasksumm,taskfull, recur13, recur11,recur12,sdate,rdate,edate,prior,stats,recur2,taskto1,taskto2,taskto3,taskto4,taskto5,taskto6,taskto7,taskto8,taskto9,taskto10,taskto11,taskto12,taskto13,taskto14,taskto15, fromUser, train, link);
                         } catch (SQLException e) {
             e.printStackTrace();
             String errorString;
