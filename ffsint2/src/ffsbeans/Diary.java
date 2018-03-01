@@ -32,11 +32,12 @@ public class Diary {
            private String user9ans;
            private String user10ans;           
            private String ShortDate;
+           private String complete;
 	   public Diary() {
 	 
 	   }
 	 
-	   public Diary(String tranid, String user, String desc1, String sdate, String edate, String locat, String task, String notes, String comm, String user1, String user2, String user3, String user4, String user5, String user6, String user7, String user8, String user9, String user10, String user1ans, String user2ans, String user3ans, String user4ans, String user5ans, String user6ans, String user7ans, String user8ans, String user9ans, String user10ans, String ShortDate) {
+	   public Diary(String tranid, String user, String desc1, String sdate, String edate, String locat, String task, String notes, String comm, String user1, String user2, String user3, String user4, String user5, String user6, String user7, String user8, String user9, String user10, String user1ans, String user2ans, String user3ans, String user4ans, String user5ans, String user6ans, String user7ans, String user8ans, String user9ans, String user10ans, String ShortDate, String complete) {
 	       this.tranid = tranid;
 	       this.user = user;
 	       this.desc1 = desc1;
@@ -67,6 +68,7 @@ public class Diary {
                this.user9ans = user9ans;
                this.user10ans = user10ans;              
                this.ShortDate = ShortDate;
+               this.complete = complete;
 	   }
 	 
 	   public String getTranid() {
@@ -307,4 +309,11 @@ public class Diary {
 	       this.ShortDate = ShortDate;
 	   }             
            
+           public String getcomplete() {
+	       return complete;
+	   }
+	 
+	   public void setcomplete(String complete) {
+	       this.complete = complete;
+	   }             
 	}

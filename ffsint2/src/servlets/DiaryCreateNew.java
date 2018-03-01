@@ -32,6 +32,7 @@ public class DiaryCreateNew extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Connection conn = MyUtils.getStoredConnection(request);
                 HttpSession session = request.getSession();
+                
                 UserAccount loginedUser = MyUtils.getLoginedUser(session);
                 String userName = loginedUser.getUserName();
                 String diarysumm = request.getParameter("diarysumm"); 
@@ -62,10 +63,11 @@ public class DiaryCreateNew extends HttpServlet {
                 String resp10 = request.getParameter("response10");
                 String fromuser = request.getParameter("fromuser");
                 String tranid = request.getParameter("tranid");
-                
+                String completed = request.getParameter("complete");
+                System.out.print("DiaryCreateNew " + completed);
                 ArrayList<Generics> generics =new ArrayList<Generics>();
                 try {
-                generics = DBUtils.NewDiary(conn, tranid, loginedUser, diarysumm, startdate, enddate, locat, diarytask, diarynotes, duser1, duser2, duser3, duser4, duser5, duser6, duser7, duser8, duser9, duser10, resp1, resp2, resp3, resp4, resp5, resp6, resp7, resp8, resp9, resp10, fromuser);
+                generics = DBUtils.NewDiary(conn, tranid, loginedUser, diarysumm, startdate, enddate, locat, diarytask, diarynotes, duser1, duser2, duser3, duser4, duser5, duser6, duser7, duser8, duser9, duser10, resp1, resp2, resp3, resp4, resp5, resp6, resp7, resp8, resp9, resp10, fromuser, completed);
 		
                 
 		//generics=DBUtils.AddDiaryResp(conn, loginedUser.getUserName(), thislocat);

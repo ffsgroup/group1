@@ -3215,7 +3215,7 @@ public class TaskUtils extends HttpServlet {
         System.out.println("TaskSaveComm " + tranid + "coordsa-" + coordsa + "- coordsb-" + coordsb);
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, tranid);
-
+String addThis = "";
         ResultSet rs = pstm.executeQuery();
         if (rs.next()) {
             long millis = System.currentTimeMillis();
@@ -3230,7 +3230,7 @@ public class TaskUtils extends HttpServlet {
                 oldcomm = rs.getString("tasknote");
             }
             String newcomm = rs.getString("tasknote") + "~" + comments + "~http://google.com/maps/place/" + coordsa + "," + coordsb + '~' + user.getUserName() + " " + date + " " + strTime + "~______________________~";
-
+addThis = "~" + comments + "~http://google.com/maps/place/" + coordsa + "," + coordsb + '~' + user.getUserName() + " " + date + " " + strTime + "~______________________~";
             String sql1 = "update " + user.getcompany() + ".tasks set tasknote = ? where tranid = ?";
 
             PreparedStatement pstm2 = conn.prepareStatement(sql1);
@@ -3339,7 +3339,7 @@ public class TaskUtils extends HttpServlet {
 
         Thread.sleep(1500);
 
-        String sql3 = "Select " + user.getcompany() + ".tasknote from " + user.getcompany() + ".tasks where tranid = ?";
+        String sql3 = "Select tasknote from " + user.getcompany() + ".tasks where tranid = ?";
 
         PreparedStatement pstm3 = conn.prepareStatement(sql3);
         pstm3.setString(1, tranid);
@@ -3361,7 +3361,8 @@ public class TaskUtils extends HttpServlet {
                 String TaskNote = "";
 
                 if (rs.getString("tasknote") != null) {
-                    TaskNote = rs.getString("tasknote");
+                    TaskNote = rs.getString("tasknote") + addThis;
+                    
                 }
                 String TempString = "";
                 Integer TempI = TaskNote.indexOf("http://google.com/maps");

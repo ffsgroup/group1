@@ -53,7 +53,7 @@ public class DiaryCreate extends HttpServlet {
        String resp9 = "";
        String resp10 = "";
        String fromuser = "";
-       
+       String complete = "";
        FileItem thisfile = null;
       Connection conn = MyUtils.getStoredConnection(request);
       HttpSession session = request.getSession();
@@ -165,12 +165,14 @@ public class DiaryCreate extends HttpServlet {
                     if ("fromuser".equals(item.getFieldName())) {
                         fromuser = item.getString();                       
                     }
-                    
+                    if ("complete".equals(item.getFieldName())) {
+                        complete = item.getString();                       
+                    }                    
                     }
                  
                     
                 }
- DBUtils.NewDiary(conn, tranid, loginedUser, diarysumm, startdate, enddate, locat, diarytask, diarynotes, duser1, duser2, duser3, duser4, duser5, duser6, duser7, duser8, duser9, duser10, resp1, resp2, resp3, resp4, resp5, resp6, resp7, resp8, resp9, resp10, fromuser);
+ DBUtils.NewDiary(conn, tranid, loginedUser, diarysumm, startdate, enddate, locat, diarytask, diarynotes, duser1, duser2, duser3, duser4, duser5, duser6, duser7, duser8, duser9, duser10, resp1, resp2, resp3, resp4, resp5, resp6, resp7, resp8, resp9, resp10, fromuser, complete);
  
                //File uploaded successfully
                request.setAttribute("message", "File Uploaded Successfully");

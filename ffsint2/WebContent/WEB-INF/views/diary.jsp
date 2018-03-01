@@ -83,12 +83,25 @@
 
                 $(document).ready(function () {
                     $("#diarysave").click(function (event) {
-                        $.get('DiaryCreateNew', {diarysumm: document.getElementById('diarysumm').value, startdate: document.getElementById('startdate').value, enddate: document.getElementById('enddate').value, locat: document.getElementById('locat').value, diarytask: document.getElementById('diarytask').value, diarynotes: document.getElementById('diarynotes').value, duser1: document.getElementById('diaryuser1').value, duser2: document.getElementById('diaryuser2').value, duser3: document.getElementById('diaryuser3').value, duser4: document.getElementById('diaryuser4').value, duser5: document.getElementById('diaryuser5').value, duser6: document.getElementById('diaryuser6').value, duser7: document.getElementById('diaryuser7').value, duser8: document.getElementById('diaryuser8').value, duser9: document.getElementById('diaryuser9').value, duser10: document.getElementById('diaryuser10').value, resp1: document.getElementById('response1').value, resp2: document.getElementById('response2').value, resp3: document.getElementById('response3').value, resp4: document.getElementById('response4').value, resp5: document.getElementById('response5').value, resp6: document.getElementById('response6').value, resp7: document.getElementById('response7').value, resp8: document.getElementById('response8').value, resp9: document.getElementById('response9').value, resp10: document.getElementById('response10').value, fromuser: document.getElementById('fromuser').innerHTML, tranid: document.getElementById('diaryid').innerHTML}, function (responseJson) {
+                        var comp = "N";
+                        if ( document.getElementById("dcomp").checked == true ) {comp = "Y"}
+
+                        $.get('DiaryCreateNew', {diarysumm: document.getElementById('diarysumm').value, startdate: document.getElementById('startdate').value, enddate: document.getElementById('enddate').value, locat: document.getElementById('locat').value, diarytask: document.getElementById('diarytask').value, diarynotes: document.getElementById('diarynotes').value, duser1: document.getElementById('diaryuser1').value, duser2: document.getElementById('diaryuser2').value, duser3: document.getElementById('diaryuser3').value, duser4: document.getElementById('diaryuser4').value, duser5: document.getElementById('diaryuser5').value, duser6: document.getElementById('diaryuser6').value, duser7: document.getElementById('diaryuser7').value, duser8: document.getElementById('diaryuser8').value, duser9: document.getElementById('diaryuser9').value, duser10: document.getElementById('diaryuser10').value, resp1: document.getElementById('response1').value, resp2: document.getElementById('response2').value, resp3: document.getElementById('response3').value, resp4: document.getElementById('response4').value, resp5: document.getElementById('response5').value, resp6: document.getElementById('response6').value, resp7: document.getElementById('response7').value, resp8: document.getElementById('response8').value, resp9: document.getElementById('response9').value, resp10: document.getElementById('response10').value, fromuser: document.getElementById('fromuser').innerHTML, tranid: document.getElementById('diaryid').innerHTML, complete : comp }, function (responseJson) {
                             if (responseJson != null) {
                                 $("#delresp").empty();
                                 document.getElementById("addresp").value = "";
                                 $.each(responseJson, function (key, value) {
                                     $('#delresp').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
+                                alert("diary added / updated");
+                                document.getElementById("diaryid").innerHTML = "0";
+                                document.getElementById("fromuser").innerHTML = "";
+                                document.getElementById("diarysumm").value = "";
+                                document.getElementById("startdate").value = "";
+                                document.getElementById("enddate").value = "";
+                                document.getElementById("locat").value = "";
+                                document.getElementById("diarytask").value = "";
+                                document.getElementById("diarynotes").value = "";
+                                document.getElementById("dcomp").checked = false;
                                 });
                             }
                         });
@@ -166,14 +179,14 @@
                                         var url = "resources/" + value['locat'];
                                         window.open(url, 'Download');
                                     } else {
-                                        alert("failed");
+                                        alert("failed"alert);
                                     }
                                 });
                             }
                         });
                     });
                 });
- </script>
+            </script>
 
             <script type="text/javascript">
                 $(document).ready(function () {
@@ -201,7 +214,7 @@
                 $(document).ready(function () {
                     $("#diarysavecomm").click(function (event) {
                         $.get('DiarySaveComm', {comment: document.getElementById("diarycomment").value, tranid: document.getElementById("diaryid").innerHTML}, function (responseJson) {
-                            if (responseJson != null) {
+                            if (responseJson != null) {                                
                                 $.each(responseJson, function (key, value) {
                                     document.getElementById("diarycomment").value = value['comm'];
                                     if (document.getElementById("diarycomment").value == "undefined") {
@@ -348,7 +361,7 @@
                     myCalendar.show();
                     myCalendar.hideTime();
                     myCalendar.showToday();
-                    myCalendar.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09","2017-09-24","2017-09-25","2017-12-16","2017-12-25","2017-12-26","2018-01-01"]);
+                    myCalendar.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01"]);
                     myCalendar.setTooltip("2017-01-01", "New Year's Day", true, true);
                     myCalendar.setTooltip("2017-01-02", "Public HoliDay", true, true);
                     myCalendar.setTooltip("2017-03-21", "Human Rights Day", true, true);
@@ -366,7 +379,7 @@
                     myCalendar.setTooltip("2018-01-01", "New Years Day", true, true);
                     myCalendar._drawMonth(new Date);
 
-                    myCalendar.attachEvent("onClick", function (side, d) {                    
+                    myCalendar.attachEvent("onClick", function (side, d) {
 
                         $.get('DiaryDay', {thisDate: myCalendar.getFormatedDate(null, d), thisUser: document.getElementById("DiaryAv").value}, function (responseJson) {
                             // document.getElementById("DiaryAv").value
@@ -420,14 +433,14 @@
             </style>
 
 
-            
+
             <script type="text/javascript">
-                  $(document).ready(function () {
+                $(document).ready(function () {
                     $("#opentask").click(function (event) {
                         window.location = "TaskView.jsp?key=" + encodeURIComponent(document.getElementById("diarytask").value);
                     });
                 });
-                
+
                 $(document).ready(function () {
                     $("#imagupload2").click(function (event) {
                         $.get('DiaryUpImage', {tranid: document.getElementById("diaryid").innerHTML}, function (responseJson) {
@@ -715,7 +728,7 @@
                                 }
                             });
                         }
-                        
+
                         var count = $("#duser1 option").length;
                         if (count.valueOf() < 3) {
                             $.get('DiaryUser', function (responseJson) {
@@ -756,7 +769,7 @@
                                 }
                             });
                         }
-                        
+
                         $.get('DiaryImageLoad', {tranid: document.getElementById("diaryid").innerHTML}, function (responseJson) {
                             $("#diaryimag").find("tr:gt(0)").remove();
                             if (responseJson != null) {
@@ -770,8 +783,8 @@
                                     rowNew.appendTo(table2);
                                 });
                             }
-                        });                        
-                        
+                        });
+
                     });
                 });
 
@@ -945,8 +958,8 @@
                 End Date<label> <input type="text" id = "enddate" style="margin-left:10px" value=${edate}  > </label>
                 <br>
                 <script>
-                      var myCalendar1 = new dhtmlXCalendarObject(["startdate"]);
-                      myCalendar1.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09","2017-09-24","2017-09-25","2017-12-16","2017-12-25","2017-12-26","2018-01-01"]);
+                    var myCalendar1 = new dhtmlXCalendarObject(["startdate"]);
+                    myCalendar1.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01"]);
                     myCalendar1.setTooltip("2017-01-01", "New Year's Day", true, true);
                     myCalendar1.setTooltip("2017-01-02", "Public HoliDay", true, true);
                     myCalendar1.setTooltip("2017-03-21", "Human Rights Day", true, true);
@@ -963,9 +976,9 @@
                     myCalendar1.setTooltip("2017-12-26", "Day of Good Will", true, true);
                     myCalendar1.setTooltip("2018-01-01", "New Years Day", true, true);
                     myCalendar1.setDateFormat("%Y/%m/%d %H:%i");
-                    
+
                     var myCalendar2 = new dhtmlXCalendarObject(["enddate"]);
-                    myCalendar2.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09","2017-09-24","2017-09-25","2017-12-16","2017-12-25","2017-12-26","2018-01-01"]);
+                    myCalendar2.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01"]);
                     myCalendar2.setTooltip("2017-01-01", "New Year's Day", true, true);
                     myCalendar2.setTooltip("2017-01-02", "Public HoliDay", true, true);
                     myCalendar2.setTooltip("2017-03-21", "Human Rights Day", true, true);
@@ -982,16 +995,16 @@
                     myCalendar2.setTooltip("2017-12-26", "Day of Good Will", true, true);
                     myCalendar2.setTooltip("2018-01-01", "New Years Day", true, true);
                     myCalendar2.setDateFormat("%Y/%m/%d %H:%i");
-                  
+
                 </script>
-                Location <input type="text" list="locations" id="locat">
+                Location <input type="text" list="locations" id="locat" value=${dlocat}>
                 <label>
-                    <datalist id="locations" value=${dlocat} >
+                    <datalist id="locations" >
                         <option value=${dlocat}>  
                     </datalist>
                 </label>
                 <br>
-                Task <label> <input type="text" id="diarytask" style="width: 60px" value=""${dtask} > </label> 
+                Task <label> <input type="text" id="diarytask" style="width: 60px" value=${dtask} > </label> 
                 <input type="button" value="Open Task" id="opentask"/>
                 <br>
                 <br>
@@ -999,19 +1012,14 @@
                 <label> <textarea name="notes" id="diarynotes" cols="40" rows="5" >${dnotes}</textarea> </label>    
                 <br>
                 <br>
-                <input type ="button" value ="Save" id="diarysave" style="width:75px; float:right;"/>
+                <input type ="checkbox" value="Completed" id="dcomp" style="float:left">
+                <input type ="button" value ="Save" id="diarysave" style="width:75px; float:right;"/> Completed
                 </p>
-                <script>
-                  if (document.getElementsById("diaryid").innerHTML == "0") {
-                      $("#diarynotes").css("visibility", "visible");
-                  } else {
-                  $("#diarynotes").css("visibility", "visible");    
-                  }
-                 </script>
-                 
+
+
             </div>
 
-            <div id="tabs-2" style="visibility: hidden">
+            <div id="tabs-2" style="visibility: visible">
                 <p>
                     <label> <textarea name="notes" id="diarycomment" cols="44" rows="10" > ${comm}</textarea> </label>     
                     <br>
@@ -1019,36 +1027,44 @@
                     <input type ="button" value ="Update" id="diaryupdatecomm" onClick="updateComm();" style="width:75px; float:right"/>
                     <input type ="button" value ="Save" id="diarysavecomm" style="width:75px;visibility: hidden;"/>
                 </p>
-                <script>
-                    
-                 $("#diarysavecomm").css("visibility", "visible");
-                 </script>
             </div>
-
+            <script>
+                if (document.getElementById("diaryid").innerHTML > 0) {
+                    $("#tabs-2").css("visibility", "visible");
+                } else {
+                    $("#tabs-2").css("visibility", "hidden");
+                }
+                var comp = ${completed}
+                if (comp = "Y" ) {
+                   document.getElementById("dcomp").checked = true;
+                } else {
+                  document.getElementById("dcomp").checked = false;  
+                }
+            </script>
             <div id="tabs-3">
                 <p>
                     Name    <span style="margin-left:150px;">  Response
                         <br>
-                        <input type="text" size ="17" list="duser1" id="diaryuser1">
+                        <input type="text" size ="17" list="duser1" id="diaryuser1" value=${p1}>
                         <label>
                             <datalist id="duser1" >
                                 <option> 
                             </datalist>
                         </label>   
-                        <input type="text" size ="17" list="resp1" id="response1">
+                        <input type="text" size ="17" list="resp1" id="response1" value=${a1}>
                         <label>
                             <datalist id="resp1" >
                                 <option> 
                             </datalist>
                         </label> 
                         <br>
-                        <input type="text" size ="17" list="duser2" id="diaryuser2">
+                        <input type="text" size ="17" list="duser2" id="diaryuser2" value=${p2}>
                         <label>
                             <datalist id="duser2" >
                                 <option> 
                             </datalist>
                         </label>   
-                        <input type="text" size ="17" list="resp2" id="response2">
+                        <input type="text" size ="17" list="resp2" id="response2" value=${a2}>
                         <label>
                             <datalist id="resp2" >
                                 <option> 
@@ -1056,13 +1072,13 @@
                         </label> 
                         <br>
 
-                        <input type="text" size ="17" list="duser3" id="diaryuser3">
+                        <input type="text" size ="17" list="duser3" id="diaryuser3" value=${p3}>
                         <label>
                             <datalist id="duser3" >
                                 <option> 
                             </datalist>
                         </label>   
-                        <input type="text" size ="17" list="resp3" id="response3">
+                        <input type="text" size ="17" list="resp3" id="response3" value=${a3}>
                         <label>
                             <datalist id="resp3" >
                                 <option> 
@@ -1070,13 +1086,13 @@
                         </label> 
                         <br>
 
-                        <input type="text" size ="17" list="duser4" id="diaryuser4">
+                        <input type="text" size ="17" list="duser4" id="diaryuser4" value=${p4}>
                         <label>
                             <datalist id="duser4" >
                                 <option> 
                             </datalist>
                         </label>   
-                        <input type="text" size ="17" list="resp4" id="response4">
+                        <input type="text" size ="17" list="resp4" id="response4" value=${a4}>
                         <label>
                             <datalist id="resp4" >
                                 <option> 
@@ -1084,13 +1100,13 @@
                         </label> 
                         <br>
 
-                        <input type="text" size ="17" list="duser5" id="diaryuser5">
+                        <input type="text" size ="17" list="duser5" id="diaryuser5" value=${p5}>
                         <label>
                             <datalist id="duser5" >
                                 <option> 
                             </datalist>
                         </label>   
-                        <input type="text" size ="17" list="resp5" id="response5">
+                        <input type="text" size ="17" list="resp5" id="response5" value=${a5}>
                         <label>
                             <datalist id="resp5" >
                                 <option> 
@@ -1098,13 +1114,13 @@
                         </label> 
                         <br>      
 
-                        <input type="text" size ="17" list="duser6" id="diaryuser6">
+                        <input type="text" size ="17" list="duser6" id="diaryuser6"value=${p6}>
                         <label>
                             <datalist id="duser6" >
                                 <option> 
                             </datalist>
                         </label>   
-                        <input type="text" size ="17" list="resp6" id="response6">
+                        <input type="text" size ="17" list="resp6" id="response6" value=${a6}>
                         <label>
                             <datalist id="resp6" >
                                 <option> 
@@ -1112,13 +1128,13 @@
                         </label> 
                         <br>                           
 
-                        <input type="text" size ="17" list="duser7" id="diaryuser7">
+                        <input type="text" size ="17" list="duser7" id="diaryuser7" value=${p7}>
                         <label>
                             <datalist id="duser7" >
                                 <option> 
                             </datalist>
                         </label>   
-                        <input type="text" size ="17" list="resp7" id="response7">
+                        <input type="text" size ="17" list="resp7" id="response7" value=${a7}>
                         <label>
                             <datalist id="resp7" >
                                 <option> 
@@ -1126,13 +1142,13 @@
                         </label> 
                         <br>   
 
-                        <input type="text" size ="17" list="duser8" id="diaryuser8">
+                        <input type="text" size ="17" list="duser8" id="diaryuser8" value=${p8}>
                         <label>
                             <datalist id="duser8" >
                                 <option> 
                             </datalist>
                         </label>   
-                        <input type="text" size ="17" list="resp8" id="response8">
+                        <input type="text" size ="17" list="resp8" id="response8" value=${a8}>
                         <label>
                             <datalist id="resp8" >
                                 <option> 
@@ -1140,13 +1156,13 @@
                         </label> 
                         <br>   
 
-                        <input type="text" size ="17" list="duser9" id="diaryuser9">
+                        <input type="text" size ="17" list="duser9" id="diaryuser9" value=${p9}>
                         <label>
                             <datalist id="duser9" >
                                 <option> 
                             </datalist>
                         </label>   
-                        <input type="text" size ="17" list="resp9" id="response9">
+                        <input type="text" size ="17" list="resp9" id="response9" value=${a9}>
                         <label>
                             <datalist id="resp9" >
                                 <option> 
@@ -1154,13 +1170,13 @@
                         </label> 
                         <br>   
 
-                        <input type="text" size ="17" list="duser10" id="diaryuser10">
+                        <input type="text" size ="17" list="duser10" id="diaryuser10" value=${p10}>
                         <label>
                             <datalist id="duser10" >
                                 <option> 
                             </datalist>
                         </label>   
-                        <input type="text" size ="17" list="resp10" id="response10">
+                        <input type="text" size ="17" list="resp10" id="response10" value=${a10}>
                         <label>
                             <datalist id="resp10" >
                                 <option> 
@@ -1172,7 +1188,8 @@
                 </p>
 
             </div>
-            <div id="tabs-4" style="visibility: hidden">
+
+            <div id="tabs-4" style="visibility: visible">
                 <div id="imagdiv">
                     <table cellspacing="0" id="diaryimag" style="float: left; border-collapse: collapse;margin-left:5px; heigth:300px; width:100%; "> 
                         <tr> 
@@ -1199,6 +1216,13 @@
 
                 </form>
             </div>
+            <script>
+                if (document.getElementById("diaryid").innerHTML > 0) {
+                    $("#tabs-4").css("visibility", "visible");
+                } else {
+                    $("#tabs-4").css("visibility", "hidden");
+                }
+            </script>            
         </div>
 
 
