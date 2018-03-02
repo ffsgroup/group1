@@ -1117,4 +1117,39 @@ public class MemUtils {
         return list;
     }
 
+        public static ArrayList<Generics> UpdateAccount(Connection conn, UserAccount thisUser, String thisMember, String joindat, String claimdat, String coveramount, String bettot, String paypoint, String benefname, String benefid, String benefrelation, String benefdate, String mbranch, String paymeth) throws SQLException {
+        ArrayList<Generics> list = new ArrayList<Generics>();
+        Generics generic1 = new Generics();
+        generic1.setGenGroupId("failed");
+        // secure [4] from pos to pos , first pos = 0 , end pos excluded
+         System.out.println("updateAccount security " + thisMember + " " + thisUser.getsecurestr().substring(3, 4) );
+         
+        if (thisUser.getsecurestr().substring(3, 4).equals("1")) {
+            String sql1 = "update " + thisUser.getcompany() + ".lededata set joindat = ?, eisdat = ? , branch = ? , coveramount = ? , bettot = ? , betmet = ? , paypoint = ? , benefname = ? , benefid = ? , benefrelation = ?, benefdate = ? where lidno = ?";
+            PreparedStatement pstm1 = conn.prepareStatement(sql1);
+            pstm1.setString(1, joindat);
+            pstm1.setString(2, claimdat);
+            pstm1.setString(3, mbranch);
+            pstm1.setString(4, coveramount);
+            pstm1.setString(5, bettot);
+            pstm1.setString(6, paymeth);
+            pstm1.setString(7, paypoint);
+            pstm1.setString(8, benefname);
+            pstm1.setString(9, benefid);
+            pstm1.setString(10, benefrelation);
+            pstm1.setString(11, benefdate);            
+            pstm1.setString(12, thisMember);
+
+            pstm1.executeUpdate();
+            generic1.setGenGroupId("success");
+
+        } else {
+            System.out.println("updateContact failed " + thisMember);
+            generic1.setGenGroupId("failed");
+        }
+       list.add(generic1);
+        return list;
+    }
+       
+       
 }
