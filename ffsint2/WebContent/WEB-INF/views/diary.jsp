@@ -388,7 +388,11 @@
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
                                     var rowNew = $("<tr><td></td><td></td><td></td><td></td></tr>");
+                                    if (value['complete'] == "Y") {
+                                      var rowNew = $("<tr><td></td><td style = 'color:red;'></td><td style = 'color:red;'></td><td></td></tr>");  
+                                    }
                                     rowNew.children().eq(0).text(value['ShortDate']);
+                                    
                                     rowNew.children().eq(1).text(value['user']);
                                     rowNew.children().eq(2).text(value['desc1']);
                                     rowNew.children().eq(3).text(value['tranid']);
@@ -516,8 +520,7 @@
                                     document.getElementById("fromuser").innerHTML = value['user'];
                                     document.getElementById("diarysumm").value = value['desc1'];
                                     document.getElementById("startdate").value = value['sdate'];
-                                    document.getElementById("enddate").value = value['edate'];
-                                    // document.getElementById("locat1").value = value['locat'];
+                                    document.getElementById("enddate").value = value['edate'];                             
                                     document.getElementById("locat").value = value['locat'];
                                     document.getElementById("diarytask").value = value['task'];
                                     document.getElementById("diarynotes").value = value['notes'];
@@ -529,19 +532,9 @@
                                         //   document.getElementById("diarycomment").value = "2"; 
                                         document.getElementById("diarycomment").value = value['comm'].replace(/~/g, "\n");
                                     }
-
-                                    // document.getElementById("diarycomment").value = value['comm'].replace(/~/g, "\n"); 
-                                    // String temp1 = value['comm'];
-                                    // temp1 = temp1.replace("~","/n");
-                                    // 
-                                    //  if ( value['comm'].toString().length() > 1) {
-
-                                    // }
-                                    //                         if (temp2.length() > 3) {
-                                    // document.getElementById("diarycomment").value = value['comm'].replace(/~/g, "\n");
-                                    //                         document.getElementById("diarycomment").value = temp2.replace(/~/g, "\n");
-                                    //                      }
-                                    //     document.getElementById("diarycomment").value = document.getElementById("diarycomment").value.replace(/~/g,"\n");
+                                    if (value['complete'] == "Y") { document.getElementById("dcomp").checked = true;}
+                                    else { document.getElementById("dcomp").checked = false;}
+                                   
                                     document.getElementById("diaryuser1").value = value['user1'];
                                     document.getElementById("diaryuser2").value = value['user2'];
                                     document.getElementById("diaryuser3").value = value['user3'];
