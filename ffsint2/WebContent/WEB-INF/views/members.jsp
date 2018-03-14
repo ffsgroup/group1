@@ -36,6 +36,19 @@
         <div style="text-align: center;">
             <h2>Members</h2>        
         </div>
+        
+        <script>
+            $(document).ready(function () {
+                $("#dependTable").click(function (event) {
+                    var target = $(event.target);
+                    $td = target.closest('td');
+                    var col = $td.index();
+                    var row = $td.closest('tr').index();                    
+                    window.location = "MemberViewDepend?key=" + encodeURIComponent(document.getElementById("dependTable").rows[row].cells[9].innerHTML);
+                });
+            });
+
+        </script>
         <script>
             $(document).ready(function () {
                 $("#memAdditional").click(function (event) {
@@ -98,8 +111,8 @@
             $(document).ready(function () {
                 $("#updateAccount").click(function (event) {
                     var thisbranch = $("#mbranch option:selected").text();
-                    var thismeth = $("#paymeth option:selected").text();
-                    $.get('MemberUpdateAccount', {thisMember: document.getElementById("memnum").value, joindat: document.getElementById("joindat").value, claimdat: document.getElementById("claimdat").value, coveramount: document.getElementById("coveramount").value, bettot: document.getElementById("bettot").value, paypoint: document.getElementById("paypoint").value, benefname: document.getElementById("benefname").value, benefid: document.getElementById("benefid").value, benefrelation: document.getElementById("benefrelation").value, benefdate: document.getElementById("benefdate").value, mbranch: thisbranch, paymeth: thismeth}, function (responseJson) {
+                    var thismeth = $("#paymet option:selected").text();
+                    $.get('MemberUpdateAccount', {thisMember: document.getElementById("memnum").value, joindat: document.getElementById("joindat").value, claimdat: document.getElementById("claimdat").value, coveramount: document.getElementById("coveramount").value, bettot: document.getElementById("bettot").value, paypoint: document.getElementById("paypoint").value, benefname: document.getElementById("benefname").value, benefid: document.getElementById("benefid").value, benefrelation: document.getElementById("benefrelation").value, benefdate: document.getElementById("benefdate").value, mbranch: thisbranch, paymeth: thismeth, accholder: document.getElementById("accholder").value, accNo: document.getElementById("accNo").value, deductDay: document.getElementById("deductDay").value, bankName: document.getElementById("bankName").value, accType: document.getElementById("accType").value, debitdate: document.getElementById("debitdate").value, branchNr: document.getElementById("branchNr").value, groupScheme: document.getElementById("groupScheme").value, empName1: document.getElementById("empName1").value, payerName: document.getElementById("payerName").value, empName2: document.getElementById("empName2").value, payerId: document.getElementById("payerId").value, stopOrderDate: document.getElementById("stopOrderDate").value, salNr: document.getElementById("salNr").value}, function (responseJson) {
                         if (responseJson !== null) {
                             $.each(responseJson, function (key, value) {
                                 var t1 = value['GenGroupId'];
@@ -280,7 +293,7 @@
 
                 $.get('MemberGetDepen', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
                     if (responseJson != null) {
-                        var table3 = $("#depend");
+                        var table3 = $("#dependTable");
                         $.each(responseJson, function (key, value) {
                             countDepen++;
                             if (value['status'] == "ACTIVE" || value['status'] == "RE-JOINED") {
@@ -775,8 +788,6 @@
             var myCalendar;
             function doOnLoad() {
                 myCalendar = new dhtmlXCalendarObject("calendarHere");
-                //		myCalendar.setSkin("material");
-                //  myCalendar.setDate(new Date(2016, 7, 7, 16, 0));
                 myCalendar.setDate(new Date);
                 myCalendar.show();
                 myCalendar.hideTime();
@@ -799,8 +810,7 @@
                 myCalendar.setTooltip("2018-01-01", "New Years Day", true, true);
 
                 myCalendar._drawMonth(new Date);
-                myCalendar.attachEvent("onClick", function (side, d) {
-                    //	writeLog("onClick event called, "+side+" calendar, date "+myCalendar.getFormatedDate(null,d));
+                myCalendar.attachEvent("onClick", function (side, d) {                    
                 });
             }
         </script>
@@ -1000,7 +1010,7 @@
 
                 <div id="tablediv">
 
-                    <table cellspacing="0" id="depend" margin-right:20px style="table-layout:fixed;float: left; border-collapse: collapse;margin-left:10px; border: 1px solid black;width:95%"> 
+                    <table cellspacing="0" id="dependTable" margin-right:20px style="table-layout:fixed;float: left; border-collapse: collapse;margin-left:10px; border: 1px solid black;width:95%"> 
 
                         <tr style="border-collapse: collapse;border: 1px solid black;"> 
                             <th style="width:80px" scope="col">FirstName</th> 
@@ -1101,6 +1111,7 @@
                     </select>     
                     <label style="margin-left:25px;width:100px;"> Start Date </label>
                     <input type="text" id="debitdate" style="width:100px; margin-left:50px;" >
+
                     <br>
                     <label> Branch Nr </label>                       
                     <input type="text" id="branchNr" style="width:170px;margin-left:22px;" >
@@ -1157,7 +1168,7 @@
                         myCalendar9.setDateFormat("%Y/%m/%d");
                         var myCalendar10 = new dhtmlXCalendarObject(["debitdate"]);
                         myCalendar10.setDateFormat("%Y/%m/%d");
-                        var myCalendar11 = new dhtmlXCalendarObject(["stoporderdate"]);
+                        var myCalendar11 = new dhtmlXCalendarObject(["stopOrderDate"]);
                         myCalendar11.setDateFormat("%Y/%m/%d");
                     </script>  
                 </fieldset>

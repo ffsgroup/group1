@@ -20,8 +20,6 @@
                 var myCalendar;
                 function doOnLoad() {
                     myCalendar = new dhtmlXCalendarObject("calendarHere");
-                    //		myCalendar.setSkin("material");
-                    //  myCalendar.setDate(new Date(2016, 7, 7, 16, 0));
                     myCalendar.setDate(new Date);
                     myCalendar.show();
                     myCalendar.hideTime();

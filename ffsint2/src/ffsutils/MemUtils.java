@@ -56,7 +56,6 @@ public class MemUtils {
             MemberDebitOrder memberdebitorder = new MemberDebitOrder();
             Date date = new Date();
             Calendar calendar = new GregorianCalendar();
-
             calendar.setTime(rs.getTimestamp("DAT1"));
             String year = Integer.toString(calendar.get(Calendar.YEAR));
             String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
@@ -67,8 +66,21 @@ public class MemUtils {
             if (day.length() == 1) {
                 day = "0" + day;
             }
+            String DAT1 = year + "/" + month + "/" + day;
 
-            String DAT1 = day + "/" + month + "/" + year;
+            Calendar calendar2 = new GregorianCalendar();
+            calendar2.setTime(rs.getTimestamp("startstop"));
+            String year2 = Integer.toString(calendar2.get(Calendar.YEAR));
+            String month2 = Integer.toString(calendar2.get(Calendar.MONTH) + 1);
+            String day2 = Integer.toString(calendar2.get(Calendar.DAY_OF_MONTH));
+            if (month2.length() == 1) {
+                month2 = "0" + month2;
+            }
+            if (day2.length() == 1) {
+                day2 = "0" + day2;
+            }
+            String DAT2 = year2 + "/" + month2 + "/" + day2;
+
             memberdebitorder.settranId(rs.getString("tranId"));
             memberdebitorder.setREK_NAAM(rs.getString("REK_NAAM"));
             memberdebitorder.setREK_NO(rs.getString("REK_NO"));
@@ -82,6 +94,7 @@ public class MemUtils {
             memberdebitorder.setPayerName(rs.getString("PayerName"));
             memberdebitorder.setSalNr(rs.getString("SalNr"));
             memberdebitorder.setDAT1(DAT1);
+            memberdebitorder.setstartStop(DAT2);
             list.add(memberdebitorder);
         }
         return list;
@@ -1088,7 +1101,7 @@ public class MemUtils {
         ArrayList<Generics> list = new ArrayList<Generics>();
         Generics generic1 = new Generics();
         generic1.setGenGroupId("failed");
-         System.out.println("updateContact security " + thisMember + " " + thisUser.getsecurestr().substring(1, 2) + " " + padd1 + " " + post1 );
+        System.out.println("updateContact security " + thisMember + " " + thisUser.getsecurestr().substring(1, 2) + " " + padd1 + " " + post1);
         if (thisUser.getsecurestr().substring(1, 2).equals("1")) {
             System.out.println("updateContact " + thisMember);
             String sql1 = "update " + thisUser.getcompany() + ".lededata set pobox = ?, street = ? , city = ? , zip = ? , physline1 = ? , physline2 = ? , physline3 = ? , physcode = ? , telh = ? , telw = ? , opmaak = ? where lidno = ?";
@@ -1113,18 +1126,37 @@ public class MemUtils {
             System.out.println("updateContact failed " + thisMember);
             generic1.setGenGroupId("failed");
         }
-       list.add(generic1);
+        list.add(generic1);
         return list;
     }
 
-        public static ArrayList<Generics> UpdateAccount(Connection conn, UserAccount thisUser, String thisMember, String joindat, String claimdat, String coveramount, String bettot, String paypoint, String benefname, String benefid, String benefrelation, String benefdate, String mbranch, String paymeth) throws SQLException {
+    public static ArrayList<Generics> UpdateAccount(Connection conn, UserAccount thisUser, String thisMember, String joindat, String claimdat, String coveramount, String bettot, String paypoint, String benefname, String benefid, String benefrelation, String benefdate, String mbranch, String paymeth, String accholder, String accNo, String deductDay, String bankName, String accType, String debitdate, String branchNr, String groupScheme, String empName1, String payerName, String empName2, String payerId, String stopOrderDate, String salNr) throws SQLException {
         ArrayList<Generics> list = new ArrayList<Generics>();
         Generics generic1 = new Generics();
         generic1.setGenGroupId("failed");
         // secure [4] from pos to pos , first pos = 0 , end pos excluded
-         System.out.println("updateAccount security " + thisMember + " " + thisUser.getsecurestr().substring(3, 4) );
-         
+        System.out.println("updateAccount security " + thisMember + " " + thisUser.getsecurestr().substring(3, 4) + " p " + paymeth);
+
         if (thisUser.getsecurestr().substring(3, 4).equals("1")) {
+            String payMethNo = "0";
+            if (paymeth.equals("Cash")) {
+                payMethNo = "1";
+            }
+            if (paymeth.equals("Debit Order")) {
+                payMethNo = "3";
+            }
+            if (paymeth.equals("Stop Order")) {
+                payMethNo = "6";
+            }
+            if (paymeth.equals("DIRECT DEPOSIT")) {
+                payMethNo = "2";
+            }
+            if (paymeth.equals("Staff Payment")) {
+                payMethNo = "9";
+            }
+            if (paymeth.equals("Pensioners")) {
+                payMethNo = "10";
+            }
             String sql1 = "update " + thisUser.getcompany() + ".lededata set joindat = ?, eisdat = ? , branch = ? , coveramount = ? , bettot = ? , betmet = ? , paypoint = ? , benefname = ? , benefid = ? , benefrelation = ?, benefdate = ? where lidno = ?";
             PreparedStatement pstm1 = conn.prepareStatement(sql1);
             pstm1.setString(1, joindat);
@@ -1132,24 +1164,156 @@ public class MemUtils {
             pstm1.setString(3, mbranch);
             pstm1.setString(4, coveramount);
             pstm1.setString(5, bettot);
-            pstm1.setString(6, paymeth);
+            pstm1.setString(6, payMethNo);
             pstm1.setString(7, paypoint);
             pstm1.setString(8, benefname);
             pstm1.setString(9, benefid);
             pstm1.setString(10, benefrelation);
-            pstm1.setString(11, benefdate);            
+            pstm1.setString(11, benefdate);
             pstm1.setString(12, thisMember);
 
             pstm1.executeUpdate();
             generic1.setGenGroupId("success");
 
+            if (payMethNo == "3" || payMethNo == "6") {
+                String sql2 = "select tranid from " + thisUser.getcompany() + ".tbldebitorder where lidno = ?";
+                PreparedStatement pstm2 = conn.prepareStatement(sql2);
+                pstm2.setString(1, thisMember);
+                ResultSet rs2 = pstm2.executeQuery();
+                if (rs2.next()) {  // have entry in tbldebit, must update
+                    String sql3 = "update " + thisUser.getcompany() + ".tbldebitorder set rek_naam = ?, rek_no = ? , kere = ? , bankname = ? , tipe_rek = ? , dat1 = ? , takkode = ? , empname1 = ? , payername = ? , empname2 = ?, payerid = ?, salnr = ?  where lidno = ?";
+                    PreparedStatement pstm3 = conn.prepareStatement(sql3);
+                    pstm3.setString(1, accholder);
+                    pstm3.setString(2, accNo);
+                    pstm3.setString(3, deductDay);
+                    pstm3.setString(4, bankName);
+                    pstm3.setString(5, accType);
+                    pstm3.setString(6, debitdate);
+                    pstm3.setString(7, branchNr);
+                    pstm3.setString(8, empName1);
+                    pstm3.setString(9, payerName);
+                    pstm3.setString(10, empName2);
+                    pstm3.setString(11, payerId);
+                    pstm3.setString(12, salNr);
+                    pstm3.setString(13, thisMember);
+                    pstm3.executeUpdate();
+
+                } else { // no entry in tbldebit, insert now
+                    String sql3 = "insert into " + thisUser.getcompany() + ".tbldebitorder ( lidno, rek_naam , rek_no , kere , bankname , tipe_rek , dat1 , takkode , empname1 , payername , empname2 , payrid , salnr) values ( ?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                    PreparedStatement pstm3 = conn.prepareStatement(sql3);
+                    pstm3.setString(1, accholder);
+                    pstm3.setString(2, accNo);
+                    pstm3.setString(3, deductDay);
+                    pstm3.setString(4, bankName);
+                    pstm3.setString(5, accType);
+                    pstm3.setString(6, debitdate);
+                    pstm3.setString(7, branchNr);
+                    pstm3.setString(8, empName1);
+                    pstm3.setString(9, payerName);
+                    pstm3.setString(10, empName2);
+                    pstm3.setString(11, payerId);
+                    pstm3.setString(12, salNr);
+                    pstm3.setString(13, thisMember);
+                    pstm3.executeUpdate();
+                }
+            }
         } else {
             System.out.println("updateContact failed " + thisMember);
             generic1.setGenGroupId("failed");
         }
-       list.add(generic1);
+        list.add(generic1);
         return list;
     }
-       
-       
+
+    public static ArrayList<MemberDepen> getOneDepen(Connection conn, UserAccount userName, String depenId) throws SQLException {
+
+        System.out.println("getOneDepen " + depenId);
+        String sql = "Select * from " + userName.getcompany() + ".afhank where tranid = ?";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, depenId);
+
+        ResultSet rs = pstm.executeQuery();
+        MemberDepen memberdepen = new MemberDepen();
+        if (rs.next()) {
+            memberdepen.setTranid(rs.getString("tranid"));
+            memberdepen.setini(rs.getString("ini"));
+            memberdepen.setsur(rs.getString("sur"));
+            if (rs.getString("verwskap").equals("1")) {
+                memberdepen.setverwskap("SPOUSE");
+            }
+            if (rs.getString("verwskap").equals("2")) {
+                memberdepen.setverwskap("CHILD");
+            }
+            if (rs.getString("verwskap").equals("3")) {
+                memberdepen.setverwskap("WIFE");
+            }
+            if (rs.getString("verwskap").equals("4")) {
+                memberdepen.setverwskap("HUSBAND");
+            }
+            if (rs.getString("verwskap").equals("5")) {
+                memberdepen.setverwskap("PARENT");
+            }
+            if (rs.getString("verwskap").equals("6")) {
+                memberdepen.setverwskap("STUDENT");
+            }
+            if (rs.getString("verwskap").equals("7")) {
+                memberdepen.setverwskap("CHILD - EXTRA");
+            }
+            if (rs.getString("verwskap").equals("8")) {
+                memberdepen.setverwskap("CHILD - DISABLED");
+            }
+            memberdepen.setlidno(rs.getString("lidno"));
+            Date date2 = new Date();
+            Calendar cal2 = new GregorianCalendar();
+            cal2.setTime(rs.getTimestamp("gebdat"));            
+            String year2 = Integer.toString(cal2.get(Calendar.YEAR));
+            String month2 = Integer.toString(cal2.get(Calendar.MONTH) + 1);
+            String day2 = Integer.toString(cal2.get(Calendar.DAY_OF_MONTH));
+            if (month2.length() == 1) {
+                month2 = "0" + month2;
+            }
+            if (day2.length() == 1) {
+                day2 = "0" + day2;
+            }
+            memberdepen.setsex("Female");
+            memberdepen.setgebdat(year2 + "/" + month2 + "/" + day2);
+            if (rs.getString("sex").equals("1")) {
+                memberdepen.setsex("Male");
+            }
+            memberdepen.setidno(rs.getString("idno"));
+            memberdepen.setpremie(rs.getString("premie"));
+            memberdepen.setstatus(rs.getString("status"));
+
+            Calendar cal3 = new GregorianCalendar();
+            cal3.setTime(rs.getTimestamp("joindate"));            
+            String year3 = Integer.toString(cal3.get(Calendar.YEAR));
+            String month3 = Integer.toString(cal3.get(Calendar.MONTH) + 1);
+            String day3 = Integer.toString(cal3.get(Calendar.DAY_OF_MONTH));
+            if (month3.length() == 1) {
+                month3 = "0" + month3;
+            }
+            if (day3.length() == 1) {
+                day3 = "0" + day3;
+            }           
+            memberdepen.setjoindate(year3 + "/" + month3 + "/" + day3);
+            
+            Calendar cal4 = new GregorianCalendar();
+            cal4.setTime(rs.getTimestamp("statusdate"));            
+            String year4 = Integer.toString(cal4.get(Calendar.YEAR));
+            String month4 = Integer.toString(cal4.get(Calendar.MONTH) + 1);
+            String day4 = Integer.toString(cal4.get(Calendar.DAY_OF_MONTH));
+            if (month4.length() == 1) {
+                month4 = "0" + month4;
+            }
+            if (day4.length() == 1) {
+                day4 = "0" + day4;
+            }           
+            memberdepen.setstatusdate(year4 + "/" + month4 + "/" + day4);            
+
+        }
+         ArrayList<MemberDepen> list = new ArrayList<MemberDepen>();
+         list.add(memberdepen);
+        return list;
+    }
+
 }

@@ -25,12 +25,13 @@ public class MemberDebitOrder {
     private String PayerName;
     private String PayerID;
     private String SalNr;
+private String startStop;
 
     public MemberDebitOrder() {
 
     }
 
-    public MemberDebitOrder(String tranId, String lidno, String REK_NAAM, String REK_NO, String KERE, String BankName, String TIPE_REK, String DAT1, String TAKKODE, String EmpName1, String EmpName2, String PayerName, String PayerID, String SalNr) {
+    public MemberDebitOrder(String tranId, String lidno, String REK_NAAM, String REK_NO, String KERE, String BankName, String TIPE_REK, String DAT1, String TAKKODE, String EmpName1, String EmpName2, String PayerName, String PayerID, String SalNr, String startStop) {
         this.tranId = tranId;
         this.lidno = lidno;
         this.REK_NAAM = REK_NAAM;
@@ -45,6 +46,7 @@ public class MemberDebitOrder {
         this.PayerName = PayerName;
         this.PayerID = PayerID;
         this.SalNr = SalNr;
+        this.startStop = startStop;
         
     }
 
@@ -154,4 +156,13 @@ public class MemberDebitOrder {
     public void setSalNr(String SalNr) {
         this.SalNr = SalNr;
     }
+    
+    public String getstartStop() {
+        return startStop;
+    }
+
+    public void setstartStop(String startStop) {
+        this.startStop = startStop;
+    }
+    
 }

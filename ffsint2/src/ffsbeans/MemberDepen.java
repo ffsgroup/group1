@@ -13,11 +13,13 @@ public class MemberDepen {
     private String status;
     private String statusdate;
     private String age;
+    private String idno;
+    private String joindate;
     
     public MemberDepen() {
     }
 
-    public MemberDepen(String tranid, String lidno, String ini, String sur, String gebdat, String sex, String verwskap, String premie, String status, String statusdate, String age) {
+    public MemberDepen(String tranid, String lidno, String ini, String sur, String gebdat, String sex, String verwskap, String premie, String status, String statusdate, String age, String idno, String joindate) {
         this.tranid = tranid;
         this.lidno = lidno;
         this.ini = ini;
@@ -118,4 +120,21 @@ public class MemberDepen {
     public void setage(String age) {
         this.age = age;
     }    
+    
+        public String getidno() {
+        return idno;
+    }
+
+    public void setidno(String idno) {
+        this.idno = idno;
+    }    
+    
+        public String getjoindate() {
+        return joindate;
+    }
+
+    public void setjoindate(String joindate) {
+        this.joindate = joindate;
+    }
+    
 }
