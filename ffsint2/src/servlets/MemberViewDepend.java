@@ -59,6 +59,7 @@ public class MemberViewDepend extends HttpServlet {
         String i = "";
         String j = "";
         String k = "";
+        String l = "";
         
         for (MemberDepen memberDepen1 : depend) {
             a = memberDepen1.getTranid();
@@ -72,6 +73,7 @@ public class MemberViewDepend extends HttpServlet {
             i = memberDepen1.getidno();
             j = memberDepen1.getlidno();
             k = memberDepen1.getverwskap();
+            l = memberDepen1.getage();
         }
 
         String showDel = "";
@@ -89,7 +91,9 @@ public class MemberViewDepend extends HttpServlet {
         request.setAttribute("idno", i);        
         request.setAttribute("lidno", j);        
         request.setAttribute("verwskap", k);  
-        System.out.println("MemberViewDepend -" + k + "-" + d + "-" + e + "-" + f + "-");
+        request.setAttribute("secur", l);  
+        
+        System.out.println("MemberViewDepend -" + k + "-" + d + "-" + e + "-" + f + "-" + l + "-");
         RequestDispatcher dispatcher = request.getServletContext()
                 .getRequestDispatcher("/WEB-INF/views/memberDepen.jsp");
         dispatcher.forward(request, response);

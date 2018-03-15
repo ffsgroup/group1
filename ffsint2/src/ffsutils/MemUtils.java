@@ -1227,7 +1227,9 @@ public class MemUtils {
 
     public static ArrayList<MemberDepen> getOneDepen(Connection conn, UserAccount userName, String depenId) throws SQLException {
 
-        System.out.println("getOneDepen " + depenId);
+        System.out.println("getOneDepen " + depenId + " security " + userName.getsecurestr().substring(3, 4));
+        // secure [4] from pos to pos , first pos = 0 , end pos excluded
+
         String sql = "Select * from " + userName.getcompany() + ".afhank where tranid = ?";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, depenId);
@@ -1311,9 +1313,62 @@ public class MemUtils {
             memberdepen.setstatusdate(year4 + "/" + month4 + "/" + day4);            
 
         }
+        if (userName.getsecurestr().substring(3, 4).equals("1")) {
+          memberdepen.setage("Y");
+        } else {
+          memberdepen.setage("N");  
+        }       
          ArrayList<MemberDepen> list = new ArrayList<MemberDepen>();
          list.add(memberdepen);
         return list;
     }
+    
+    public static ArrayList<Generics> UpdateDepend(Connection conn, UserAccount thisUser, String thisMember, String tranid, String ini, String sur, String idno, String bdate, String joindate, String mrelate1, String gend1, String stat1, String statdate1) throws SQLException {
+        ArrayList<Generics> list = new ArrayList<Generics>();
+        Generics generic1 = new Generics();
+        generic1.setGenGroupId("failed");
+        System.out.println("updateDepend security " + thisMember + " " + thisUser.getsecurestr().substring(3, 4) + " " + tranid);
+        if (thisUser.getsecurestr().substring(3, 4).equals("1")) {
+            System.out.println("updateDepend " + thisMember);
+            String thisRelate = "";
+            if (mrelate1.equals("SPOUSE")) {thisRelate = "1"; }
+            if (mrelate1.equals("CHILD")) {thisRelate = "2"; }
+            if (mrelate1.equals("WIFE")) {thisRelate = "3"; }
+            if (mrelate1.equals("HUSBAND")) {thisRelate = "4"; }
+            if (mrelate1.equals("PARENT")) {thisRelate = "5"; }
+            if (mrelate1.equals("STUDENT")) {thisRelate = "6"; }
+            if (mrelate1.equals("CHILD - EXTRA")) {thisRelate = "7"; }
+            if (mrelate1.equals("CHILD - DISABLED")) {thisRelate = "8"; }
+            String thisGend = "";
+            if (gend1.equals("Female")) { thisGend = "2"; }
+            if (gend1.equals("Male")) { thisGend = "1"; }             
+             
+            String sql1 = "update " + thisUser.getcompany() + ".afhank set sur = ?, ini = ? , idno = ? , gebdat = ? , joindate = ? , verwskap = ? , sex = ? , status = ? , statusdate = ? where lidno = ? and tranid = ?";
+         // String sql1 = "update " + thisUser.getcompany() + ".afhank set sur = '" + sur + "', ini = '" + ini + "' , idno = '" + idno + "' , gebdat = '" + bdate + "' , joindate = '" + joindate + "' , verwskap = '" + thisRelate + "', sex = '" + thisGend + "' , status = '" + stat1 + "', statusdate = '" + statdate1 + "' where lidno = '" + thisMember + "' and tranid = '" + tranid + "'";
+             System.out.println(sql1);
+            PreparedStatement pstm1 = conn.prepareStatement(sql1);
+            pstm1.setString(1, sur);
+            pstm1.setString(2, ini);
+            pstm1.setString(3, idno);
+            pstm1.setString(4, bdate);
+            pstm1.setString(5, joindate);
+            pstm1.setString(6, thisRelate);
+            pstm1.setString(7, thisGend);
+            pstm1.setString(8, stat1);
+            pstm1.setString(9, statdate1);            
+            pstm1.setString(10, thisMember);
+            pstm1.setString(11, tranid);
+
+            pstm1.executeUpdate();
+            generic1.setGenGroupId("success");
+
+        } else {
+            System.out.println("updateContact failed " + thisMember);
+            generic1.setGenGroupId("failed");
+        }
+        list.add(generic1);
+        return list;
+    }
+    
 
 }

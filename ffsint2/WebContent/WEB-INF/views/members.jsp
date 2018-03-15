@@ -209,12 +209,10 @@
 
 
             function memberGetImages() {
-
-                // get member notes
                 $.get('MemberGetImages', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
-
                     if (responseJson != null) {
                         var table2 = $("#imagegrid");
+                        $("#imagegrid tbody tr").remove();
                         $.each(responseJson, function (key, value) {
                             var rowNew = $("<tr><td></td><td></td><td></td></tr>");
                             rowNew.children().eq(0).text(value['user']);
@@ -253,14 +251,11 @@
 
             }
 
-
             function membergetrec() {
-
-                // get receipt details
                 $.get('MemberReceiptGet', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
-
                     if (responseJson != null) {
                         var table2 = $("#recgrid");
+                        $("#recgrid tbody tr").remove();                       
                         $.each(responseJson, function (key, value) {
                             var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
                             rowNew.children().eq(0).text(value['kwitno']);
@@ -273,18 +268,15 @@
                             rowNew.children().eq(7).text(value['cardused']);
                             rowNew.children().eq(8).text(value['decsign']);
 
-
-
                             rowNew.appendTo(table2);
-                            // Display payment method
-                            document.getElementById("paidrecmeth").innerHTML = value['betmet'];
+                            document.getElementById("paidrecmeth").innerHTML = value['betmet'];                       
                         });
                     } else {
                         document.getElementById("memtitle").value = "No such member";
                     }
                 });
-
             }
+            
             function membergetdepen() {
                 var countDepen = 0;
                 var activeDepen = 0;

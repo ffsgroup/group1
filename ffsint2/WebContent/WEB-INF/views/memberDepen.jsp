@@ -12,6 +12,29 @@
         <link rel="stylesheet" type="text/css" href="resources/button.css"/>
 
         <script>
+            $(document).ready(function () {
+                $("#updated").click(function (event) {
+                    var thisrelate = $("#mrelate1 option:selected").text();
+                    var thisgend = $("#gend1 option:selected").text();
+                    var thisstat = $("#stat1 option:selected").text();
+                    $.get('MemberUpdateDepend', {thisMember: document.getElementById("memno").innerHTML, tranid : document.getElementById("tranid").innerHTML, ini: document.getElementById("ini").value, sur: document.getElementById("sur").value, idno: document.getElementById("idno").value, bdate: document.getElementById("bdate").value, joindate: document.getElementById("joindate").value, mrelate1: thisrelate, gend1: thisgend, stat1: thisstat, statdate1: document.getElementById("statdate1").value }, function (responseJson) {
+                        if (responseJson !== null) {
+                            $.each(responseJson, function (key, value) {
+                                var t1 = value['GenGroupId'];
+                                if (t1 == "success") {
+                                    alert("success");
+                                } else {
+                                    alert("failed");
+                                }
+                            });
+                        } else {
+                            alert("no response");
+                        }
+                    });
+                });
+            });
+          </script>  
+          <script>  
             var myCalendar;
             function doOnLoad() {
                 myCalendar = new dhtmlXCalendarObject("myCalendar1");
@@ -64,18 +87,18 @@
         <div>
             <br> <br>
             <label style = "font-size:20px"> Edit Member Dependent </label> 
-            <label style = "font-size:20px" id="tranid"> ${tranid} </label> 
+            <label style = "font-size:20px" id="tranid">${tranid}</label> 
             <br>
             <label style = "font-size:20px"> Member </label> 
-            <label style = "font-size:20px" id="memno"> ${lidno} </label>
+            <label style = "font-size:20px" id="memno">${lidno}</label>
             <br>
             <br>
             <table>
                 <tr>
-                    <td>First name</td> <td> <input type ="text" id="sur" width ="15" style="margin-left:10px" value=${ini} > </td>            
+                    <td>First name</td> <td> <input type ="text" id="ini" width ="15" style="margin-left:10px" value=${ini} > </td>            
                 </tr>
                 <tr>
-                    <td>Surname</td> <td> <input type ="text" id="ini" width ="15" style="margin-left:10px" value=${sur} > </td>            
+                    <td>Surname</td> <td> <input type ="text" id="sur" width ="15" style="margin-left:10px" value=${sur} > </td>            
                 </tr>
                 <tr>
                     <td>ID No</td> <td> <input type ="text" id="idno" width ="15" style="margin-left:10px" value=${idno} > </td>            
@@ -98,17 +121,14 @@
                             <option value="CHILD - EXTRA">CHILD - EXTRA</option>
                             <option value="CHILD - DISABLED">CHILD - DISABLED</option>
                         </select>          
-</td>            
+                    </td>            
                 </tr>
-
                 <tr>
                     <td>Gender</td> <td> <select name="gend1" id="gend1" style="width:120px; margin-left:38px;">
-                             <option value="${sex}">${sex}</option>
+                            <option value="${sex}">${sex}</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
-
                         </select>
-                    
                 </tr>
                 <tr>
                     <td>Status</td> <td><select name="status1" id="stat1" style="width:120px; margin-left:38px;">
@@ -133,7 +153,8 @@
 
 
             <br>
-            <input type ="button" value="Update" >
+            <label id = "label1" style = "visibility:hidden;" >${secur}</label>
+            <input type ="button" id="updated" value="Update" >
             <script>
                 var myCalendar1 = new dhtmlXCalendarObject(["bdate"]);
                 myCalendar1.setDateFormat("%Y/%m/%d");
@@ -143,8 +164,16 @@
 
                 var myCalendar3 = new dhtmlXCalendarObject(["statdate1"]);
                 myCalendar3.setDateFormat("%Y/%m/%d");
-                
+
             </script>  
+            <script>
+                var val1 = document.getElementById("label1").innerHTML;
+                if (document.getElementById("label1").innerHTML == "Y") {
+                    $("#updated").css("visibility", "visible");
+                } else {
+                    $("#updated").css("visibility", "hidden");
+                }
+            </script>   
         </div>    
     </body>    
 </html>
