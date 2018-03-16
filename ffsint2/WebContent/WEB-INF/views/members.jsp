@@ -44,12 +44,16 @@
                     $td = target.closest('td');
                     var col = $td.index();
                     var row = $td.closest('tr').index();                    
-                    window.location = "MemberViewDepend?key=" + encodeURIComponent(document.getElementById("dependTable").rows[row].cells[9].innerHTML);
+                    window.location = "MemberViewDepend?key=" + encodeURIComponent(document.getElementById("dependTable").rows[row].cells[9].innerHTML) + "&member=" +encodeURIComponent(document.getElementById("memnum").value);
                 });
             });
 
-        </script>
-        <script>
+            $(document).ready(function () {
+                $("#newdepen").click(function (event) {                 
+                    window.location = "MemberViewDepend?key=" + encodeURIComponent("0") + "&member=" +encodeURIComponent(document.getElementById("memnum").value) ;
+                });
+            });
+
             $(document).ready(function () {
                 $("#memAdditional").click(function (event) {
                     window.location = "MemberAddition?key=" + encodeURIComponent(document.getElementById("memnum").value);
@@ -638,8 +642,6 @@
                                 });
                             }
                         });
-//  get post send for alert here                        
-
                     }
                     // Tab 4 Accouts
                     if (document.getElementById("memnum").value.length === 8) {
@@ -769,10 +771,8 @@
                     document.getElementById("addpol6am").innerHTML = "";
                     document.getElementById("addpol7").innerHTML = "";
                     document.getElementById("addpol7am").innerHTML = "";
-
                 }
             }
-
 
         </script>            
 
@@ -817,7 +817,7 @@
     <body>
         <br>
         <fieldset>
-            <label> Member Number <input type ="text" id="memnum" width ="15" style="margin-left:10px" onkeyup="loadMember()" value="000" > </label>
+            <label> Member Number <input type ="text" id="memnum" width ="15" style="margin-left:10px" onkeyup="loadMember()" value=${lidno} > </label>
             <br>
             <label> Title <input type ="text" id="memtitle" width="25" style="margin-left:47px"> </label>
             <label style="margin-left:100px"> Company Name <select id="memcomp" style="width:100px" > <option value=""></option> </select> </label>
@@ -825,7 +825,7 @@
             <label> Name <input type="text" id="memname" width="25" style="margin-left:35px" > </label>
             <label style ="margin-left: 100px"> Policy Type <select id="mempoltype" style="width:150px; margin-left:30px;" > <option value=""></option> </select> </label>
             <br>
-            <label> Surname <input type="text" id="memsur" width="25" style="margin-left:20px"> </label>
+            <label> Surname <input type="text" id="memsur" width="25" style="margin-left:20px" value = ${sur}> </label>
             <label style="margin-left:100px"> Policy Date <input type="text" id="poldate" width="20" style="margin-left:30px;" > </label>
             <br>
             <label> ID Number <input type="text" id="memidno" width="25" style="margin-left:3px"> </label>

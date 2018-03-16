@@ -1225,104 +1225,115 @@ public class MemUtils {
         return list;
     }
 
-    public static ArrayList<MemberDepen> getOneDepen(Connection conn, UserAccount userName, String depenId) throws SQLException {
+    public static ArrayList<MemberDepen> getOneDepen(Connection conn, UserAccount userName, String depenId, String member) throws SQLException {
 
         System.out.println("getOneDepen " + depenId + " security " + userName.getsecurestr().substring(3, 4));
         // secure [4] from pos to pos , first pos = 0 , end pos excluded
-
-        String sql = "Select * from " + userName.getcompany() + ".afhank where tranid = ?";
-        PreparedStatement pstm = conn.prepareStatement(sql);
-        pstm.setString(1, depenId);
-
-        ResultSet rs = pstm.executeQuery();
         MemberDepen memberdepen = new MemberDepen();
-        if (rs.next()) {
-            memberdepen.setTranid(rs.getString("tranid"));
-            memberdepen.setini(rs.getString("ini"));
-            memberdepen.setsur(rs.getString("sur"));
-            if (rs.getString("verwskap").equals("1")) {
-                memberdepen.setverwskap("SPOUSE");
-            }
-            if (rs.getString("verwskap").equals("2")) {
-                memberdepen.setverwskap("CHILD");
-            }
-            if (rs.getString("verwskap").equals("3")) {
-                memberdepen.setverwskap("WIFE");
-            }
-            if (rs.getString("verwskap").equals("4")) {
-                memberdepen.setverwskap("HUSBAND");
-            }
-            if (rs.getString("verwskap").equals("5")) {
-                memberdepen.setverwskap("PARENT");
-            }
-            if (rs.getString("verwskap").equals("6")) {
-                memberdepen.setverwskap("STUDENT");
-            }
-            if (rs.getString("verwskap").equals("7")) {
-                memberdepen.setverwskap("CHILD - EXTRA");
-            }
-            if (rs.getString("verwskap").equals("8")) {
-                memberdepen.setverwskap("CHILD - DISABLED");
-            }
-            memberdepen.setlidno(rs.getString("lidno"));
-            Date date2 = new Date();
-            Calendar cal2 = new GregorianCalendar();
-            cal2.setTime(rs.getTimestamp("gebdat"));            
-            String year2 = Integer.toString(cal2.get(Calendar.YEAR));
-            String month2 = Integer.toString(cal2.get(Calendar.MONTH) + 1);
-            String day2 = Integer.toString(cal2.get(Calendar.DAY_OF_MONTH));
-            if (month2.length() == 1) {
-                month2 = "0" + month2;
-            }
-            if (day2.length() == 1) {
-                day2 = "0" + day2;
-            }
-            memberdepen.setsex("Female");
-            memberdepen.setgebdat(year2 + "/" + month2 + "/" + day2);
-            if (rs.getString("sex").equals("1")) {
-                memberdepen.setsex("Male");
-            }
-            memberdepen.setidno(rs.getString("idno"));
-            memberdepen.setpremie(rs.getString("premie"));
-            memberdepen.setstatus(rs.getString("status"));
 
-            Calendar cal3 = new GregorianCalendar();
-            cal3.setTime(rs.getTimestamp("joindate"));            
-            String year3 = Integer.toString(cal3.get(Calendar.YEAR));
-            String month3 = Integer.toString(cal3.get(Calendar.MONTH) + 1);
-            String day3 = Integer.toString(cal3.get(Calendar.DAY_OF_MONTH));
-            if (month3.length() == 1) {
-                month3 = "0" + month3;
-            }
-            if (day3.length() == 1) {
-                day3 = "0" + day3;
-            }           
-            memberdepen.setjoindate(year3 + "/" + month3 + "/" + day3);
-            
-            Calendar cal4 = new GregorianCalendar();
-            cal4.setTime(rs.getTimestamp("statusdate"));            
-            String year4 = Integer.toString(cal4.get(Calendar.YEAR));
-            String month4 = Integer.toString(cal4.get(Calendar.MONTH) + 1);
-            String day4 = Integer.toString(cal4.get(Calendar.DAY_OF_MONTH));
-            if (month4.length() == 1) {
-                month4 = "0" + month4;
-            }
-            if (day4.length() == 1) {
-                day4 = "0" + day4;
-            }           
-            memberdepen.setstatusdate(year4 + "/" + month4 + "/" + day4);            
+        if (!depenId.equals("0")) {
+            String sql = "Select * from " + userName.getcompany() + ".afhank where tranid = ?";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.setString(1, depenId);
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()) {
+                memberdepen.setTranid(rs.getString("tranid"));
+                memberdepen.setini(rs.getString("ini"));
+                memberdepen.setsur(rs.getString("sur"));
+                if (rs.getString("verwskap").equals("1")) {
+                    memberdepen.setverwskap("SPOUSE");
+                }
+                if (rs.getString("verwskap").equals("2")) {
+                    memberdepen.setverwskap("CHILD");
+                }
+                if (rs.getString("verwskap").equals("3")) {
+                    memberdepen.setverwskap("WIFE");
+                }
+                if (rs.getString("verwskap").equals("4")) {
+                    memberdepen.setverwskap("HUSBAND");
+                }
+                if (rs.getString("verwskap").equals("5")) {
+                    memberdepen.setverwskap("PARENT");
+                }
+                if (rs.getString("verwskap").equals("6")) {
+                    memberdepen.setverwskap("STUDENT");
+                }
+                if (rs.getString("verwskap").equals("7")) {
+                    memberdepen.setverwskap("CHILD - EXTRA");
+                }
+                if (rs.getString("verwskap").equals("8")) {
+                    memberdepen.setverwskap("CHILD - DISABLED");
+                }
+                memberdepen.setlidno(rs.getString("lidno"));
+                Date date2 = new Date();
+                Calendar cal2 = new GregorianCalendar();
+                cal2.setTime(rs.getTimestamp("gebdat"));
+                String year2 = Integer.toString(cal2.get(Calendar.YEAR));
+                String month2 = Integer.toString(cal2.get(Calendar.MONTH) + 1);
+                String day2 = Integer.toString(cal2.get(Calendar.DAY_OF_MONTH));
+                if (month2.length() == 1) {
+                    month2 = "0" + month2;
+                }
+                if (day2.length() == 1) {
+                    day2 = "0" + day2;
+                }
+                memberdepen.setsex("Female");
+                memberdepen.setgebdat(year2 + "/" + month2 + "/" + day2);
+                if (rs.getString("sex").equals("1")) {
+                    memberdepen.setsex("Male");
+                }
+                memberdepen.setidno(rs.getString("idno"));
+                memberdepen.setpremie(rs.getString("premie"));
+                memberdepen.setstatus(rs.getString("status"));
 
-        }
-        if (userName.getsecurestr().substring(3, 4).equals("1")) {
-          memberdepen.setage("Y");
+                Calendar cal3 = new GregorianCalendar();
+                cal3.setTime(rs.getTimestamp("joindate"));
+                String year3 = Integer.toString(cal3.get(Calendar.YEAR));
+                String month3 = Integer.toString(cal3.get(Calendar.MONTH) + 1);
+                String day3 = Integer.toString(cal3.get(Calendar.DAY_OF_MONTH));
+                if (month3.length() == 1) {
+                    month3 = "0" + month3;
+                }
+                if (day3.length() == 1) {
+                    day3 = "0" + day3;
+                }
+                memberdepen.setjoindate(year3 + "/" + month3 + "/" + day3);
+
+                Calendar cal4 = new GregorianCalendar();
+                cal4.setTime(rs.getTimestamp("statusdate"));
+                String year4 = Integer.toString(cal4.get(Calendar.YEAR));
+                String month4 = Integer.toString(cal4.get(Calendar.MONTH) + 1);
+                String day4 = Integer.toString(cal4.get(Calendar.DAY_OF_MONTH));
+                if (month4.length() == 1) {
+                    month4 = "0" + month4;
+                }
+                if (day4.length() == 1) {
+                    day4 = "0" + day4;
+                }
+                memberdepen.setstatusdate(year4 + "/" + month4 + "/" + day4);
+
+            }
+            if (userName.getsecurestr().substring(3, 4).equals("1")) {
+                memberdepen.setage("Y");
+            } else {
+                memberdepen.setage("N");
+            }
         } else {
-          memberdepen.setage("N");  
-        }       
-         ArrayList<MemberDepen> list = new ArrayList<MemberDepen>();
-         list.add(memberdepen);
+            memberdepen.setlidno(member);
+            memberdepen.setTranid("0");
+            memberdepen.setjoindate("");
+            if (userName.getsecurestr().substring(3, 4).equals("1")) {
+                memberdepen.setage("Y");
+            } else {
+                memberdepen.setage("N");
+            }
+        }
+
+        ArrayList<MemberDepen> list = new ArrayList<MemberDepen>();
+        list.add(memberdepen);
         return list;
     }
-    
+
     public static ArrayList<Generics> UpdateDepend(Connection conn, UserAccount thisUser, String thisMember, String tranid, String ini, String sur, String idno, String bdate, String joindate, String mrelate1, String gend1, String stat1, String statdate1) throws SQLException {
         ArrayList<Generics> list = new ArrayList<Generics>();
         Generics generic1 = new Generics();
@@ -1331,35 +1342,69 @@ public class MemUtils {
         if (thisUser.getsecurestr().substring(3, 4).equals("1")) {
             System.out.println("updateDepend " + thisMember);
             String thisRelate = "";
-            if (mrelate1.equals("SPOUSE")) {thisRelate = "1"; }
-            if (mrelate1.equals("CHILD")) {thisRelate = "2"; }
-            if (mrelate1.equals("WIFE")) {thisRelate = "3"; }
-            if (mrelate1.equals("HUSBAND")) {thisRelate = "4"; }
-            if (mrelate1.equals("PARENT")) {thisRelate = "5"; }
-            if (mrelate1.equals("STUDENT")) {thisRelate = "6"; }
-            if (mrelate1.equals("CHILD - EXTRA")) {thisRelate = "7"; }
-            if (mrelate1.equals("CHILD - DISABLED")) {thisRelate = "8"; }
+            if (mrelate1.equals("SPOUSE")) {
+                thisRelate = "1";
+            }
+            if (mrelate1.equals("CHILD")) {
+                thisRelate = "2";
+            }
+            if (mrelate1.equals("WIFE")) {
+                thisRelate = "3";
+            }
+            if (mrelate1.equals("HUSBAND")) {
+                thisRelate = "4";
+            }
+            if (mrelate1.equals("PARENT")) {
+                thisRelate = "5";
+            }
+            if (mrelate1.equals("STUDENT")) {
+                thisRelate = "6";
+            }
+            if (mrelate1.equals("CHILD - EXTRA")) {
+                thisRelate = "7";
+            }
+            if (mrelate1.equals("CHILD - DISABLED")) {
+                thisRelate = "8";
+            }
             String thisGend = "";
-            if (gend1.equals("Female")) { thisGend = "2"; }
-            if (gend1.equals("Male")) { thisGend = "1"; }             
-             
-            String sql1 = "update " + thisUser.getcompany() + ".afhank set sur = ?, ini = ? , idno = ? , gebdat = ? , joindate = ? , verwskap = ? , sex = ? , status = ? , statusdate = ? where lidno = ? and tranid = ?";
-         // String sql1 = "update " + thisUser.getcompany() + ".afhank set sur = '" + sur + "', ini = '" + ini + "' , idno = '" + idno + "' , gebdat = '" + bdate + "' , joindate = '" + joindate + "' , verwskap = '" + thisRelate + "', sex = '" + thisGend + "' , status = '" + stat1 + "', statusdate = '" + statdate1 + "' where lidno = '" + thisMember + "' and tranid = '" + tranid + "'";
-             System.out.println(sql1);
-            PreparedStatement pstm1 = conn.prepareStatement(sql1);
-            pstm1.setString(1, sur);
-            pstm1.setString(2, ini);
-            pstm1.setString(3, idno);
-            pstm1.setString(4, bdate);
-            pstm1.setString(5, joindate);
-            pstm1.setString(6, thisRelate);
-            pstm1.setString(7, thisGend);
-            pstm1.setString(8, stat1);
-            pstm1.setString(9, statdate1);            
-            pstm1.setString(10, thisMember);
-            pstm1.setString(11, tranid);
+            if (gend1.equals("Female")) {
+                thisGend = "2";
+            }
+            if (gend1.equals("Male")) {
+                thisGend = "1";
+            }
 
-            pstm1.executeUpdate();
+            if (!tranid.equals("0")) {
+                String sql1 = "update " + thisUser.getcompany() + ".afhank set sur = ?, ini = ? , idno = ? , gebdat = ? , joindate = ? , verwskap = ? , sex = ? , status = ? , statusdate = ? where lidno = ? and tranid = ?";
+                PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                pstm1.setString(1, sur);
+                pstm1.setString(2, ini);
+                pstm1.setString(3, idno);
+                pstm1.setString(4, bdate);
+                pstm1.setString(5, joindate);
+                pstm1.setString(6, thisRelate);
+                pstm1.setString(7, thisGend);
+                pstm1.setString(8, stat1);
+                pstm1.setString(9, statdate1);
+                pstm1.setString(10, thisMember);
+                pstm1.setString(11, tranid);
+
+                pstm1.executeUpdate();
+            } else {
+                String sql1 = "insert into " + thisUser.getcompany() + ".afhank (sur , ini , idno , gebdat , joindate , verwskap , sex , status , statusdate, lidno) Values(?,?,?,?,?,?,?,?,?,?)";
+                PreparedStatement pstm1 = conn.prepareStatement(sql1);
+                pstm1.setString(1, sur);
+                pstm1.setString(2, ini);
+                pstm1.setString(3, idno);
+                pstm1.setString(4, bdate);
+                pstm1.setString(5, joindate);
+                pstm1.setString(6, thisRelate);
+                pstm1.setString(7, thisGend);
+                pstm1.setString(8, stat1);
+                pstm1.setString(9, statdate1);
+                pstm1.setString(10, thisMember);
+                pstm1.executeUpdate();
+            }
             generic1.setGenGroupId("success");
 
         } else {
@@ -1369,6 +1414,5 @@ public class MemUtils {
         list.add(generic1);
         return list;
     }
-    
 
 }

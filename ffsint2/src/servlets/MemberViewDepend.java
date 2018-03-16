@@ -37,13 +37,15 @@ public class MemberViewDepend extends HttpServlet {
             throws ServletException, IOException {
         Connection conn = MyUtils.getStoredConnection(request);
         HttpSession session = request.getSession();
+        
         UserAccount loginedUser = MyUtils.getLoginedUser(session);
 
         String tranid = request.getParameter("key");
-        System.out.println("MemberViewDepend " + tranid);
+        String member = request.getParameter("member");
+        System.out.println("MemberViewDepend " + tranid + "-" + member);
         ArrayList<MemberDepen> depend = new ArrayList<MemberDepen>();
         try {
-            depend = MemUtils.getOneDepen(conn, loginedUser, tranid);
+            depend = MemUtils.getOneDepen(conn, loginedUser, tranid, member);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -92,6 +94,9 @@ public class MemberViewDepend extends HttpServlet {
         request.setAttribute("lidno", j);        
         request.setAttribute("verwskap", k);  
         request.setAttribute("secur", l);  
+        
+        session.setAttribute("currentMember", member);
+        System.out.println("MemberViewDepend currentMember-" + j);
         
         System.out.println("MemberViewDepend -" + k + "-" + d + "-" + e + "-" + f + "-" + l + "-");
         RequestDispatcher dispatcher = request.getServletContext()
