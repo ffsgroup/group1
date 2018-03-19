@@ -14,13 +14,14 @@ public class MemberNote {
     private String tranId;
     private String tranUserId;
     private String tranComment;
+    private String tranDescr;
     private String dateMod;
 
     public MemberNote() {
 
     }
 
-    public MemberNote(String tranId, String tranUserId, String tranComment, String dateMod) {
+    public MemberNote(String tranId, String tranUserId, String tranComment, String dateMod, String tranDescr) {
         this.tranId = tranId;
         this.tranUserId = tranUserId;
         this.tranComment = tranComment;
@@ -58,5 +59,14 @@ public class MemberNote {
     public void setdateMod(String dateMod) {
         this.dateMod = dateMod;
     }
+    
+    public String gettranDescr() {
+        return tranDescr;
+    }
+
+    public void settranDescr(String tranDescr) {
+        this.tranDescr = tranDescr;
+    }
+    
 
 }

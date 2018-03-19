@@ -966,8 +966,6 @@ $(document).ready( function() {
                         }
                     </script>
 
-
-
                     <br/>            
                     <br/>
                     <br/>
@@ -1044,7 +1042,7 @@ $(document).ready( function() {
                 <input id="uploadBtn" type="button" value="Upload" onClick="performAjaxSubmit();">
 
             </div>
-             <label id="linktask1" style="visibility:visible;"/>${linktask11}</label>
+             <label id="linktask1" style="visibility:hidden;"/>${linktask11}</label>
             <label id = "coord" style="visibility:hidden;"> </label>
             <script type="text/javascript">
 
@@ -1070,15 +1068,10 @@ $(document).ready( function() {
                     xhr.onload = function (e) {
                         location.reload(true);
                         if (this.status == 200) {
-
                             alert(this.responseText);
-
                         }
-
                     };
-
                 }
-
             </script> 
 
         </div>

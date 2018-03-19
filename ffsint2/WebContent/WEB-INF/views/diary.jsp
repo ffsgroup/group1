@@ -5,9 +5,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <jsp:include page="_DiaryHeader.jsp"></jsp:include>
-
-
-
             <link href = "https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel = "stylesheet">
             <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
             <script src = "https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -84,24 +81,26 @@
                 $(document).ready(function () {
                     $("#diarysave").click(function (event) {
                         var comp = "N";
-                        if ( document.getElementById("dcomp").checked == true ) {comp = "Y"}
+                        if (document.getElementById("dcomp").checked == true) {
+                            comp = "Y"
+                        }
 
-                        $.get('DiaryCreateNew', {diarysumm: document.getElementById('diarysumm').value, startdate: document.getElementById('startdate').value, enddate: document.getElementById('enddate').value, locat: document.getElementById('locat').value, diarytask: document.getElementById('diarytask').value, diarynotes: document.getElementById('diarynotes').value, duser1: document.getElementById('diaryuser1').value, duser2: document.getElementById('diaryuser2').value, duser3: document.getElementById('diaryuser3').value, duser4: document.getElementById('diaryuser4').value, duser5: document.getElementById('diaryuser5').value, duser6: document.getElementById('diaryuser6').value, duser7: document.getElementById('diaryuser7').value, duser8: document.getElementById('diaryuser8').value, duser9: document.getElementById('diaryuser9').value, duser10: document.getElementById('diaryuser10').value, resp1: document.getElementById('response1').value, resp2: document.getElementById('response2').value, resp3: document.getElementById('response3').value, resp4: document.getElementById('response4').value, resp5: document.getElementById('response5').value, resp6: document.getElementById('response6').value, resp7: document.getElementById('response7').value, resp8: document.getElementById('response8').value, resp9: document.getElementById('response9').value, resp10: document.getElementById('response10').value, fromuser: document.getElementById('fromuser').innerHTML, tranid: document.getElementById('diaryid').innerHTML, complete : comp }, function (responseJson) {
+                        $.get('DiaryCreateNew', {diarysumm: document.getElementById('diarysumm').value, startdate: document.getElementById('startdate').value, enddate: document.getElementById('enddate').value, locat: document.getElementById('locat').value, diarytask: document.getElementById('diarytask').value, diarynotes: document.getElementById('diarynotes').value, duser1: document.getElementById('diaryuser1').value, duser2: document.getElementById('diaryuser2').value, duser3: document.getElementById('diaryuser3').value, duser4: document.getElementById('diaryuser4').value, duser5: document.getElementById('diaryuser5').value, duser6: document.getElementById('diaryuser6').value, duser7: document.getElementById('diaryuser7').value, duser8: document.getElementById('diaryuser8').value, duser9: document.getElementById('diaryuser9').value, duser10: document.getElementById('diaryuser10').value, resp1: document.getElementById('response1').value, resp2: document.getElementById('response2').value, resp3: document.getElementById('response3').value, resp4: document.getElementById('response4').value, resp5: document.getElementById('response5').value, resp6: document.getElementById('response6').value, resp7: document.getElementById('response7').value, resp8: document.getElementById('response8').value, resp9: document.getElementById('response9').value, resp10: document.getElementById('response10').value, fromuser: document.getElementById('fromuser').innerHTML, tranid: document.getElementById('diaryid').innerHTML, complete: comp}, function (responseJson) {
                             if (responseJson != null) {
                                 $("#delresp").empty();
                                 document.getElementById("addresp").value = "";
                                 $.each(responseJson, function (key, value) {
                                     $('#delresp').append('<option value="' + value['GenericDescriptionEng'] + '">' + value['GenericDescriptionEng'] + '</option>');
-                                alert("diary added / updated");
-                                document.getElementById("diaryid").innerHTML = "0";
-                                document.getElementById("fromuser").innerHTML = "";
-                                document.getElementById("diarysumm").value = "";
-                                document.getElementById("startdate").value = "";
-                                document.getElementById("enddate").value = "";
-                                document.getElementById("locat").value = "";
-                                document.getElementById("diarytask").value = "";
-                                document.getElementById("diarynotes").value = "";
-                                document.getElementById("dcomp").checked = false;
+                                    alert("diary added / updated");
+                                    document.getElementById("diaryid").innerHTML = "0";
+                                    document.getElementById("fromuser").innerHTML = "";
+                                    document.getElementById("diarysumm").value = "";
+                                    document.getElementById("startdate").value = "";
+                                    document.getElementById("enddate").value = "";
+                                    document.getElementById("locat").value = "";
+                                    document.getElementById("diarytask").value = "";
+                                    document.getElementById("diarynotes").value = "";
+                                    document.getElementById("dcomp").checked = false;
                                 });
                             }
                         });
@@ -214,7 +213,7 @@
                 $(document).ready(function () {
                     $("#diarysavecomm").click(function (event) {
                         $.get('DiarySaveComm', {comment: document.getElementById("diarycomment").value, tranid: document.getElementById("diaryid").innerHTML}, function (responseJson) {
-                            if (responseJson != null) {                                
+                            if (responseJson != null) {
                                 $.each(responseJson, function (key, value) {
                                     document.getElementById("diarycomment").value = value['comm'];
                                     if (document.getElementById("diarycomment").value == "undefined") {
@@ -228,7 +227,6 @@
                                 });
                             }
                         });
-                        //    $("#tablediv").show();  
                         $("#diaryupdatecomm").css("visibility", "visible");
                         $("#diarysavecomm").css("visibility", "hidden");
                     });
@@ -332,16 +330,12 @@
             <script type="text/javascript">
                 $(document).ready(function () {
                     $("#imagupload").click(function (event) {
-
                         $.ajax({
                             url: "DiaryUpImage",
                             type: "get",
                             data: {"tranid": document.getElementById("diaryid").innerHTML,
                                 "userfile": fileupload.files[0]
                             }
-                            //   processData:false,
-                            //   contentType:false
-
                         });
                     });
                 });
@@ -382,17 +376,16 @@
                     myCalendar.attachEvent("onClick", function (side, d) {
 
                         $.get('DiaryDay', {thisDate: myCalendar.getFormatedDate(null, d), thisUser: document.getElementById("DiaryAv").value}, function (responseJson) {
-                            // document.getElementById("DiaryAv").value
                             if (responseJson != null) {
                                 $("#countrytable").find("tr:gt(0)").remove();
                                 var table1 = $("#countrytable");
                                 $.each(responseJson, function (key, value) {
                                     var rowNew = $("<tr><td></td><td></td><td></td><td></td></tr>");
                                     if (value['complete'] == "Y") {
-                                      var rowNew = $("<tr><td></td><td style = 'color:red;'></td><td style = 'color:red;'></td><td></td></tr>");  
+                                        var rowNew = $("<tr><td></td><td style = 'color:red;'></td><td style = 'color:red;'></td><td></td></tr>");
                                     }
                                     rowNew.children().eq(0).text(value['ShortDate']);
-                                    
+
                                     rowNew.children().eq(1).text(value['user']);
                                     rowNew.children().eq(2).text(value['desc1']);
                                     rowNew.children().eq(3).text(value['tranid']);
@@ -411,7 +404,6 @@
                 {
                     border:1px solid black;
                     width:40%;
-
                     font-family: 'Oxygen', sans-serif;
                 }
                 th
@@ -460,8 +452,7 @@
                                     rowNew.appendTo(table2);
                                 });
                             }
-                        });
-                        //    $("#tablediv").show();          
+                        });        
                     });
                 });
 
@@ -487,14 +478,10 @@
                             document.getElementById("diarysumm").value = "";
                             document.getElementById("startdate").value = "";
                             document.getElementById("enddate").value = "";
-                            // document.getElementById("locat1").value = value['locat'];
                             document.getElementById("locat").value = "";
                             document.getElementById("diarytask").value = "";
                             document.getElementById("diarynotes").value = "";
-                            // String temp1 = value['comm'];
-                            // temp1 = temp1.replace("~","/n");
-                            document.getElementById("diarycomment").value = "";
-                            //     document.getElementById("diarycomment").value = document.getElementById("diarycomment").value.replace(/~/g,"\n");
+                            document.getElementById("diarycomment").value = "";                            
                             document.getElementById("diaryuser1").value = "";
                             document.getElementById("diaryuser2").value = "";
                             document.getElementById("diaryuser3").value = "";
@@ -520,7 +507,7 @@
                                     document.getElementById("fromuser").innerHTML = value['user'];
                                     document.getElementById("diarysumm").value = value['desc1'];
                                     document.getElementById("startdate").value = value['sdate'];
-                                    document.getElementById("enddate").value = value['edate'];                             
+                                    document.getElementById("enddate").value = value['edate'];
                                     document.getElementById("locat").value = value['locat'];
                                     document.getElementById("diarytask").value = value['task'];
                                     document.getElementById("diarynotes").value = value['notes'];
@@ -529,12 +516,14 @@
                                         document.getElementById("diarycomment").value = "";
                                     }
                                     if (document.getElementById("diarycomment").value.length > 0) {
-                                        //   document.getElementById("diarycomment").value = "2"; 
                                         document.getElementById("diarycomment").value = value['comm'].replace(/~/g, "\n");
                                     }
-                                    if (value['complete'] == "Y") { document.getElementById("dcomp").checked = true;}
-                                    else { document.getElementById("dcomp").checked = false;}
-                                   
+                                    if (value['complete'] == "Y") {
+                                        document.getElementById("dcomp").checked = true;
+                                    } else {
+                                        document.getElementById("dcomp").checked = false;
+                                    }
+
                                     document.getElementById("diaryuser1").value = value['user1'];
                                     document.getElementById("diaryuser2").value = value['user2'];
                                     document.getElementById("diaryuser3").value = value['user3'];
@@ -665,10 +654,7 @@
                         if (count.valueOf() < 3) {
                             $.get('DiaryLocat', function (responseJson) {
                                 if (responseJson != null) {
-
-
                                     $.each(responseJson, function (key, value) {
-
                                         var option = document.createElement('option');
                                         option.value = value['GenericDescriptionEng'];
                                         locations.appendChild(option);
@@ -781,8 +767,6 @@
                     });
                 });
 
-
-
             </script>
 
         </head>
@@ -874,13 +858,6 @@
                         <input type="text" id = "addresp" />
                         <button class="submit button" id="addrespbut" type ="button">Add</button> 
                         <br>
-
-
-                        <p>
-
-                        </p>
-
-
                     </form>
                 </div>
 
@@ -892,9 +869,7 @@
         <div id="calendarHere" style="position:relative;height:320px; float:left;"></div>
 
         <div id="tablediv">
-
             <table cellspacing="0" id="countrytable" margin-right:10px style="table-layout:fixed;float: left; border-collapse: collapse;margin-left:290px;"> 
-
                 <tr> 
                     <th style="width:3%" scope="col">Time</th> 
                     <th style="width:13%" scope="col">User</th> 
@@ -920,10 +895,7 @@
                 <tr><td> 15:30 </td> <td> </td> <td> </td> <td> </td></tr>
                 <tr><td> 16:00 </td> <td> </td> <td> </td> <td> </td></tr>
                 <tr><td> 16:30 </td> <td> </td> <td> </td> <td> </td>
-
                 </tr>
-
-
             </table>
         </div>
 
@@ -941,7 +913,6 @@
                 <div style="float: right; text-align: right;">
                     ID :  <label id="diaryid">${getid}</label>
                 </div>     
-
                 From <label id="fromuser" style="margin-left:14px"/>${fuser}</label> 
                 <br/>
                 Summary<label> <input type="text" id="diarysumm" style="margin-left:10px" value =${dsumm} > </label> 
@@ -1007,9 +978,7 @@
                 <br>
                 <input type ="checkbox" value="Completed" id="dcomp" style="float:left">
                 <input type ="button" value ="Save" id="diarysave" style="width:75px; float:right;"/> Completed
-                </p>
-
-
+          
             </div>
 
             <div id="tabs-2" style="visibility: visible">
@@ -1028,10 +997,10 @@
                     $("#tabs-2").css("visibility", "hidden");
                 }
                 var comp = ${completed}
-                if (comp = "Y" ) {
-                   document.getElementById("dcomp").checked = true;
+                if (comp = "Y") {
+                    document.getElementById("dcomp").checked = true;
                 } else {
-                  document.getElementById("dcomp").checked = false;  
+                    document.getElementById("dcomp").checked = false;
                 }
             </script>
             <div id="tabs-3">

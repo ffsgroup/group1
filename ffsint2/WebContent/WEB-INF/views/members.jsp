@@ -35,22 +35,59 @@
         </div>
         <div style="text-align: center;">
             <h2>Members</h2>        
-        </div>
-        
+        </div>  
         <script>
+            $(document).ready(function () {
+                $("#updatenote").click(function (event) {
+                    $.get('MemberUpdateNote', {thisMember: document.getElementById("memnum").value, notedid: document.getElementById("notedid").innerHTML, newnote: document.getElementById("notesdet").value}, function (responseJson) {
+                        if (responseJson !== null) {
+                            $.each(responseJson, function (key, value) {
+                                var t1 = value['GenGroupId'];
+                                if (t1 == "success") {
+                                    alert("success");
+                                } else {
+                                    alert("failed");
+                                }
+                            });
+                        } else {
+                            alert("no response");
+                        }
+                    });
+                });
+            });            
+            
+            $(document).ready(function () {
+                $("#notesgrid").click(function (event) {
+                    var target = $(event.target);
+                    $td = target.closest('td');
+                    var col = $td.index();
+                    var row = $td.closest('tr').index();
+                    document.getElementById("notedid").innerHTML = document.getElementById("notesgrid").rows[row+1].cells[3].innerHTML;
+                    $.get('MemberGetOneNote', {thisMember: document.getElementById("memnum").value, tranid: document.getElementById("notesgrid").rows[row+1].cells[3].innerHTML, }, function (responseJson) {
+                        if (responseJson !== null) {
+                            $.each(responseJson, function (key, value) {
+                                notesdet.value = value['tranComment'];
+                            });
+                        } else {
+                            alert("no response");
+                        }
+                    });
+                });
+            });
+
             $(document).ready(function () {
                 $("#dependTable").click(function (event) {
                     var target = $(event.target);
                     $td = target.closest('td');
                     var col = $td.index();
-                    var row = $td.closest('tr').index();                    
-                    window.location = "MemberViewDepend?key=" + encodeURIComponent(document.getElementById("dependTable").rows[row].cells[9].innerHTML) + "&member=" +encodeURIComponent(document.getElementById("memnum").value);
+                    var row = $td.closest('tr').index();
+                    window.location = "MemberViewDepend?key=" + encodeURIComponent(document.getElementById("dependTable").rows[row].cells[9].innerHTML) + "&member=" + encodeURIComponent(document.getElementById("memnum").value);
                 });
             });
 
             $(document).ready(function () {
-                $("#newdepen").click(function (event) {                 
-                    window.location = "MemberViewDepend?key=" + encodeURIComponent("0") + "&member=" +encodeURIComponent(document.getElementById("memnum").value) ;
+                $("#newdepen").click(function (event) {
+                    window.location = "MemberViewDepend?key=" + encodeURIComponent("0") + "&member=" + encodeURIComponent(document.getElementById("memnum").value);
                 });
             });
 
@@ -229,23 +266,19 @@
                         document.getElementById("memtitle").value = "No such member";
                     }
                 });
-
             }
 
-
             function memberGetNotes() {
-
                 // get member notes
                 $.get('MemberGetNote', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
-
                     if (responseJson != null) {
                         var table2 = $("#notesgrid");
                         $.each(responseJson, function (key, value) {
-                            var rowNew = $("<tr><td></td><td></td><td></td></tr>");
+                            var rowNew = $("<tr><td style='width:100px;'></td><td style='width:150px;'></td><td style='width:390px;'></td><td style='width:60px;'></td></tr>");
                             rowNew.children().eq(0).text(value['dateMod']);
                             rowNew.children().eq(1).text(value['tranUserId']);
-                            rowNew.children().eq(2).text(value['tranComment']);
-
+                            rowNew.children().eq(2).text(value['tranDescr']);
+                            rowNew.children().eq(3).text(value['tranId']);
                             rowNew.appendTo(table2);
                         });
                     } else {
@@ -259,7 +292,7 @@
                 $.get('MemberReceiptGet', {thisMember: document.getElementById("memnum").value}, function (responseJson) {
                     if (responseJson != null) {
                         var table2 = $("#recgrid");
-                        $("#recgrid tbody tr").remove();                       
+                        $("#recgrid tbody tr").remove();
                         $.each(responseJson, function (key, value) {
                             var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
                             rowNew.children().eq(0).text(value['kwitno']);
@@ -273,14 +306,14 @@
                             rowNew.children().eq(8).text(value['decsign']);
 
                             rowNew.appendTo(table2);
-                            document.getElementById("paidrecmeth").innerHTML = value['betmet'];                       
+                            document.getElementById("paidrecmeth").innerHTML = value['betmet'];
                         });
                     } else {
                         document.getElementById("memtitle").value = "No such member";
                     }
                 });
             }
-            
+
             function membergetdepen() {
                 var countDepen = 0;
                 var activeDepen = 0;
@@ -802,7 +835,7 @@
                 myCalendar.setTooltip("2018-01-01", "New Years Day", true, true);
 
                 myCalendar._drawMonth(new Date);
-                myCalendar.attachEvent("onClick", function (side, d) {                    
+                myCalendar.attachEvent("onClick", function (side, d) {
                 });
             }
         </script>
@@ -819,17 +852,24 @@
         <fieldset>
             <label> Member Number <input type ="text" id="memnum" width ="15" style="margin-left:10px" onkeyup="loadMember()" value=${lidno} > </label>
             <br>
-            <label> Title <input type ="text" id="memtitle" width="25" style="margin-left:47px"> </label>
-            <label style="margin-left:100px"> Company Name <select id="memcomp" style="width:100px" > <option value=""></option> </select> </label>
-            <br>
-            <label> Name <input type="text" id="memname" width="25" style="margin-left:35px" > </label>
-            <label style ="margin-left: 100px"> Policy Type <select id="mempoltype" style="width:150px; margin-left:30px;" > <option value=""></option> </select> </label>
-            <br>
-            <label> Surname <input type="text" id="memsur" width="25" style="margin-left:20px" value = ${sur}> </label>
-            <label style="margin-left:100px"> Policy Date <input type="text" id="poldate" width="20" style="margin-left:30px;" > </label>
-            <br>
-            <label> ID Number <input type="text" id="memidno" width="25" style="margin-left:3px"> </label>
-            <label style="margin-left:100px"> Cancel Code <select id="cancode" style="width:100px; margin-left:20px;">
+            <table id ="memberTable" style = "border:0;cellspacing:0;cellpadding:0; border-collapse:collapse;">                
+                <tr> <td style ="border:none; border-collapse:collapse;"><label> Title</label></td> <td style ="border:none; border-collapse:collapse;"> <input type ="text" id="memtitle" width="25">  </td>
+                    <td style="border:none;width:130px; border-collapse:collapse;"> </td>   <td style ="border:none; border-collapse:collapse;"><label> Company Name </label> </td> <td style ="border:none; border-collapse:collapse;"><select id="memcomp" style="width:100px" > <option value=""></option> </select> </td>
+            </tr>
+            <tr>
+                <td style ="border:none; border-collapse:collapse;"><label> Name </label> </td> <td style ="border:none; border-collapse:collapse;"><input type="text" id="memname" width="25" > 
+                <td style="border:none;width:130px; border-collapse:collapse;"> </td>
+                <td style ="border:none; border-collapse:collapse;"><label> Policy Type </label> </td> <td style ="border:none; border-collapse:collapse;"><select id="mempoltype" style="width:150px;" > <option value=""></option> </select> </td>
+            </tr>
+            <tr>
+                <td style ="border:none; border-collapse:collapse;"> <label> Surname </label></td> <td style ="border:none; border-collapse:collapse;"> <input type="text" id="memsur" width="25" value = ${sur}> </td>
+                <td style="border:none;width:130px; border-collapse:collapse;"> </td>
+                <td style ="border:none; border-collapse:collapse;"> <label> Policy Date </label> </td> <td style ="border:none; border-collapse:collapse;"><input type="text" id="poldate" width="20"></td>
+            </tr>
+            <tr>
+                <td style ="border:none; border-collapse:collapse;"><label> ID Number </label> </td> <td style ="border:none; border-collapse:collapse;"><input type="text" id="memidno" width="25"></td>
+                <td style="border:none;width:130px; border-collapse:collapse;"> </td>
+                <td style ="border:none; border-collapse:collapse;"> <label> Cancel Code</label></td> <td style ="border:none; border-collapse:collapse;"><select id="cancode" style="width:100px;">
                     <option value="0"></option>
                     <option value="01 Insufficient Funds One">01 Insufficient Funds One</option>
                     <option value="02 Payment Stopped By You">02 Payment Stopped By You</option> 
@@ -850,31 +890,45 @@
                     <option value="34 Account Holder Deceased">34 Account Holder Deceased</option> 
                     <option value="35 Cancelled By Head Office">35 Cancelled By Head Office</option> 
                     <option value="46 Acc Transfer ( Within Bank )">46 Acc Transfer ( Within Bank )</option> 
-                </select> </label>
-            <br>
-            <label> Gender <select id="memgend" style="width:85px; margin-left:28px;"><option value="0">Select</option> <option value="1">Male</option><option value="2">Female</option></select> </label>
-            <label style="margin-left:166px"> Language <select id="memlang" style="width:100px; margin-left:40px;"> 
+                </select> </td>
+            </tr>
+            <tr>
+                <td style ="border:none; border-collapse:collapse;"><label> Gender </label> <td style ="border:none; border-collapse:collapse;"><select id="memgend" style="width:85px;"><option value="0">Select</option> <option value="1">Male</option><option value="2">Female</option></select> </td>
+                <td style ="border:none; border-collapse:collapse;"> </td>
+                <td style ="border:none; border-collapse:collapse;"> <label> Language </label> <td style ="border:none; border-collapse:collapse;"><select id="memlang" style="width:100px;">  
                     <option value="0"></option> 
                     <option value="1">Afrikaans</option> 
                     <option value="2">English</option> 
-                </select> </label>
-            <br>    
-            <label> E-Mail <input type="text" id="mememail" width="25" style="margin-left:31px" > </label>
-            <label style="margin-left:100px"> Status <select id="memstatus" style ="width:100px; margin-left:62px"><option value=""></option></select> </label>
-            <br>
-            <label> Recruiter <select id="memrecruit" style="width:150px; margin-left:17px;"> <option value=""> </option> </select> </label>
-            <label style="margin-left:100px"> Status Date <input type="text" id="memstatusday" width="25" style = "margin-left:27px"> </label>
-            <br>
-            <label Style ="margin-left:20px"> Date <input type="text" id="memrecruitdate" style="margin-left:25px" > </label>
-            <label style="margin-left:100px" > Premium <input type="text" id="memprem" style="width:60px; margin-left:45px; " > </label>
-            <br>
-            <label> Age <input type ="text" id="memage" style="margin-left:48px; width:60px"> </label>
-            <label style="margin-left:185px" > Total Premium  <input type="text" id="memtotprem" style="width:60px;margin-left:10px" > </label>
-            <br>
-            <label> Marriage <select id="marriage" style="width:120px; margin-left:18px;" <option value=""> </option> </select> </label>
-            <br>
-            <label> Date Birth <input type="text" id="memdob" style="width:100px; margin-left:10px" > </label>
-
+                </select>
+                </td>
+            </tr>  
+            <tr>
+                <td style ="border:none; border-collapse:collapse;"> <label> E-Mail </label></td> <td style ="border:none; border-collapse:collapse;"> <input type="text" id="mememail" width="25"> </td>
+                <td style ="border:none; border-collapse:collapse;"> </td>
+                <td style ="border:none; border-collapse:collapse;"> <label> Status </label></td> <td style ="border:none; border-collapse:collapse;"><select id="memstatus" style ="width:100px;"><option value=""></option></select> </td>
+            </tr>
+            <tr>
+                <td style ="border:none; border-collapse:collapse;"> <label> Recruiter</label></td><td style ="border:none; border-collapse:collapse;"> <select id="memrecruit" style="width:150px; margin-left:17x;"> <option value=""> </option> </select> </td>
+                <td style ="border:none; border-collapse:collapse;"> </td>
+                <td style ="border:none; border-collapse:collapse;"> <label> Status Date</label> </td><td style ="border:none; border-collapse:collapse;"><input type="text" id="memstatusday" width="25"></td>
+            </tr>
+            <tr>
+                <td style ="border:none; border-collapse:collapse;"><label> Date </label></td> <td style ="border:none; border-collapse:collapse;"> <input type="text" id="memrecruitdate" > </td>
+                <td style ="border:none; border-collapse:collapse;"> </td>
+                <td style ="border:none; border-collapse:collapse;"> <label> Premium </label> </td> <td style ="border:none; border-collapse:collapse;"><input type="text" id="memprem" style="width:60px;" ></td>
+            </tr>
+            <tr>
+                <td style ="border:none; border-collapse:collapse;"><label> Age </label> </td> <td style ="border:none; border-collapse:collapse;"> <input type ="text" id="memage" style="width:60px"></td>
+              <td style ="border:none; border-collapse:collapse;"> </td>
+              <td style ="border:none; border-collapse:collapse;"><label> Total Premium </label> </td> <td style ="border:none; border-collapse:collapse;"><input type="text" id="memtotprem" style="width:60px;" > </td>
+            </tr>
+            <tr>
+                <td style ="border:none; border-collapse:collapse;"><label> Marriage </label></td>  <td style ="border:none; border-collapse:collapse;"><select id="marriage" style="width:120px;" <option value=""> </option> </select></td>
+            </tr>
+            <tr>
+                <td style ="border:none; border-collapse:collapse;"> <label> Date Birth </label> </td>  <td style ="border:none; border-collapse:collapse;"><input type="text" id="memdob" style="width:100px;" > </td>
+            </tr>
+            </table>
 
             <script>
                 var myCalendar1 = new dhtmlXCalendarObject(["poldate"]);
@@ -1195,50 +1249,35 @@
                             <th style="width:100px" scope="col">Paid Until</th> 
                             <th style="width:100px" scope="col">Card</th> 
                             <th style="width:100px" scope="col">Declaration</th> 
-
                         </tr>
-                        <!--                                <tr>
-                                                            <td> 08:00 </td> <td> </td> <td> </td> <td> </td></tr>
-                                                        <tr>   <td> 08:30 </td> <td> </td> <td> </td> <td> </td></tr>
-                                                        <tr><td> 09:00 </td> <td> </td> <td> </td> <td> </td></tr>
-                                                        <tr><td> 09:30 </td> <td> </td> <td> </td> <td> </td></tr>
-                                                        <tr><td> 10:00 </td> <td> </td> <td> </td> <td> </td></tr>
-                                                        <tr><td> 10:30 </td> <td> </td> <td> </td> <td> </td></tr>
-                                                        <tr><td> 11:00 </td> <td> </td> <td> </td> <td> </td></tr>
-                                                        <tr><td> 11:30 </td> <td> </td> <td> </td> <td> </td></tr>-->
-
                     </table>
                 </div>
 
-
             </div>
             <div id="tabs-6"> 
-                <input type="button" id="newnote" value ="new" style="float:right;margin-right:20px;width:75px">
-                <input type="button" id="updatenote" value="update" style="float:right;margin-right:20px;width:75">
-
+                <input type="button" id="newnote" value ="New" style="float:right;margin-right:20px;width:75px">
+                <input type="button" id="updatenote" value="Update" style="float:right;margin-right:20px;width:75">
                 <div id="notediv">
-
-                    <table cellspacing="0" id="notesgrid" margin-right:0px style="table-layout:fixed;float: left; border-collapse: collapse;margin-left:0px; border: 1px solid black;width:70%"> 
-
+                    <table cellspacing="0" id="notesgrid" margin-right:0px style="table-layout:fixed;float: left; border-collapse: collapse;margin-left:0px; border: 1px solid black;width:75%"> 
+                        <thead style="width:100%;display:block;">  
                         <tr style="border-collapse: collapse;border: 1px solid black;">                               
-                            <th style="width:100px" scope="col">Date</th> 
-                            <th style="width:100px" scope="col">User</th> 
-                            <th style="width:100px" scope="col">Description</th> 
-
+                            <th style="width:100px; min-width: 100px;" scope="col">Date</th> 
+                            <th style="width:150px; min-width: 150px;" scope="col">User</th> 
+                            <th style="width:290px; min-width: 390px;" scope="col">Description</th> 
+                            <th style="width:60px; min-width: 20px" scope="col">ID</th> 
                         </tr>
-                        <!--                                <tr>
-                                                            <td> 08:00 </td> <td> </td> <td> </td> <td> </td></tr>
-                                                        <tr>   <td> 08:30 </td> <td> </td> <td> </td> <td> </td></tr>
-                                                        <tr><td> 09:00 </td> <td> </td> <td> </td> <td> </td></tr>
-                                                        <tr><td> 09:30 </td> <td> </td> <td> </td> <td> </td></tr>
-                                                        <tr><td> 10:00 </td> <td> </td> <td> </td> <td> </td></tr>                             -->
-
+                        </thead>
+                        <tbody style="height:150px; display:block; overflow-y:auto;overflow-x:hidden;">
+                            
+                        </tbody>
+                            
                     </table>
                 </div> 
                 <br>
-                <br>
-                <textarea style="border: 1px solid #111;"  id="notesdet" cols="100" rows="5">
+                <br><br>
+                <textarea style="border: 1px solid #111;"  id="notesdet" cols="120" rows="8">
                 </textarea>
+              <label id="notedid" style="visibility:hidden">aaa </label>  
             </div>   
 
             <div id="tabs-7"> 
@@ -1301,17 +1340,16 @@
                             <th style="width:100px" scope="col">Date</th> 
                             <th style="width:100px" scope="col">Description</th>  
                         </tr>
-                        <!--                                <tr>
-                                                            <td> 08:00 </td> <td> </td> <td> </td> <td> </td></tr>
-                                                        <tr>   <td> 08:30 </td> <td> </td> <td> </td> <td> </td></tr>
-                                                        <tr><td> 09:00 </td> <td> </td> <td> </td> <td> </td></tr>
-                                                        <tr><td> 09:30 </td> <td> </td> <td> </td> <td> </td></tr>
-                                                        <tr><td> 10:00 </td> <td> </td> <td> </td> <td> </td></tr>                             -->
                     </table>
                 </div> 
             </div> 
 
         </div>
+        <script>
+            $('table').on('scroll', function () {
+                $("table > *").width($("table").width() + $("table").scrollLeft());
+            });
+        </script>
 
     </body>
 </html>

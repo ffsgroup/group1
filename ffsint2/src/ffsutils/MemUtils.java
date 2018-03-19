@@ -23,9 +23,24 @@ import java.util.GregorianCalendar;
 import java.sql.Connection;
 
 public class MemUtils {
+   public static ArrayList<MemberNote> getmemberOneNote(Connection conn, String thisMember, UserAccount userName, String tranid) throws SQLException {
 
+        System.out.println("getmemberOneNote " + thisMember);
+        String sql = "Select * from " + userName.getcompany() + ".tblcomments where lidno = ? and tranid = ?";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, thisMember);
+        pstm.setString(2,tranid);
+        ResultSet rs = pstm.executeQuery();
+        ArrayList<MemberNote> list = new ArrayList<MemberNote>();
+        while (rs.next()) {
+            MemberNote membernotes = new MemberNote();
+            membernotes.settranComment(rs.getString("trancomment"));
+            list.add(membernotes);
+        }
+        return list;
+    }
+   
     public static ArrayList<MemberDepen> getMemberActiveDepen(Connection conn, String thisMember, UserAccount userName) throws SQLException {
-
         System.out.println("getMemberActiveDepen" + thisMember);
         String sql = "select count(status) from " + userName.getcompany() + ".afhank where lidno = ? and status = 'active'";
         PreparedStatement pstm = conn.prepareStatement(sql);
@@ -266,9 +281,8 @@ public class MemUtils {
     }
 
     public static ArrayList<MemberNote> getmemberNotes(Connection conn, String thisMember, UserAccount userName) throws SQLException {
-
         System.out.println("getmemberNotes " + thisMember);
-        String sql = "Select * from " + userName.getcompany() + ".tblcomments where lidno = ?";
+        String sql = "Select * from " + userName.getcompany() + ".tblcomments where lidno = ? order by tranid desc";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, thisMember);
 
@@ -280,17 +294,8 @@ public class MemUtils {
             Calendar calendar = new GregorianCalendar();
 
             //Fails if date is 0000-00-00
-            if (rs.getTimestamp("trandate") == null) {
-                System.out.println("12");
-                calendar.setTime(rs.getTimestamp("dateMod"));
-            } else {
-                if (rs.getTimestamp("trandate").getYear() > 1900) {
-                    calendar.setTime(rs.getTimestamp("trandate"));
-                } else {
-                    calendar.setTime(rs.getTimestamp("dateMod"));
-                }
-            }
 
+            calendar.setTime(rs.getTimestamp("trandate"));
             String year = Integer.toString(calendar.get(Calendar.YEAR));
             String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
             String day = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH));
@@ -304,7 +309,7 @@ public class MemUtils {
 
             membernotes.settranId(rs.getString("tranId"));
             membernotes.settranUserId(rs.getString("tranUserId"));
-            membernotes.settranComment(rs.getString("tranComment"));
+            membernotes.settranDescr(rs.getString("trandescr"));
             membernotes.setdateMod(dateMod);
             list.add(membernotes);
         }
@@ -1415,4 +1420,29 @@ public class MemUtils {
         return list;
     }
 
+    public static ArrayList<Generics> UpdateMemberNotes(Connection conn, UserAccount thisUser, String thisMember, String notedid, String newnote ) throws SQLException {
+        ArrayList<Generics> list = new ArrayList<Generics>();
+        Generics generic1 = new Generics();
+        generic1.setGenGroupId("failed");
+        System.out.println("updateMemberNotes security " + thisMember + " " + thisUser.getsecurestr().substring(10, 11));
+        if (thisUser.getsecurestr().substring(10, 11).equals("1")) {
+            System.out.println("updateNotes " + thisMember);
+            String sql1 = "update " + thisUser.getcompany() + ".tblcomments set trancomment = ? where lidno = ? and tranid = ?";
+            PreparedStatement pstm1 = conn.prepareStatement(sql1);
+            pstm1.setString(1, newnote);
+            pstm1.setString(2, thisMember);
+            pstm1.setString(3, notedid);            
+
+            pstm1.executeUpdate();
+            generic1.setGenGroupId("success");
+
+        } else {
+            System.out.println("update notes failed " + thisMember);
+            generic1.setGenGroupId("failed");
+        }
+        list.add(generic1);
+        return list;
+    }    
+    
+    
 }
