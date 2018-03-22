@@ -49,17 +49,18 @@ public class TaskByMe extends HttpServlet {
         session.setAttribute("taskView", "taskByMe");
         session.setAttribute("taskFilter", onlyUser);
         session.setAttribute("taskDisp", "1");
-
+session.setAttribute("ViewedTasks", "1");
         try {
             task = TaskUtils.getTaskByMe(conn, loginedUser, onlyUser);
         } catch (SQLException e) {
             e.printStackTrace();
             //  errorString = e.getMessage();
         }
+        
         Gson gson = new Gson();
         JsonElement element = gson.toJsonTree(task, new TypeToken<List<Tasks>>() {
         }.getType());
-
+        request.setAttribute("taskD" , "1" );
         JsonArray jsonArray = element.getAsJsonArray();
         response.setContentType("application/json");
         response.getWriter().print(jsonArray);

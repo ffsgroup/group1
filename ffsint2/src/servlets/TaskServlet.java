@@ -32,21 +32,24 @@ public class TaskServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-String onlyUser = request.getParameter("onlyUser");        
-        System.out.println("TaskServlet " + onlyUser);
+      
         Connection conn = MyUtils.getStoredConnection(request);
         HttpSession session = request.getSession();
+        String onlyUser = request.getParameter("onlyUser"); 
+        
         UserAccount loginedUser = MyUtils.getLoginedUser(session);
         ArrayList<Tasks> task = new ArrayList<Tasks>();
         session.setAttribute("taskView", "taskServlet");
         session.setAttribute("taskFilter", onlyUser);
         session.setAttribute("taskDisp", "4");
+        System.out.println("TaskServlet -" + onlyUser + "- -" + session.getAttribute("taskView") + "-");
         try {
             task = TaskUtils.getTask(conn, loginedUser, onlyUser);
         } catch (SQLException e) {
             e.printStackTrace();
             //  errorString = e.getMessage();
         }
+        request.setAttribute("taskD" , "4" );
         Gson gson = new Gson();
         JsonElement element = gson.toJsonTree(task, new TypeToken<List<Tasks>>() {
         }.getType());

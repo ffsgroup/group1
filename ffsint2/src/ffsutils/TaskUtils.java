@@ -2387,7 +2387,7 @@ public class TaskUtils extends HttpServlet {
 
 //    Task Assined to Me
     public static ArrayList<Tasks> getTask(Connection conn, UserAccount Username, String onlyUser) throws SQLException {
-        System.out.println("getTask " + Username + " " + onlyUser);
+        System.out.println("getTask " + Username.getUserName() + " " + onlyUser);
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
         Calendar cal7 = Calendar.getInstance();

@@ -262,7 +262,6 @@
                                 });
                                 document.getElementById('taskcounter').value = counter;
 
-                                document.getElementsById("countrytable")[0].style.width = '20px';
                             } else
                             {
                                 var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
@@ -322,7 +321,7 @@
                                     rowNew.appendTo(table1);
                                 });
                                 document.getElementById('taskcounter').innerHTML = counter;
-                                document.getElementsById("countrytable")[0].style.width = '20px';
+                            
                             } else
                             {
                                 var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
@@ -384,7 +383,7 @@
                                     rowNew.appendTo(table1);
                                 });
                                 document.getElementById('taskcounter').innerHTML = counter;
-                                document.getElementsById("countrytable")[0].style.width = '20px';
+                            
                             } else
                             {
                                 var rowNew = $("   <tr> <td></td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>");
@@ -446,7 +445,7 @@
                                     rowNew.appendTo(table1);
                                 });
                                 document.getElementById('taskcounter').innerHTML = counter;
-                                document.getElementsById("countrytable")[0].style.width = '20px';
+                           
                             }
                         });
                     });
@@ -503,7 +502,7 @@
                                     rowNew.appendTo(table1);
                                 });
                                 document.getElementById('taskcounter').innerHTML = counter;
-                                document.getElementsById("countrytable")[0].style.width = '20px';
+                     
                             }
                         });
                     });
@@ -560,7 +559,7 @@
                                     rowNew.appendTo(table1);
                                 });
                                 document.getElementById('taskcounter').innerHTML = counter;
-                                document.getElementsById("countrytable")[0].style.width = '20px';
+                         
                             }
                         });
                     });
@@ -616,7 +615,7 @@
                                     rowNew.appendTo(table1);
                                 });
                                 document.getElementById('taskcounter').innerHTML = counter;
-                                document.getElementsById("countrytable")[0].style.width = '20px';
+                       
                             }
                         });
                     });
@@ -626,6 +625,9 @@
 
                 $(document).ready(function () {
                     $("#ByMeInProg").click(function (event) {
+                        //session.setAttribute("taskView","taskByMe");
+                        //session.setAttribute("taskDisp","1");
+    
                         document.getElementById("ToMeInProg").checked = false;
                         document.getElementById("TaskInFuture").checked = false;
                         document.getElementById("ToMeComp").checked = false;
@@ -673,7 +675,6 @@
                                     rowNew.appendTo(table1);
                                 });
                                 document.getElementById('taskcounter').innerHTML = counter;
-                                document.getElementsById("countrytable")[0].style.width = '20px';
                             }
                         });
                     });
@@ -682,6 +683,7 @@
 
                 $(document).ready(function () {
                     $("#ToMeInProg").click(function (event) {
+//                        document.getElementById("ToMeInProg").checked = true;
                         document.getElementById("ByMeInProg").checked = false;
                         document.getElementById("TaskInFuture").checked = false;
                         document.getElementById("ToMeComp").checked = false;
@@ -730,7 +732,6 @@
                                     rowNew.appendTo(table1);
                                 });
                                 document.getElementById('taskcounter').innerHTML = counter;
-                                document.getElementsById("countrytable")[0].style.width = '20px';
                             }
                         });
                     });
@@ -806,54 +807,122 @@
             });
         </script>
         <script>
-            var a = ${taskDisp};
+            
+            var a = ${sessionScope.taskDisp};
             var b = document.getElementById("taskcounter").innerHTML;
 //            document.getElementById("taskcounter").innerHTML = b + a;
             if (a == "1") {
                 document.getElementById("ByMeInProg").checked = true;
                 document.getElementById("UrgentTasks").checked = false;
+                document.getElementById("ByMeComp").checked = false;
+                document.getElementById("TaskInFuture").checked = false;
+                document.getElementById("ToMeComp").checked = false;
+                document.getElementById("ToMeInProg").checked = false;
+                document.getElementById("TrainingTasks").checked = false;
+                document.getElementById("UpdatedTasks").checked = false;
+                document.getElementById("NewTask").checked = false;
+                
+          //      document.getElementById("countrytable").innerHTML = "<TABLE><TBODY><TR>some table text</TR></TBODY></TABLE";
             }
             if (a == "2") {
                 document.getElementById("ByMeComp").checked = true;
                 document.getElementById("UrgentTasks").checked = false;
                 document.getElementById("ByMeInProg").checked = false;
+                document.getElementById("TaskInFuture").checked = false;
+                document.getElementById("ToMeInProg").checked = false;
+                document.getElementById("ToMeComp").checked = false;
+                document.getElementById("TrainingTasks").checked = false;
+                document.getElementById("UpdatedTasks").checked = false;
+                document.getElementById("NewTask").checked = false;
             }
             if (a == "3") {
                 document.getElementById("TaskInFuture").checked = true;
                 document.getElementById("UrgentTasks").checked = false;
                 document.getElementById("ByMeInProg").checked = false;
+                document.getElementById("ByMeComp").checked = false;
+                document.getElementById("ToMeInProg").checked = false;
+                document.getElementById("ToMeComp").checked = false;
+                document.getElementById("TrainingTasks").checked = false;
+                document.getElementById("UpdatedTasks").checked = false;
+                document.getElementById("NewTask").checked = false;
             }
             if (a == "4") {
                 document.getElementById("ToMeInProg").checked = true;
                 document.getElementById("UrgentTasks").checked = false;
                 document.getElementById("ByMeInProg").checked = false;
+                document.getElementById("ByMeComp").checked = false;
+                document.getElementById("TaskInFuture").checked = false;
+                document.getElementById("ToMeComp").checked = false;
+                document.getElementById("TrainingTasks").checked = false;
+                document.getElementById("UpdatedTasks").checked = false;
+                document.getElementById("NewTask").checked = false;
             }
             if (a == "5") {
                 document.getElementById("ToMeComp").checked = true;
                 document.getElementById("UrgentTasks").checked = false;
                 document.getElementById("ByMeInProg").checked = false;
+                document.getElementById("ByMeComp").checked = false;
+                document.getElementById("TaskInFuture").checked = false;
+                document.getElementById("ToMeInProg").checked = false;
+                document.getElementById("TrainingTasks").checked = false;
+                document.getElementById("UpdatedTasks").checked = false;
+                document.getElementById("NewTask").checked = false;
             }
             if (a == "6") {
                 document.getElementById("TrainingTasks").checked = true;
                 document.getElementById("UrgentTasks").checked = false;
                 document.getElementById("ByMeInProg").checked = false;
+                document.getElementById("ByMeComp").checked = false;
+                document.getElementById("TaskInFuture").checked = false;
+                document.getElementById("ToMeInProg").checked = false;
+                document.getElementById("ToMeComp").checked = false;
+                document.getElementById("UpdatedTasks").checked = false;
+                document.getElementById("NewTask").checked = false;
             }
             if (a == "7") {
                 document.getElementById("UpdatedTasks").checked = true;
                 document.getElementById("UrgentTasks").checked = false;
                 document.getElementById("ByMeInProg").checked = false;
+                document.getElementById("ByMeComp").checked = false;
+                document.getElementById("TaskInFuture").checked = false;
+                document.getElementById("ToMeInProg").checked = false;
+                document.getElementById("ToMeComp").checked = false;
+                document.getElementById("TrainingTasks").checked = false;
+                document.getElementById("NewTask").checked = false;
             }
             if (a == "8") {
                 document.getElementById("UrgentTasks").checked = true;
                 document.getElementById("ByMeInProg").checked = false;
+                document.getElementById("ByMeComp").checked = false;
+                document.getElementById("TaskInFuture").checked = false;
+                document.getElementById("ToMeInProg").checked = false;
+                document.getElementById("ToMeComp").checked = false;
+                document.getElementById("TrainingTasks").checked = false;
+                document.getElementById("UpdatedTasks").checked = false;
+                document.getElementById("NewTask").checked = false;
             }
             if (a == "9") {
                 document.getElementById("NewTask").checked = true;
                 document.getElementById("UrgentTasks").checked = false;
                 document.getElementById("ByMeInProg").checked = false;
+                document.getElementById("ByMeComp").checked = false;
+                document.getElementById("TaskInFuture").checked = false;
+                document.getElementById("ToMeInProg").checked = false;
+                document.getElementById("ToMeComp").checked = false;
+                document.getElementById("TrainingTasks").checked = false;
+                document.getElementById("UpdatedTasks").checked = false;
             }
         </script>
 
     </body>
+    <br>
+    ${sessionScope.taskView}
+    <br>
+    ${sessionScope.taskDisp}
+    <br>
+    
+    ${sessionScope.taskD}
+    1
+    <br>
     <jsp:include page="_footer.jsp"></jsp:include>
 </html>

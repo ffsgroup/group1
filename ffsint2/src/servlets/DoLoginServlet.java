@@ -75,8 +75,8 @@ public class DoLoginServlet extends HttpServlet {
             // Store information in request attribute, before forward.
             request.setAttribute("errorString", errorString);
             request.setAttribute("user", user);
- request.setAttribute("company", company);
-       
+            request.setAttribute("company", company);
+                
             // Forward to /WEB-INF/views/login.jsp
             RequestDispatcher dispatcher //
             = this.getServletContext().getRequestDispatcher("/WEB-INF/views/loginView.jsp");
@@ -94,10 +94,11 @@ public class DoLoginServlet extends HttpServlet {
             user.setcompany(company);
             MyUtils.storeLoginedUser(session, user);
             session.setAttribute("secureStr" , user.getsecurestr());
-
-            
             session.setAttribute("company" , company); 
             
+         session.setAttribute("taskView", "taskUrgent");
+        // session.setAttribute("taskFilter", "");
+         session.setAttribute("taskDisp", "8");               
              // If user checked "Remember me".
             if(remember)  {
                 MyUtils.storeUserCookie(response,user);

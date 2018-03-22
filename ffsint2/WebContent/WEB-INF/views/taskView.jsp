@@ -333,6 +333,9 @@ $(document).ready( function() {
         <body>
 
 
+    <script>
+  document.write('<a style ="float:left; margin-left:510px;" href="' + document.referrer + '"> << Back to task list</a>');
+</script>
 
             <div id="tabs" style="width:600px;  height:670px; margin-left: 40px;">
                 <ul>
@@ -382,7 +385,7 @@ $(document).ready( function() {
                 <label id="Recurlabel8"><input type="checkbox" id="recurexceptsun" value="Recur" >Every Day Except Sunday</label>
                 <label id="Recurlabel9"><input type="checkbox" id="recurevery" value="Recur" style="margin-left:30px" >Every</label>
                 <select name="RecurDay" id = "dayr5" style=" margin-left: 10px; width: 110px;" >
-                    <option value="0"></option>
+                    <option value="0"> </option>
                     <option value="Monday">Monday</option>
                     <option value="Tuesday">Tuesday</option>
                     <option value="Wednesday">Wednesday</option>
@@ -1042,6 +1045,9 @@ $(document).ready( function() {
                 <input id="uploadBtn" type="button" value="Upload" onClick="performAjaxSubmit();">
 
             </div>
+                 
+
+
              <label id="linktask1" style="visibility:hidden;"/>${linktask11}</label>
             <label id = "coord" style="visibility:hidden;"> </label>
             <script type="text/javascript">

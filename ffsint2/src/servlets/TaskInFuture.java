@@ -40,6 +40,7 @@ public class TaskInFuture extends HttpServlet {
         session.setAttribute("taskView", "taskInFuture");
         session.setAttribute("taskFilter", onlyUser);
         session.setAttribute("taskDisp", "3");
+        session.setAttribute("ViewedTasks", "3");
         ArrayList<Tasks> task = new ArrayList<Tasks>();
         try {
             task = TaskUtils.getTaskInFuture(conn, loginedUser, onlyUser);
@@ -47,6 +48,7 @@ public class TaskInFuture extends HttpServlet {
             e.printStackTrace();
             //  errorString = e.getMessage();
         }
+        request.setAttribute("taskD" , "3" );
         Gson gson = new Gson();
         JsonElement element = gson.toJsonTree(task, new TypeToken<List<Tasks>>() {
         }.getType());

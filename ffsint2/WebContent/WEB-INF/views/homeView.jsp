@@ -1,15 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <title>FFS GROUP</title>
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+    <meta name="site" content="intranetsolutions.co.za">
+    <meta name="author" content ="intranetsolutions.co.za">
+    <meta name="keywords" content="intranetsolutions.co.za, intranet, solutions , tasks, task manager, diary, ffs, ffs group">
+</head>
+<!DOCTYPE html>
+<html>
+    <title>Intranet Solutions</title>
     <link rel="stylesheet" href="resources/main.css" />
 
-
-    <!-- Scripts -->
     <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
     <!--<script src="resources/jquery.min.js"></script>-->
     <script src="resources/jquery.dropotron.min.js"></script>
@@ -40,16 +42,6 @@
                             <li><a href="#">Dairy</a></li>
 
                             <li><a href="#">Task Manager</a></li>
-                            <!--                            <li>
-                                                            <a href="#">Task Manager</a>
-                                                            <ul>
-                                                                <li><a href="#">Lorem dolor</a></li>
-                                                                <li><a href="#">Phasellus magna</a></li>
-                                                                <li><a href="#">Magna phasellus</a></li>
-                                                                <li><a href="#">Etiam nisl</a></li>
-                                                                <li><a href="#">Veroeros feugiat</a></li>
-                                                            </ul>
-                                                        </li>-->
 
                         </ul>
                     </li>
@@ -212,24 +204,8 @@
                             <li><img src="resources/email-icon.jpg" alt="" width="20" height ="20" /> it@safin.co.za</li>
                             <li><img src="resources/address.jpg" alt="" width="20" height ="20"  />  9 Mack Road, Emapengeni, 3880</li>
                             <li><img src="resources/phone.jpg" alt="" width="20" height ="20"  />  035 772 3226</li>
-                            <!--                            <li><a href="#">Rutrum accumsan dolor</a></li>
-                                                        <li><a href="#">Mattis rutrum accumsan</a></li>
-                                                        <li><a href="#">Suspendisse varius nibh</a></li>
-                                                        <li><a href="#">Sed et dapibus mattis</a></li>-->
                         </ul>
                     </section>
-                    <!--                    <section class="3u 6u 12u">
-                                            <h3>More Links to Stuff</h3>
-                                            <ul class="links">
-                                                <li><a href="#">Duis neque nisi dapibus</a></li>
-                                                <li><a href="#">Sed et dapibus quis</a></li>
-                                                <li><a href="#">Rutrum accumsan sed</a></li>
-                                                <li><a href="#">Mattis et sed accumsan</a></li>
-                                                <li><a href="#">Duis neque nisi sed</a></li>
-                                                <li><a href="#">Sed et dapibus quis</a></li>
-                                                <li><a href="#">Rutrum amet varius</a></li>
-                                            </ul>
-                                        </section>-->
                     <section class="6u 12u(narrower)">
                         <h3>Get In Touch</h3>
                         <form>
@@ -258,16 +234,6 @@
                 </div>
             </div>
 
-            <!--Icons -->
-            <!--                        <ul class="icons">
-                                        <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-                                        <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-                                        <li><a href="#" class="icon fa-github"><span class="label">GitHub</span></a></li>
-                                        <li><a href="#" class="icon fa-linkedin"><span class="label">LinkedIn</span></a></li>
-                                        <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
-                                    </ul>-->
-
-            <!-- Copyright -->
             <div class="copyright">
                 <ul class="menu">
                     <li>  &copy; INTRANET SOLUTIONS (Pty) Ltd. 2017 All rights reserved</li>

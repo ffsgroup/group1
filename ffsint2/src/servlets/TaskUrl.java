@@ -35,6 +35,8 @@ public class TaskUrl extends HttpServlet {
         UserAccount loginedUser = MyUtils.getLoginedUser(session);
         String taskView = (String) session.getAttribute("taskView");
         String taskFilter = (String) session.getAttribute("taskFilter");
+        String taskD = (String) session.getAttribute("taskDisp");
+        System.out.println("taskUrl " + taskView);
         System.out.println("current taskView " + taskView);
         String a = "";
         Integer b = 0;
@@ -325,7 +327,22 @@ public class TaskUrl extends HttpServlet {
 
         request.setAttribute("errorString", a);
         request.setAttribute("nrTask", b);
-
+        //String taskDisp = "";
+        //if (taskView.equals("taskUrgent")) {taskDisp = "8";}
+        //if (taskView.equals("taskUpdated")) {taskDisp = "7";}
+        //if (taskView.equals("taskInFuture")) {taskDisp = "3";}
+        //if (taskView.equals("taskNew")) {taskDisp = "9";}
+        //if (taskView.equals("taskByMe")) {taskDisp = "1";}
+        //if (taskView.equals("taskToMeComp")) {taskDisp = "5";}
+        //if (taskView.equals("taskByMeComp")) {taskDisp = "2";}
+        //if (taskView.equals("taskServlet")) {taskDisp = "4";}
+        //if (taskView.equals("taskTraining")) {taskDisp = "6";}
+        
+        request.setAttribute("taskD" , taskD );
+        
+        session.setAttribute("ViewedTasks", a);
+        session.setAttribute("taskDisp", taskD);
+        System.out.println("current taskView " + taskD);
         RequestDispatcher dispatcher = request.getServletContext()
                 .getRequestDispatcher("/WEB-INF/views/taskIndex.jsp");
         dispatcher.forward(request, response);
