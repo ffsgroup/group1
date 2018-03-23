@@ -355,7 +355,7 @@
                     myCalendar.show();
                     myCalendar.hideTime();
                     myCalendar.showToday();
-                    myCalendar.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01"]);
+                    myCalendar.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01", "2018-03-21", "2018-03-30", "2018-04-02", "2018-04-27", "2018-05-01", "2018-06-16", "2018-08-09", "2018-09-24", "2018-12-16", "2018-12-17", "2018-12-25", "2018-12-26"]);
                     myCalendar.setTooltip("2017-01-01", "New Year's Day", true, true);
                     myCalendar.setTooltip("2017-01-02", "Public HoliDay", true, true);
                     myCalendar.setTooltip("2017-03-21", "Human Rights Day", true, true);
@@ -371,6 +371,19 @@
                     myCalendar.setTooltip("2017-12-25", "Christmas Day", true, true);
                     myCalendar.setTooltip("2017-12-26", "Day of Good Will", true, true);
                     myCalendar.setTooltip("2018-01-01", "New Years Day", true, true);
+                    myCalendar.setTooltip("2018-03-21", "Human Rights Day", true, true);
+                    myCalendar.setTooltip("2018-03-30", "Good Friday", true, true);
+                    myCalendar.setTooltip("2018-04-02", "Family Day", true, true);
+                    myCalendar.setTooltip("2018-04-27", "Freedom Day", true, true);
+                    myCalendar.setTooltip("2018-05-01", "Labour Day", true, true);
+                    myCalendar.setTooltip("2018-06-16", "Youth Day", true, true);
+                    myCalendar.setTooltip("2018-08-09", "National Womens Day", true, true);
+                    myCalendar.setTooltip("2018-09-24", "Heritage Day", true, true);
+                    myCalendar.setTooltip("2018-12-16", "Day Of Reconciliation", true, true);
+                    myCalendar.setTooltip("2018-12-17", "Public Holiday", true, true);
+                    myCalendar.setTooltip("2018-12-25", "Christmas Day", true, true);
+                    myCalendar.setTooltip("2018-12-26", "Day Of Good Will", true, true);
+
                     myCalendar._drawMonth(new Date);
 
                     myCalendar.attachEvent("onClick", function (side, d) {
@@ -452,7 +465,7 @@
                                     rowNew.appendTo(table2);
                                 });
                             }
-                        });        
+                        });
                     });
                 });
 
@@ -481,7 +494,7 @@
                             document.getElementById("locat").value = "";
                             document.getElementById("diarytask").value = "";
                             document.getElementById("diarynotes").value = "";
-                            document.getElementById("diarycomment").value = "";                            
+                            document.getElementById("diarycomment").value = "";
                             document.getElementById("diaryuser1").value = "";
                             document.getElementById("diaryuser2").value = "";
                             document.getElementById("diaryuser3").value = "";
@@ -923,7 +936,7 @@
                 <br>
                 <script>
                     var myCalendar1 = new dhtmlXCalendarObject(["startdate"]);
-                    myCalendar1.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01"]);
+                    myCalendar1.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01", "2018-03-21", "2018-03-30", "2018-04-02", "2018-04-27", "2018-05-01", "2018-06-16", "2018-08-09", "2018-09-24", "2018-12-16", "2018-12-17", "2018-12-25", "2018-12-26"]);
                     myCalendar1.setTooltip("2017-01-01", "New Year's Day", true, true);
                     myCalendar1.setTooltip("2017-01-02", "Public HoliDay", true, true);
                     myCalendar1.setTooltip("2017-03-21", "Human Rights Day", true, true);
@@ -939,10 +952,22 @@
                     myCalendar1.setTooltip("2017-12-25", "Christmas Day", true, true);
                     myCalendar1.setTooltip("2017-12-26", "Day of Good Will", true, true);
                     myCalendar1.setTooltip("2018-01-01", "New Years Day", true, true);
+                    myCalendar1.setTooltip("2018-03-21", "Human Rights Day", true, true);
+                    myCalendar1.setTooltip("2018-03-30", "Good Friday", true, true);
+                    myCalendar1.setTooltip("2018-04-02", "Family Day", true, true);
+                    myCalendar1.setTooltip("2018-04-27", "Freedom Day", true, true);
+                    myCalendar1.setTooltip("2018-05-01", "Labour Day", true, true);
+                    myCalendar1.setTooltip("2018-06-16", "Youth Day", true, true);
+                    myCalendar1.setTooltip("2018-08-09", "National Womens Day", true, true);
+                    myCalendar1.setTooltip("2018-09-24", "Heritage Day", true, true);
+                    myCalendar1.setTooltip("2018-12-16", "Day Of Reconciliation", true, true);
+                    myCalendar1.setTooltip("2018-12-17", "Public Holiday", true, true);
+                    myCalendar1.setTooltip("2018-12-25", "Christmas Day", true, true);
+                    myCalendar1.setTooltip("2018-12-26", "Day Of Good Will", true, true);
                     myCalendar1.setDateFormat("%Y/%m/%d %H:%i");
 
                     var myCalendar2 = new dhtmlXCalendarObject(["enddate"]);
-                    myCalendar2.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01"]);
+                    myCalendar2.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01", "2018-03-21", "2018-03-30", "2018-04-02", "2018-04-27", "2018-05-01", "2018-06-16", "2018-08-09", "2018-09-24", "2018-12-16", "2018-12-17", "2018-12-25", "2018-12-26"]);
                     myCalendar2.setTooltip("2017-01-01", "New Year's Day", true, true);
                     myCalendar2.setTooltip("2017-01-02", "Public HoliDay", true, true);
                     myCalendar2.setTooltip("2017-03-21", "Human Rights Day", true, true);
@@ -958,6 +983,18 @@
                     myCalendar2.setTooltip("2017-12-25", "Christmas Day", true, true);
                     myCalendar2.setTooltip("2017-12-26", "Day of Good Will", true, true);
                     myCalendar2.setTooltip("2018-01-01", "New Years Day", true, true);
+                    myCalendar2.setTooltip("2018-03-21", "Human Rights Day", true, true);
+                    myCalendar2.setTooltip("2018-03-30", "Good Friday", true, true);
+                    myCalendar2.setTooltip("2018-04-02", "Family Day", true, true);
+                    myCalendar2.setTooltip("2018-04-27", "Freedom Day", true, true);
+                    myCalendar2.setTooltip("2018-05-01", "Labour Day", true, true);
+                    myCalendar2.setTooltip("2018-06-16", "Youth Day", true, true);
+                    myCalendar2.setTooltip("2018-08-09", "National Womens Day", true, true);
+                    myCalendar2.setTooltip("2018-09-24", "Heritage Day", true, true);
+                    myCalendar2.setTooltip("2018-12-16", "Day Of Reconciliation", true, true);
+                    myCalendar2.setTooltip("2018-12-17", "Public Holiday", true, true);
+                    myCalendar2.setTooltip("2018-12-25", "Christmas Day", true, true);
+                    myCalendar2.setTooltip("2018-12-26", "Day Of Good Will", true, true);
                     myCalendar2.setDateFormat("%Y/%m/%d %H:%i");
 
                 </script>
@@ -978,7 +1015,7 @@
                 <br>
                 <input type ="checkbox" value="Completed" id="dcomp" style="float:left">
                 <input type ="button" value ="Save" id="diarysave" style="width:75px; float:right;"/> Completed
-          
+
             </div>
 
             <div id="tabs-2" style="visibility: visible">

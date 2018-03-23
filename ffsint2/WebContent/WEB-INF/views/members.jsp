@@ -54,16 +54,16 @@
                         }
                     });
                 });
-            });            
-            
+            });
+
             $(document).ready(function () {
                 $("#notesgrid").click(function (event) {
                     var target = $(event.target);
                     $td = target.closest('td');
                     var col = $td.index();
                     var row = $td.closest('tr').index();
-                    document.getElementById("notedid").innerHTML = document.getElementById("notesgrid").rows[row+1].cells[3].innerHTML;
-                    $.get('MemberGetOneNote', {thisMember: document.getElementById("memnum").value, tranid: document.getElementById("notesgrid").rows[row+1].cells[3].innerHTML, }, function (responseJson) {
+                    document.getElementById("notedid").innerHTML = document.getElementById("notesgrid").rows[row + 1].cells[3].innerHTML;
+                    $.get('MemberGetOneNote', {thisMember: document.getElementById("memnum").value, tranid: document.getElementById("notesgrid").rows[row + 1].cells[3].innerHTML, }, function (responseJson) {
                         if (responseJson !== null) {
                             $.each(responseJson, function (key, value) {
                                 notesdet.value = value['tranComment'];
@@ -817,7 +817,7 @@
                 myCalendar.show();
                 myCalendar.hideTime();
                 myCalendar.showToday();
-                myCalendar.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01"]);
+                myCalendar.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01", "2018-03-21", "2018-03-30", "2018-04-02", "2018-04-27", "2018-05-01", "2018-06-16", "2018-08-09", "2018-09-24", "2018-12-16", "2018-12-17", "2018-12-25", "2018-12-26"]);
                 myCalendar.setTooltip("2017-01-01", "New Year's Day", true, true);
                 myCalendar.setTooltip("2017-01-02", "Public HoliDay", true, true);
                 myCalendar.setTooltip("2017-03-21", "Human Rights Day", true, true);
@@ -833,6 +833,18 @@
                 myCalendar.setTooltip("2017-12-25", "Christmas Day", true, true);
                 myCalendar.setTooltip("2017-12-26", "Day of Good Will", true, true);
                 myCalendar.setTooltip("2018-01-01", "New Years Day", true, true);
+                myCalendar.setTooltip("2018-03-21", "Human Rights Day", true, true);
+                myCalendar.setTooltip("2018-03-30", "Good Friday", true, true);
+                myCalendar.setTooltip("2018-04-02", "Family Day", true, true);
+                myCalendar.setTooltip("2018-04-27", "Freedom Day", true, true);
+                myCalendar.setTooltip("2018-05-01", "Labour Day", true, true);
+                myCalendar.setTooltip("2018-06-16", "Youth Day", true, true);
+                myCalendar.setTooltip("2018-08-09", "National Womens Day", true, true);
+                myCalendar.setTooltip("2018-09-24", "Heritage Day", true, true);
+                myCalendar.setTooltip("2018-12-16", "Day Of Reconciliation", true, true);
+                myCalendar.setTooltip("2018-12-17", "Public Holiday", true, true);
+                myCalendar.setTooltip("2018-12-25", "Christmas Day", true, true);
+                myCalendar.setTooltip("2018-12-26", "Day Of Good Will", true, true);
 
                 myCalendar._drawMonth(new Date);
                 myCalendar.attachEvent("onClick", function (side, d) {
@@ -855,91 +867,204 @@
             <table id ="memberTable" style = "border:0;cellspacing:0;cellpadding:0; border-collapse:collapse;">                
                 <tr> <td style ="border:none; border-collapse:collapse;"><label> Title</label></td> <td style ="border:none; border-collapse:collapse;"> <input type ="text" id="memtitle" width="25">  </td>
                     <td style="border:none;width:130px; border-collapse:collapse;"> </td>   <td style ="border:none; border-collapse:collapse;"><label> Company Name </label> </td> <td style ="border:none; border-collapse:collapse;"><select id="memcomp" style="width:100px" > <option value=""></option> </select> </td>
-            </tr>
-            <tr>
-                <td style ="border:none; border-collapse:collapse;"><label> Name </label> </td> <td style ="border:none; border-collapse:collapse;"><input type="text" id="memname" width="25" > 
-                <td style="border:none;width:130px; border-collapse:collapse;"> </td>
-                <td style ="border:none; border-collapse:collapse;"><label> Policy Type </label> </td> <td style ="border:none; border-collapse:collapse;"><select id="mempoltype" style="width:150px;" > <option value=""></option> </select> </td>
-            </tr>
-            <tr>
-                <td style ="border:none; border-collapse:collapse;"> <label> Surname </label></td> <td style ="border:none; border-collapse:collapse;"> <input type="text" id="memsur" width="25" value = ${sur}> </td>
-                <td style="border:none;width:130px; border-collapse:collapse;"> </td>
-                <td style ="border:none; border-collapse:collapse;"> <label> Policy Date </label> </td> <td style ="border:none; border-collapse:collapse;"><input type="text" id="poldate" width="20"></td>
-            </tr>
-            <tr>
-                <td style ="border:none; border-collapse:collapse;"><label> ID Number </label> </td> <td style ="border:none; border-collapse:collapse;"><input type="text" id="memidno" width="25"></td>
-                <td style="border:none;width:130px; border-collapse:collapse;"> </td>
-                <td style ="border:none; border-collapse:collapse;"> <label> Cancel Code</label></td> <td style ="border:none; border-collapse:collapse;"><select id="cancode" style="width:100px;">
-                    <option value="0"></option>
-                    <option value="01 Insufficient Funds One">01 Insufficient Funds One</option>
-                    <option value="02 Payment Stopped By You">02 Payment Stopped By You</option> 
-                    <option value="03 Account Closed">03 Account Closed</option> 
-                    <option value="04 Rejected By Bank - Incorrect Details">04 Rejected By Bank - Incorrect Details</option> 
-                    <option value="05 Debits Not Allowed To Account">05 Debits Not Allowed To Account</option> 
-                    <option value="06 Account Frozen">06 Account Frozen</option> 
-                    <option value="07 No Authority To Debit">07 No Authority To Debit</option> 
-                    <option value="08 Account Effects Not Cleared">08 Account Effects Not Cleared</option> 
-                    <option value="09 Cancellation From Branch">09 Cancellation From Branch</option> 
-                    <option value="10 Cancellation From Client">10 Cancellation From Client</option> 
-                    <option value="11 Insufficient Funds Two">11 Insufficient Funds Two</option> 
-                    <option value="12 Main Member Deceased">12 Main Member Deceased</option> 
-                    <option value="13 Amendmend Cancellation">13 Amendmend Cancellation</option> 
-                    <option value="14 No Such Account">14 No Such Account</option> 
-                    <option value="17 Cancelled By Goverment">17 Cancelled By Goverment</option> 
-                    <option value="29 Prev. Stopped Via Advice">29 Prev. Stopped Via Advice</option> 
-                    <option value="34 Account Holder Deceased">34 Account Holder Deceased</option> 
-                    <option value="35 Cancelled By Head Office">35 Cancelled By Head Office</option> 
-                    <option value="46 Acc Transfer ( Within Bank )">46 Acc Transfer ( Within Bank )</option> 
-                </select> </td>
-            </tr>
-            <tr>
-                <td style ="border:none; border-collapse:collapse;"><label> Gender </label> <td style ="border:none; border-collapse:collapse;"><select id="memgend" style="width:85px;"><option value="0">Select</option> <option value="1">Male</option><option value="2">Female</option></select> </td>
-                <td style ="border:none; border-collapse:collapse;"> </td>
-                <td style ="border:none; border-collapse:collapse;"> <label> Language </label> <td style ="border:none; border-collapse:collapse;"><select id="memlang" style="width:100px;">  
-                    <option value="0"></option> 
-                    <option value="1">Afrikaans</option> 
-                    <option value="2">English</option> 
-                </select>
-                </td>
-            </tr>  
-            <tr>
-                <td style ="border:none; border-collapse:collapse;"> <label> E-Mail </label></td> <td style ="border:none; border-collapse:collapse;"> <input type="text" id="mememail" width="25"> </td>
-                <td style ="border:none; border-collapse:collapse;"> </td>
-                <td style ="border:none; border-collapse:collapse;"> <label> Status </label></td> <td style ="border:none; border-collapse:collapse;"><select id="memstatus" style ="width:100px;"><option value=""></option></select> </td>
-            </tr>
-            <tr>
-                <td style ="border:none; border-collapse:collapse;"> <label> Recruiter</label></td><td style ="border:none; border-collapse:collapse;"> <select id="memrecruit" style="width:150px; margin-left:17x;"> <option value=""> </option> </select> </td>
-                <td style ="border:none; border-collapse:collapse;"> </td>
-                <td style ="border:none; border-collapse:collapse;"> <label> Status Date</label> </td><td style ="border:none; border-collapse:collapse;"><input type="text" id="memstatusday" width="25"></td>
-            </tr>
-            <tr>
-                <td style ="border:none; border-collapse:collapse;"><label> Date </label></td> <td style ="border:none; border-collapse:collapse;"> <input type="text" id="memrecruitdate" > </td>
-                <td style ="border:none; border-collapse:collapse;"> </td>
-                <td style ="border:none; border-collapse:collapse;"> <label> Premium </label> </td> <td style ="border:none; border-collapse:collapse;"><input type="text" id="memprem" style="width:60px;" ></td>
-            </tr>
-            <tr>
-                <td style ="border:none; border-collapse:collapse;"><label> Age </label> </td> <td style ="border:none; border-collapse:collapse;"> <input type ="text" id="memage" style="width:60px"></td>
-              <td style ="border:none; border-collapse:collapse;"> </td>
-              <td style ="border:none; border-collapse:collapse;"><label> Total Premium </label> </td> <td style ="border:none; border-collapse:collapse;"><input type="text" id="memtotprem" style="width:60px;" > </td>
-            </tr>
-            <tr>
-                <td style ="border:none; border-collapse:collapse;"><label> Marriage </label></td>  <td style ="border:none; border-collapse:collapse;"><select id="marriage" style="width:120px;" <option value=""> </option> </select></td>
-            </tr>
-            <tr>
-                <td style ="border:none; border-collapse:collapse;"> <label> Date Birth </label> </td>  <td style ="border:none; border-collapse:collapse;"><input type="text" id="memdob" style="width:100px;" > </td>
-            </tr>
+                </tr>
+                <tr>
+                    <td style ="border:none; border-collapse:collapse;"><label> Name </label> </td> <td style ="border:none; border-collapse:collapse;"><input type="text" id="memname" width="25" > 
+                    <td style="border:none;width:130px; border-collapse:collapse;"> </td>
+                    <td style ="border:none; border-collapse:collapse;"><label> Policy Type </label> </td> <td style ="border:none; border-collapse:collapse;"><select id="mempoltype" style="width:150px;" > <option value=""></option> </select> </td>
+                </tr>
+                <tr>
+                    <td style ="border:none; border-collapse:collapse;"> <label> Surname </label></td> <td style ="border:none; border-collapse:collapse;"> <input type="text" id="memsur" width="25" value = ${sur}> </td>
+                    <td style="border:none;width:130px; border-collapse:collapse;"> </td>
+                    <td style ="border:none; border-collapse:collapse;"> <label> Policy Date </label> </td> <td style ="border:none; border-collapse:collapse;"><input type="text" id="poldate" width="20"></td>
+                </tr>
+                <tr>
+                    <td style ="border:none; border-collapse:collapse;"><label> ID Number </label> </td> <td style ="border:none; border-collapse:collapse;"><input type="text" id="memidno" width="25"></td>
+                    <td style="border:none;width:130px; border-collapse:collapse;"> </td>
+                    <td style ="border:none; border-collapse:collapse;"> <label> Cancel Code</label></td> <td style ="border:none; border-collapse:collapse;"><select id="cancode" style="width:100px;">
+                            <option value="0"></option>
+                            <option value="01 Insufficient Funds One">01 Insufficient Funds One</option>
+                            <option value="02 Payment Stopped By You">02 Payment Stopped By You</option> 
+                            <option value="03 Account Closed">03 Account Closed</option> 
+                            <option value="04 Rejected By Bank - Incorrect Details">04 Rejected By Bank - Incorrect Details</option> 
+                            <option value="05 Debits Not Allowed To Account">05 Debits Not Allowed To Account</option> 
+                            <option value="06 Account Frozen">06 Account Frozen</option> 
+                            <option value="07 No Authority To Debit">07 No Authority To Debit</option> 
+                            <option value="08 Account Effects Not Cleared">08 Account Effects Not Cleared</option> 
+                            <option value="09 Cancellation From Branch">09 Cancellation From Branch</option> 
+                            <option value="10 Cancellation From Client">10 Cancellation From Client</option> 
+                            <option value="11 Insufficient Funds Two">11 Insufficient Funds Two</option> 
+                            <option value="12 Main Member Deceased">12 Main Member Deceased</option> 
+                            <option value="13 Amendmend Cancellation">13 Amendmend Cancellation</option> 
+                            <option value="14 No Such Account">14 No Such Account</option> 
+                            <option value="17 Cancelled By Goverment">17 Cancelled By Goverment</option> 
+                            <option value="29 Prev. Stopped Via Advice">29 Prev. Stopped Via Advice</option> 
+                            <option value="34 Account Holder Deceased">34 Account Holder Deceased</option> 
+                            <option value="35 Cancelled By Head Office">35 Cancelled By Head Office</option> 
+                            <option value="46 Acc Transfer ( Within Bank )">46 Acc Transfer ( Within Bank )</option> 
+                        </select> </td>
+                </tr>
+                <tr>
+                    <td style ="border:none; border-collapse:collapse;"><label> Gender </label> <td style ="border:none; border-collapse:collapse;"><select id="memgend" style="width:85px;"><option value="0">Select</option> <option value="1">Male</option><option value="2">Female</option></select> </td>
+                    <td style ="border:none; border-collapse:collapse;"> </td>
+                    <td style ="border:none; border-collapse:collapse;"> <label> Language </label> <td style ="border:none; border-collapse:collapse;"><select id="memlang" style="width:100px;">  
+                            <option value="0"></option> 
+                            <option value="1">Afrikaans</option> 
+                            <option value="2">English</option> 
+                        </select>
+                    </td>
+                </tr>  
+                <tr>
+                    <td style ="border:none; border-collapse:collapse;"> <label> E-Mail </label></td> <td style ="border:none; border-collapse:collapse;"> <input type="text" id="mememail" width="25"> </td>
+                    <td style ="border:none; border-collapse:collapse;"> </td>
+                    <td style ="border:none; border-collapse:collapse;"> <label> Status </label></td> <td style ="border:none; border-collapse:collapse;"><select id="memstatus" style ="width:100px;"><option value=""></option></select> </td>
+                </tr>
+                <tr>
+                    <td style ="border:none; border-collapse:collapse;"> <label> Recruiter</label></td><td style ="border:none; border-collapse:collapse;"> <select id="memrecruit" style="width:150px; margin-left:17x;"> <option value=""> </option> </select> </td>
+                    <td style ="border:none; border-collapse:collapse;"> </td>
+                    <td style ="border:none; border-collapse:collapse;"> <label> Status Date</label> </td><td style ="border:none; border-collapse:collapse;"><input type="text" id="memstatusday" width="25"></td>
+                </tr>
+                <tr>
+                    <td style ="border:none; border-collapse:collapse;"><label> Date </label></td> <td style ="border:none; border-collapse:collapse;"> <input type="text" id="memrecruitdate" > </td>
+                    <td style ="border:none; border-collapse:collapse;"> </td>
+                    <td style ="border:none; border-collapse:collapse;"> <label> Premium </label> </td> <td style ="border:none; border-collapse:collapse;"><input type="text" id="memprem" style="width:60px;" ></td>
+                </tr>
+                <tr>
+                    <td style ="border:none; border-collapse:collapse;"><label> Age </label> </td> <td style ="border:none; border-collapse:collapse;"> <input type ="text" id="memage" style="width:60px"></td>
+                    <td style ="border:none; border-collapse:collapse;"> </td>
+                    <td style ="border:none; border-collapse:collapse;"><label> Total Premium </label> </td> <td style ="border:none; border-collapse:collapse;"><input type="text" id="memtotprem" style="width:60px;" > </td>
+                </tr>
+                <tr>
+                    <td style ="border:none; border-collapse:collapse;"><label> Marriage </label></td>  <td style ="border:none; border-collapse:collapse;"><select id="marriage" style="width:120px;" <option value=""> </option> </select></td>
+                </tr>
+                <tr>
+                    <td style ="border:none; border-collapse:collapse;"> <label> Date Birth </label> </td>  <td style ="border:none; border-collapse:collapse;"><input type="text" id="memdob" style="width:100px;" > </td>
+                </tr>
             </table>
 
             <script>
                 var myCalendar1 = new dhtmlXCalendarObject(["poldate"]);
+                myCalendar1.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01", "2018-03-21", "2018-03-30", "2018-04-02", "2018-04-27", "2018-05-01", "2018-06-16", "2018-08-09", "2018-09-24", "2018-12-16", "2018-12-17", "2018-12-25", "2018-12-26"]);
+                myCalendar1.setTooltip("2017-01-01", "New Year's Day", true, true);
+                myCalendar1.setTooltip("2017-01-02", "Public HoliDay", true, true);
+                myCalendar1.setTooltip("2017-03-21", "Human Rights Day", true, true);
+                myCalendar1.setTooltip("2017-04-14", "Good Friday", true, true);
+                myCalendar1.setTooltip("2017-04-17", "Family Day", true, true);
+                myCalendar1.setTooltip("2017-04-27", "Freedom Day", true, true);
+                myCalendar1.setTooltip("2017-05-01", "Workers Day", true, true);
+                myCalendar1.setTooltip("2017-06-16", "Youth Day", true, true);
+                myCalendar1.setTooltip("2017-08-09", "National Womens Day", true, true);
+                myCalendar1.setTooltip("2017-09-24", "Heritage Day", true, true);
+                myCalendar1.setTooltip("2017-09-25", "Public Holiday", true, true);
+                myCalendar1.setTooltip("2017-12-16", "Day of Reconciliation", true, true);
+                myCalendar1.setTooltip("2017-12-25", "Christmas Day", true, true);
+                myCalendar1.setTooltip("2017-12-26", "Day of Good Will", true, true);
+                myCalendar1.setTooltip("2018-01-01", "New Years Day", true, true);
+                myCalendar1.setTooltip("2018-03-21", "Human Rights Day", true, true);
+                myCalendar1.setTooltip("2018-03-30", "Good Friday", true, true);
+                myCalendar1.setTooltip("2018-04-02", "Family Day", true, true);
+                myCalendar1.setTooltip("2018-04-27", "Freedom Day", true, true);
+                myCalendar1.setTooltip("2018-05-01", "Labour Day", true, true);
+                myCalendar1.setTooltip("2018-06-16", "Youth Day", true, true);
+                myCalendar1.setTooltip("2018-08-09", "National Womens Day", true, true);
+                myCalendar1.setTooltip("2018-09-24", "Heritage Day", true, true);
+                myCalendar1.setTooltip("2018-12-16", "Day Of Reconciliation", true, true);
+                myCalendar1.setTooltip("2018-12-17", "Public Holiday", true, true);
+                myCalendar1.setTooltip("2018-12-25", "Christmas Day", true, true);
+                myCalendar1.setTooltip("2018-12-26", "Day Of Good Will", true, true);
                 myCalendar1.setDateFormat("%Y/%m/%d %H:%i");
 
                 var myCalendar2 = new dhtmlXCalendarObject(["memstatusday"]);
+                myCalendar2.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01", "2018-03-21", "2018-03-30", "2018-04-02", "2018-04-27", "2018-05-01", "2018-06-16", "2018-08-09", "2018-09-24", "2018-12-16", "2018-12-17", "2018-12-25", "2018-12-26"]);
+                myCalendar2.setTooltip("2017-01-01", "New Year's Day", true, true);
+                myCalendar2.setTooltip("2017-01-02", "Public HoliDay", true, true);
+                myCalendar2.setTooltip("2017-03-21", "Human Rights Day", true, true);
+                myCalendar2.setTooltip("2017-04-14", "Good Friday", true, true);
+                myCalendar2.setTooltip("2017-04-17", "Family Day", true, true);
+                myCalendar2.setTooltip("2017-04-27", "Freedom Day", true, true);
+                myCalendar2.setTooltip("2017-05-01", "Workers Day", true, true);
+                myCalendar2.setTooltip("2017-06-16", "Youth Day", true, true);
+                myCalendar2.setTooltip("2017-08-09", "National Womens Day", true, true);
+                myCalendar2.setTooltip("2017-09-24", "Heritage Day", true, true);
+                myCalendar2.setTooltip("2017-09-25", "Public Holiday", true, true);
+                myCalendar2.setTooltip("2017-12-16", "Day of Reconciliation", true, true);
+                myCalendar2.setTooltip("2017-12-25", "Christmas Day", true, true);
+                myCalendar2.setTooltip("2017-12-26", "Day of Good Will", true, true);
+                myCalendar2.setTooltip("2018-01-01", "New Years Day", true, true);
+                myCalendar2.setTooltip("2018-03-21", "Human Rights Day", true, true);
+                myCalendar2.setTooltip("2018-03-30", "Good Friday", true, true);
+                myCalendar2.setTooltip("2018-04-02", "Family Day", true, true);
+                myCalendar2.setTooltip("2018-04-27", "Freedom Day", true, true);
+                myCalendar2.setTooltip("2018-05-01", "Labour Day", true, true);
+                myCalendar2.setTooltip("2018-06-16", "Youth Day", true, true);
+                myCalendar2.setTooltip("2018-08-09", "National Womens Day", true, true);
+                myCalendar2.setTooltip("2018-09-24", "Heritage Day", true, true);
+                myCalendar2.setTooltip("2018-12-16", "Day Of Reconciliation", true, true);
+                myCalendar2.setTooltip("2018-12-17", "Public Holiday", true, true);
+                myCalendar2.setTooltip("2018-12-25", "Christmas Day", true, true);
+                myCalendar2.setTooltip("2018-12-26", "Day Of Good Will", true, true);
                 myCalendar2.setDateFormat("%Y/%m/%d %H:%i");
+
                 var myCalendar3 = new dhtmlXCalendarObject(["memrecruitdate"]);
+                myCalendar3.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01", "2018-03-21", "2018-03-30", "2018-04-02", "2018-04-27", "2018-05-01", "2018-06-16", "2018-08-09", "2018-09-24", "2018-12-16", "2018-12-17", "2018-12-25", "2018-12-26"]);
+                myCalendar3.setTooltip("2017-01-01", "New Year's Day", true, true);
+                myCalendar3.setTooltip("2017-01-02", "Public HoliDay", true, true);
+                myCalendar3.setTooltip("2017-03-21", "Human Rights Day", true, true);
+                myCalendar3.setTooltip("2017-04-14", "Good Friday", true, true);
+                myCalendar3.setTooltip("2017-04-17", "Family Day", true, true);
+                myCalendar3.setTooltip("2017-04-27", "Freedom Day", true, true);
+                myCalendar3.setTooltip("2017-05-01", "Workers Day", true, true);
+                myCalendar3.setTooltip("2017-06-16", "Youth Day", true, true);
+                myCalendar3.setTooltip("2017-08-09", "National Womens Day", true, true);
+                myCalendar3.setTooltip("2017-09-24", "Heritage Day", true, true);
+                myCalendar3.setTooltip("2017-09-25", "Public Holiday", true, true);
+                myCalendar3.setTooltip("2017-12-16", "Day of Reconciliation", true, true);
+                myCalendar3.setTooltip("2017-12-25", "Christmas Day", true, true);
+                myCalendar3.setTooltip("2017-12-26", "Day of Good Will", true, true);
+                myCalendar3.setTooltip("2018-01-01", "New Years Day", true, true);
+                myCalendar3.setTooltip("2018-03-21", "Human Rights Day", true, true);
+                myCalendar3.setTooltip("2018-03-30", "Good Friday", true, true);
+                myCalendar3.setTooltip("2018-04-02", "Family Day", true, true);
+                myCalendar3.setTooltip("2018-04-27", "Freedom Day", true, true);
+                myCalendar3.setTooltip("2018-05-01", "Labour Day", true, true);
+                myCalendar3.setTooltip("2018-06-16", "Youth Day", true, true);
+                myCalendar3.setTooltip("2018-08-09", "National Womens Day", true, true);
+                myCalendar3.setTooltip("2018-09-24", "Heritage Day", true, true);
+                myCalendar3.setTooltip("2018-12-16", "Day Of Reconciliation", true, true);
+                myCalendar3.setTooltip("2018-12-17", "Public Holiday", true, true);
+                myCalendar3.setTooltip("2018-12-25", "Christmas Day", true, true);
+                myCalendar3.setTooltip("2018-12-26", "Day Of Good Will", true, true);
                 myCalendar3.setDateFormat("%Y/%m/%d %H:%i");
 
                 var myCalendar4 = new dhtmlXCalendarObject(["memdob"]);
+                myCalendar4.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01", "2018-03-21", "2018-03-30", "2018-04-02", "2018-04-27", "2018-05-01", "2018-06-16", "2018-08-09", "2018-09-24", "2018-12-16", "2018-12-17", "2018-12-25", "2018-12-26"]);
+                myCalendar4.setTooltip("2017-01-01", "New Year's Day", true, true);
+                myCalendar4.setTooltip("2017-01-02", "Public HoliDay", true, true);
+                myCalendar4.setTooltip("2017-03-21", "Human Rights Day", true, true);
+                myCalendar4.setTooltip("2017-04-14", "Good Friday", true, true);
+                myCalendar4.setTooltip("2017-04-17", "Family Day", true, true);
+                myCalendar4.setTooltip("2017-04-27", "Freedom Day", true, true);
+                myCalendar4.setTooltip("2017-05-01", "Workers Day", true, true);
+                myCalendar4.setTooltip("2017-06-16", "Youth Day", true, true);
+                myCalendar4.setTooltip("2017-08-09", "National Womens Day", true, true);
+                myCalendar4.setTooltip("2017-09-24", "Heritage Day", true, true);
+                myCalendar4.setTooltip("2017-09-25", "Public Holiday", true, true);
+                myCalendar4.setTooltip("2017-12-16", "Day of Reconciliation", true, true);
+                myCalendar4.setTooltip("2017-12-25", "Christmas Day", true, true);
+                myCalendar4.setTooltip("2017-12-26", "Day of Good Will", true, true);
+                myCalendar4.setTooltip("2018-01-01", "New Years Day", true, true);
+                myCalendar4.setTooltip("2018-03-21", "Human Rights Day", true, true);
+                myCalendar4.setTooltip("2018-03-30", "Good Friday", true, true);
+                myCalendar4.setTooltip("2018-04-02", "Family Day", true, true);
+                myCalendar4.setTooltip("2018-04-27", "Freedom Day", true, true);
+                myCalendar4.setTooltip("2018-05-01", "Labour Day", true, true);
+                myCalendar4.setTooltip("2018-06-16", "Youth Day", true, true);
+                myCalendar4.setTooltip("2018-08-09", "National Womens Day", true, true);
+                myCalendar4.setTooltip("2018-09-24", "Heritage Day", true, true);
+                myCalendar4.setTooltip("2018-12-16", "Day Of Reconciliation", true, true);
+                myCalendar4.setTooltip("2018-12-17", "Public Holiday", true, true);
+                myCalendar4.setTooltip("2018-12-25", "Christmas Day", true, true);
+                myCalendar4.setTooltip("2018-12-26", "Day Of Good Will", true, true);
                 myCalendar4.setDateFormat("%Y/%m/%d");
             </script>            
 
@@ -1041,6 +1166,34 @@
                 <input type ="button" value ="Update" id="contactupdate" style="width:75px; float:right;">
                 <script>
                     var myCalendar5 = new dhtmlXCalendarObject(["postdate"]);
+                    myCalendar5.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01", "2018-03-21", "2018-03-30", "2018-04-02", "2018-04-27", "2018-05-01", "2018-06-16", "2018-08-09", "2018-09-24", "2018-12-16", "2018-12-17", "2018-12-25", "2018-12-26"]);
+                    myCalendar5.setTooltip("2017-01-01", "New Year's Day", true, true);
+                    myCalendar5.setTooltip("2017-01-02", "Public HoliDay", true, true);
+                    myCalendar5.setTooltip("2017-03-21", "Human Rights Day", true, true);
+                    myCalendar5.setTooltip("2017-04-14", "Good Friday", true, true);
+                    myCalendar5.setTooltip("2017-04-17", "Family Day", true, true);
+                    myCalendar5.setTooltip("2017-04-27", "Freedom Day", true, true);
+                    myCalendar5.setTooltip("2017-05-01", "Workers Day", true, true);
+                    myCalendar5.setTooltip("2017-06-16", "Youth Day", true, true);
+                    myCalendar5.setTooltip("2017-08-09", "National Womens Day", true, true);
+                    myCalendar5.setTooltip("2017-09-24", "Heritage Day", true, true);
+                    myCalendar5.setTooltip("2017-09-25", "Public Holiday", true, true);
+                    myCalendar5.setTooltip("2017-12-16", "Day of Reconciliation", true, true);
+                    myCalendar5.setTooltip("2017-12-25", "Christmas Day", true, true);
+                    myCalendar5.setTooltip("2017-12-26", "Day of Good Will", true, true);
+                    myCalendar5.setTooltip("2018-01-01", "New Years Day", true, true);
+                    myCalendar5.setTooltip("2018-03-21", "Human Rights Day", true, true);
+                    myCalendar5.setTooltip("2018-03-30", "Good Friday", true, true);
+                    myCalendar5.setTooltip("2018-04-02", "Family Day", true, true);
+                    myCalendar5.setTooltip("2018-04-27", "Freedom Day", true, true);
+                    myCalendar5.setTooltip("2018-05-01", "Labour Day", true, true);
+                    myCalendar5.setTooltip("2018-06-16", "Youth Day", true, true);
+                    myCalendar5.setTooltip("2018-08-09", "National Womens Day", true, true);
+                    myCalendar5.setTooltip("2018-09-24", "Heritage Day", true, true);
+                    myCalendar5.setTooltip("2018-12-16", "Day Of Reconciliation", true, true);
+                    myCalendar5.setTooltip("2018-12-17", "Public Holiday", true, true);
+                    myCalendar5.setTooltip("2018-12-25", "Christmas Day", true, true);
+                    myCalendar5.setTooltip("2018-12-26", "Day Of Good Will", true, true);
                     myCalendar5.setDateFormat("%Y/%m/%d");
                 </script>                    
             </div>
@@ -1260,24 +1413,24 @@
                 <div id="notediv">
                     <table cellspacing="0" id="notesgrid" margin-right:0px style="table-layout:fixed;float: left; border-collapse: collapse;margin-left:0px; border: 1px solid black;width:75%"> 
                         <thead style="width:100%;display:block;">  
-                        <tr style="border-collapse: collapse;border: 1px solid black;">                               
-                            <th style="width:100px; min-width: 100px;" scope="col">Date</th> 
-                            <th style="width:150px; min-width: 150px;" scope="col">User</th> 
-                            <th style="width:290px; min-width: 390px;" scope="col">Description</th> 
-                            <th style="width:60px; min-width: 20px" scope="col">ID</th> 
-                        </tr>
+                            <tr style="border-collapse: collapse;border: 1px solid black;">                               
+                                <th style="width:100px; min-width: 100px;" scope="col">Date</th> 
+                                <th style="width:150px; min-width: 150px;" scope="col">User</th> 
+                                <th style="width:290px; min-width: 390px;" scope="col">Description</th> 
+                                <th style="width:60px; min-width: 20px" scope="col">ID</th> 
+                            </tr>
                         </thead>
                         <tbody style="height:150px; display:block; overflow-y:auto;overflow-x:hidden;">
-                            
+
                         </tbody>
-                            
+
                     </table>
                 </div> 
                 <br>
                 <br><br>
                 <textarea style="border: 1px solid #111;"  id="notesdet" cols="120" rows="8">
                 </textarea>
-              <label id="notedid" style="visibility:hidden">aaa </label>  
+                <label id="notedid" style="visibility:hidden">aaa </label>  
             </div>   
 
             <div id="tabs-7"> 

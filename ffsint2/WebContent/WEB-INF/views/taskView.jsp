@@ -24,7 +24,7 @@
                     myCalendar.show();
                     myCalendar.hideTime();
                     myCalendar.showToday();
-                    myCalendar.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01"]);
+                    myCalendar.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01", "2018-03-21", "2018-03-30", "2018-04-02", "2018-04-27", "2018-05-01", "2018-06-16", "2018-08-09", "2018-09-24", "2018-12-16", "2018-12-17", "2018-12-25", "2018-12-26"]);
                     myCalendar.setTooltip("2017-01-01", "New Year's Day", true, true);
                     myCalendar.setTooltip("2017-01-02", "Public HoliDay", true, true);
                     myCalendar.setTooltip("2017-03-21", "Human Rights Day", true, true);
@@ -40,7 +40,18 @@
                     myCalendar.setTooltip("2017-12-25", "Christmas Day", true, true);
                     myCalendar.setTooltip("2017-12-26", "Day of Good Will", true, true);
                     myCalendar.setTooltip("2018-01-01", "New Years Day", true, true);
-
+                    myCalendar.setTooltip("2018-03-21", "Human Rights Day", true, true);
+                    myCalendar.setTooltip("2018-03-30", "Good Friday", true, true);
+                    myCalendar.setTooltip("2018-04-02", "Family Day", true, true);
+                    myCalendar.setTooltip("2018-04-27", "Freedom Day", true, true);
+                    myCalendar.setTooltip("2018-05-01", "Labour Day", true, true);
+                    myCalendar.setTooltip("2018-06-16", "Youth Day", true, true);
+                    myCalendar.setTooltip("2018-08-09", "National Womens Day", true, true);
+                    myCalendar.setTooltip("2018-09-24", "Heritage Day", true, true);
+                    myCalendar.setTooltip("2018-12-16", "Day Of Reconciliation", true, true);
+                    myCalendar.setTooltip("2018-12-17", "Public Holiday", true, true);
+                    myCalendar.setTooltip("2018-12-25", "Christmas Day", true, true);
+                    myCalendar.setTooltip("2018-12-26", "Day Of Good Will", true, true);
                     myCalendar._drawMonth(new Date);
                     myCalendar.attachEvent("onClick", function (side, d) {
                         //	writeLog("onClick event called, "+side+" calendar, date "+myCalendar.getFormatedDate(null,d));
@@ -55,54 +66,54 @@
             </script> 
 
             <script type="text/javascript">
-                
-$(document).ready( function() {
-    $('#Diarylink').click( function(event) {
-          window.location = "DiaryFromTask?key=" + encodeURIComponent(document.getElementById("taskid").innerHTML);
-            });  
-    });               
-                   $(document).ready(function () {
+
+                $(document).ready(function () {
+                    $('#Diarylink').click(function (event) {
+                        window.location = "DiaryFromTask?key=" + encodeURIComponent(document.getElementById("taskid").innerHTML);
+                    });
+                });
+                $(document).ready(function () {
                     $("#link1").click(function (event) {
                         window.location = "TaskView.jsp?key=" + encodeURIComponent(document.getElementById("link1").innerHTML);
                     });
                 });
 
-                      $(document).ready(function () {
+                $(document).ready(function () {
                     $("#link2").click(function (event) {
                         window.location = "TaskView.jsp?key=" + encodeURIComponent(document.getElementById("link2").innerHTML);
                     });
                 });
-                
-                                  $(document).ready(function () {
+
+                $(document).ready(function () {
                     $("#link3").click(function (event) {
                         window.location = "TaskView.jsp?key=" + encodeURIComponent(document.getElementById("link3").innerHTML);
                     });
                 });
-                
-                                  $(document).ready(function () {
+
+                $(document).ready(function () {
                     $("#link4").click(function (event) {
                         window.location = "TaskView.jsp?key=" + encodeURIComponent(document.getElementById("link4").innerHTML);
                     });
                 });
-                
-                                  $(document).ready(function () {
+
+                $(document).ready(function () {
                     $("#link5").click(function (event) {
                         window.location = "TaskView.jsp?key=" + encodeURIComponent(document.getElementById("link5").innerHTML);
                     });
                 });
-                
-                                  $(document).ready(function () {
+
+                $(document).ready(function () {
                     $("#link6").click(function (event) {
                         window.location = "TaskView.jsp?key=" + encodeURIComponent(document.getElementById("link6").innerHTML);
                     });
                 });
-                
-                   $(document).ready(function () {
+
+                $(document).ready(function () {
                     $("#Tasklink").click(function (event) {
                         window.location = "TaskView.jsp?link=" + encodeURIComponent(document.getElementById("taskid").innerHTML);
                     });
                 });
-                
+
                 $(document).ready(function () {
                     $("#diaryimag").click(function (event) {
                         var target = $(event.target);
@@ -308,7 +319,7 @@ $(document).ready( function() {
                         } else {
                             training = "N";
                         }
-                        $.get('TaskUpdate', {tranid: document.getElementById("taskid").innerHTML, recur1: document.getElementById("recur").checked, recur3: document.getElementById("recureveryday").checked, recur4: document.getElementById("recurofeverymonth").value, recur5: document.getElementById("recurweekly").checked, recur6: document.getElementById("recureveryweekday").checked, recur7: document.getElementById("recurlastday").checked, recur8: document.getElementById("recurmonthly").checked, recur9: document.getElementById("recurexceptsun").checked, recur10: document.getElementById("recurevery").checked, ir: document.getElementById("requestir").checked, tasksumm: document.getElementById("tasksumm").value, taskfull: document.getElementById("taskfull").value, recur13: document.getElementById("rmonth1").value, recur11: document.getElementById("dayr5").value, recur12: document.getElementById("monthr3").checked, sdate: document.getElementById("startdate").value, rdate: document.getElementById("reviewdate").value, edate: document.getElementById("enddate").value, prior: document.getElementById("Priority1").value, stats: document.getElementById("Status1").value, recur2: document.getElementById("dayr7").checked, taskto1: document.getElementById("dsee1").value, taskto2: document.getElementById("dsee2").value, taskto3: document.getElementById("dsee3").value, taskto4: document.getElementById("dsee4").value, taskto5: document.getElementById("dsee5").value, taskto6: document.getElementById("dsee6").value, taskto7: document.getElementById("dsee7").value, taskto8: document.getElementById("dsee8").value, taskto9: document.getElementById("dsee9").value, taskto10: document.getElementById("dsee10").value, taskto11: document.getElementById("dsee11").value, taskto12: document.getElementById("dsee12").value, taskto13: document.getElementById("dsee13").value, taskto14: document.getElementById("dsee14").value, taskto15: document.getElementById("dsee15").value, fromUser: document.getElementById("FromUser1").value, train: training, link1:document.getElementById("linktask1").innerHTML}, function (responseJson) {
+                        $.get('TaskUpdate', {tranid: document.getElementById("taskid").innerHTML, recur1: document.getElementById("recur").checked, recur3: document.getElementById("recureveryday").checked, recur4: document.getElementById("recurofeverymonth").value, recur5: document.getElementById("recurweekly").checked, recur6: document.getElementById("recureveryweekday").checked, recur7: document.getElementById("recurlastday").checked, recur8: document.getElementById("recurmonthly").checked, recur9: document.getElementById("recurexceptsun").checked, recur10: document.getElementById("recurevery").checked, ir: document.getElementById("requestir").checked, tasksumm: document.getElementById("tasksumm").value, taskfull: document.getElementById("taskfull").value, recur13: document.getElementById("rmonth1").value, recur11: document.getElementById("dayr5").value, recur12: document.getElementById("monthr3").checked, sdate: document.getElementById("startdate").value, rdate: document.getElementById("reviewdate").value, edate: document.getElementById("enddate").value, prior: document.getElementById("Priority1").value, stats: document.getElementById("Status1").value, recur2: document.getElementById("dayr7").checked, taskto1: document.getElementById("dsee1").value, taskto2: document.getElementById("dsee2").value, taskto3: document.getElementById("dsee3").value, taskto4: document.getElementById("dsee4").value, taskto5: document.getElementById("dsee5").value, taskto6: document.getElementById("dsee6").value, taskto7: document.getElementById("dsee7").value, taskto8: document.getElementById("dsee8").value, taskto9: document.getElementById("dsee9").value, taskto10: document.getElementById("dsee10").value, taskto11: document.getElementById("dsee11").value, taskto12: document.getElementById("dsee12").value, taskto13: document.getElementById("dsee13").value, taskto14: document.getElementById("dsee14").value, taskto15: document.getElementById("dsee15").value, fromUser: document.getElementById("FromUser1").value, train: training, link1: document.getElementById("linktask1").innerHTML}, function (responseJson) {
                             if (responseJson != null) {
                                 $.each(responseJson, function (key, value) {
                                     if (value['GenericDescriptionEng'] == "success") {
@@ -333,9 +344,9 @@ $(document).ready( function() {
         <body>
 
 
-    <script>
-  document.write('<a style ="float:left; margin-left:510px;" href="' + document.referrer + '"> << Back to task list</a>');
-</script>
+            <script>
+                document.write('<a style ="float:left; margin-left:510px;" href="' + document.referrer + '"> << Back to task list</a>');
+            </script>
 
             <div id="tabs" style="width:600px;  height:670px; margin-left: 40px;">
                 <ul>
@@ -575,7 +586,7 @@ $(document).ready( function() {
                 End Date :<label> <input type="text" id = "enddate" style="margin-left:32px; width: 135px;" value= ${enddate}></label><label id = "link5" style="margin-left:100px;color:blue;">${linkup5}</label> <label id = "link6" style="margin-left:50px;color:blue;">${linkup6}</label> 
                 <script>
                     var myCalendar1 = new dhtmlXCalendarObject(["startdate"]);
-                    myCalendar1.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01"]);
+                    myCalendar1.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01", "2018-03-21", "2018-03-30", "2018-04-02", "2018-04-27", "2018-05-01", "2018-06-16", "2018-08-09", "2018-09-24", "2018-12-16", "2018-12-17", "2018-12-25", "2018-12-26"]);
                     myCalendar1.setTooltip("2017-01-01", "New Year's Day", true, true);
                     myCalendar1.setTooltip("2017-01-02", "Public HoliDay", true, true);
                     myCalendar1.setTooltip("2017-03-21", "Human Rights Day", true, true);
@@ -591,11 +602,23 @@ $(document).ready( function() {
                     myCalendar1.setTooltip("2017-12-25", "Christmas Day", true, true);
                     myCalendar1.setTooltip("2017-12-26", "Day of Good Will", true, true);
                     myCalendar1.setTooltip("2018-01-01", "New Years Day", true, true);
+                    myCalendar1.setTooltip("2018-03-21", "Human Rights Day", true, true);
+                    myCalendar1.setTooltip("2018-03-30", "Good Friday", true, true);
+                    myCalendar1.setTooltip("2018-04-02", "Family Day", true, true);
+                    myCalendar1.setTooltip("2018-04-27", "Freedom Day", true, true);
+                    myCalendar1.setTooltip("2018-05-01", "Labour Day", true, true);
+                    myCalendar1.setTooltip("2018-06-16", "Youth Day", true, true);
+                    myCalendar1.setTooltip("2018-08-09", "National Womens Day", true, true);
+                    myCalendar1.setTooltip("2018-09-24", "Heritage Day", true, true);
+                    myCalendar1.setTooltip("2018-12-16", "Day Of Reconciliation", true, true);
+                    myCalendar1.setTooltip("2018-12-17", "Public Holiday", true, true);
+                    myCalendar1.setTooltip("2018-12-25", "Christmas Day", true, true);
+                    myCalendar1.setTooltip("2018-12-26", "Day Of Good Will", true, true);
                     myCalendar1.setDateFormat("%Y/%m/%d %H:%i");
                 </script>
                 <script>
                     var myCalendar2 = new dhtmlXCalendarObject(["reviewdate"]);
-                    myCalendar2.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01"]);
+                    myCalendar2.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01", "2018-03-21", "2018-03-30", "2018-04-02", "2018-04-27", "2018-05-01", "2018-06-16", "2018-08-09", "2018-09-24", "2018-12-16", "2018-12-17", "2018-12-25", "2018-12-26"]);
                     myCalendar2.setTooltip("2017-01-01", "New Year's Day", true, true);
                     myCalendar2.setTooltip("2017-01-02", "Public HoliDay", true, true);
                     myCalendar2.setTooltip("2017-03-21", "Human Rights Day", true, true);
@@ -611,11 +634,23 @@ $(document).ready( function() {
                     myCalendar2.setTooltip("2017-12-25", "Christmas Day", true, true);
                     myCalendar2.setTooltip("2017-12-26", "Day of Good Will", true, true);
                     myCalendar2.setTooltip("2018-01-01", "New Years Day", true, true);
+                    myCalendar2.setTooltip("2018-03-21", "Human Rights Day", true, true);
+                    myCalendar2.setTooltip("2018-03-30", "Good Friday", true, true);
+                    myCalendar2.setTooltip("2018-04-02", "Family Day", true, true);
+                    myCalendar2.setTooltip("2018-04-27", "Freedom Day", true, true);
+                    myCalendar2.setTooltip("2018-05-01", "Labour Day", true, true);
+                    myCalendar2.setTooltip("2018-06-16", "Youth Day", true, true);
+                    myCalendar2.setTooltip("2018-08-09", "National Womens Day", true, true);
+                    myCalendar2.setTooltip("2018-09-24", "Heritage Day", true, true);
+                    myCalendar2.setTooltip("2018-12-16", "Day Of Reconciliation", true, true);
+                    myCalendar2.setTooltip("2018-12-17", "Public Holiday", true, true);
+                    myCalendar2.setTooltip("2018-12-25", "Christmas Day", true, true);
+                    myCalendar2.setTooltip("2018-12-26", "Day Of Good Will", true, true);
                     myCalendar2.setDateFormat("%Y/%m/%d %H:%i");
                 </script>
                 <script>
                     var myCalendar3 = new dhtmlXCalendarObject(["enddate"]);
-                    myCalendar3.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01"]);
+                    myCalendar3.setHolidays(["2017-01-01", "2017-01-02", "2017-03-21", "2017-04-14", "2017-04-17", "2017-04-27", "2017-05-01", "2017-06-16", "2017-08-09", "2017-09-24", "2017-09-25", "2017-12-16", "2017-12-25", "2017-12-26", "2018-01-01", "2018-03-21", "2018-03-30", "2018-04-02", "2018-04-27", "2018-05-01", "2018-06-16", "2018-08-09", "2018-09-24", "2018-12-16", "2018-12-17", "2018-12-25", "2018-12-26"]);
                     myCalendar3.setTooltip("2017-01-01", "New Year's Day", true, true);
                     myCalendar3.setTooltip("2017-01-02", "Public HoliDay", true, true);
                     myCalendar3.setTooltip("2017-03-21", "Human Rights Day", true, true);
@@ -631,6 +666,18 @@ $(document).ready( function() {
                     myCalendar3.setTooltip("2017-12-25", "Christmas Day", true, true);
                     myCalendar3.setTooltip("2017-12-26", "Day of Good Will", true, true);
                     myCalendar3.setTooltip("2018-01-01", "New Years Day", true, true);
+                    myCalendar3.setTooltip("2018-03-21", "Human Rights Day", true, true);
+                    myCalendar3.setTooltip("2018-03-30", "Good Friday", true, true);
+                    myCalendar3.setTooltip("2018-04-02", "Family Day", true, true);
+                    myCalendar3.setTooltip("2018-04-27", "Freedom Day", true, true);
+                    myCalendar3.setTooltip("2018-05-01", "Labour Day", true, true);
+                    myCalendar3.setTooltip("2018-06-16", "Youth Day", true, true);
+                    myCalendar3.setTooltip("2018-08-09", "National Womens Day", true, true);
+                    myCalendar3.setTooltip("2018-09-24", "Heritage Day", true, true);
+                    myCalendar3.setTooltip("2018-12-16", "Day Of Reconciliation", true, true);
+                    myCalendar3.setTooltip("2018-12-17", "Public Holiday", true, true);
+                    myCalendar3.setTooltip("2018-12-25", "Christmas Day", true, true);
+                    myCalendar3.setTooltip("2018-12-26", "Day Of Good Will", true, true);
                     myCalendar3.setDateFormat("%Y/%m/%d %H:%i");
                 </script>
                 <br>
@@ -1045,42 +1092,42 @@ $(document).ready( function() {
                 <input id="uploadBtn" type="button" value="Upload" onClick="performAjaxSubmit();">
 
             </div>
-                 
 
 
-             <label id="linktask1" style="visibility:hidden;"/>${linktask11}</label>
-            <label id = "coord" style="visibility:hidden;"> </label>
-            <script type="text/javascript">
 
-                function performAjaxSubmit() {
+            <label id="linktask1" style="visibility:hidden;"/>${linktask11}</label>
+        <label id = "coord" style="visibility:hidden;"> </label>
+        <script type="text/javascript">
 
-                    var sampleText = document.getElementById('imageText').value;
+            function performAjaxSubmit() {
 
-                    var sampleFile1 = document.getElementById('imageFile').files[0];
+                var sampleText = document.getElementById('imageText').value;
 
-                    var formdata = new FormData();
+                var sampleFile1 = document.getElementById('imageFile').files[0];
 
-                    formdata.append("imageText", sampleText);
+                var formdata = new FormData();
 
-                    formdata.append("imageFile", sampleFile1);
-                    formdata.append("tranId", document.getElementById("taskid").innerHTML);
+                formdata.append("imageText", sampleText);
 
-                    var xhr = new XMLHttpRequest();
+                formdata.append("imageFile", sampleFile1);
+                formdata.append("tranId", document.getElementById("taskid").innerHTML);
 
-                    xhr.open("POST", "TaskFileUploader", true);
+                var xhr = new XMLHttpRequest();
 
-                    xhr.send(formdata);
+                xhr.open("POST", "TaskFileUploader", true);
 
-                    xhr.onload = function (e) {
-                        location.reload(true);
-                        if (this.status == 200) {
-                            alert(this.responseText);
-                        }
-                    };
-                }
-            </script> 
+                xhr.send(formdata);
 
-        </div>
+                xhr.onload = function (e) {
+                    location.reload(true);
+                    if (this.status == 200) {
+                        alert(this.responseText);
+                    }
+                };
+            }
+        </script> 
 
-    </body>
+    </div>
+
+</body>
 </html>
