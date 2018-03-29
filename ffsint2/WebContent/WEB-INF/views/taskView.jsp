@@ -15,7 +15,27 @@
             <link rel="stylesheet" type="text/css" href="resources/dhtmlxcalendar_1.css"/>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <title>Task</title>
-
+            <script>
+                $(document).ready(function () {
+                    $("#sendemail").click(function (event) {
+                        $.get('TaskSendEmail', {tranid: document.getElementById("taskid").innerHTML, mailto: document.getElementById("mailto").value, mailcontent: document.getElementById("mailcontent").value }, function (responseJson) {
+                            if (responseJson !== null) {
+                                $.each(responseJson, function (key, value) {
+                                    var t1 = value['GenericDescriptionEng'];
+                                    document.getElementById("tasknotes").value = value['GenericDescriptionAfr'].replace(/~/g, "\n");
+                                    if (t1 == "success") {
+                                        alert("success");
+                                    } else {
+                                        alert("failed : " + value['GenericDescriptionAfr'] );
+                                    }
+                                });
+                            } else {
+                                alert("no response");
+                            }
+                        });
+                    });
+                });
+            </script>   
             <script>
                 var myCalendar;
                 function doOnLoad() {
@@ -354,6 +374,7 @@
                     <li><a href="#tabs-2">Notes</a></li>
                     <li><a href="#tabs-3">People</a></li>
                     <li><a href="#tabs-4">Images</a></li>
+                    <li><a href="#tabs-5">E-Mail</a></li>
                 </ul>
 
                 <div id="tabs-1">
@@ -719,42 +740,32 @@
                     <br>
                     <br>
                     <script>
-
                         if (document.getElementById("tasknotes").value.length > 0) {
-
                             document.getElementById("tasknotes").value = document.getElementById("tasknotes").value.replace(/~/g, "\n");
                         }
                     </script>
                     <script type="text/javascript">
-
                         function updateComm() {
                             document.getElementById("tasknotes").value = "";
                             $("#Taskupdatecomm").css("visibility", "hidden");
                             $("#Tasksavecomm").css("visibility", "visible");
                             $("#tasknotes").focus();
-
                         }
-
                     </script>   
-
                     <input type ="button" value ="Update" id="Taskupdatecomm" onClick="updateComm();" style="width:75px; float:right"/>
                     <input type ="button" value ="Save" id="Tasksavecomm" style="width:75px;visibility: hidden;"/>
-
                     <script>
                         if (${train} == "Y") {
                             $("#Taskupdatecomm").css("visibility", "hidden");
                         } else {
                             $("#Taskupdatecomm").css("visibility", "visible");
                         }
-
                     </script>   
-
             </div>
             <div id="tabs-3">
                 <form method="post" class="signin" action="#">
                     <br>
                     People assigned to this task
-
                     <br>
                     <br>
                     <select name="dseel" id = "dsee1" style="width:170px" onClick="loadMember();">
@@ -765,7 +776,6 @@
                     <script>
                         if (document.getElementById("taskstat1").innerHTML.length < 3 && document.getElementById("dsee1").value.length > 1) {
                             document.getElementById("taskstat1").innerHTML = "Not Started";
-
                         }
 
                     </script>
@@ -779,7 +789,6 @@
                         if (document.getElementById("taskstat2").innerHTML.length < 3 && document.getElementById("dsee2").value.length > 1) {
                             document.getElementById("taskstat2").innerHTML = "Not Started";
                         }
-
                     </script>
                     <label id="taskstatdate2" style=" margin-left:50px;"/>${statusday2}</label>
                     <br>
@@ -1015,7 +1024,6 @@
                             document.getElementById("taskstat15").innerHTML = "";
                         }
                     </script>
-
                     <br/>            
                     <br/>
                     <br/>
@@ -1066,7 +1074,6 @@
                     $("#Recurlabel10").css("visibility", "hidden");
                     $("#rmonth1").css("visibility", "hidden");
                     $("#Recurlabel11").css("visibility", "hidden");
-
                 }
             </script>
             <div id="tabs-4"> 
@@ -1092,6 +1099,21 @@
                 <input id="uploadBtn" type="button" value="Upload" onClick="performAjaxSubmit();">
 
             </div>
+            <div id="tabs-5">
+                <label style="font-size:20px;">Send e-mail</label>
+                <br> <br>
+                <label>E-mails send here will also created a new notes.</label> <br>
+                <label>For every response received a note will be created.</label> <br>
+                <br>
+                Mail to address 
+                <input type="text" id="mailto" size="30" >
+                <br>
+                Type mail content below
+                <label> <textarea name="content" id="mailcontent" style="width:560px; height: 355px;" cols="44" rows="10" ></textarea> </label>     
+                <br>
+                <br>                                
+                <input type ="button" value ="Send now" id="sendemail" style="width:90px; float:right"/>                               
+            </div>                    
 
 
 

@@ -949,7 +949,9 @@ public class TaskUtils extends HttpServlet {
         String hour = Integer.toString(cal.get(Calendar.HOUR_OF_DAY));
         String minute = Integer.toString(cal.get(Calendar.MINUTE));
         String sql = "";
-        if (onlyUser == null) { onlyUser ="";}
+        if (onlyUser == null) {
+            onlyUser = "";
+        }
         if (onlyUser.equals(null) | onlyUser.length() < 4) {
             sql = "select * from " + Username.getcompany() + ".tasks where ((((taskto1 = ?) and ((taskstat1 <> 'Completed') or (taskstat1 is null))) or ((taskto2 = ?) and ((taskstat2 <> 'Completed') or (taskstat2 is null))) or ((taskto3 = ?) and ((taskstat3 <> 'Completed') or (taskstat3 is null))) or ((taskto4 = ?) and ((taskstat4 <> 'Completed') or (taskstat4 is null))) or ((taskto5 = ?) and ((taskstat5 <> 'Completed') or (taskstat5 is null))) or ((taskto6 = ?) and ((taskstat6 <> 'Completed') or (taskstat6 is null))) or ((taskto7 = ?) and ((taskstat7 <> 'Completed') or (taskstat7 is null))) or ((taskto8 = ?) and ((taskstat8 <> 'Completed') or (taskstat8 is null))) or ((taskto9 = ?) and ((taskstat9 <> 'Completed') or (taskstat9 is null))) or ((taskto10 = ?) and ((taskstat10 <> 'Completed') or (taskstat10 is null))) or ((taskto11 = ?) and ((taskstat11 <> 'Completed') or (taskstat11 is null))) or ((taskto12 = ?) and ((taskstat12 <> 'Completed') or (taskstat12 is null))) or ((taskto13 = ?) and ((taskstat13 <> 'Completed') or (taskstat13 is null))) or ((taskto14 = ?) and ((taskstat14 <> 'Completed') or (taskstat14 is null))) or ((taskto15 = ?) and ((taskstat15 <> 'Completed') or (taskstat15 is null)))) or (taskfrom = ?))and (taskstat <> 'Completed') and (train = 'Y')";
         } else {
@@ -1394,16 +1396,18 @@ public class TaskUtils extends HttpServlet {
         String hour = Integer.toString(cal.get(Calendar.HOUR_OF_DAY));
         String minute = Integer.toString(cal.get(Calendar.MINUTE));
         String sql = "";
-        if (onlyUser == null) { onlyUser ="";}
         if (onlyUser == null) {
-          sql = "select * from " + Username.getcompany() + ".tasks where (((taskstat1 <> 'Completed') or (taskstat1 is null)) and (taskto1 = ?) and (newt1 is null)) or (((taskstat2 <> 'Completed') or (taskstat2 is null)) and (taskto2 = ?) and (newt2 is null)) or (((taskstat3 <> 'Completed') or (taskstat3 is null)) and (taskto3 = ?) and (newt3 is null)) or(((taskstat4 <> 'Completed') or (taskstat4 is null)) and (taskto4 = ?) and (newt4 is null)) or (((taskstat5 <> 'Completed') or (taskstat5 is null)) and (taskto5 = ?) and (newt5 is null)) or (((taskstat6 <> 'Completed') or (taskstat6 is null)) and (taskto6 = ?) and (newt6 is null)) or (((taskstat7 <> 'Completed') or (taskstat7 is null)) and (taskto7 = ?) and (newt7 is null)) or (((taskstat8 <> 'Completed') or (taskstat8 is null)) and (taskto8 = ?) and (newt8 is null)) or (((taskstat9 <> 'Completed') or (taskstat9 is null)) and (taskto9 = ?) and (newt9 is null)) or (((taskstat11 <> 'Completed') or (taskstat11 is null)) and (taskto11 = ?) and (newt11 is null)) or (((taskstat12 <> 'Completed') or (taskstat12 is null)) and (taskto12 = ?) and (newt12 is null)) or (((taskstat13 <> 'Completed') or (taskstat12 is null)) and (taskto13 = ?) and (newt13 is null)) or (((taskstat14 <> 'Completed') or (taskstat14 is null)) and (taskto14 = ?) and (newt14 is null)) or (((taskstat15 <> 'Completed') or (taskstat15 is null)) and (taskto15 = ?) and (newt15 is null)) or (((taskstat10 <> 'Completed') or (taskstat10 is null)) and (taskto10 = ?) and (newt10 is null)) or (((taskstat <> 'Completed') or (taskstat is null)) and (taskfrom = ?) and (newtf is null))";
+            onlyUser = "";
+        }
+        if (onlyUser == null) {
+            sql = "select * from " + Username.getcompany() + ".tasks where (((taskstat1 <> 'Completed') or (taskstat1 is null)) and (taskto1 = ?) and (newt1 is null)) or (((taskstat2 <> 'Completed') or (taskstat2 is null)) and (taskto2 = ?) and (newt2 is null)) or (((taskstat3 <> 'Completed') or (taskstat3 is null)) and (taskto3 = ?) and (newt3 is null)) or(((taskstat4 <> 'Completed') or (taskstat4 is null)) and (taskto4 = ?) and (newt4 is null)) or (((taskstat5 <> 'Completed') or (taskstat5 is null)) and (taskto5 = ?) and (newt5 is null)) or (((taskstat6 <> 'Completed') or (taskstat6 is null)) and (taskto6 = ?) and (newt6 is null)) or (((taskstat7 <> 'Completed') or (taskstat7 is null)) and (taskto7 = ?) and (newt7 is null)) or (((taskstat8 <> 'Completed') or (taskstat8 is null)) and (taskto8 = ?) and (newt8 is null)) or (((taskstat9 <> 'Completed') or (taskstat9 is null)) and (taskto9 = ?) and (newt9 is null)) or (((taskstat11 <> 'Completed') or (taskstat11 is null)) and (taskto11 = ?) and (newt11 is null)) or (((taskstat12 <> 'Completed') or (taskstat12 is null)) and (taskto12 = ?) and (newt12 is null)) or (((taskstat13 <> 'Completed') or (taskstat12 is null)) and (taskto13 = ?) and (newt13 is null)) or (((taskstat14 <> 'Completed') or (taskstat14 is null)) and (taskto14 = ?) and (newt14 is null)) or (((taskstat15 <> 'Completed') or (taskstat15 is null)) and (taskto15 = ?) and (newt15 is null)) or (((taskstat10 <> 'Completed') or (taskstat10 is null)) and (taskto10 = ?) and (newt10 is null)) or (((taskstat <> 'Completed') or (taskstat is null)) and (taskfrom = ?) and (newtf is null))";
         } else {
-           if (onlyUser.length() < 3)    {
-          sql = "select * from " + Username.getcompany() + ".tasks where (((taskstat1 <> 'Completed') or (taskstat1 is null)) and (taskto1 = ?) and (newt1 is null)) or (((taskstat2 <> 'Completed') or (taskstat2 is null)) and (taskto2 = ?) and (newt2 is null)) or (((taskstat3 <> 'Completed') or (taskstat3 is null)) and (taskto3 = ?) and (newt3 is null)) or(((taskstat4 <> 'Completed') or (taskstat4 is null)) and (taskto4 = ?) and (newt4 is null)) or (((taskstat5 <> 'Completed') or (taskstat5 is null)) and (taskto5 = ?) and (newt5 is null)) or (((taskstat6 <> 'Completed') or (taskstat6 is null)) and (taskto6 = ?) and (newt6 is null)) or (((taskstat7 <> 'Completed') or (taskstat7 is null)) and (taskto7 = ?) and (newt7 is null)) or (((taskstat8 <> 'Completed') or (taskstat8 is null)) and (taskto8 = ?) and (newt8 is null)) or (((taskstat9 <> 'Completed') or (taskstat9 is null)) and (taskto9 = ?) and (newt9 is null)) or (((taskstat11 <> 'Completed') or (taskstat11 is null)) and (taskto11 = ?) and (newt11 is null)) or (((taskstat12 <> 'Completed') or (taskstat12 is null)) and (taskto12 = ?) and (newt12 is null)) or (((taskstat13 <> 'Completed') or (taskstat12 is null)) and (taskto13 = ?) and (newt13 is null)) or (((taskstat14 <> 'Completed') or (taskstat14 is null)) and (taskto14 = ?) and (newt14 is null)) or (((taskstat15 <> 'Completed') or (taskstat15 is null)) and (taskto15 = ?) and (newt15 is null)) or (((taskstat10 <> 'Completed') or (taskstat10 is null)) and (taskto10 = ?) and (newt10 is null)) or (((taskstat <> 'Completed') or (taskstat is null)) and (taskfrom = ?) and (newtf is null))";
-        } else {
-            sql = "select * from " + Username.getcompany() + ".tasks where ((((taskstat1 <> 'Completed') or (taskstat1 is null)) and (taskto1 = ?) and (newt1 is null)) or (((taskstat2 <> 'Completed') or (taskstat2 is null)) and (taskto2 = ?) and (newt2 is null)) or (((taskstat3 <> 'Completed') or (taskstat3 is null)) and (taskto3 = ?) and (newt3 is null)) or(((taskstat4 <> 'Completed') or (taskstat4 is null)) and (taskto4 = ?) and (newt4 is null)) or (((taskstat5 <> 'Completed') or (taskstat5 is null)) and (taskto5 = ?) and (newt5 is null)) or (((taskstat6 <> 'Completed') or (taskstat6 is null)) and (taskto6 = ?) and (newt6 is null)) or (((taskstat7 <> 'Completed') or (taskstat7 is null)) and (taskto7 = ?) and (newt7 is null)) or (((taskstat8 <> 'Completed') or (taskstat8 is null)) and (taskto8 = ?) and (newt8 is null)) or (((taskstat9 <> 'Completed') or (taskstat9 is null)) and (taskto9 = ?) and (newt9 is null)) or (((taskstat11 <> 'Completed') or (taskstat11 is null)) and (taskto11 = ?) and (newt11 is null)) or (((taskstat12 <> 'Completed') or (taskstat12 is null)) and (taskto12 = ?) and (newt12 is null)) or (((taskstat13 <> 'Completed') or (taskstat12 is null)) and (taskto13 = ?) and (newt13 is null)) or (((taskstat14 <> 'Completed') or (taskstat14 is null)) and (taskto14 = ?) and (newt14 is null)) or (((taskstat15 <> 'Completed') or (taskstat15 is null)) and (taskto15 = ?) and (newt15 is null)) or (((taskstat10 <> 'Completed') or (taskstat10 is null)) and (taskto10 = ?) and (newt10 is null)) or (((taskstat <> 'Completed') or (taskstat is null)) and (taskfrom = ?) and (newtf is null))) and (taskfrom = '" + onlyUser + "')";
-           }
-        }  
+            if (onlyUser.length() < 3) {
+                sql = "select * from " + Username.getcompany() + ".tasks where (((taskstat1 <> 'Completed') or (taskstat1 is null)) and (taskto1 = ?) and (newt1 is null)) or (((taskstat2 <> 'Completed') or (taskstat2 is null)) and (taskto2 = ?) and (newt2 is null)) or (((taskstat3 <> 'Completed') or (taskstat3 is null)) and (taskto3 = ?) and (newt3 is null)) or(((taskstat4 <> 'Completed') or (taskstat4 is null)) and (taskto4 = ?) and (newt4 is null)) or (((taskstat5 <> 'Completed') or (taskstat5 is null)) and (taskto5 = ?) and (newt5 is null)) or (((taskstat6 <> 'Completed') or (taskstat6 is null)) and (taskto6 = ?) and (newt6 is null)) or (((taskstat7 <> 'Completed') or (taskstat7 is null)) and (taskto7 = ?) and (newt7 is null)) or (((taskstat8 <> 'Completed') or (taskstat8 is null)) and (taskto8 = ?) and (newt8 is null)) or (((taskstat9 <> 'Completed') or (taskstat9 is null)) and (taskto9 = ?) and (newt9 is null)) or (((taskstat11 <> 'Completed') or (taskstat11 is null)) and (taskto11 = ?) and (newt11 is null)) or (((taskstat12 <> 'Completed') or (taskstat12 is null)) and (taskto12 = ?) and (newt12 is null)) or (((taskstat13 <> 'Completed') or (taskstat12 is null)) and (taskto13 = ?) and (newt13 is null)) or (((taskstat14 <> 'Completed') or (taskstat14 is null)) and (taskto14 = ?) and (newt14 is null)) or (((taskstat15 <> 'Completed') or (taskstat15 is null)) and (taskto15 = ?) and (newt15 is null)) or (((taskstat10 <> 'Completed') or (taskstat10 is null)) and (taskto10 = ?) and (newt10 is null)) or (((taskstat <> 'Completed') or (taskstat is null)) and (taskfrom = ?) and (newtf is null))";
+            } else {
+                sql = "select * from " + Username.getcompany() + ".tasks where ((((taskstat1 <> 'Completed') or (taskstat1 is null)) and (taskto1 = ?) and (newt1 is null)) or (((taskstat2 <> 'Completed') or (taskstat2 is null)) and (taskto2 = ?) and (newt2 is null)) or (((taskstat3 <> 'Completed') or (taskstat3 is null)) and (taskto3 = ?) and (newt3 is null)) or(((taskstat4 <> 'Completed') or (taskstat4 is null)) and (taskto4 = ?) and (newt4 is null)) or (((taskstat5 <> 'Completed') or (taskstat5 is null)) and (taskto5 = ?) and (newt5 is null)) or (((taskstat6 <> 'Completed') or (taskstat6 is null)) and (taskto6 = ?) and (newt6 is null)) or (((taskstat7 <> 'Completed') or (taskstat7 is null)) and (taskto7 = ?) and (newt7 is null)) or (((taskstat8 <> 'Completed') or (taskstat8 is null)) and (taskto8 = ?) and (newt8 is null)) or (((taskstat9 <> 'Completed') or (taskstat9 is null)) and (taskto9 = ?) and (newt9 is null)) or (((taskstat11 <> 'Completed') or (taskstat11 is null)) and (taskto11 = ?) and (newt11 is null)) or (((taskstat12 <> 'Completed') or (taskstat12 is null)) and (taskto12 = ?) and (newt12 is null)) or (((taskstat13 <> 'Completed') or (taskstat12 is null)) and (taskto13 = ?) and (newt13 is null)) or (((taskstat14 <> 'Completed') or (taskstat14 is null)) and (taskto14 = ?) and (newt14 is null)) or (((taskstat15 <> 'Completed') or (taskstat15 is null)) and (taskto15 = ?) and (newt15 is null)) or (((taskstat10 <> 'Completed') or (taskstat10 is null)) and (taskto10 = ?) and (newt10 is null)) or (((taskstat <> 'Completed') or (taskstat is null)) and (taskfrom = ?) and (newtf is null))) and (taskfrom = '" + onlyUser + "')";
+            }
+        }
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, Username.getUserName());
         pstm.setString(2, Username.getUserName());
@@ -1550,7 +1554,9 @@ public class TaskUtils extends HttpServlet {
         String day = Integer.toString(cal.get(Calendar.DAY_OF_MONTH));
         String hour = Integer.toString(cal.get(Calendar.HOUR_OF_DAY));
         String minute = Integer.toString(cal.get(Calendar.MINUTE));
-        if (onlyUser == null) { onlyUser ="";}
+        if (onlyUser == null) {
+            onlyUser = "";
+        }
         String sql = "";
         if (onlyUser.equals(null) | onlyUser.length() < 4) {
             sql = "select * from " + Username.getcompany() + ".tasks where (((taskto1 = ?) and (taskstat1 = 'Completed')) or ((taskto2 = ?) and (taskstat2 = 'Completed')) or ((taskto3 = ?) and (taskstat3 = 'Completed')) or ((taskto4 = ?) and (taskstat4 = 'Completed')) or ((taskto5 = ?) and (taskstat5 = 'Completed'))  or ((taskto6 = ?) and (taskstat6 = 'Completed'))  or ((taskto7 = ?) and (taskstat7 = 'Completed'))  or ((taskto8 = ?) and (taskstat8 = 'Completed')) or ((taskto9 = ?) and (taskstat9 = 'Completed'))  or ((taskto10 = ?) and (taskstat10 = 'Completed')) or ((taskto11 = ?) and (taskstat11 = 'Completed')) or ((taskto12 = ?) and (taskstat12 = 'Completed')) or ((taskto13 = ?) and (taskstat13 = 'Completed')) or ((taskto14 = ?) and (taskstat14 = 'Completed')) or ((taskto15 = ?) and (taskstat15 = 'Completed')) )  and (recur = '0')";
@@ -1835,7 +1841,9 @@ public class TaskUtils extends HttpServlet {
         String minute = Integer.toString(cal.get(Calendar.MINUTE));
 
         String sql = "";
-        if (onlyUser == null) { onlyUser ="";}        
+        if (onlyUser == null) {
+            onlyUser = "";
+        }
         if (onlyUser.equals(null) | onlyUser.length() < 4) {
             sql = "select * from " + Username.getcompany() + ".tasks where ((taskstat <> 'Completed') or (taskstat is null)) and (((taskstat1 <> 'Completed') or (taskstat1 is null)) and (taskto1 = ?) and (comadd1 is null)) or (((taskstat2 <> 'Completed') or (taskstat2 is null)) and (taskto2 = ?) and (comadd2 is null)) or (((taskstat3 <> 'Completed') or (taskstat3 is null)) and (taskto3 = ?) and (comadd3 is null)) or (((taskstat4 <> 'Completed') or (taskstat4 is null)) and (taskto4 = ?) and (comadd4 is null)) or (((taskstat5 <> 'Completed') or (taskstat5 is null)) and (taskto5 = ?) and (comadd5 is null)) or (((taskstat6 <> 'Completed') or (taskstat6 is null)) and (taskto6 = ?) and (comadd6 is null)) or (((taskstat7 <> 'Completed') or (taskstat7 is null)) and (taskto7 = ?) and (comadd7 is null)) or (((taskstat8 <> 'Completed') or (taskstat8 is null)) and (taskto8 = ?) and (comadd8 is null)) or (((taskstat9 <> 'Completed') or (taskstat9 is null)) and (taskto9 = ?) and (comadd9 is null)) or (((taskstat11 <> 'Completed') or (taskstat11 is null)) and (taskto11 = ?) and (comadd11 is null)) or (((taskstat12 <> 'Completed') or (taskstat12 is null)) and (taskto12 = ?) and (comadd12 is null)) or (((taskstat13 <> 'Completed') or (taskstat13 is null)) and (taskto13 = ?) and (comadd13 is null)) or (((taskstat14 <> 'Completed') or (taskstat14 is null)) and (taskto14 = ?) and (comadd14 is null)) or (((taskstat15 <> 'Completed') or (taskstat15 is null)) and (taskto15 = ?) and (comadd15 is null)) or (((taskstat10 <> 'Completed') or (taskstat10 is null)) and (taskto10 = ?) and (comadd10 is null)) or (((taskstat <> 'Completed') or (taskstat is null)) and (taskfrom = ?) and (comaddf is null)) ";
         } else {
@@ -1989,7 +1997,9 @@ public class TaskUtils extends HttpServlet {
         String minute = Integer.toString(cal.get(Calendar.MINUTE));
 
         String sql = "";
-if (onlyUser == null) { onlyUser ="";}        
+        if (onlyUser == null) {
+            onlyUser = "";
+        }
         if (onlyUser.equals(null) | onlyUser.length() < 4) {
             sql = "select * from " + Username.getcompany() + ".tasks where (taskfrom = ?) and (taskstat = 'Completed')";
         } else {
@@ -2130,7 +2140,9 @@ if (onlyUser == null) { onlyUser ="";}
         String minute = Integer.toString(cal.get(Calendar.MINUTE));
 
         String sql = "";
-if (onlyUser == null) { onlyUser ="";}        
+        if (onlyUser == null) {
+            onlyUser = "";
+        }
         if (onlyUser.equals(null) | onlyUser.length() < 4) {
             sql = "select * from " + Username.getcompany() + ".tasks where (startdate > '" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and ( recur = '0') and (((taskto1 = ?) and ((taskstat1 <> 'Completed') or (taskstat1 is NULL))) or ((taskto2 = ?) and ((taskstat2 <> 'Completed') or (taskstat2 is NULL))) or ((taskto3 = ?) and ((taskstat3 <> 'Completed') or (taskstat3 is NULL))) or ((taskto4 = ?) and ((taskstat4 <> 'Completed') or (taskstat4 is NULL))) or ((taskto5 = ?) and ((taskstat5 <> 'Completed') or (taskstat5 is NULL))) or ((taskto6 = ?) and ((taskstat6 <> 'Completed') or (taskstat6 is NULL))) or ((taskto7 = ?) and ((taskstat7 <> 'Completed') or (taskstat7 is NULL))) or ((taskto8 = ?) and ((taskstat8 <> 'Completed') or (taskstat8 is NULL))) or ((taskto9 = ?) and ((taskstat9 <> 'Completed') or (taskstat9 is NULL))) or ((taskto11 = ?) and ((taskstat11 <> 'Completed') or (taskstat11 is NULL))) or ((taskto12 = ?) and ((taskstat12 <> 'Completed') or (taskstat12 is NULL))) or ((taskto13 = ?) and ((taskstat13 <> 'Completed') or (taskstat13 is NULL))) or ((taskto14 = ?) and ((taskstat14 <> 'Completed') or (taskstat14 is NULL))) or ((taskto15 = ?) and ((taskstat15 <> 'Completed') or (taskstat15 is NULL))) or ((taskto10 = ?) and ((taskstat10 <> 'Completed') or (taskstat10 is NULL)))) and (taskstat <> 'Completed')";
         } else {
@@ -2264,7 +2276,9 @@ if (onlyUser == null) { onlyUser ="";}
 
         }
         String sql1 = "";
-if (onlyUser == null) { onlyUser ="";}        
+        if (onlyUser == null) {
+            onlyUser = "";
+        }
         if (onlyUser.equals(null) | onlyUser.length() < 4) {
             sql1 = "select * from " + Username.getcompany() + ".tasks where (recur =1) and (((taskto1 = ?) and ((taskstat1 <> 'Completed') or (taskstat1 is NULL)) and (RECURDATE1 >'" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate1 < enddate)) or ((taskto2 = ?) and ((taskstat2 <> 'Completed') or (taskstat2 is NULL)) and (RECURDATE2 >'" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate2 < enddate)) or ((taskto3 = ?) and ((taskstat3 <> 'Completed') or (taskstat3 is NULL)) and (RECURDATE3 >'" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate3 < enddate)) or ((taskto4 = ?) and ((taskstat4 <> 'Completed') or (taskstat4 is NULL)) and (RECURDATE4 >'" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate4 < enddate)) or ((taskto5 = ?) and ((taskstat5 <> 'Completed') or (taskstat5 is NULL)) and (RECURDATE5 >'" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate5 < enddate)) or ((taskto6 = ?) and ((taskstat6 <> 'Completed') or (taskstat6 is NULL)) and (RECURDATE6 >'" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate6 < enddate)) or ((taskto7 = ?) and ((taskstat7 <> 'Completed') or (taskstat7 is NULL)) and (RECURDATE7 >'" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate7 < enddate)) or ((taskto8 = ?) and ((taskstat8 <> 'Completed') or (taskstat8 is NULL)) and (RECURDATE8 >'" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate8 < enddate)) or ((taskto9 = ?) and ((taskstat9 <> 'Completed') or (taskstat9 is NULL)) and (RECURDATE9 >'" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate9 < enddate)) or ((taskto11 = ?) and ((taskstat11 <> 'Completed') or (taskstat11 is NULL)) and (RECURDATE11 >'" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate11 < enddate)) or ((taskto12 = ?) and ((taskstat12 <> 'Completed') or (taskstat12 is NULL)) and (RECURDATE12 >'" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate12 < enddate)) or ((taskto13 = ?) and ((taskstat13 <> 'Completed') or (taskstat13 is NULL)) and (RECURDATE13 >'" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate13 < enddate)) or ((taskto14 = ?) and ((taskstat14 <> 'Completed') or (taskstat14 is NULL)) and (RECURDATE14 >'" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate14 < enddate)) or ((taskto15 = ?) and ((taskstat15 <> 'Completed') or (taskstat15 is NULL)) and (RECURDATE15 >'" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate15 < enddate)) or ((taskto10 = ?) and ((taskstat10 <> 'Completed') or (taskstat10 is NULL)) and (RECURDATE10 >'" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00') and (recurdate10 < enddate)))";
         } else {
@@ -2423,7 +2437,9 @@ if (onlyUser == null) { onlyUser ="";}
         String minute = Integer.toString(cal.get(Calendar.MINUTE));
 
         String sql = "";
-if (onlyUser == null) { onlyUser ="";}        
+        if (onlyUser == null) {
+            onlyUser = "";
+        }
         if (onlyUser.equals(null) | onlyUser.length() < 4) {
             sql = "select * from " + Username.getcompany() + ".tasks where (recur = '0') and (startdate < '" + year + "/" + month + "/" + day + " 23:59') and ((taskstat <> 'Completed') or (taskstat is NULL)) and (((taskto1 = ? ) and ((taskstat1 <> 'Completed') or (taskstat1 is NULL))) or ((taskto2 = ?) and ((taskstat2 <> 'Completed') or (taskstat2 is NULL))) or ((taskto3 = ?) and ((taskstat3 <> 'Completed') or (taskstat3 is NULL))) or ((taskto4 = ?) and ((taskstat4 <> 'Completed') or (taskstat4 is NULL))) or ((taskto5 = ?) and ((taskstat5 <> 'Completed') or (taskstat5 is NULL))) or ((taskto6 = ?) and ((taskstat6 <> 'Completed') or (taskstat6 is NULL))) or ((taskto7 = ?) and ((taskstat7 <> 'Completed') or (taskstat7 is NULL))) or ((taskto8 = ?) and ((taskstat8 <> 'Completed') or (taskstat8 is NULL))) or ((taskto9 = ?) and ((taskstat9 <> 'Completed') or (taskstat9 is NULL))) or ((taskto10 = ?) and ((taskstat10 <> 'Completed') or (taskstat10 is NULL))) or ((taskto11 = ?) and ((taskstat11 <> 'Completed') or (taskstat11 is NULL))) or ((taskto12 = ?) and ((taskstat12 <> 'Completed') or (taskstat12 is NULL))) or ((taskto13 = ?) and ((taskstat13 <> 'Completed') or (taskstat13 is NULL))) or ((taskto14 = ?) and ((taskstat14 <> 'Completed') or (taskstat14 is NULL))) or ((taskto15 = ?) and ((taskstat15 <> 'Completed') or (taskstat15 is NULL)))) ";
         } else {
@@ -2723,7 +2739,9 @@ if (onlyUser == null) { onlyUser ="";}
         String minute = Integer.toString(cal.get(Calendar.MINUTE));
 
         String sql = "";
-        if (onlyUser == null) { onlyUser ="";}
+        if (onlyUser == null) {
+            onlyUser = "";
+        }
         if (onlyUser.equals(null) | onlyUser.length() < 4) {
             sql = "select * from " + Username.getcompany() + ".tasks where (taskfrom = ?) and ((taskstat <> 'Completed') or (taskstat is NULL))";
         } else {
@@ -3751,15 +3769,12 @@ if (onlyUser == null) { onlyUser ="";}
     public static ArrayList<Generics> taskUpdateIdea(Connection conn, UserAccount user, String myIdea) throws SQLException {
         ArrayList<Generics> list = new ArrayList<Generics>();
         System.out.println("TaskUpdateIdea");
-
         String sql = "update " + user.getcompany() + ".users set myidea = ? where name =?";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, myIdea);
         pstm.setString(2, user.getUserName());
         pstm.executeUpdate();
-
         String result = "success";
-
         Generics generics = new Generics();
         generics.setGenericDescriptionEng(result);
         list.add(generics);
@@ -4656,6 +4671,52 @@ if (onlyUser == null) { onlyUser ="";}
 
             list.add(taskimage);
         }
+        return list;
+    }
+
+    public static ArrayList<Generics> taskEmailSend(Connection conn, UserAccount user, String tranid, String mailto, String mailcontent) throws SQLException {
+        ArrayList<Generics> list = new ArrayList<Generics>();
+        System.out.println("taskEmailSend");
+        String result;
+        String newnote = "";
+        if (mailto.indexOf('@') >= 0) {
+            String sql = "insert into " + user.getcompany() + ".taskemail (taskid, date, mailto, mailcontent, taskuser, sr, done ) values (?, current_timestamp, ?, ?, ?, ? ,'N' )";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.setString(1, tranid);
+            pstm.setString(2, mailto);
+            pstm.setString(3, mailcontent);
+            pstm.setString(4, user.getUserName());
+            pstm.setString(5, "send");
+            pstm.executeUpdate();
+            result = "success";            
+            // read updated notes
+            String sql1 = "select tasknote from " + user.getcompany() + ".tasks where tranid = ?";
+            PreparedStatement pstm1 = conn.prepareStatement(sql1);
+            pstm1.setString(1, tranid);
+            ResultSet rs = pstm1.executeQuery();
+            if (rs.next()) {
+                long millis = System.currentTimeMillis();
+                java.sql.Date date = new java.sql.Date(millis);
+                SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm:ss");
+                Date now = new Date();
+                String strTime = sdfTime.format(now);
+                String newcomm = rs.getString("tasknote") + "~~E-mail send~Mail to : " + mailto + "~Mail content : ~" + mailcontent + "~" + user.getUserName() + " " + date + " " + strTime + "~______________________~";
+                String sql2 = "update " + user.getcompany() + ".tasks set tasknote = ? where tranid = ?";
+                PreparedStatement pstm2 = conn.prepareStatement(sql2);
+                pstm2.setString(1, newcomm);
+                pstm2.setString(2, tranid);
+                pstm2.executeUpdate();
+                newnote = newcomm;
+            }
+
+        } else {
+            result = "failed";
+            newnote = "Mail to address is not correct";
+        }
+        Generics generics = new Generics();
+        generics.setGenericDescriptionEng(result);
+        generics.setGenericDescriptionAfr(newnote);
+        list.add(generics);
         return list;
     }
 
